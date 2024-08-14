@@ -1,0 +1,142 @@
+body, h1, h2, p, ul {
+    margin: 0;
+    padding: 0;
+    font-family: "Nunito Sans", sans-serif;
+}
+
+body {
+    line-height: 1.6;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #FF6F6F;
+}
+
+.logo {
+    height: 50px;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.menu-icon {
+    display: none;
+    height: 24px;
+}
+
+main {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #FF6F6F;
+    color: white;
+    position: relative;
+}
+
+.intro {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: right;
+    padding-bottom: 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.text-content {
+    max-width: 40%;
+    padding-right: 20px;
+    margin-left: 8%;
+}
+
+.text-content h1 {
+    font-size: 2em;
+}
+
+.text-content p {
+    font-size: 1.2em;
+    text-align: justify;
+    text-align-last: right;
+}
+
+.portrait {
+    max-width: 300px;
+    height: auto;
+    position: absolute;
+    top: -26px;
+    right: calc(7% + (32% - 7%) * ((100vw - 583px) / (1804px - 583px)));
+    z-index: 2;
+    border: none;
+}
+
+@media screen and (min-width: 1804px) {
+    .portrait {
+        right: 32%;
+    }
+}
+
+.gallery {
+    margin: 0;
+    background-color: #FF9494;
+    padding: 50px 20px;
+    position: relative;
+    z-index: 1;
+    overflow: visible;
+}
+
+@media screen and (max-width: 768px) {
+    .menu-icon {
+        display: block;
+    }
+
+    nav ul {
+        display: none;
+    }
+
+    .intro {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .text-content {
+        max-width: 90%;
+        margin-left: 0;
+        text-align: center;
+    }
+
+    .text-content p {
+        text-align: justify;
+        text-align-last: center;
+    }
+
+    .portrait {
+        position: relative;
+        margin: 0 auto 20px;
+        top: 50px;
+        right: 0;
+        left: 0;
+        width: 50%;
+        max-width: 300px;
+        z-index: 1;
+    }
+
+    .gallery {
+        margin-top: 0;
+        padding-top: 20px;
+    }
+}
