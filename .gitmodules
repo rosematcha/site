@@ -1,0 +1,3 @@
+[submodule "friendfinder"]
+	path = friendfinder
+	url = https://github.com/rosematcha/friendfinder
