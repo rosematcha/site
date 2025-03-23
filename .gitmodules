@@ -1,3 +1,6 @@
 [submodule "friendfinder"]
 	path = friendfinder
 	url = https://github.com/rosematcha/friendfinder
+[submodule "decks"]
+	path = decks
+	url = https://github.com/rosematcha/decks
