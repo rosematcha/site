@@ -1,9 +1,14 @@
 [[redirects]]
   from = "/decks/*"
-  to = "/_site/decks/:splat"
+  to = "/decks/_site/decks/:splat"
   status = 200
 
 [[redirects]]
   from = "/decks"
-  to = "/_site/decks/index.html"
+  to = "/decks/_site/decks/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/decks/_site/*"
+  to = "/decks/_site/decks/:splat"
   status = 200
