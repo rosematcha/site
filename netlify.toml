@@ -1,14 +1,54 @@
+# === Build Settings ===
+[build]
+  # We will create a final '_site' directory at the root containing everything.
+  publish = "_site"
+
+  # Command sequence:
+  # 1. Build the Eleventy site inside the 'decks' submodule.
+  # 2. Create a clean final publish directory '_site'.
+  # 3. Copy the root files (index.html, assets, css) from 'site' into '_site'.
+  # 4. Copy the built Eleventy output from 'decks/_site' into '_site'.
+  command = """
+    echo "Starting combined build..." && \\
+    echo "Building Eleventy site in ./decks..." && \\
+    (cd decks && npm install && npm run build) && \\
+    echo "Preparing final publish directory '_site'..." && \\
+    rm -rf _site && \\
+    mkdir _site && \\
+    echo "Copying root files (index.html, assets, css)..." && \\
+    cp index.html _site/ && \\
+    cp -r assets _site/assets && \\
+    cp -r css _site/css && \\
+    echo "Copying Eleventy build output from decks/_site into _site..." && \\
+    cp -r decks/_site/* _site/ && \\
+    echo "Combined build finished."
+  """
+
+# Optional: Specify Node.js version if needed
+#[build.environment]
+#  NODE_VERSION = "18"
+
+# === Redirects ===
+# Your existing redirects - these will likely need adjustment
+# AFTER you confirm the build works, as the '_site' part in the 'to' path
+# will probably no longer be correct.
 [[redirects]]
   from = "/decks/*"
-  to = "/decks/_site/decks/:splat"
+  to = "/decks/_site/decks/:splat" # Likely needs changing later
   status = 200
 
 [[redirects]]
   from = "/decks"
-  to = "/decks/_site/decks/index.html"
+  to = "/decks/_site/decks/index.html" # Likely needs changing later
   status = 200
 
 [[redirects]]
   from = "/decks/_site/*"
-  to = "/decks/_site/decks/:splat"
+  to = "/decks/_site/decks/:splat" # Likely needs changing later
   status = 200
+
+# Consider adding a simple 404 rule if needed
+# [[redirects]]
+#  from = "/*"
+#  to = "/404.html" # Assuming 404.html exists in the final _site
+#  status = 404
