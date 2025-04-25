@@ -1,4 +1,5 @@
 // --- Global Variables ---
+//lorem ipsum
 let turnoutChart = null;
 const parsedData = {
     2025: { locations: [], dates: [], totals: [] },
