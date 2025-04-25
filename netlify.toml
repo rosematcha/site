@@ -13,8 +13,8 @@
     cp index.html _site/ && \\
     cp -r assets _site/assets && \\
     cp -r css _site/css && \\
-    cp bexarvoting _site/bexarvoting && \\
-    cp friendfinder _site/friendfinder && \\
+    cp -r bexarvoting _site/bexarvoting && \\
+    cp -r friendfinder _site/friendfinder && \\
     echo "Copying Eleventy build output from decks/_site into _site..." && \\
     cp -r decks/_site/* _site/ && \\
     echo "Combined build finished."
