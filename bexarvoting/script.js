@@ -1,22 +1,19 @@
-// --- Global Variables ---
-//lorem ipsum
 let turnoutChart = null;
 const parsedData = {
     2025: { locations: [], dates: [], totals: [] },
 };
 const dataFiles = {
     2025: "csv/May 2025 Municipal.csv",
+    // more go here when we get them from bexar
 };
 
-// --- DOM Elements ---
 const locationSelect = document.getElementById("location-select");
 const chartCanvas = document.getElementById("turnoutChart");
 const yAxisToggle = document.getElementById("y-axis-toggle");
 const statusMessage = document.createElement("p");
 statusMessage.className =
-    "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center text-gray-400 my-4"; // Adjusted default color
+    "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center text-gray-400 my-4";
 
-// Insert status message relative to the chart canvas
 if (chartCanvas?.parentNode) {
     chartCanvas.parentNode.insertBefore(statusMessage, chartCanvas);
 } else {
@@ -24,9 +21,7 @@ if (chartCanvas?.parentNode) {
     document.body.appendChild(statusMessage);
 }
 
-// --- Theme Management Removed ---
-
-// --- Performance and Caching Utilities ---
+// caching
 const metrics = {
     renderTime: [],
     dataLoadTime: [],
@@ -69,7 +64,6 @@ const fetchWithCache = async (year) => {
         }
     }
 
-    // console.log(`Fetching data for year ${year}...`);
     const startTime = performance.now();
     try {
         const filePath = dataFiles[year];
@@ -161,7 +155,6 @@ const parseCSV = wrapAsyncErrorHandler(async (csvString, year) => {
     });
 
     parsedData[year].locations.sort((a, b) => a.name.localeCompare(b.name));
-    // console.log(`Parsed data for ${year}`);
 }, () => {
     console.error("CSV Parsing failed. Resetting data for the year.");
     parsedData[2025] = { locations: [], dates: [], totals: [] };
@@ -174,7 +167,7 @@ const parseCSV = wrapAsyncErrorHandler(async (csvString, year) => {
 
 const populateLocationDropdown = () => {
     if (!locationSelect) return;
-    locationSelect.options.length = 1; // Keep "Total Turnout"
+    locationSelect.options.length = 1;
 
     const yearToUse = 2025;
     if (parsedData[yearToUse]?.locations) {
@@ -189,13 +182,8 @@ const populateLocationDropdown = () => {
     }
 };
 
-// --- Chart Theming Removed ---
-
-// --- Chart Rendering Configuration ---
-// Simplified to use hardcoded dark mode colors
 const createChartConfig = (labels, datasets, title) => {
     const startAtZero = yAxisToggle ? yAxisToggle.checked : true;
-    // Hardcoded dark mode colors
     const themeColors = {
         ticksColor: "#9CA3AF", gridColor: "#374151", legendColor: "#E5E7EB",
         titleColor: "#F9FAFB", tooltipBgColor: "#1F2937",
@@ -231,7 +219,6 @@ const createChartConfig = (labels, datasets, title) => {
     };
 };
 
-// --- Chart Rendering Logic ---
 const renderChart = () => {
     const selectedLocation = locationSelect.value;
     const year = 2025;
@@ -297,14 +284,12 @@ const renderChart = () => {
          return;
     }
 
-    // Update existing chart or create a new one
     if (turnoutChart) {
         turnoutChart.data.labels = labels;
         turnoutChart.data.datasets = datasets;
         turnoutChart.options.plugins.title.text = chartTitle;
         turnoutChart.options.scales.y.beginAtZero = yAxisToggle ? yAxisToggle.checked : true;
-        // No need to call updateChartTheme anymore
-        turnoutChart.update(); // Just update the chart
+        turnoutChart.update();
     } else {
         const config = createChartConfig(labels, datasets, chartTitle);
         turnoutChart = new Chart(ctx, config);
@@ -322,7 +307,6 @@ const debouncedRenderChart = debounce(() => {
     }
 }, 250);
 
-// --- Event Listeners ---
 const setupEventListeners = () => {
     if (locationSelect) {
         locationSelect.addEventListener("change", () => {
@@ -346,10 +330,8 @@ const setupEventListeners = () => {
     }
 };
 
-// --- Initialization ---
 const initialize = wrapAsyncErrorHandler(async () => {
     statusMessage.textContent = "Loading data...";
-    // Removed initializeTheme() call
 
     const year = 2025;
     const csvText = await fetchWithCache(year);
@@ -361,13 +343,11 @@ const initialize = wrapAsyncErrorHandler(async () => {
     }
 
     populateLocationDropdown();
-    debouncedRenderChart(); // Initial render will use dark mode config
+    debouncedRenderChart();
     setupEventListeners();
     statusMessage.textContent = "";
 
-    // Auto-refresh interval
     setInterval(async () => {
-        // console.log('Checking for data updates...');
         try {
             const newData = await fetchWithCache(year);
             const cacheKey = `voting-data-${year}`;
@@ -382,14 +362,13 @@ const initialize = wrapAsyncErrorHandler(async () => {
                  } else {
                      console.warn("Auto-refresh: Parsing resulted in no data.");
                  }
-            } // else { console.log('Auto-refresh: Data unchanged.'); }
+            }
         } catch (error) {
             console.error('Auto-refresh failed:', error);
         }
-    }, 900000); // 15 minutes
+    }, 900000);
 });
 
-// --- Performance Monitoring ---
 window.getPerformanceMetrics = () => {
     const safeReduce = (arr) => arr.length > 0 ? arr.reduce((a, b) => a + b, 0) / arr.length : 0;
     return {
@@ -399,5 +378,4 @@ window.getPerformanceMetrics = () => {
     };
 };
 
-// --- Run Initialization ---
 document.addEventListener('DOMContentLoaded', initialize);
