@@ -30,10 +30,26 @@
              p.text-sm {
                  @apply text-gray-400;
              }
+
+             #voter-guide {
+                margin-top: 8px;
+            }
+
+            @media (min-width: 768px) {
+                .buttons {
+                    margin-bottom: 20px;
+                }
+            }
+
+            @media (max-width: 767px) {
+                #voter-guide {
+                    margin-bottom: 20px;
+                }
+            }
         </style>
     </head>
     <body class="font-sans">
-        <div class="container mx-auto p-4 md:p-8">
+        <div class="container mx-auto p-4 md:p-8 buttons">
             <div class="flex justify-between items-start mb-6">
                 <img
                     src="title.gif"
@@ -72,6 +88,7 @@
                 target="_blank"
                 rel="noopener noreferrer"
                 class="button-secondary"
+                id="voter-guide"
                 style="margin-bottom: 20px; margin-top: 8px;""
             >
                 League of Women Voters Voter Guide
