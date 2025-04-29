@@ -1,56 +1,50 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en" class="dark"> <!-- Always dark mode -->
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>SA Early Voting Tracker</title>
-        <!-- tailwind -->
+        <!-- Tailwind CSS CDN -->
         <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
-        <!-- chart.js -->
+        <!-- Chart.js CDN -->
         <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+        <!-- Font Awesome no longer needed -->
         <style type="text/tailwindcss">
+            /* Base styles for dark mode ONLY */
             body {
-                @apply bg-gray-900 text-gray-100;
+                @apply bg-gray-900 text-gray-100; /* Dark background, light text */
             }
+            /* Reusable card component style */
             .card {
-                @apply bg-gray-800 rounded shadow p-4;
+                @apply bg-gray-800 rounded shadow p-4; /* Dark card background */
             }
+            /* Consistent input styling for dark mode */
             .form-input-style {
                  @apply mt-1 block w-full rounded-md border-gray-600 bg-gray-700 text-gray-200 shadow-sm focus:border-pink-400 focus:ring focus:ring-pink-300 focus:ring-opacity-50;
             }
+            /* Pink accent button */
             .button-pink {
                  @apply inline-block px-4 py-2 bg-pink-600 text-white font-semibold rounded hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2 focus:ring-offset-gray-900 text-center transition-colors duration-300;
             }
+            /* Secondary button style */
              .button-secondary {
                  @apply inline-block px-4 py-2 bg-gray-600 text-white font-semibold rounded hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-gray-900 text-center transition-colors duration-300;
             }
+            /* Ensure specific text elements are light */
             h2, label, span, p {
-                @apply text-gray-200;
+                @apply text-gray-200; /* Default light text for these elements */
             }
-             p.text-sm {
+             p.text-sm { /* Attribution text slightly dimmer */
                  @apply text-gray-400;
              }
-
-             #voter-guide {
-                margin-top: 8px;
-            }
-
-            @media (min-width: 768px) {
-                .buttons {
-                    margin-bottom: 20px;
-                }
-            }
-
-            @media (max-width: 767px) {
-                #voter-guide {
-                    margin-bottom: 20px;
-                }
-            }
         </style>
+        <!-- Removed early theme application script -->
     </head>
     <body class="font-sans">
-        <div class="container mx-auto p-4 md:p-8 buttons">
+        <div class="container mx-auto p-4 md:p-8">
+            <!-- Header Area -->
             <div class="flex justify-between items-start mb-6">
+                <!-- Title GIF -->
                 <img
                     src="title.gif"
                     alt="San Antonio Early Voting Turnout"
@@ -58,49 +52,56 @@
                     height="92"
                     class="max-w-[70%] md:max-w-md h-auto"
                 />
+                <!-- Removed Theme Toggle Button -->
             </div>
 
+            <!-- Chart Area -->
             <div class="relative mb-6 card h-96">
+                <!-- Status message inserted here by JS -->
                 <canvas id="turnoutChart"></canvas>
             </div>
 
+            <!-- Action Buttons (Moved HERE) -->
             <div
-            class="flex flex-col sm:flex-row sm:space-x-4 space-y-2 sm:space-y-0"
-        >
-            <a
-                href="https://www.bexar.org/2231/Who-represents-me-Search"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="button-pink"
+                class="flex flex-col sm:flex-row sm:space-x-4 space-y-2 sm:space-y-0 mb-6"
             >
-                See Your Sample Ballot
-            </a>
-            <a
-                href="https://www.bexar.org/2229/Voter-Registration-Check-Polling-Locatio"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="button-pink"
-            >
-                Verify Voter Registration
-            </a>
-            <a
-                href="https://lwvsa.org/handlers/celinks.ashx?id=74871"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="button-secondary"
-                id="voter-guide"
-            >
-                League of Women Voters Voter Guide
-            </a>
-        </div>
+                <a
+                    href="https://www.bexar.org/2231/Who-represents-me-Search"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="button-pink"
+                >
+                    See Your Sample Ballot
+                </a>
+                <a
+                    href="https://www.bexar.org/2229/Voter-Registration-Check-Polling-Locatio"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="button-pink"
+                >
+                    Verify Voter Registration
+                </a>
+                <a
+                    href="https://lwvsa.org/handlers/celinks.ashx?id=74871"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="button-secondary"
+                >
+                    League of Women Voters Voter Guide
+                </a>
+            </div>
 
+            <!-- Controls Area -->
             <div class="mb-6 card">
                 <h2 class="text-xl font-semibold mb-3">
                     Display Options
                 </h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Year Options -->
                     <div>
-                        <label class="block text-sm font-medium mb-1">
+                        <label
+                            class="block text-sm font-medium mb-1"
+                        >
                             Years:
                         </label>
                         <div id="year-options" class="space-x-4">
@@ -114,13 +115,15 @@
                                 />
                                 <span class="ml-2 text-sm">May 2025</span>
                             </label>
-                        <small><br><span style="color:rgb(156 163 175 / var(--tw-text-opacity, 1));">currently waiting on bexar elections to respond to my public records request; other years coming soon!</span></small>
                         </div>
                     </div>
 
-                    <!-- select locaiton -->
+                    <!-- Location Select -->
                     <div>
-                        <label for="location-select" class="block text-sm font-medium mb-1" >
+                        <label
+                            for="location-select"
+                            class="block text-sm font-medium mb-1"
+                        >
                             Location:
                         </label>
                         <select
@@ -128,10 +131,11 @@
                             class="form-input-style"
                         >
                             <option value="total">Total Turnout</option>
+                            <!-- Location options populated by JS -->
                         </select>
                     </div>
-                    
-                    <!-- toggle y-axis -->
+
+                    <!-- Y-Axis Toggle -->
                     <div class="md:col-span-2">
                         <label class="inline-flex items-center mt-2">
                             <input
@@ -140,19 +144,18 @@
                                 class="form-checkbox rounded text-pink-600 focus:ring-pink-500"
                                 checked
                             />
-                            <span class="ml-2 text-sm">Start Y-Axis at Zero</span>
+                            <span class="ml-2 text-sm">Start Y-Axis at Zero</span> <!-- Removed dark: class -->
                         </label>
                     </div>
 
                 </div>
             </div>
 
-            <p class="text-sm mb-6">
+            <!-- Data Source Attribution -->
+            <p class="text-sm mb-6"> <!-- Removed dark: class, uses p.text-sm style -->
                 Data sourced from the Bexar County Elections Department. Updated
                 as of April 28, 2025.
             </p>
-
-            <!-- action buttons -->
 
         </div>
 
