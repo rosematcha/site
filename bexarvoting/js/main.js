@@ -8,6 +8,7 @@ import {
     updateStatusMessage,
     updateAttribution,
     getSelectedYears,
+    // Note: statusMessageElement is internal to ui.js now
 } from "./ui.js";
 import { debouncedRenderChart } from "./chart.js";
 
@@ -19,7 +20,7 @@ const metrics = {
 };
 
 /**
- * Logs performance metrics.
+ * Logs performance metrics. Exported for use in other modules.
  * @param {'renderTime'|'dataLoadTime'|'interactions'} category - Metric category.
  * @param {number} durationOrCount - Duration in ms or count.
  */
@@ -35,15 +36,6 @@ export const logMetric = (category, durationOrCount) => {
     }
 };
 
-// Debounce utility
-export const debounce = (func, wait) => {
-    let timeout;
-    return (...args) => {
-        clearTimeout(timeout);
-        timeout = setTimeout(() => func.apply(this, args), wait);
-    };
-};
-
 /**
  * Initializes the application.
  */
@@ -53,48 +45,74 @@ const initialize = async () => {
 
     // Load data for initially checked years
     const initialYears = getSelectedYears();
-    const loadPromises = initialYears.map(year => loadYearData(year));
+    const loadPromises = initialYears.map((year) => loadYearData(year));
 
     try {
-        await Promise.all(loadPromises);
+        // Wait for all initial data loads to attempt completion
+        await Promise.allSettled(loadPromises); // Use allSettled to continue even if some fail
     } catch (error) {
-        console.error("Error during initial data load:", error);
-        updateStatusMessage("⚠️ Failed to load some initial data.");
-        // Continue initialization even if some years fail
+        // This catch might not be strictly necessary with allSettled,
+        // but good practice in case of unexpected errors during Promise creation.
+        console.error("Unexpected error during initial data load setup:", error);
+        updateStatusMessage("⚠️ Unexpected error during initialization.");
     }
 
-    // Populate controls based on loaded data
+    // Check if *any* data actually loaded successfully
+    const hasLoadedData = initialYears.some((year) => isDataLoaded(year));
+
+    // Populate controls based on whatever data loaded
     populateLocationDropdown();
     setupEventListeners();
     updateAttribution();
 
-    // Initial chart render
+    // Initial chart render (will show cat if no data/selections)
     debouncedRenderChart();
 
-    // Clear initializing message if no errors occurred during load
-    const hasLoadedData = initialYears.some(year => isDataLoaded(year));
-    if (hasLoadedData && !statusMessageElement.textContent.includes("⚠️")) {
-         updateStatusMessage("");
-    } else if (!hasLoadedData) {
-         updateStatusMessage("No data available to display.");
-         // Potentially show cat immediately if no data loaded at all
-         debouncedRenderChart();
+    // Update status message based on load results
+    const statusElement = document.querySelector(
+        "#chart-container > p.absolute"
+    ); // Re-select in case it wasn't created yet
+    if (hasLoadedData) {
+        // Clear "Initializing..." if successful and no prior error shown
+        if (statusElement && !statusElement.textContent.includes("⚠️")) {
+            updateStatusMessage("");
+        }
+    } else {
+        // If no data loaded at all, ensure a message is shown
+        updateStatusMessage("No data available to display.");
+        // debouncedRenderChart() called above will handle showing the cat
     }
-
 
     // Set up auto-refresh interval
     setInterval(async () => {
         console.log("Checking for data updates...");
         const yearsToCheck = getSelectedYears(); // Refresh only selected years
         let dataChanged = false;
-        for (const year of yearsToCheck) {
-            const oldData = localStorage.getItem(`voting-data-${year}`); // Simple check
-            await loadYearData(year); // This fetches/parses if needed
-            const newData = localStorage.getItem(`voting-data-${year}`);
-            if (oldData !== newData) {
-                dataChanged = true;
+
+        // Use Promise.allSettled to fetch updates concurrently
+        const updatePromises = yearsToCheck.map(async (year) => {
+            const cacheKey = `voting-data-${year}`;
+            const oldDataTimestamp = localStorage.getItem(cacheKey)
+                ? JSON.parse(localStorage.getItem(cacheKey)).timestamp
+                : null;
+
+            await loadYearData(year); // Fetches/parses if needed or expired
+
+            const newDataTimestamp = localStorage.getItem(cacheKey)
+                ? JSON.parse(localStorage.getItem(cacheKey)).timestamp
+                : null;
+
+            // Consider data changed if timestamp is different
+            if (oldDataTimestamp !== newDataTimestamp) {
+                return true; // Indicate change for this year
             }
-        }
+            return false;
+        });
+
+        const results = await Promise.allSettled(updatePromises);
+        dataChanged = results.some(
+            (result) => result.status === "fulfilled" && result.value === true
+        );
 
         if (dataChanged) {
             console.log("Data changed, re-rendering chart...");

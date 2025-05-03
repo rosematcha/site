@@ -2,7 +2,7 @@
 import { CAT_IMAGES, CHART_COLORS, TOTAL_TURNOUT_KEY } from "./config.js";
 import { getDataForSelection, getDatesForYear } from "./data.js";
 import { getSelectedYears, getSelectedLocations, getToggleStates } from "./ui.js";
-import { debounce } from "./main.js"; // Import debounce
+import { debounce } from "./utils.js";
 
 let turnoutChart = null;
 let catContainer = null; // Reference to the cat display container
