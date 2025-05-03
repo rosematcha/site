@@ -116,24 +116,21 @@
                         </p>
                     </div>
 
-                    <!-- Location Selection -->
+                    <!-- Location Selection (Checkbox List) -->
                     <div class="md:col-span-1">
-                        <label
-                            for="location-select"
-                            class="block text-sm font-medium mb-1"
-                        >
+                        <label class="block text-sm font-medium mb-1">
                             Select Locations/Total:
                         </label>
-                        <select
-                            id="location-select"
-                            multiple <!-- Allow multiple selections -->
-                            class="form-multiselect-style h-40" <!-- Use specific class, increase height -->
-                        >
-                            <!-- Options populated by JS -->
-                        </select>
-                        <p class="text-xs text-gray-400 mt-1">
-                            Hold Ctrl/Cmd or Shift to select multiple.
-                        </p>
+                        <div id="location-checkbox-container" class="space-y-1 max-h-40 overflow-y-auto border border-gray-600 rounded p-2 bg-gray-700">
+                            <!-- Checkboxes populated by JS -->
+                            <!-- Example Structure:
+                            <label class="block flex items-center hover:bg-gray-600 px-1 rounded cursor-pointer transition-colors duration-150">
+                                <input type="checkbox" class="form-checkbox rounded text-pink-600 focus:ring-pink-500 h-4 w-4" value="total" checked />
+                                <span class="ml-2 text-sm select-none">Total Turnout</span>
+                            </label>
+                             -->
+                        </div>
+                        <!-- Removed the Ctrl/Cmd helper text -->
                     </div>
 
                     <!-- Data & Axis Toggles -->

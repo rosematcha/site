@@ -3,12 +3,15 @@ import { DATA_FILES, TOTAL_TURNOUT_KEY } from "./config.js";
 import { getAllLoadedLocations } from "./data.js";
 import { debouncedRenderChart } from "./chart.js";
 import { loadYearData } from "./data.js";
-import { logMetric } from "./main.js"; // Import logMetric
+import { logMetric } from "./main.js";
 
 // DOM Elements
 const elements = {
     yearOptionsContainer: document.getElementById("year-options"),
-    locationSelect: document.getElementById("location-select"),
+    // REMOVE: locationSelect: document.getElementById("location-select"),
+    locationCheckboxContainer: document.getElementById( // NEW
+        "location-checkbox-container"
+    ),
     earlyVotingToggle: document.getElementById("early-voting-toggle"),
     electionDayToggle: document.getElementById("election-day-toggle"),
     yAxisToggle: document.getElementById("y-axis-toggle"),
@@ -19,15 +22,12 @@ const elements = {
 
 let statusMessageElement = null;
 
-/**
- * Creates and inserts the status message element if it doesn't exist.
- */
+// --- ensureStatusMessageElement() remains the same ---
 function ensureStatusMessageElement() {
     if (!statusMessageElement && elements.chartContainer) {
         statusMessageElement = document.createElement("p");
         statusMessageElement.className =
-            "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center text-gray-400 my-4 z-10"; // Ensure it's above canvas
-        // Insert before canvas
+            "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center text-gray-400 my-4 z-10";
         elements.chartContainer.insertBefore(
             statusMessageElement,
             elements.chartCanvas
@@ -37,32 +37,26 @@ function ensureStatusMessageElement() {
     }
 }
 
-/**
- * Updates the status message displayed in the chart area.
- * @param {string} message - The message to display. Clears if empty.
- */
+// --- updateStatusMessage() remains the same ---
 export const updateStatusMessage = (message) => {
     ensureStatusMessageElement();
     if (statusMessageElement) {
-        // Avoid clearing critical error messages with generic ones
         if (
             message &&
             !message.includes("⚠️") &&
             statusMessageElement.textContent.includes("⚠️")
         ) {
-            // Don't overwrite an error with a non-error message unless it's empty
+            // Don't overwrite error
         } else {
             statusMessageElement.textContent = message;
         }
     }
 };
 
-/**
- * Populates the year selection checkboxes.
- */
+// --- populateYearCheckboxes() remains the same ---
 export const populateYearCheckboxes = () => {
     if (!elements.yearOptionsContainer) return;
-    elements.yearOptionsContainer.innerHTML = ""; // Clear existing
+    elements.yearOptionsContainer.innerHTML = "";
 
     Object.entries(DATA_FILES).forEach(([year, { name, disabled }]) => {
         const label = document.createElement("label");
@@ -76,7 +70,7 @@ export const populateYearCheckboxes = () => {
         input.className =
             "form-checkbox rounded text-pink-600 focus:ring-pink-500";
         input.value = year;
-        input.checked = !disabled; // Check by default unless disabled
+        input.checked = !disabled;
         input.disabled = !!disabled;
         input.addEventListener("change", handleYearChange);
 
@@ -91,64 +85,93 @@ export const populateYearCheckboxes = () => {
 };
 
 /**
- * Populates the location multi-select dropdown.
+ * Helper function to create a checkbox option.
+ * @param {HTMLElement} container - The parent container.
+ * @param {string} labelText - Text for the label.
+ * @param {string} value - Value for the checkbox.
+ * @param {boolean} checked - Initial checked state.
+ */
+function createCheckboxOption(container, labelText, value, checked) {
+    const label = document.createElement("label");
+    label.className =
+        "block flex items-center hover:bg-gray-600 px-1 rounded cursor-pointer transition-colors duration-150";
+
+    const input = document.createElement("input");
+    input.type = "checkbox";
+    input.className =
+        "form-checkbox rounded text-pink-600 focus:ring-pink-500 h-4 w-4"; // Explicit size
+    input.value = value;
+    input.checked = checked;
+    // Add listener to trigger chart update on change
+    input.addEventListener("change", () => {
+        logMetric("interactions", 1);
+        debouncedRenderChart();
+    });
+
+    const span = document.createElement("span");
+    span.className = "ml-2 text-sm select-none"; // Prevent text selection on click
+    span.textContent = labelText;
+
+    label.appendChild(input);
+    label.appendChild(span);
+    container.appendChild(label);
+}
+
+/**
+ * Populates the location checkbox list. (MODIFIED)
  */
 export const populateLocationDropdown = () => {
-    if (!elements.locationSelect) return;
+    // Use the new container ID
+    const container = elements.locationCheckboxContainer;
+    if (!container) return;
 
     const currentSelection = getSelectedLocations(); // Preserve selection
-    elements.locationSelect.innerHTML = ""; // Clear existing
+    container.innerHTML = ""; // Clear existing checkboxes
+
+    // Determine if this is the first population run (no selection preserved)
+    const isFirstRun = currentSelection.length === 0;
 
     // Add "Total Turnout" option first
-    const totalOption = new Option("Total Turnout", TOTAL_TURNOUT_KEY);
-    elements.locationSelect.add(totalOption);
+    createCheckboxOption(
+        container,
+        "Total Turnout",
+        TOTAL_TURNOUT_KEY,
+        isFirstRun || currentSelection.includes(TOTAL_TURNOUT_KEY) // Check by default on first run
+    );
 
     // Add locations from all loaded data
     const locations = getAllLoadedLocations();
     locations.forEach((name) => {
-        elements.locationSelect.add(new Option(name, name));
+        // Don't check others by default on first run
+        createCheckboxOption(
+            container,
+            name,
+            name,
+            !isFirstRun && currentSelection.includes(name)
+        );
     });
-
-    // Re-apply selection
-    Array.from(elements.locationSelect.options).forEach((option) => {
-        if (currentSelection.includes(option.value)) {
-            option.selected = true;
-        }
-    });
-
-    // Ensure at least one option is selected if nothing was preserved
-    if (getSelectedLocations().length === 0 && elements.locationSelect.options.length > 0) {
-        elements.locationSelect.options[0].selected = true;
-    }
 };
 
-/**
- * Handles changes in year selection checkboxes.
- * Loads data if a year is checked and triggers UI updates.
- */
+// --- handleYearChange() remains the same ---
 const handleYearChange = async (event) => {
     logMetric("interactions", 1);
     const year = event.target.value;
     const isChecked = event.target.checked;
 
     if (isChecked) {
-        await loadYearData(year); // Load data if checked
+        await loadYearData(year);
     }
-    // Always repopulate locations in case the list changes
-    populateLocationDropdown();
-    debouncedRenderChart(); // Re-render the chart
+    populateLocationDropdown(); // Repopulate locations
+    debouncedRenderChart();
 };
 
 /**
- * Sets up event listeners for UI controls.
+ * Sets up event listeners for UI controls. (MODIFIED)
  */
 export const setupEventListeners = () => {
-    if (elements.locationSelect) {
-        elements.locationSelect.addEventListener("change", () => {
-            logMetric("interactions", 1);
-            debouncedRenderChart();
-        });
-    }
+    // No listener needed for the container itself, handled by individual checkboxes
+    // if (elements.locationSelect) { ... } // REMOVE THIS BLOCK
+
     if (elements.earlyVotingToggle) {
         elements.earlyVotingToggle.addEventListener("change", () => {
             logMetric("interactions", 1);
@@ -164,16 +187,13 @@ export const setupEventListeners = () => {
     if (elements.yAxisToggle) {
         elements.yAxisToggle.addEventListener("change", () => {
             logMetric("interactions", 1);
-            debouncedRenderChart(); // Re-render needed to apply axis setting
+            debouncedRenderChart();
         });
     }
     // Year checkbox listeners are added during population
 };
 
-/**
- * Gets the currently selected years from checkboxes.
- * @returns {string[]} Array of selected year strings.
- */
+// --- getSelectedYears() remains the same ---
 export const getSelectedYears = () => {
     if (!elements.yearOptionsContainer) return [];
     return Array.from(
@@ -182,20 +202,18 @@ export const getSelectedYears = () => {
 };
 
 /**
- * Gets the currently selected locations/total from the multi-select.
+ * Gets the currently selected locations/total from the checkbox list. (MODIFIED)
  * @returns {string[]} Array of selected location/total keys.
  */
 export const getSelectedLocations = () => {
-    if (!elements.locationSelect) return [];
-    return Array.from(elements.locationSelect.selectedOptions).map(
-        (opt) => opt.value
-    );
+    const container = elements.locationCheckboxContainer;
+    if (!container) return [];
+    return Array.from(
+        container.querySelectorAll("input[type=checkbox]:checked") // Query container
+    ).map((cb) => cb.value);
 };
 
-/**
- * Gets the state of the data type and axis toggles.
- * @returns {{showEarlyVoting: boolean, showElectionDay: boolean, startYAtZero: boolean}}
- */
+// --- getToggleStates() remains the same ---
 export const getToggleStates = () => {
     return {
         showEarlyVoting: elements.earlyVotingToggle
@@ -208,9 +226,7 @@ export const getToggleStates = () => {
     };
 };
 
-/**
- * Updates the data attribution text with the latest date.
- */
+// --- updateAttribution() remains the same ---
 export const updateAttribution = () => {
     if (elements.attribution) {
         const today = new Date();
