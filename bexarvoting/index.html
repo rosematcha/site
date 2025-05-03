@@ -8,7 +8,6 @@
         <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
         <!-- Chart.js CDN -->
         <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
-        <!-- Font Awesome no longer needed -->
         <style type="text/tailwindcss">
             /* Base styles for dark mode ONLY */
             body {
@@ -19,7 +18,7 @@
                 @apply bg-gray-800 rounded shadow p-4; /* Dark card background */
             }
             /* Consistent input styling for dark mode */
-            .form-input-style {
+            .form-input-style, .form-multiselect-style {
                  @apply mt-1 block w-full rounded-md border-gray-600 bg-gray-700 text-gray-200 shadow-sm focus:border-pink-400 focus:ring focus:ring-pink-300 focus:ring-opacity-50;
             }
             /* Pink accent button */
@@ -31,20 +30,22 @@
                  @apply inline-block px-4 py-2 bg-gray-600 text-white font-semibold rounded hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-gray-900 text-center transition-colors duration-300;
             }
             /* Ensure specific text elements are light */
-            h2, label, span, p {
-                @apply text-gray-200; /* Default light text for these elements */
+            h2, label, span, p, option {
+                @apply text-gray-200; /* Default light text */
             }
-             p.text-sm { /* Attribution text slightly dimmer */
+             p.text-sm, p.text-xs { /* Dimmer text for notes */
                  @apply text-gray-400;
              }
+             /* Style selected options in multi-select */
+             select[multiple] option:checked {
+                 @apply bg-pink-600 bg-opacity-50 text-white;
+             }
         </style>
-        <!-- Removed early theme application script -->
     </head>
     <body class="font-sans">
         <div class="container mx-auto p-4 md:p-8">
             <!-- Header Area -->
             <div class="flex justify-between items-start mb-6">
-                <!-- Title GIF -->
                 <img
                     src="title.gif"
                     alt="San Antonio Early Voting Turnout"
@@ -52,16 +53,16 @@
                     height="92"
                     class="max-w-[70%] md:max-w-md h-auto"
                 />
-                <!-- Removed Theme Toggle Button -->
             </div>
 
             <!-- Chart Area -->
-            <div class="relative mb-6 card h-96">
+            <div id="chart-container" class="relative mb-6 card h-96">
                 <!-- Status message inserted here by JS -->
                 <canvas id="turnoutChart"></canvas>
+                <!-- Cat container added here by JS if needed -->
             </div>
 
-            <!-- Action Buttons (Moved HERE) -->
+            <!-- Action Buttons -->
             <div
                 class="flex flex-col sm:flex-row sm:space-x-4 space-y-2 sm:space-y-0 mb-6"
             >
@@ -93,98 +94,100 @@
 
             <!-- Controls Area -->
             <div class="mb-6 card">
-                <h2 class="text-xl font-semibold mb-3">
-                    Display Options
-                </h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <!-- Year Options -->
-                    <div>
-                        <label
-                            class="block text-sm font-medium mb-1"
-                        >
-                            Years:
+                <h2 class="text-xl font-semibold mb-3">Display Options</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+
+                    <!-- Year Selection -->
+                    <div class="md:col-span-1">
+                        <label class="block text-sm font-medium mb-1">
+                            Select Years:
                         </label>
-                        <div id="year-options" class="space-x-4">
-                            <label class="inline-flex items-center">
-                                <input
-                                    type="checkbox"
-                                    class="form-checkbox rounded text-pink-600 focus:ring-pink-500"
-                                    value="2025"
-                                    checked
-                                    disabled
-                                />
+                        <div id="year-options" class="space-y-1 max-h-32 overflow-y-auto border border-gray-600 rounded p-2 bg-gray-700">
+                            <!-- Year checkboxes populated by JS -->
+                            <!-- Example:
+                            <label class="block inline-flex items-center">
+                                <input type="checkbox" class="form-checkbox rounded text-pink-600 focus:ring-pink-500" value="2025" checked />
                                 <span class="ml-2 text-sm">May 2025</span>
                             </label>
+                             -->
                         </div>
-                        <p class="text-sm text-gray-400 mt-1">
-                            other years pending response to public info request from bexar county elections
+                        <p class="text-xs text-gray-400 mt-1">
+                            other years pending public info request
                         </p>
                     </div>
 
-                    <!-- Location Select -->
-                    <div>
+                    <!-- Location Selection -->
+                    <div class="md:col-span-1">
                         <label
                             for="location-select"
                             class="block text-sm font-medium mb-1"
                         >
-                            Location:
+                            Select Locations/Total:
                         </label>
                         <select
                             id="location-select"
-                            class="form-input-style"
+                            multiple <!-- Allow multiple selections -->
+                            class="form-multiselect-style h-40" <!-- Use specific class, increase height -->
                         >
-                            <option value="total">Total Turnout</option>
-                            <!-- Location options populated by JS -->
+                            <!-- Options populated by JS -->
                         </select>
+                        <p class="text-xs text-gray-400 mt-1">
+                            Hold Ctrl/Cmd or Shift to select multiple.
+                        </p>
                     </div>
 
-                    <!-- Y-Axis Toggle -->
-                    <div class="md:col-span-2">
-                        <label class="inline-flex items-center mt-2">
-                            <input
-                                id="y-axis-toggle"
-                                type="checkbox"
-                                class="form-checkbox rounded text-pink-600 focus:ring-pink-500"
-                                checked
-                            />
-                            <span class="ml-2 text-sm">Start Y-Axis at Zero</span> <!-- Removed dark: class -->
-                        </label>
+                    <!-- Data & Axis Toggles -->
+                    <div class="md:col-span-1 space-y-3">
+                         <div>
+                             <label class="block text-sm font-medium mb-1">
+                                 Show Data Types:
+                             </label>
+                             <label class="inline-flex items-center">
+                                 <input
+                                     id="early-voting-toggle"
+                                     type="checkbox"
+                                     class="form-checkbox rounded text-pink-600 focus:ring-pink-500"
+                                     checked
+                                 />
+                                 <span class="ml-2 text-sm">Early Voting</span>
+                             </label>
+                             <label class="inline-flex items-center ml-4">
+                                 <input
+                                     id="election-day-toggle"
+                                     type="checkbox"
+                                     class="form-checkbox rounded text-pink-600 focus:ring-pink-500"
+                                     checked
+                                 />
+                                 <span class="ml-2 text-sm">Election Day</span>
+                             </label>
+                         </div>
+                         <div>
+                             <label class="block text-sm font-medium mb-1">
+                                 Chart Options:
+                             </label>
+                             <label class="inline-flex items-center">
+                                 <input
+                                     id="y-axis-toggle"
+                                     type="checkbox"
+                                     class="form-checkbox rounded text-pink-600 focus:ring-pink-500"
+                                     checked
+                                 />
+                                 <span class="ml-2 text-sm">Start Y-Axis at Zero</span>
+                             </label>
+                         </div>
                     </div>
-
-                    <!-- Toggle data visibility -->
-                    <div class="md:col-span-2 flex space-x-4">
-                        <label class="inline-flex items-center mt-2">
-                            <input
-                                id="early-voting-toggle"
-                                type="checkbox"
-                                class="form-checkbox rounded text-pink-600 focus:ring-pink-500"
-                                checked
-                            />
-                            <span class="ml-2 text-sm">Show Early Voting</span>
-                        </label>
-                        <label class="inline-flex items-center mt-2">
-                            <input
-                                id="election-day-toggle"
-                                type="checkbox"
-                                class="form-checkbox rounded text-pink-600 focus:ring-pink-500"
-                                checked
-                            />
-                            <span class="ml-2 text-sm">Show Election Day</span>
-                        </label>
-                    </div>
-
-
                 </div>
             </div>
 
             <!-- Data Source Attribution -->
-            <p class="text-sm mb-6"> <!-- Removed dark: class, uses p.text-sm style -->
-                Data sourced from the Bexar County Elections Department. Updated
-                as of April 29, 2025.
+            <p id="attribution" class="text-sm mb-6">
+                Data sourced from the Bexar County Elections Department.
+                <!-- Update date dynamically -->
             </p>
 
         </div>
 
-        <script src="script.js"></script>
+        <!-- Load JS Modules -->
+        <script type="module" src="js/main.js"></script>
     </body>
 </html>
