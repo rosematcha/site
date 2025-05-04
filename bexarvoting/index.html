@@ -121,16 +121,22 @@
                         <label class="block text-sm font-medium mb-1">
                             Select Locations/Total:
                         </label>
+                        <!-- Filter Input -->
+                        <input
+                            type="text"
+                            id="location-filter"
+                            placeholder="Filter locations..."
+                            class="form-input-style mb-2 text-sm py-1" <!-- Smaller padding -->
+                        />
+                        <!-- Select/Deselect Buttons -->
+                        <div class="flex justify-between items-center mb-1 px-1">
+                            <button id="select-all-locations" class="text-xs text-pink-400 hover:text-pink-300 focus:outline-none">Select All</button>
+                            <button id="deselect-all-locations" class="text-xs text-pink-400 hover:text-pink-300 focus:outline-none">Deselect All</button>
+                        </div>
+                        <!-- Checkbox Container -->
                         <div id="location-checkbox-container" class="space-y-1 max-h-40 overflow-y-auto border border-gray-600 rounded p-2 bg-gray-700">
                             <!-- Checkboxes populated by JS -->
-                            <!-- Example Structure:
-                            <label class="block flex items-center hover:bg-gray-600 px-1 rounded cursor-pointer transition-colors duration-150">
-                                <input type="checkbox" class="form-checkbox rounded text-pink-600 focus:ring-pink-500 h-4 w-4" value="total" checked />
-                                <span class="ml-2 text-sm select-none">Total Turnout</span>
-                            </label>
-                             -->
                         </div>
-                        <!-- Removed the Ctrl/Cmd helper text -->
                     </div>
 
                     <!-- Data & Axis Toggles -->

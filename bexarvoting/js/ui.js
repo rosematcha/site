@@ -8,10 +8,12 @@ import { logMetric } from "./main.js";
 // DOM Elements
 const elements = {
     yearOptionsContainer: document.getElementById("year-options"),
-    // REMOVE: locationSelect: document.getElementById("location-select"),
-    locationCheckboxContainer: document.getElementById( // NEW
+    locationCheckboxContainer: document.getElementById(
         "location-checkbox-container"
     ),
+    locationFilterInput: document.getElementById("location-filter"), // NEW
+    selectAllButton: document.getElementById("select-all-locations"), // NEW
+    deselectAllButton: document.getElementById("deselect-all-locations"), // NEW
     earlyVotingToggle: document.getElementById("early-voting-toggle"),
     electionDayToggle: document.getElementById("election-day-toggle"),
     yAxisToggle: document.getElementById("y-axis-toggle"),
@@ -85,7 +87,51 @@ export const populateYearCheckboxes = () => {
 };
 
 /**
- * Helper function to create a checkbox option.
+ * Handles changes on any location checkbox, implementing intelligent selection.
+ * @param {Event} event - The change event object.
+ */
+function handleLocationChange(event) {
+    logMetric("interactions", 1);
+    const changedCheckbox = event.target;
+    const isTotalCheckbox = changedCheckbox.value === TOTAL_TURNOUT_KEY;
+    const isChecked = changedCheckbox.checked;
+
+    const container = elements.locationCheckboxContainer;
+    if (!container) return;
+
+    const allCheckboxes = Array.from(
+        container.querySelectorAll("input[type=checkbox]")
+    );
+    const totalCheckbox = allCheckboxes.find(
+        (cb) => cb.value === TOTAL_TURNOUT_KEY
+    );
+    const specificCheckboxes = allCheckboxes.filter(
+        (cb) => cb.value !== TOTAL_TURNOUT_KEY
+    );
+    const specificCheckedCount = specificCheckboxes.filter((cb) => cb.checked)
+        .length;
+
+    // Apply selection rules (without triggering recursive changes)
+    if (isTotalCheckbox && isChecked) {
+        // If Total was checked, uncheck all specifics
+        specificCheckboxes.forEach((cb) => (cb.checked = false));
+    } else if (!isTotalCheckbox && isChecked) {
+        // If a specific was checked, uncheck Total
+        if (totalCheckbox) totalCheckbox.checked = false;
+    } else if (!isTotalCheckbox && !isChecked) {
+        // If a specific was unchecked...
+        if (specificCheckedCount === 0 && totalCheckbox) {
+            // ...and it was the last one, check Total
+            totalCheckbox.checked = true;
+        }
+    }
+    // No special action needed if Total is unchecked (user can deselect all)
+
+    debouncedRenderChart(); // Update chart after applying rules
+}
+
+/**
+ * Helper function to create a checkbox option. (MODIFIED)
  * @param {HTMLElement} container - The parent container.
  * @param {string} labelText - Text for the label.
  * @param {string} value - Value for the checkbox.
@@ -94,23 +140,25 @@ export const populateYearCheckboxes = () => {
 function createCheckboxOption(container, labelText, value, checked) {
     const label = document.createElement("label");
     label.className =
-        "block flex items-center hover:bg-gray-600 px-1 rounded cursor-pointer transition-colors duration-150";
+        "location-option block flex items-center hover:bg-gray-600 px-1 rounded cursor-pointer transition-colors duration-150"; // Add class for filtering
 
     const input = document.createElement("input");
     input.type = "checkbox";
     input.className =
-        "form-checkbox rounded text-pink-600 focus:ring-pink-500 h-4 w-4"; // Explicit size
+        "form-checkbox rounded text-pink-600 focus:ring-pink-500 h-4 w-4";
     input.value = value;
     input.checked = checked;
-    // Add listener to trigger chart update on change
-    input.addEventListener("change", () => {
-        logMetric("interactions", 1);
-        debouncedRenderChart();
-    });
+    // Use the dedicated handler function
+    input.addEventListener("change", handleLocationChange);
 
     const span = document.createElement("span");
-    span.className = "ml-2 text-sm select-none"; // Prevent text selection on click
+    span.className = "ml-2 text-sm select-none";
     span.textContent = labelText;
+
+    // Visual distinction for Total Turnout
+    if (value === TOTAL_TURNOUT_KEY) {
+        span.classList.add("font-semibold"); // Make text bold
+    }
 
     label.appendChild(input);
     label.appendChild(span);
@@ -121,14 +169,12 @@ function createCheckboxOption(container, labelText, value, checked) {
  * Populates the location checkbox list. (MODIFIED)
  */
 export const populateLocationDropdown = () => {
-    // Use the new container ID
     const container = elements.locationCheckboxContainer;
     if (!container) return;
 
-    const currentSelection = getSelectedLocations(); // Preserve selection
-    container.innerHTML = ""; // Clear existing checkboxes
+    const currentSelection = getSelectedLocations();
+    container.innerHTML = "";
 
-    // Determine if this is the first population run (no selection preserved)
     const isFirstRun = currentSelection.length === 0;
 
     // Add "Total Turnout" option first
@@ -136,13 +182,12 @@ export const populateLocationDropdown = () => {
         container,
         "Total Turnout",
         TOTAL_TURNOUT_KEY,
-        isFirstRun || currentSelection.includes(TOTAL_TURNOUT_KEY) // Check by default on first run
+        isFirstRun || currentSelection.includes(TOTAL_TURNOUT_KEY)
     );
 
     // Add locations from all loaded data
     const locations = getAllLoadedLocations();
     locations.forEach((name) => {
-        // Don't check others by default on first run
         createCheckboxOption(
             container,
             name,
@@ -161,17 +206,85 @@ const handleYearChange = async (event) => {
     if (isChecked) {
         await loadYearData(year);
     }
-    populateLocationDropdown(); // Repopulate locations
+    populateLocationDropdown();
     debouncedRenderChart();
 };
+
+/**
+ * Filters the location checkbox list based on input.
+ */
+function filterLocations() {
+    const filterText = elements.locationFilterInput.value.toLowerCase().trim();
+    const container = elements.locationCheckboxContainer;
+    if (!container) return;
+
+    const options = container.querySelectorAll(".location-option"); // Use the added class
+
+    options.forEach((optionLabel) => {
+        const labelSpan = optionLabel.querySelector("span");
+        const locationName = labelSpan ? labelSpan.textContent.toLowerCase() : "";
+        // Always show "Total Turnout" regardless of filter
+        const isTotal = optionLabel.querySelector("input")?.value === TOTAL_TURNOUT_KEY;
+
+        if (isTotal || locationName.includes(filterText)) {
+            optionLabel.style.display = "flex"; // Show matching or Total
+        } else {
+            optionLabel.style.display = "none"; // Hide non-matching
+        }
+    });
+}
+
+/**
+ * Sets or unsets the checked state for all *specific* location checkboxes.
+ * @param {boolean} checkedState - True to check all, false to uncheck all.
+ */
+function setAllSpecificLocations(checkedState) {
+    const container = elements.locationCheckboxContainer;
+    if (!container) return;
+
+    const specificCheckboxes = Array.from(
+        container.querySelectorAll("input[type=checkbox]")
+    ).filter((cb) => cb.value !== TOTAL_TURNOUT_KEY);
+
+    specificCheckboxes.forEach((cb) => (cb.checked = checkedState));
+
+    // After changing checks, enforce rules:
+    // If we just checked all specifics, uncheck Total.
+    // If we just unchecked all specifics, check Total.
+    const totalCheckbox = container.querySelector(
+        `input[value="${TOTAL_TURNOUT_KEY}"]`
+    );
+    if (totalCheckbox) {
+        totalCheckbox.checked = !checkedState;
+    }
+
+    logMetric("interactions", 1); // Log one interaction for the bulk action
+    debouncedRenderChart(); // Update chart
+}
 
 /**
  * Sets up event listeners for UI controls. (MODIFIED)
  */
 export const setupEventListeners = () => {
-    // No listener needed for the container itself, handled by individual checkboxes
-    // if (elements.locationSelect) { ... } // REMOVE THIS BLOCK
+    // Location filter input
+    if (elements.locationFilterInput) {
+        // Use 'input' for real-time filtering
+        elements.locationFilterInput.addEventListener("input", filterLocations);
+    }
 
+    // Select/Deselect All buttons
+    if (elements.selectAllButton) {
+        elements.selectAllButton.addEventListener("click", () =>
+            setAllSpecificLocations(true)
+        );
+    }
+    if (elements.deselectAllButton) {
+        elements.deselectAllButton.addEventListener("click", () =>
+            setAllSpecificLocations(false)
+        );
+    }
+
+    // Other toggles
     if (elements.earlyVotingToggle) {
         elements.earlyVotingToggle.addEventListener("change", () => {
             logMetric("interactions", 1);
@@ -190,7 +303,7 @@ export const setupEventListeners = () => {
             debouncedRenderChart();
         });
     }
-    // Year checkbox listeners are added during population
+    // Year/Location checkbox listeners are added during population
 };
 
 // --- getSelectedYears() remains the same ---
@@ -201,15 +314,12 @@ export const getSelectedYears = () => {
     ).map((cb) => cb.value);
 };
 
-/**
- * Gets the currently selected locations/total from the checkbox list. (MODIFIED)
- * @returns {string[]} Array of selected location/total keys.
- */
+// --- getSelectedLocations() remains the same ---
 export const getSelectedLocations = () => {
     const container = elements.locationCheckboxContainer;
     if (!container) return [];
     return Array.from(
-        container.querySelectorAll("input[type=checkbox]:checked") // Query container
+        container.querySelectorAll("input[type=checkbox]:checked")
     ).map((cb) => cb.value);
 };
 
