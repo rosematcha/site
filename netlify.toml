@@ -19,11 +19,12 @@ publish = "_site"
     cp -r assets _site/assets && \
     cp -r css _site/css && \
     cp -r bexarvoting _site/bexarvoting && \
-    cp -r friendfinder _site/friendfinder && \
-    # Copy built projects to their destinations
+    cp -r friendfinder _site/friendfinder && \    # Copy built projects to their destinations
     echo "Copying built projects..." && \
     mkdir -p _site/brahdb && \
     cp -r brahdb/dist/* _site/brahdb/ && \
+    cp -r brahdb/public/logos _site/brahdb/ && \
+    cp -r brahdb/public/reviews _site/brahdb/ && \
     cp -r decks/_site _site/decks && \
     echo "Combined build finished successfully."
   """
@@ -57,6 +58,19 @@ publish = "_site"
   status = 200
   force = false
 
+# BrahDB assets and data files
+[[redirects]]
+  from = "/brahdb/logos/*"
+  to = "/brahdb/logos/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/brahdb/reviews/*"
+  to = "/brahdb/reviews/:splat"
+  status = 200
+  force = true
+
 # BrahDB SPA configuration
 [[redirects]]
   from = "/brahdb"
@@ -69,7 +83,7 @@ publish = "_site"
   to = "/brahdb/index.html"
   status = 200
   force = true
-  conditions = {Resource = {Not = ["*.js", "*.css", "*.json", "*.jpg", "*.png", "*.gif", "*.svg", "*.woff", "*.woff2"]}}
+  conditions = {Path = {Not = ["/brahdb/logos/*", "/brahdb/reviews/*"]}}
 
 # Static project access
 [[redirects]]
