@@ -1,0 +1,5125 @@
+[
+  {
+    "restaurant": "LittleCaesars",
+    "itemName": "Hot-N-Ready Pizza",
+    "rating": 6.7,
+    "reviewDate": "2022-01-05",
+    "reviewLink": "https://www.youtube.com/watch?v=2e-I0vp9GGE"
+  },
+  {
+    "restaurant": "KFC",
+    "itemName": "Beyond Chicken Nuggets",
+    "rating": 0.5,
+    "reviewDate": "2022-01-12",
+    "reviewLink": "https://www.youtube.com/watch?v=Lw8Sw_s2bnc"
+  },
+  {
+    "restaurant": "Arbys",
+    "itemName": "Diablo Dare Sandwich",
+    "rating": 7.4,
+    "reviewDate": "2022-01-18",
+    "reviewLink": "https://www.youtube.com/watch?v=fe_u3vgHMaI"
+  },
+  {
+    "restaurant": "LittleCaesars",
+    "itemName": "Batman Calzony",
+    "rating": 5.8,
+    "reviewDate": "2022-01-26",
+    "reviewLink": "https://www.youtube.com/watch?v=aqAyt85knuU"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "Land Air and Sea",
+    "rating": 3,
+    "reviewDate": "2022-01-31",
+    "reviewLink": "https://www.youtube.com/watch?v=tQXzWJu3HRI"
+  },
+  {
+    "restaurant": "PizzaHut",
+    "itemName": "Spicy Lovers Pizza (Spicy Double Pepperoni)",
+    "rating": 8.5,
+    "reviewDate": "2022-02-05",
+    "reviewLink": "https://www.youtube.com/watch?v=2YxCw0C5o9o"
+  },
+  {
+    "restaurant": "Wendys",
+    "itemName": "Hot Honey Chicken Sandwich",
+    "rating": 8.6,
+    "reviewDate": "2022-02-10",
+    "reviewLink": "https://www.youtube.com/watch?v=eSKaF_KbitU"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Cantina Crispy Chicken Taco (Chipotle)",
+    "rating": 6.5,
+    "reviewDate": "2022-02-15",
+    "reviewLink": "https://www.youtube.com/watch?v=nDJ--1QDqx0"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "Hash Brown McMuffin",
+    "rating": 7,
+    "reviewDate": "2022-02-20",
+    "reviewLink": "https://www.youtube.com/watch?v=_Tzc-YZ5n_s"
+  },
+  {
+    "restaurant": "Coke",
+    "itemName": "Starlight (Regular)",
+    "rating": 8.7,
+    "reviewDate": "2022-02-28",
+    "reviewLink": "https://www.youtube.com/watch?v=LxnDohH7r-0"
+  },
+  {
+    "restaurant": "Coke",
+    "itemName": "Starlight (Zero Sugar)",
+    "rating": 4,
+    "reviewDate": "2022-02-28",
+    "reviewLink": "https://www.youtube.com/watch?v=LxnDohH7r-0"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Big King",
+    "rating": 5,
+    "reviewDate": "2022-03-03",
+    "reviewLink": "https://www.youtube.com/watch?v=HqMWcMei1bg"
+  },
+  {
+    "restaurant": "Popeyes",
+    "itemName": "Spicy Flounder Fish Sandwich",
+    "rating": 2,
+    "reviewDate": "2022-03-09",
+    "reviewLink": "https://www.youtube.com/watch?v=YUeH1RWPLxQ"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Whopper Melt",
+    "rating": 6.6,
+    "reviewDate": "2022-03-15",
+    "reviewLink": "https://www.youtube.com/watch?v=-1Rnk8BC4oo"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Steak Nacho Fries Burrito",
+    "rating": 7,
+    "reviewDate": "2022-03-21",
+    "reviewLink": "https://www.youtube.com/watch?v=2PjJdZzhqYM"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Cherry Sunrise Freeze",
+    "rating": 8,
+    "reviewDate": "2022-03-21",
+    "reviewLink": "https://www.youtube.com/watch?v=2PjJdZzhqYM"
+  },
+  {
+    "restaurant": "KFC",
+    "itemName": "Jack Harlow Kentucky Fried Favorites Menu",
+    "rating": 7,
+    "reviewDate": "2022-03-27",
+    "reviewLink": "https://www.youtube.com/watch?v=6wX_tCpT1iA"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "Szechuan Sauce",
+    "rating": 8.5,
+    "reviewDate": "2022-03-31",
+    "reviewLink": "https://www.youtube.com/watch?v=QMv7_p01DtA"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "Spicy Chicken McNuggets",
+    "rating": 8,
+    "reviewDate": "2022-04-05",
+    "reviewLink": "https://www.youtube.com/watch?v=cmaC0UmeS3Q"
+  },
+  {
+    "restaurant": "Popeyes",
+    "itemName": "Surf & Turf Combo",
+    "rating": 8.2,
+    "reviewDate": "2022-04-11",
+    "reviewLink": "https://www.youtube.com/watch?v=ZiipwOH5RMI"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Steak White Hot Ranch Fries Burrito",
+    "rating": 9,
+    "reviewDate": "2022-04-18",
+    "reviewLink": "https://www.youtube.com/watch?v=0QnmvHKtmlo"
+  },
+  {
+    "restaurant": "LittleCaesars",
+    "itemName": "Detroit Style Deep Dish Pizza",
+    "rating": 8,
+    "reviewDate": "2022-04-25",
+    "reviewLink": "https://www.youtube.com/watch?v=LB5arCstWcs"
+  },
+  {
+    "restaurant": "PapaJohns",
+    "itemName": "Epic Pepperoni Stuffed Crust Pizza",
+    "rating": 9,
+    "reviewDate": "2022-05-01",
+    "reviewLink": "https://www.youtube.com/watch?v=2M67Q6BTO2o"
+  },
+  {
+    "restaurant": "Popeyes",
+    "itemName": "Buffalo Ranch Chicken Sandwich",
+    "rating": 7.6,
+    "reviewDate": "2022-05-06",
+    "reviewLink": "https://www.youtube.com/watch?v=L5arDQP5uPo"
+  },
+  {
+    "restaurant": "ShakeShack",
+    "itemName": "Bourbon Bacon Cheddar Burger",
+    "rating": 3,
+    "reviewDate": "2022-05-12",
+    "reviewLink": "https://www.youtube.com/watch?v=tpI3yAd3sVo"
+  },
+  {
+    "restaurant": "PaneraBread",
+    "itemName": "Spicy Take Chicken Sandwich",
+    "rating": 6.8,
+    "reviewDate": "2022-05-19",
+    "reviewLink": "https://www.youtube.com/watch?v=PDtA5ybTrmc"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Mexican Pizza",
+    "rating": 3,
+    "reviewDate": "2022-05-23",
+    "reviewLink": "https://www.youtube.com/watch?v=GwqsW5ZMJWc"
+  },
+  {
+    "restaurant": "Arbys",
+    "itemName": "Deluxe Wagyu Steakhouse Burger",
+    "rating": 8,
+    "reviewDate": "2022-05-30",
+    "reviewLink": "https://www.youtube.com/watch?v=sKi6ljSzuoA"
+  },
+  {
+    "restaurant": "KFC",
+    "itemName": "Jack Harlow Meal",
+    "rating": 8,
+    "reviewDate": "2022-06-06",
+    "reviewLink": "https://www.youtube.com/watch?v=96w2XgqrNNE"
+  },
+  {
+    "restaurant": "PizzaHut",
+    "itemName": "The Edge pizza",
+    "rating": 9,
+    "reviewDate": "2022-06-10",
+    "reviewLink": "https://www.youtube.com/watch?v=03Y89Sw8yng"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Toasted Cheddar Chalupa",
+    "rating": 8.5,
+    "reviewDate": "2022-06-16",
+    "reviewLink": "https://www.youtube.com/watch?v=oxVFeoGjvsg"
+  },
+  {
+    "restaurant": "Culvers",
+    "itemName": "Wisconsin Big Cheese Pub Burger",
+    "rating": 3,
+    "reviewDate": "2022-06-20",
+    "reviewLink": "https://www.youtube.com/watch?v=CVtub7jHkTk"
+  },
+  {
+    "restaurant": "BuffaloWildWings",
+    "itemName": "Honey BBQ Bird Dawg",
+    "rating": 5,
+    "reviewDate": "2022-06-25",
+    "reviewLink": "https://www.youtube.com/watch?v=6eHpiEncW_M"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Classic Cheesy Double Beef Burrito",
+    "rating": 7.5,
+    "reviewDate": "2022-06-30",
+    "reviewLink": "https://www.youtube.com/watch?v=WjOaXH-MkB8"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Impossible Whopper",
+    "rating": 8.5,
+    "reviewDate": "2022-07-05",
+    "reviewLink": "https://www.youtube.com/watch?v=M1RVaUww1Uo"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Southwest Bacon Whopper",
+    "rating": 6,
+    "reviewDate": "2022-07-11",
+    "reviewLink": "https://www.youtube.com/watch?v=G9iO_Fijksc"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Cantina Crispy Chicken Taco (Avocado Ranch)",
+    "rating": 1,
+    "reviewDate": "2022-07-15",
+    "reviewLink": "https://www.youtube.com/watch?v=TV2RHsEru44"
+  },
+  {
+    "restaurant": "Popeyes",
+    "itemName": "IDK Meal",
+    "rating": 7.8,
+    "reviewDate": "2022-07-21",
+    "reviewLink": "https://www.youtube.com/watch?v=B2Bb1fUsyEg"
+  },
+  {
+    "restaurant": "BuffaloWildWings",
+    "itemName": "Saucy Chicken Sandwich",
+    "rating": 5.9,
+    "reviewDate": "2022-07-26",
+    "reviewLink": "https://www.youtube.com/watch?v=S-nZrn1UxOE"
+  },
+  {
+    "restaurant": "Arbys",
+    "itemName": "Hushpuppy Breaded Fish Strips",
+    "rating": 6,
+    "reviewDate": "2022-08-01",
+    "reviewLink": "https://www.youtube.com/watch?v=B5paeyyGYiE"
+  },
+  {
+    "restaurant": "LittleCaesars",
+    "itemName": "Old World Fanceroni Pepperoni Pizza",
+    "rating": 7.2,
+    "reviewDate": "2022-08-05",
+    "reviewLink": "https://www.youtube.com/watch?v=gBmhySwOuWE"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "$5 Crispy Chicken Sandwich Meal Deal",
+    "rating": 5,
+    "reviewDate": "2022-08-11",
+    "reviewLink": "https://www.youtube.com/watch?v=ysihyj8inYk"
+  },
+  {
+    "restaurant": "Wendys",
+    "itemName": "Homestyle French Toast Sticks",
+    "rating": 2,
+    "reviewDate": "2022-08-17",
+    "reviewLink": "https://www.youtube.com/watch?v=ta_ycq-xn5M"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Grilled Cheese Burrito (Double Steak)",
+    "rating": 7,
+    "reviewDate": "2022-08-22",
+    "reviewLink": "https://www.youtube.com/watch?v=ARnmyVgAots"
+  },
+  {
+    "restaurant": "PapaJohns",
+    "itemName": "Italian Meat Trio Papa Bowl",
+    "rating": 3,
+    "reviewDate": "2022-08-29",
+    "reviewLink": "https://www.youtube.com/watch?v=ktzhD93oBR4"
+  },
+  {
+    "restaurant": "Wendys",
+    "itemName": "Rick and Morty Meal",
+    "rating": 6,
+    "reviewDate": "2022-09-08",
+    "reviewLink": "https://www.youtube.com/watch?v=JC_3B58KLe8"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Royal Crispy Chicken Sandwich",
+    "rating": 4.9,
+    "reviewDate": "2022-09-14",
+    "reviewLink": "https://www.youtube.com/watch?v=NXolLSRxP8o"
+  },
+  {
+    "restaurant": "PizzaHut",
+    "itemName": "Detroit Style Pizza",
+    "rating": 7,
+    "reviewDate": "2022-09-19",
+    "reviewLink": "https://www.youtube.com/watch?v=q_V_aeetQJc"
+  },
+  {
+    "restaurant": "ShakeShack",
+    "itemName": "Hot Ones Burger",
+    "rating": 8,
+    "reviewDate": "2022-09-28",
+    "reviewLink": "https://www.youtube.com/watch?v=fwJAYDeCQek"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "Cactus Plant Flea Market Box",
+    "rating": 7,
+    "reviewDate": "2022-10-04",
+    "reviewLink": "https://www.youtube.com/watch?v=Sfg7oA9OQF8"
+  },
+  {
+    "restaurant": "Wingstop",
+    "itemName": "Chicken Sandwich (Original Hot Sauce)",
+    "rating": 5.5,
+    "reviewDate": "2022-10-12",
+    "reviewLink": "https://www.youtube.com/watch?v=GofsCr-E1VM"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Ghost Pepper Whopper",
+    "rating": 8.4,
+    "reviewDate": "2022-10-18",
+    "reviewLink": "https://www.youtube.com/watch?v=usNsm_sUtdI"
+  },
+  {
+    "restaurant": "Arbys",
+    "itemName": "Diablo Chicken Sandwich",
+    "rating": 8.5,
+    "reviewDate": "2022-10-28",
+    "reviewLink": "https://www.youtube.com/watch?v=2lKnLe3gsD4"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "McRib (2022)",
+    "rating": 5.6,
+    "reviewDate": "2022-11-05",
+    "reviewLink": "https://www.youtube.com/watch?v=jT3k97RxOkw"
+  },
+  {
+    "restaurant": "PizzaHut",
+    "itemName": "Pizza Hut Melts (Pepperoni Lovers)",
+    "rating": 9,
+    "reviewDate": "2022-11-12",
+    "reviewLink": "https://www.youtube.com/watch?v=Yb2fwYvLG10"
+  },
+  {
+    "restaurant": "Popeyes",
+    "itemName": "Blackened Chicken Sandwich",
+    "rating": 3,
+    "reviewDate": "2022-11-19",
+    "reviewLink": "https://www.youtube.com/watch?v=55v9hXp2YXE"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "Smoky BLT Quarter Pounder with Cheese",
+    "rating": 9,
+    "reviewDate": "2022-11-26",
+    "reviewLink": "https://www.youtube.com/watch?v=yBFHuRRXseY"
+  },
+  {
+    "restaurant": "Wendys",
+    "itemName": "Italian Mozzarella Chicken Sandwich",
+    "rating": 1.5,
+    "reviewDate": "2022-12-02",
+    "reviewLink": "https://www.youtube.com/watch?v=h0v-raHhllQ"
+  },
+  {
+    "restaurant": "Wingstop",
+    "itemName": "Carolina Gold BBQ Chicken Sandwich",
+    "rating": 7,
+    "reviewDate": "2022-12-12",
+    "reviewLink": "https://www.youtube.com/watch?v=IYWf2-dz_lY"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Breakfast Crunchwrap (Bacon)",
+    "rating": 6.5,
+    "reviewDate": "2022-12-20",
+    "reviewLink": "https://www.youtube.com/watch?v=CxR_Roifk00"
+  },
+  {
+    "restaurant": "PapaJohns",
+    "itemName": "Oreo Cookie Papa Bites",
+    "rating": 4.8,
+    "reviewDate": "2022-12-27",
+    "reviewLink": "https://www.youtube.com/watch?v=GVPP8DpTgi4"
+  },
+  {
+    "restaurant": "LittleCaesars",
+    "itemName": "Salsa Verde Grilled Chicken Burrito",
+    "rating": 3,
+    "reviewDate": "2023-01-02",
+    "reviewLink": "https://www.youtube.com/watch?v=mQuEkPoZq6E"
+  },
+  {
+    "restaurant": "Popeyes",
+    "itemName": "Ghost Pepper Wings",
+    "rating": 6.5,
+    "reviewDate": "2023-01-07",
+    "reviewLink": "https://www.youtube.com/watch?v=GOka67z8x5E"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Mexican Original Chicken Sandwich",
+    "rating": 5.5,
+    "reviewDate": "2023-01-13",
+    "reviewLink": "https://www.youtube.com/watch?v=hX-MdpDqVbo"
+  },
+  {
+    "restaurant": "LittleCaesars",
+    "itemName": "Slices-N-Stix Jalapeno Pizza",
+    "rating": 7.2,
+    "reviewDate": "2023-01-19",
+    "reviewLink": "https://www.youtube.com/watch?v=-mm8X2ra4lQ"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Crispy Chicken Wings",
+    "rating": 8.9,
+    "reviewDate": "2023-01-24",
+    "reviewLink": "https://www.youtube.com/watch?v=cP5MiaVhDwg"
+  },
+  {
+    "restaurant": "PapaJohns",
+    "itemName": "Crispy Parm Pizza",
+    "rating": 7,
+    "reviewDate": "2023-01-31",
+    "reviewLink": "https://www.youtube.com/watch?v=7qXR4xmX-qg"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Crispy Melt Taco",
+    "rating": 5.8,
+    "reviewDate": "2023-02-06",
+    "reviewLink": "https://www.youtube.com/watch?v=qL-eVHinSlQ"
+  },
+  {
+    "restaurant": "PizzaHut",
+    "itemName": "Big New Yorker Pizza",
+    "rating": 8.7,
+    "reviewDate": "2023-02-11",
+    "reviewLink": "https://www.youtube.com/watch?v=iqqNyAqyn1U"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "Cardi B & Offset Meal",
+    "rating": 6.5,
+    "reviewDate": "2023-02-16",
+    "reviewLink": "https://www.youtube.com/watch?v=XueZrV0NtDM"
+  },
+  {
+    "restaurant": "Dominos",
+    "itemName": "Cheddar Bacon Loaded Tots",
+    "rating": 3.5,
+    "reviewDate": "2023-02-23",
+    "reviewLink": "https://www.youtube.com/watch?v=Y8_HleQvXOQ"
+  },
+  {
+    "restaurant": "KFC",
+    "itemName": "Kentucky Fried Chicken Wraps",
+    "rating": 5.8,
+    "reviewDate": "2023-03-01",
+    "reviewLink": "https://www.youtube.com/watch?v=UC52KRdyOXs"
+  },
+  {
+    "restaurant": "KFC",
+    "itemName": "Double Down",
+    "rating": 7.6,
+    "reviewDate": "2023-03-07",
+    "reviewLink": "https://www.youtube.com/watch?v=doGB7PZDee0"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Spicy Chicken Fries",
+    "rating": 8,
+    "reviewDate": "2023-03-13",
+    "reviewLink": "https://www.youtube.com/watch?v=MMOTK6n7K4c"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "Bacon Ranch McCrispy",
+    "rating": 4,
+    "reviewDate": "2023-03-17",
+    "reviewLink": "https://www.youtube.com/watch?v=rjFArHZbqAk"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Bacon Club Chalupa",
+    "rating": 8.15,
+    "reviewDate": "2023-03-22",
+    "reviewLink": "https://www.youtube.com/watch?v=grj1zBQddVQ"
+  },
+  {
+    "restaurant": "LittleCaesars",
+    "itemName": "Pretzel Crust Pizza",
+    "rating": 8,
+    "reviewDate": "2023-03-29",
+    "reviewLink": "https://www.youtube.com/watch?v=LcwekaOZGLA"
+  },
+  {
+    "restaurant": "KFC",
+    "itemName": "Kentucky Fried Nuggets",
+    "rating": 8.8,
+    "reviewDate": "2023-04-05",
+    "reviewLink": "https://www.youtube.com/watch?v=PxU8T-U9lZM"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Spicy Melt",
+    "rating": 3,
+    "reviewDate": "2023-04-10",
+    "reviewLink": "https://www.youtube.com/watch?v=QbJevoHQ2Pc"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Nacho Fries",
+    "rating": 8.9,
+    "reviewDate": "2023-04-17",
+    "reviewLink": "https://www.youtube.com/watch?v=pXn3SHcUPL8"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "Spicy Chicken McNuggets",
+    "rating": 8.6,
+    "reviewDate": "2023-04-22",
+    "reviewLink": "https://www.youtube.com/watch?v=9jBZTrw8CDg"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Grilled Cheese Burrito with Seasoned Beef",
+    "rating": 9,
+    "reviewDate": "2023-04-26",
+    "reviewLink": "https://www.youtube.com/watch?v=dYKrDNv8Ck4"
+  },
+  {
+    "restaurant": "PizzaHut",
+    "itemName": "Cheesesteak Melt",
+    "rating": 3.5,
+    "reviewDate": "2023-05-03",
+    "reviewLink": "https://www.youtube.com/watch?v=l9iS_Tblhlw"
+  },
+  {
+    "restaurant": "PapaJohns",
+    "itemName": "Doritos Cool Ranch Chicken Papadia",
+    "rating": 7.5,
+    "reviewDate": "2023-05-08",
+    "reviewLink": "https://www.youtube.com/watch?v=RJoxoXbup5s"
+  },
+  {
+    "restaurant": "Wendys",
+    "itemName": "Ghost Pepper Ranch Chicken Sandwich",
+    "rating": 6,
+    "reviewDate": "2023-05-12",
+    "reviewLink": "https://www.youtube.com/watch?v=1SMLQiwt9n4"
+  },
+  {
+    "restaurant": "Arbys",
+    "itemName": "Buffalo Sauce Pork Rib Concoction",
+    "rating": 2,
+    "reviewDate": "2023-05-16",
+    "reviewLink": "https://www.youtube.com/watch?v=X9oSdf_7XsM"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Spider-Verse Whopper",
+    "rating": 8.6,
+    "reviewDate": "2023-05-21",
+    "reviewLink": "https://www.youtube.com/watch?v=vV-LIOSAWzY"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Spider-Verse Sundae",
+    "rating": 8.6,
+    "reviewDate": "2023-05-21",
+    "reviewLink": "https://www.youtube.com/watch?v=vV-LIOSAWzY"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Steak Chile Verde Fries Burrito",
+    "rating": 6,
+    "reviewDate": "2023-05-31",
+    "reviewLink": "https://www.youtube.com/watch?v=CWlvGmjPR3g"
+  },
+  {
+    "restaurant": "BuffaloWildWings",
+    "itemName": "Sweet Chili Lime Wings",
+    "rating": 5,
+    "reviewDate": "2023-06-05",
+    "reviewLink": "https://www.youtube.com/watch?v=fYWtck8MjuY"
+  },
+  {
+    "restaurant": "BuffaloWildWings",
+    "itemName": "General Tso's Wings",
+    "rating": 8.4,
+    "reviewDate": "2023-06-05",
+    "reviewLink": "https://www.youtube.com/watch?v=fYWtck8MjuY"
+  },
+  {
+    "restaurant": "Popeyes",
+    "itemName": "Bacon and Cheese Chicken Sandwich (Received)",
+    "rating": 4,
+    "reviewDate": "2023-06-09",
+    "reviewLink": "https://www.youtube.com/watch?v=7Xl8SICdE5c"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "Grimace's Birthday Meal",
+    "rating": 8,
+    "reviewDate": "2023-06-12",
+    "reviewLink": "https://www.youtube.com/watch?v=W9ugZFntqSM"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "Grimace Milkshake",
+    "rating": 8,
+    "reviewDate": "2023-06-12",
+    "reviewLink": "https://www.youtube.com/watch?v=W9ugZFntqSM"
+  },
+  {
+    "restaurant": "PapaJohns",
+    "itemName": "Boneless Wings",
+    "rating": 5.5,
+    "reviewDate": "2023-06-19",
+    "reviewLink": "https://www.youtube.com/watch?v=SKrR1Hm8xAY"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Fiery Chicken Nuggets",
+    "rating": 8.5,
+    "reviewDate": "2023-06-24",
+    "reviewLink": "https://www.youtube.com/watch?v=B_GIUptDG3U"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Volcano Taco",
+    "rating": 8,
+    "reviewDate": "2023-06-28",
+    "reviewLink": "https://www.youtube.com/watch?v=N3Qy9Fycvws"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Volcano Burrito",
+    "rating": 7.2,
+    "reviewDate": "2023-06-28",
+    "reviewLink": "https://www.youtube.com/watch?v=N3Qy9Fycvws"
+  },
+  {
+    "restaurant": "KFC",
+    "itemName": "Ultimate BBQ Chicken Sandwich",
+    "rating": 7.3,
+    "reviewDate": "2023-07-05",
+    "reviewLink": "https://www.youtube.com/watch?v=H0SglyK_SYo"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Crispy Chicken Taco",
+    "rating": 4,
+    "reviewDate": "2023-07-11",
+    "reviewLink": "https://www.youtube.com/watch?v=nWXHfAc_zYY"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "Cheesy Jalapeno Bacon Quarter Pounder with Cheese",
+    "rating": 8.4,
+    "reviewDate": "2023-07-15",
+    "reviewLink": "https://www.youtube.com/watch?v=z9a2VOyKqM8"
+  },
+  {
+    "restaurant": "LittleCaesars",
+    "itemName": "Pepsi Pineapple",
+    "rating": 9,
+    "reviewDate": "2023-07-21",
+    "reviewLink": "https://www.youtube.com/watch?v=zQ2_LZ8NPlo"
+  },
+  {
+    "restaurant": "PapaJohns",
+    "itemName": "Garlic Epic Stuffed Crust Pizza",
+    "rating": 8,
+    "reviewDate": "2023-07-25",
+    "reviewLink": "https://www.youtube.com/watch?v=SCJgRC2GlXo"
+  },
+  {
+    "restaurant": "BuffaloWildWings",
+    "itemName": "Blazin Knockout Wings",
+    "rating": 8.5,
+    "reviewDate": "2023-08-01",
+    "reviewLink": "https://www.youtube.com/watch?v=bA1nYct2Ggg"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Grilled Cheese Dipping Taco",
+    "rating": 6.7,
+    "reviewDate": "2023-08-07",
+    "reviewLink": "https://www.youtube.com/watch?v=yPS2KReKlRM"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Italian Original Chicken Sandwich",
+    "rating": 2,
+    "reviewDate": "2023-08-12",
+    "reviewLink": "https://www.youtube.com/watch?v=mLFe5YuhOZ0"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "As Featured In Meal",
+    "rating": 6,
+    "reviewDate": "2023-08-14",
+    "reviewLink": "https://www.youtube.com/watch?v=SVOTD9CL_i8"
+  },
+  {
+    "restaurant": "Arbys",
+    "itemName": "Big Game Burger",
+    "rating": 7.1,
+    "reviewDate": "2023-09-18",
+    "reviewLink": "https://www.youtube.com/watch?v=fhffguxwocY"
+  },
+  {
+    "restaurant": "Wendys",
+    "itemName": "Loaded Nacho Cheeseburger",
+    "rating": 6.7,
+    "reviewDate": "2023-08-26",
+    "reviewLink": "https://www.youtube.com/watch?v=M_StJ8hc-VQ"
+  },
+  {
+    "restaurant": "ChickFilA",
+    "itemName": "Honey Pepper Pimento Chicken Sandwich",
+    "rating": 9.3,
+    "reviewDate": "2023-09-01",
+    "reviewLink": "https://www.youtube.com/watch?v=pp7l9GvPhZw"
+  },
+  {
+    "restaurant": "ChickFilA",
+    "itemName": "Caramel Crumble Milkshake",
+    "rating": 6.7,
+    "reviewDate": "2023-09-01",
+    "reviewLink": "https://www.youtube.com/watch?v=pp7l9GvPhZw"
+  },
+  {
+    "restaurant": "Popeyes",
+    "itemName": "Sweet 'N Spicy Wings",
+    "rating": 8.8,
+    "reviewDate": "2023-09-06",
+    "reviewLink": "https://www.youtube.com/watch?v=souqVeAv-y4"
+  },
+  {
+    "restaurant": "LittleCaesars",
+    "itemName": "4-Quarter Calzony",
+    "rating": 7,
+    "reviewDate": "2023-09-09",
+    "reviewLink": "https://www.youtube.com/watch?v=a0zxACj7Sig"
+  },
+    {
+    "restaurant": "KFC",
+    "itemName": "Hot & Spicy Wings",
+    "rating": 7.4,
+    "reviewDate": "2023-09-14",
+    "reviewLink": "https://www.youtube.com/watch?v=bohX9lGZ5Dg"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Chicken Enchilada Burrito",
+    "rating": 3,
+    "reviewDate": "2023-09-24",
+    "reviewLink": "https://www.youtube.com/watch?v=ttw4BjwquAQ"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Honey Mustard Royal Crispy Chicken Sandwich",
+    "rating": 2,
+    "reviewDate": "2023-09-30",
+    "reviewLink": "https://www.youtube.com/watch?v=1luw_ZcgwC4"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "Sweet & Spicy Jam Sauce",
+    "rating": 8.3,
+    "reviewDate": "2023-10-09",
+    "reviewLink": "https://www.youtube.com/watch?v=bNzPs-z0y9A"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "Mambo Sauce",
+    "rating": 7.7,
+    "reviewDate": "2023-10-09",
+    "reviewLink": "https://www.youtube.com/watch?v=bNzPs-z0y9A"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Ghost Pepper Whopper",
+    "rating": 8.1,
+    "reviewDate": "2023-10-13",
+    "reviewLink": "https://www.youtube.com/watch?v=u438D3-gLvc"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Ghost Pepper Chicken Fries",
+    "rating": 3,
+    "reviewDate": "2023-10-13",
+    "reviewLink": "https://www.youtube.com/watch?v=u438D3-gLvc"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Steak and Bacon Grilled Cheese Burrito",
+    "rating": 8.2,
+    "reviewDate": "2023-10-16",
+    "reviewLink": "https://www.youtube.com/watch?v=TDspU0Jm4Iw"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "Jamal Murray Meal",
+    "rating": 6.4,
+    "reviewDate": "2023-10-21",
+    "reviewLink": "https://www.youtube.com/watch?v=oLyUrlz3rp0"
+  },
+  {
+    "restaurant": "Popeyes",
+    "itemName": "Spicy Truff Chicken Sandwich",
+    "rating": 4,
+    "reviewDate": "2023-10-24",
+    "reviewLink": "https://www.youtube.com/watch?v=eHa50oQXMBk"
+  },
+  {
+    "restaurant": "PizzaHut",
+    "itemName": "Roasted Garlic Cheese Sticks",
+    "rating": 7.7,
+    "reviewDate": "2023-10-27",
+    "reviewLink": "https://www.youtube.com/watch?v=cNvRC29Txdw"
+  },
+  {
+    "restaurant": "Arbys",
+    "itemName": "Fried Mac and Cheese Bites",
+    "rating": 4,
+    "reviewDate": "2023-11-02",
+    "reviewLink": "https://www.youtube.com/watch?v=fKB3z1gtq8Y"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Breakfast Taco Sausage",
+    "rating": 7.9,
+    "reviewDate": "2023-11-09",
+    "reviewLink": "https://www.youtube.com/watch?v=xAOZ9JIRzDo"
+  },
+  {
+    "restaurant": "Arbys",
+    "itemName": "Good Burger 2 Meal",
+    "rating": 7.2,
+    "reviewDate": "2023-11-14",
+    "reviewLink": "https://www.youtube.com/watch?v=LTmv-cVvkuk"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "McRib (2023)",
+    "rating": 7,
+    "reviewDate": "2023-11-19",
+    "reviewLink": "https://www.youtube.com/watch?v=jSXuxJzEz34"
+  },
+    {
+    "restaurant": "LittleCaesars",
+    "itemName": "Crazy Crust Pizza",
+    "rating": 4,
+    "reviewDate": "2023-11-25",
+    "reviewLink": "https://www.youtube.com/watch?v=60w-4W60w_hk"
+  },
+  {
+    "restaurant": "Wendys",
+    "itemName": "Pretzel Baconator",
+    "rating": 8.3,
+    "reviewDate": "2023-11-30",
+    "reviewLink": "https://www.youtube.com/watch?v=cQ4_4XodH00"
+  },
+  {
+    "restaurant": "BuffaloWildWings",
+    "itemName": "Signature Hot Wings",
+    "rating": 6,
+    "reviewDate": "2023-12-04",
+    "reviewLink": "https://www.youtube.com/watch?v=0rUV1uofNxk"
+  },
+  {
+    "restaurant": "BuffaloWildWings",
+    "itemName": "Honey BBQ Wings",
+    "rating": 8,
+    "reviewDate": "2023-12-04",
+    "reviewLink": "https://www.youtube.com/watch?v=0rUV1uofNxk"
+  },
+  {
+    "restaurant": "BuffaloWildWings",
+    "itemName": "Roasted Garlic Parmesan Wings",
+    "rating": 5,
+    "reviewDate": "2023-12-04",
+    "reviewLink": "https://www.youtube.com/watch?v=0rUV1uofNxk"
+  },
+  {
+    "restaurant": "PizzaHut",
+    "itemName": "Cheesy Calzone Stuffed Crust Pizza",
+    "rating": 8.35,
+    "reviewDate": "2023-12-22",
+    "reviewLink": "https://www.youtube.com/watch?v=dHLt2oXmsCU"
+  },
+  {
+    "restaurant": "Wendys",
+    "itemName": "Mushroom Bacon Cheeseburger",
+    "rating": 1.5,
+    "reviewDate": "2024-12-24",
+    "reviewLink": "https://www.youtube.com/watch?v=lmhkMuI25Lc"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Crispy Chicken Nuggets",
+    "rating": 2,
+    "reviewDate": "2024-12-19",
+    "reviewLink": "https://www.youtube.com/watch?v=a-KfoJJ-jdM"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Fire Ranch Sauce",
+    "rating": 8.5,
+    "reviewDate": "2024-12-19",
+    "reviewLink": "https://www.youtube.com/watch?v=a-KfoJJ-jdM"
+  },
+  {
+    "restaurant": "Popeyes",
+    "itemName": "Ghost Pepper Chicken Sandwich",
+    "rating": 5.8,
+    "reviewDate": "2024-12-16",
+    "reviewLink": "https://www.youtube.com/watch?v=FjZw2Gq6K9o"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Caramel Apple Empanada",
+    "rating": 5.5,
+    "reviewDate": "2024-12-09",
+    "reviewLink": "https://www.youtube.com/watch?v=w_fCkwqW0DM"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "McRib (2024)",
+    "rating": 9,
+    "reviewDate": "2024-12-02",
+    "reviewLink": "https://www.youtube.com/watch?v=Rys_CRK76sg"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Maple Bourbon BBQ Whopper",
+    "rating": 7.4,
+    "reviewDate": "2024-11-26",
+    "reviewLink": "https://www.youtube.com/watch?v=V4PO9nsW3aU"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Pickle Fries",
+    "rating": 1,
+    "reviewDate": "2024-11-26",
+    "reviewLink": "https://www.youtube.com/watch?v=V4PO9nsW3aU"
+  },
+  {
+    "restaurant": "Applebees",
+    "itemName": "Really Big Meal Deal",
+    "rating": 9.4,
+    "reviewDate": "2024-11-20",
+    "reviewLink": "https://www.youtube.com/watch?v=uJ3EmZfe6_0"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Midnight Cherry Freeze",
+    "rating": 4.6,
+    "reviewDate": "2024-11-16",
+    "reviewLink": "https://www.youtube.com/watch?v=GArBOVsgYV8"
+  },
+  {
+    "restaurant": "PapaJohns",
+    "itemName": "Shaq-a-Roni Pizza",
+    "rating": 9.2,
+    "reviewDate": "2024-11-09",
+    "reviewLink": "https://www.youtube.com/watch?v=siZh9fnoUYU"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Tostada (1960s Decades Menu)",
+    "rating": 6,
+    "reviewDate": "2024-11-02",
+    "reviewLink": "https://www.youtube.com/watch?v=q79Hz1hV1nE"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Green Sauce Burrito (1970s Decades Menu)",
+    "rating": 4.9,
+    "reviewDate": "2024-11-02",
+    "reviewLink": "https://www.youtube.com/watch?v=q79Hz1hV1nE"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Meximelt (1980s Decades Menu)",
+    "rating": 8.5,
+    "reviewDate": "2024-11-02",
+    "reviewLink": "https://www.youtube.com/watch?v=q79Hz1hV1nE"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Gordita Supreme (1990s Decades Menu)",
+    "rating": 8.8,
+    "reviewDate": "2024-11-02",
+    "reviewLink": "https://www.youtube.com/watch?v=q79Hz1hV1nE"
+  },
+  {
+    "restaurant": "KFC",
+    "itemName": "Original Recipe Tenders",
+    "rating": 7,
+    "reviewDate": "2024-10-28",
+    "reviewLink": "https://www.youtube.com/watch?v=t945R5UH1-Y"
+  },
+  {
+    "restaurant": "KFC",
+    "itemName": "Comeback Sauce",
+    "rating": 3,
+    "reviewDate": "2024-10-28",
+    "reviewLink": "https://www.youtube.com/watch?v=t945R5UH1-Y"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Wednesday's Whopper",
+    "rating": 8,
+    "reviewDate": "2024-10-20",
+    "reviewLink": "https://www.youtube.com/watch?v=evrINc_GNVc"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Things Rings",
+    "rating": 6.8,
+    "reviewDate": "2024-10-20",
+    "reviewLink": "https://www.youtube.com/watch?v=evrINc_GNVc"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Morticia's Kooky Chocolate Shake",
+    "rating": 7.2,
+    "reviewDate": "2024-10-20",
+    "reviewLink": "https://www.youtube.com/watch?v=evrINc_GNVc"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "Chicken Big Mac",
+    "rating": 4.2,
+    "reviewDate": "2024-10-15",
+    "reviewLink": "https://www.youtube.com/watch?v=bgUYGjQ14Ks"
+  },
+  {
+    "restaurant": "Wendys",
+    "itemName": "Krabby Patty Kollab Burger",
+    "rating": 8.5,
+    "reviewDate": "2024-10-08",
+    "reviewLink": "https://www.youtube.com/watch?v=4ayXqWqS7zs"
+  },
+  {
+    "restaurant": "Wendys",
+    "itemName": "Pineapple Under the Sea Frosty",
+    "rating": 8.6,
+    "reviewDate": "2024-10-08",
+    "reviewLink": "https://www.youtube.com/watch?v=4ayXqWqS7zs"
+  },
+  {
+    "restaurant": "Sonic",
+    "itemName": "Witch's Brew Slush Float",
+    "rating": 9.2,
+    "reviewDate": "2024-10-05",
+    "reviewLink": "https://www.youtube.com/watch?v=XEvg_kBYcl8"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Disha Hot Sauce",
+    "rating": 8.5,
+    "reviewDate": "2024-09-30",
+    "reviewLink": "https://www.youtube.com/watch?v=-U-1LvDhwBg"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Disha Hot Discovery Box",
+    "rating": 7,
+    "reviewDate": "2024-09-30",
+    "reviewLink": "https://www.youtube.com/watch?v=-U-1LvDhwBg"
+  },
+  {
+    "restaurant": "FiveGuys",
+    "itemName": "Patty Melt",
+    "rating": 7,
+    "reviewDate": "2024-09-18",
+    "reviewLink": "https://www.youtube.com/watch?v=bkGoDSoGqeE"
+  },
+  {
+    "restaurant": "Wingstop",
+    "itemName": "Sweet BBQ Blaze Chicken Sandwich",
+    "rating": 8.25,
+    "reviewDate": "2024-09-12",
+    "reviewLink": "https://www.youtube.com/watch?v=wdo6OMzK-n0"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Mtn Dew Baja Blast Gelato",
+    "rating": 6.7,
+    "reviewDate": "2024-09-05",
+    "reviewLink": "https://www.youtube.com/watch?v=D4EGjw_4R-g"
+  },
+  {
+    "restaurant": "ChickFilA",
+    "itemName": "Spicy Honey Pepper Pimento Chicken Sandwich",
+    "rating": 9.4,
+    "reviewDate": "2024-08-30",
+    "reviewLink": "https://www.youtube.com/watch?v=0UgFWbWLFWM"
+  },
+  {
+    "restaurant": "KFC",
+    "itemName": "Chipotle Ranch Saucy Nuggets",
+    "rating": 3,
+    "reviewDate": "2024-08-13",
+    "reviewLink": "https://www.youtube.com/watch?v=XE90LyCTkO4"
+  },
+  {
+    "restaurant": "KFC",
+    "itemName": "Mango Habanero Saucy Nuggets",
+    "rating": 6.7,
+    "reviewDate": "2024-08-13",
+    "reviewLink": "https://www.youtube.com/watch?v=XE90LyCTkO4"
+  },
+  {
+    "restaurant": "KFC",
+    "itemName": "Honey Garlic Saucy Nuggets",
+    "rating": 5,
+    "reviewDate": "2024-08-13",
+    "reviewLink": "https://www.youtube.com/watch?v=XE90LyCTkO4"
+  },
+  {
+    "restaurant": "Culvers",
+    "itemName": "JJ's Way Meal",
+    "rating": 8.5,
+    "reviewDate": "2024-08-09",
+    "reviewLink": "https://www.youtube.com/watch?v=3lpp1IColGk"
+  },
+  {
+    "restaurant": "Sonic",
+    "itemName": "Sonic Smasher",
+    "rating": 8,
+    "reviewDate": "2024-08-03",
+    "reviewLink": "https://www.youtube.com/watch?v=75E4M-uJuBI"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Fiery Strawberry & Sprite Drink",
+    "rating": 8,
+    "reviewDate": "2024-07-29",
+    "reviewLink": "https://www.youtube.com/watch?v=SRoouSISnfU"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Fiery Mozzarella Fries",
+    "rating": 7,
+    "reviewDate": "2024-07-29",
+    "reviewLink": "https://www.youtube.com/watch?v=SRoouSISnfU"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Fiery Bacon Whopper",
+    "rating": 8.4,
+    "reviewDate": "2024-07-29",
+    "reviewLink": "https://www.youtube.com/watch?v=SRoouSISnfU"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Fiery Chicken Fries",
+    "rating": 4,
+    "reviewDate": "2024-07-29",
+    "reviewLink": "https://www.youtube.com/watch?v=SRoouSISnfU"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Fiery Royal Crispy Chicken Sandwich",
+    "rating": 2,
+    "reviewDate": "2024-07-29",
+    "reviewLink": "https://www.youtube.com/watch?v=SRoouSISnfU"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Cheesy Street Chalupas",
+    "rating": 4.5,
+    "reviewDate": "2024-07-23",
+    "reviewLink": "https://www.youtube.com/watch?v=iVs64RXKF-E"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "$7 Luxe Cravings Box",
+    "rating": 8.6,
+    "reviewDate": "2024-07-17",
+    "reviewLink": "https://www.youtube.com/watch?v=Ik5lzhUelNs"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "Smoky BLT Quarter Pounder",
+    "rating": 5.5,
+    "reviewDate": "2024-07-12",
+    "reviewLink": "https://www.youtube.com/watch?v=kEdpLBv_XYM"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "Kit-Kat Banana Split McFlurry",
+    "rating": 8.2,
+    "reviewDate": "2024-07-12",
+    "reviewLink": "https://www.youtube.com/watch?v=kEdpLBv_XYM"
+  },
+  {
+    "restaurant": "Popeyes",
+    "itemName": "Boneless Wings (Overall)",
+    "rating": 6.8,
+    "reviewDate": "2024-07-04",
+    "reviewLink": "https://www.youtube.com/watch?v=EKPKtAUtEsY"
+  },
+  {
+    "restaurant": "Popeyes",
+    "itemName": "Classic Boneless Wings",
+    "rating": 6,
+    "reviewDate": "2024-07-04",
+    "reviewLink": "https://www.youtube.com/watch?v=EKPKtAUtEsY"
+  },
+  {
+    "restaurant": "Popeyes",
+    "itemName": "Signature Hot Boneless Wings",
+    "rating": 4,
+    "reviewDate": "2024-07-04",
+    "reviewLink": "https://www.youtube.com/watch?v=EKPKtAUtEsY"
+  },
+  {
+    "restaurant": "Popeyes",
+    "itemName": "Honey Barbecue Boneless Wings",
+    "rating": 8.1,
+    "reviewDate": "2024-07-04",
+    "reviewLink": "https://www.youtube.com/watch?v=EKPKtAUtEsY"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "$5 Meal Deal",
+    "rating": 8.8,
+    "reviewDate": "2024-06-28",
+    "reviewLink": "https://www.youtube.com/watch?v=Z2-tjf7aY5E"
+  },
+  {
+    "restaurant": "Arbys",
+    "itemName": "Big Cheesy Bacon Burger",
+    "rating": 8.5,
+    "reviewDate": "2024-06-24",
+    "reviewLink": "https://www.youtube.com/watch?v=ARlNIDVHGVM"
+  },
+  {
+    "restaurant": "PizzaHut",
+    "itemName": "Chicago Tavern-Style Pizza",
+    "rating": 8,
+    "reviewDate": "2024-06-19",
+    "reviewLink": "https://www.youtube.com/watch?v=GLplwJ19qhU"
+  },
+  {
+    "restaurant": "ChickFilA",
+    "itemName": "Maple Pepper Bacon Chicken Sandwich",
+    "rating": 9,
+    "reviewDate": "2024-06-14",
+    "reviewLink": "https://www.youtube.com/watch?v=weXWh37E1Eg"
+  },
+  {
+    "restaurant": "Wendys",
+    "itemName": "Honey BBQ Saucy Nuggs",
+    "rating": 8.3,
+    "reviewDate": "2024-06-10",
+    "reviewLink": "https://www.youtube.com/watch?v=5aHcYZ3lBb8"
+  },
+  {
+    "restaurant": "Wendys",
+    "itemName": "Spicy Ghost Pepper Saucy Nuggs",
+    "rating": 3,
+    "reviewDate": "2024-06-10",
+    "reviewLink": "https://www.youtube.com/watch?v=5aHcYZ3lBb8"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Big Cheez-It Crunchwrap Supreme",
+    "rating": 6.7,
+    "reviewDate": "2024-06-05",
+    "reviewLink": "https://www.youtube.com/watch?v=00R_u5zeV84"
+  },
+  {
+    "restaurant": "Zaxbys",
+    "itemName": "MrBeast Box",
+    "rating": 7.8,
+    "reviewDate": "2024-05-31",
+    "reviewLink": "https://www.youtube.com/watch?v=C4KRKURax_U"
+  },
+  {
+    "restaurant": "PizzaHut",
+    "itemName": "Cheeseburger Melt",
+    "rating": 2,
+    "reviewDate": "2024-05-27",
+    "reviewLink": "https://www.youtube.com/watch?v=_JXbHSUdMc0"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "Grandma McFlurry",
+    "rating": 9,
+    "reviewDate": "2024-05-22",
+    "reviewLink": "https://www.youtube.com/watch?v=XnggMCywaQk"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Philly Melt",
+    "rating": 4,
+    "reviewDate": "2024-05-21",
+    "reviewLink": "https://www.youtube.com/watch?v=lXDGe36f9KM"
+  },
+  {
+    "restaurant": "Dennys",
+    "itemName": "BBQ Bacon Chicken Sandwich",
+    "rating": 3,
+    "reviewDate": "2024-05-16",
+    "reviewLink": "https://www.youtube.com/watch?v=xHXDdnBJAfA"
+  },
+  {
+    "restaurant": "Popeyes",
+    "itemName": "Golden BBQ Chicken Sandwich",
+    "rating": 7,
+    "reviewDate": "2024-05-10",
+    "reviewLink": "https://www.youtube.com/watch?v=o7SQVSCx51o"
+  },
+  {
+    "restaurant": "Arbys",
+    "itemName": "BBQ Chicken Wrap",
+    "rating": 8,
+    "reviewDate": "2024-05-06",
+    "reviewLink": "https://www.youtube.com/watch?v=rwAxqOKpI-w"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "Bacon Cajun Ranch McCrispy Chicken Sandwich",
+    "rating": 4,
+    "reviewDate": "2024-05-01",
+    "reviewLink": "https://www.youtube.com/watch?v=i2K7FftzwPQ"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Secret Aardvark Nacho Fries",
+    "rating": 7,
+    "reviewDate": "2024-04-27",
+    "reviewLink": "https://www.youtube.com/watch?v=TWnEA2z3vXs"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "Bacon Cajun Ranch Deluxe McCrispy Chicken Sandwich",
+    "rating": 8.5,
+    "reviewDate": "2024-04-22",
+    "reviewLink": "https://www.youtube.com/watch?v=iMQtMZxpfjc"
+  },
+  {
+    "restaurant": "Dominos",
+    "itemName": "New York Style Pizza",
+    "rating": 6,
+    "reviewDate": "2024-04-17",
+    "reviewLink": "https://www.youtube.com/watch?v=OGTMH5Kg40A"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Cantina Chicken Crispy Taco",
+    "rating": 9.1,
+    "reviewDate": "2024-04-12",
+    "reviewLink": "https://www.youtube.com/watch?v=6b7C79Vxk6Q"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "Spicy Chicken McNuggets",
+    "rating": 8.9,
+    "reviewDate": "2024-04-06",
+    "reviewLink": "https://www.youtube.com/watch?v=xLlOEJtB0W0"
+  },
+  {
+    "restaurant": "KFC",
+    "itemName": "Saucy Nuggets (Overall)",
+    "rating": 4.8,
+    "reviewDate": "2024-04-02",
+    "reviewLink": "https://www.youtube.com/watch?v=aJMbOFUh9fA"
+  },
+  {
+    "restaurant": "PizzaHut",
+    "itemName": "Crispy Cuppy ‘Roni Pizza",
+    "rating": 8,
+    "reviewDate": "2024-03-27",
+    "reviewLink": "https://www.youtube.com/watch?v=_xbzOdWfsmw"
+  },
+  {
+    "restaurant": "Popeyes",
+    "itemName": "Honey Lemon Pepper Wings",
+    "rating": 2,
+    "reviewDate": "2024-03-20",
+    "reviewLink": "https://www.youtube.com/watch?v=lf7AhY5W3L4"
+  },
+  {
+    "restaurant": "LittleCaesars",
+    "itemName": "Crazy Puffs",
+    "rating": 7.4,
+    "reviewDate": "2024-03-15",
+    "reviewLink": "https://www.youtube.com/watch?v=r1w1OjlwX2E"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Fiery Buffalo Chicken Nuggets",
+    "rating": 6,
+    "reviewDate": "2024-03-10",
+    "reviewLink": "https://www.youtube.com/watch?v=7W4UwILdV-w"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Fiery Buffalo Royal Crispy Wrap",
+    "rating": 3.5,
+    "reviewDate": "2024-03-10",
+    "reviewLink": "https://www.youtube.com/watch?v=7W4UwILdV-w"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "Savory WcDonald's Sauce",
+    "rating": 7,
+    "reviewDate": "2024-03-05",
+    "reviewLink": "https://www.youtube.com/watch?v=KI87nJZ6tck"
+  },
+  {
+    "restaurant": "KFC",
+    "itemName": "Chizza",
+    "rating": 8,
+    "reviewDate": "2024-02-26",
+    "reviewLink": "https://www.youtube.com/watch?v=rUrd8XQDRXA"
+  },
+  {
+    "restaurant": "Wingstop",
+    "itemName": "Hot Honey Chicken Sandwich",
+    "rating": 5.9,
+    "reviewDate": "2024-02-21",
+    "reviewLink": "https://www.youtube.com/watch?v=YHbLR_w5aXU"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Cheesy Chicken Crispanada",
+    "rating": 6,
+    "reviewDate": "2024-02-16",
+    "reviewLink": "https://www.youtube.com/watch?v=ul9_JWsEC0A"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Candied Bacon Whopper",
+    "rating": 8.9,
+    "reviewDate": "2024-02-09",
+    "reviewLink": "https://www.youtube.com/watch?v=bQnwkKizIAQ"
+  },
+  {
+    "restaurant": "PizzaHut",
+    "itemName": "Hot Honey Pizza",
+    "rating": 7.2,
+    "reviewDate": "2024-02-04",
+    "reviewLink": "https://www.youtube.com/watch?v=0b9ToVXtNdY"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "Double Big Mac",
+    "rating": 7,
+    "reviewDate": "2024-01-30",
+    "reviewLink": "https://www.youtube.com/watch?v=6MY-HC7Q2Wo"
+  },
+  {
+    "restaurant": "Wendys",
+    "itemName": "Breakfast Burrito",
+    "rating": 6,
+    "reviewDate": "2024-01-26",
+    "reviewLink": "https://www.youtube.com/watch?v=YevghmGX1mo"
+  },
+  {
+    "restaurant": "ShakeShack",
+    "itemName": "Korean Style Fried Chicken Sandwich",
+    "rating": 6,
+    "reviewDate": "2024-01-23",
+    "reviewLink": "https://www.youtube.com/watch?v=xL9foWwcC4"
+  },
+  {
+    "restaurant": "Sonic",
+    "itemName": "Peanut Butter Bacon Cheeseburger",
+    "rating": 5.8,
+    "reviewDate": "2024-01-18",
+    "reviewLink": "https://www.youtube.com/watch?v=rU6e645ol5g"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "3-Cheese Chicken Flatbread Melt",
+    "rating": 7,
+    "reviewDate": "2024-01-13",
+    "reviewLink": "https://www.youtube.com/watch?v=reKgy0ZfGyI"
+  },
+  {
+    "restaurant": "LittleCaesars",
+    "itemName": "Slices-N-Stix Bacon Pizza",
+    "rating": 9,
+    "reviewDate": "2024-01-09",
+    "reviewLink": "https://www.youtube.com/watch?v=T46wjXAV-TE"
+  },{
+    "restaurant": "KFC",
+    "itemName": "Honey BBQ Wrap",
+    "rating": 6.1,
+    "reviewDate": "2024-01-04",
+    "reviewLink": "https://www.youtube.com/watch?v=1lTl2QesrX4"
+  },
+  {
+    "restaurant": "KFC",
+    "itemName": "Spicy Mac & Cheese Wrap",
+    "rating": 4.9,
+    "reviewDate": "2024-01-04",
+    "reviewLink": "https://www.youtube.com/watch?v=1lTl2QesrX4"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "$7 Luxe Cravings Box (2025 Edition)",
+    "rating": 8.9,
+    "reviewDate": "2025-01-05",
+    "reviewLink": "https://www.youtube.com/watch?v=8w2YrsJwZd4"
+  },
+  {
+    "restaurant": "KFC",
+    "itemName": "Nashville Hot Chicken Tenders Meal",
+    "rating": 7.6,
+    "reviewDate": "2025-01-11",
+    "reviewLink": "https://www.youtube.com/watch?v=HILRzp-009c"
+  },
+  {
+    "restaurant": "ChickFilA",
+    "itemName": "Fries",
+    "rating": 1,
+    "reviewDate": "2025-01-16",
+    "reviewLink": "https://www.youtube.com/watch?v=CUPYF0uwy7Y"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Cheesy Dipping Burritos",
+    "rating": 8.4,
+    "reviewDate": "2025-01-24",
+    "reviewLink": "https://www.youtube.com/watch?v=nsesgsBDJ0Q"
+  },
+  {
+    "restaurant": "Dominos",
+    "itemName": "Loaded Chicken (Hot Buffalo)",
+    "rating": 1,
+    "reviewDate": "2025-01-30",
+    "reviewLink": "https://www.youtube.com/watch?v=8z8qPUwiq_4"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "Angel Reese Special",
+    "rating": 8,
+    "reviewDate": "2025-02-05",
+    "reviewLink": "https://www.youtube.com/watch?v=lrWrUk8wCNw"
+  },
+  {
+    "restaurant": "LittleCaesars",
+    "itemName": "Bacon & Cheese Crazy Puffs",
+    "rating": 9,
+    "reviewDate": "2025-02-11",
+    "reviewLink": "https://www.youtube.com/watch?v=HAXQTX8YWtk"
+  },
+  {
+    "restaurant": "KFC",
+    "itemName": "Mike's Hot Honey Chicken",
+    "rating": 4,
+    "reviewDate": "2025-02-18",
+    "reviewLink": "https://www.youtube.com/watch?v=ms5k-1ZRzEw"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Birthday Cake Churros",
+    "rating": 9.1,
+    "reviewDate": "2025-02-25",
+    "reviewLink": "https://www.youtube.com/watch?v=cJwG9lfJqss"
+  },
+  {
+    "restaurant": "Dominos",
+    "itemName": "Parmesan Stuffed Crust Pizza",
+    "rating": 8.6,
+    "reviewDate": "2025-03-05",
+    "reviewLink": "https://www.youtube.com/watch?v=fUNeAqnACHU"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Steak & Queso Crunchwrap Sliders",
+    "rating": 5.0,
+    "reviewDate": "2025-03-10",
+    "reviewLink": "https://www.youtube.com/watch?v=QNMzlfe-xn0"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Steakhouse Bacon Whopper",
+    "rating": 7.2,
+    "reviewDate": "2025-03-17",
+    "reviewLink": "https://www.youtube.com/watch?v=l7jgsnfQyig"
+  },
+  {
+    "restaurant": "ChickFilA",
+    "itemName": "Smokehouse BBQ Bacon Sandwich",
+    "rating": 9.4,
+    "reviewDate": "2025-03-25",
+    "reviewLink": "https://www.youtube.com/watch?v=-Z8nUFV5ghk"
+  },
+  {
+    "restaurant": "PizzaHut",
+    "itemName": "Cheesy Bites Pizza and Ranch Lover's Flight",
+    "rating": 7,
+    "reviewDate": "2025-04-01",
+    "reviewLink": "https://www.youtube.com/watch?v=QbnTyMfSkuc"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "Minecraft Movie Meal",
+    "rating": 7,
+    "reviewDate": "2025-04-05",
+    "reviewLink": "https://www.youtube.com/watch?v=oYkR74FvQFI"
+  },
+  {
+    "restaurant": "Popeyes",
+    "itemName": "Pickle Glaze Chicken Sandwich",
+    "rating": 8.7,
+    "reviewDate": "2025-04-14",
+    "reviewLink": "https://www.youtube.com/watch?v=0Kf3r1Fsb1I"
+  },
+  {
+    "restaurant": "Popeyes",
+    "itemName": "Pickle Lemonade",
+    "rating": 6.5,
+    "reviewDate": "2025-04-14",
+    "reviewLink": "https://www.youtube.com/watch?v=0Kf3r1Fsb1I"
+  },
+  {
+    "restaurant": "Wendys",
+    "itemName": "Cajun Crunch Spicy Chicken Sandwich",
+    "rating": 2,
+    "reviewDate": "2025-04-22",
+    "reviewLink": "https://www.youtube.com/watch?v=dG7duCPX6Js"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Crispy Chicken Nuggets",
+    "rating": 7,
+    "reviewDate": "2025-04-28",
+    "reviewLink": "https://www.youtube.com/watch?v=qm21P3lkdiw"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "McCrispy Strips",
+    "rating": 8.5,
+    "reviewDate": "2025-05-04",
+    "reviewLink": "https://www.youtube.com/watch?v=95MPtROAH3Q"
+  },
+  {
+    "restaurant": "PapaJohns",
+    "itemName": "Epic Stuffed Crust Pizza",
+    "rating": 8.7,
+    "reviewDate": "2021-01-03",
+    "reviewLink": "https://www.youtube.com/watch?v=MALyegWebeQ"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Bacon Club Chalupa",
+    "rating": 3,
+    "reviewDate": "2021-01-08",
+    "reviewLink": "https://www.youtube.com/watch?v=1IBNvaM2bik"
+  },
+  {
+    "restaurant": "Popeyes",
+    "itemName": "Rip'n Chicken Big Box",
+    "rating": 8.4,
+    "reviewDate": "2021-01-12",
+    "reviewLink": "https://www.youtube.com/watch?v=_5c5VMgzsF0"
+  },
+  {
+    "restaurant": "PaneraBread",
+    "itemName": "Pepperoni Flatbread Pizza",
+    "rating": 8.6,
+    "reviewDate": "2021-01-22",
+    "reviewLink": "https://www.youtube.com/watch?v=gXlKBJ5GKb8"
+  },
+  {
+    "restaurant": "PizzaHut",
+    "itemName": "Detroit Style Pizza",
+    "rating": 9,
+    "reviewDate": "2021-01-27",
+    "reviewLink": "https://www.youtube.com/watch?v=xSUT1_Jyt1s"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "Spicy Chicken McNuggets",
+    "rating": 9.3,
+    "reviewDate": "2021-02-01",
+    "reviewLink": "https://www.youtube.com/watch?v=jJMaLBPp9f0"
+  },
+  {
+    "restaurant": "RedBaron",
+    "itemName": "Red Baron's Pizza Melts (Pepperoni)",
+    "rating": 8,
+    "reviewDate": "2021-02-06",
+    "reviewLink": "https://www.youtube.com/watch?v=_jI2djYVYE4"
+  },
+  {
+    "restaurant": "Popeyes",
+    "itemName": "Cajun Flounder Sandwich",
+    "rating": 7.4,
+    "reviewDate": "2021-02-10",
+    "reviewLink": "https://www.youtube.com/watch?v=VxkJ-5u0qWs"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "Crispy Chicken Sandwich",
+    "rating": 7.5,
+    "reviewDate": "2021-02-24",
+    "reviewLink": "https://www.youtube.com/watch?v=fPq77zdFTiE"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "Spicy Crispy Chicken Sandwich",
+    "rating": 8,
+    "reviewDate": "2021-02-24",
+    "reviewLink": "https://www.youtube.com/watch?v=fPq77zdFTiE"
+  },
+  {
+    "restaurant": "Wendys",
+    "itemName": "Jalapeno Popper Chicken Sandwich",
+    "rating": 7.7,
+    "reviewDate": "2021-03-03",
+    "reviewLink": "https://www.youtube.com/watch?v=lzab6q3olYA"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Sourdough King Burger",
+    "rating": 6.5,
+    "reviewDate": "2021-03-09",
+    "reviewLink": "https://www.youtube.com/watch?v=sZWwpRchX_E"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Quesalupa",
+    "rating": 7,
+    "reviewDate": "2021-03-14",
+    "reviewLink": "https://www.youtube.com/watch?v=qVp9QgTo1Dw"
+  },
+  {
+    "restaurant": "KFC",
+    "itemName": "Classic Chicken Sandwich",
+    "rating": 6.4,
+    "reviewDate": "2021-03-19",
+    "reviewLink": "https://www.youtube.com/watch?v=QsKaMrBnfsA"
+  },
+  {
+    "restaurant": "Wendys",
+    "itemName": "Bacon Double Stack Burger",
+    "rating": 6.8,
+    "reviewDate": "2021-03-25",
+    "reviewLink": "https://www.youtube.com/watch?v=aJp92azRbPo"
+  },
+  {
+    "restaurant": "DelTaco",
+    "itemName": "BBQ Crispy Chicken Taco",
+    "rating": 9,
+    "reviewDate": "2021-03-29",
+    "reviewLink": "https://www.youtube.com/watch?v=y2p4eAZCmag"
+  },
+  {
+    "restaurant": "LittleCaesars",
+    "itemName": "Extramostbestest Pepperoni Thin Crust Pizza",
+    "rating": 8.2,
+    "reviewDate": "2021-04-01",
+    "reviewLink": "https://www.youtube.com/watch?v=N_IaFGXZvGg"
+  },
+  {
+    "restaurant": "Arbys",
+    "itemName": "Spicy Greek Gyro",
+    "rating": 6.8,
+    "reviewDate": "2021-04-06",
+    "reviewLink": "https://www.youtube.com/watch?v=TYkRaj9VwZU"
+  },
+  {
+    "restaurant": "Arbys",
+    "itemName": "Crinkle Cut Fries",
+    "rating": 7.5,
+    "reviewDate": "2021-04-06",
+    "reviewLink": "https://www.youtube.com/watch?v=TYkRaj9VwZU"
+  },
+  {
+    "restaurant": "ShakeShack",
+    "itemName": "ShackBurger",
+    "rating": 9,
+    "reviewDate": "2021-04-10",
+    "reviewLink": "https://www.youtube.com/watch?v=y3Uws6mvmEg"
+  },
+  {
+    "restaurant": "ShakeShack",
+    "itemName": "French Fries",
+    "rating": 6.5,
+    "reviewDate": "2021-04-10",
+    "reviewLink": "https://www.youtube.com/watch?v=y3Uws6mvmEg"
+  },
+  {
+    "restaurant": "ShakeShack",
+    "itemName": "Vanilla Shake",
+    "rating": 7,
+    "reviewDate": "2021-04-10",
+    "reviewLink": "https://www.youtube.com/watch?v=y3Uws6mvmEg"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Beefy Potato-Rito",
+    "rating": 8.8,
+    "reviewDate": "2021-04-18",
+    "reviewLink": "https://www.youtube.com/watch?v=Acw9TIWmyCo"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "Deluxe Crispy Chicken Sandwich",
+    "rating": 7.3,
+    "reviewDate": "2021-04-23",
+    "reviewLink": "https://www.youtube.com/watch?v=tUg4Vjj1RXo"
+  },
+  {
+    "restaurant": "MrBeastBurger",
+    "itemName": "Dream Burger",
+    "rating": 8,
+    "reviewDate": "2021-04-27",
+    "reviewLink": "https://www.youtube.com/watch?v=MopgfocPqhI"
+  },
+  {
+    "restaurant": "Wendys",
+    "itemName": "Bourbon Bacon Cheeseburger",
+    "rating": 8,
+    "reviewDate": "2021-05-08",
+    "reviewLink": "https://www.youtube.com/watch?v=XfqX5zw3n1E"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Spicy Hand Breaded Crispy Chicken Sandwich",
+    "rating": 2,
+    "reviewDate": "2021-05-14",
+    "reviewLink": "https://www.youtube.com/watch?v=7zZyg0pUhQY"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "BTS Meal",
+    "rating": 8.5,
+    "reviewDate": "2021-05-26",
+    "reviewLink": "https://www.youtube.com/watch?v=S_6puhoup_I"
+  },
+  {
+    "restaurant": "PizzaHut",
+    "itemName": "The Edge Pizza",
+    "rating": 8.5,
+    "reviewDate": "2021-06-03",
+    "reviewLink": "https://www.youtube.com/watch?v=ftqkdxlDB3Y"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Naked Chicken Chalupa",
+    "rating": 7,
+    "reviewDate": "2021-06-09",
+    "reviewLink": "https://www.youtube.com/watch?v=uc3YBBouQqo"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Grande Crunchwrap",
+    "rating": 7,
+    "reviewDate": "2021-06-26",
+    "reviewLink": "https://www.youtube.com/watch?v=ZgsnCUs4S2A"
+  },
+  {
+    "restaurant": "Arbys",
+    "itemName": "Premium Chicken Nuggets",
+    "rating": 6.5,
+    "reviewDate": "2021-07-02",
+    "reviewLink": "https://www.youtube.com/watch?v=HK4Ux4tlhpw"
+  },
+  {
+    "restaurant": "FiveGuys",
+    "itemName": "Bacon Burger",
+    "rating": 9,
+    "reviewDate": "2021-07-07",
+    "reviewLink": "https://www.youtube.com/watch?v=_PItwQefKDo"
+  },
+  {
+    "restaurant": "FiveGuys",
+    "itemName": "Cajun Fries",
+    "rating": 8,
+    "reviewDate": "2021-07-07",
+    "reviewLink": "https://www.youtube.com/watch?v=_PItwQefKDo"
+  },
+  {
+    "restaurant": "FiveGuys",
+    "itemName": "Vanilla Shake",
+    "rating": 7.5,
+    "reviewDate": "2021-07-07",
+    "reviewLink": "https://www.youtube.com/watch?v=_PItwQefKDo"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Single Bacon King",
+    "rating": 5.8,
+    "reviewDate": "2021-07-11",
+    "reviewLink": "https://www.youtube.com/watch?v=iyIqHFzKPYM"
+  },
+  {
+    "restaurant": "Wendys",
+    "itemName": "Ghost Pepper Ranch Sauce",
+    "rating": 6.7,
+    "reviewDate": "2021-07-16",
+    "reviewLink": "https://www.youtube.com/watch?v=G9kqy3dy55g"
+  },
+  {
+    "restaurant": "BuffaloWildWings",
+    "itemName": "Classic Chicken Sandwich",
+    "rating": 2,
+    "reviewDate": "2021-07-20",
+    "reviewLink": "https://www.youtube.com/watch?v=N_JBmIL6CG4"
+  },
+  {
+    "restaurant": "Popeyes",
+    "itemName": "Chicken Nuggets",
+    "rating": 6,
+    "reviewDate": "2021-07-29",
+    "reviewLink": "https://www.youtube.com/watch?v=DAtcB2Ty4eM"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Garlic & Bacon King Burger",
+    "rating": 7.3,
+    "reviewDate": "2021-08-04",
+    "reviewLink": "https://www.youtube.com/watch?v=jhQ4LMkQH5g"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "Saweetie Meal",
+    "rating": 8,
+    "reviewDate": "2021-08-09",
+    "reviewLink": "https://www.youtube.com/watch?v=jRS6l5h0By0"
+  },
+  {
+    "restaurant": "PizzaHut",
+    "itemName": "Big Dinner Box",
+    "rating": 8.3,
+    "reviewDate": "2021-08-14",
+    "reviewLink": "https://www.youtube.com/watch?v=HM2PCUFo9ac"
+  },
+  {
+    "restaurant": "LittleCaesars",
+    "itemName": "Crazy Calzony Pepperoni",
+    "rating": 7.4,
+    "reviewDate": "2021-08-19",
+    "reviewLink": "https://www.youtube.com/watch?v=2QIq7_WZqds"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Loaded Taco Fries Burrito",
+    "rating": 6,
+    "reviewDate": "2021-08-26",
+    "reviewLink": "https://www.youtube.com/watch?v=N6dC8TN4rrk"
+  },
+  {
+    "restaurant": "PapaJohns",
+    "itemName": "Shaq-a-Roni Pizza",
+    "rating": 8,
+    "reviewDate": "2021-09-01",
+    "reviewLink": "https://www.youtube.com/watch?v=RPvISx2pFbE"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Crispy Chicken Sandwich Taco (Spicy)",
+    "rating": 5.5,
+    "reviewDate": "2021-09-04",
+    "reviewLink": "https://www.youtube.com/watch?v=70NhkwAB7a0"
+  },
+  {
+    "restaurant": "Wendys",
+    "itemName": "Big Bacon Cheddar Cheeseburger",
+    "rating": 7.8,
+    "reviewDate": "2021-09-09",
+    "reviewLink": "https://www.youtube.com/watch?v=4Q9PA8W2HME"
+  },
+  {
+    "restaurant": "PizzaHut",
+    "itemName": "Detroit Style Pizza",
+    "rating": 9,
+    "reviewDate": "2021-09-15",
+    "reviewLink": "https://www.youtube.com/watch?v=KNalfaZfiw4"
+  },
+  {
+    "restaurant": "Zaxbys",
+    "itemName": "Signature Sandwich",
+    "rating": 8.5,
+    "reviewDate": "2021-09-21",
+    "reviewLink": "https://www.youtube.com/watch?v=mo3eeVyQHj0"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Rodeo Burger",
+    "rating": 8,
+    "reviewDate": "2021-09-28",
+    "reviewLink": "https://www.youtube.com/watch?v=iCjvTf7acZ0"
+  },
+  {
+    "restaurant": "BuffaloWildWings",
+    "itemName": "Doritos Spicy Sweet Chili Wings",
+    "rating": 5,
+    "reviewDate": "2021-10-02",
+    "reviewLink": "https://www.youtube.com/watch?v=Y5kZoTcowP0"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Cantina Crispy Melt Taco",
+    "rating": 7.7,
+    "reviewDate": "2021-10-08",
+    "reviewLink": "https://www.youtube.com/watch?v=Ok5kcPdefXo"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Ghost Pepper Nuggets",
+    "rating": 5.4,
+    "reviewDate": "2021-10-13",
+    "reviewLink": "https://www.youtube.com/watch?v=CNgCxwYbMSU"
+  },
+  {
+    "restaurant": "Popeyes",
+    "itemName": "Hottie Chicken Sandwich",
+    "rating": 8,
+    "reviewDate": "2021-10-19",
+    "reviewLink": "https://www.youtube.com/watch?v=mNcq3tja3jc"
+  },
+  {
+    "restaurant": "PapaJohns",
+    "itemName": "Triple Bacon Pizza",
+    "rating": 8.2,
+    "reviewDate": "2021-10-27",
+    "reviewLink": "https://www.youtube.com/watch?v=gLY-7zLhtNA"
+  },
+  {
+    "restaurant": "Arbys",
+    "itemName": "Boneless Wings (Classic Buffalo)",
+    "rating": 8.5,
+    "reviewDate": "2021-11-01",
+    "reviewLink": "https://www.youtube.com/watch?v=Lo7GC_HzKmw"
+  },
+  {
+    "restaurant": "Arbys",
+    "itemName": "Boneless Wings (Hot Honey)",
+    "rating": 8,
+    "reviewDate": "2021-11-01",
+    "reviewLink": "https://www.youtube.com/watch?v=Lo7GC_HzKmw"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "McRib (2021)",
+    "rating": 5,
+    "reviewDate": "2021-11-05",
+    "reviewLink": "https://www.youtube.com/watch?v=AUORk_EWbDY"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Double Steak Grilled Cheese Burrito",
+    "rating": 7.75,
+    "reviewDate": "2021-11-14",
+    "reviewLink": "https://www.youtube.com/watch?v=uDLd-jZ10l8"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Italian Original Chicken Sandwich",
+    "rating": 2,
+    "reviewDate": "2021-11-23",
+    "reviewLink": "https://www.youtube.com/watch?v=4z0_Q5TT2o0"
+  },
+  {
+    "restaurant": "Applebees",
+    "itemName": "Cheetos Boneless Wings (Cheetos Flamin' Hot Flavor)",
+    "rating": 6.5,
+    "reviewDate": "2021-11-27",
+    "reviewLink": "https://www.youtube.com/watch?v=GUN_ey9MLK8"
+  },
+  {
+    "restaurant": "Wingstop",
+    "itemName": "Orange Szechuan Wings",
+    "rating": 8,
+    "reviewDate": "2021-12-02",
+    "reviewLink": "https://www.youtube.com/watch?v=WtGev8EsLEU"
+  },
+  {
+    "restaurant": "PizzaHut",
+    "itemName": "Triple Treat Box",
+    "rating": 7.5,
+    "reviewDate": "2021-12-06",
+    "reviewLink": "https://www.youtube.com/watch?v=yF5c4oIyy3A"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "Fries",
+    "rating": 7.9,
+    "reviewDate": "2021-12-10",
+    "reviewLink": "https://www.youtube.com/watch?v=Lv7UU2Sg3l0"
+  },
+  {
+    "restaurant": "Wendys",
+    "itemName": "Fries",
+    "rating": 7.7,
+    "reviewDate": "2021-12-10",
+    "reviewLink": "https://www.youtube.com/watch?v=Lv7UU2Sg3l0"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Fries",
+    "rating": 4,
+    "reviewDate": "2021-12-10",
+    "reviewLink": "https://www.youtube.com/watch?v=Lv7UU2Sg3l0"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "Cheeseburger",
+    "rating": 6,
+    "reviewDate": "2021-12-18",
+    "reviewLink": "https://www.youtube.com/watch?v=aeqNvnf-4Fw"
+  },
+  {
+    "restaurant": "PDQ",
+    "itemName": "Spicy Tenders Sandwich",
+    "rating": 5.7,
+    "reviewDate": "2021-12-22",
+    "reviewLink": "https://www.youtube.com/watch?v=mMR6U80OoeY"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Chipotle Cheddar Chalupa",
+    "rating": 5,
+    "reviewDate": "2021-12-27",
+    "reviewLink": "https://www.youtube.com/watch?v=zpm_bfIzRrU"
+  },
+  {
+    "restaurant": "PapaJohns",
+    "itemName": "New York Style Pizza",
+    "rating": 7.7,
+    "reviewDate": "2021-12-31",
+    "reviewLink": "https://www.youtube.com/watch?v=_a53E6KKCgo"
+  },
+  {
+    "restaurant": "PapaJohns",
+    "itemName": "Extra Cheesy Alfredo Pizza",
+    "rating": 5.8,
+    "reviewDate": "2020-01-04",
+    "reviewLink": "https://www.youtube.com/watch?v=3Abnmizvi_4"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Reaper Ranch Double Stacked Taco",
+    "rating": 8.3,
+    "reviewDate": "2020-01-10",
+    "reviewLink": "https://www.youtube.com/watch?v=4XFh1s42yvA"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Cheddar Bacon King",
+    "rating": 7.0,
+    "reviewDate": "2020-01-21",
+    "reviewLink": "https://www.youtube.com/watch?v=v5LJnabak-w"
+  },
+  {
+    "restaurant": "JellO",
+    "itemName": "Jell-O (Red)",
+    "rating": 7.2,
+    "reviewDate": "2020-02-01",
+    "reviewLink": "https://www.youtube.com/watch?v=_PgWRhHO4DA"
+  },
+  {
+    "restaurant": "JellO",
+    "itemName": "Jell-O (Orange)",
+    "rating": 7.2,
+    "reviewDate": "2020-02-01",
+    "reviewLink": "https://www.youtube.com/watch?v=_PgWRhHO4DA"
+  },
+  {
+    "restaurant": "JellO",
+    "itemName": "Jell-O (Blue Raspberry Sour)",
+    "rating": 7.2,
+    "reviewDate": "2020-02-01",
+    "reviewLink": "https://www.youtube.com/watch?v=_PgWRhHO4DA"
+  },
+  {
+    "restaurant": "PapaJohns",
+    "itemName": "Philly Cheesesteak Papadia",
+    "rating": 6.62,
+    "reviewDate": "2020-02-09",
+    "reviewLink": "https://www.youtube.com/watch?v=Q4HpoGYdk0g"
+  },
+  {
+    "restaurant": "PizzaHut",
+    "itemName": "Mozzarella Poppers Pizza",
+    "rating": 4.1,
+    "reviewDate": "2020-02-14",
+    "reviewLink": "https://www.youtube.com/watch?v=_RTJ2E7I7X4"
+  },
+  {
+    "restaurant": "Popeyes",
+    "itemName": "Buttermilk Biscuit Shrimp Combo",
+    "rating": 9.0,
+    "reviewDate": "2020-02-19",
+    "reviewLink": "https://www.youtube.com/watch?v=OBtf0LmFUSk"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Buffalo Chicken Nacho Fries",
+    "rating": 8.26,
+    "reviewDate": "2020-02-24",
+    "reviewLink": "https://www.youtube.com/watch?v=7OV01BFR4O0"
+  },
+  {
+    "restaurant": "KFC",
+    "itemName": "Chicken & Donuts Sandwich",
+    "rating": 6.8,
+    "reviewDate": "2020-02-27",
+    "reviewLink": "https://www.youtube.com/watch?v=0ZxdBPMW-8w"
+  },
+  {
+    "restaurant": "PapaJohns",
+    "itemName": "Jalapeño Popper Rolls",
+    "rating": 5.8,
+    "reviewDate": "2020-03-06",
+    "reviewLink": "https://www.youtube.com/watch?v=2msbOCqgmz8"
+  },
+  {
+    "restaurant": "Wendys",
+    "itemName": "Breakfast Baconator",
+    "rating": 6.0,
+    "reviewDate": "2020-03-10",
+    "reviewLink": "https://www.youtube.com/watch?v=cWWhHf1g0Ww"
+  },
+  {
+    "restaurant": "Wendys",
+    "itemName": "Maple Bacon Chicken Croissant",
+    "rating": 4.9,
+    "reviewDate": "2020-03-10",
+    "reviewLink": "https://www.youtube.com/watch?v=cWWhHf1g0Ww"
+  },
+  {
+    "restaurant": "PizzaHut",
+    "itemName": "Big Dipper Pizza",
+    "rating": 7.7,
+    "reviewDate": "2020-03-15",
+    "reviewLink": "https://www.youtube.com/watch?v=XdKSFE2wl4E"
+  },
+  {
+    "restaurant": "RedBaron",
+    "itemName": "Deep Dish Singles Pepperoni Pizza",
+    "rating": 8.0,
+    "reviewDate": "2020-03-20",
+    "reviewLink": "https://www.youtube.com/watch?v=-YOUvtst5II"
+  },
+  {
+    "restaurant": "HebrewNational",
+    "itemName": "Hebrew National Pigs in a Blanket",
+    "rating": 8.5,
+    "reviewDate": "2020-03-31",
+    "reviewLink": "https://www.youtube.com/watch?v=7pjbmHOCKe8"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "Double Big Mac",
+    "rating": 9.0,
+    "reviewDate": "2020-04-03",
+    "reviewLink": "https://www.youtube.com/watch?v=VgethQHrhDk"
+  },
+  {
+    "restaurant": "DiGiorno",
+    "itemName": "Bacon & Cheese Stuffed Crust Pizza",
+    "rating": 6.8,
+    "reviewDate": "2020-04-09",
+    "reviewLink": "https://www.youtube.com/watch?v=t92F6WFR-Ko"
+  },
+  {
+    "restaurant": "LittleCaesars",
+    "itemName": "Pepperoni Cheeser! Cheeser! Pizza",
+    "rating": 7.4,
+    "reviewDate": "2020-04-14",
+    "reviewLink": "https://www.youtube.com/watch?v=Im52MYoO8Jc"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Flamin' Hot Doritos Locos Taco",
+    "rating": 9.0,
+    "reviewDate": "2020-04-22",
+    "reviewLink": "https://www.youtube.com/watch?v=5DpVycon7AI"
+  },
+  {
+    "restaurant": "CaliPizzaKitchen",
+    "itemName": "California Pizza Kitchen BBQ Chicken Recipe Frozen Pizza",
+    "rating": 6.8,
+    "reviewDate": "2020-04-27",
+    "reviewLink": "https://www.youtube.com/watch?v=y7iqIJeLL4I"
+  },
+  {
+    "restaurant": "Dominos",
+    "itemName": "Crispy Specialty Chicken",
+    "rating": 8.0,
+    "reviewDate": "2020-05-03",
+    "reviewLink": "https://www.youtube.com/watch?v=3DbzRgQypWE"
+  },
+  {
+    "restaurant": "Dominos",
+    "itemName": "Bacon and Jalapeno Stuffed Cheesy Bread",
+    "rating": 8.7,
+    "reviewDate": "2020-05-03",
+    "reviewLink": "https://www.youtube.com/watch?v=3DbzRgQypWE"
+  },
+  {
+    "restaurant": "Dominos",
+    "itemName": "Pepperoni Pan Pizza",
+    "rating": 8.5,
+    "reviewDate": "2020-05-03",
+    "reviewLink": "https://www.youtube.com/watch?v=3DbzRgQypWE"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Spicy Chicken Nuggets",
+    "rating": 8.1,
+    "reviewDate": "2020-05-20",
+    "reviewLink": "https://www.youtube.com/watch?v=3srQCTjeW8Y"
+  },
+  {
+    "restaurant": "Arbys",
+    "itemName": "Chicken Cheddar Ranch Sandwich",
+    "rating": 5.9,
+    "reviewDate": "2020-05-27",
+    "reviewLink": "https://www.youtube.com/watch?v=x0SkYki3ikQ"
+  },
+  {
+    "restaurant": "Popeyes",
+    "itemName": "Buffalo Ranch Chicken Tenders",
+    "rating": 4.7,
+    "reviewDate": "2020-06-02",
+    "reviewLink": "https://www.youtube.com/watch?v=0FpjXpN99YU"
+  },
+  {
+    "restaurant": "LittleCaesars",
+    "itemName": "Stuffed Crazy Bread",
+    "rating": 8.9,
+    "reviewDate": "2020-06-07",
+    "reviewLink": "https://www.youtube.com/watch?v=b7G7ONUMOcA"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Pineapple Whip Freeze",
+    "rating": 5.1,
+    "reviewDate": "2020-06-13",
+    "reviewLink": "https://www.youtube.com/watch?v=v3KpOHbEMVM"
+  },
+  {
+    "restaurant": "KFC",
+    "itemName": "Chocolate Chip Cake",
+    "rating": 6.4,
+    "reviewDate": "2020-06-13",
+    "reviewLink": "https://www.youtube.com/watch?v=v3KpOHbEMVM"
+  },
+  {
+    "restaurant": "Arbys",
+    "itemName": "Sweet Potato Waffle Fries",
+    "rating": 5.5,
+    "reviewDate": "2020-06-17",
+    "reviewLink": "https://www.youtube.com/watch?v=TTVUR0KVJgA"
+  },
+  {
+    "restaurant": "DiGiorno",
+    "itemName": "Croissant Crust Pizza",
+    "rating": 4.7,
+    "reviewDate": "2020-06-21",
+    "reviewLink": "https://www.youtube.com/watch?v=FuwHaT8gQGo"
+  },
+  {
+    "restaurant": "PapaJohns",
+    "itemName": "Shaq-a-Roni Pizza",
+    "rating": 8.0,
+    "reviewDate": "2020-07-02",
+    "reviewLink": "https://www.youtube.com/watch?v=Hq8ktRocRV0"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Grilled Cheese Burrito",
+    "rating": 8.5,
+    "reviewDate": "2020-07-06",
+    "reviewLink": "https://www.youtube.com/watch?v=6G7bR_6n7JU"
+  },
+  {
+    "restaurant": "RedBaron",
+    "itemName": "Classic Crust Four Cheese Pizza",
+    "rating": 7.7,
+    "reviewDate": "2020-07-11",
+    "reviewLink": "https://www.youtube.com/watch?v=g8p0ftAJlgY"
+  },
+  {
+    "restaurant": "KFC",
+    "itemName": "Secret Recipe Fries",
+    "rating": 6.0,
+    "reviewDate": "2020-07-15",
+    "reviewLink": "https://www.youtube.com/watch?v=9CSFz91BSLw"
+  },
+  {
+    "restaurant": "Dominos",
+    "itemName": "Hot Buffalo Wings (New)",
+    "rating": 8.4,
+    "reviewDate": "2020-07-20",
+    "reviewLink": "https://www.youtube.com/watch?v=qJK74p-zbSw"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Steakhouse King",
+    "rating": 8.1,
+    "reviewDate": "2020-07-25",
+    "reviewLink": "https://www.youtube.com/watch?v=MkOzU8IMJaw"
+  },
+  {
+    "restaurant": "Arbys",
+    "itemName": "Beer Battered Fish Sandwich",
+    "rating": 7.0,
+    "reviewDate": "2020-07-30",
+    "reviewLink": "https://www.youtube.com/watch?v=OFQGQyrl7oQ"
+  },
+  {
+    "restaurant": "DelTaco",
+    "itemName": "$1 Crispy Chicken Taco",
+    "rating": 6.0,
+    "reviewDate": "2020-08-03",
+    "reviewLink": "https://www.youtube.com/watch?v=rAcnifCprA4"
+  },
+  {
+    "restaurant": "Popeyes",
+    "itemName": "Bone-In Hot Honey Chicken",
+    "rating": 7.0,
+    "reviewDate": "2020-08-09",
+    "reviewLink": "https://www.youtube.com/watch?v=9YxZNBM_gIQ"
+  },
+  {
+    "restaurant": "Wendys",
+    "itemName": "Spicy Crispy Chicken Sandwich",
+    "rating": 8.5,
+    "reviewDate": "2020-08-15",
+    "reviewLink": "https://www.youtube.com/watch?v=CX9UhBednp8"
+  },
+  {
+    "restaurant": "PandaExpress",
+    "itemName": "Honey Sesame Chicken",
+    "rating": 8.6,
+    "reviewDate": "2020-08-20",
+    "reviewLink": "https://www.youtube.com/watch?v=xwFgAe9cy-Q"
+  },
+  {
+    "restaurant": "Dominos",
+    "itemName": "Chicken Taco Pizza",
+    "rating": 9.0,
+    "reviewDate": "2020-08-25",
+    "reviewLink": "https://www.youtube.com/watch?v=PivLEB5ehO8"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Beef Burrito (New)",
+    "rating": 8.0,
+    "reviewDate": "2020-08-29",
+    "reviewLink": "https://www.youtube.com/watch?v=LM9N75BkMBA"
+  },
+  {
+    "restaurant": "PapaJohns",
+    "itemName": "Grilled Buffalo Chicken Papadia",
+    "rating": 7.0,
+    "reviewDate": "2020-09-03",
+    "reviewLink": "https://www.youtube.com/watch?v=zUk6CrGqptg"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "Travis Scott Meal",
+    "rating": 8.6,
+    "reviewDate": "2020-09-08",
+    "reviewLink": "https://www.youtube.com/watch?v=R4LyvUYb2mo"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "Spicy Chicken Nuggets",
+    "rating": 8.8,
+    "reviewDate": "2020-09-20",
+    "reviewLink": "https://www.youtube.com/watch?v=-kdhDwK6lxA"
+  },
+  {
+    "restaurant": "Wendys",
+    "itemName": "Spicy Chicken Nuggets",
+    "rating": 8.6,
+    "reviewDate": "2020-09-20",
+    "reviewLink": "https://www.youtube.com/watch?v=-kdhDwK6lxA"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Spicy Chicken Nuggets",
+    "rating": 8.1,
+    "reviewDate": "2020-09-20",
+    "reviewLink": "https://www.youtube.com/watch?v=-kdhDwK6lxA"
+  },
+  {
+    "restaurant": "Popeyes",
+    "itemName": "Ghost Pepper Wings",
+    "rating": 6.8,
+    "reviewDate": "2020-09-25",
+    "reviewLink": "https://www.youtube.com/watch?v=q5VWD84flLw"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Grande Stacker",
+    "rating": 4.1,
+    "reviewDate": "2020-09-29",
+    "reviewLink": "https://www.youtube.com/watch?v=nVsCPbH5l_Q"
+  },
+  {
+    "restaurant": "Wendys",
+    "itemName": "Pretzel Bacon Pub Cheeseburger",
+    "rating": 9.0,
+    "reviewDate": "2020-10-02",
+    "reviewLink": "https://www.youtube.com/watch?v=Z_vp-iE_Dx0"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "J Balvin Meal",
+    "rating": 7.5,
+    "reviewDate": "2020-10-05",
+    "reviewLink": "https://www.youtube.com/watch?v=pPdaqbrCaA0"
+  },
+  {
+    "restaurant": "LittleCaesars",
+    "itemName": "Slices-N-Stix Pizza",
+    "rating": 8.2,
+    "reviewDate": "2020-10-11",
+    "reviewLink": "https://www.youtube.com/watch?v=j_aSwzbEwa4"
+  },
+  {
+    "restaurant": "Dunkin",
+    "itemName": "Spicy Ghost Pepper Donut",
+    "rating": 8.5,
+    "reviewDate": "2020-10-18",
+    "reviewLink": "https://www.youtube.com/watch?v=IPBHvtIvnV0"
+  },
+  {
+    "restaurant": "Wendys",
+    "itemName": "Classic Chicken Sandwich",
+    "rating": 7.0,
+    "reviewDate": "2020-10-23",
+    "reviewLink": "https://www.youtube.com/watch?v=ET1xM0Y-gEQ"
+  },
+  {
+    "restaurant": "PapaJohns",
+    "itemName": "Double Cheeseburger Papadia",
+    "rating": 4.0,
+    "reviewDate": "2020-10-27",
+    "reviewLink": "https://www.youtube.com/watch?v=uB0oToktoHY"
+  },
+  {
+    "restaurant": "KrispyKreme",
+    "itemName": "Raspberry Jelly Donut (Dracula)",
+    "rating": 6.7,
+    "reviewDate": "2020-10-31",
+    "reviewLink": "https://www.youtube.com/watch?v=LQ1raZwpl0Q"
+  },
+  {
+    "restaurant": "KrispyKreme",
+    "itemName": "Cream Filled Donut (Frankenstein)",
+    "rating": 6.7,
+    "reviewDate": "2020-10-31",
+    "reviewLink": "https://www.youtube.com/watch?v=LQ1raZwpl0Q"
+  },
+  {
+    "restaurant": "Popeyes",
+    "itemName": "Twisty Wicked Shrimp",
+    "rating": 8.25,
+    "reviewDate": "2020-11-06",
+    "reviewLink": "https://www.youtube.com/watch?v=o7jIUgxfI68"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Toasted Cheddar Chalupa",
+    "rating": 7.0,
+    "reviewDate": "2020-11-10",
+    "reviewLink": "https://www.youtube.com/watch?v=KL-lSUnyyKo"
+  },
+  {
+    "restaurant": "PizzaHut",
+    "itemName": "Beyond Italian Sausage Pizza",
+    "rating": 9.0,
+    "reviewDate": "2020-11-16",
+    "reviewLink": "https://www.youtube.com/watch?v=sh5Hs8_RO2A"
+  },
+  {
+    "restaurant": "Arbys",
+    "itemName": "Deep Fried Turkey Club Sandwich",
+    "rating": 5.5,
+    "reviewDate": "2020-11-21",
+    "reviewLink": "https://www.youtube.com/watch?v=Chz7Vb0uITA"
+  },
+  {
+    "restaurant": "LittleCaesars",
+    "itemName": "Pepperoni Cheeser! Cheeser! Pizza",
+    "rating": 8.0,
+    "reviewDate": "2020-11-24",
+    "reviewLink": "https://www.youtube.com/watch?v=gSlLFBHv2WQ"
+  },
+  {
+    "restaurant": "BuffaloWildWings",
+    "itemName": "Pizza Wings",
+    "rating": 5.7,
+    "reviewDate": "2020-11-29",
+    "reviewLink": "https://www.youtube.com/watch?v=xYqRYRQM1M8"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "McRib (2020)",
+    "rating": 7.5,
+    "reviewDate": "2020-12-04",
+    "reviewLink": "https://www.youtube.com/watch?v=bQ4Sa54h-ak"
+  },
+  {
+    "restaurant": "PizzaHut",
+    "itemName": "Triple Treat Box",
+    "rating": 8.5,
+    "reviewDate": "2020-12-14",
+    "reviewLink": "https://www.youtube.com/watch?v=YdhnKvY4lvA"
+  },
+  {
+    "restaurant": "MrBeastBurger",
+    "itemName": "Beast Style Burger",
+    "rating": 7.0,
+    "reviewDate": "2020-12-20",
+    "reviewLink": "https://www.youtube.com/watch?v=Z-c6SpZGUL4"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "McChicken Sandwich",
+    "rating": 8.0,
+    "reviewDate": "2019-01-09",
+    "reviewLink": "https://www.youtube.com/watch?v=rFW-3edQmF8"
+  },
+  {
+    "restaurant": "KFC",
+    "itemName": "Nashville Hot Extra Crispy Chicken",
+    "rating": 8.0,
+    "reviewDate": "2019-01-13",
+    "reviewLink": "https://www.youtube.com/watch?v=6TdOFoxUbXs"
+  },
+  {
+    "restaurant": "Sonic",
+    "itemName": "Bacon Melt Sonic Signature Slinger",
+    "rating": 6.5,
+    "reviewDate": "2019-01-16",
+    "reviewLink": "https://www.youtube.com/watch?v=lStuUFmvu1M"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Big King XL",
+    "rating": 8.6,
+    "reviewDate": "2019-01-19",
+    "reviewLink": "https://www.youtube.com/watch?v=mgEDteU_-hs"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Nacho Fries",
+    "rating": 9.5,
+    "reviewDate": "2019-01-26",
+    "reviewLink": "https://www.youtube.com/watch?v=dNT6HmVGe4I"
+  },
+  {
+    "restaurant": "LittleCaesars",
+    "itemName": "Pretzel Crust Pizza",
+    "rating": 6.0,
+    "reviewDate": "2019-01-30",
+    "reviewLink": "https://www.youtube.com/watch?v=maBCZWEfFQg"
+  },
+  {
+    "restaurant": "Wendys",
+    "itemName": "BBQ Cheeseburger",
+    "rating": 9.0,
+    "reviewDate": "2019-02-12",
+    "reviewLink": "https://www.youtube.com/watch?v=g7N53B9C49w"
+  },
+  {
+    "restaurant": "PizzaHut",
+    "itemName": "Ultimate Cheesy Crust Pizza",
+    "rating": 8.0,
+    "reviewDate": "2019-02-17",
+    "reviewLink": "https://www.youtube.com/watch?v=8RamCgvJKKE"
+  },
+  {
+    "restaurant": "Popeyes",
+    "itemName": "Southern Butterfly Shrimp",
+    "rating": 8.3,
+    "reviewDate": "2019-02-22",
+    "reviewLink": "https://www.youtube.com/watch?v=5rvW4nsmcTE"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Steak Rattlesnake Fries Burrito",
+    "rating": 9.1,
+    "reviewDate": "2019-03-03",
+    "reviewLink": "https://www.youtube.com/watch?v=-o39jCLZ6s8"
+  },
+  {
+    "restaurant": "LittleCaesars",
+    "itemName": "ExtraMostBestest Pizza",
+    "rating": 8.8,
+    "reviewDate": "2019-03-06",
+    "reviewLink": "https://www.youtube.com/watch?v=yXLP1mGRmpA"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "Donut Sticks",
+    "rating": 7.7,
+    "reviewDate": "2019-03-12",
+    "reviewLink": "https://www.youtube.com/watch?v=qLxTVnl6AvY"
+  },
+  {
+    "restaurant": "PizzaHut",
+    "itemName": "P'Zone",
+    "rating": 8.0,
+    "reviewDate": "2019-03-21",
+    "reviewLink": "https://www.youtube.com/watch?v=wLLpHI7tTnw"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Bacon Cheesy Tots",
+    "rating": 2.0,
+    "reviewDate": "2019-03-25",
+    "reviewLink": "https://www.youtube.com/watch?v=It4LK3nH_do"
+  },
+  {
+    "restaurant": "LittleCaesars",
+    "itemName": "Bacon Wrapped Deep Deep Dish Pizza",
+    "rating": 8.55,
+    "reviewDate": "2019-04-01",
+    "reviewLink": "https://www.youtube.com/watch?v=f4aJyQBA63E"
+  },
+  {
+    "restaurant": "Sonic",
+    "itemName": "BBLT Sandwich",
+    "rating": 7.1,
+    "reviewDate": "2019-04-05",
+    "reviewLink": "https://www.youtube.com/watch?v=er915Vo2R9U"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Angry Whopper",
+    "rating": 9.4,
+    "reviewDate": "2019-04-15",
+    "reviewLink": "https://www.youtube.com/watch?v=-ABljxG69SE"
+  },
+  {
+    "restaurant": "PapaJohns",
+    "itemName": "Ultimate Pepperoni Pizza",
+    "rating": 9.7,
+    "reviewDate": "2019-04-27",
+    "reviewLink": "https://www.youtube.com/watch?v=0yRs6r88yTg"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Grande Nachos Box",
+    "rating": 5.5,
+    "reviewDate": "2019-05-19",
+    "reviewLink": "https://www.youtube.com/watch?v=h6jHS6hh9Ww"
+  },
+  {
+    "restaurant": "PizzaHut",
+    "itemName": "Pan Pizza (New Recipe)",
+    "rating": 7.0,
+    "reviewDate": "2019-06-02",
+    "reviewLink": "https://www.youtube.com/watch?v=Il8X6McoDGQ"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "Grand McExtreme Bacon Burger",
+    "rating": 3.0,
+    "reviewDate": "2019-06-06",
+    "reviewLink": "https://www.youtube.com/watch?v=HehqX_Ju5do"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Nacho Fries",
+    "rating": 7.0,
+    "reviewDate": "2019-06-13",
+    "reviewLink": "https://www.youtube.com/watch?v=PkSkAz7eDwI"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Rodeo King",
+    "rating": 8.1,
+    "reviewDate": "2019-06-18",
+    "reviewLink": "https://www.youtube.com/watch?v=i4cICeXig2w"
+  },
+  {
+    "restaurant": "LittleCaesars",
+    "itemName": "Stuffed Crust ExtraMostBestest Pizza",
+    "rating": 8.0,
+    "reviewDate": "2019-06-29",
+    "reviewLink": "https://www.youtube.com/watch?v=EaUlfk3AdUg"
+  },
+  {
+    "restaurant": "KFC",
+    "itemName": "Cheetos Sandwich",
+    "rating": 8.1,
+    "reviewDate": "2019-07-02",
+    "reviewLink": "https://www.youtube.com/watch?v=c2zakEQrsSA"
+  },
+  {
+    "restaurant": "KFC",
+    "itemName": "Sweet Lightning Mountain Dew",
+    "rating": 4.5,
+    "reviewDate": "2019-07-02",
+    "reviewLink": "https://www.youtube.com/watch?v=c2zakEQrsSA"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Crunchy Tacos",
+    "rating": 6.85,
+    "reviewDate": "2019-07-10",
+    "reviewLink": "https://www.youtube.com/watch?v=JrZzzQxIUvU"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Steak Reaper Ranch Fries Supreme",
+    "rating": 5.0,
+    "reviewDate": "2019-07-15",
+    "reviewLink": "https://www.youtube.com/watch?v=OeLPiktYXYY"
+  },
+  {
+    "restaurant": "PandaExpress",
+    "itemName": "Szechuan Hot Chicken (Original)",
+    "rating": 5.4,
+    "reviewDate": "2019-07-19",
+    "reviewLink": "https://www.youtube.com/watch?v=Mf6xNZkIcEY"
+  },
+  {
+    "restaurant": "PandaExpress",
+    "itemName": "Szechuan Hot Chicken (Extra Spicy)",
+    "rating": 5.6,
+    "reviewDate": "2019-07-19",
+    "reviewLink": "https://www.youtube.com/watch?v=Mf6xNZkIcEY"
+  },
+  {
+    "restaurant": "Wendys",
+    "itemName": "Bacon Jalapeno Cheeseburger",
+    "rating": 6.1,
+    "reviewDate": "2019-07-22",
+    "reviewLink": "https://www.youtube.com/watch?v=CFZq41kyLcs"
+  },
+  {
+    "restaurant": "Culvers",
+    "itemName": "Culver's Deluxe Burger",
+    "rating": 7.0,
+    "reviewDate": "2019-07-29",
+    "reviewLink": "https://www.youtube.com/watch?v=V1bc6ORRBFw"
+  },
+  {
+    "restaurant": "Culvers",
+    "itemName": "Wisconsin Cheese Curds",
+    "rating": 7.0,
+    "reviewDate": "2019-07-29",
+    "reviewLink": "https://www.youtube.com/watch?v=V1bc6ORRBFw"
+  },
+  {
+    "restaurant": "Culvers",
+    "itemName": "Cookies and Cream Frozen Custard",
+    "rating": 6.5,
+    "reviewDate": "2019-07-29",
+    "reviewLink": "https://www.youtube.com/watch?v=V1bc6ORRBFw"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Nacho Cheese Doritos Locos Taco",
+    "rating": 8.0,
+    "reviewDate": "2019-08-01",
+    "reviewLink": "https://www.youtube.com/watch?v=btNoKpe4WtM"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Cool Ranch Doritos Locos Taco",
+    "rating": 8.0,
+    "reviewDate": "2019-08-01",
+    "reviewLink": "https://www.youtube.com/watch?v=btNoKpe4WtM"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Fiery Doritos Locos Taco",
+    "rating": 8.0,
+    "reviewDate": "2019-08-01",
+    "reviewLink": "https://www.youtube.com/watch?v=btNoKpe4WtM"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "Quarter Pounder with Cheese Bacon",
+    "rating": 8.0,
+    "reviewDate": "2019-08-05",
+    "reviewLink": "https://www.youtube.com/watch?v=3msm4EO4E4s"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Impossible Whopper",
+    "rating": 8.2,
+    "reviewDate": "2019-08-08",
+    "reviewLink": "https://www.youtube.com/watch?v=O0bVTxRIWAM"
+  },
+  {
+    "restaurant": "Wendys",
+    "itemName": "Spicy Chicken Nuggets",
+    "rating": 8.6,
+    "reviewDate": "2019-08-13",
+    "reviewLink": "https://www.youtube.com/watch?v=WAnkubJbijk"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Triple Double Crunchwrap",
+    "rating": 7.0,
+    "reviewDate": "2019-08-17",
+    "reviewLink": "https://www.youtube.com/watch?v=EJplfz5O3mY"
+  },
+  {
+    "restaurant": "Popeyes",
+    "itemName": "Spicy Chicken Sandwich",
+    "rating": 9.0,
+    "reviewDate": "2019-08-21",
+    "reviewLink": "https://www.youtube.com/watch?v=9-exROcuLp8"
+  },
+  {
+    "restaurant": "ChickFilA",
+    "itemName": "Original Chicken Sandwich",
+    "rating": 7.3,
+    "reviewDate": "2019-08-21",
+    "reviewLink": "https://www.youtube.com/watch?v=9-exROcuLp8"
+  },
+  {
+    "restaurant": "LittleCaesars",
+    "itemName": "Quatro Pizza",
+    "rating": 6.2,
+    "reviewDate": "2019-08-29",
+    "reviewLink": "https://www.youtube.com/watch?v=vFv6g8Zs2tY"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "Spicy BBQ Glazed Tenders",
+    "rating": 7.0,
+    "reviewDate": "2019-09-02",
+    "reviewLink": "https://www.youtube.com/watch?v=OfX4cf7BbeA"
+  },
+  {
+    "restaurant": "ChickFilA",
+    "itemName": "Mac and Cheese",
+    "rating": 7.4,
+    "reviewDate": "2019-09-06",
+    "reviewLink": "https://www.youtube.com/watch?v=MTAxDC5hijw"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Toasted Cheddar Chalupa",
+    "rating": 4.9,
+    "reviewDate": "2019-09-13",
+    "reviewLink": "https://www.youtube.com/watch?v=dniAaI79K24"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "Spicy BBQ Chicken Sandwich",
+    "rating": 7.5,
+    "reviewDate": "2019-09-17",
+    "reviewLink": "https://www.youtube.com/watch?v=7xr5Y0KVyAM"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Pretzel Bacon King",
+    "rating": 3.0,
+    "reviewDate": "2019-09-24",
+    "reviewLink": "https://www.youtube.com/watch?v=Ve-bjAfATzk"
+  },
+  {
+    "restaurant": "SteakNShake",
+    "itemName": "Triple Steak Burger with Bacon Lettuce Tomato and Ketchup",
+    "rating": 8.3,
+    "reviewDate": "2019-10-03",
+    "reviewLink": "https://www.youtube.com/watch?v=Lbj7UiWJQSY"
+  },
+  {
+    "restaurant": "SteakNShake",
+    "itemName": "Cajun Fries",
+    "rating": 7.0,
+    "reviewDate": "2019-10-03",
+    "reviewLink": "https://www.youtube.com/watch?v=Lbj7UiWJQSY"
+  },
+  {
+    "restaurant": "SteakNShake",
+    "itemName": "Vanilla Coke",
+    "rating": 6.5,
+    "reviewDate": "2019-10-03",
+    "reviewLink": "https://www.youtube.com/watch?v=Lbj7UiWJQSY"
+  },
+  {
+    "restaurant": "PandaExpress",
+    "itemName": "Honey Sesame Chicken",
+    "rating": 8.4,
+    "reviewDate": "2019-10-06",
+    "reviewLink": "https://www.youtube.com/watch?v=RaIw_KGfQD0"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "McRib (2019)",
+    "rating": 8.6,
+    "reviewDate": "2019-10-09",
+    "reviewLink": "https://www.youtube.com/watch?v=VR-Z1aQbyMU"
+  },
+  {
+    "restaurant": "KFC",
+    "itemName": "Buffalo Kentucky Fried Wings",
+    "rating": 7.1,
+    "reviewDate": "2019-10-12",
+    "reviewLink": "https://www.youtube.com/watch?v=SGmoAj7i2o0"
+  },
+  {
+    "restaurant": "KFC",
+    "itemName": "Nashville Hot Kentucky Fried Wings",
+    "rating": 4.9,
+    "reviewDate": "2019-10-12",
+    "reviewLink": "https://www.youtube.com/watch?v=SGmoAj7i2o0"
+  },
+  {
+    "restaurant": "KFC",
+    "itemName": "Honey BBQ Kentucky Fried Wings",
+    "rating": 7.1,
+    "reviewDate": "2019-10-12",
+    "reviewLink": "https://www.youtube.com/watch?v=SGmoAj7i2o0"
+  },
+  {
+    "restaurant": "PapaJohns",
+    "itemName": "Jack-O'-Lantern Pizza",
+    "rating": 4.0,
+    "reviewDate": "2019-10-16",
+    "reviewLink": "https://www.youtube.com/watch?v=i7zBIyOHcFc"
+  },
+  {
+    "restaurant": "Popeyes",
+    "itemName": "Voodoo Chicken Tenders",
+    "rating": 8.5,
+    "reviewDate": "2019-10-22",
+    "reviewLink": "https://www.youtube.com/watch?v=V63yQpOXi_Q"
+  },
+  {
+    "restaurant": "Sonic",
+    "itemName": "Fried Oreos",
+    "rating": 5.0,
+    "reviewDate": "2019-10-25",
+    "reviewLink": "https://www.youtube.com/watch?v=biU7VdZRd4Y"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Double Chalupa",
+    "rating": 3.0,
+    "reviewDate": "2019-10-29",
+    "reviewLink": "https://www.youtube.com/watch?v=XIfO7FfQUAM"
+  },
+  {
+    "restaurant": "PizzaHut",
+    "itemName": "Smoky Sriracha Chicken Wings",
+    "rating": 8.1,
+    "reviewDate": "2019-11-02",
+    "reviewLink": "https://www.youtube.com/watch?v=7P0udMqWKdM"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Spicy Crispy Chicken Sandwich",
+    "rating": 4.7,
+    "reviewDate": "2019-11-04",
+    "reviewLink": "https://www.youtube.com/watch?v=3FxxU7iqmA4"
+  },
+  {
+    "restaurant": "Popeyes",
+    "itemName": "Spicy Chicken Sandwich",
+    "rating": 9.0,
+    "reviewDate": "2019-11-04",
+    "reviewLink": "https://www.youtube.com/watch?v=3FxxU7iqmA4"
+  },
+  {
+    "restaurant": "ChickFilA",
+    "itemName": "Spicy Chicken Sandwich",
+    "rating": 8.2,
+    "reviewDate": "2019-11-04",
+    "reviewLink": "https://www.youtube.com/watch?v=3FxxU7iqmA4"
+  },
+  {
+    "restaurant": "Wendys",
+    "itemName": "Spicy Chicken Sandwich",
+    "rating": 5.6,
+    "reviewDate": "2019-11-04",
+    "reviewLink": "https://www.youtube.com/watch?v=3FxxU7iqmA4"
+  },
+  {
+    "restaurant": "Culvers",
+    "itemName": "Spicy Chicken Sandwich",
+    "rating": 3.0,
+    "reviewDate": "2019-11-04",
+    "reviewLink": "https://www.youtube.com/watch?v=3FxxU7iqmA4"
+  },
+  {
+    "restaurant": "PapaJohns",
+    "itemName": "Garlic Parmesan Crust Pizza",
+    "rating": 6.0,
+    "reviewDate": "2019-11-13",
+    "reviewLink": "https://www.youtube.com/watch?v=8gx2lPaSctU"
+  },
+  {
+    "restaurant": "PizzaHut",
+    "itemName": "Stuffed Garlic Knots Pizza",
+    "rating": 5.7,
+    "reviewDate": "2019-11-22",
+    "reviewLink": "https://www.youtube.com/watch?v=7rwBhIbwLuA"
+  },
+  {
+    "restaurant": "KFC",
+    "itemName": "Nashville Hot Chicken and Waffles Sandwich",
+    "rating": 1.0,
+    "reviewDate": "2019-11-26",
+    "reviewLink": "https://www.youtube.com/watch?v=8nHcRaTfZEI"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "Bacon BBQ Burger",
+    "rating": 8.6,
+    "reviewDate": "2019-12-01",
+    "reviewLink": "https://www.youtube.com/watch?v=oUEKnQy_Ds4"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "Snickerdoodle McFlurry",
+    "rating": 6.8,
+    "reviewDate": "2019-12-01",
+    "reviewLink": "https://www.youtube.com/watch?v=oUEKnQy_Ds4"
+  },
+  {
+    "restaurant": "Dominos",
+    "itemName": "MeatZZa Pizza",
+    "rating": 7.0,
+    "reviewDate": "2019-12-06",
+    "reviewLink": "https://www.youtube.com/watch?v=bcj27PCOB7E"
+  },
+  {
+    "restaurant": "Freschetta",
+    "itemName": "Freschetta Rising Crust Pizza",
+    "rating": 7.5,
+    "reviewDate": "2019-12-10",
+    "reviewLink": "https://www.youtube.com/watch?v=AiVJ2ZSbpho"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Rolled Chicken Tacos",
+    "rating": 7.3,
+    "reviewDate": "2019-12-14",
+    "reviewLink": "https://www.youtube.com/watch?v=FFAVCXIew5U"
+  },
+  {
+    "restaurant": "Starbucks",
+    "itemName": "Double Smoked Bacon Cheddar and Egg Sandwich",
+    "rating": 8.8,
+    "reviewDate": "2019-12-19",
+    "reviewLink": "https://www.youtube.com/watch?v=WDqv5cwNTPg"
+  },
+  {
+    "restaurant": "DiGiorno",
+    "itemName": "Stuffed Crust Pizza",
+    "rating": 5.0,
+    "reviewDate": "2019-12-24",
+    "reviewLink": "https://www.youtube.com/watch?v=LmC6qYpIo2c"
+  },
+  {
+    "restaurant": "Gerber",
+    "itemName": "Apple Strawberry Banana Baby Food",
+    "rating": 6.7,
+    "reviewDate": "2018-03-19",
+    "reviewLink": "https://www.youtube.com/watch?v=Gn3uZMqNUUQ"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Triple Melt Burrito",
+    "rating": 7.3,
+    "reviewDate": "2018-04-07",
+    "reviewLink": "https://www.youtube.com/watch?v=qoWylCXNGIU"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "Garlic White Cheddar Burger",
+    "rating": 2.0,
+    "reviewDate": "2018-04-13",
+    "reviewLink": "https://www.youtube.com/watch?v=2QK6Usg2KT0"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Spicy Chicken Nuggets",
+    "rating": 8.2,
+    "reviewDate": "2018-04-22",
+    "reviewLink": "https://www.youtube.com/watch?v=pE93PMfhlE4"
+  },
+  {
+    "restaurant": "PizzaHut",
+    "itemName": "Double Cheesy Crust Pizza",
+    "rating": 8.0,
+    "reviewDate": "2018-05-01",
+    "reviewLink": "https://www.youtube.com/watch?v=oUZMSnFE6Gg"
+  },
+  {
+    "restaurant": "Disney",
+    "itemName": "Spirit of Aloha Dinner Show",
+    "rating": 6.0,
+    "reviewDate": "2018-05-05",
+    "reviewLink": "https://www.youtube.com/watch?v=AEROtTqmbjg"
+  },
+  {
+    "restaurant": "LittleCaesars",
+    "itemName": "ExtraMostBestest Pizza",
+    "rating": 9.7,
+    "reviewDate": "2018-05-08",
+    "reviewLink": "https://www.youtube.com/watch?v=7MMKMN6Z9OU"
+  },
+  {
+    "restaurant": "LittleCaesars",
+    "itemName": "Crazy Bread",
+    "rating": 7.0,
+    "reviewDate": "2018-05-08",
+    "reviewLink": "https://www.youtube.com/watch?v=7MMKMN6Z9OU"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Wild Naked Chicken Chalupa",
+    "rating": 8.0,
+    "reviewDate": "2018-05-14",
+    "reviewLink": "https://www.youtube.com/watch?v=ZXdeulvm9hY"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "Quarter Pounder with Cheese",
+    "rating": 8.7,
+    "reviewDate": "2018-05-19",
+    "reviewLink": "https://www.youtube.com/watch?v=Fu3xLIFl9Ck"
+  },
+  {
+    "restaurant": "KrispyKreme",
+    "itemName": "Blueberry Glazed Doughnuts",
+    "rating": 6.2,
+    "reviewDate": "2018-05-23",
+    "reviewLink": "https://www.youtube.com/watch?v=G7uOVI_uIwY"
+  },
+  {
+    "restaurant": "Popeyes",
+    "itemName": "Rip'n Chick'n",
+    "rating": 7.5,
+    "reviewDate": "2018-06-01",
+    "reviewLink": "https://www.youtube.com/watch?v=bCzfkUppkaw"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "Chicken McGriddle",
+    "rating": 8.0,
+    "reviewDate": "2018-06-04",
+    "reviewLink": "https://www.youtube.com/watch?v=9hUc2OPTanc"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Pretzel Chicken Fries",
+    "rating": 7.0,
+    "reviewDate": "2018-06-09",
+    "reviewLink": "https://www.youtube.com/watch?v=GIRbGOEUp0Q"
+  },
+  {
+    "restaurant": "Dennys",
+    "itemName": "Classic with Bacon Burger",
+    "rating": 8.5,
+    "reviewDate": "2018-06-16",
+    "reviewLink": "https://www.youtube.com/watch?v=wkaFMqQzy9A"
+  },
+  {
+    "restaurant": "KFC",
+    "itemName": "Pickle Fried Chicken",
+    "rating": 6.0,
+    "reviewDate": "2018-06-26",
+    "reviewLink": "https://www.youtube.com/watch?v=U_OF7R-Ao0s"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "American Brewhouse King",
+    "rating": 5.0,
+    "reviewDate": "2018-07-02",
+    "reviewLink": "https://www.youtube.com/watch?v=Z8gpKkSxtW4"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "Bacon Smokehouse Burger",
+    "rating": 7.0,
+    "reviewDate": "2018-07-05",
+    "reviewLink": "https://www.youtube.com/watch?v=yvckvt6WpKQ"
+  },
+  {
+    "restaurant": "Wendys",
+    "itemName": "Buffalo Ranch Crispy Chicken Sandwich",
+    "rating": 6.8,
+    "reviewDate": "2018-07-11",
+    "reviewLink": "https://www.youtube.com/watch?v=eoubWoXzkPE"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Nacho Fries",
+    "rating": 9.5,
+    "reviewDate": "2018-07-14",
+    "reviewLink": "https://www.youtube.com/watch?v=IjeKbFeBv4Q"
+  },
+  {
+    "restaurant": "Sonic",
+    "itemName": "Crispy Chicken Tenders",
+    "rating": 5.0,
+    "reviewDate": "2018-07-18",
+    "reviewLink": "https://www.youtube.com/watch?v=pNgIOl6sT3g"
+  },
+  {
+    "restaurant": "PizzaHut",
+    "itemName": "Cheesy Bites Pizza",
+    "rating": 9.17,
+    "reviewDate": "2018-07-21",
+    "reviewLink": "https://www.youtube.com/watch?v=5Vu0IUVBA-A"
+  },
+  {
+    "restaurant": "Dunkin",
+    "itemName": "Doughnut Fries",
+    "rating": 7.26,
+    "reviewDate": "2018-07-24",
+    "reviewLink": "https://www.youtube.com/watch?v=Ox-tst9rmFY"
+  },
+  {
+    "restaurant": "Wendys",
+    "itemName": "Chicken Tenders",
+    "rating": 8.2,
+    "reviewDate": "2018-08-02",
+    "reviewLink": "https://www.youtube.com/watch?v=2OFmRxaUoTU"
+  },
+  {
+    "restaurant": "LittleCaesars",
+    "itemName": "Five Meat Feast Pizza",
+    "rating": 9.97,
+    "reviewDate": "2018-08-11",
+    "reviewLink": "https://www.youtube.com/watch?v=TOz2gTwh6bk"
+  },
+  {
+    "restaurant": "PandaExpress",
+    "itemName": "Honey Sesame Chicken Breast",
+    "rating": 9.8,
+    "reviewDate": "2018-08-16",
+    "reviewLink": "https://www.youtube.com/watch?v=nPpuANNNeDc"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Jalapeño King",
+    "rating": 6.7,
+    "reviewDate": "2018-08-20",
+    "reviewLink": "https://www.youtube.com/watch?v=e9IgyMYqTUA"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "Sweet N’ Spicy Honey BBQ Glazed Tenders",
+    "rating": 8.4,
+    "reviewDate": "2018-08-23",
+    "reviewLink": "https://www.youtube.com/watch?v=yIKwkBxov2I"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Double Cheesy Gordita Crunch",
+    "rating": 5.5,
+    "reviewDate": "2018-08-27",
+    "reviewLink": "https://www.youtube.com/watch?v=UYb7ePQSsPk"
+  },
+  {
+    "restaurant": "Hardees",
+    "itemName": "Froot Loops Mini Donuts",
+    "rating": 8.5,
+    "reviewDate": "2018-09-01",
+    "reviewLink": "https://www.youtube.com/watch?v=aAHHA38NW1U"
+  },
+  {
+    "restaurant": "PapaJohns",
+    "itemName": "Italian Hero Pizza",
+    "rating": 7.0,
+    "reviewDate": "2018-09-08",
+    "reviewLink": "https://www.youtube.com/watch?v=sMXM-8Qxo6g"
+  },
+  {
+    "restaurant": "Wendys",
+    "itemName": "Dave's Single Burger",
+    "rating": 8.6,
+    "reviewDate": "2018-09-12",
+    "reviewLink": "https://www.youtube.com/watch?v=S4UTfZdTx3w"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Triple Double Crunchwrap",
+    "rating": 6.5,
+    "reviewDate": "2018-09-15",
+    "reviewLink": "https://www.youtube.com/watch?v=Qh0awZm1uC4"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Crispy Chicken Tenders",
+    "rating": 7.5,
+    "reviewDate": "2018-09-22",
+    "reviewLink": "https://www.youtube.com/watch?v=hGqFC8NuPv4"
+  },
+  {
+    "restaurant": "KFC",
+    "itemName": "Hot Honey Chicken Tenders",
+    "rating": 7.0,
+    "reviewDate": "2018-09-27",
+    "reviewLink": "https://www.youtube.com/watch?v=bt-jMjwnnvE"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "Bacon Smokehouse Buttermilk Crispy Chicken Sandwich",
+    "rating": 7.2,
+    "reviewDate": "2018-10-01",
+    "reviewLink": "https://www.youtube.com/watch?v=9l0CxtcLsxY"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Beefy Crunch Burrito Duo",
+    "rating": 8.0,
+    "reviewDate": "2018-10-04",
+    "reviewLink": "https://www.youtube.com/watch?v=6NWnUXaGdT0"
+  },
+  {
+    "restaurant": "Wendys",
+    "itemName": "S'Awesome Bacon Classic Cheeseburger",
+    "rating": 5.9,
+    "reviewDate": "2018-10-10",
+    "reviewLink": "https://www.youtube.com/watch?v=frEal7sYFVc"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Halloween Nightmare Burger",
+    "rating": 6.7,
+    "reviewDate": "2018-10-26",
+    "reviewLink": "https://www.youtube.com/watch?v=2Bm_cxiCsm0"
+  },
+  {
+    "restaurant": "ChickFilA",
+    "itemName": "Superfood Side (Kale Salad)",
+    "rating": 9.0,
+    "reviewDate": "2018-10-30",
+    "reviewLink": "https://www.youtube.com/watch?v=h9YxDiMsTQE"
+  },
+  {
+    "restaurant": "LittleCaesars",
+    "itemName": "Thin Crust Pepperoni Pizza",
+    "rating": 8.0,
+    "reviewDate": "2018-11-05",
+    "reviewLink": "https://www.youtube.com/watch?v=9-Spbn1PeUY"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "McRib",
+    "rating": 7.92,
+    "reviewDate": "2018-11-09",
+    "reviewLink": "https://www.youtube.com/watch?v=KmXBdmjD5is"
+  },
+  {
+    "restaurant": "PapaJohns",
+    "itemName": "Double Cheeseburger Pizza",
+    "rating": 7.1,
+    "reviewDate": "2018-11-14",
+    "reviewLink": "https://www.youtube.com/watch?v=NUv_Sk-ToLw"
+  },
+  {
+    "restaurant": "KFC",
+    "itemName": "Chicken and Waffles Sandwich",
+    "rating": 7.0,
+    "reviewDate": "2018-11-18",
+    "reviewLink": "https://www.youtube.com/watch?v=Z5F82uMIAso"
+  },
+  {
+    "restaurant": "Starbucks",
+    "itemName": "Holiday Turkey & Stuffing Panini",
+    "rating": 8.6,
+    "reviewDate": "2018-11-21",
+    "reviewLink": "https://www.youtube.com/watch?v=smETHFpojzs"
+  },
+  {
+    "restaurant": "Arbys",
+    "itemName": "Mint Chocolate Shake",
+    "rating": 7.0,
+    "reviewDate": "2018-11-25",
+    "reviewLink": "https://www.youtube.com/watch?v=QXXp9gfiNF8"
+  },
+  {
+    "restaurant": "Arbys",
+    "itemName": "Buttermilk Buffalo Chicken Sandwich",
+    "rating": 8.4,
+    "reviewDate": "2018-11-25",
+    "reviewLink": "https://www.youtube.com/watch?v=QXXp9gfiNF8"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Rolled Chicken Tacos",
+    "rating": 8.0,
+    "reviewDate": "2018-11-28",
+    "reviewLink": "https://www.youtube.com/watch?v=qfWPlb464SE"
+  },
+  {
+    "restaurant": "Wendys",
+    "itemName": "Bacon Maple Chicken Sandwich",
+    "rating": 8.5,
+    "reviewDate": "2018-12-04",
+    "reviewLink": "https://www.youtube.com/watch?v=ttlhYGo5YmY"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Cini Minis",
+    "rating": 8.3,
+    "reviewDate": "2018-12-08",
+    "reviewLink": "https://www.youtube.com/watch?v=i7ccFLYwF78"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "Mushroom & Swiss Burger",
+    "rating": 8.0,
+    "reviewDate": "2018-12-16",
+    "reviewLink": "https://www.youtube.com/watch?v=P37Mfa_mCv8"
+  },
+  {
+    "restaurant": "Starbucks",
+    "itemName": "Peppermint Mocha Latte",
+    "rating": 8.6,
+    "reviewDate": "2018-12-24",
+    "reviewLink": "https://www.youtube.com/watch?v=gEpclpCHHX0"
+  },
+  {
+    "restaurant": "KrispyKreme",
+    "itemName": "Santa's Belly Doughnut",
+    "rating": 7.2,
+    "reviewDate": "2018-12-24",
+    "reviewLink": "https://www.youtube.com/watch?v=gEpclpCHHX0"
+  },
+  {
+    "restaurant": "KrispyKreme",
+    "itemName": "Ugly Sweater Penguin Donut",
+    "rating": 6.5,
+    "reviewDate": "2018-12-24",
+    "reviewLink": "https://www.youtube.com/watch?v=gEpclpCHHX0"
+  },
+  {
+    "restaurant": "KrispyKreme",
+    "itemName": "Holiday Plaid Donut",
+    "rating": 7.5,
+    "reviewDate": "2018-12-24",
+    "reviewLink": "https://www.youtube.com/watch?v=gEpclpCHHX0"
+  },
+  {
+    "restaurant": "PapaJohns",
+    "itemName": "Cheesesticks",
+    "rating": 9.3,
+    "reviewDate": "2018-12-28",
+    "reviewLink": "https://www.youtube.com/watch?v=jEMrCAv3w7w"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "StackeR",
+    "rating": 8.8,
+    "reviewDate": "2018-01-02",
+    "reviewLink": "https://www.youtube.com/watch?v=3AMZqjykLus"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "Bacon McDouble",
+    "rating": 6.5,
+    "reviewDate": "2018-01-06",
+    "reviewLink": "https://www.youtube.com/watch?v=YiSsAjNtsFc"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "Classic Chicken Sandwich",
+    "rating": 8.3,
+    "reviewDate": "2018-01-06",
+    "reviewLink": "https://www.youtube.com/watch?v=YiSsAjNtsFc"
+  },
+  {
+    "restaurant": "Popeyes",
+    "itemName": "Ghost Pepper Wings",
+    "rating": 7.2,
+    "reviewDate": "2018-01-11",
+    "reviewLink": "https://www.youtube.com/watch?v=W3YU8AfIiKw"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Double Quarter Pound King",
+    "rating": 8.9,
+    "reviewDate": "2018-01-22",
+    "reviewLink": "https://www.youtube.com/watch?v=p4EF84UtDDE"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Nacho Fries",
+    "rating": 9.5,
+    "reviewDate": "2018-01-25",
+    "reviewLink": "https://www.youtube.com/watch?v=IBHx9uwCy3w"
+  },
+  {
+    "restaurant": "KFC",
+    "itemName": "Smoky Mountain BBQ Chicken",
+    "rating": 6.8,
+    "reviewDate": "2018-01-29",
+    "reviewLink": "https://www.youtube.com/watch?v=hmjjemb6U_s"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "Vegetarian Pizza",
+    "rating": 9.3,
+    "reviewDate": "2018-02-06",
+    "reviewLink": "https://www.youtube.com/watch?v=LpejO1kHoks"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Cheesy Tots",
+    "rating": 7.0,
+    "reviewDate": "2018-02-22",
+    "reviewLink": "https://www.youtube.com/watch?v=_9_a9eHMu78"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "Szechuan Sauce",
+    "rating": 9.4,
+    "reviewDate": "2018-02-26",
+    "reviewLink": "https://www.youtube.com/watch?v=00RpZZThSAs"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Spicy Crispy Chicken Sandwich",
+    "rating": 8.8,
+    "reviewDate": "2018-03-06",
+    "reviewLink": "https://www.youtube.com/watch?v=1NUesSsTKwY"
+  },
+  {
+    "restaurant": "LittleCaesars",
+    "itemName": "Stuffed Crust ExtraMostBestest Pizza",
+    "rating": 8.5,
+    "reviewDate": "2018-03-15",
+    "reviewLink": "https://www.youtube.com/watch?v=DFtTPEwCWSM"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Spicy Sweet Double Stacked Taco",
+    "rating": 7.5,
+    "reviewDate": "2017-01-03",
+    "reviewLink": "https://www.youtube.com/watch?v=1eN2iu-8Tag"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "Chicken McGriddle",
+    "rating": 6.7,
+    "reviewDate": "2017-01-04",
+    "reviewLink": "https://www.youtube.com/watch?v=xNyxnZLNwvQ"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Nacho Crunch Double Stacked Taco",
+    "rating": 7.0,
+    "reviewDate": "2017-01-06",
+    "reviewLink": "https://www.youtube.com/watch?v=DVMtah5taYA"
+  },
+  {
+    "restaurant": "LittleCaesars",
+    "itemName": "Cinnamon Loaded Crazy Bites",
+    "rating": 8.8,
+    "reviewDate": "2017-01-09",
+    "reviewLink": "https://www.youtube.com/watch?v=ovtiPzEnfoM"
+  },
+  {
+    "restaurant": "PandaExpress",
+    "itemName": "Firecracker Chicken Breast",
+    "rating": 7.9,
+    "reviewDate": "2017-01-12",
+    "reviewLink": "https://www.youtube.com/watch?v=jrHrdRbUESc"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Roadhouse Baconzilla",
+    "rating": 7.3,
+    "reviewDate": "2017-01-17",
+    "reviewLink": "https://www.youtube.com/watch?v=y2khAdUtqTo"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "BBQ Bacon King",
+    "rating": 2.6,
+    "reviewDate": "2017-01-19",
+    "reviewLink": "https://www.youtube.com/watch?v=XNcvirByBIE"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "Jalapeño McChicken Sandwich",
+    "rating": 6.6,
+    "reviewDate": "2017-01-22",
+    "reviewLink": "https://www.youtube.com/watch?v=aakxseCNfIY"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "McChicken Biscuit",
+    "rating": 6.1,
+    "reviewDate": "2017-01-27",
+    "reviewLink": "https://www.youtube.com/watch?v=5Q3rREvapoQ"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Naked Chicken Chalupa",
+    "rating": 7.49,
+    "reviewDate": "2017-01-27",
+    "reviewLink": "https://www.youtube.com/watch?v=tnbAtrKrItU"
+  },
+  {
+    "restaurant": "KFC",
+    "itemName": "Georgia Gold Chicken",
+    "rating": 7.5,
+    "reviewDate": "2017-01-31",
+    "reviewLink": "https://www.youtube.com/watch?v=-P_Pvo1E5Pc"
+  },
+  {
+    "restaurant": "PapaJohns",
+    "itemName": "Ultimate Meats Pizza",
+    "rating": 8.7,
+    "reviewDate": "2017-02-03",
+    "reviewLink": "https://www.youtube.com/watch?v=ING7_VxVN1c"
+  },
+  {
+    "restaurant": "Wendys",
+    "itemName": "Bacon Ranch Fries",
+    "rating": 8.26,
+    "reviewDate": "2017-02-06",
+    "reviewLink": "https://www.youtube.com/watch?v=SmpXY-uHmxI"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Jalapeño Chicken Fries",
+    "rating": 8.5,
+    "reviewDate": "2017-02-09",
+    "reviewLink": "https://www.youtube.com/watch?v=u7c2BKaW__g"
+  },
+  {
+    "restaurant": "PizzaHut",
+    "itemName": "Heart-Shaped Valentine's Day Pizza",
+    "rating": 7.1,
+    "reviewDate": "2017-02-13",
+    "reviewLink": "https://www.youtube.com/watch?v=x3tk7Y9wWoQ"
+  },
+  {
+    "restaurant": "Publix",
+    "itemName": "Chicken Tender Sub",
+    "rating": 9.5,
+    "reviewDate": "2017-02-16",
+    "reviewLink": "https://www.youtube.com/watch?v=Kn_3P9YDwJk"
+  },
+  {
+    "restaurant": "Sonic",
+    "itemName": "Buffalo Boneless Wings",
+    "rating": 8.8,
+    "reviewDate": "2017-02-19",
+    "reviewLink": "https://www.youtube.com/watch?v=VnDDnJbQJsM"
+  },
+  {
+    "restaurant": "ChickFilA",
+    "itemName": "Chicken Biscuit",
+    "rating": 9.0,
+    "reviewDate": "2017-02-22",
+    "reviewLink": "https://www.youtube.com/watch?v=H0i0RaIWkTs"
+  },
+  {
+    "restaurant": "Sonic",
+    "itemName": "Pancake on a Stick",
+    "rating": 7.6,
+    "reviewDate": "2017-02-28",
+    "reviewLink": "https://www.youtube.com/watch?v=68_y89yN4ms"
+  },
+  {
+    "restaurant": "LittleCaesars",
+    "itemName": "Smokehouse Pizza",
+    "rating": 9.2,
+    "reviewDate": "2017-03-02",
+    "reviewLink": "https://www.youtube.com/watch?v=TF01K5vQiKo"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Triple Double Crunchwrap",
+    "rating": 9.0,
+    "reviewDate": "2017-03-04",
+    "reviewLink": "https://www.youtube.com/watch?v=Od-sF2OnTyM"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Crispy Chicken Sandwich",
+    "rating": 5.5,
+    "reviewDate": "2017-03-07",
+    "reviewLink": "https://www.youtube.com/watch?v=WaGl5Csudf4"
+  },
+  {
+    "restaurant": "Wendys",
+    "itemName": "Premium Cod Fillet Fish Sandwich",
+    "rating": 7.0,
+    "reviewDate": "2017-03-13",
+    "reviewLink": "https://www.youtube.com/watch?v=XDgvpuo-4rE"
+  },
+  {
+    "restaurant": "HungryHowies",
+    "itemName": "Howie Bread",
+    "rating": 8.5,
+    "reviewDate": "2017-03-16",
+    "reviewLink": "https://www.youtube.com/watch?v=L7slCX25b44"
+  },
+  {
+    "restaurant": "KrispyKreme",
+    "itemName": "St. Patrick's Day Green Original Glazed Doughnut",
+    "rating": 9.0,
+    "reviewDate": "2017-03-17",
+    "reviewLink": "https://www.youtube.com/watch?v=ZjYW8A5P-Xc"
+  },
+  {
+    "restaurant": "DelTaco",
+    "itemName": "Soft Taco",
+    "rating": 7.1,
+    "reviewDate": "2017-03-23",
+    "reviewLink": "https://www.youtube.com/watch?v=28trz_8ly0I"
+  },
+  {
+    "restaurant": "Sonic",
+    "itemName": "Cheesy Bacon Lil’ Doggie",
+    "rating": 7.0,
+    "reviewDate": "2017-03-26",
+    "reviewLink": "https://www.youtube.com/watch?v=KihpTE0-xv4"
+  },
+  {
+    "restaurant": "Wingstop",
+    "itemName": "Original Hot Wings",
+    "rating": 8.6,
+    "reviewDate": "2017-03-29",
+    "reviewLink": "https://www.youtube.com/watch?v=b4KqAPyAYH8"
+  },
+  {
+    "restaurant": "PapaJohns",
+    "itemName": "Double Pepperoni Pizza",
+    "rating": 9.3,
+    "reviewDate": "2017-04-02",
+    "reviewLink": "https://www.youtube.com/watch?v=bf_11eqFAkI"
+  },
+  {
+    "restaurant": "Sonic",
+    "itemName": "Honey BBQ Bacon Lil’ Chickie",
+    "rating": 7.3,
+    "reviewDate": "2017-04-04",
+    "reviewLink": "https://www.youtube.com/watch?v=xd2Ty-reSM4"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Loaded Taco Burrito",
+    "rating": 7.6,
+    "reviewDate": "2017-04-08",
+    "reviewLink": "https://www.youtube.com/watch?v=yaJdtYSH2dQ"
+  },
+  {
+    "restaurant": "LittleCaesars",
+    "itemName": "Hot-N-Ready Classic Pepperoni Pizza",
+    "rating": 8.7,
+    "reviewDate": "2017-04-12",
+    "reviewLink": "https://www.youtube.com/watch?v=iDT5wyZJw5c"
+  },
+  {
+    "restaurant": "Wendys",
+    "itemName": "Fresh Mozzarella Chicken Sandwich",
+    "rating": 5.6,
+    "reviewDate": "2017-04-16",
+    "reviewLink": "https://www.youtube.com/watch?v=kGo-jv6SkF0"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Steakhouse King",
+    "rating": 7.0,
+    "reviewDate": "2017-04-18",
+    "reviewLink": "https://www.youtube.com/watch?v=N6hwDVumK1U"
+  },
+  {
+    "restaurant": "KFC",
+    "itemName": "Zinger Sandwich",
+    "rating": 8.1,
+    "reviewDate": "2017-04-22",
+    "reviewLink": "https://www.youtube.com/watch?v=WthERhzaCQk"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "FROOT LOOPS Shake",
+    "rating": 9.77,
+    "reviewDate": "2017-04-25",
+    "reviewLink": "https://www.youtube.com/watch?v=AtxO99wtTG4"
+  },
+  {
+    "restaurant": "Hardees",
+    "itemName": "Baby Back Rib Burger",
+    "rating": 7.6,
+    "reviewDate": "2017-04-28",
+    "reviewLink": "https://www.youtube.com/watch?v=jDZYP4Xas6o"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "Signature Crafted Sweet BBQ Bacon Burger",
+    "rating": 6.5,
+    "reviewDate": "2017-04-30",
+    "reviewLink": "https://www.youtube.com/watch?v=B9xhrjca_fw"
+  },
+  {
+    "restaurant": "Arbys",
+    "itemName": "Smokehouse Pork Belly Sandwich",
+    "rating": 6.5,
+    "reviewDate": "2017-05-03",
+    "reviewLink": "https://www.youtube.com/watch?v=8SMolr3H_nY"
+  },
+  {
+    "restaurant": "ChickFilA",
+    "itemName": "Deluxe Chicken Sandwich",
+    "rating": 7.2,
+    "reviewDate": "2017-05-06",
+    "reviewLink": "https://www.youtube.com/watch?v=wf7m7gOFiMY"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Naked Chicken Chips",
+    "rating": 8.0,
+    "reviewDate": "2017-05-12",
+    "reviewLink": "https://www.youtube.com/watch?v=ajqRtKN1EGM"
+  },
+  {
+    "restaurant": "MunchPak",
+    "itemName": "Snack Subscription Service",
+    "rating": 9.0,
+    "reviewDate": "2017-05-15",
+    "reviewLink": "https://www.youtube.com/watch?v=2bvx1RhClYY"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Mac n' Cheetos",
+    "rating": 8.0,
+    "reviewDate": "2017-05-18",
+    "reviewLink": "https://www.youtube.com/watch?v=OSt4uMRs8dc"
+  },
+  {
+    "restaurant": "ShakeShack",
+    "itemName": "Bacon 'n Cheese Triple Xtreme Burger",
+    "rating": 9.6,
+    "reviewDate": "2017-05-21",
+    "reviewLink": "https://www.youtube.com/watch?v=NAvJeohcCU8"
+  },
+  {
+    "restaurant": "ChickFilA",
+    "itemName": "Smokehouse BBQ Bacon Sandwich",
+    "rating": 9.7,
+    "reviewDate": "2017-05-27",
+    "reviewLink": "https://www.youtube.com/watch?v=HXHHQzZ8Oo8"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "Signature Crafted Maple Bacon Dijon Chicken Sandwich",
+    "rating": 1.0,
+    "reviewDate": "2017-05-31",
+    "reviewLink": "https://www.youtube.com/watch?v=tWRxV5dOa1U"
+  },
+  {
+    "restaurant": "LittleCaesars",
+    "itemName": "ExtraMostBestest Pizza",
+    "rating": 9.2,
+    "reviewDate": "2017-06-01",
+    "reviewLink": "https://www.youtube.com/watch?v=5AxnJ-2icT8"
+  },
+  {
+    "restaurant": "PizzaHut",
+    "itemName": "Cheesy Bites Pizza",
+    "rating": 8.9,
+    "reviewDate": "2017-06-04",
+    "reviewLink": "https://www.youtube.com/watch?v=WA51nsSzDas"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Bacon Breakfast Quesadilla",
+    "rating": 9.7,
+    "reviewDate": "2017-06-08",
+    "reviewLink": "https://www.youtube.com/watch?v=R4vOGYjzhLA"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Breakfast Salsa",
+    "rating": 9.75,
+    "reviewDate": "2017-06-08",
+    "reviewLink": "https://www.youtube.com/watch?v=R4vOGYjzhLA"
+  },
+  {
+    "restaurant": "Popeyes",
+    "itemName": "Sweet & Crunchy Chicken Tenders",
+    "rating": 5.1,
+    "reviewDate": "2017-06-15",
+    "reviewLink": "https://www.youtube.com/watch?v=yCMGyJgkiCU"
+  },
+  {
+    "restaurant": "Popeyes",
+    "itemName": "Sweet & Crunchy Chicken Tenders with Smoke and Pepper Jam Sauce",
+    "rating": 7.5,
+    "reviewDate": "2017-06-15",
+    "reviewLink": "https://www.youtube.com/watch?v=yCMGyJgkiCU"
+  },
+  {
+    "restaurant": "Culvers",
+    "itemName": "Bacon Deluxe Burger",
+    "rating": 9.4,
+    "reviewDate": "2017-06-18",
+    "reviewLink": "https://www.youtube.com/watch?v=Ut6Cwf3wDIA"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Mushroom & Swiss King",
+    "rating": 3.0,
+    "reviewDate": "2017-06-21",
+    "reviewLink": "https://www.youtube.com/watch?v=kKH0EHNK_C4"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Double Chalupa",
+    "rating": 8.5,
+    "reviewDate": "2017-06-22",
+    "reviewLink": "https://www.youtube.com/watch?v=fQygfZVY4Uw"
+  },
+  {
+    "restaurant": "PapaJohns",
+    "itemName": "Bacon Cheddarburger Pizza",
+    "rating": 7.0,
+    "reviewDate": "2017-06-25",
+    "reviewLink": "https://www.youtube.com/watch?v=Rz_6XNzxslY"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "BBQ Bacon Crispy Chicken Sandwich",
+    "rating": 0.5,
+    "reviewDate": "2017-07-02",
+    "reviewLink": "https://www.youtube.com/watch?v=Y6w97W90vHg"
+  },
+  {
+    "restaurant": "Popeyes",
+    "itemName": "Cheddar Biscuit Butterfly Shrimp",
+    "rating": 4.8,
+    "reviewDate": "2017-07-05",
+    "reviewLink": "https://www.youtube.com/watch?v=5d5NJgO38AE"
+  },
+  {
+    "restaurant": "Dominos",
+    "itemName": "Parmesan Bread Twists",
+    "rating": 7.0,
+    "reviewDate": "2017-07-06",
+    "reviewLink": "https://www.youtube.com/watch?v=5h-UN3xmyOI"
+  },
+  {
+    "restaurant": "Arbys",
+    "itemName": "Triple Thick Brown Sugar Bacon BLT",
+    "rating": 5.0,
+    "reviewDate": "2017-07-10",
+    "reviewLink": "https://www.youtube.com/watch?v=nC-fzkNejpQ"
+  },
+  {
+    "restaurant": "Wendys",
+    "itemName": "Bacon Queso Cheeseburger",
+    "rating": 8.4,
+    "reviewDate": "2017-07-14",
+    "reviewLink": "https://www.youtube.com/watch?v=mM6SUphTT88"
+  },
+  {
+    "restaurant": "Sonic",
+    "itemName": "Original Pretzel Dog",
+    "rating": 8.0,
+    "reviewDate": "2017-07-16",
+    "reviewLink": "https://www.youtube.com/watch?v=eorF0Q8yOIM"
+  },
+  {
+    "restaurant": "PapaJohns",
+    "itemName": "Chicken Poppers",
+    "rating": 8.1,
+    "reviewDate": "2017-07-20",
+    "reviewLink": "https://www.youtube.com/watch?v=sXrMGf99oK0"
+  },
+  {
+    "restaurant": "Culvers",
+    "itemName": "Buffalo Chicken Tenders",
+    "rating": 9.38,
+    "reviewDate": "2017-07-25",
+    "reviewLink": "https://www.youtube.com/watch?v=2SOMMNoCESA"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "Signature Crafted Sriracha Burger",
+    "rating": 4.2,
+    "reviewDate": "2017-07-27",
+    "reviewLink": "https://www.youtube.com/watch?v=DMcGVjM457w"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Beefy Potato-Rito",
+    "rating": 8.6,
+    "reviewDate": "2017-07-31",
+    "reviewLink": "https://www.youtube.com/watch?v=Tcqy5L4zVhs"
+  },
+  {
+    "restaurant": "Publix",
+    "itemName": "Buffalo Chicken Tender Sub",
+    "rating": 9.6,
+    "reviewDate": "2017-08-07",
+    "reviewLink": "https://www.youtube.com/watch?v=P7TIaltHyd0"
+  },
+  {
+    "restaurant": "Sonic",
+    "itemName": "Garlic Parmesan Dunked Chicken Sandwich",
+    "rating": 5.0,
+    "reviewDate": "2017-08-09",
+    "reviewLink": "https://www.youtube.com/watch?v=jTjabK6dHKM"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Cheesy Tots",
+    "rating": 7.6,
+    "reviewDate": "2017-08-20",
+    "reviewLink": "https://www.youtube.com/watch?v=xTmnw1EYweo"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Rodeo King Burger",
+    "rating": 8.5,
+    "reviewDate": "2017-08-27",
+    "reviewLink": "https://www.youtube.com/watch?v=DnfhD0NG_Cs"
+  },
+  {
+    "restaurant": "PizzaHut",
+    "itemName": "Backyard BBQ Chicken Pizza",
+    "rating": 8.95,
+    "reviewDate": "2017-09-03",
+    "reviewLink": "https://www.youtube.com/watch?v=2ehc9yzSwz0"
+  },
+  {
+    "restaurant": "Hardees",
+    "itemName": "Chicken Biscuit",
+    "rating": 9.7,
+    "reviewDate": "2017-09-24",
+    "reviewLink": "https://www.youtube.com/watch?v=RsTa6Moh_NM"
+  },
+  {
+    "restaurant": "Popeyes",
+    "itemName": "1/4 LB Popcorn Chicken",
+    "rating": 9.0,
+    "reviewDate": "2017-09-26",
+    "reviewLink": "https://www.youtube.com/watch?v=WY9xOHquZrg"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "Buttermilk Crispy Tenders",
+    "rating": 9.2,
+    "reviewDate": "2017-10-07",
+    "reviewLink": "https://www.youtube.com/watch?v=UN4Kbib0s8c"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Crispy Chicken Quesadilla",
+    "rating": 8.7,
+    "reviewDate": "2017-10-09",
+    "reviewLink": "https://www.youtube.com/watch?v=bhb-m3H5LrQ"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Spicy Chicken Nuggets",
+    "rating": 9.0,
+    "reviewDate": "2017-10-17",
+    "reviewLink": "https://www.youtube.com/watch?v=deagjmSOFtk"
+  },
+  {
+    "restaurant": "Oreo",
+    "itemName": "Mystery Flavor Cookies",
+    "rating": 8.4,
+    "reviewDate": "2017-10-22",
+    "reviewLink": "https://www.youtube.com/watch?v=3zYkL54_XiI"
+  },
+  {
+    "restaurant": "Wendys",
+    "itemName": "Chicken Tenders",
+    "rating": 8.6,
+    "reviewDate": "2017-10-30",
+    "reviewLink": "https://www.youtube.com/watch?v=Sa-KwM2MNtk"
+  },
+  {
+    "restaurant": "WhiteCastle",
+    "itemName": "Cheddar and Apple Butter Turkey Slider",
+    "rating": 9.0,
+    "reviewDate": "2017-11-15",
+    "reviewLink": "https://www.youtube.com/watch?v=IGG9pghRxlc"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Rolled Chicken Tacos",
+    "rating": 7.3,
+    "reviewDate": "2017-11-20",
+    "reviewLink": "https://www.youtube.com/watch?v=_Xs7R4uZ32E"
+  },
+  {
+    "restaurant": "PizzaHut",
+    "itemName": "Ultimate Cheesy Crust Pizza",
+    "rating": 9.3,
+    "reviewDate": "2017-11-27",
+    "reviewLink": "https://www.youtube.com/watch?v=QvxGI1A3vCE"
+  },
+  {
+    "restaurant": "Sbarro",
+    "itemName": "Sbarro New York Style Pepperoni Pizza",
+    "rating": 7.3,
+    "reviewDate": "2017-11-28",
+    "reviewLink": "https://www.youtube.com/watch?v=RnWza5DCYy8"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Flamin' Hot Mac n' Cheetos",
+    "rating": 8.6,
+    "reviewDate": "2017-12-03",
+    "reviewLink": "https://www.youtube.com/watch?v=Jn1dPnyWuwA"
+  },
+  {
+    "restaurant": "KrispyKreme",
+    "itemName": "Limited Edition Gingerbread Doughnut",
+    "rating": 6.5,
+    "reviewDate": "2017-12-13",
+    "reviewLink": "https://www.youtube.com/watch?v=ddmniIx7D2Q"
+  },
+  {
+    "restaurant": "CookOut",
+    "itemName": "Banana Pudding Milkshake",
+    "rating": 9,
+    "reviewDate": "2016-01-03",
+    "reviewLink": "https://www.youtube.com/watch?v=zUoR4NMoKCc"
+  },
+  {
+    "restaurant": "Arbys",
+    "itemName": "Fiery Steak Fajita Flatbread",
+    "rating": 7.2,
+    "reviewDate": "2016-01-06",
+    "reviewLink": "https://www.youtube.com/watch?v=wSi2Bxc-t3Y"
+  },
+  {
+    "restaurant": "Bojangles",
+    "itemName": "Cajun Filet Biscuit",
+    "rating": 8.8,
+    "reviewDate": "2016-01-09",
+    "reviewLink": "https://www.youtube.com/watch?v=pJYVmvNdvZM"
+  },
+  {
+    "restaurant": "ChickFilA",
+    "itemName": "Chicken Sandwich",
+    "rating": 8.5,
+    "reviewDate": "2016-01-12",
+    "reviewLink": "https://www.youtube.com/watch?v=VairREKPUQA"
+  },
+  {
+    "restaurant": "InNOut",
+    "itemName": "Double Double",
+    "rating": 9.2,
+    "reviewDate": "2016-01-16",
+    "reviewLink": "https://www.youtube.com/watch?v=igxV7X_gzaM"
+  },
+  {
+    "restaurant": "KFC",
+    "itemName": "Nashville Hot Chicken",
+    "rating": 6.3,
+    "reviewDate": "2016-01-19",
+    "reviewLink": "https://www.youtube.com/watch?v=fvmVVEjou6Y"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Spicy Beefy Nacho Crunchwrap Slider",
+    "rating": 5,
+    "reviewDate": "2016-01-21",
+    "reviewLink": "https://www.youtube.com/watch?v=eMh-QFaGpXo"
+  },
+  {
+    "restaurant": "LittleCaesars",
+    "itemName": "Deep Deep Dish Pepperoni Pizza",
+    "rating": 8.45,
+    "reviewDate": "2016-01-25",
+    "reviewLink": "https://www.youtube.com/watch?v=g0fwcSRtpPI"
+  },
+  {
+    "restaurant": "PizzaHut",
+    "itemName": "Stuffed Garlic Knots Pizza",
+    "rating": 6.6,
+    "reviewDate": "2016-01-27",
+    "reviewLink": "https://www.youtube.com/watch?v=ct-tjmQZdXo"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Extra Long Buttery Cheeseburger",
+    "rating": 7.6,
+    "reviewDate": "2016-01-30",
+    "reviewLink": "https://www.youtube.com/watch?v=8JlFz4Pj0Sg"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Jalapeño Chicken Fries",
+    "rating": 7.1,
+    "reviewDate": "2016-02-01",
+    "reviewLink": "https://www.youtube.com/watch?v=YVlbKVLULpI"
+  },
+  {
+    "restaurant": "ChipsAhoy",
+    "itemName": "Chewy Chips Ahoy! Brownie Filled Cookies",
+    "rating": 6.5,
+    "reviewDate": "2016-02-04",
+    "reviewLink": "https://www.youtube.com/watch?v=tKjq0KczTi4"
+  },
+  {
+    "restaurant": "Wendys",
+    "itemName": "Premium Cod Fillet Sandwich",
+    "rating": 7,
+    "reviewDate": "2016-02-05",
+    "reviewLink": "https://www.youtube.com/watch?v=idllSAOERJE"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Quesalupa",
+    "rating": 7.7,
+    "reviewDate": "2016-02-08",
+    "reviewLink": "https://www.youtube.com/watch?v=OJ_gOlzoODs"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Extra Long Fish Sandwich",
+    "rating": 8.5,
+    "reviewDate": "2016-02-12",
+    "reviewLink": "https://www.youtube.com/watch?v=SDgPhqNeEl8"
+  },
+  {
+    "restaurant": "M&Ms",
+    "itemName": "Cherry M&M's",
+    "rating": 8.422,
+    "reviewDate": "2016-02-15",
+    "reviewLink": "https://www.youtube.com/watch?v=iBX4j96qYnw"
+  },
+  {
+    "restaurant": "Wendys",
+    "itemName": "Dave's Single",
+    "rating": 7.5,
+    "reviewDate": "2016-02-18",
+    "reviewLink": "https://www.youtube.com/watch?v=-owN7lZy8Gk"
+  },
+  {
+    "restaurant": "Nathans",
+    "itemName": "Double Cheeseburger",
+    "rating": 6.1,
+    "reviewDate": "2016-02-19",
+    "reviewLink": "https://www.youtube.com/watch?v=jVmgEP_Mm-0"
+  },
+  {
+    "restaurant": "WhiteCastle",
+    "itemName": "Sriracha Shrimp Nibblers",
+    "rating": 6.7,
+    "reviewDate": "2016-02-22",
+    "reviewLink": "https://www.youtube.com/watch?v=NhXvbpdske8"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Grilled Hot Dog",
+    "rating": 8.3,
+    "reviewDate": "2016-02-23",
+    "reviewLink": "https://www.youtube.com/watch?v=WT27nnHcL1E"
+  },
+  {
+    "restaurant": "M&Ms",
+    "itemName": "White Strawberry Shortcake M&M's",
+    "rating": 8.6,
+    "reviewDate": "2016-02-26",
+    "reviewLink": "https://www.youtube.com/watch?v=GPFmH7OhwqU"
+  },
+  {
+    "restaurant": "PizzaHut",
+    "itemName": "Stuffed Crust Pizza",
+    "rating": 7.7,
+    "reviewDate": "2016-02-28",
+    "reviewLink": "https://www.youtube.com/watch?v=yTwCnoRmdzM"
+  },
+  {
+    "restaurant": "Dunkin",
+    "itemName": "Sausage GranDDe Burrito",
+    "rating": 8.5,
+    "reviewDate": "2016-02-29",
+    "reviewLink": "https://www.youtube.com/watch?v=dSwqS-MGiyo"
+  },
+  {
+    "restaurant": "Subway",
+    "itemName": "Rotisserie-Style Chicken Sandwich",
+    "rating": 7.9,
+    "reviewDate": "2016-03-02",
+    "reviewLink": "https://www.youtube.com/watch?v=VHLM8g7y-C8"
+  },
+  {
+    "restaurant": "FiveGuys",
+    "itemName": "Hot Dog",
+    "rating": 8.8,
+    "reviewDate": "2016-03-07",
+    "reviewLink": "https://www.youtube.com/watch?v=XRYfpBf9yck"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Angriest Whopper",
+    "rating": 8.522,
+    "reviewDate": "2016-03-31",
+    "reviewLink": "https://www.youtube.com/watch?v=w77xu1LYdws"
+  },
+  {
+    "restaurant": "KFC",
+    "itemName": "Honey BBQ Wings (Re-Released)",
+    "rating": 7.5,
+    "reviewDate": "2016-04-30",
+    "reviewLink": "https://www.youtube.com/watch?v=DA6FSPywXeE"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Doubledilla",
+    "rating": 4.9,
+    "reviewDate": "2016-05-03",
+    "reviewLink": "https://www.youtube.com/watch?v=7HutxPOZThQ"
+  },
+  {
+    "restaurant": "M&Ms",
+    "itemName": "Honey Nut M&M's",
+    "rating": 8.3,
+    "reviewDate": "2016-05-04",
+    "reviewLink": "https://www.youtube.com/watch?v=bUJzIxPZ77M"
+  },
+  {
+    "restaurant": "Popeyes",
+    "itemName": "Southern Fair Chicken Tenders",
+    "rating": 9.2,
+    "reviewDate": "2016-05-05",
+    "reviewLink": "https://www.youtube.com/watch?v=LiJAJSd0rHM"
+  },
+  {
+    "restaurant": "PizzaHut",
+    "itemName": "Bacon Stuffed Crust Pizza",
+    "rating": 8.5,
+    "reviewDate": "2016-05-07",
+    "reviewLink": "https://www.youtube.com/watch?v=CRtiJDWPuKE"
+  },
+  {
+    "restaurant": "Popeyes",
+    "itemName": "Cajun Fries",
+    "rating": 8.1,
+    "reviewDate": "2016-05-10",
+    "reviewLink": "https://www.youtube.com/watch?v=lCdmjnNyNGE"
+  },
+  {
+    "restaurant": "Popeyes",
+    "itemName": "Biscuit",
+    "rating": 8.1,
+    "reviewDate": "2016-05-10",
+    "reviewLink": "https://www.youtube.com/watch?v=lCdmjnNyNGE"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Whopper Dog",
+    "rating": 8.42,
+    "reviewDate": "2016-05-12",
+    "reviewLink": "https://www.youtube.com/watch?v=ijUIw5zA9rk"
+  },
+  {
+    "restaurant": "ChickFilA",
+    "itemName": "Spicy Chicken Sandwich",
+    "rating": 8.5,
+    "reviewDate": "2016-05-18",
+    "reviewLink": "https://www.youtube.com/watch?v=y6FDmzMezio"
+  },
+  {
+    "restaurant": "Hardees",
+    "itemName": "Midnight Moonshine Burger",
+    "rating": 7.9,
+    "reviewDate": "2016-05-20",
+    "reviewLink": "https://www.youtube.com/watch?v=mR__gdqjmQo"
+  },
+  {
+    "restaurant": "LittleCaesars",
+    "itemName": "Stuffed Crust Deep Deep Dish Pizza",
+    "rating": 8,
+    "reviewDate": "2016-05-21",
+    "reviewLink": "https://www.youtube.com/watch?v=rJzvEE3QqiE"
+  },
+  {
+    "restaurant": "LongJohnSilvers",
+    "itemName": "Coastal Cod Sandwich",
+    "rating": 7.3,
+    "reviewDate": "2016-05-25",
+    "reviewLink": "https://www.youtube.com/watch?v=azTVBTk9DFN"
+  },
+  {
+    "restaurant": "Hardees",
+    "itemName": "Pretzel Breakfast Sandwich",
+    "rating": 7.1,
+    "reviewDate": "2016-05-27",
+    "reviewLink": "https://www.youtube.com/watch?v=LiApAAmh7zA"
+  },
+  {
+    "restaurant": "Arbys",
+    "itemName": "Buffalo Chicken Slider",
+    "rating": 7.7,
+    "reviewDate": "2016-05-29",
+    "reviewLink": "https://www.youtube.com/watch?v=GWV0fI04L9E"
+  },
+  {
+    "restaurant": "Wendys",
+    "itemName": "Bacon Mozzarella Burger",
+    "rating": 5.9,
+    "reviewDate": "2016-06-08",
+    "reviewLink": "https://www.youtube.com/watch?v=KpncbJoIDfQ"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Flatbread Sandwiches - Steak",
+    "rating": 7.8,
+    "reviewDate": "2016-06-10",
+    "reviewLink": "https://www.youtube.com/watch?v=10bMsCx2bQ0"
+  },
+  {
+    "restaurant": "PizzaHut",
+    "itemName": "Hershey's Toasted S'mores Cookie",
+    "rating": 6.6,
+    "reviewDate": "2016-06-11",
+    "reviewLink": "https://www.youtube.com/watch?v=iU8nRkJsFig"
+  },
+  {
+    "restaurant": "BostonMarket",
+    "itemName": "Oven Crisp Chicken",
+    "rating": 8.9,
+    "reviewDate": "2016-06-14",
+    "reviewLink": "https://www.youtube.com/watch?v=NjtELQYrw9Q"
+  },
+  {
+    "restaurant": "DiGiorno",
+    "itemName": "Spicy Pepperoni & Poblanos Pizza",
+    "rating": 8.8,
+    "reviewDate": "2016-06-14",
+    "reviewLink": "https://www.youtube.com/watch?v=ad0xW6OS9eU"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Double Stacker",
+    "rating": 5.3,
+    "reviewDate": "2016-06-16",
+    "reviewLink": "https://www.youtube.com/watch?v=mXPBiYS7Kcs"
+  },
+  {
+    "restaurant": "Pepsi",
+    "itemName": "1893 Original Cola",
+    "rating": 5.9,
+    "reviewDate": "2016-06-17",
+    "reviewLink": "https://www.youtube.com/watch?v=fe1CMD_ZmWQ"
+  },
+  {
+    "restaurant": "PlanetWings",
+    "itemName": "Chicken and Waffle BLT",
+    "rating": 7.66,
+    "reviewDate": "2016-06-20",
+    "reviewLink": "https://www.youtube.com/watch?v=Qx_ekAIo00g"
+  },
+  {
+    "restaurant": "Dunkin",
+    "itemName": "Wildberry Smoothie",
+    "rating": 6.2,
+    "reviewDate": "2016-06-22",
+    "reviewLink": "https://www.youtube.com/watch?v=z3UrB6yC_Ng"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Mac N' Cheetos",
+    "rating": 8.22,
+    "reviewDate": "2016-06-23",
+    "reviewLink": "https://www.youtube.com/watch?v=Zz06BDg-Tzc"
+  },
+  {
+    "restaurant": "Hardees",
+    "itemName": "Charbroiled Chicken Club Sandwich",
+    "rating": 6,
+    "reviewDate": "2016-06-27",
+    "reviewLink": "https://www.youtube.com/watch?v=qDaSEfZkiwM"
+  },
+  {
+    "restaurant": "SteakNShake",
+    "itemName": "Peppercorn Bacon Steakburger",
+    "rating": 8.99,
+    "reviewDate": "2016-06-28",
+    "reviewLink": "https://www.youtube.com/watch?v=roD3Sl1wgoY"
+  },
+  {
+    "restaurant": "Arbys",
+    "itemName": "Brown Sugar Bacon Turkey Sandwich",
+    "rating": 8.4,
+    "reviewDate": "2016-06-30",
+    "reviewLink": "https://www.youtube.com/watch?v=3Y3BgQtfzN4"
+  },
+  {
+    "restaurant": "DairyQueen",
+    "itemName": "Bacon Cheeseburger",
+    "rating": 5.2,
+    "reviewDate": "2016-07-04",
+    "reviewLink": "https://www.youtube.com/watch?v=T5ISR9GbFkg"
+  },
+  {
+    "restaurant": "Arbys",
+    "itemName": "Brown Sugar Bacon BLT",
+    "rating": 7.9,
+    "reviewDate": "2016-07-08",
+    "reviewLink": "https://www.youtube.com/watch?v=G0z6l-r2AV8"
+  },
+  {
+    "restaurant": "LittleCaesars",
+    "itemName": "Crazy Bread",
+    "rating": 8.4,
+    "reviewDate": "2016-07-10",
+    "reviewLink": "https://www.youtube.com/watch?v=wA8KwjECWpk"
+  },
+  {
+    "restaurant": "CookOut",
+    "itemName": "Chicken Nuggets",
+    "rating": 8.5,
+    "reviewDate": "2016-07-12",
+    "reviewLink": "https://www.youtube.com/watch?v=X15Ne9I5UbA"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Triple Double Crunchwrap",
+    "rating": 7,
+    "reviewDate": "2016-07-16",
+    "reviewLink": "https://www.youtube.com/watch?v=__gKY1IsH9w"
+  },
+  {
+    "restaurant": "MtnDew",
+    "itemName": "Baja Blast",
+    "rating": 8.5,
+    "reviewDate": "2016-07-17",
+    "reviewLink": "https://www.youtube.com/watch?v=TmpxfYDYsAU"
+  },
+  {
+    "restaurant": "PizzaHut",
+    "itemName": "Big Flavor Dipper Pizza USA Edition",
+    "rating": 8,
+    "reviewDate": "2016-07-20",
+    "reviewLink": "https://www.youtube.com/watch?v=QG3tAxzEcDQ"
+  },
+  {
+    "restaurant": "Hardees",
+    "itemName": "Bacon 3-Way Burger",
+    "rating": 7.8,
+    "reviewDate": "2016-07-22",
+    "reviewLink": "https://www.youtube.com/watch?v=F2kllK1wP7Q"
+  },
+  {
+    "restaurant": "Hardees",
+    "itemName": "Chicken Fillet Biscuit",
+    "rating": 8.1,
+    "reviewDate": "2016-07-26",
+    "reviewLink": "https://www.youtube.com/watch?v=1nb5qj3TTwE"
+  },
+  {
+    "restaurant": "Soylent",
+    "itemName": "Soylent 2.0",
+    "rating": 8.8,
+    "reviewDate": "2016-07-26",
+    "reviewLink": "https://www.soylent.com/thereportoftheweek"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Spicy Triple Double Crunchwrap",
+    "rating": 7.9,
+    "reviewDate": "2016-07-29",
+    "reviewLink": "https://www.youtube.com/watch?v=MBjpdZgbgtc"
+  },
+  {
+    "restaurant": "BuffaloWildWings",
+    "itemName": "Asian Zing Wings",
+    "rating": 8.1,
+    "reviewDate": "2016-07-30",
+    "reviewLink": "https://www.youtube.com/watch?v=2ai1BKSKVkY"
+  },
+  {
+    "restaurant": "ChickFilA",
+    "itemName": "Chick-n-Strips",
+    "rating": 7.5,
+    "reviewDate": "2016-08-01",
+    "reviewLink": "https://www.youtube.com/watch?v=a7sUiQC7XMI"
+  },
+  {
+    "restaurant": "Zaxbys",
+    "itemName": "Wings & Things - Wings",
+    "rating": 8,
+    "reviewDate": "2016-08-05",
+    "reviewLink": "https://www.youtube.com/watch?v=yKrjK_zBb4o"
+  },
+  {
+    "restaurant": "Zaxbys",
+    "itemName": "Wings & Things - Chicken Tenders",
+    "rating": 6,
+    "reviewDate": "2016-08-05",
+    "reviewLink": "https://www.youtube.com/watch?v=yKrjK_zBb4o"
+  },
+  {
+    "restaurant": "Zaxbys",
+    "itemName": "Wings & Things - Fries",
+    "rating": 7.5,
+    "reviewDate": "2016-08-05",
+    "reviewLink": "https://www.youtube.com/watch?v=yKrjK_zBb4o"
+  },
+  {
+    "restaurant": "Zaxbys",
+    "itemName": "Wings & Things - Zaxby's Toast",
+    "rating": 7.5,
+    "reviewDate": "2016-08-05",
+    "reviewLink": "https://www.youtube.com/watch?v=yKrjK_zBb4o"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "Big Mac",
+    "rating": 6.8,
+    "reviewDate": "2016-08-07",
+    "reviewLink": "https://www.youtube.com/watch?v=IW3VYxLf9jo"
+  },
+  {
+    "restaurant": "Sonic",
+    "itemName": "SuperSONIC Bacon Double Cheeseburger",
+    "rating": 5.3,
+    "reviewDate": "2016-08-10",
+    "reviewLink": "https://www.youtube.com/watch?v=VXFB_Zuowh4"
+  },
+  {
+    "restaurant": "Sonic",
+    "itemName": "Blue Hawaiian Island Breeze Frozen Drink",
+    "rating": 8.6,
+    "reviewDate": "2016-08-12",
+    "reviewLink": "https://www.youtube.com/watch?v=2KkqlDjtVOQ"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Crunchy Cheesy Core Burrito",
+    "rating": 6.5,
+    "reviewDate": "2016-08-13",
+    "reviewLink": "https://www.youtube.com/watch?v=_diX_0I5Xcc"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Whopperito",
+    "rating": 7.7,
+    "reviewDate": "2016-08-16",
+    "reviewLink": "https://www.youtube.com/watch?v=g9XQ8KAdze4"
+  },
+  {
+    "restaurant": "Hooters",
+    "itemName": "Daytona Beach Style Wings",
+    "rating": 7.6,
+    "reviewDate": "2016-08-18",
+    "reviewLink": "https://www.youtube.com/watch?v=-9k1l2duP_g"
+  },
+  {
+    "restaurant": "PandaExpress",
+    "itemName": "General Tso's Chicken",
+    "rating": 7.5,
+    "reviewDate": "2016-08-19",
+    "reviewLink": "https://www.youtube.com/watch?v=yXp95dbMsiY"
+  },
+  {
+    "restaurant": "LittleCaesars",
+    "itemName": "Hot-N-Ready Caesar Wings",
+    "rating": 4.7,
+    "reviewDate": "2016-08-23",
+    "reviewLink": "https://www.youtube.com/watch?v=Jf4g1QcVRTU"
+  },
+  {
+    "restaurant": "Krystal",
+    "itemName": "Original Slider",
+    "rating": 7,
+    "reviewDate": "2016-08-25",
+    "reviewLink": "https://www.youtube.com/watch?v=UfJcSj8ww00"
+  },
+  {
+    "restaurant": "Popeyes",
+    "itemName": "$5 Bonafide Big Box",
+    "rating": 8.7,
+    "reviewDate": "2016-08-30",
+    "reviewLink": "https://www.youtube.com/watch?v=nIybtGZ9JE8"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Spicy Cheesy Core Burrito",
+    "rating": 8.35,
+    "reviewDate": "2016-09-02",
+    "reviewLink": "https://www.youtube.com/watch?v=Uy5RD9DPjuw"
+  },
+  {
+    "restaurant": "Sonic",
+    "itemName": "Cherry Limeade",
+    "rating": 8,
+    "reviewDate": "2016-09-05",
+    "reviewLink": "https://www.youtube.com/watch?v=Ogvts2wVW-M"
+  },
+  {
+    "restaurant": "KFC",
+    "itemName": "Chicken Littles",
+    "rating": 4.1,
+    "reviewDate": "2016-09-07",
+    "reviewLink": "https://www.youtube.com/watch?v=S8ZiY8doLV4"
+  },
+  {
+    "restaurant": "Dominos",
+    "itemName": "Ultimate Pepperoni Feast Pizza",
+    "rating": 6,
+    "reviewDate": "2016-09-13",
+    "reviewLink": "https://www.youtube.com/watch?v=Ah3ymgFW8Q8"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Airheads White Mystery Freeze",
+    "rating": 8.31,
+    "reviewDate": "2016-09-19",
+    "reviewLink": "https://www.youtube.com/watch?v=62uqEHhLBqU"
+  },
+  {
+    "restaurant": "PizzaHut",
+    "itemName": "Grilled Cheese Stuffed Crust Pizza",
+    "rating": 4.2,
+    "reviewDate": "2016-09-21",
+    "reviewLink": "https://www.youtube.com/watch?v=Gq_JgnoOCCU"
+  },
+  {
+    "restaurant": "KrispyKreme",
+    "itemName": "Original Glazed Doughnut",
+    "rating": 9.17,
+    "reviewDate": "2016-09-23",
+    "reviewLink": "https://www.youtube.com/watch?v=8f8UjRr9yqc"
+  },
+  {
+    "restaurant": "Arbys",
+    "itemName": "Smokehouse Pork Belly Sandwich",
+    "rating": 7,
+    "reviewDate": "2016-09-24",
+    "reviewLink": "https://www.youtube.com/watch?v=xfY9Kia7YiA"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "Pizza",
+    "rating": 9,
+    "reviewDate": "2016-09-26",
+    "reviewLink": "https://www.youtube.com/watch?v=BalhiByCRTQ"
+  },
+  {
+    "restaurant": "Sonic",
+    "itemName": "Fiery Cheeseburger",
+    "rating": 6.2,
+    "reviewDate": "2016-09-29",
+    "reviewLink": "https://www.youtube.com/watch?v=1x_ZNiLgMVw"
+  },
+  {
+    "restaurant": "KFC",
+    "itemName": "Nashville Hot Chicken Littles",
+    "rating": 7.1,
+    "reviewDate": "2016-10-11",
+    "reviewLink": "https://www.youtube.com/watch?v=9TBDyg92I6E"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "Bacon King Sandwich",
+    "rating": 3,
+    "reviewDate": "2016-10-13",
+    "reviewLink": "https://www.youtube.com/watch?v=rg-v2sXp3XE"
+  },
+  {
+    "restaurant": "Wendys",
+    "itemName": "Swiss Junior Bacon Cheeseburger",
+    "rating": 8.9,
+    "reviewDate": "2016-10-19",
+    "reviewLink": "https://www.youtube.com/watch?v=ovtZjUa22Rc"
+  },
+  {
+    "restaurant": "Arbys",
+    "itemName": "Chicken Fajita Flatbread",
+    "rating": 6,
+    "reviewDate": "2016-10-26",
+    "reviewLink": "https://www.youtube.com/watch?v=fy0MbqYHxj0"
+  },
+  {
+    "restaurant": "Hardees",
+    "itemName": "Budweiser Beer Cheese Bacon Burger",
+    "rating": 6.1,
+    "reviewDate": "2016-10-28",
+    "reviewLink": "https://www.youtube.com/watch?v=dvQwxoZhhz8"
+  },
+  {
+    "restaurant": "SteakNShake",
+    "itemName": "Chicken Fingers",
+    "rating": 8.5,
+    "reviewDate": "2016-10-30",
+    "reviewLink": "https://www.youtube.com/watch?v=olqzbrzSZUM"
+  },
+  {
+    "restaurant": "Starbucks",
+    "itemName": "Frappula Crème Frappuccino",
+    "rating": 7.3,
+    "reviewDate": "2016-10-31",
+    "reviewLink": "https://www.youtube.com/watch?v=Q5QzhS6-1tc"
+  },
+  {
+    "restaurant": "Popeyes",
+    "itemName": "Hushpuppy Butterfly Shrimp",
+    "rating": 9.7,
+    "reviewDate": "2016-11-03",
+    "reviewLink": "https://www.youtube.com/watch?v=_FIl16Dan3Q"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "Chicken McNuggets",
+    "rating": 8,
+    "reviewDate": "2016-11-06",
+    "reviewLink": "https://www.youtube.com/watch?v=YE5ieWJ-GRY"
+  },
+  {
+    "restaurant": "KrispyKreme",
+    "itemName": "Raspberry Jelly Doughnut",
+    "rating": 8.3,
+    "reviewDate": "2016-11-11",
+    "reviewLink": "https://www.youtube.com/watch?v=VId0DampEjs"
+  },
+  {
+    "restaurant": "Biscuitville",
+    "itemName": "Fried Chicken Biscuit",
+    "rating": 6.3,
+    "reviewDate": "2016-11-14",
+    "reviewLink": "https://www.youtube.com/watch?v=fYOknhDmczw"
+  },
+  {
+    "restaurant": "Hooters",
+    "itemName": "Hot Wings",
+    "rating": 7.3,
+    "reviewDate": "2016-11-16",
+    "reviewLink": "https://www.youtube.com/watch?v=tOyGI2O6kXI"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Steakhouse Burrito",
+    "rating": 8.5,
+    "reviewDate": "2016-11-21",
+    "reviewLink": "https://www.youtube.com/watch?v=BEtawq4MnuQ"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Queso Sauce",
+    "rating": 8.5,
+    "reviewDate": "2016-11-21",
+    "reviewLink": "https://www.youtube.com/watch?v=BEtawq4MnuQ"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "Grand Mac",
+    "rating": 7,
+    "reviewDate": "2016-11-25",
+    "reviewLink": "https://www.youtube.com/watch?v=IravU6BH1-w"
+  },
+  {
+    "restaurant": "LittleCaesars",
+    "itemName": "Pepperoni Stuffed Crust Pizza",
+    "rating": 6,
+    "reviewDate": "2016-11-26",
+    "reviewLink": "https://www.youtube.com/watch?v=lthTeZWxiWA"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "89 Cent Pancakes",
+    "rating": 8.81,
+    "reviewDate": "2016-11-28",
+    "reviewLink": "https://www.youtube.com/watch?v=L6_1vRFtkhc"
+  },
+  {
+    "restaurant": "Arbys",
+    "itemName": "Three Cheese Steak Sandwich",
+    "rating": 5.2,
+    "reviewDate": "2016-11-30",
+    "reviewLink": "https://www.youtube.com/watch?v=gZEjBECZE-I"
+  },
+  {
+    "restaurant": "Wendys",
+    "itemName": "NEW Bacon Sriracha Fries",
+    "rating": 7.1,
+    "reviewDate": "2016-12-02",
+    "reviewLink": "https://www.youtube.com/watch?v=8tZJFL9FitQ"
+  },
+  {
+    "restaurant": "BurgerKing",
+    "itemName": "NEW Cheesy Tots",
+    "rating": 6.9,
+    "reviewDate": "2016-12-03",
+    "reviewLink": "https://www.youtube.com/watch?v=dPX0wE7MsXI"
+  },
+  {
+    "restaurant": "Popeyes",
+    "itemName": "$5 Boneless Wing Bash",
+    "rating": 8.92,
+    "reviewDate": "2016-12-05",
+    "reviewLink": "https://www.youtube.com/watch?v=QASObJxTXDo"
+  },
+  {
+    "restaurant": "Wendys",
+    "itemName": "Spicy Sriracha Chicken Sandwich",
+    "rating": 8.6,
+    "reviewDate": "2016-12-07",
+    "reviewLink": "https://www.youtube.com/watch?v=a0mK4pQ5k2U"
+  },
+  {
+    "restaurant": "HungryHowies",
+    "itemName": "Pepperoni Pizza",
+    "rating": 6.3,
+    "reviewDate": "2016-12-09",
+    "reviewLink": "https://www.youtube.com/watch?v=Mg6Xxw-6BM"
+  },
+  {
+    "restaurant": "McDonalds",
+    "itemName": "NEW Mac Jr.",
+    "rating": 8.9,
+    "reviewDate": "2016-12-13",
+    "reviewLink": "https://www.youtube.com/watch?v=4r2pNHFifgY"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "A.M. Crunchwrap",
+    "rating": 8.3,
+    "reviewDate": "2016-12-16",
+    "reviewLink": "https://www.youtube.com/watch?v=9JTBEzwUgi0"
+  },
+  {
+    "restaurant": "Sonic",
+    "itemName": "Hot Honey Boneless Wings",
+    "rating": 8.5,
+    "reviewDate": "2016-12-18",
+    "reviewLink": "https://www.youtube.com/watch?v=e0Lep73jxrU"
+  },
+  {
+    "restaurant": "TacoBell",
+    "itemName": "Cool Habanero Double Stacked Taco",
+    "rating": 9.5,
+    "reviewDate": "2016-12-23",
+    "reviewLink": "https://www.youtube.com/watch?v=Z55gNYbOvpU"
+  },
+  {
+    "restaurant": "PapaJohns",
+    "itemName": "Bacon Cheddar & Wisconsin Cheesesticks",
+    "rating": 3,
+    "reviewDate": "2016-12-28",
+    "reviewLink": "https://www.youtube.com/watch?v=BkjaRbY2Avs"
+  },
+  {
+    "restaurant": "PapaJohns",
+    "itemName": "Wisconsin Stuffed Cheesesticks",
+    "rating": 7,
+    "reviewDate": "2016-12-28",
+    "reviewLink": "https://www.youtube.com/watch?v=BkjaRbY2Avs"
+  },
+  {
+    "restaurant": "Sonic",
+    "itemName": "Lil' Patty Griller",
+    "rating": 8.1,
+    "reviewDate": "2016-12-30",
+    "reviewLink": "https://www.youtube.com/watch?v=HCQ0cNd1syE"
+  },
+  {
+    "restaurant": "Sonic",
+    "itemName": "Lil' Chickie Griller",
+    "rating": 5.4,
+    "reviewDate": "2016-12-30",
+    "reviewLink": "https://www.youtube.com/watch?v=HCQ0cNd1syE"
+  }
+]

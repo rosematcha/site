@@ -1,47 +1,117 @@
-# === Build Settings ===
 [build]
-  publish = "_site"
+base = "/"
+publish = "_site"
 
   command = """
-    echo "Starting combined build..." && \\
-    echo "Building Eleventy site in ./decks..." && \\
-    (cd decks && npm install && npm run build) && \\
-    echo "Preparing final publish directory '_site'..." && \\
-    rm -rf _site && \\
-    mkdir _site && \\
-    echo "Copying root files (index.html, assets, css)..." && \\
-    cp index.html _site/ && \\
-    cp -r assets _site/assets && \\
-    cp -r css _site/css && \\
-    cp -r bexarvoting _site/bexarvoting && \\
-    cp -r friendfinder _site/friendfinder && \\
-    echo "Copying Eleventy build output from decks/_site into _site..." && \\
-    cp -r decks/_site/* _site/ && \\
-    echo "Combined build finished."
+    echo "Starting combined build..." && \
+    # Create clean publish directory
+    rm -rf _site && \
+    mkdir -p _site && \
+    # Build brahdb (Vite/React)
+    echo "Building brahdb (Vite)..." && \
+    (cd brahdb && npm install && npm run build) && \
+    # Build decks (Eleventy)
+    echo "Building decks (Eleventy)..." && \
+    (cd decks && npm install && npm run build) && \
+    # Copy static projects and root files
+    echo "Copying static projects and root files..." && \
+    cp -r index.html _site/ && \
+    cp -r assets _site/assets && \
+    cp -r css _site/css && \
+    cp -r bexarvoting _site/bexarvoting && \
+    cp -r friendfinder _site/friendfinder && \
+    # Copy built projects to their destinations
+    echo "Copying built projects..." && \
+    mkdir -p _site/brahdb && \
+    cp -r brahdb/dist/* _site/brahdb/ && \
+    cp -r decks/_site _site/decks && \
+    echo "Combined build finished successfully."
   """
+
+# Specify Node.js version for modern features
+[build.environment]
+  NODE_VERSION = "20"
 
 # Optional: Specify Node.js version if needed
 #[build.environment]
 #  NODE_VERSION = "18"
 
-# === Redirects ===
-# Your existing redirects - these will likely need adjustment
-# AFTER you confirm the build works, as the '_site' part in the 'to' path
-# will probably no longer be correct.
+# === Redirects and Headers ===
+
+# Root configuration to ensure index.html is served at the root
 [[redirects]]
-  from = "/decks/*"
-  to = "/decks/_site/decks/:splat" # Likely needs changing later
+  from = "/"
+  to = "/index.html"
   status = 200
 
+# Decks project redirects - removing unnecessary redirects since _site/decks is properly structured
 [[redirects]]
   from = "/decks"
-  to = "/decks/_site/decks/index.html" # Likely needs changing later
+  to = "/decks/index.html"
   status = 200
+  force = false
 
 [[redirects]]
-  from = "/decks/_site/*"
-  to = "/decks/_site/decks/:splat" # Likely needs changing later
+  from = "/decks/*"
+  to = "/decks/:splat"
   status = 200
+  force = false
+
+# BrahDB SPA configuration
+[[redirects]]
+  from = "/brahdb"
+  to = "/brahdb/index.html"
+  status = 200
+  force = false
+
+[[redirects]]
+  from = "/brahdb/*"
+  to = "/brahdb/index.html"
+  status = 200
+  force = true
+  conditions = {Resource = {Not = ["*.js", "*.css", "*.json", "*.jpg", "*.png", "*.gif", "*.svg", "*.woff", "*.woff2"]}}
+
+# Static project access
+[[redirects]]
+  from = "/bexarvoting/*"
+  to = "/bexarvoting/:splat"
+  status = 200
+  force = false
+
+[[redirects]]
+  from = "/friendfinder/*"
+  to = "/friendfinder/:splat"
+  status = 200
+  force = false
+
+# Assets handling
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+
+[[headers]]
+  for = "*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+[[headers]]
+  for = "*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+[[headers]]
+  for = "*.svg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+# General 404 handling
+[[redirects]]
+  from = "/*"
+  to = "/404.html"
+  status = 404
 
 # Consider adding a simple 404 rule if needed
 # [[redirects]]

@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ReviewBrah Food Reviews</title>
+    
+    <!-- Critical CSS -->
+    <style>
+      html, body {
+        background: #18181b;
+        margin: 0;
+        padding: 0;
+        color: #f3f4f6;
+      }
+      #root {
+        min-height: 100vh;
+      }
+      .loading-spinner {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #18181b;
+        z-index: 50;
+        opacity: 1;
+        transition: opacity 0.7s ease-out;
+      }
+      .loading-spinner.fade-out {
+        opacity: 0;
+        pointer-events: none;
+      }
+      @keyframes spin {
+        100% { transform: rotate(360deg); }
+      }
+      .spinner-image {
+        animation: spin 1.2s linear infinite;
+        will-change: transform;
+      }
+    </style>
+
+    <!-- Preload critical assets -->
+    <link rel="preload" href="/loading.png" as="image" fetchpriority="high" />
+    <link rel="preload" href="/reviews/reviews.json" as="fetch" crossorigin />
+    
+    <!-- Preload all restaurant logos -->
+    <link rel="preload" href="/logos/arbys.svg" as="image" />
+    <link rel="preload" href="/logos/aw.svg" as="image" />
+    <link rel="preload" href="/logos/burgerking.svg" as="image" />
+    <link rel="preload" href="/logos/chickfila.svg" as="image" />
+    <link rel="preload" href="/logos/chipotle.svg" as="image" />
+    <link rel="preload" href="/logos/culvers.svg" as="image" />
+    <link rel="preload" href="/logos/dairyqueen.svg" as="image" />
+    <link rel="preload" href="/logos/deltaco.svg" as="image" />
+    <link rel="preload" href="/logos/dennys.svg" as="image" />
+    <link rel="preload" href="/logos/digiorno.svg" as="image" />
+    <link rel="preload" href="/logos/dominos.svg" as="image" />
+    <link rel="preload" href="/logos/dunkin.svg" as="image" />
+    <link rel="preload" href="/logos/fiveguys.svg" as="image" />
+    <link rel="preload" href="/logos/freschetta.svg" as="image" />
+    <link rel="preload" href="/logos/hardees.svg" as="image" />
+    <link rel="preload" href="/logos/hebrewnational.svg" as="image" />
+    <link rel="preload" href="/logos/jackinthebox.svg" as="image" />
+    <link rel="preload" href="/logos/jello.svg" as="image" />
+    <link rel="preload" href="/logos/jimmyjohns.svg" as="image" />
+    <link rel="preload" href="/logos/kfc.svg" as="image" />
+    <link rel="preload" href="/logos/krispykreme.svg" as="image" />
+    <link rel="preload" href="/logos/littlecaesars.svg" as="image" />
+    <link rel="preload" href="/logos/mcdonalds.svg" as="image" />
+    <link rel="preload" href="/logos/mrbeast.svg" as="image" />
+    <link rel="preload" href="/logos/pandaexpress.svg" as="image" />
+    <link rel="preload" href="/logos/panerabread.svg" as="image" />
+    <link rel="preload" href="/logos/papajohns.svg" as="image" />
+    <link rel="preload" href="/logos/pdq.svg" as="image" />
+    <link rel="preload" href="/logos/pizzahut.svg" as="image" />
+    <link rel="preload" href="/logos/popeyes.svg" as="image" />
+    <link rel="preload" href="/logos/redbaron.svg" as="image" />
+    <link rel="preload" href="/logos/shakeshack.svg" as="image" />
+    <link rel="preload" href="/logos/sonic.svg" as="image" />
+    <link rel="preload" href="/logos/starbucks.svg" as="image" />
+    <link rel="preload" href="/logos/steaknshake.svg" as="image" />
+    <link rel="preload" href="/logos/subway.svg" as="image" />
+    <link rel="preload" href="/logos/tacobell.svg" as="image" />
+    <link rel="preload" href="/logos/wendys.svg" as="image" />
+    <link rel="preload" href="/logos/wingstop.svg" as="image" />
+    <link rel="preload" href="/logos/applebees.svg" as="image" />
+    <link rel="preload" href="/logos/buffalowildwings.svg" as="image" />
+    <link rel="preload" href="/logos/cpk.svg" as="image" />
+    <link rel="preload" href="/logos/coke.svg" as="image" />
+    <link rel="preload" href="/logos/other.svg" as="image" />
+  </head>
+  <body>
+    <div id="root">
+      <div class="loading-spinner">
+        <img
+          src="/loading.png"
+          alt="Loading..."
+          width={113}
+          height={150}
+          class="spinner-image"
+          loading="eager"
+          fetchpriority="high"
+        />
+      </div>
+    </div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
