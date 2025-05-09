@@ -16,7 +16,7 @@ function HomePage() {
       </p>
 
       <p>
-        When I'm not working, <small>(which I promise happens,)</small> I still stay busy! I love Pokémon cards, not just collecting them, but playing the card game too. I also <a href="https://letterboxd.com/rosematcha/" target="_blank" rel="noopener noreferrer">watch a lot of movies</a> and... {/* Consider finishing this sentence or rephrasing */}
+        When I'm not working, <small>(which I promise happens,)</small> I still stay busy! I love Pokémon cards, not just collecting them, but playing the card game too. I also <a href="https://letterboxd.com/rosematcha/" target="_blank" rel="noopener noreferrer">watch a lot of movies</a>. {/* Consider finishing this sentence or rephrasing */}
       </p>
 
       {/*<div className="custom-marquee-container">

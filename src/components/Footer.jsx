@@ -5,17 +5,9 @@ import "./Footer.css";
 function Footer() {
   const currentYear = new Date().getFullYear();
   return (
-    <footer className="main-footer">
-      <p>
-        &copy; {currentYear}
-      </p>
-      {/* Visitor counter image */}
-      <img src="/img/visitor_counter.gif" alt="99999 Visitors!" width="80" />
-      <p>
-        <img src="/img/netscape_now.gif" alt="Get Netscape Now!" />
-        <img src="/img/ie_now.gif" alt="Get Internet Explorer Now!" />
-      </p>
-    </footer>
+    <div style={{ textAlign: "center", color: "#ffb3da", fontSize: "0.95em", margin: "32px 0 12px 0" }}>
+      &copy; {currentYear}
+    </div>
   );
 }
 
