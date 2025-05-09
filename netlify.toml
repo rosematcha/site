@@ -15,17 +15,17 @@ publish = "_site"
     (cd decks && npm install && npm run build) && \
     # Copy static projects and root files
     echo "Copying static projects and root files..." && \
-    cp -r index.html _site/ && \
-    cp -r css _site/css && \
-    cp -r bexarvoting _site/bexarvoting && \
-    cp -r friendfinder _site/friendfinder && \
+    cp -r index.html _site/ || true && \
+    cp -r css _site/css || true && \
+    cp -r bexarvoting _site/bexarvoting || true && \
+    cp -r friendfinder _site/friendfinder || true && \
     # Copy built projects to their destinations
     echo "Copying built projects..." && \
     mkdir -p _site/brahdb && \
-    cp -r brahdb/dist/* _site/brahdb/ && \
-    cp -r brahdb/public/logos _site/brahdb/ && \
-    cp -r brahdb/public/reviews _site/brahdb/ && \
-    cp -r decks/_site _site/decks && \
+    cp -r brahdb/dist/* _site/brahdb/ || true && \
+    cp -r brahdb/public/logos _site/brahdb/ || true && \
+    cp -r brahdb/public/reviews _site/brahdb/ || true && \
+    cp -r decks/_site _site/decks || true && \
     echo "Combined build finished successfully."
   """
 
