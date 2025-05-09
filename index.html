@@ -6,12 +6,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>rosematcha.com</title>
     <link rel="preload" as="image" href="/img/haruhi.gif" type="image/gif" />
-    <link rel="preload" as="image" href="/img/projects/brahdb-thumb.jpg" type="image/jpeg" />
-    <link rel="preload" as="image" href="/img/projects/bexarvoting-thumb.jpg" type="image/jpeg" />
-    <link rel="preload" as="image" href="/img/sign_my_guestbook.gif" type="image/gif" />
+    <link
+      rel="preload"
+      as="image"
+      href="/img/projects/brahdb-thumb.jpg"
+      type="image/jpeg"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href="/img/projects/bexarvoting-thumb.jpg"
+      type="image/jpeg"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href="/img/sign_my_guestbook.gif"
+      type="image/gif"
+    />
   </head>
   <body>
     <div id="root"></div>
+
+    {/* 👇 NETLIFY FORM DEFINITION FOR BUILD BOTS (HIDDEN) 👇 */}
+    {/* This form will not be visible to users but allows Netlify to detect your form fields. */}
+    {/* Ensure the 'name' attributes here EXACTLY match those in your React form. */}
+    <form
+      name="guestbook"
+      netlify {/* This is shorthand for data-netlify="true" */}
+      netlify-honeypot="bot-field"
+      hidden /* Standard HTML attribute to hide */
+      aria-hidden="true" /* For accessibility, indicating it's hidden */
+      style="display: none !important;" /* Extra CSS to ensure it's not displayed */
+    >
+      <input type="text" name="name" />
+      <input type="url" name="website" />
+      <textarea name="message"></textarea>
+      {/* This is the honeypot field for spam prevention */}
+      <input name="bot-field" />
+    </form>
+    {/* 👆 END NETLIFY FORM DEFINITION 👆 */}
+
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
