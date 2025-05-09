@@ -47,7 +47,7 @@ export function useReviews() {
 
   const fetchReviews = async () => {
     try {
-      const url = '/reviews/reviews.json';
+      const url = '/brahdb/reviews/reviews.json';
       console.log('[useReviews] Fetching reviews from', url);
       const response = await fetch(url);
       console.log('[useReviews] Response status:', response.status);

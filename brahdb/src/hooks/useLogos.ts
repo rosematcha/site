@@ -10,7 +10,7 @@ export function useLogos() {
       console.log('[useLogos] Starting logo preloading...');
       const logoResults = await Promise.allSettled(
         Object.values(restaurantDisplay).map(({ logo, display }) => {
-          const url = `/logos/${logo}.svg`;
+          const url = `/brahdb/logos/${logo}.svg`;
           console.log(`[useLogos] Attempting to load logo: ${display} (${url})`);
           return new Promise((resolve, reject) => {
             const img = new Image();

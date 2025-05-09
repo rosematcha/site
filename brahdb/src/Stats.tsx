@@ -48,7 +48,7 @@ export default function Stats({ reviews }: StatsProps) {
               <div key={restaurant} className="flex items-center gap-4">
                 <div className="w-16 h-16 flex-shrink-0 bg-gray-700 rounded-md flex items-center justify-center p-2" title={display}>
                   <img
-                    src={`/logos/${logo}.svg`}
+                    src={`/brahdb/logos/${logo}.svg`}
                     alt={`${display} logo`}
                     className="w-full h-full object-contain"
                     loading="lazy"

@@ -96,7 +96,7 @@ const logoStatus: Record<string, 'loaded' | 'error' | undefined> = {};
 
 export const ReviewCard: React.FC<ReviewCardProps> = ({ review }) => {
   const { display, logo } = restaurantDisplay[review.restaurant] || { display: review.restaurant, logo: 'other' };
-  const logoPath = `/logos/${logo}.svg`;
+  const logoPath = `/brahdb/logos/${logo}.svg`;
   // Use global cache to initialize state
   const [logoLoaded, setLogoLoaded] = useState(() => logoStatus[logoPath] === 'loaded');
   const [logoError, setLogoError] = useState(() => logoStatus[logoPath] === 'error');
