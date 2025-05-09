@@ -7,6 +7,11 @@ publish = "_site"
     # Create clean publish directory
     rm -rf _site && \
     mkdir -p _site && \
+    # Build root React app
+    echo "Building root React app..." && \
+    npm install && npm run build && \
+    # Copy root React build output to _site
+    cp -r dist/* _site/ || true && \
     # Build brahdb (Vite/React)
     echo "Building brahdb (Vite)..." && \
     (cd brahdb && npm install && npm run build) && \
@@ -15,7 +20,6 @@ publish = "_site"
     (cd decks && npm install && npm run build) && \
     # Copy static projects and root files
     echo "Copying static projects and root files..." && \
-    cp -r index.html _site/ || true && \
     cp -r css _site/css || true && \
     cp -r bexarvoting _site/bexarvoting || true && \
     cp -r friendfinder _site/friendfinder || true && \
