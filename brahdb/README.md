@@ -51,6 +51,30 @@ reviewbrah-db/
 
 ---
 
+## ⚠️ Netlify/Production Asset Paths
+- **All static asset and data fetches must use `/brahdb/` as the prefix in production.**
+  - Logos: `/brahdb/logos/{logo}.svg`
+  - Reviews: `/brahdb/reviews/reviews.json`
+- This is required for correct loading on Netlify and other static hosts where BrahDB is served from a subdirectory.
+- **Do not use root-relative paths like `/logos/` or `/reviews/` in production code.**
+- Example (React):
+  ```tsx
+  // Correct:
+  <img src={`/brahdb/logos/${logo}.svg`} alt="Logo" />
+  // Incorrect:
+  <img src={`/logos/${logo}.svg`} alt="Logo" />
+  ```
+- Example (fetch):
+  ```ts
+  // Correct:
+  fetch('/brahdb/reviews/reviews.json')
+  // Incorrect:
+  fetch('/reviews/reviews.json')
+  ```
+- If you see 404 errors for logos or reviews in production, check that all asset paths use the `/brahdb/` prefix.
+
+---
+
 ## 🎨 UI/UX & Design Specs
 - **Dark mode**: All backgrounds and controls use dark, accessible colors.
 - **Responsive**: Layout adapts to mobile, tablet, and desktop.
