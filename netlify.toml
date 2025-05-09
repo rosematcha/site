@@ -4,21 +4,31 @@ publish = "_site"
 
   command = """
     echo "Starting combined build..." && \
-    # Create clean publish directory
+
+    # --- CLEAN DIRECTORY
+
     rm -rf _site && \
     mkdir -p _site && \
-    # Build root React app
-    echo "Building root React app..." && \
+    
+    # --- BUILD ROOT APP
+    
+    echo "Building root app..." && \
     npm install && npm run build && \
     # Copy root React build output to _site
     cp -r dist/* _site/ || true && \
-    # Build brahdb (Vite/React)
+
+    # --- BUILD BRAHDB
+
     echo "Building brahdb (Vite)..." && \
     (cd brahdb && npm install && npm run build) && \
-    # Build decks (Eleventy)
+    
+    # --- BUILD DECKS
+    
     echo "Building decks (Eleventy)..." && \
     (cd decks && npm install && npm run build) && \
-    # Copy static projects and root files
+
+    # --- COPY STATIC
+    
     echo "Copying static projects and root files..." && \
     cp -r css _site/css || true && \
     cp -r bexarvoting _site/bexarvoting || true && \
@@ -27,7 +37,7 @@ publish = "_site"
     cp -r public/img _site/img || true && \
     cp -r public/data _site/data || true && \
     cp -r src/assets _site/assets || true && \
-    # Copy built projects to their destinations
+    
     echo "Copying built projects..." && \
     mkdir -p _site/brahdb && \
     cp -r brahdb/dist/* _site/brahdb/ || true && \
@@ -41,9 +51,8 @@ publish = "_site"
 [build.environment]
   NODE_VERSION = "20"
 
-# Optional: Specify Node.js version if needed
-#[build.environment]
-#  NODE_VERSION = "18"
+[functions]
+  directory = "netlify/functions"
 
 # === Redirects and Headers ===
 
