@@ -1,38 +1,55 @@
 // src/pages/GuestbookPage.jsx
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
-import "./PageStyles.css"; // Common page styles
-import "./GuestbookPage.css"; // Specific styles for the guestbook
+import "./PageStyles.css";
+import "./GuestbookPage.css";
 
 function GuestbookPage() {
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
-  const [website, setWebsite] = useState(""); // Classic guestbook field!
-  const [submissionStatus, setSubmissionStatus] = useState(null);
+  const [website, setWebsite] = useState("");
+  const [submissionStatus, setSubmissionStatus] = useState(null); // null, 'submitting', 'success', 'error'
   const [entries, setEntries] = useState([]);
+  const [isLoadingEntries, setIsLoadingEntries] = useState(true);
+  const [fetchError, setFetchError] = useState(null);
 
-  // Fetch entries from our static JSON file
-  useEffect(() => {
-    fetch("/data/guestbook-entries.json") // We'll create this file
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then((data) => setEntries(data))
-      .catch((error) =>
-        console.error("Error fetching guestbook entries:", error),
+  // Use useCallback to memoize fetchEntries
+  const fetchEntries = useCallback(async () => {
+    setIsLoadingEntries(true);
+    setFetchError(null);
+    try {
+      // The path to your Netlify Function
+      const response = await fetch(
+        "/.netlify/functions/get-guestbook-entries", // <<< THIS IS THE CORRECT FETCH URL
       );
-  }, []);
+      if (!response.ok) {
+        const errorData = await response.json(); // Attempt to parse error response as JSON
+        throw new Error(
+          errorData.error || `Server error: ${response.statusText} (Status: ${response.status})`,
+        );
+      }
+      const data = await response.json();
+      setEntries(data);
+    } catch (error) {
+      console.error("Error fetching guestbook entries:", error);
+      setFetchError(error.message);
+      setEntries([]); // Optionally clear entries or show a persistent error
+    } finally {
+      setIsLoadingEntries(false);
+    }
+  }, []); // Empty dependency array means this function is created once
+
+  useEffect(() => {
+    fetchEntries();
+  }, [fetchEntries]); // Depend on fetchEntries
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setSubmissionStatus("submitting");
     const formData = new FormData(event.target);
 
     try {
-      const response = await fetch("/", {
-        // Netlify handles submissions to the root path if form is set up correctly
+      const response = await fetch("/", { // Submit to Netlify Forms endpoint
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: new URLSearchParams(formData).toString(),
@@ -43,14 +60,18 @@ function GuestbookPage() {
         setName("");
         setMessage("");
         setWebsite("");
-        // Note: New entries won't appear immediately with the static JSON method.
-        // You'd need to manually update guestbook-entries.json and redeploy,
-        // or implement dynamic fetching (Option B).
+        // Re-fetch entries after a short delay to allow Netlify to process
+        setTimeout(() => {
+          fetchEntries(); // <<< RE-FETCH ENTRIES
+          setSubmissionStatus(null); // Reset status after a bit
+        }, 2500); // Adjust delay if needed
       } else {
+        const errorText = await response.text();
+        console.error("Form submission HTTP error:", response.status, errorText);
         setSubmissionStatus("error");
       }
     } catch (error) {
-      console.error("Form submission error:", error);
+      console.error("Form submission network/JS error:", error);
       setSubmissionStatus("error");
     }
   };
@@ -59,25 +80,27 @@ function GuestbookPage() {
     <div className="page-content guestbook-container">
       <div style={{ textAlign: "center" }}>
         <img
-          src="/img/sign_my_guestbook.gif" // Find a "Sign My Guestbook!" GIF
+          src="/img/sign_my_guestbook.gif"
           alt="Sign My Guestbook!"
           style={{ marginBottom: "15px", maxWidth: "200px" }}
         />
       </div>
-      
+      <h2>Leave Your Mark!</h2>
+      <p>
+        So glad you stopped by! Feel free to leave a message for me and other
+        visitors.
+      </p>
 
       <form
-        name="guestbook" // This name is important for Netlify
+        name="guestbook"
         method="POST"
         data-netlify="true"
-        data-netlify-honeypot="bot-field" // Spam prevention
+        data-netlify-honeypot="bot-field"
         onSubmit={handleSubmit}
         className="guestbook-form"
       >
-        {/* Hidden input for Netlify to identify the form */}
         <input type="hidden" name="form-name" value="guestbook" />
-        {/* Honeypot field for spam (should be hidden by CSS) */}
-        <p className="hidden-field">
+        <p className="hidden-field" style={{ display: "none" }}>
           <label>
             Don’t fill this out if you’re human: <input name="bot-field" />
           </label>
@@ -92,6 +115,7 @@ function GuestbookPage() {
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
+            disabled={submissionStatus === "submitting"}
           />
         </div>
         <div className="form-group">
@@ -102,7 +126,8 @@ function GuestbookPage() {
             name="website"
             value={website}
             onChange={(e) => setWebsite(e.target.value)}
-            placeholder="http://www.example.com"
+            placeholder="https://www.example.com"
+            disabled={submissionStatus === "submitting"}
           />
         </div>
         <div className="form-group">
@@ -114,26 +139,36 @@ function GuestbookPage() {
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             required
+            disabled={submissionStatus === "submitting"}
           ></textarea>
         </div>
-        <button type="submit" className="submit-button">
-          <img
-            src="/img/submit_button_pixel.gif" // Find a cute submit button GIF
-            alt="Submit"
-            style={{ verticalAlign: "middle", marginRight: "5px" }}
-          />
-          Post Message
+        <button
+          type="submit"
+          className="submit-button"
+          disabled={submissionStatus === "submitting"}
+        >
+          {submissionStatus === "submitting" ? (
+            "Posting..."
+          ) : (
+            <>
+              <img
+                src="/img/submit_button_pixel.gif"
+                alt="Submit"
+                style={{ verticalAlign: "middle", marginRight: "5px" }}
+              />
+              Post Message
+            </>
+          )}
         </button>
 
         {submissionStatus === "success" && (
           <p className="success-message">
-            Thanks for signing! Your message is awaiting its grand debut (after
-            a quick check!).
+            Thanks for signing! Your message should appear below shortly.
           </p>
         )}
         {submissionStatus === "error" && (
           <p className="error-message">
-            Oops! Something went wrong. Please try again.
+            Oops! Something went wrong with your post. Please try again.
           </p>
         )}
       </form>
@@ -141,36 +176,43 @@ function GuestbookPage() {
       <hr className="guestbook-divider" />
 
       <h3>What Others Have Said...</h3>
-      {entries.length > 0 ? (
-        <div className="guestbook-entries">
-        {entries.map((entry, index) => (
-        <div key={index} className="guestbook-entry">
-            <p className="entry-meta">
-            <strong>From:</strong> {entry.name}
-            {entry.website && (
-                <>
-                {" | "}
-                <a
-                    href={entry.website} // The href remains the same
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    title={entry.website} // Optional: add a title attribute for full URL on hover
-                >
-                    {/* Change this line to display the URL itself */}
-                    {entry.website.replace(/^https?:\/\//, '')} {/* Display URL, optionally strip http(s):// */}
-                </a>
-                </>
-            )}
-            <br />
-            <strong>Date:</strong> {entry.date}
-            </p>
-            <p className="entry-message">{entry.message}</p>
-        </div>
-        ))}
-        </div>
-      ) : (
-        <p>Be the first to sign the guestbook!</p>
+      {isLoadingEntries && <p>Loading awesome messages...</p>}
+      {fetchError && (
+        <p className="error-message">
+          Could not load messages: {fetchError} <br /> (This might be because the Form ID or API Token isn't set up on Netlify yet, or the form hasn't received submissions.)
+        </p>
       )}
+      {!isLoadingEntries && !fetchError && entries.length > 0 && (
+        <div className="guestbook-entries">
+          {entries.map((entry) => (
+            <div key={entry.id} className="guestbook-entry">
+              <p className="entry-meta">
+                <strong>From:</strong> {entry.name}
+                {entry.website && (
+                  <>
+                    {" | "}
+                    <a
+                      href={entry.website}
+                      target="_blank"
+                      rel="noopener noreferrer nofollow"
+                      title={entry.website}
+                    >
+                      {entry.website.replace(/^https?:\/\//, "")}
+                    </a>
+                  </>
+                )}
+                <br />
+                <strong>Date:</strong> {entry.date}
+              </p>
+              <p className="entry-message">{entry.message}</p>
+            </div>
+          ))}
+        </div>
+      )}
+      {!isLoadingEntries && !fetchError && entries.length === 0 && (
+        <p>No messages yet. Be the first to leave your mark!</p>
+      )}
+
       <div style={{ textAlign: "center", marginTop: "30px" }}>
         <Link to="/" className="geocities-button">
           <img

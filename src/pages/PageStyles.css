@@ -196,3 +196,66 @@
   margin: 15px 0;
 }
 */
+
+@media (max-width: 768px) {
+  .job-entry, .education-entry, .additional-entry {
+    padding-left: 4px;
+    margin-bottom: 12px;
+    font-size: 0.98em;
+  }
+  .resume-divider {
+    margin: 12px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .job-entry, .education-entry, .additional-entry {
+    padding-left: 2px;
+    margin-bottom: 8px;
+    font-size: 0.93em;
+  }
+  .resume-divider {
+    margin: 8px 0;
+  }
+}
+
+/* Responsive styles */
+@media (max-width: 900px) {
+  .page-content {
+    max-width: 98vw;
+    padding: 12px;
+  }
+  .intro-paragraph {
+    font-size: 1.05em;
+  }
+}
+
+@media (max-width: 600px) {
+  .page-content {
+    padding: 6vw 2vw;
+    font-size: 1em;
+  }
+  .intro-paragraph {
+    font-size: 1em;
+  }
+  h1, h2, h3 {
+    font-size: 1.5em;
+  }
+  .intro-image-container {
+    margin-bottom: 12px !important;
+  }
+  .paragraph-before-gif {
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 400px) {
+  .page-content {
+    padding: 2vw 1vw;
+    font-size: 0.98em;
+  }
+  .intro-image-container img {
+    width: 90px !important;
+    height: 90px !important;
+  }
+}

@@ -97,3 +97,29 @@
   align-self: center; /* Center button if it's narrower than card */
   padding: 8px 18px; /* Slightly smaller padding for project buttons */
 }
+
+@media (max-width: 768px) {
+  .project-showcase-container {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .project-entry-card {
+    padding: 10px;
+    font-size: 0.98em;
+  }
+}
+
+@media (max-width: 480px) {
+  .project-showcase-container {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+  .project-entry-card {
+    padding: 6px;
+    font-size: 0.93em;
+  }
+  .project-details h3 {
+    font-size: 1.1em;
+    padding-bottom: 2px;
+  }
+}
