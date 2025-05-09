@@ -1,0 +1,99 @@
+/* src/pages/ProjectsPage.css */
+
+.project-showcase-container {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(300px, 1fr)
+  ); /* Responsive grid */
+  gap: 25px; /* Space between cards */
+  margin-top: 20px;
+}
+
+.project-entry-card {
+  background-color: rgba(50, 20, 70, 0.4); /* Dark purpleish tint from PageStyles */
+  border: 2px solid #ff80bf; /* Pink border */
+  border-radius: 8px;
+  padding: 20px;
+  display: flex; /* For aligning items if needed, or just for structure */
+  flex-direction: column;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.project-entry-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(255, 128, 191, 0.3); /* Pinkish glow on hover */
+}
+
+.project-thumbnail-link {
+  display: block; /* Make the link a block for the image */
+  margin-bottom: 15px;
+  border-radius: 6px; /* Rounded corners for the image container */
+  overflow: hidden; /* Ensure image stays within rounded corners */
+  border: 1px solid #ffb3da; /* Subtle pink border around thumbnail */
+}
+
+.project-thumbnail {
+  width: 100%;
+  height: auto; /* Maintain aspect ratio */
+  display: block; /* Remove extra space below image */
+  aspect-ratio: 16 / 9; /* Or your preferred aspect ratio, e.g., 4/3, 1/1 */
+  object-fit: cover; /* Cover the area, might crop a bit */
+  border-radius: 5px; /* Match link's border-radius if image itself needs it */
+}
+
+.project-details {
+  flex-grow: 1; /* Allows button to be pushed to bottom if card heights vary */
+  display: flex;
+  flex-direction: column;
+}
+
+.project-details h3 {
+  color: #ffb3da; /* Lighter pink for project titles */
+  font-size: 1.5em; /* Slightly larger than default h3 in PageStyles */
+  margin-top: 0;
+  margin-bottom: 10px;
+  border-bottom: 1px dotted #ff80bf;
+  padding-bottom: 5px;
+}
+
+.project-details h3 a {
+  color: inherit; /* Inherit pink from h3 */
+  text-decoration: none;
+}
+
+.project-details h3 a:hover {
+  text-decoration: underline;
+  color: #ffffff; /* White on hover */
+}
+
+.project-description {
+  font-size: 0.95em;
+  color: #e0cff0; /* Main paragraph text color */
+  line-height: 1.6;
+  margin-bottom: 12px;
+  flex-grow: 1; /* Pushes tech and button down */
+}
+
+.project-tech {
+  font-size: 0.85em;
+  color: #ffb3da; /* Light pink for tech stack */
+  margin-bottom: 15px;
+  font-style: italic;
+}
+
+.project-tech strong {
+  color: #f0e6ff; /* Light lavender for "Tech:" label */
+  font-style: normal;
+}
+
+.project-link-button {
+  /* Uses .geocities-button styles from PageStyles.css */
+  /* Add any specific overrides or additional styles here if needed */
+  display: inline-block; /* Ensure it behaves like a button */
+  text-align: center;
+  margin-top: auto; /* Pushes button to the bottom of the card */
+  align-self: center; /* Center button if it's narrower than card */
+  padding: 8px 18px; /* Slightly smaller padding for project buttons */
+}

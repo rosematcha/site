@@ -1,0 +1,198 @@
+/* src/pages/PageStyles.css */
+
+/* --- General Page Content Container --- */
+.page-content {
+  padding: 0px 25px;
+  margin: 15px;
+  background-color: rgba(25, 0, 40, 0.6); /* More purpleish */
+  border-radius: 8px; /* Rounded corners for content boxes */
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3); /* Subtle inner shadow */
+}
+
+/* --- Typography within .page-content --- */
+.page-content p,
+.page-content li {
+  line-height: 1.7;
+  font-size: 1em;
+  color: #e0cff0; /* Main paragraph text color */
+}
+
+.page-content h2 { /* For main page titles like on Resume/Projects */
+  color: #ff80bf; /* Medium pink */
+  font-family: "Tahoma", "Geneva", sans-serif;
+  border-bottom: 2px dotted #ffb3da; /* Dotted pink underline */
+  text-align: left;
+  font-size: 1.8em;
+  margin-top: 0;
+  padding-bottom: 5px;
+  margin-bottom: 20px; /* Added margin for spacing */
+}
+
+.page-content h3 { /* Default h3 style (e.g., for project cards, if not overridden) */
+  color: #f0e6ff; /* Light lavender for sub-headings */
+  font-size: 1.4em;
+  margin-top: 25px;
+  margin-bottom: 10px; /* Added margin for spacing */
+}
+
+.page-content h4 { /* Default h4 style (e.g., for resume sub-sections) */
+  color: #ffb3da; /* Lighter pink */
+  font-size: 1.2em;
+  margin-top: 20px; /* Added margin for spacing */
+  margin-bottom: 8px; /* Added margin for spacing */
+}
+
+/* --- Homepage Specific Styles --- */
+.intro-paragraph {
+  margin-bottom: 1.5em; /* More space after the intro */
+}
+
+.intro-paragraph strong {
+  color: #ffb3da; /* Pink for the bolded name */
+  font-weight: bold;
+}
+
+.custom-marquee-container { /* New marquee container for homepage */
+  border: 1px dotted #ff80bf; /* Pink dotted border */
+  background-color: rgba(50, 20, 70, 0.3); /* Dark purpleish tint */
+  padding: 8px 12px;
+  margin: 25px 0; /* Increased top/bottom margin */
+  border-radius: 4px;
+}
+
+.custom-marquee-text { /* Text inside the new marquee */
+  color: #ffb3da; /* Pink text */
+  font-size: 0.9em;
+}
+
+.custom-marquee-text a { /* Links inside the new marquee */
+  color: #ff80bf; /* Darker pink for links */
+  text-decoration: underline;
+}
+
+.custom-marquee-text a:hover {
+  color: #ffffff;
+}
+
+.section-heading-alt { /* For "A Bit About This Place" on homepage */
+  color: #e0cff0; /* Main paragraph text color */
+  font-weight: bold;
+  font-size: 1.4em; /* Same as default h3 or adjust as needed */
+  margin-top: 30px;
+  margin-bottom: 10px;
+  border-bottom: none; /* Explicitly no border if default h3 has one */
+}
+
+/* --- Project Page Specific Styles --- */
+.project-card {
+  border: 1px solid #ff80bf; /* Pink border */
+  padding: 15px;
+  margin-bottom: 20px;
+  background-color: rgba(50, 20, 70, 0.4); /* Slightly different dark purple */
+  border-radius: 6px;
+}
+
+.project-card h3 { /* Overrides default .page-content h3 for project cards */
+  margin-top: 0;
+  color: #ffb3da; /* Lighter pink for project titles */
+  font-size: 1.3em;
+  border-bottom: none; /* No border for project card titles */
+}
+
+/* --- Resume Page Specific Styles --- */
+.resume-divider {
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(
+    to right,
+    rgba(255, 128, 191, 0.2),
+    rgba(255, 128, 191, 0.9),
+    rgba(255, 128, 191, 0.2)
+  );
+  margin: 25px 0;
+}
+
+.job-entry,
+.education-entry,
+.additional-entry {
+  margin-bottom: 20px;
+  padding-left: 10px;
+  border-left: 3px solid #ff80bf; /* Pink left border */
+}
+
+.job-entry h5, /* Using h5 for job titles in resume for more semantic structure */
+.education-entry h5, /* (Consider changing in JSX if you used h3/h4 before) */
+.additional-entry h5 {
+  color: #ffb3da; /* Lighter pink */
+  font-size: 1.15em; /* Adjusted size for h5 */
+  margin-top: 0; /* Remove top margin if it's the first element in entry */
+  margin-bottom: 5px;
+}
+
+.job-entry p strong, /* Company/School Name */
+.education-entry p strong,
+.additional-entry p strong {
+  color: #f0e6ff; /* Light lavender */
+}
+
+.job-entry p,
+.education-entry p,
+.additional-entry p {
+  margin: 2px 0 8px 0;
+  font-size: 0.95em;
+}
+
+.job-entry ul,
+.skills-list {
+  list-style-type: square;
+  margin-left: 20px;
+  padding-left: 10px;
+}
+
+.job-entry ul li,
+.skills-list li {
+  margin-bottom: 5px;
+  line-height: 1.5;
+}
+
+.skills-list li strong { /* For skill categories like "Technical Support & Admin:" */
+  color: #ffb3da; /* Pink */
+}
+
+/* --- General Styled Button (e.g., Back to Home) --- */
+.geocities-button {
+  background-color: #ffb3da; /* Pink background */
+  color: #1e002b; /* Dark purple text */
+  padding: 10px 20px;
+  text-decoration: none;
+  border: 2px outset #ff80bf;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: all 0.2s ease-in-out;
+}
+
+.geocities-button:hover {
+  background-color: #ff80bf; /* Darker pink */
+  color: #ffffff;
+  border-style: inset;
+}
+
+.geocities-button img {
+  width: 20px;
+  height: auto;
+  vertical-align: middle; /* Added for better alignment with text */
+}
+
+/* --- Old/Redundant Styles (Consider Removing if not used) --- */
+/*
+.subtle-marquee {
+  background-color: rgba(255, 128, 191, 0.1);
+  color: #ffb3da;
+  font-weight: normal;
+  padding: 8px;
+  border: 1px dashed #ff80bf;
+  border-radius: 4px;
+  font-size: 0.9em;
+  margin: 15px 0;
+}
+*/

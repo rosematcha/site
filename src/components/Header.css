@@ -1,0 +1,69 @@
+/* src/components/Header.css */
+.main-header {
+  padding: 20px 15px 15px 15px;
+  text-align: center;
+}
+
+.header-tagline {
+  font-size: 1.2em; /* Increased from 0.9em */
+  color: #ffb3da;
+  margin-bottom: 8px; /* Adjusted margin slightly */
+  letter-spacing: 0.5px;
+}
+
+.site-main-title {
+  margin-top: 0;
+  margin-bottom: 12px; /* Adjusted margin slightly */
+}
+
+.site-title-link {
+  /* Option 1: Keep Impact but try to make it lighter (might be limited) */
+  font-family: "Impact", "Arial Black", "Franklin Gothic Medium", sans-serif;
+  font-weight: normal; /* Impact is very bold by default, 'normal' might not change it much */
+
+  /* Option 2: Switch to a font that has more weight variations or is naturally thinner */
+  /* font-family: "Arial", "Helvetica Neue", Helvetica, sans-serif; */
+  /* font-weight: 600; /* Example: Semibold for Arial, or try 400 for normal */
+
+  font-size: 2.8em; /* Decreased from 3.5em - adjust as needed */
+  color: #ff80bf;
+  text-decoration: none;
+  letter-spacing: 0.5px; /* Adjusted letter spacing slightly */
+  line-height: 1.1;
+}
+
+.main-nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0 0 15px 0;
+}
+
+.main-nav ul li {
+  display: inline-block;
+  margin: 0 12px;
+}
+
+.main-nav ul li a {
+  color: #f0e6ff;
+  text-decoration: none;
+  font-weight: normal;
+  font-size: 1em;
+  padding: 5px 0;
+}
+
+.main-nav ul li a.active {
+  color: #ffb3da;
+  font-weight: bold;
+}
+
+.header-divider {
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(
+    to right,
+    rgba(255, 128, 191, 0.1),
+    rgba(255, 128, 191, 0.6),
+    rgba(255, 128, 191, 0.1)
+  );
+  margin-top: 10px;
+}

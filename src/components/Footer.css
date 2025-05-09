@@ -1,0 +1,19 @@
+/* src/components/Footer.css */
+.main-footer {
+  background-color: #c0c0c0; /* Silver */
+  color: #000000; /* Black text */
+  padding: 15px;
+  text-align: center;
+  border-top: 5px inset #808080; /* 3D border */
+  margin-top: auto; /* Pushes footer to the bottom if content is short */
+}
+
+.main-footer p {
+  margin: 5px 0;
+  font-size: 0.9em;
+}
+
+.main-footer img {
+  margin: 5px;
+  vertical-align: middle;
+}

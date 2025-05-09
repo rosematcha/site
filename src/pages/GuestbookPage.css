@@ -1,0 +1,130 @@
+/* src/pages/GuestbookPage.css */
+.guestbook-container h2 {
+  text-align: center;
+  color: #ff80bf; /* Pink */
+  font-family: "Impact", "Arial Black", sans-serif;
+  font-size: 2em;
+}
+
+.guestbook-form {
+  border: 3px dashed #ffb3da; /* Lighter pink dashed border */
+  padding: 20px;
+  margin: 20px 0;
+  background-color: rgba(50, 20, 70, 0.3); /* Dark purpleish tint */
+  border-radius: 8px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: #f0e6ff; /* Light lavender */
+  font-weight: bold;
+}
+
+.form-group input[type="text"],
+.form-group input[type="url"],
+.form-group textarea {
+  width: calc(100% - 20px);
+  padding: 8px 10px;
+  border: 2px inset #c0c0c0; /* Classic inset border */
+  background-color: #f0e6ff; /* Light background for input */
+  color: #333;
+  font-family: "Verdana", sans-serif;
+  border-radius: 4px;
+}
+
+.form-group textarea {
+  resize: vertical;
+}
+
+.submit-button {
+  background-color: #ffb3da; /* Pink background */
+  color: #1e002b; /* Dark purple text */
+  padding: 10px 15px;
+  border: 2px outset #ff80bf;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  font-family: "Tahoma", sans-serif;
+  transition: all 0.2s ease;
+}
+
+.submit-button:hover {
+  background-color: #ff80bf;
+  color: #ffffff;
+  border-style: inset;
+}
+.submit-button img {
+  width: 20px; /* Adjust as needed */
+  height: auto;
+}
+
+
+.hidden-field {
+  /* For Netlify honeypot */
+  position: absolute;
+  left: -5000px;
+}
+
+.success-message {
+  color: #00ff00; /* Bright green */
+  font-weight: bold;
+  text-align: center;
+  margin-top: 10px;
+  border: 1px solid #00ff00;
+  padding: 8px;
+  background-color: rgba(0, 255, 0, 0.1);
+}
+
+.error-message {
+  color: #ff0000; /* Bright red */
+  font-weight: bold;
+  text-align: center;
+  margin-top: 10px;
+  border: 1px solid #ff0000;
+  padding: 8px;
+  background-color: rgba(255, 0, 0, 0.1);
+}
+
+.guestbook-divider {
+  border: 0;
+  height: 12px; /* Set desired height */
+  background-image: url("/img/pixel_hearts_divider.gif"); /* Ensure you have this GIF */
+  background-repeat: repeat-x; /* Repeat only horizontally */
+  background-position: center;
+  margin: 30px 0;
+}
+
+.guestbook-entries {
+  margin-top: 20px;
+}
+
+.guestbook-entry {
+  border: 2px groove #ff80bf; /* Pink groove border */
+  padding: 15px;
+  margin-bottom: 15px;
+  background-color: rgba(25, 0, 40, 0.5); /* Darker purple for entries */
+  border-radius: 5px;
+}
+
+.guestbook-entry .entry-meta {
+  font-size: 0.9em;
+  color: #ffb3da; /* Lighter pink for meta */
+  margin-bottom: 8px;
+  border-bottom: 1px dotted #ff80bf;
+  padding-bottom: 5px;
+}
+
+.guestbook-entry .entry-meta strong {
+  color: #f0e6ff;
+}
+
+.guestbook-entry .entry-message {
+  color: #e0cff0; /* Main message text color */
+  line-height: 1.6;
+  white-space: pre-wrap; /* Preserve line breaks from textarea */
+}
