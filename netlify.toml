@@ -17,9 +17,9 @@ publish = "_site"
     echo "Copying static projects and root files..." && \
     cp -r index.html _site/ && \
     cp -r assets _site/assets && \
-    cp -r css _site/css && \
-    cp -r bexarvoting _site/bexarvoting && \
-    cp -r friendfinder _site/friendfinder && \    # Copy built projects to their destinations
+    cp -r css _site/css && \    cp -r bexarvoting _site/bexarvoting && \
+    cp -r friendfinder _site/friendfinder && \
+    # Copy built projects to their destinations
     echo "Copying built projects..." && \
     mkdir -p _site/brahdb && \
     cp -r brahdb/dist/* _site/brahdb/ && \
