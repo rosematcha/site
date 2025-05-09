@@ -29,15 +29,25 @@ function Footer() {
       lastIndexRef.current = newIdx;
       setQuoteIndex(newIdx);
     };
-    marquee.addEventListener("animationiteration", handleMarquee);
-    // Fallback for <marquee> tag: use onbounce/onfinish if supported
-    marquee.onbounce = handleMarquee;
+    // <marquee> doesn't support animationiteration, so use onend/onfinish/onbounce and a timer fallback
     marquee.onfinish = handleMarquee;
+    marquee.onbounce = handleMarquee;
+    // Timer fallback: recalculate duration and set interval
+    let intervalId;
+    const setMarqueeInterval = () => {
+      // Estimate duration based on scrollAmount and text length
+      const scrollAmount = parseInt(marquee.getAttribute('scrollamount')) || 4;
+      const textLength = marquee.textContent.length;
+      // Rough estimate: higher scrollAmount = faster, so shorter duration
+      const duration = Math.max(3000, (textLength * 80) / scrollAmount); // min 3s
+      intervalId = setInterval(handleMarquee, duration);
+    };
+    setMarqueeInterval();
     // Clean up
     return () => {
-      marquee.removeEventListener("animationiteration", handleMarquee);
-      marquee.onbounce = null;
       marquee.onfinish = null;
+      marquee.onbounce = null;
+      clearInterval(intervalId);
     };
   }, [location]);
 
