@@ -23,31 +23,19 @@ function Footer() {
   useEffect(() => {
     const marquee = marqueeRef.current;
     if (!marquee) return;
-    // Listen for animation iteration (marquee restart)
+    // Handler for when the marquee finishes scrolling
     const handleMarquee = () => {
       const newIdx = getRandomQuote(lastIndexRef.current);
       lastIndexRef.current = newIdx;
       setQuoteIndex(newIdx);
     };
-    // <marquee> doesn't support animationiteration, so use onend/onfinish/onbounce and a timer fallback
+    // <marquee> fires onfinish when the scroll completes and restarts
     marquee.onfinish = handleMarquee;
     marquee.onbounce = handleMarquee;
-    // Timer fallback: recalculate duration and set interval
-    let intervalId;
-    const setMarqueeInterval = () => {
-      // Estimate duration based on scrollAmount and text length
-      const scrollAmount = parseInt(marquee.getAttribute('scrollamount')) || 4;
-      const textLength = marquee.textContent.length;
-      // Rough estimate: higher scrollAmount = faster, so shorter duration
-      const duration = Math.max(3000, (textLength * 80) / scrollAmount); // min 3s
-      intervalId = setInterval(handleMarquee, duration);
-    };
-    setMarqueeInterval();
-    // Clean up
+    // Remove timer fallback: only change quote when marquee finishes
     return () => {
       marquee.onfinish = null;
       marquee.onbounce = null;
-      clearInterval(intervalId);
     };
   }, [location]);
 
