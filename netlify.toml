@@ -19,6 +19,10 @@ publish = "_site"
     cp -r css _site/css || true && \
     cp -r bexarvoting _site/bexarvoting || true && \
     cp -r friendfinder _site/friendfinder || true && \
+    cp -r public _site/public || true && \
+    cp -r public/img _site/img || true && \
+    cp -r public/data _site/data || true && \
+    cp -r src/assets _site/assets || true && \
     # Copy built projects to their destinations
     echo "Copying built projects..." && \
     mkdir -p _site/brahdb && \
