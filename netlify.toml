@@ -14,7 +14,8 @@ publish = "_site"
     echo "Building decks (Eleventy)..." && \
     (cd decks && npm install && npm run build) && \
     # Copy static projects and root files
-    echo "Copying static projects and root files..." && \    cp -r index.html _site/ && \
+    echo "Copying static projects and root files..." && \
+    cp -r index.html _site/ && \
     cp -r assets _site/assets && \
     cp -r css _site/css && \
     cp -r bexarvoting _site/bexarvoting && \
