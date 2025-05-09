@@ -47,23 +47,23 @@ export function useReviews() {
 
   const fetchReviews = async () => {
     try {
-      setLoading(true);
-      setError(null);
-      
-      const response = await fetch('/reviews/reviews.json');
+      const url = '/reviews/reviews.json';
+      console.log('[useReviews] Fetching reviews from', url);
+      const response = await fetch(url);
+      console.log('[useReviews] Response status:', response.status);
       if (!response.ok) {
         throw new Error(`Failed to fetch reviews: ${response.status} ${response.statusText}`);
       }
-      
       const data = await response.json();
+      console.log('[useReviews] Data type:', Array.isArray(data) ? 'array' : typeof data, 'Length:', Array.isArray(data) ? data.length : 'n/a');
       if (!Array.isArray(data)) {
         throw new Error('Invalid data format: expected an array of reviews');
       }
-      
       setReviews(data);
       setRestaurantOptions(getRestaurantOptions(data));
+      console.log('[useReviews] Reviews loaded successfully.');
     } catch (err) {
-      console.error('Error fetching reviews:', err);
+      console.error('[useReviews] Error fetching reviews:', err);
       setError(err instanceof Error ? err.message : 'An error occurred while loading reviews');
     } finally {
       setLoading(false);
@@ -82,4 +82,4 @@ export function useReviews() {
     getRestaurantsWithFewReviews,
     refetch: fetchReviews
   };
-} 
+}
