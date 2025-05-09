@@ -23,6 +23,7 @@ const projectsData = [
       "Dissatisfied with the County's lack of transparency, I created a site to visualize historical and present voter turnout data for Bexar County.",
     tech: "Vanilla JavaScript, Chart.js, TailwindCSS",
   },
+  /*
   {
     id: "decks",
     title: "Pokémon Deck Viewer",
@@ -32,6 +33,7 @@ const projectsData = [
       "An Eleventy-based site for viewing and sharing Pokémon Trading Card Game decks. Card data is parsed from .txt files.",
     tech: "Eleventy (11ty), JavaScript, TailwindCSS",
   },
+  */
   {
     id: "friendfinder",
     title: "Favorite Film Friend Finder",

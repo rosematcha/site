@@ -8,8 +8,7 @@ function HomePage() {
     <div className="page-content">
       <p className="intro-paragraph">
         Howdy hi! I'm <strong>Reese</strong> (she/her), a Texas-based
-        photographer, video editor, developer, graphic designer, tinkerer, organizer, data analyst, and
-        advocate. <small>(I wear many hats...)</small>
+        photographer, video editor, developer, graphic designer, tinkerer, organizer, and data analyst. <small>(I wear many hats...)</small>
       </p>
 
       <p>

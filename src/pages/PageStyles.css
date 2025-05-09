@@ -223,7 +223,7 @@
 @media (max-width: 900px) {
   .page-content {
     max-width: 98vw;
-    padding: 12px;
+    padding: 12px 0 12px 0;
   }
   .intro-paragraph {
     font-size: 1.05em;
@@ -232,7 +232,7 @@
 
 @media (max-width: 600px) {
   .page-content {
-    padding: 6vw 2vw;
+    padding: 4vw 0 4vw 0;
     font-size: 1em;
   }
   .intro-paragraph {
@@ -251,7 +251,7 @@
 
 @media (max-width: 400px) {
   .page-content {
-    padding: 2vw 1vw;
+    padding: 2vw 0 2vw 0;
     font-size: 0.98em;
   }
   .intro-image-container img {

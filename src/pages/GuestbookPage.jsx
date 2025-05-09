@@ -85,11 +85,7 @@ function GuestbookPage() {
           style={{ marginBottom: "15px", maxWidth: "200px" }}
         />
       </div>
-      <h2>Leave Your Mark!</h2>
-      <p>
-        So glad you stopped by! Feel free to leave a message for me and other
-        visitors.
-      </p>
+      <h2>Sign the Guestbook!</h2>
 
       <form
         name="guestbook"
@@ -210,7 +206,7 @@ function GuestbookPage() {
         </div>
       )}
       {!isLoadingEntries && !fetchError && entries.length === 0 && (
-        <p>No messages yet. Be the first to leave your mark!</p>
+        <p>No messages yet. Womp womp.</p>
       )}
 
       <div style={{ textAlign: "center", marginTop: "30px" }}>
