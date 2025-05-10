@@ -61,7 +61,6 @@
     flex-direction: column;
     align-items: flex-start;
     padding: 10px 8px;
-    font-size: 1.5em !important;
   }
   .header-title {
     font-size: 1.3em;
@@ -71,5 +70,8 @@
     width: 100%;
     justify-content: flex-start;
     gap: 10px;
+  }
+  .main-header {
+    font-size: 1em !important;
   }
 }

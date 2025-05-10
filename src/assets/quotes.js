@@ -17,7 +17,8 @@ const quotes = [
   "when you think about it, thinking about thinking is the hardest sort of thinking there is, which makes you think",
   "he was in the amazon with my mom when she was researching spiders just before she died",
   "sparkle on! it's wednesday! don't forget to be yourself!",
-  "i miss my wife, tails. i miss her a lot. i'll be back."
+  "i miss my wife, tails. i miss her a lot. i'll be back.",
+  "life is great, man! you can eat at denny's, wear a hat, whatever you want!"
 ];
 
 export default quotes;
