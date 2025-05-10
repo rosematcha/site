@@ -6,10 +6,9 @@ import "./Header.css";
 function Header() {
   return (
     <header className="main-header">
-      <p className="header-tagline">✨ reese ferguson ✨</p>
       <h1 className="site-main-title">
         <NavLink to="/" className="site-title-link">
-          rosematcha.com
+          ✨ rosematcha.com ✨
         </NavLink>
       </h1>
       <nav className="main-nav">
