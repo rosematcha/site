@@ -10,15 +10,13 @@ const quotes = [
   "most may think chiikawa is a hamster, but chiikawa is actually just a 'cute little thing'",
   "an idiot plot is one which is 'kept in motion solely by virtue of the fact that everybody involved is an idiot'",
   "there are cathedrals everywhere for those with the eyes to see",
-  "if you don't care, how can you expect anyone else to?",
   "you're like a baby salamander dressed in a suit",
   "in another life, I would have really liked just doing laundry and taxes with you",
-  "i've been told to follow my dreams, but my dreams involve a lot of napping",
-  "when you think about it, thinking about thinking is the hardest sort of thinking there is, which makes you think",
   "he was in the amazon with my mom when she was researching spiders just before she died",
   "sparkle on! it's wednesday! don't forget to be yourself!",
   "i miss my wife, tails. i miss her a lot. i'll be back.",
-  "life is great, man! you can eat at denny's, wear a hat, whatever you want!"
+  "life is great, man! you can eat at denny's, wear a hat, whatever you want!",
+  "once you've seen the signs around the barn, it becomes impossible to see the barn"
 ];
 
 export default quotes;
