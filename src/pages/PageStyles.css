@@ -208,25 +208,19 @@
   }
 }
 
-@media (max-width: 480px) {
-  .job-entry, .education-entry, .additional-entry {
-    padding-left: 2px;
-    margin-bottom: 8px;
-    font-size: 0.93em;
-  }
-  .resume-divider {
-    margin: 8px 0;
-  }
-}
-
-/* Responsive styles */
-@media (max-width: 900px) {
+@media (max-width: 885px) {
   .page-content {
-    max-width: 98vw;
-    padding: 12px 0 12px 0;
+    padding: 0 !important;
+    margin: 0 15px !important;
   }
   .intro-paragraph {
-    font-size: 1.05em;
+    margin-top: 0 !important;
+  }
+  .custom-marquee-container {
+    margin: 0 0 10px 0 !important;
+  }
+  .site-title-link {
+    font-size: 36px !important;
   }
 }
 
