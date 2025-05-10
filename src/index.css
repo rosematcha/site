@@ -15,7 +15,7 @@ body {
 
 #root {
   width: 100%;
-  max-width: 850px; /* Slightly narrower for a more contained feel */
+  max-width: 99vw; /* Slightly narrower for a more contained feel */
   margin: 20px auto; /* Add some top/bottom margin */
   /* Softer border, perhaps a tasteful pink */
   border: 5px solid #ff80bf; /* A medium pink */
@@ -104,6 +104,7 @@ a:hover {
   }
   #root {
     padding: 0;
+    max-width: 99vw !important;
   }
 }
 
