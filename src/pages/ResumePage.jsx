@@ -2,6 +2,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./PageStyles.css";
+import "./ResumePage.css";
 
 function ResumePage() {
   return (
@@ -14,7 +15,7 @@ function ResumePage() {
       <p style={{ textAlign: "center", marginBottom: "20px" }}>
         <a href="mailto:me@rosematcha.com">me@rosematcha.com</a> |{" "}
         <a
-          href="https://linkedin.com/in/yourprofile" // Replace with your actual LinkedIn
+          href="https://linkedin.com/in/yourprofile"
           target="_blank"
           rel="noopener noreferrer"
         >

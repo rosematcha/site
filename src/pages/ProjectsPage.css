@@ -1,21 +1,19 @@
-/* src/pages/ProjectsPage.css */
-
 .project-showcase-container {
   display: grid;
   grid-template-columns: repeat(
     auto-fit,
     minmax(300px, 1fr)
-  ); /* Responsive grid */
-  gap: 25px; /* Space between cards */
+  );
+  gap: 25px;
   margin-top: 20px;
 }
 
 .project-entry-card {
-  background-color: rgba(50, 20, 70, 0.4); /* Dark purpleish tint from PageStyles */
-  border: 2px solid #ff80bf; /* Pink border */
+  background-color: rgba(50, 20, 70, 0.4);
+  border: 2px solid #ff80bf;
   border-radius: 8px;
   padding: 20px;
-  display: flex; /* For aligning items if needed, or just for structure */
+  display: flex;
   flex-direction: column;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
@@ -23,7 +21,7 @@
 
 .project-entry-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(255, 128, 191, 0.3); /* Pinkish glow on hover */
+  box-shadow: 0 6px 12px rgba(255, 128, 191, 0.3);
 }
 
 .project-thumbnail-link {

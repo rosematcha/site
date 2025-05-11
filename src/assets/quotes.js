@@ -1,6 +1,5 @@
 // list of quotes for the footer marquee
-// to add a neww one, just add it to the array
-// quotes are randomly selected and persistent across page loads
+// to add a new one, just add it to the array
 
 const quotes = [
   "would you rather have unlimited bacon but no more video games, or games, unlimited games, but no more games?",

@@ -1,0 +1,92 @@
+.resume-divider {
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(
+    to right,
+    rgba(255, 128, 191, 0.2),
+    rgba(255, 128, 191, 0.9),
+    rgba(255, 128, 191, 0.2)
+  );
+  margin: 25px 0;
+}
+
+.job-entry,
+.education-entry,
+.additional-entry {
+  margin-bottom: 20px;
+  padding-left: 10px;
+  border-left: 3px solid #ff80bf;
+}
+
+.job-entry h5,
+.education-entry h5,
+.additional-entry h5 {
+  color: #ffb3da;
+  font-size: 1.15em;
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+
+.job-entry p strong,
+.education-entry p strong,
+.additional-entry p strong {
+  color: #f0e6ff;
+}
+
+.job-entry p,
+.education-entry p,
+.additional-entry p {
+  margin: 2px 0 8px 0;
+  font-size: 0.95em;
+}
+
+.job-entry ul,
+.skills-list {
+  list-style-type: square;
+  margin-left: 20px;
+  padding-left: 10px;
+}
+
+.job-entry ul li,
+.skills-list li {
+  margin-bottom: 5px;
+  line-height: 1.5;
+}
+
+.skills-list li strong {
+  color: #ffb3da;
+}
+
+.geocities-button {
+  background-color: #ffb3da;
+  color: #1e002b;
+  padding: 10px 20px;
+  text-decoration: none;
+  border: 2px outset #ff80bf;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: all 0.2s ease-in-out;
+}
+
+.geocities-button:hover {
+  background-color: #ff80bf;
+  color: #ffffff;
+  border-style: inset;
+}
+
+.geocities-button img {
+  width: 20px;
+  height: auto;
+  vertical-align: middle;
+}
+
+@media (max-width: 885px) {
+  .job-entry, .education-entry, .additional-entry {
+    padding-left: 4px;
+    margin-bottom: 12px;
+    font-size: 0.98em;
+  }
+  .resume-divider {
+    margin: 12px 0;
+  }
+}

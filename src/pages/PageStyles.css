@@ -1,6 +1,3 @@
-/* src/pages/PageStyles.css */
-
-/* --- General Page Content Container --- */
 .page-content {
   padding: 0px 25px;
   margin: 15px;
@@ -52,28 +49,6 @@
   font-weight: bold;
 }
 
-.custom-marquee-container { /* New marquee container for homepage */
-  border: 1px dotted #ff80bf; /* Pink dotted border */
-  background-color: rgba(50, 20, 70, 0.3); /* Dark purpleish tint */
-  padding: 8px 12px;
-  margin: 25px 0; /* Increased top/bottom margin */
-  border-radius: 4px;
-}
-
-.custom-marquee-text { /* Text inside the new marquee */
-  color: #ffb3da; /* Pink text */
-  font-size: 0.9em;
-}
-
-.custom-marquee-text a { /* Links inside the new marquee */
-  color: #ff80bf; /* Darker pink for links */
-  text-decoration: underline;
-}
-
-.custom-marquee-text a:hover {
-  color: #ffffff;
-}
-
 .section-heading-alt { /* For "A Bit About This Place" on homepage */
   color: #e0cff0; /* Main paragraph text color */
   font-weight: bold;
@@ -85,84 +60,24 @@
 
 /* --- Project Page Specific Styles --- */
 .project-card {
-  border: 1px solid #ff80bf; /* Pink border */
+  border: 1px solid #ff80bf;
   padding: 15px;
   margin-bottom: 20px;
-  background-color: rgba(50, 20, 70, 0.4); /* Slightly different dark purple */
+  background-color: rgba(50, 20, 70, 0.4);
   border-radius: 6px;
 }
 
-.project-card h3 { /* Overrides default .page-content h3 for project cards */
+.project-card h3 {
   margin-top: 0;
-  color: #ffb3da; /* Lighter pink for project titles */
+  color: #ffb3da;
   font-size: 1.3em;
-  border-bottom: none; /* No border for project card titles */
+  border-bottom: none;
 }
 
-/* --- Resume Page Specific Styles --- */
-.resume-divider {
-  border: 0;
-  height: 1px;
-  background-image: linear-gradient(
-    to right,
-    rgba(255, 128, 191, 0.2),
-    rgba(255, 128, 191, 0.9),
-    rgba(255, 128, 191, 0.2)
-  );
-  margin: 25px 0;
-}
 
-.job-entry,
-.education-entry,
-.additional-entry {
-  margin-bottom: 20px;
-  padding-left: 10px;
-  border-left: 3px solid #ff80bf; /* Pink left border */
-}
-
-.job-entry h5, /* Using h5 for job titles in resume for more semantic structure */
-.education-entry h5, /* (Consider changing in JSX if you used h3/h4 before) */
-.additional-entry h5 {
-  color: #ffb3da; /* Lighter pink */
-  font-size: 1.15em; /* Adjusted size for h5 */
-  margin-top: 0; /* Remove top margin if it's the first element in entry */
-  margin-bottom: 5px;
-}
-
-.job-entry p strong, /* Company/School Name */
-.education-entry p strong,
-.additional-entry p strong {
-  color: #f0e6ff; /* Light lavender */
-}
-
-.job-entry p,
-.education-entry p,
-.additional-entry p {
-  margin: 2px 0 8px 0;
-  font-size: 0.95em;
-}
-
-.job-entry ul,
-.skills-list {
-  list-style-type: square;
-  margin-left: 20px;
-  padding-left: 10px;
-}
-
-.job-entry ul li,
-.skills-list li {
-  margin-bottom: 5px;
-  line-height: 1.5;
-}
-
-.skills-list li strong { /* For skill categories like "Technical Support & Admin:" */
-  color: #ffb3da; /* Pink */
-}
-
-/* --- General Styled Button (e.g., Back to Home) --- */
 .geocities-button {
-  background-color: #ffb3da; /* Pink background */
-  color: #1e002b; /* Dark purple text */
+  background-color: #ffb3da;
+  color: #1e002b;
   padding: 10px 20px;
   text-decoration: none;
   border: 2px outset #ff80bf;
@@ -172,7 +87,7 @@
 }
 
 .geocities-button:hover {
-  background-color: #ff80bf; /* Darker pink */
+  background-color: #ff80bf;
   color: #ffffff;
   border-style: inset;
 }
@@ -180,22 +95,8 @@
 .geocities-button img {
   width: 20px;
   height: auto;
-  vertical-align: middle; /* Added for better alignment with text */
+  vertical-align: middle;
 }
-
-/* --- Old/Redundant Styles (Consider Removing if not used) --- */
-/*
-.subtle-marquee {
-  background-color: rgba(255, 128, 191, 0.1);
-  color: #ffb3da;
-  font-weight: normal;
-  padding: 8px;
-  border: 1px dashed #ff80bf;
-  border-radius: 4px;
-  font-size: 0.9em;
-  margin: 15px 0;
-}
-*/
 
 @media (max-width: 885px) {
   .job-entry, .education-entry, .additional-entry {
@@ -233,4 +134,5 @@
   .site-title-link {
     font-size: 36px !important;
   }
+  /* Resume styles moved to ResumePage.css */
 }

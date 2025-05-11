@@ -1,7 +1,6 @@
 // src/components/Footer.jsx
 import React, { useEffect, useRef, useState } from "react";
 import quotes from "../assets/quotes";
-import "./Footer.css";
 
 function getRandomQuote(lastIndex) {
   let idx;
