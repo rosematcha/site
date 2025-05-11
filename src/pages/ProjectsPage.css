@@ -98,7 +98,7 @@
   padding: 8px 18px; /* Slightly smaller padding for project buttons */
 }
 
-@media (max-width: 924px) {
+@media (max-width: 885px) {
   .project-showcase-container {
     grid-template-columns: 1fr;
     gap: 12px;

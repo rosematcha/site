@@ -79,7 +79,7 @@ a:hover {
   overflow-x: hidden;
 }
 
-@media (max-width: 924px) {
+@media (max-width: 885px) {
   body {
     font-size: 1em;
     padding: 0;
