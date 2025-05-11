@@ -56,7 +56,7 @@
   flex-wrap: wrap;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 924px) {
   .header {
     flex-direction: column;
     align-items: flex-start;

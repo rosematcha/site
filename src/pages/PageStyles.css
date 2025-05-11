@@ -197,7 +197,7 @@
 }
 */
 
-@media (max-width: 768px) {
+@media (max-width: 924px) {
   .job-entry, .education-entry, .additional-entry {
     padding-left: 4px;
     margin-bottom: 12px;
@@ -206,31 +206,14 @@
   .resume-divider {
     margin: 12px 0;
   }
-}
-
-@media (max-width: 885px) {
-  .page-content {
-    padding: 0 !important;
-    margin: 0 15px !important;
-  }
-  .intro-paragraph {
-    margin-top: 0 !important;
-  }
-  .custom-marquee-container {
-    margin: 0 0 10px 0 !important;
-  }
-  .site-title-link {
-    font-size: 36px !important;
-  }
-}
-
-@media (max-width: 600px) {
   .page-content {
     padding: 4vw 0 4vw 0;
     font-size: 1em;
+    margin: 0 15px !important;
   }
   .intro-paragraph {
     font-size: 1em;
+    margin-top: 0 !important;
   }
   h1, h2, h3 {
     font-size: 1.5em;
@@ -241,28 +224,13 @@
   .paragraph-before-gif {
     margin-bottom: 10px;
   }
-  .page-content {
-    padding: 0 !important;
-    margin: 0 15px !important;
-  }
-  .intro-paragraph:first-child {
-    margin-top: 0 !important;
-  }
   .custom-marquee-container {
     margin: 0 0 10px 0 !important;
   }
   #root {
     max-width: 99vw !important;
   }
-}
-
-@media (max-width: 400px) {
-  .page-content {
-    padding: 2vw 0 2vw 0;
-    font-size: 0.98em;
-  }
-  .intro-image-container img {
-    width: 90px !important;
-    height: 90px !important;
+  .site-title-link {
+    font-size: 36px !important;
   }
 }

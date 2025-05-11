@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import "./PageStyles.css";
 
 function HomePage() {
@@ -15,11 +14,11 @@ function HomePage() {
       </p>
 
       <p>
-        Outside of work, I pursue several personal interests. I do photography, typically shooting events digital with my Canon EOS 8D. I'm also big into Pokémon cards! I collect them, play the game, and run local tournaments at card shops in town. I also <a href="https://letterboxd.com/rosematcha/" target="_blank" rel="noopener noreferrer">watch a lot of movies</a>, in the theaters wherever possible.
+        Outside of work, I pursue several personal interests. I do photography, with a speciality in event and candid photography. I'm also big into Pokémon cards! I collect them, play the game, and run tournaments at local card shops. I also <a href="https://letterboxd.com/rosematcha/" target="_blank" rel="noopener noreferrer">watch a lot of movies</a>.
       </p>
 
       <p>
-      This site is hosted on <a href="https://www.netlify.com/" target="_blank" rel="noopener noreferrer">Netlify</a>
+      This site is hosted on <a href="https://www.netlify.com/" target="_blank" rel="noopener noreferrer">Netlify</a> 
       and built with <a href="https://react.dev/" target="_blank" rel="noopener noreferrer">ReactJS</a>. Many of the other sub-projects I have use
       <a href="https://www.11ty.dev/" target="_blank" rel="noopener noreferrer"> Eleventy</a> and <a href="https://tailwindcss.com/" target="_blank" rel="noopener noreferrer"> TailwindCSS.</a> I'm also experienced in <a href="https://wordpress.com/">WordPress</a>, and am currently learning about JAM-compatible CMSes.
       </p>
