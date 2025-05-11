@@ -28,16 +28,7 @@
   <body>
     <div id="root"></div>
 
-    <!-- 
-      NETLIFY FORM DEFINITION FOR BUILD BOTS (HIDDEN)
-      This form will not be visible to users but allows Netlify to detect your form fields.
-      Ensure the 'name' attributes here EXACTLY match those in your React form.
-      - 'netlify' attribute (shorthand for data-netlify="true") flags this for Netlify.
-      - 'netlify-honeypot' sets up spam prevention.
-      - 'hidden' is a standard HTML attribute to hide elements.
-      - 'aria-hidden' is for accessibility, indicating it's hidden from assistive tech.
-      - 'style="display: none !important;"' is an extra CSS measure to ensure it's not displayed.
-    -->
+    <!-- form for guestbook, placed here so it can load later -->
     <form
       name="guestbook"
       netlify
@@ -51,8 +42,8 @@
       <textarea name="message"></textarea>
       <input name="bot-field" /> {/* Honeypot field */}
     </form>
-    <!-- END NETLIFY FORM DEFINITION -->
 
+    <!-- load main site -->
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
