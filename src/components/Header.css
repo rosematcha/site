@@ -9,7 +9,7 @@
   margin-bottom: 12px; /* Adjusted margin slightly */
   font-family: "Impact", "Arial Black", "Franklin Gothic Medium", sans-serif;
   font-weight: normal; /* Impact is very bold by default, 'normal' might not change it much */
-  font-size: 2em; /* Decreased from 3.5em - adjust as needed */
+  font-size: 2em; 
   color: #ff80bf;
   text-decoration: none;
   letter-spacing: 0.5px; /* Adjusted letter spacing slightly */
@@ -66,10 +66,11 @@
     font-size: 1.3em;
     margin-bottom: 6px;
   }
-  .nav {
+  .main-nav {
     width: 100%;
     justify-content: flex-start;
     gap: 10px;
+    margin-top: 10px;
   }
   .main-header {
     font-size: 1em !important;

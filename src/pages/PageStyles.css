@@ -11,6 +11,7 @@
   line-height: 1.7;
   font-size: 1em;
   color: #e0cff0; /* Main paragraph text color */
+  text-align: justify;
 }
 
 .page-content h2 { /* For main page titles like on Resume/Projects */
@@ -107,7 +108,6 @@
     margin: 12px 0;
   }
   .page-content {
-    padding: 4vw 0 4vw 0;
     font-size: 1em;
     margin: 0 15px !important;
   }
@@ -123,9 +123,6 @@
   }
   .paragraph-before-gif {
     margin-bottom: 10px;
-  }
-  .custom-marquee-container {
-    margin: 0 0 10px 0 !important;
   }
   #root {
     max-width: 99vw !important;

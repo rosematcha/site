@@ -18,9 +18,7 @@ function HomePage() {
       </p>
 
       <p>
-      This site is hosted on <a href="https://www.netlify.com/" target="_blank" rel="noopener noreferrer">Netlify</a> 
-      and built with <a href="https://react.dev/" target="_blank" rel="noopener noreferrer">ReactJS</a>. Many of the other sub-projects I have use
-      <a href="https://www.11ty.dev/" target="_blank" rel="noopener noreferrer"> Eleventy</a> and <a href="https://tailwindcss.com/" target="_blank" rel="noopener noreferrer"> TailwindCSS.</a> I'm also experienced in <a href="https://wordpress.com/">WordPress</a>, and am currently learning about JAM-compatible CMSes.
+      This site is hosted on <a href="https://www.netlify.com/" target="_blank" rel="noopener noreferrer">Netlify</a> and built with <a href="https://react.dev/" target="_blank" rel="noopener noreferrer">ReactJS</a>. Many of the other sub-projects I have use <a href="https://www.11ty.dev/" target="_blank" rel="noopener noreferrer"> Eleventy</a> and <a href="https://tailwindcss.com/" target="_blank" rel="noopener noreferrer"> TailwindCSS.</a> I'm also experienced in <a href="https://wordpress.com/">WordPress</a>, and am currently learning about JAM-compatible CMSes.
       </p>
       <p className="paragraph-before-gif">
         Thanks for stopping by!

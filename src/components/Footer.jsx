@@ -1,5 +1,5 @@
 // src/components/Footer.jsx
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import quotes from "../assets/quotes";
 
 function getRandomQuote(lastIndex) {
@@ -12,47 +12,48 @@ function getRandomQuote(lastIndex) {
 
 function Footer() {
   const currentYear = new Date().getFullYear();
-  const marqueeRef = useRef(null);
   const [quoteIndex, setQuoteIndex] = useState(() => getRandomQuote(-1));
   const lastIndexRef = useRef(quoteIndex);
-
-  // Change quote when marquee scrolls out of view
-  useEffect(() => {
-    const marquee = marqueeRef.current;
-    if (!marquee) return;
-    // Handler for when the marquee finishes scrolling
-    const handleMarquee = () => {
-      const newIdx = getRandomQuote(lastIndexRef.current);
-      lastIndexRef.current = newIdx;
-      setQuoteIndex(newIdx);
-    };
-    // <marquee> fires onfinish when the scroll completes and restarts
-    marquee.onfinish = handleMarquee;
-    marquee.onbounce = handleMarquee;
-    // Remove timer fallback: only change quote when marquee finishes
-    return () => {
-      marquee.onfinish = null;
-      marquee.onbounce = null;
-    };
-  }, []);
+  const marqueeRef = useRef(null);
 
   function renderQuote(text) {
     return <><span role="img" aria-label="sparkle">✨</span> {text} <span role="img" aria-label="sparkle">✨</span></>;
   }
 
+  useEffect(() => {
+    const element = marqueeRef.current;
+    if (!element) return;
+
+    const handleBounce = () => {
+      console.log('Marquee bounce detected');
+      const newIdx = getRandomQuote(lastIndexRef.current);
+      lastIndexRef.current = newIdx;
+      setQuoteIndex(newIdx);
+    };
+
+    // Add the event listener to the DOM element
+    element.addEventListener('bounce', handleBounce);
+
+    // Cleanup
+    return () => {
+      element.removeEventListener('bounce', handleBounce);
+    };
+  }, []);
+
   return (
     <>
-      <div className="custom-marquee-container" style={{ marginBottom: "10px" }}>
-        <marquee
+      <div className="custom-marquee-container">        <marquee
+          ref={marqueeRef}
           behavior="scroll"
           direction="left"
           className="custom-marquee-text"
-          ref={marqueeRef}
+          scrollamount="6"
+          loop="1"
         >
           {renderQuote(quotes[quoteIndex])}
         </marquee>
       </div>
-      <div style={{ textAlign: "center", color: "#ffb3da", fontSize: "0.95em", margin: "32px 0 12px 0" }}>
+      <div style={{ textAlign: "center", color: "#ffb3da", fontSize: "0.95em", margin: "10px 20px 20px 20px" }}>
         &copy; {currentYear}
       </div>
     </>

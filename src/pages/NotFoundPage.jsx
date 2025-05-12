@@ -13,7 +13,7 @@ function NotFoundPage() {
           className="intro-gif"
         />
       </div>
-      <p>whoops! either something went wrong or this page doesn't exist.</p>
+      <p style={{ textAlign: 'center' }}>whoops! either something went wrong or this page doesn't exist.</p>
 
       <div style={{ marginTop: '40px' }}>
         <Link to="/" className="geocities-button">

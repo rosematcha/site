@@ -69,7 +69,7 @@ a:hover {
   border: 1px dotted #ff80bf;
   background-color: rgba(50, 20, 70, 0.3);
   padding: 8px 12px;
-  margin: 25px 0;
+  margin: 10px 0;
   border-radius: 4px;
 }
 .custom-marquee-text {
@@ -91,9 +91,10 @@ a:hover {
   }
   #root {
     padding: 0;
+    margin: 0;
     max-width: 99vw !important;
     border-width: 2px;
-    border-radius: 0;
+    border-radius: 10px;
   }
   h1, h2, h3, h4, h5, h6 {
     margin: 0 15px !important;
@@ -102,9 +103,6 @@ a:hover {
   }
   .intro-paragraph {
     margin-top: 0 !important;
-  }
-  .custom-marquee-container {
-    margin: 0 0 10px 0 !important;
   }
   .site-title-link {
     font-size: 36px !important;
