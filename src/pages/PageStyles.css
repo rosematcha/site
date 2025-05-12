@@ -3,7 +3,6 @@
   margin: 15px;
   background-color: rgba(25, 0, 40, 0.6); /* More purpleish */
   border-radius: 8px; /* Rounded corners for content boxes */
-  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3); /* Subtle inner shadow */
 }
 
 /* --- Typography within .page-content --- */

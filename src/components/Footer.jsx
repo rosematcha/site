@@ -46,7 +46,6 @@ function Footer() {
         <marquee
           behavior="scroll"
           direction="left"
-          scrollAmount="4"
           className="custom-marquee-text"
           ref={marqueeRef}
         >

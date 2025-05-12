@@ -1,9 +1,8 @@
-// netlify/functions/get-guestbook-entries.js
-const fetch = require("node-fetch"); // Ensure node-fetch@2 is in your package.json dependencies
+import fetch from "node-fetch";
 
 const { NETLIFY_API_TOKEN, GUESTBOOK_FORM_ID } = process.env;
 
-exports.handler = async function (event, context) {
+export const handler = async function (event, context) {
   if (!NETLIFY_API_TOKEN) {
     console.error("NETLIFY_API_TOKEN is not set in environment variables.");
     return {
