@@ -1,5 +1,5 @@
 // netlify/functions/get-guestbook-entries.js
-const fetch = require("node-fetch@2"); // Using node-fetch version 2 for CommonJS compatibility
+const fetch = require("node-fetch"); // Using node-fetch v2 for CommonJS compatibility
 
 const { NETLIFY_API_TOKEN, GUESTBOOK_FORM_ID } = process.env;
 
