@@ -23,7 +23,7 @@ export const items: Item[] = shuffle([  {
     price: 20,
     desc: 'Comes with remote and power supply. Has two HDMI ports and composite. 1366x768 resolution. Model number D24hn-G9.',
     category: 'tech',    images: ['https://i.imgur.com/xJrl5aQ.jpeg'],
-    sold: false
+    sold: true
   },
   {
     name: 'Nendoroid - Kobeni (Chainsaw Man)',
@@ -112,7 +112,7 @@ export const items: Item[] = shuffle([  {
     desc: null,
     category: null,
     images: ['https://i.imgur.com/Xndbrxu.jpeg'],
-    sold: false
+    sold: true
   },
   {
     name: 'Razer Kishi Mobile Controller',
@@ -211,7 +211,7 @@ export const items: Item[] = shuffle([  {
     desc: 'Untested. Does not have OEM power adapter.',
     category: 'tech',
     images: ['https://i.imgur.com/WZBMaMK.jpeg'],
-    sold: false
+    sold: true
   },
   {
     name: 'ChonkerKeys Zoom Macro Pad',
@@ -227,6 +227,14 @@ export const items: Item[] = shuffle([  {
     desc: 'Comes with original box and power supply. May not come with all screws and accessories. Used for a few years until upgrading. Works fine for serving files and single-user Plex.',
     category: 'tech',
     images: ['https://i.imgur.com/XnyixgP.jpeg', 'https://i.imgur.com/SxDskHH.jpeg', 'https://i.imgur.com/ufQOGPM.jpeg'],
+    sold: false
+  },
+  {
+    name: 'Pokemon GO Plus+',
+    price: 30,
+    desc: 'Works fine.',
+    category: 'tech',
+    images: ['https://i.imgur.com/w6cq5sc.jpeg'],
     sold: false
   },
   {
