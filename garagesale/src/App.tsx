@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { ItemGrid } from './components/ItemGrid'
-import { ItemPage } from './components/ItemPage'
 import { items as allItems } from './items'
 import './App.css'
 
@@ -43,7 +42,6 @@ function App() {
               <ItemGrid items={items} selectedCategory={selectedCategory} />
             </>
           } />
-          <Route path="/item/:id" element={<ItemPage items={items} />} />
         </Routes>
 
         

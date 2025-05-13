@@ -31,6 +31,8 @@ publish = "_site"
     echo "Copying garagesale build output..." && \
     mkdir -p _site/garagesale && \
     cp -r garagesale/dist/* _site/garagesale/ || true && \
+    # --- COPY GARAGESALE PUBLIC FOLDER (if exists)
+    cp -r garagesale/public _site/garagesale/public || true && \
 
     
     # --- BUILD DECKS
