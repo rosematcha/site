@@ -22,6 +22,11 @@ publish = "_site"
     echo "Building brahdb (Vite)..." && \
     (cd brahdb && npm install && npm run build) && \
     
+    # --- BUILD GARAGESALE
+
+    echo "Building garagesale (Vite)..." && \
+    (cd garagesale && npm install && npm run build) && \
+    
     # --- BUILD DECKS
     
     echo "Building decks (Eleventy)..." && \
@@ -40,9 +45,11 @@ publish = "_site"
     
     echo "Copying built projects..." && \
     mkdir -p _site/brahdb && \
+    mkdir -p _site/garagesale && \
     cp -r brahdb/dist/* _site/brahdb/ || true && \
     cp -r brahdb/public/logos _site/brahdb/ || true && \
     cp -r brahdb/public/reviews _site/brahdb/ || true && \
+    cp -r garagesale/dist/* _site/garagesale/ || true && \
     cp -r decks/_site _site/decks || true && \
     echo "Combined build finished successfully."
   """
