@@ -38,7 +38,7 @@ export function ItemGrid({ items, selectedCategory }: ItemGridProps) {
     <>
       <main className="items-grid" style={{maxWidth: '1100px', margin: '0 auto', minHeight: '600px'}}>
         {filteredItems.map((item, idx) => (
-          <div key={item.name + idx} className="item-card">
+          <div key={item.name + idx} className={`item-card ${item.sold ? 'sold' : ''}`}>
             <div
               className="item-image"
               style={{width: '100%', height: '160px', background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px solid #ccc', cursor: 'pointer', position: 'relative'}}

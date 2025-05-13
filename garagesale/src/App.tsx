@@ -17,7 +17,7 @@ function App() {
     <BrowserRouter basename="/garagesale">
       <div className="garage-sale">
         <header className="header">
-          <h1>Online Garage Sale</h1>
+          <h1>Reese's Online Garage Sale</h1>
           <div className="counter">
             <span className="counter-text">Please take my stuff!</span>
           </div>

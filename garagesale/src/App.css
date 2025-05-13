@@ -42,7 +42,7 @@
 }
 
 .garage-sale {
-  max-width: 1024px;
+  max-width: 1280px;
   margin: 0 auto;
   padding: 1rem;
   font-family: "Arial", sans-serif;
@@ -105,17 +105,102 @@
 
 .items-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1rem;
-  padding: 1rem 0;
+  gap: 2rem;
+  grid-template-columns: repeat(3, minmax(300px, 1fr));
+  width: 100%;
+  box-sizing: border-box;
+  padding: 1rem;
+  margin: 0 auto;
+}
+
+@media (max-width: 1200px) {
+  .items-grid {
+    grid-template-columns: repeat(2, minmax(300px, 1fr));
+  }
+}
+
+@media (max-width: 800px) {
+  .items-grid {
+    grid-template-columns: minmax(300px, 1fr);
+  }
+  
+  .garage-sale {
+    padding: 0.5rem;
+  }
+  
+  .items-grid {
+    gap: 1rem;
+    padding: 0.5rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .items-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .items-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .item-card {
+    max-width: 100%;
+  }
 }
 
 .item-card {
+  background: linear-gradient(to bottom, #ffffff 0%, #f9f9f9 100%);
   border: 1px solid #ccc;
   border-radius: 4px;
   padding: 1rem;
-  background: linear-gradient(to bottom, #ffffff 0%, #f9f9f9 100%);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.item-card.sold {
+  opacity: 0.8;
+}
+
+.item-card.sold .item-image img,
+.item-card.sold h2,
+.item-card.sold .description,
+.item-card.sold .price,
+.item-card.sold .condition {
+  filter: grayscale(100%);
+}
+
+.item-card.sold .price {
+  color: #666 !important;
+}
+
+.item-card.sold::after {
+  content: "SOLD";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-30deg);
+  font-size: 5rem;
+  font-weight: bold;
+  color: #ff0000;
+  opacity: 0.8;
+  pointer-events: none;
+  text-shadow: 3px 3px 6px rgba(0,0,0,0.4);
+  z-index: 1;
+  white-space: nowrap;
+  width: 150%;
+  text-align: center;
+  letter-spacing: 0.1em;
+}
+
+.ebay-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 1rem 0;
 }
 
 .item-image {
@@ -303,10 +388,4 @@
 
 .view-item-btn:hover {
   background: linear-gradient(to bottom, #e1e1e1 0%, #d1d1d1 100%);
-}
-
-@media (max-width: 768px) {
-  .item-details-full {
-    grid-template-columns: 1fr;
-  }
 }

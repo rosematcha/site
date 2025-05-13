@@ -4,4 +4,5 @@ export interface Item {
   desc: string | null;
   category: string | null;
   images: string[];
+  sold?: boolean;
 }
