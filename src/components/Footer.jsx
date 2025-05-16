@@ -14,44 +14,51 @@ function Footer() {
   const currentYear = new Date().getFullYear();
   const [quoteIndex, setQuoteIndex] = useState(() => getRandomQuote(-1));
   const lastIndexRef = useRef(quoteIndex);
-  const marqueeRef = useRef(null);
+  const [resetAnim, setResetAnim] = useState(false);
+  const marqueeInnerRef = useRef(null);
 
   function renderQuote(text) {
     return <><span role="img" aria-label="sparkle">✨</span> {text} <span role="img" aria-label="sparkle">✨</span></>;
   }
 
+  // When animation ends, pick a new quote and restart
   useEffect(() => {
-    const element = marqueeRef.current;
-    if (!element) return;
-
-    const handleBounce = () => {
-      console.log('Marquee bounce detected');
-      const newIdx = getRandomQuote(lastIndexRef.current);
-      lastIndexRef.current = newIdx;
-      setQuoteIndex(newIdx);
+    const handleAnimationEnd = () => {
+      // Reset animation
+      setResetAnim(true);
+      setTimeout(() => {
+        setQuoteIndex((prev) => {
+          const newIdx = getRandomQuote(lastIndexRef.current);
+          lastIndexRef.current = newIdx;
+          return newIdx;
+        });
+        setResetAnim(false);
+      }, 20); // Small delay to allow animation reset
     };
-
-    // Add the event listener to the DOM element
-    element.addEventListener('bounce', handleBounce);
-
-    // Cleanup
+    const el = marqueeInnerRef.current;
+    if (el) {
+      el.addEventListener("animationend", handleAnimationEnd);
+    }
     return () => {
-      element.removeEventListener('bounce', handleBounce);
+      if (el) el.removeEventListener("animationend", handleAnimationEnd);
     };
   }, []);
 
   return (
     <>
-      <div className="custom-marquee-container">        <marquee
-          ref={marqueeRef}
-          behavior="scroll"
-          direction="left"
-          className="custom-marquee-text"
-          scrollamount="6"
-          loop="1"
+      <div className="custom-marquee-container" style={{ overflow: "hidden", width: "100%" }}>
+        <div
+          ref={marqueeInnerRef}
+          className={`custom-marquee-text marquee-anim${resetAnim ? " marquee-reset" : ""}`}
+          style={{
+            whiteSpace: "nowrap",
+            display: "inline-block",
+            willChange: "transform",
+            animation: resetAnim ? "none" : "marquee-scroll 14s linear 1"
+          }}
         >
           {renderQuote(quotes[quoteIndex])}
-        </marquee>
+        </div>
       </div>
       <div style={{ textAlign: "center", color: "#ffb3da", fontSize: "0.95em", margin: "10px 20px 20px 20px" }}>
         &copy; {currentYear}

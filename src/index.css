@@ -84,6 +84,21 @@ a:hover {
   color: #ffffff;
 }
 
+@keyframes marquee-scroll {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+.marquee-anim {
+  animation: marquee-scroll 14s linear 1;
+}
+.marquee-reset {
+  animation: none !important;
+}
+
 @media (max-width: 885px) {
   body {
     font-size: 1em;

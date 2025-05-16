@@ -6,6 +6,15 @@ import "./ProjectsPage.css"; // Specific styles for this page
 // Project Data - this could also be moved to a separate JSON file and imported
 const projectsData = [
   {
+    id: "matchatab",
+    title: "MatchaTab",
+    path: "https://addons.mozilla.org/en-US/firefox/addon/matchatab/", // Now links to Firefox Add-ons
+    thumbnail: "/img/projects/matchatab-thumb.jpg",
+    description:
+      "Inspired by Tabliss, this is a customizable new tab page for Firefox browsers.",
+    tech: "Vanilla JavaScript, HTML, CSS",
+  },
+  {
     id: "brahdb",
     title: "BrahDB",
     path: "/brahdb", // This will be relative to rosematcha.com
@@ -46,6 +55,12 @@ const projectsData = [
   // Add more projects here as needed
 ];
 
+function getProjectUrl(path) {
+  if (!path) return undefined;
+  if (path.startsWith("http")) return path;
+  return `https://rosematcha.com${path}`;
+}
+
 function ProjectsPage() {
   return (
     <div className="page-content">
@@ -58,8 +73,8 @@ function ProjectsPage() {
         {projectsData.map((project) => (
           <div key={project.id} className="project-entry-card">
             <a
-              href={`https://rosematcha.com${project.path}`} // Full URL for external link feel
-              target="_blank" // Open in new tab
+              href={getProjectUrl(project.path)}
+              target="_blank"
               rel="noopener noreferrer"
               className="project-thumbnail-link"
             >
@@ -72,7 +87,7 @@ function ProjectsPage() {
             <div className="project-details">
               <h3>
                 <a
-                  href={`https://rosematcha.com${project.path}`}
+                  href={getProjectUrl(project.path)}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -88,7 +103,7 @@ function ProjectsPage() {
                 <strong>Tech:</strong> {project.tech}
               </p>
               <a
-                href={`https://rosematcha.com${project.path}`}
+                href={getProjectUrl(project.path)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="project-link-button geocities-button" // Re-use button style
