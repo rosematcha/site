@@ -1,6 +1,6 @@
 // js/ui.js
 import { DATA_FILES, TOTAL_TURNOUT_KEY } from "./config.js";
-import { getAllLoadedLocations } from "./data.js";
+import { getAllLoadedLocations, getLocationProperties } from "./data.js"; // Import getLocationProperties
 import { debouncedRenderChart } from "./chart.js";
 import { loadYearData } from "./data.js";
 import { logMetric } from "./main.js";
@@ -218,18 +218,37 @@ function filterLocations() {
     const container = elements.locationCheckboxContainer;
     if (!container) return;
 
-    const options = container.querySelectorAll(".location-option"); // Use the added class
+    const { showEarlyVoting, showElectionDay } = getToggleStates();
+
+    const options = container.querySelectorAll(".location-option");
 
     options.forEach((optionLabel) => {
+        const inputElement = optionLabel.querySelector("input");
+        const locationName = inputElement?.value;
         const labelSpan = optionLabel.querySelector("span");
-        const locationName = labelSpan ? labelSpan.textContent.toLowerCase() : "";
-        // Always show "Total Turnout" regardless of filter
-        const isTotal = optionLabel.querySelector("input")?.value === TOTAL_TURNOUT_KEY;
+        const locationText = labelSpan ? labelSpan.textContent.toLowerCase() : "";
 
-        if (isTotal || locationName.includes(filterText)) {
-            optionLabel.style.display = "flex"; // Show matching or Total
+        const isTotal = locationName === TOTAL_TURNOUT_KEY;
+        let isVisible = isTotal || locationText.includes(filterText);
+
+        if (!isTotal && locationName) {
+            const props = getLocationProperties(locationName);
+            if (props && props.isElectionDayOnly) {
+                // Hide if not (only Election Day checked)
+                if (!(!showEarlyVoting && showElectionDay)) {
+                    isVisible = false;
+                }
+                // If searched for, it should be visible regardless of toggles
+                if (locationText.includes(filterText) && filterText.length > 0) {
+                    isVisible = true;
+                }
+            }
+        }
+
+        if (isVisible) {
+            optionLabel.style.display = "flex";
         } else {
-            optionLabel.style.display = "none"; // Hide non-matching
+            optionLabel.style.display = "none";
         }
     });
 }
@@ -288,12 +307,14 @@ export const setupEventListeners = () => {
     if (elements.earlyVotingToggle) {
         elements.earlyVotingToggle.addEventListener("change", () => {
             logMetric("interactions", 1);
+            filterLocations(); // Add this call
             debouncedRenderChart();
         });
     }
     if (elements.electionDayToggle) {
         elements.electionDayToggle.addEventListener("change", () => {
             logMetric("interactions", 1);
+            filterLocations(); // Add this call
             debouncedRenderChart();
         });
     }

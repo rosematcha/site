@@ -127,16 +127,30 @@ const parseCSV = (csvString, year) => {
         parsedData[year].dates = headers;
 
         lines.slice(1).forEach((line) => {
-            // Robust splitting: handle commas within quoted fields if necessary
-            // Basic split for now, assuming no quoted commas in location names
             const columns = line.split(",");
             const locationName = columns[0]?.trim();
             if (!locationName) return; // Skip empty lines
 
-            // Map data points corresponding to the parsed headers
             const dailyData = headers.map(
                 (_, index) => parseFloat(columns[index + 2]?.trim() || "0") || 0
             );
+
+            // Determine if the location is election-day-only
+            let isElectionDayOnly = true;
+            if (dailyData.length > 0 && headers.length === dailyData.length) {
+                for (let i = 0; i < headers.length; i++) {
+                    if (!headers[i].isElectionDay && dailyData[i] > 0) {
+                        isElectionDayOnly = false;
+                        break;
+                    }
+                }
+                // Also consider it not election-day-only if all data is zero
+                if (dailyData.every((d) => d === 0)) {
+                    isElectionDayOnly = false;
+                }
+            } else {
+                isElectionDayOnly = false; // If data lengths don't match, can't reliably determine
+            }
 
             if (locationName.toLowerCase().startsWith("total")) {
                 parsedData[year].totals = dailyData;
@@ -144,6 +158,7 @@ const parseCSV = (csvString, year) => {
                 parsedData[year].locations.push({
                     name: locationName,
                     data: dailyData,
+                    isElectionDayOnly: isElectionDayOnly, // Store this new property
                 });
             }
         });
@@ -195,6 +210,26 @@ export const getAllLoadedLocations = () => {
         yearData.locations?.forEach((loc) => locationSet.add(loc.name));
     });
     return Array.from(locationSet).sort();
+};
+
+/**
+ * Gets properties for a specific location.
+ * @param {string} locationName - The name of the location.
+ * @returns {{isElectionDayOnly: boolean}|null} Properties or null if not found.
+ */
+export const getLocationProperties = (locationName) => {
+    for (const year in parsedData) {
+        const yearData = parsedData[year];
+        const locationData = yearData.locations?.find(
+            (loc) => loc.name === locationName
+        );
+        if (locationData) {
+            return {
+                isElectionDayOnly: !!locationData.isElectionDayOnly,
+            };
+        }
+    }
+    return null;
 };
 
 /**
