@@ -82,9 +82,8 @@ a:hover {
   font-size: 0.9em;
   white-space: nowrap;
   position: absolute;
-  left: 100%; /* Start fully off-screen to the right */
   top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(-50%) translateX(0);
 }
 .custom-marquee-text a {
   color: #ff80bf;
@@ -96,11 +95,10 @@ a:hover {
 
 @keyframes marquee-scroll-px {
   0% {
-    transform: translateX(0) translateY(-50%);
+    transform: translateY(-50%) translateX(0);
   }
   100% {
-    /* Move left by 100% of container width plus text width */
-    transform: translateX(calc(-100vw - var(--marquee-width, 0px))) translateY(-50%);
+    transform: translateY(-50%) translateX(calc(-100% - var(--marquee-width, 0px)));
   }
 }
 
