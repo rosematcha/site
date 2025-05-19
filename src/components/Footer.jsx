@@ -65,7 +65,7 @@ function Footer() {
       <div
         className="custom-marquee-container"
         ref={containerRef}
-        style={{ overflow: "hidden", position: "relative", width: "100%", minHeight: 20 }}
+        style={{ minHeight: 20 }}
       >
         <div
           key={animKey}
@@ -74,7 +74,8 @@ function Footer() {
           style={{
             position: "absolute",
             left: 0,
-            top: 0,
+            top: "50%",
+            transform: "translateY(-50%)",
             whiteSpace: "nowrap",
             willChange: "transform",
             animation: duration && distance
