@@ -22,7 +22,7 @@ const horseImages = [
 function PopePage() {
   return (
     <div className="page-content pope-page-container">
-      <h1>All The Pope's Horses</h1>
+      <h1>love this aminal</h1>
       <div className="horse-gallery">
         {horseImages.map((src, index) => (
           <div key={index} className="horse-image-container">

@@ -23,19 +23,9 @@ function ResumePage() {
         <h2>Digital Resume</h2>
       </div>
 
+
       <h3 className="resume-name">Reese Ferguson</h3> {/* MODIFIED: Added className */}
-      <p className="contact-info" style={{ marginBottom: "20px" }}>
-        {" "}
-        {/* MODIFIED: Added className, kept marginBottom for now, can be moved to CSS */}
-        <a href="mailto:me@rosematcha.com">me@rosematcha.com</a> |{" "}
-        <a
-          href="https://linkedin.com/in/yourprofile"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          LinkedIn Profile
-        </a>
-      </p>
+
 
       {/* --- SUMMARY --- */}
       <h4>Summary</h4>
@@ -46,31 +36,6 @@ function ResumePage() {
         community initiatives, and delivering excellent customer service.
         Passionate about user-centric design and open technologies.
       </p>
-      <hr className="resume-divider" />
-
-      {/* --- SKILLS --- */}
-      <h4>Skills</h4>
-      <ul className="skills-list">
-        <li>
-          <strong>Technical:</strong> Systems Admin (Windows, MacOS, Linux, iOS),
-          Asset Tracking, IT Documentation, Troubleshooting, Network Support,
-          Security Protocols, HTML, CSS, JavaScript, ReactJS.
-        </li>
-        <li>
-          <strong>Creative & Media:</strong> Adobe Creative Suite, Photography
-          (Digital & Pinhole), Video Production, Graphic Design, UX/UI,
-          Accessibility Standards.
-        </li>
-        <li>
-          <strong>Operations & Events:</strong> Event Planning & Management,
-          Workflow Automation, POS Systems, Data Management, Community
-          Engagement, Social Media, Customer Service, Cash Handling.
-        </li>
-        <li>
-          <strong>General:</strong> Communication, Organization, Problem-Solving,
-          Team Collaboration, Project Coordination, Curriculum Development.
-        </li>
-      </ul>
       <hr className="resume-divider" />
 
       {/* --- WORK EXPERIENCE --- */}
@@ -324,6 +289,31 @@ function ResumePage() {
           clients and occasions.
         </p>
       </div>
+
+            {/* --- SKILLS --- */}
+      <h4>Skills</h4>
+      <ul className="skills-list">
+        <li>
+          <strong>Technical:</strong> Systems Admin (Windows, MacOS, Linux, iOS),
+          Asset Tracking, IT Documentation, Troubleshooting, Network Support,
+          Security Protocols, HTML, CSS, JavaScript, ReactJS.
+        </li>
+        <li>
+          <strong>Creative & Media:</strong> Adobe Creative Suite, Photography
+          (Digital & Pinhole), Video Production, Graphic Design, UX/UI,
+          Accessibility Standards.
+        </li>
+        <li>
+          <strong>Operations & Events:</strong> Event Planning & Management,
+          Workflow Automation, POS Systems, Data Management, Community
+          Engagement, Social Media, Customer Service, Cash Handling.
+        </li>
+        <li>
+          <strong>General:</strong> Communication, Organization, Problem-Solving,
+          Team Collaboration, Project Coordination, Curriculum Development.
+        </li>
+      </ul>
+      <hr className="resume-divider" />
 
       <div style={{ textAlign: "center", marginTop: "30px" }}>
         <Link to="/" className="geocities-button">
