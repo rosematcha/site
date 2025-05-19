@@ -164,6 +164,62 @@ const renderChart = () => {
         return;
     }
 
+    // --- GROUPED BAR MODE: Election Day only, multiple years, multiple locations ---
+    if (showElectionDay && !showEarlyVoting && selectedYears.length > 1 && selectedLocations.length > 0) {
+        hideCat();
+        // x-axis: locations
+        const labels = selectedLocations;
+        let datasets = [];
+        let colorIndex = 0;
+        for (const year of selectedYears) {
+            const data = [];
+            for (const location of selectedLocations) {
+                const selectionData = getDataForSelection(year, location, false, true);
+                // Find the election day value (should be only one value)
+                let edValue = null;
+                if (selectionData && selectionData.dates && selectionData.dates.length > 0) {
+                    for (let i = 0; i < selectionData.dates.length; i++) {
+                        if (selectionData.dates[i].isElectionDay) {
+                            edValue = selectionData.data[i];
+                            break;
+                        }
+                    }
+                }
+                data.push(edValue);
+            }
+            const color = CHART_COLORS[colorIndex % CHART_COLORS.length];
+            colorIndex++;
+            datasets.push({
+                label: year,
+                data,
+                backgroundColor: color,
+                borderColor: color,
+            });
+        }
+        const chartTitle = `Election Day Turnout by Location (Grouped by Year)`;
+        const chartType = "bar";
+        if (turnoutChart && turnoutChart.config.type !== chartType) {
+            turnoutChart.destroy();
+            turnoutChart = null;
+        }
+        if (turnoutChart) {
+            turnoutChart.data.labels = labels;
+            turnoutChart.data.datasets = datasets;
+            turnoutChart.options.plugins.title.text = chartTitle;
+            turnoutChart.options.scales.y.beginAtZero = startYAtZero;
+            turnoutChart.update();
+        } else {
+            const config = createChartConfig(
+                labels,
+                datasets,
+                chartTitle,
+                startYAtZero,
+                chartType
+            );
+            turnoutChart = new Chart(ctx, config);
+        }
+        return;
+    }
     hideCat();
 
     let datasets = [];

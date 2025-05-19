@@ -1,12 +1,16 @@
 // js/config.js
 
 export const DATA_FILES = {
-    2025_1: { name: "May 2025", path: "csv/May 2025 Municipal.csv" },
-    2023_2: { name: "June 2023", path: "csv/June 2023 Municipal Runoff.csv" },
-    2021_2: { name: "June 2021", path: "csv/June 2021 Municipal Runoff.csv" },
-    2019_2: { name: "June 2019", path: "csv/June 2019 Municipal Runoff.csv" },
+    "May 2025": { name: "May 2025", path: "csv/May 2025 Municipal.csv" },
+    "June 2023": { name: "June 2023", path: "csv/June 2023 Municipal Runoff.csv" },
+    "May 2023": { name: "May 2023", path: "csv/May 2023 Municipal.csv" },
+    "November 2022": { name: "November 2022", path: "csv/November 2022 General.csv" },
+    "June 2021": { name: "June 2021", path: "csv/June 2021 Municipal Runoff.csv" },
+    "May 2021": { name: "May 2021", path: "csv/May 2021 Municipal.csv" },
+    "November 2020": { name: "November 2020", path: "csv/November 2020 General.csv" },
+    "June 2019": { name: "June 2019", path: "csv/June 2019 Municipal Runoff.csv" },
+    "May 2019": { name: "May 2019", path: "csv/May 2019 Municipal.csv" },
     // Add future years here when data is available
-    // 2024: { name: "May 2024", path: "csv/May 2024 Municipal.csv", disabled: true },
 };
 
 export const CAT_IMAGES = [

@@ -195,6 +195,8 @@ export const populateLocationDropdown = () => {
             !isFirstRun && currentSelection.includes(name)
         );
     });
+    // Ensure correct filtering is applied after population
+    filterLocations();
 };
 
 // --- handleYearChange() remains the same ---
