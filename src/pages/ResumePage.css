@@ -1,92 +1,298 @@
+/* General Page Structure & Typography */
+.page-content { /* Assuming this is the main container from PageStyles.css or similar */
+  padding: 20px;
+  max-width: 800px; /* Limit width for better readability */
+  margin: 0 auto; /* Center the content */
+}
+
+.resume-header {
+  text-align: center;
+  margin-bottom: 30px; /* Increased spacing */
+}
+
+.resume-header h2 {
+  font-size: 2.5em; /* Larger title */
+  color: #ffb3da; /* Existing color */
+  margin-bottom: 5px; /* Reduced space below h2 */
+}
+
+.resume-name {
+  text-align: center;
+  font-size: 1.8em; /* Slightly smaller than main title */
+  color: #f0e6ff; /* Lighter color for name */
+  margin-bottom: 8px;
+}
+
+.contact-info {
+  text-align: center;
+  margin-bottom: 30px; /* Increased spacing */
+  font-size: 0.95em;
+}
+
+.contact-info a {
+  color: #ff80bf; /* Existing link color */
+  margin: 0 10px; /* Space out links */
+}
+
+/* Section Titles (Summary, Skills, etc.) */
+.page-content h4 { /* Targeting all h4 within the resume page content */
+  font-size: 1.6em;
+  color: #ffb3da;
+  margin-top: 40px;
+  margin-bottom: 25px;
+  border-bottom: 3px solid #ff80bf;
+  padding-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+}
+
+/* ADDED: Add margin-top to the first card of each type after a h4 */
+.page-content h4 + .job-entry,
+.page-content h4 + .education-entry,
+.page-content h4 + .additional-entry {
+  margin-top: 10px; /* Adjust as needed for spacing */
+}
+
+/* Paragraphs and general text */
+.page-content p,
+.page-content ul li {
+  line-height: 1.6; /* Improved readability */
+  color: #e0d8f0; /* Slightly lighter than pure white for less harshness */
+}
+
 .resume-divider {
   border: 0;
   height: 1px;
   background-image: linear-gradient(
     to right,
-    rgba(255, 128, 191, 0.2),
-    rgba(255, 128, 191, 0.9),
-    rgba(255, 128, 191, 0.2)
+    rgba(255, 128, 191, 0.1),
+    rgba(255, 128, 191, 0.7),
+    rgba(255, 128, 191, 0.1)
   );
-  margin: 25px 0;
+  margin: 35px 0; /* MODIFIED: Increased spacing around dividers */
 }
 
+/* MODIFIED: Complete replacement for entry styling */
 .job-entry,
 .education-entry,
 .additional-entry {
-  margin-bottom: 20px;
-  padding-left: 10px;
-  border-left: 3px solid #ff80bf;
+  background-color: rgba(60, 30, 80, 0.45); /* ADDED: Subtle background, related to theme */
+  border-radius: 8px; /* ADDED: Rounded corners */
+  padding: 20px; /* MODIFIED: Uniform padding */
+  margin-bottom: 30px; /* MODIFIED: More space between cards */
+  border-left: 5px solid #ff80bf; /* MODIFIED: Keep as accent, slightly thicker */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25); /* ADDED: More pronounced shadow */
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* ADDED: For hover */
+  position: relative; /* Ensure this is present if needed for other pseudo-elements */
+}
+
+/* ADDED: Hover effect for entries */
+.job-entry:hover,
+.education-entry:hover,
+.additional-entry:hover {
+  transform: translateY(-4px); /* Slightly more lift */
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
 }
 
 .job-entry h5,
 .education-entry h5,
 .additional-entry h5 {
   color: #ffb3da;
-  font-size: 1.15em;
+  font-size: 1.2em; /* Slightly larger */
   margin-top: 0;
-  margin-bottom: 5px;
+  margin-bottom: 8px; /* Increased space */
+  cursor: pointer; /* ADDED: Indicate clickable titles */
+  display: flex; /* ADDED: For aligning title and toggle icon */
+  justify-content: space-between; /* ADDED: Push icon to the right */
+  align-items: center; /* ADDED: Vertically align icon with text */
 }
 
 .job-entry p strong,
 .education-entry p strong,
 .additional-entry p strong {
   color: #f0e6ff;
+  font-weight: 600; /* Slightly bolder */
 }
 
 .job-entry p,
 .education-entry p,
 .additional-entry p {
-  margin: 2px 0 8px 0;
-  font-size: 0.95em;
+  margin: 4px 0 10px 0; /* Adjusted spacing */
+  font-size: 0.98em; /* Slightly larger */
+}
+
+.job-entry p strong a,
+.education-entry p strong a,
+.additional-entry p strong a {
+  color: #f0e6ff; /* Match existing strong tag color */
+  text-decoration: none;
+}
+
+.job-entry p strong a:hover,
+.education-entry p strong a:hover,
+.additional-entry p strong a:hover {
+  text-decoration: underline;
+  color: #ffb3da; /* Hover color for links */
 }
 
 .job-entry ul,
 .skills-list {
-  list-style-type: square;
+  list-style-type: disc; /* Changed from square for a more common look */
   margin-left: 20px;
-  padding-left: 10px;
+  padding-left: 15px; /* Increased padding */
 }
 
 .job-entry ul li,
 .skills-list li {
-  margin-bottom: 5px;
-  line-height: 1.5;
+  margin-bottom: 8px; /* Increased spacing */
+  line-height: 1.55;
+}
+
+.skills-list {
+  padding-left: 0; /* Remove extra padding for skills list if it\'s directly under h4 */
+}
+
+.skills-list li {
+  margin-bottom: 10px; /* More space for skill items */
 }
 
 .skills-list li strong {
   color: #ffb3da;
+  font-weight: 700; /* MODIFIED: Bolder */
 }
 
+/* Button Styling - keeping existing geocities style but with minor tweaks */
 .geocities-button {
   background-color: #ffb3da;
   color: #1e002b;
-  padding: 10px 20px;
+  padding: 12px 22px; /* Slightly larger padding */
   text-decoration: none;
   border: 2px outset #ff80bf;
   border-radius: 5px;
   font-weight: bold;
   transition: all 0.2s ease-in-out;
+  display: inline-block; /* Ensure proper padding and margin */
+  margin-top: 20px; /* Space above button */
 }
 
 .geocities-button:hover {
   background-color: #ff80bf;
   color: #ffffff;
   border-style: inset;
+  transform: translateY(-1px); /* Subtle hover effect */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
 .geocities-button img {
   width: 20px;
   height: auto;
   vertical-align: middle;
+  margin-right: 8px; /* More space next to icon */
 }
 
+/* ADDED: Styling for the toggle icon */
+.toggle-icon {
+  font-size: 0.9em;
+  font-weight: bold;
+  color: #ff80bf; /* Use accent color */
+  margin-left: 10px;
+  transition: transform 0.2s ease-in-out;
+}
+
+/* ADDED: Styling for the job details list when expanded */
+.job-details {
+  list-style-type: disc;
+  margin-left: 20px; /* Keep original indentation */
+  padding-left: 15px;
+  margin-top: 10px; /* Space between title and details */
+  animation: fadeInDetails 0.5s ease-out; /* ADDED: Fade-in animation */
+}
+
+.job-details li {
+  margin-bottom: 8px;
+  line-height: 1.55;
+}
+
+/* ADDED: Keyframes for fade-in animation */
+@keyframes fadeInDetails {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive adjustments */
 @media (max-width: 885px) {
+  .page-content {
+    padding: 15px;
+  }
+  .resume-header h2 {
+    font-size: 2em;
+  }
+  .resume-name {
+    font-size: 1.5em;
+  }
+  .page-content h4 { /* MODIFIED: Responsive adjustments for section titles */
+    font-size: 1.4em;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    letter-spacing: 1px;
+  }
   .job-entry, .education-entry, .additional-entry {
-    padding-left: 4px;
-    margin-bottom: 12px;
-    font-size: 0.98em;
+    padding: 15px; /* MODIFIED: Reduce padding from 20px for cards */
+    margin-bottom: 25px; /* MODIFIED: Slightly reduce margin from 30px */
+    /* Removed general font-size: 0.95em; rely on more specific styles */
   }
   .resume-divider {
-    margin: 12px 0;
+    margin: 25px 0; /* MODIFIED: Adjusted spacing */
+  }
+}
+
+@media (max-width: 600px) {
+  .resume-header h2 {
+    font-size: 1.8em;
+  }
+  .resume-name {
+    font-size: 1.3em;
+  }
+  .contact-info {
+    font-size: 0.9em;
+  }
+  .contact-info a {
+    display: block;
+    margin: 8px 0; /* MODIFIED: Increased margin for stacked links */
+  }
+  .page-content h4 { /* MODIFIED: Responsive adjustments for section titles */
+    font-size: 1.25em; /* Further adjust */
+    margin-bottom: 18px;
+    padding-bottom: 7px;
+    letter-spacing: 0.8px;
+  }
+  .job-entry, .education-entry, .additional-entry { /* MODIFIED: Responsive adjustments for cards */
+    padding: 12px;
+    margin-bottom: 20px;
+    border-left-width: 4px; /* Slightly thinner border for smaller cards */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Softer shadow for smaller cards */
+  }
+  .job-entry h5,
+  .education-entry h5,
+  .additional-entry h5 {
+    font-size: 1.1em;
+  }
+  .job-entry p,
+  .education-entry p,
+  .additional-entry p,
+  .job-entry ul li,
+  .skills-list li {
+    font-size: 0.92em;
+  }
+  .geocities-button {
+    padding: 10px 18px;
+    font-size: 0.95em;
   }
 }

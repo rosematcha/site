@@ -1,18 +1,32 @@
 // src/pages/ResumePage.jsx
-import React from "react";
+import React, { useState } from "react"; // MODIFIED: Added useState
 import { Link } from "react-router-dom";
 import "./PageStyles.css";
 import "./ResumePage.css";
 
 function ResumePage() {
+  const [expandedEntries, setExpandedEntries] = useState({}); // ADDED: State for expanded entries
+
+  // ADDED: Function to toggle entry visibility
+  const toggleEntry = (entryId) => {
+    setExpandedEntries((prev) => ({
+      ...prev,
+      [entryId]: !prev[entryId],
+    }));
+  };
+
   return (
     <div className="page-content">
-      <div style={{ textAlign: "center", marginBottom: "20px" }}>
+      <div className="resume-header" style={{ marginBottom: "20px" }}>
+        {" "}
+        {/* MODIFIED: Added className, kept marginBottom for now, can be moved to CSS */}
         <h2>Digital Resume</h2>
       </div>
 
-      <h3>Reese Ferguson</h3>
-      <p style={{ textAlign: "center", marginBottom: "20px" }}>
+      <h3 className="resume-name">Reese Ferguson</h3> {/* MODIFIED: Added className */}
+      <p className="contact-info" style={{ marginBottom: "20px" }}>
+        {" "}
+        {/* MODIFIED: Added className, kept marginBottom for now, can be moved to CSS */}
         <a href="mailto:me@rosematcha.com">me@rosematcha.com</a> |{" "}
         <a
           href="https://linkedin.com/in/yourprofile"
@@ -63,161 +77,218 @@ function ResumePage() {
       <h4>Work Experience</h4>
 
       <div className="job-entry">
-        <h5>Visitor Services Associate</h5>
+        <h5 onClick={() => toggleEntry("rubyCity")}>
+          Visitor Services Associate
+          <span className="toggle-icon">
+            {expandedEntries["rubyCity"] ? "[-]" : "[+]"}{" "}
+          </span>
+        </h5>
         <p>
-          <strong>Ruby City</strong> | San Antonio, TX | May 2025 - Present
+          <a href="https://rubycity.org/" target="_blank" rel="noopener noreferrer"><strong>Ruby City</strong></a> | May 2025 - Present
         </p>
-        <ul>
-          <li>
-            Deliver exceptional guest experiences by conveying knowledge of
-            Foundation policies, collections, and architecture.
-          </li>
-          <li>
-            Proactively address guest needs, resolve issues, and support public
-            programs and events.
-          </li>
-        </ul>
+        {expandedEntries["rubyCity"] && (
+          <ul className="job-details">
+            <li>
+              Deliver exceptional guest experiences by conveying knowledge of
+              Foundation policies, collections, and architecture.
+            </li>
+            <li>
+              Proactively address guest needs, resolve issues, and support public
+              programs and events.
+            </li>
+          </ul>
+        )}
       </div>
 
       <div className="job-entry">
-        <h5>Organizer</h5>
+        <h5 onClick={() => toggleEntry("stonewallAction")}>
+          Organizer
+          <span className="toggle-icon">
+            {expandedEntries["stonewallAction"] ? "[-]" : "[+]"}{" "}
+          </span>
+        </h5>
         <p>
-          <strong>Stonewall Action</strong> | San Antonio, TX | March 2025 -
-          Present
+          <a href="https://stonewallaction.org/" target="_blank" rel="noopener noreferrer"><strong>Stonewall Action</strong></a> | March 2025 - Present
         </p>
-        <ul>
-          <li>
-            Organize community events and create social media content to promote
-            advocacy.
-          </li>
-          <li>Refine activist language for impactful communication.</li>
-        </ul>
+        {expandedEntries["stonewallAction"] && (
+          <ul className="job-details">
+            <li>
+              Organize community events and create social media content to promote
+              advocacy.
+            </li>
+            <li>Refine activist language for impactful communication.</li>
+          </ul>
+        )}
       </div>
 
       <div className="job-entry">
-        <h5>Event Organizer & Card Specialist</h5>
+        <h5 onClick={() => toggleEntry("combatPower")}>
+          Event Organizer & Card Specialist
+          <span className="toggle-icon">
+            {expandedEntries["combatPower"] ? "[-]" : "[+]"}{" "}
+          </span>
+        </h5>
         <p>
-          <strong>Combat Power Collectibles</strong> | San Antonio, TX | August
-          2024 - Present
+          <a href="https://www.instagram.com/combat_power_gaming/?hl=en" target="_blank" rel="noopener noreferrer"><strong>Combat Power Collectibles</strong></a> | August 2024 - Present
         </p>
-        <ul>
-          <li>
-            Manage and execute Pokémon card tournaments, overseeing logistics and
-            participant engagement.
-          </li>
-          <li>
-            Price, organize, and stock trading cards, ensuring inventory
-            accuracy and customer assistance.
-          </li>
-        </ul>
+        {expandedEntries["combatPower"] && (
+          <ul className="job-details">
+            <li>
+              Manage and execute Pokémon card tournaments, overseeing logistics and
+              participant engagement.
+            </li>
+            <li>
+              Price, organize, and stock trading cards, ensuring inventory
+              accuracy and customer assistance.
+            </li>
+          </ul>
+        )}
       </div>
 
       <div className="job-entry">
-        <h5>Instructor, Saturday Morning Discovery</h5>
+        <h5 onClick={() => toggleEntry("utsaSouthwest")}>
+          Instructor, Saturday Morning Discovery
+          <span className="toggle-icon">
+            {expandedEntries["utsaSouthwest"] ? "[-]" : "[+]"}{" "}
+          </span>
+        </h5>
         <p>
-          <strong>UTSA Southwest</strong> | San Antonio, TX | May 2023 - Present
+          <strong>UTSA Southwest</strong> | May 2023 - Present
         </p>
-        <ul>
-          <li>
-            Teach pinhole photography to youth in a free art exploration
-            program, guiding hands-on learning.
-          </li>
-        </ul>
+        {expandedEntries["utsaSouthwest"] && (
+          <ul className="job-details">
+            <li>
+              Teach pinhole photography to youth in a free art exploration
+              program, guiding hands-on learning.
+            </li>
+          </ul>
+        )}
       </div>
 
       <div className="job-entry">
-        <h5>Systems Administrator</h5>
+        <h5 onClick={() => toggleEntry("saySiAdmin")}>
+          Systems Administrator
+          <span className="toggle-icon">
+            {expandedEntries["saySiAdmin"] ? "[-]" : "[+]"}{" "}
+          </span>
+        </h5>
         <p>
-          <strong>SAY Sí</strong> | San Antonio, TX | January 2023 - Present
+          <a href="https://saysi.org/" target="_blank" rel="noopener noreferrer"><strong>SAY Sí</strong></a> | January 2023 - Present
         </p>
-        <ul>
-          <li>
-            Maintain and troubleshoot 100+ multi-platform devices (Windows,
-            Mac, iOS).
-          </li>
-          <li>
-            Implemented an inventory system for 500+ items and led data-driven
-            infrastructure improvements.
-          </li>
-          <li>
-            Develop automation scripts and maintain technical documentation and
-            security protocols.
-          </li>
-        </ul>
+        {expandedEntries["saySiAdmin"] && (
+          <ul className="job-details">
+            <li>
+              Maintain and troubleshoot 100+ multi-platform devices (Windows,
+              Mac, iOS).
+            </li>
+            <li>
+              Implemented an inventory system for 500+ items and led data-driven
+              infrastructure improvements.
+            </li>
+            <li>
+              Develop automation scripts and maintain technical documentation and
+              security protocols.
+            </li>
+          </ul>
+        )}
       </div>
 
       <div className="job-entry">
-        <h5>Office Aide & Voter Information Specialist</h5>
+        <h5 onClick={() => toggleEntry("bexarParty")}>
+          Office Aide & Voter Information Specialist
+          <span className="toggle-icon">
+            {expandedEntries["bexarParty"] ? "[-]" : "[+]"}{" "}
+          </span>
+        </h5>
         <p>
-          <strong>Bexar County Democratic Party</strong> | San Antonio, TX |
-          April 2024 - January 2025
+          <a href="https://www.bexardemocrat.org/" target="_blank" rel="noopener noreferrer"><strong>Bexar County Democratic Party</strong></a> | April 2024 - January 2025
         </p>
-        <ul>
-          <li>
-            Provided public assistance on voter information, conducted outreach,
-            and managed voter roll documentation.
-          </li>
-          <li>
-            Supported election procedures, developed civic engagement materials,
-            and updated website for accessibility.
-          </li>
-        </ul>
+        {expandedEntries["bexarParty"] && (
+          <ul className="job-details">
+            <li>
+              Provided public assistance on voter information, conducted outreach,
+              and managed voter roll documentation.
+            </li>
+            <li>
+              Supported election procedures, developed civic engagement materials,
+              and updated website for accessibility.
+            </li>
+          </ul>
+        )}
       </div>
 
       <div className="job-entry">
-        <h5>Media Arts Teaching Artist</h5>
+        <h5 onClick={() => toggleEntry("saySiArtist")}>
+          Media Arts Teaching Artist
+          <span className="toggle-icon">
+            {expandedEntries["saySiArtist"] ? "[-]" : "[+]"}{" "}
+          </span>
+        </h5>
         <p>
-          <strong>SAY Sí</strong> | San Antonio, TX | August 2018 - February
-          2025
+          <a href="https://saysi.org/" target="_blank" rel="noopener noreferrer"><strong>SAY Sí</strong></a> | August 2018 - February 2025
         </p>
-        <ul>
-          <li>
-            Designed and led digital arts workshops (Adobe Suite, photography,
-            video) for youth.
-          </li>
-          <li>
-            Managed program operations, including student enrollment and
-            documentation.
-          </li>
-          <li>
-            Developed digital resources and organized student artwork showcases.
-          </li>
-        </ul>
+        {expandedEntries["saySiArtist"] && (
+          <ul className="job-details">
+            <li>
+              Designed and led digital arts workshops (Adobe Suite, photography,
+              video) for youth.
+            </li>
+            <li>
+              Managed program operations, including student enrollment and
+              documentation.
+            </li>
+            <li>
+              Developed digital resources and organized student artwork showcases.
+            </li>
+          </ul>
+        )}
       </div>
 
       <div className="job-entry">
-        <h5>Operations Manager / Systems Coordinator</h5> {/* Shortened title */}
+        <h5 onClick={() => toggleEntry("hopVine")}>
+          Operations Manager / Systems Coordinator
+          <span className="toggle-icon">
+            {expandedEntries["hopVine"] ? "[-]" : "[+]"}{" "}
+          </span>
+        </h5>
         <p>
-          <strong>Hop + Vine</strong> | San Antonio, TX | October 2019 -
-          February 2021
+          <strong>Hop + Vine</strong> | October 2019 - February 2021
         </p>
-        <ul>
-          <li>
-            Managed payroll, financial records, and inventory using QuickBooks.
-          </li>
-          <li>
-            Implemented digital solutions for workflow automation and POS
-            systems, providing tech support.
-          </li>
-        </ul>
+        {expandedEntries["hopVine"] && (
+          <ul className="job-details">
+            <li>
+              Managed payroll, financial records, and inventory using QuickBooks.
+            </li>
+            <li>
+              Implemented digital solutions for workflow automation and POS
+              systems, providing tech support.
+            </li>
+          </ul>
+        )}
       </div>
 
       <div className="job-entry">
-        <h5>Crew Member</h5>
+        <h5 onClick={() => toggleEntry("mcDonalds")}>
+          Crew Member
+          <span className="toggle-icon">
+            {expandedEntries["mcDonalds"] ? "[-]" : "[+]"}{" "}
+          </span>
+        </h5>
         <p>
-          <strong>McDonald's</strong> | San Antonio, TX | April 2017 - August
-          2020
+          <a href="https://txmcd.com/" target="_blank" rel="noopener noreferrer"><strong>McDonald's</strong></a> | April 2017 - August 2020
         </p>
-        <ul>
-          <li>
-            Provided customer service and operated POS systems in a fast-paced
-            environment.
-          </li>
-          <li>
-            Handled cash transactions accurately and maintained service area
-            cleanliness.
-          </li>
-        </ul>
+        {expandedEntries["mcDonalds"] && (
+          <ul className="job-details">
+            <li>
+              Provided customer service and operated POS systems in a fast-paced
+              environment.
+            </li>
+            <li>
+              Handled cash transactions accurately and maintained service area
+              cleanliness.
+            </li>
+          </ul>
+        )}
       </div>
       <hr className="resume-divider" />
 
