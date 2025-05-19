@@ -71,10 +71,20 @@ a:hover {
   padding: 8px 12px;
   margin: 10px 0;
   border-radius: 4px;
+  min-height: 20px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
 }
 .custom-marquee-text {
   color: #ffb3da;
   font-size: 0.9em;
+  white-space: nowrap;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
 }
 .custom-marquee-text a {
   color: #ff80bf;
@@ -86,18 +96,10 @@ a:hover {
 
 @keyframes marquee-scroll {
   0% {
-    transform: translateX(0%);
+    transform: translateX(100%) translateY(-50%);
   }
   100% {
-    transform: translateX(-100%);
-  }
-}
-@keyframes marquee-scroll-px {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(var(--marquee-distance, -100%));
+    transform: translateX(-100%) translateY(-50%);
   }
 }
 
