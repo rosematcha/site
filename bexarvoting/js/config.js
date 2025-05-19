@@ -1,7 +1,10 @@
 // js/config.js
 
 export const DATA_FILES = {
-    2025: { name: "May 2025", path: "csv/May 2025 Municipal.csv" },
+    2025_1: { name: "May 2025", path: "csv/May 2025 Municipal.csv" },
+    2023_2: { name: "June 2023", path: "csv/June 2023 Municipal Runoff.csv" },
+    2021_2: { name: "June 2021", path: "csv/June 2021 Municipal Runoff.csv" },
+    2019_2: { name: "June 2019", path: "csv/June 2019 Municipal Runoff.csv" },
     // Add future years here when data is available
     // 2024: { name: "May 2024", path: "csv/May 2024 Municipal.csv", disabled: true },
 };
