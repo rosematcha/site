@@ -73,9 +73,9 @@ function Footer() {
           className="custom-marquee-text"
           style={{
             position: "absolute",
-            left: 0,
+            left: '100%', // MODIFIED: Start off-screen to the right
             top: "50%",
-            transform: "translateY(-50%)",
+            transform: "translateY(-50%)", // Base vertical centering
             whiteSpace: "nowrap",
             willChange: "transform",
             animation: duration && distance

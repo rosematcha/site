@@ -81,9 +81,9 @@ a:hover {
   color: #ffb3da;
   font-size: 0.9em;
   white-space: nowrap;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%) translateX(0);
+  position: absolute; /* Also set inline */
+  top: 50%; /* Also set inline */
+  /* transform: translateY(-50%) translateX(0); */ /* REMOVED - Animation handles transform */
 }
 .custom-marquee-text a {
   color: #ff80bf;
@@ -95,10 +95,15 @@ a:hover {
 
 @keyframes marquee-scroll-px {
   0% {
+    /* Text is at left: 100% (from inline style).
+       translateY for vertical centering.
+       translateX(0) means its left edge starts at the container's right edge. */
     transform: translateY(-50%) translateX(0);
   }
   100% {
-    transform: translateY(-50%) translateX(calc(-100% - var(--marquee-width, 0px)));
+    /* --marquee-distance is -(containerWidth + textWidth)
+       This will move the text (containerWidth + textWidth) to the left. */
+    transform: translateY(-50%) translateX(var(--marquee-distance));
   }
 }
 
