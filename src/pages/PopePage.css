@@ -1,0 +1,60 @@
+/* src/pages/PopePage.css */
+.pope-page-container {
+  text-align: center;
+  padding: 20px;
+}
+
+.pope-page-container h1 {
+  color: #ffb3da; /* Theme color */
+  margin-bottom: 30px;
+  font-size: 2.5em;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+.horse-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* Spacing between images */
+  justify-content: center;
+  align-items: center;
+}
+
+.horse-image-container {
+  background-color: rgba(50, 20, 70, 0.3); /* Theme color, slightly transparent */
+  border: 2px solid #ff80bf; /* Theme border color */
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease-in-out;
+  width: calc(33.333% - 40px); /* Adjust for 3 images per row, considering gap and padding */
+  min-width: 250px; /* Minimum width for smaller screens / fewer images per row */
+  box-sizing: border-box;
+}
+
+.horse-image-container:hover {
+  transform: scale(1.05);
+}
+
+.horse-image {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 4px; /* Slight rounding for the image itself */
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+  .horse-image-container {
+    width: calc(50% - 40px); /* 2 images per row */
+  }
+}
+
+@media (max-width: 600px) {
+  .horse-image-container {
+    width: calc(100% - 40px); /* 1 image per row */
+    min-width: unset;
+  }
+  .pope-page-container h1 {
+    font-size: 2em;
+  }
+}
