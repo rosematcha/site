@@ -106,16 +106,17 @@ const parseCSV = (csvString, year) => {
     }
 
     try {
-        // Parse headers, identify election days
+        // Parse headers, identify election days, and assign dayIndex
         const headers = lines[0]
             .split(",")
             .slice(2) // Skip location and total columns
-            .map((h) => {
+            .map((h, index) => { // Added index for dayIndex
                 const trimmedHeader = h.trim();
                 const isElectionDay = trimmedHeader.startsWith("*");
                 return {
                     date: trimmedHeader.replace("*", ""),
                     isElectionDay: isElectionDay,
+                    dayIndex: index + 1, // Assign 1-based day index
                 };
             })
             .filter((h) => h.date); // Filter out potentially empty headers
@@ -135,22 +136,46 @@ const parseCSV = (csvString, year) => {
                 (_, index) => parseFloat(columns[index + 2]?.trim() || "0") || 0
             );
 
-            // Determine if the location is election-day-only
-            let isElectionDayOnly = true;
+            let isElectionDayOnly = false;
             if (dailyData.length > 0 && headers.length === dailyData.length) {
+                isElectionDayOnly = true; // Assume true initially
+                let hasNonZeroDataOutsideED = false;
                 for (let i = 0; i < headers.length; i++) {
                     if (!headers[i].isElectionDay && dailyData[i] > 0) {
+                        // Data found on a non-election day
                         isElectionDayOnly = false;
                         break;
                     }
+                    if (headers[i].isElectionDay && dailyData[i] > 0) {
+                        // Good, data on election day
+                    }
+                    if (!headers[i].isElectionDay && dailyData[i] === 0) {
+                        // Zero data on non-election day, still potentially ED only
+                    }
                 }
-                // Also consider it not election-day-only if all data is zero
-                if (dailyData.every((d) => d === 0)) {
+                 // If all data points are zero, it's not an "election day only" location in a meaningful way.
+                if (dailyData.every(d => d === 0)) {
                     isElectionDayOnly = false;
                 }
+                // Further check: if it has data, does it ONLY have data on days marked isElectionDay?
+                if (isElectionDayOnly && dailyData.some(d => d > 0)) {
+                    let hasDataOnNonEDDay = false;
+                    for (let i = 0; i < headers.length; i++) {
+                        if (dailyData[i] > 0 && !headers[i].isElectionDay) {
+                            hasDataOnNonEDDay = true;
+                            break;
+                        }
+                    }
+                    if (hasDataOnNonEDDay) {
+                        isElectionDayOnly = false;
+                    }
+                }
+
+
             } else {
-                isElectionDayOnly = false; // If data lengths don't match, can't reliably determine
+                isElectionDayOnly = false; 
             }
+
 
             if (locationName.toLowerCase().startsWith("total")) {
                 parsedData[year].totals = dailyData;
@@ -158,7 +183,7 @@ const parseCSV = (csvString, year) => {
                 parsedData[year].locations.push({
                     name: locationName,
                     data: dailyData,
-                    isElectionDayOnly: isElectionDayOnly, // Store this new property
+                    isElectionDayOnly: isElectionDayOnly,
                 });
             }
         });

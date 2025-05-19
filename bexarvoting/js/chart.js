@@ -167,25 +167,85 @@ const renderChart = () => {
     hideCat();
 
     let datasets = [];
-    let labels = [];
+    let labels = []; // This will now store "Day X" or "Election Day"
     let colorIndex = 0;
-    let hasOnlyElectionDayData = true;
+    let hasOnlyElectionDayData = true; // This seems specific to single dataset view, might need re-eval for multi-year
 
-    const primaryYear = selectedYears.find((year) => getDatesForYear(year));
-    if (primaryYear) {
-        const yearDates = getDatesForYear(primaryYear);
+    // Determine the maximum number of days across all selected years for the x-axis
+    let maxDays = 0;
+    selectedYears.forEach((year) => {
+        const yearDates = getDatesForYear(year);
         if (yearDates) {
-            labels = yearDates
-                .filter(
-                    (d) =>
-                        (d.isElectionDay && showElectionDay) ||
-                        (!d.isElectionDay && showEarlyVoting)
-                )
-                .map((d) => d.date);
+            const nonElectionDayCount = yearDates.filter(
+                (d) => !d.isElectionDay
+            ).length;
+            const electionDayPresent = yearDates.some((d) => d.isElectionDay);
+            let currentYearMaxDays = nonElectionDayCount;
+            if (electionDayPresent) currentYearMaxDays++; // Add one for election day if present
+            if (currentYearMaxDays > maxDays) {
+                maxDays = currentYearMaxDays;
+            }
         }
+    });
+
+    // Generate labels based on maxDays
+    for (let i = 1; i <= maxDays; i++) {
+        // Check if this day index corresponds to an election day in *any* of the selected years
+        // This is a simplification; assumes election day is the last day if present.
+        let isCommonElectionDay = false;
+        if (showElectionDay) {
+            let allYearsHaveThisAsED = true;
+            let atLeastOneYearHasThisAsED = false;
+            for (const year of selectedYears) {
+                const yearDates = getDatesForYear(year);
+                if (yearDates) {
+                    const edDate = yearDates.find((d) => d.isElectionDay);
+                    const nonEdDatesCount = yearDates.filter((d) => !d.isElectionDay)
+                        .length;
+                    if (edDate && (nonEdDatesCount + 1 === i)) {
+                        atLeastOneYearHasThisAsED = true;
+                    } else if (edDate && (nonEdDatesCount + 1 !== i)) {
+                        // This year has an ED, but not at this day index
+                    } else if (!edDate && i > nonEdDatesCount) {
+                        // This year doesn't have ED, and i is beyond its non-ED days
+                        allYearsHaveThisAsED = false; // This logic might need refinement for differing lengths
+                    }
+                }
+            }
+            // A more robust way: if i is the last day in our maxDays sequence, and showElectionDay is true,
+            // and at least one selected year has an election day, label it "Election Day".
+            if (
+                i === maxDays &&
+                selectedYears.some((year) =>
+                    getDatesForYear(year)?.some((d) => d.isElectionDay)
+                )
+            ) {
+                isCommonElectionDay = true;
+            }
+        }
+
+        if (isCommonElectionDay) {
+            labels.push("Election Day");
+        } else {
+            labels.push(`Day ${i}`);
+        }
+    }
+    // Ensure labels are unique if multiple election days end up being the same label (e.g. if not all years have ED)
+    // This is a basic fix; a more complex scenario might need smarter label generation.
+    if (labels.filter((l) => l === "Election Day").length > 1) {
+        let edCount = 1;
+        labels = labels.map((l) =>
+            l === "Election Day" ? `Election Day ${edCount++}` : l
+        );
+        // If only one ED, remove the number
+        if (edCount === 2)
+            labels = labels.map((l) => (l === "Election Day 1" ? "Election Day" : l));
     }
 
     selectedYears.forEach((year) => {
+        const yearDates = getDatesForYear(year); // Get all dates for this year
+        if (!yearDates) return;
+
         selectedLocations.forEach((locationKey) => {
             const selectionData = getDataForSelection(
                 year,
@@ -195,32 +255,73 @@ const renderChart = () => {
             );
 
             if (selectionData && selectionData.data.length > 0) {
-                if (selectionData.dates.some((d) => !d.isElectionDay)) {
-                    hasOnlyElectionDayData = false;
+                // This logic needs to change to map to "Day X" labels
+                const alignedData = new Array(labels.length).fill(null);
+                let edDataFoundForThisSet = false;
+
+                selectionData.dates.forEach((dateInfo, dataIndex) => {
+                    let labelIndex = -1;
+                    if (dateInfo.isElectionDay && showElectionDay) {
+                        // Find the "Election Day" label. This assumes one ED label or the last one.
+                        labelIndex = labels.lastIndexOf("Election Day");
+                        // If multiple ED labels, find the one that makes sense (e.g. based on relative position)
+                        if (labels.filter((l) => l.startsWith("Election Day")).length > 1) {
+                            // This part is tricky. For now, let's assume the last ED label is the one.
+                            // A more robust solution would require matching ED dayIndex across years if they differ.
+                        }
+                        edDataFoundForThisSet = true;
+                    } else if (!dateInfo.isElectionDay && showEarlyVoting) {
+                        // dateInfo.dayIndex should exist now
+                        const dayLabel = `Day ${dateInfo.dayIndex}`;
+                        labelIndex = labels.indexOf(dayLabel);
+                    }
+
+                    if (labelIndex !== -1 && dataIndex < selectionData.data.length) {
+                        alignedData[labelIndex] = selectionData.data[dataIndex];
+                    }
+                });
+
+                // Special handling if only election day data is shown and it's the only data point
+                if (
+                    selectionData.dates.length === 1 &&
+                    selectionData.dates[0].isElectionDay &&
+                    showElectionDay &&
+                    !showEarlyVoting
+                ) {
+                    hasOnlyElectionDayData = true; // For this specific dataset
+                } else {
+                    // Check if all *displayed* data points for this dataset are from election days
+                    let allDisplayedIsEd = true;
+                    for (let i = 0; i < selectionData.dates.length; i++) {
+                        const dateInfo = selectionData.dates[i];
+                        const dataVal = selectionData.data[i];
+                        if (dataVal !== null && dataVal > 0) {
+                            // Consider only points with data
+                            if (dateInfo.isElectionDay && !showElectionDay) allDisplayedIsEd = false;
+                            if (!dateInfo.isElectionDay && !showEarlyVoting) allDisplayedIsEd = false;
+                            if (!dateInfo.isElectionDay && showEarlyVoting) allDisplayedIsEd = false; // If any EV day has data, it's not ED-only display
+                        }
+                    }
+                    if (!selectionData.dates.some((d) => !d.isElectionDay && selectionData.data[selectionData.dates.indexOf(d)] > 0 && showEarlyVoting)) {
+                        // No early voting data shown for this set
+                    } else {
+                        hasOnlyElectionDayData = false;
+                    }
                 }
 
                 const color = CHART_COLORS[colorIndex % CHART_COLORS.length];
                 colorIndex++;
 
-                const alignedData = labels.map((labelDate) => {
-                    const dataIndex = selectionData.dates.findIndex(
-                        (d) => d.date === labelDate
-                    );
-                    return dataIndex !== -1
-                        ? selectionData.data[dataIndex]
-                        : null;
-                });
-
                 datasets.push({
                     label: `${selectionData.name} - ${year}`,
                     data: alignedData,
                     borderColor: color,
-                    backgroundColor: color + "33",
+                    backgroundColor: color + "33", // Slight transparency for area fill
                     tension: 0.1,
-                    fill: false,
+                    fill: false, // No fill for line charts by default
                     pointRadius: 3,
                     pointHoverRadius: 5,
-                    spanGaps: true,
+                    spanGaps: true, // Connect points with nulls in between
                 });
             }
         });
@@ -231,8 +332,15 @@ const renderChart = () => {
         return;
     }
 
+    // Determine chart type (bar if single ED-only dataset, line otherwise)
     const chartType =
-        datasets.length === 1 && hasOnlyElectionDayData ? "bar" : "line";
+        datasets.length === 1 &&
+        showElectionDay &&
+        !showEarlyVoting &&
+        datasets[0].data.filter((d) => d !== null).length === 1 && // Only one data point
+        labels[datasets[0].data.findIndex((d) => d !== null)]?.startsWith("Election Day") // That point is ED
+            ? "bar"
+            : "line";
     const chartTitle =
         datasets.length === 1
             ? `${datasets[0].label} Daily Turnout`

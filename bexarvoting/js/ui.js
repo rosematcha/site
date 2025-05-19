@@ -224,32 +224,43 @@ function filterLocations() {
 
     options.forEach((optionLabel) => {
         const inputElement = optionLabel.querySelector("input");
-        const locationName = inputElement?.value;
+        const locationName = inputElement?.value; // Key: location name or TOTAL_TURNOUT_KEY
         const labelSpan = optionLabel.querySelector("span");
-        const locationText = labelSpan ? labelSpan.textContent.toLowerCase() : "";
+        const locationDisplayName = labelSpan ? labelSpan.textContent.toLowerCase() : ""; // Display text for searching
 
-        const isTotal = locationName === TOTAL_TURNOUT_KEY;
-        let isVisible = isTotal || locationText.includes(filterText);
+        let isVisible = false;
+        const matchesSearch = filterText.length > 0 && locationDisplayName.includes(filterText);
+        const noSearch = filterText.length === 0;
 
-        if (!isTotal && locationName) {
+        if (locationName === TOTAL_TURNOUT_KEY) {
+            // "Total Turnout" is visible if no search or if it matches search
+            if (noSearch || matchesSearch) {
+                isVisible = true;
+            }
+        } else if (locationName) {
             const props = getLocationProperties(locationName);
-            if (props && props.isElectionDayOnly) {
-                // Hide if not (only Election Day checked)
-                if (!(!showEarlyVoting && showElectionDay)) {
-                    isVisible = false;
-                }
-                // If searched for, it should be visible regardless of toggles
-                if (locationText.includes(filterText) && filterText.length > 0) {
+            const isEDOnlyLocation = props && props.isElectionDayOnly;
+
+            if (matchesSearch) {
+                // If searched for by name, always show if it matches
+                isVisible = true;
+            } else if (noSearch) {
+                // If no search term, visibility depends on location type and toggles
+                if (isEDOnlyLocation) {
+                    // ED-only locations visible by default only if "Election Day" is the sole active toggle
+                    if (showElectionDay && !showEarlyVoting) {
+                        isVisible = true;
+                    }
+                } else {
+                    // Regular locations are visible by default if no search
                     isVisible = true;
                 }
             }
+            // If there's a search term and it doesn't match, isVisible remains false.
+            // If no search, and it's an ED-only location and toggles aren't "ED only", isVisible remains false.
         }
 
-        if (isVisible) {
-            optionLabel.style.display = "flex";
-        } else {
-            optionLabel.style.display = "none";
-        }
+        optionLabel.style.display = isVisible ? "flex" : "none";
     });
 }
 
