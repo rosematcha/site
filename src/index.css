@@ -82,7 +82,7 @@ a:hover {
   font-size: 0.9em;
   white-space: nowrap;
   position: absolute;
-  left: 0;
+  left: 100%; /* Start fully off-screen to the right */
   top: 50%;
   transform: translateY(-50%);
 }
@@ -99,7 +99,8 @@ a:hover {
     transform: translateX(0) translateY(-50%);
   }
   100% {
-    transform: translateX(var(--marquee-distance, -100%)) translateY(-50%);
+    /* Move left by 100% of container width plus text width */
+    transform: translateX(calc(-100vw - var(--marquee-width, 0px))) translateY(-50%);
   }
 }
 
