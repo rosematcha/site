@@ -86,17 +86,19 @@ a:hover {
 
 @keyframes marquee-scroll {
   0% {
-    transform: translateX(100%);
+    transform: translateX(0%);
   }
   100% {
     transform: translateX(-100%);
   }
 }
-.marquee-anim {
-  animation: marquee-scroll 14s linear 1;
-}
-.marquee-reset {
-  animation: none !important;
+@keyframes marquee-scroll-px {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(var(--marquee-distance, -100%));
+  }
 }
 
 @media (max-width: 885px) {

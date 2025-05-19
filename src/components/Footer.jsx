@@ -17,25 +17,27 @@ function Footer() {
   const [quoteIndex, setQuoteIndex] = useState(() => getRandomQuote(-1));
   const lastIndexRef = useRef(quoteIndex);
   const textRef = useRef(null);
+  const containerRef = useRef(null);
   const [animKey, setAnimKey] = useState(0);
   const [duration, setDuration] = useState(0);
+  const [distance, setDistance] = useState(0);
 
   function renderQuote(text) {
     return <><span role="img" aria-label="sparkle">✨</span> {text} <span role="img" aria-label="sparkle">✨</span></>;
   }
 
-  // Calculate animation duration based on text width
+  // Calculate animation duration and distance based on text width
   const setupAnimation = useCallback(() => {
     const textEl = textRef.current;
-    if (!textEl) return;
-    const container = textEl.parentElement;
-    if (!container) return;
+    const container = containerRef.current;
+    if (!textEl || !container) return;
     const textWidth = textEl.offsetWidth;
     const containerWidth = container.offsetWidth;
     // Distance to travel: textWidth + containerWidth
-    const distance = textWidth + containerWidth;
-    const newDuration = distance / MARQUEE_SPEED;
+    const totalDistance = textWidth + containerWidth;
+    const newDuration = totalDistance / MARQUEE_SPEED;
     setDuration(newDuration);
+    setDistance(totalDistance);
     setAnimKey((k) => k + 1); // force re-render to restart animation
   }, []);
 
@@ -60,19 +62,26 @@ function Footer() {
 
   return (
     <>
-      <div className="custom-marquee-container" style={{ overflow: "hidden", position: "relative", width: "100%" }}>
+      <div
+        className="custom-marquee-container"
+        ref={containerRef}
+        style={{ overflow: "hidden", position: "relative", width: "100%", minHeight: 20 }}
+      >
         <div
           key={animKey}
           ref={textRef}
           className="custom-marquee-text"
           style={{
             position: "absolute",
-            left: "100%",
+            left: 0,
+            top: 0,
             whiteSpace: "nowrap",
             willChange: "transform",
-            animation: duration
-              ? `marquee-scroll ${duration}s linear 1`
+            animation: duration && distance
+              ? `marquee-scroll-px ${duration}s linear 1`
               : undefined,
+            // Custom property for dynamic distance
+            ['--marquee-distance']: distance ? `-${distance}px` : undefined,
           }}
           onAnimationEnd={handleAnimationEnd}
         >
