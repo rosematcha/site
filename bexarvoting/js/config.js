@@ -1,53 +1,351 @@
-// js/config.js
+// js/data.js
+import { DATA_FILES, TOTAL_TURNOUT_KEY, CACHE_EXPIRY } from "./config.js";
+import { updateStatusMessage } from "./ui.js"; // For error reporting
+import { logMetric } from "./main.js"; // Import logMetric
 
-export const DATA_FILES = {
-    "May 2025": { name: "May 2025", path: "csv/May 2025 Municipal.csv" },
-    "June 2023": { name: "June 2023", path: "csv/June 2023 Municipal Runoff.csv" },
-    "May 2023": { name: "May 2023", path: "csv/May 2023 Municipal.csv" },
-    "November 2022": { name: "November 2022", path: "csv/November 2022 General.csv" },
-    "June 2021": { name: "June 2021", path: "csv/June 2021 Municipal Runoff.csv" },
-    "May 2021": { name: "May 2021", path: "csv/May 2021 Municipal.csv" },
-    "November 2020": { name: "November 2020", path: "csv/November 2020 General.csv" },
-    "June 2019": { name: "June 2019", path: "csv/June 2019 Municipal Runoff.csv" },
-    "May 2019": { name: "May 2019", path: "csv/May 2019 Municipal.csv" },
-    // Add future years here when data is available
+// In-memory store for parsed data { year: { locations: [], dates: [], totals: [] } }
+const parsedData = {};
+const memoizedLocations = new Map(); // Cache for specific location data access
+
+/**
+ * Fetches data for a given year, using cache if available and not expired.
+ * @param {string} year - The year to fetch data for.
+ * @returns {Promise<string|null>} CSV data as string or null on error.
+ */
+const fetchWithCache = async (year) => {
+    const cacheKey = `voting-data-${year}`;
+    const now = new Date();
+    const currentTime = now.getTime();
+    const fileInfo = DATA_FILES[year];
+
+    if (!fileInfo || !fileInfo.path) {
+        console.error(`No data file path defined for year ${year}`);
+        return null;
+    }
+
+    const cached = localStorage.getItem(cacheKey);
+    if (cached) {
+        try {
+            const { data, timestamp } = JSON.parse(cached);
+            const cachedDate = new Date(timestamp);
+            // Use cache if same day and within expiry time
+            if (
+                cachedDate.toDateString() === now.toDateString() &&
+                currentTime - timestamp < CACHE_EXPIRY
+            ) {
+                console.log(`Using cached data for ${year}`);
+                return data;
+            }
+        } catch (e) {
+            console.error("Error parsing cache, fetching fresh data", e);
+            localStorage.removeItem(cacheKey); // Clear corrupted cache
+        }
+    }
+
+    console.log(`Fetching fresh data for ${year}`);
+    const startTime = performance.now();
+    try {
+        const response = await fetch(fileInfo.path);
+        if (!response.ok) {
+            throw new Error(
+                `Fetch failed for ${year}: ${response.status} ${response.statusText}`
+            );
+        }
+        const data = await response.text();
+        if (!data?.trim()) {
+            throw new Error(`Fetched file ${fileInfo.path} is empty.`);
+        }
+
+        localStorage.setItem(
+            cacheKey,
+            JSON.stringify({ data, timestamp: currentTime })
+        );
+        logMetric("dataLoadTime", performance.now() - startTime);
+        return data;
+    } catch (error) {
+        console.error("Fetch error:", error);
+        updateStatusMessage(`⚠️ Error loading data for ${year}.`);
+        // Fallback to stale cache if fetch fails
+        if (cached) {
+            console.warn("Fetch failed, using stale cached data as fallback.");
+            updateStatusMessage(
+                `⚠️ Error loading latest data for ${year}. Displaying older data.`
+            );
+            try {
+                return JSON.parse(cached).data;
+            } catch (e) {
+                console.error("Error parsing stale cache during fallback", e);
+                return null;
+            }
+        }
+        return null; // No data could be retrieved
+    }
 };
 
-export const CAT_IMAGES = [
-    "https://upload.wikimedia.org/wikipedia/commons/4/4c/1914_Ready_for_bed_%28LOC%29.jpg",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/A_hungry_bunch_LCCN2013648273.jpg/1280px-A_hungry_bunch_LCCN2013648273.jpg",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/A_joy-ride_LCCN2013648296.jpg/1280px-A_joy-ride_LCCN2013648296.jpg",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Hanging_up_the_wash_LCCN2013648270.jpg/1280px-Hanging_up_the_wash_LCCN2013648270.jpg",
-    "https://upload.wikimedia.org/wikipedia/commons/2/28/Harry_Whittier_Frees_-_Good_Morning.jpg",
-    "https://upload.wikimedia.org/wikipedia/commons/d/d3/Harry_Whittier_Frees_-_Mrs._Bufkins_Finds_Plenty_of_Eggs.jpg",
-    "https://upload.wikimedia.org/wikipedia/commons/2/27/Harry_Whittier_Frees_-_Mrs._Bufkins_Takes_Barker%27s_Place.jpg",
-    "https://upload.wikimedia.org/wikipedia/commons/8/80/Harry_Whittier_Frees_-_Prowler_and_Furra_Cleaned_the_Rugs.jpg",
-    "https://upload.wikimedia.org/wikipedia/commons/0/09/Harry_Whittier_Frees_-_Prowler_and_Purra_Try_the_Jam.jpg",
-    "https://upload.wikimedia.org/wikipedia/commons/e/e0/Harry_Whittier_Frees_-_Prowler_Upsets_the_Cocoanut.jpg",
-    "https://upload.wikimedia.org/wikipedia/commons/5/5a/Harry_Whittier_Frees_-_Purra_Plays_a_Joke_on_Prowler.jpg",
-    "https://upload.wikimedia.org/wikipedia/commons/2/24/Harry_Whittier_Frees_-_Resting_in_the_Hammock.jpg",
-    "https://upload.wikimedia.org/wikipedia/commons/3/3a/Harry_Whittier_Frees_-_Rosie_and_Jennie_Took_a_Cat-Nap.jpg",
-    "https://upload.wikimedia.org/wikipedia/commons/f/fa/Harry_Whittier_Frees_-_Rosie_Bufkins_Gave_Jennie_an_Airing.jpg",
-    "https://upload.wikimedia.org/wikipedia/commons/5/53/Harry_Whittier_Frees_-_The_Bufkins_Twins_Were_Swinging.jpg",
-    "https://upload.wikimedia.org/wikipedia/commons/0/07/Harry_Whittier_Frees_-_The_Twins_Looked_Like_Girls.jpg",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Mischief_makers_LCCN2013648268.jpg/1280px-Mischief_makers_LCCN2013648268.jpg",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Planting_time_LCCN2013648290.jpg/1280px-Planting_time_LCCN2013648290.jpg",
-];
+/**
+ * Parses CSV string into structured data for a given year.
+ * @param {string} csvString - The raw CSV data.
+ * @param {string} year - The year this data represents.
+ * @returns {boolean} True if parsing was successful, false otherwise.
+ */
+const parseCSV = (csvString, year) => {
+    // Reset data for the year
+    parsedData[year] = { locations: [], dates: [], totals: [] };
+    memoizedLocations.clear(); // Clear memoization cache when data changes
 
-// Color palette for chart lines (add more if needed)
-export const CHART_COLORS = [
-    "#EC4899", // Pink-500
-    "#8B5CF6", // Violet-500
-    "#10B981", // Emerald-500
-    "#F59E0B", // Amber-500
-    "#3B82F6", // Blue-500
-    "#EF4444", // Red-500
-    "#6EE7B7", // Emerald-300
-    "#F97316", // Orange-500
-    "#6366F1", // Indigo-500
-    "#06B6D4", // Cyan-500
-];
+    if (!csvString) {
+        console.warn(`No CSV string provided for year ${year}.`);
+        return false;
+    }
 
-export const TOTAL_TURNOUT_KEY = "total"; // Consistent key for total turnout
-export const REFRESH_INTERVAL = 900000; // 15 minutes
-export const CACHE_EXPIRY = 900000; // 15 minutes
+    const lines = csvString.trim().split("\n");
+    if (lines.length < 2) {
+        console.warn(`CSV for year ${year} is incomplete or missing headers.`);
+        updateStatusMessage(`Data for ${year} is missing or incomplete.`);
+        return false;
+    }
+
+    try {
+        // Parse headers, identify election days, and assign dayIndex
+        const headers = lines[0]
+            .split(",")
+            .slice(2) // Skip location and total columns
+            .map((h, index) => { // Added index for dayIndex
+                const trimmedHeader = h.trim();
+                const isElectionDay = trimmedHeader.startsWith("*");
+                return {
+                    date: trimmedHeader.replace("*", ""),
+                    isElectionDay: isElectionDay,
+                    dayIndex: index + 1, // Assign 1-based day index
+                };
+            })
+            .filter((h) => h.date); // Filter out potentially empty headers
+
+        if (headers.length === 0) {
+            console.warn(`No valid date headers found in CSV for ${year}.`);
+            return false;
+        }
+        parsedData[year].dates = headers;
+
+        lines.slice(1).forEach((line) => {
+            const columns = line.split(",");
+            const locationName = columns[0]?.trim();
+            if (!locationName) return; // Skip empty lines
+
+            const dailyData = headers.map(
+                (_, index) => parseFloat(columns[index + 2]?.trim() || "0") || 0
+            );
+
+            let isElectionDayOnly = false;
+            if (dailyData.length > 0 && headers.length === dailyData.length) {
+                isElectionDayOnly = true; // Assume true initially
+                let hasNonZeroDataOutsideED = false;
+                for (let i = 0; i < headers.length; i++) {
+                    if (!headers[i].isElectionDay && dailyData[i] > 0) {
+                        // Data found on a non-election day
+                        isElectionDayOnly = false;
+                        break;
+                    }
+                    if (headers[i].isElectionDay && dailyData[i] > 0) {
+                        // Good, data on election day
+                    }
+                    if (!headers[i].isElectionDay && dailyData[i] === 0) {
+                        // Zero data on non-election day, still potentially ED only
+                    }
+                }
+                 // If all data points are zero, it's not an "election day only" location in a meaningful way.
+                if (dailyData.every(d => d === 0)) {
+                    isElectionDayOnly = false;
+                }
+                // Further check: if it has data, does it ONLY have data on days marked isElectionDay?
+                if (isElectionDayOnly && dailyData.some(d => d > 0)) {
+                    let hasDataOnNonEDDay = false;
+                    for (let i = 0; i < headers.length; i++) {
+                        if (dailyData[i] > 0 && !headers[i].isElectionDay) {
+                            hasDataOnNonEDDay = true;
+                            break;
+                        }
+                    }
+                    if (hasDataOnNonEDDay) {
+                        isElectionDayOnly = false;
+                    }
+                }
+
+
+            } else {
+                isElectionDayOnly = false;
+            }
+
+
+            if (locationName.toLowerCase().startsWith("total")) {
+                parsedData[year].totals = dailyData;
+            } else {
+                parsedData[year].locations.push({
+                    name: locationName,
+                    data: dailyData,
+                    isElectionDayOnly: isElectionDayOnly,
+                });
+            }
+        });
+
+        // Sort locations alphabetically
+        parsedData[year].locations.sort((a, b) => a.name.localeCompare(b.name));
+        console.log(`Successfully parsed data for ${year}`);
+        return true;
+    } catch (error) {
+        console.error(`Error parsing CSV for ${year}:`, error);
+        updateStatusMessage(`⚠️ Error processing data for ${year}.`);
+        // Clear potentially corrupted data
+        parsedData[year] = { locations: [], dates: [], totals: [] };
+        return false;
+    }
+};
+
+/**
+ * Loads and parses data for a specific year if not already loaded.
+ * @param {string} year - The year to load data for.
+ * @returns {Promise<boolean>} True if data is loaded and parsed successfully, false otherwise.
+ */
+export const loadYearData = async (year) => {
+    if (parsedData[year] && parsedData[year].dates.length > 0) {
+        console.log(`Data for ${year} already loaded.`);
+        return true; // Already loaded
+    }
+    updateStatusMessage(`Loading data for ${year}...`);
+    const csvText = await fetchWithCache(year);
+    if (csvText) {
+        const success = parseCSV(csvText, year);
+        if (success) {
+            updateStatusMessage(""); // Clear loading message on success
+        }
+        return success;
+    }
+    // Fetch failed or returned null
+    updateStatusMessage(`Failed to load data for ${year}.`);
+    return false;
+};
+
+/**
+ * Gets all unique location names from the currently loaded years.
+ * @returns {string[]} Sorted list of unique location names.
+ */
+export const getAllLoadedLocations = () => {
+    const locationSet = new Set();
+    Object.values(parsedData).forEach((yearData) => {
+        yearData.locations?.forEach((loc) => locationSet.add(loc.name));
+    });
+    return Array.from(locationSet).sort();
+};
+
+/**
+ * Gets properties for a specific location.
+ * @param {string} locationName - The name of the location.
+ * @returns {{isElectionDayOnly: boolean}|null} Properties or null if not found.
+ */
+export const getLocationProperties = (locationName) => {
+    for (const year in parsedData) {
+        const yearData = parsedData[year];
+        const locationData = yearData.locations?.find(
+            (loc) => loc.name === locationName
+        );
+        if (locationData) {
+            return {
+                isElectionDayOnly: !!locationData.isElectionDayOnly,
+            };
+        }
+    }
+    return null;
+};
+
+/**
+ * Retrieves the raw data for a specific location or total for a given year.
+ * Uses memoization for efficiency.
+ * @param {string} year - The year.
+ * @param {string} locationOrTotalKey - Location name or TOTAL_TURNOUT_KEY.
+ * @returns {{name: string, data: number[]}|null} The location/total data or null if not found.
+ */
+const getRawData = (year, locationOrTotalKey) => {
+    if (!parsedData[year]) return null;
+
+    const cacheKey = `${year}-${locationOrTotalKey}`;
+    if (memoizedLocations.has(cacheKey)) {
+        return memoizedLocations.get(cacheKey);
+    }
+
+    let result = null;
+    if (locationOrTotalKey === TOTAL_TURNOUT_KEY) {
+        if (parsedData[year].totals?.length > 0) {
+            result = { name: "Total Turnout", data: parsedData[year].totals };
+        }
+    } else {
+        result =
+            parsedData[year].locations.find(
+                (loc) => loc.name === locationOrTotalKey
+            ) || null;
+    }
+
+    memoizedLocations.set(cacheKey, result);
+    return result;
+};
+
+/**
+ * Gets data for a specific selection, filtered by date type toggles.
+ * @param {string} year - The year.
+ * @param {string} locationOrTotalKey - Location name or TOTAL_TURNOUT_KEY.
+ * @param {boolean} showEarlyVoting - Whether to include early voting days.
+ * @param {boolean} showElectionDay - Whether to include election day.
+ * @returns {{name: string, data: number[], dates: {date: string, isElectionDay: boolean}[], indices: number[]}|null} Filtered data or null.
+ */
+export const getDataForSelection = (
+    year,
+    locationOrTotalKey,
+    showEarlyVoting,
+    showElectionDay
+) => {
+    const raw = getRawData(year, locationOrTotalKey);
+    const yearDates = parsedData[year]?.dates;
+
+    if (!raw || !yearDates || yearDates.length === 0) {
+        return null;
+    }
+
+    const indicesToKeep = yearDates
+        .map((dateInfo, index) => {
+            if (dateInfo.isElectionDay && showElectionDay) return index;
+            if (!dateInfo.isElectionDay && showEarlyVoting) return index;
+            return -1; // Mark for removal
+        })
+        .filter((index) => index !== -1);
+
+    if (indicesToKeep.length === 0) {
+        return null; // No data points match the filter
+    }
+
+    const filteredData = indicesToKeep.map((index) => raw.data[index]);
+    const filteredDates = indicesToKeep.map((index) => yearDates[index]);
+
+    return {
+        name: raw.name,
+        data: filteredData,
+        dates: filteredDates, // Dates corresponding to the filtered data points
+        indices: indicesToKeep, // Original indices kept after filtering
+    };
+};
+
+/**
+ * Gets the date objects for a specific year.
+ * @param {string} year The year.
+ * @returns {{date: string, isElectionDay: boolean}[] | null} Array of date objects or null.
+ */
+export const getDatesForYear = (year) => {
+    return parsedData[year]?.dates || null;
+};
+
+/**
+ * Checks if data for a specific year is loaded.
+ * @param {string} year The year to check.
+ * @returns {boolean} True if data is loaded, false otherwise.
+ */
+export const isDataLoaded = (year) => {
+    return !!parsedData[year] && parsedData[year].dates?.length > 0;
+};

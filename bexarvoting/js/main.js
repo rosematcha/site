@@ -1,5 +1,5 @@
 // js/main.js
-import { DATA_FILES, REFRESH_INTERVAL } from "./config.js";
+import { DATA_FILES, REFRESH_INTERVAL, TOTAL_TURNOUT_KEY } from "./config.js";
 import { loadYearData, isDataLoaded } from "./data.js";
 import {
     populateYearCheckboxes,
@@ -8,7 +8,12 @@ import {
     updateStatusMessage,
     updateAttribution,
     getSelectedYears,
-    // Note: statusMessageElement is internal to ui.js now
+    getSelectedLocations,
+    getToggleStates,
+    setSelectedYears,     // New setter
+    setSelectedLocations, // New setter
+    setToggleStates,      // New setter
+    manageDisplay,        // For managing chart/table view
 } from "./ui.js";
 import { debouncedRenderChart } from "./chart.js";
 
@@ -19,17 +24,11 @@ const metrics = {
     interactions: 0,
 };
 
-/**
- * Logs performance metrics. Exported for use in other modules.
- * @param {'renderTime'|'dataLoadTime'|'interactions'} category - Metric category.
- * @param {number} durationOrCount - Duration in ms or count.
- */
 export const logMetric = (category, durationOrCount) => {
     if (typeof durationOrCount === "number" && category === "interactions") {
         metrics[category] = (metrics[category] || 0) + durationOrCount;
     } else if (typeof durationOrCount === "number") {
         metrics[category].push(durationOrCount);
-        // Keep only the last 100 entries to avoid memory leak
         if (metrics[category].length > 100) {
             metrics[category].shift();
         }
@@ -37,74 +36,113 @@ export const logMetric = (category, durationOrCount) => {
 };
 
 /**
- * Initializes the application.
+ * Applies application state from URL query parameters.
  */
+const applyStateFromURL = () => {
+    const params = new URLSearchParams(window.location.search);
+
+    const years = params.get("y")?.split(",") || [];
+    const locations = params.get("l")?.split(",") || [];
+    const showEV = params.get("ev");
+    const showED = params.get("ed");
+    const yz = params.get("yz");
+    const showDT = params.get("dt"); // Data Table
+
+    if (years.length > 0) {
+        setSelectedYears(years);
+    }
+    // setSelectedLocations will be called after initial years are loaded and populateLocationDropdown runs,
+    // so we store the locationsFromURL to be applied then.
+    // However, if called here, it might try to check locations that aren't populated yet.
+    // Let's defer specific location setting to after initial year loads in initialize().
+
+    const toggleStates = {};
+    if (showEV !== null) toggleStates.ev = showEV === "1";
+    if (showED !== null) toggleStates.ed = showED === "1";
+    if (yz !== null) toggleStates.yz = yz === "1";
+    if (showDT !== null) toggleStates.dt = showDT === "1";
+
+    if (Object.keys(toggleStates).length > 0) {
+        setToggleStates(toggleStates);
+    }
+    return locations; // Return locations from URL to be applied later
+};
+
+/**
+ * Updates the URL query parameters based on the current UI state.
+ */
+export const updateURLFromState = () => {
+    const years = getSelectedYears();
+    const locations = getSelectedLocations();
+    const { showEarlyVoting, showElectionDay, startYAtZero, showDataTable } = getToggleStates();
+
+    const params = new URLSearchParams();
+    if (years.length > 0) params.set("y", years.join(","));
+    if (locations.length > 0) params.set("l", locations.join(","));
+
+    params.set("ev", showEarlyVoting ? "1" : "0");
+    params.set("ed", showElectionDay ? "1" : "0");
+    params.set("yz", startYAtZero ? "1" : "0");
+    params.set("dt", showDataTable ? "1" : "0"); // Data Table
+
+    const newRelativePathQuery = window.location.pathname + "?" + params.toString();
+    history.pushState(null, "", newRelativePathQuery);
+};
+
+
 const initialize = async () => {
     updateStatusMessage("Initializing...");
-    populateYearCheckboxes(); // Set up year controls first
 
-    // Load data for initially checked years
+    // Apply state from URL first to determine which years/toggles are active
+    const locationsFromURL = applyStateFromURL(); // This sets year checkboxes and toggles
+
+    populateYearCheckboxes(getSelectedYears()); // Populates based on current state (potentially from URL)
+
     const initialYears = getSelectedYears();
     const loadPromises = initialYears.map((year) => loadYearData(year));
 
     try {
-        // Wait for all initial data loads to attempt completion
-        await Promise.allSettled(loadPromises); // Use allSettled to continue even if some fail
+        await Promise.allSettled(loadPromises);
     } catch (error) {
-        // This catch might not be strictly necessary with allSettled,
-        // but good practice in case of unexpected errors during Promise creation.
         console.error("Unexpected error during initial data load setup:", error);
         updateStatusMessage("⚠️ Unexpected error during initialization.");
     }
 
-    // Check if *any* data actually loaded successfully
     const hasLoadedData = initialYears.some((year) => isDataLoaded(year));
 
-    // Populate controls based on whatever data loaded
-    populateLocationDropdown();
-    setupEventListeners();
+    // Populate location dropdown now that initial years are loaded
+    populateLocationDropdown(locationsFromURL); // Pass locations from URL to ensure they are selected
+    setupEventListeners(); // Setup all listeners, including new buttons
     updateAttribution();
 
-    // Initial chart render (will show cat if no data/selections)
-    debouncedRenderChart();
+    debouncedRenderChart(); // Initial render will use current (possibly URL-derived) state
+    // manageDisplay() is called at the end of renderChart (or debouncedRenderChart flow)
 
-    // Update status message based on load results
-    const statusElement = document.querySelector(
-        "#chart-container > p.absolute"
-    ); // Re-select in case it wasn't created yet
+    const statusElement = document.querySelector("#chart-container > p.absolute");
     if (hasLoadedData) {
-        // Clear "Initializing..." if successful and no prior error shown
         if (statusElement && !statusElement.textContent.includes("⚠️")) {
             updateStatusMessage("");
         }
     } else {
-        // If no data loaded at all, ensure a message is shown
         updateStatusMessage("No data available to display.");
-        // debouncedRenderChart() called above will handle showing the cat
     }
 
-    // Set up auto-refresh interval
     setInterval(async () => {
         console.log("Checking for data updates...");
-        const yearsToCheck = getSelectedYears(); // Refresh only selected years
+        const yearsToCheck = getSelectedYears();
         let dataChanged = false;
 
-        // Use Promise.allSettled to fetch updates concurrently
         const updatePromises = yearsToCheck.map(async (year) => {
             const cacheKey = `voting-data-${year}`;
             const oldDataTimestamp = localStorage.getItem(cacheKey)
                 ? JSON.parse(localStorage.getItem(cacheKey)).timestamp
                 : null;
-
-            await loadYearData(year); // Fetches/parses if needed or expired
-
+            await loadYearData(year);
             const newDataTimestamp = localStorage.getItem(cacheKey)
                 ? JSON.parse(localStorage.getItem(cacheKey)).timestamp
                 : null;
-
-            // Consider data changed if timestamp is different
             if (oldDataTimestamp !== newDataTimestamp) {
-                return true; // Indicate change for this year
+                return true;
             }
             return false;
         });
@@ -115,18 +153,16 @@ const initialize = async () => {
         );
 
         if (dataChanged) {
-            console.log("Data changed, re-rendering chart...");
-            // Repopulate dropdown in case locations changed
-            populateLocationDropdown();
+            console.log("Data changed, re-rendering...");
+            populateLocationDropdown(getSelectedLocations()); // Preserve current selections while refreshing list
             debouncedRenderChart();
-            updateAttribution(); // Update date in attribution
+            updateAttribution();
         } else {
             console.log("No data changes detected.");
         }
     }, REFRESH_INTERVAL);
 };
 
-// Expose performance metrics globally (optional)
 window.getPerformanceMetrics = () => {
     const safeReduce = (arr) =>
         arr.length > 0 ? arr.reduce((a, b) => a + b, 0) / arr.length : 0;
@@ -137,5 +173,4 @@ window.getPerformanceMetrics = () => {
     };
 };
 
-// Start the application
 document.addEventListener("DOMContentLoaded", initialize);

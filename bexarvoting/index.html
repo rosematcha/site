@@ -30,7 +30,7 @@
                  @apply inline-block px-4 py-2 bg-gray-600 text-white font-semibold rounded hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-gray-900 text-center transition-colors duration-300;
             }
             /* Ensure specific text elements are light */
-            h2, label, span, p, option {
+            h2, label, span, p, option, th, td { /* Added th, td */
                 @apply text-gray-200; /* Default light text */
             }
              p.text-sm, p.text-xs { /* Dimmer text for notes */
@@ -40,6 +40,25 @@
              select[multiple] option:checked {
                  @apply bg-pink-600 bg-opacity-50 text-white;
              }
+            /* Data Table Styles */
+            .data-table-container {
+                @apply card mt-6 max-h-[36rem] overflow-auto; /* Max height and scroll */
+            }
+            .data-table {
+                @apply w-full text-sm text-left;
+            }
+            .data-table th, .data-table td {
+                @apply px-4 py-2 border-b border-gray-700;
+            }
+            .data-table th {
+                @apply bg-gray-750 font-semibold; /* Slightly different bg for header */
+            }
+            .data-table tbody tr:hover {
+                @apply bg-gray-700;
+            }
+            .hidden {
+                display: none;
+            }
         </style>
     </head>
     <body class="font-sans">
@@ -55,22 +74,28 @@
                 />
             </div>
 
-            <!-- Chart Area -->
-            <div id="chart-container" class="relative mb-6 card h-96 md:h-[36rem]"> <!-- Added md:h-[36rem] -->
-                <!-- Status message inserted here by JS -->
-                <canvas id="turnoutChart"></canvas>
-                <!-- Cat container added here by JS if needed -->
+            <!-- Chart/Table Area -->
+            <div id="visualization-area" class="relative mb-6">
+                <div id="chart-container" class="relative card h-96 md:h-[36rem]">
+                    <!-- Status message inserted here by JS -->
+                    <canvas id="turnoutChart"></canvas>
+                    <!-- Cat container added here by JS if needed -->
+                </div>
+                <div id="data-table-container" class="data-table-container hidden">
+                    <!-- Data table populated by JS -->
+                </div>
             </div>
+
 
             <!-- Action Buttons -->
             <div
-                class="flex flex-col sm:flex-row sm:space-x-4 space-y-2 sm:space-y-0 mb-6"
+                class="flex flex-col sm:flex-row flex-wrap sm:space-x-4 space-y-2 sm:space-y-0 mb-6"
             >
                 <a
                     href="https://www.bexar.org/2231/Who-represents-me-Search"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="button-pink"
+                    class="button-pink mb-2 sm:mb-0"
                 >
                     See Your Sample Ballot
                 </a>
@@ -78,15 +103,18 @@
                     href="https://www.bexar.org/2229/Voter-Registration-Check-Polling-Locatio"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="button-pink"
+                    class="button-pink mb-2 sm:mb-0"
                 >
                     Verify Voter Registration
                 </a>
+                 <button id="copy-share-link-button" class="button-pink mb-2 sm:mb-0">
+                    Copy Share Link
+                </button>
                 <a
                     href="https://lwvsa.org/handlers/celinks.ashx?id=74871"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="button-secondary"
+                    class="button-secondary mb-2 sm:mb-0"
                 >
                     League of Women Voters Voter Guide
                 </a>
@@ -99,17 +127,11 @@
 
                     <!-- Year Selection -->
                     <div class="md:col-span-1">
-                        <label class="block text-sm font-medium mb-1">
+                        <label for="year-options" class="block text-sm font-medium mb-1">
                             Select Years:
                         </label>
                         <div id="year-options" class="space-y-1 max-h-32 overflow-y-auto border border-gray-600 rounded p-2 bg-gray-700">
                             <!-- Year checkboxes populated by JS -->
-                            <!-- Example:
-                            <label class="block inline-flex items-center">
-                                <input type="checkbox" class="form-checkbox rounded text-pink-600 focus:ring-pink-500" value="2025" checked />
-                                <span class="ml-2 text-sm">May 2025</span>
-                            </label>
-                             -->
                         </div>
                         <p class="text-xs text-gray-400 mt-1">
                             other years pending public info request
@@ -118,7 +140,7 @@
 
                     <!-- Location Selection (Checkbox List) -->
                     <div class="md:col-span-1">
-                        <label class="block text-sm font-medium mb-1">
+                        <label for="location-filter" class="block text-sm font-medium mb-1">
                             Select Locations/Total:
                         </label>
                         <!-- Filter Input -->
@@ -126,7 +148,7 @@
                             type="text"
                             id="location-filter"
                             placeholder="Filter locations..."
-                            class="form-input-style mb-2 text-sm py-1" 
+                            class="form-input-style mb-2 text-sm py-1"
                         />
                         <!-- Select/Deselect Buttons -->
                         <div class="flex justify-between items-center mb-1 px-1">
@@ -176,6 +198,14 @@
                                      checked
                                  />
                                  <span class="ml-2 text-sm">Start Y-Axis at Zero</span>
+                             </label>
+                             <label class="inline-flex items-center ml-4"> <!-- New Toggle for Data Table -->
+                                 <input
+                                     id="data-table-toggle"
+                                     type="checkbox"
+                                     class="form-checkbox rounded text-pink-600 focus:ring-pink-500"
+                                 />
+                                 <span class="ml-2 text-sm">Show Data Table</span>
                              </label>
                          </div>
                     </div>
