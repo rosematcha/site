@@ -1,294 +1,291 @@
 <!DOCTYPE html>
-<html lang="en" class="dark"> <!-- Always dark mode -->
+<html lang="en" class="dark">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>SA Early Voting Tracker</title>
-        <!-- Tailwind CSS CDN -->
         <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
-        <!-- Chart.js CDN -->
         <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
         <style>
-            /* Base styles for dark mode ONLY */
             body {
-                background-color: #111827; /* bg-gray-900 */
-                color: #f3f4f6; /* text-gray-100 */
+                background-color: #111827;
+                color: #f3f4f6;
             }
-            /* Reusable card component style */
             .card {
-                background-color: #1f2937; /* bg-gray-800 */
-                border-radius: 0.25rem; /* rounded */
-                box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); /* shadow */
-                padding: 1rem; /* p-4 */
+                background-color: #1f2937;
+                border-radius: 0.5rem;
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+                padding: 1.5rem;
             }
-            /* Consistent input styling for dark mode */
             .form-input-style, .form-multiselect-style {
-                margin-top: 0.25rem; /* mt-1 */
+                margin-top: 0.25rem;
                 display: block;
                 width: 100%;
-                border-radius: 0.375rem; /* rounded-md */
-                border-color: #4b5563; /* border-gray-600 */
-                background-color: #374151; /* bg-gray-700 */
-                color: #d1d5db; /* text-gray-200 */
-                box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); /* shadow-sm */
+                border-radius: 0.375rem;
+                border-color: #4b5563;
+                background-color: #374151;
+                color: #d1d5db;
+                box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
             }
             .form-input-style:focus, .form-multiselect-style:focus {
-                border-color: #db2777; /* focus:border-pink-500 (using pink-600 as 400 is light) */
-                --tw-ring-color: #f9a8d4; /* focus:ring-pink-300 */
-                box-shadow: 0 0 0 3px var(--tw-ring-color); /* focus:ring focus:ring-opacity-50 */
+                border-color: #db2777;
+                --tw-ring-color: #f9a8d4;
+                box-shadow: 0 0 0 3px var(--tw-ring-color);
             }
-
-            /* Pink accent button */
             .button-pink {
                 display: inline-block;
-                padding-left: 1rem; padding-right: 1rem; /* px-4 */
-                padding-top: 0.5rem; padding-bottom: 0.5rem; /* py-2 */
-                background-color: #db2777; /* bg-pink-600 */
-                color: #ffffff; /* text-white */
-                font-weight: 600; /* font-semibold */
-                border-radius: 0.25rem; /* rounded */
+                padding: 0.75rem 1.5rem;
+                background-color: #db2777;
+                color: #ffffff;
+                font-weight: 600;
+                border-radius: 0.5rem;
                 text-align: center;
-                transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
-                transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-                transition-duration: 300ms;
+                transition: all 0.2s;
+                text-decoration: none;
             }
             .button-pink:hover {
-                background-color: #be185d; /* hover:bg-pink-700 */
+                background-color: #be185d;
+                transform: translateY(-1px);
             }
-            .button-pink:focus {
-                outline: 2px solid transparent;
-                outline-offset: 2px;
-                --tw-ring-color: #ec4899; /* focus:ring-pink-500 */
-                box-shadow: 0 0 0 2px #111827, 0 0 0 4px var(--tw-ring-color); /* focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 */
-            }
-
-            /* Secondary button style */
             .button-secondary {
                 display: inline-block;
-                padding-left: 1rem; padding-right: 1rem; /* px-4 */
-                padding-top: 0.5rem; padding-bottom: 0.5rem; /* py-2 */
-                background-color: #4b5563; /* bg-gray-600 */
-                color: #ffffff; /* text-white */
-                font-weight: 600; /* font-semibold */
-                border-radius: 0.25rem; /* rounded */
+                padding: 0.5rem 1rem;
+                background-color: #4b5563;
+                color: #ffffff;
+                font-weight: 500;
+                border-radius: 0.375rem;
                 text-align: center;
-                transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
-                transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-                transition-duration: 300ms;
+                transition: all 0.2s;
+                text-decoration: none;
+                font-size: 0.875rem;
             }
             .button-secondary:hover {
-                background-color: #374151; /* hover:bg-gray-700 */
+                background-color: #374151;
             }
-            .button-secondary:focus {
-                outline: 2px solid transparent;
-                outline-offset: 2px;
-                --tw-ring-color: #6b7280; /* focus:ring-gray-500 */
-                box-shadow: 0 0 0 2px #111827, 0 0 0 4px var(--tw-ring-color); /* focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 */
-            }
-
-            /* Ensure specific text elements are light */
-            h2, label, span, p, option, th, td {
-                color: #d1d5db; /* text-gray-200 */
-            }
-            p.text-sm, p.text-xs {
-                color: #9ca3af; /* text-gray-400 */
-            }
-            /* Style selected options in multi-select */
-            select[multiple] option:checked {
-                background-color: rgba(219, 39, 119, 0.5); /* bg-pink-600 bg-opacity-50 */
-                color: #ffffff; /* text-white */
-            }
-            /* Data Table Styles */
             .data-table-container {
-                /* Uses .card styles + */
-                margin-top: 1.5rem; /* mt-6 */
-                max-height: 36rem; /* max-h-[36rem] */
+                margin-top: 1.5rem;
+                max-height: 36rem;
                 overflow: auto;
             }
             .data-table {
-                width: 100%; /* w-full */
-                font-size: 0.875rem; /* text-sm */
-                text-align: left; /* text-left */
+                width: 100%;
+                font-size: 0.875rem;
+                text-align: left;
             }
             .data-table th, .data-table td {
-                padding-left: 1rem; padding-right: 1rem; /* px-4 */
-                padding-top: 0.5rem; padding-bottom: 0.5rem; /* py-2 */
-                border-bottom-width: 1px; /* border-b */
-                border-color: #374151; /* border-gray-700 */
+                padding: 0.75rem 1rem;
+                border-bottom: 1px solid #374151;
             }
             .data-table th {
-                background-color: #374151; /* bg-gray-700 (changed from 750) */
-                font-weight: 600; /* font-semibold */
+                background-color: #374151;
+                font-weight: 600;
+                position: sticky;
+                top: 0;
             }
             .data-table tbody tr:hover {
-                background-color: #374151; /* bg-gray-700 */
+                background-color: #374151;
             }
             .hidden {
-                display: none !important; /* Ensure hidden overrides other display properties */
+                display: none !important;
+            }
+            
+            /* Collapsible controls */
+            .controls-collapsed {
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease-out;
+            }
+            .controls-expanded {
+                max-height: 1000px;
+                transition: max-height 0.3s ease-in;
+            }
+            
+            /* Improved year pills */
+            .year-pill {
+                display: inline-flex;
+                align-items: center;
+                padding: 0.5rem 1rem;
+                margin: 0.25rem;
+                background-color: #374151;
+                border: 2px solid #4b5563;
+                border-radius: 2rem;
+                cursor: pointer;
+                transition: all 0.2s;
+                user-select: none;
+            }
+            .year-pill:hover {
+                border-color: #db2777;
+            }
+            .year-pill.selected {
+                background-color: #db2777;
+                border-color: #db2777;
+                color: white;
+            }
+            
+            /* Location chips */
+            .location-chip {
+                display: inline-flex;
+                align-items: center;
+                padding: 0.375rem 0.75rem;
+                margin: 0.125rem;
+                background-color: #374151;
+                border-radius: 1rem;
+                font-size: 0.875rem;
+                cursor: pointer;
+                transition: all 0.2s;
+                border: 1px solid #4b5563;
+            }
+            .location-chip:hover {
+                border-color: #db2777;
+            }
+            .location-chip.selected {
+                background-color: #db2777;
+                border-color: #db2777;
+                color: white;
+            }
+            
+            /* Better mobile layout */
+            @media (max-width: 768px) {
+                .card {
+                    padding: 1rem;
+                }
+                .controls-grid {
+                    grid-template-columns: 1fr;
+                    gap: 1rem;
+                }
             }
         </style>
     </head>
     <body class="font-sans">
-        <div class="container mx-auto p-4 md:p-8">
-            <!-- Header Area -->
-            <div class="flex justify-between items-start mb-6">
-                <img
-                    src="title.gif"
-                    alt="San Antonio Early Voting Turnout"
-                    width="895"
-                    height="92"
-                    class="max-w-[70%] md:max-w-md h-auto"
-                />
-            </div>
-
-            <!-- Chart/Table Area -->
-            <div id="visualization-area" class="relative mb-6">
-                <div id="chart-container" class="relative card h-96 md:h-[36rem]">
-                    <!-- Status message inserted here by JS -->
-                    <canvas id="turnoutChart"></canvas>
-                    <!-- Cat container added here by JS if needed -->
-                </div>
-                <div id="data-table-container" class="data-table-container hidden">
-                    <!-- Data table populated by JS -->
-                </div>
-            </div>
-
-
-            <!-- Action Buttons -->
-            <div
-                class="flex flex-col sm:flex-row flex-wrap sm:space-x-4 space-y-2 sm:space-y-0 mb-6"
-            >
-                <a
-                    href="https://www.bexar.org/2231/Who-represents-me-Search"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="button-pink mb-2 sm:mb-0"
-                >
-                    See Your Sample Ballot
-                </a>
-                <a
-                    href="https://www.bexar.org/2229/Voter-Registration-Check-Polling-Locatio"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="button-pink mb-2 sm:mb-0"
-                >
-                    Verify Voter Registration
-                </a>
-                 <button id="copy-share-link-button" class="button-pink mb-2 sm:mb-0">
-                    Copy Share Link
-                </button>
-                <a
-                    href="https://lwvsa.org/handlers/celinks.ashx?id=74871"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="button-secondary mb-2 sm:mb-0"
-                >
-                    League of Women Voters Voter Guide
-                </a>
-            </div>
-
-            <!-- Controls Area -->
-            <div class="mb-6 card">
-                <h2 class="text-xl font-semibold mb-3">Display Options</h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-
-                    <!-- Year Selection -->
-                    <div class="md:col-span-1">
-                        <label for="year-options-label" class="block text-sm font-medium mb-1">
-                            Select Years:
-                        </label>
-                        <div id="year-options" aria-labelledby="year-options-label" class="space-y-1 max-h-32 overflow-y-auto border border-gray-600 rounded p-2 bg-gray-700">
-                            <!-- Year checkboxes populated by JS -->
-                        </div>
-                        <p class="text-xs text-gray-400 mt-1">
-                            other years pending public info request
-                        </p>
-                    </div>
-
-                    <!-- Location Selection (Checkbox List) -->
-                    <div class="md:col-span-1">
-                        <label for="location-filter" class="block text-sm font-medium mb-1">
-                            Select Locations/Total:
-                        </label>
-                        <!-- Filter Input -->
-                        <input
-                            type="text"
-                            id="location-filter"
-                            placeholder="Filter locations..."
-                            aria-label="Filter locations"
-                            class="form-input-style mb-2 text-sm py-1"
+        <div class="min-h-screen bg-gray-900">
+            <!-- Header -->
+            <header class="bg-gray-800 border-b border-gray-700">
+                <div class="container mx-auto px-4 py-4">
+                    <div class="flex items-center justify-between">
+                        <img
+                            src="title.gif"
+                            alt="San Antonio Early Voting Turnout"
+                            class="h-12 md:h-16 w-auto"
                         />
-                        <!-- Select/Deselect Buttons -->
-                        <div class="flex justify-between items-center mb-1 px-1">
-                            <button id="select-all-locations" class="text-xs text-pink-400 hover:text-pink-300 focus:outline-none">Select All Visible</button>
-                            <button id="deselect-all-locations" class="text-xs text-pink-400 hover:text-pink-300 focus:outline-none">Deselect All Visible</button>
-                        </div>
-                        <!-- Checkbox Container -->
-                        <div id="location-checkbox-container" aria-live="polite" class="space-y-1 max-h-40 overflow-y-auto border border-gray-600 rounded p-2 bg-gray-700">
-                            <!-- Checkboxes populated by JS -->
-                        </div>
-                    </div>
-
-                    <!-- Data & Axis Toggles -->
-                    <div class="md:col-span-1 space-y-3">
-                         <div>
-                             <label class="block text-sm font-medium mb-1">
-                                 Show Data Types:
-                             </label>
-                             <label class="inline-flex items-center">
-                                 <input
-                                     id="early-voting-toggle"
-                                     type="checkbox"
-                                     class="form-checkbox rounded text-pink-600 focus:ring-pink-500"
-                                     checked
-                                 />
-                                 <span class="ml-2 text-sm">Early Voting</span>
-                             </label>
-                             <label class="inline-flex items-center ml-4">
-                                 <input
-                                     id="election-day-toggle"
-                                     type="checkbox"
-                                     class="form-checkbox rounded text-pink-600 focus:ring-pink-500"
-                                     checked
-                                 />
-                                 <span class="ml-2 text-sm">Election Day</span>
-                             </label>
-                         </div>
-                         <div>
-                             <label class="block text-sm font-medium mb-1">
-                                 Chart Options:
-                             </label>
-                             <label class="inline-flex items-center">
-                                 <input
-                                     id="y-axis-toggle"
-                                     type="checkbox"
-                                     class="form-checkbox rounded text-pink-600 focus:ring-pink-500"
-                                     checked
-                                 />
-                                 <span class="ml-2 text-sm">Start Y-Axis at Zero</span>
-                             </label>
-                             <label class="inline-flex items-center ml-4">
-                                 <input
-                                     id="data-table-toggle"
-                                     type="checkbox"
-                                     class="form-checkbox rounded text-pink-600 focus:ring-pink-500"
-                                 />
-                                 <span class="ml-2 text-sm">Show Data Table</span>
-                             </label>
-                         </div>
+                        <button id="copy-share-link-button" class="button-secondary">
+                            📋 Share
+                        </button>
                     </div>
                 </div>
+            </header>
+
+            <div class="container mx-auto px-4 py-6">
+                <!-- Quick Controls Bar -->
+                <div class="mb-6">
+                    <div class="card">
+                        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+                            <!-- Year Selection (Pills) -->
+                            <div class="flex-1">
+                                <label class="block text-sm font-medium mb-2 text-gray-300">Select Years:</label>
+                                <div id="year-pills" class="flex flex-wrap">
+                                    <!-- Year pills populated by JS -->
+                                </div>
+                            </div>
+                            
+                            <!-- Quick Toggles -->
+                            <div class="flex flex-col sm:flex-row gap-3">
+                                <label class="inline-flex items-center">
+                                    <input id="early-voting-toggle" type="checkbox" class="form-checkbox rounded text-pink-600 focus:ring-pink-500" checked />
+                                    <span class="ml-2 text-sm">Early Voting</span>
+                                </label>
+                                <label class="inline-flex items-center">
+                                    <input id="election-day-toggle" type="checkbox" class="form-checkbox rounded text-pink-600 focus:ring-pink-500" checked />
+                                    <span class="ml-2 text-sm">Election Day</span>
+                                </label>
+                                <label class="inline-flex items-center">
+                                    <input id="data-table-toggle" type="checkbox" class="form-checkbox rounded text-pink-600 focus:ring-pink-500" />
+                                    <span class="ml-2 text-sm">Table View</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <!-- Advanced Controls (Collapsible) -->
+                        <div class="mt-4 pt-4 border-t border-gray-600">
+                            <button id="advanced-toggle" class="flex items-center text-sm text-pink-400 hover:text-pink-300 focus:outline-none">
+                                <span>Location Settings</span>
+                                <svg id="advanced-arrow" class="w-4 h-4 ml-1 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                            </button>
+                            
+                            <div id="advanced-controls" class="controls-collapsed">
+                                <div class="mt-4 space-y-4">
+                                    <!-- Location Filter -->
+                                    <div>
+                                        <label for="location-filter" class="block text-sm font-medium mb-2 text-gray-300">
+                                            Filter Locations:
+                                        </label>
+                                        <input
+                                            type="text"
+                                            id="location-filter"
+                                            placeholder="Type to filter locations..."
+                                            class="form-input-style"
+                                        />
+                                        <div class="mt-2 flex gap-2">
+                                            <button id="select-all-locations" class="text-xs text-pink-400 hover:text-pink-300">Select All</button>
+                                            <button id="deselect-all-locations" class="text-xs text-pink-400 hover:text-pink-300">Clear All</button>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Location Chips -->
+                                    <div>
+                                        <label class="block text-sm font-medium mb-2 text-gray-300">Locations:</label>
+                                        <div id="location-chips" class="flex flex-wrap max-h-32 overflow-y-auto border border-gray-600 rounded-lg p-3 bg-gray-700">
+                                            <!-- Location chips populated by JS -->
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Chart Options -->
+                                    <div class="flex flex-wrap gap-4">
+                                        <label class="inline-flex items-center">
+                                            <input id="y-axis-toggle" type="checkbox" class="form-checkbox rounded text-pink-600 focus:ring-pink-500" checked />
+                                            <span class="ml-2 text-sm">Start Y-Axis at Zero</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chart/Table Area -->
+                <div id="visualization-area" class="mb-6">
+                    <div id="chart-container" class="relative card h-96 lg:h-[32rem]">
+                        <canvas id="turnoutChart"></canvas>
+                    </div>
+                    <div id="data-table-container" class="data-table-container card hidden">
+                        <!-- Data table populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Secondary Actions (Moved to bottom, less prominent) -->
+                <div class="card">
+                    <h3 class="text-lg font-semibold mb-3 text-gray-200">Voting Resources</h3>
+                    <div class="flex flex-col sm:flex-row flex-wrap gap-3">
+                        <a href="https://www.bexar.org/2231/Who-represents-me-Search" target="_blank" rel="noopener noreferrer" class="button-pink">
+                            📄 Sample Ballot
+                        </a>
+                        <a href="https://www.bexar.org/2229/Voter-Registration-Check-Polling-Locatio" target="_blank" rel="noopener noreferrer" class="button-pink">
+                            ✅ Check Registration
+                        </a>
+                        <a href="https://lwvsa.org/handlers/celinks.ashx?id=74871" target="_blank" rel="noopener noreferrer" class="button-secondary">
+                            📖 Voter Guide
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Attribution -->
+                <p id="attribution" class="text-sm text-gray-400 mt-6 text-center">
+                    Data sourced from the Bexar County Elections Department.
+                </p>
             </div>
-
-            <!-- Data Source Attribution -->
-            <p id="attribution" class="text-sm mb-6">
-                Data sourced from the Bexar County Elections Department.
-                <!-- Update date dynamically -->
-            </p>
-
         </div>
 
-        <!-- Load JS Modules -->
         <script type="module" src="js/main.js"></script>
     </body>
 </html>
