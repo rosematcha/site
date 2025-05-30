@@ -94,65 +94,111 @@
                 max-height: 0;
                 overflow: hidden;
                 transition: max-height 0.3s ease-out;
+                opacity: 0;
             }
             .controls-expanded {
                 max-height: 1000px;
-                transition: max-height 0.3s ease-in;
+                transition: max-height 0.3s ease-in, opacity 0.3s ease-in;
+                opacity: 1;
             }
             
-            /* Improved year pills */
-            .year-pill {
-                display: inline-flex;
+            /* Better checkbox styling that looks like pills */
+            .year-checkbox-container {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+                padding: 0.75rem;
+                background-color: #374151;
+                border-radius: 0.5rem;
+                border: 1px solid #4b5563;
+            }
+            
+            .year-checkbox-container label {
+                display: flex !important;
                 align-items: center;
                 padding: 0.5rem 1rem;
-                margin: 0.25rem;
-                background-color: #374151;
-                border: 2px solid #4b5563;
+                background-color: #4b5563;
+                border: 2px solid transparent;
                 border-radius: 2rem;
                 cursor: pointer;
                 transition: all 0.2s;
                 user-select: none;
+                font-size: 0.875rem;
+                font-weight: 500;
             }
-            .year-pill:hover {
+            
+            .year-checkbox-container label:hover {
                 border-color: #db2777;
+                background-color: #6b7280;
             }
-            .year-pill.selected {
+            
+            .year-checkbox-container input[type="checkbox"] {
+                display: none; /* Hide the actual checkbox */
+            }
+            
+            .year-checkbox-container input[type="checkbox"]:checked + span {
+                background-color: #db2777;
+                color: white;
+            }
+            
+            .year-checkbox-container label:has(input:checked) {
                 background-color: #db2777;
                 border-color: #db2777;
                 color: white;
             }
             
-            /* Location chips */
-            .location-chip {
-                display: inline-flex;
-                align-items: center;
-                padding: 0.375rem 0.75rem;
-                margin: 0.125rem;
+            /* Better location checkbox styling */
+            .location-checkbox-container {
+                max-height: 16rem;
+                overflow-y: auto;
+                border: 1px solid #4b5563;
+                border-radius: 0.5rem;
+                padding: 0.75rem;
                 background-color: #374151;
-                border-radius: 1rem;
-                font-size: 0.875rem;
+            }
+            
+            .location-checkbox-container .location-option {
+                display: flex !important;
+                align-items: center;
+                padding: 0.5rem 0.75rem;
+                margin: 0.125rem 0;
+                border-radius: 0.375rem;
                 cursor: pointer;
                 transition: all 0.2s;
-                border: 1px solid #4b5563;
-            }
-            .location-chip:hover {
-                border-color: #db2777;
-            }
-            .location-chip.selected {
-                background-color: #db2777;
-                border-color: #db2777;
-                color: white;
             }
             
-            /* Better mobile layout */
+            .location-checkbox-container .location-option:hover {
+                background-color: #4b5563;
+            }
+            
+            .location-checkbox-container .location-option input[type="checkbox"] {
+                margin-right: 0.75rem;
+                accent-color: #db2777;
+            }
+            
+            /* Responsive improvements */
             @media (max-width: 768px) {
                 .card {
                     padding: 1rem;
                 }
-                .controls-grid {
-                    grid-template-columns: 1fr;
-                    gap: 1rem;
+                .year-checkbox-container {
+                    gap: 0.25rem;
                 }
+                .year-checkbox-container label {
+                    padding: 0.375rem 0.75rem;
+                    font-size: 0.8rem;
+                }
+            }
+            
+            h2, label, span, p, option, th, td {
+                color: #d1d5db;
+            }
+            p.text-sm, p.text-xs {
+                color: #9ca3af;
+            }
+            select[multiple] option:checked {
+                background-color: rgba(219, 39, 119, 0.5);
+                color: #ffffff;
             }
         </style>
     </head>
@@ -165,7 +211,9 @@
                         <img
                             src="title.gif"
                             alt="San Antonio Early Voting Turnout"
-                            class="h-12 md:h-16 w-auto"
+                            width="895"
+                            height="92"
+                            class="max-w-[70%] md:max-w-md h-auto"
                         />
                         <button id="copy-share-link-button" class="button-secondary">
                             📋 Share
@@ -175,20 +223,25 @@
             </header>
 
             <div class="container mx-auto px-4 py-6">
-                <!-- Quick Controls Bar -->
+                <!-- Main Controls -->
                 <div class="mb-6">
                     <div class="card">
-                        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-                            <!-- Year Selection (Pills) -->
-                            <div class="flex-1">
-                                <label class="block text-sm font-medium mb-2 text-gray-300">Select Years:</label>
-                                <div id="year-pills" class="flex flex-wrap">
-                                    <!-- Year pills populated by JS -->
+                        <!-- Primary Controls Row -->
+                        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-4">
+                            <!-- Years -->
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Select Years:</label>
+                                <div id="year-options" class="year-checkbox-container">
+                                    <!-- Year checkboxes populated by JS -->
                                 </div>
+                                <p class="text-xs text-gray-400 mt-1">
+                                    other years pending public info request
+                                </p>
                             </div>
                             
-                            <!-- Quick Toggles -->
-                            <div class="flex flex-col sm:flex-row gap-3">
+                            <!-- Data Type Toggles -->
+                            <div class="flex flex-col justify-center space-y-3">
+                                <label class="block text-sm font-medium mb-1">Show Data Types:</label>
                                 <label class="inline-flex items-center">
                                     <input id="early-voting-toggle" type="checkbox" class="form-checkbox rounded text-pink-600 focus:ring-pink-500" checked />
                                     <span class="ml-2 text-sm">Early Voting</span>
@@ -197,55 +250,56 @@
                                     <input id="election-day-toggle" type="checkbox" class="form-checkbox rounded text-pink-600 focus:ring-pink-500" checked />
                                     <span class="ml-2 text-sm">Election Day</span>
                                 </label>
+                            </div>
+                            
+                            <!-- View Options -->
+                            <div class="flex flex-col justify-center space-y-3">
+                                <label class="block text-sm font-medium mb-1">View Options:</label>
+                                <label class="inline-flex items-center">
+                                    <input id="y-axis-toggle" type="checkbox" class="form-checkbox rounded text-pink-600 focus:ring-pink-500" checked />
+                                    <span class="ml-2 text-sm">Start Y-Axis at Zero</span>
+                                </label>
                                 <label class="inline-flex items-center">
                                     <input id="data-table-toggle" type="checkbox" class="form-checkbox rounded text-pink-600 focus:ring-pink-500" />
-                                    <span class="ml-2 text-sm">Table View</span>
+                                    <span class="ml-2 text-sm">Show Data Table</span>
                                 </label>
                             </div>
                         </div>
                         
-                        <!-- Advanced Controls (Collapsible) -->
-                        <div class="mt-4 pt-4 border-t border-gray-600">
-                            <button id="advanced-toggle" class="flex items-center text-sm text-pink-400 hover:text-pink-300 focus:outline-none">
-                                <span>Location Settings</span>
-                                <svg id="advanced-arrow" class="w-4 h-4 ml-1 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <!-- Location Controls (Collapsible) -->
+                        <div class="pt-4 border-t border-gray-600">
+                            <button id="location-toggle" class="flex items-center text-sm text-pink-400 hover:text-pink-300 focus:outline-none mb-3">
+                                <span>📍 Location Settings</span>
+                                <svg id="location-arrow" class="w-4 h-4 ml-2 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                                 </svg>
                             </button>
                             
-                            <div id="advanced-controls" class="controls-collapsed">
-                                <div class="mt-4 space-y-4">
+                            <div id="location-controls" class="controls-collapsed">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <!-- Location Filter -->
                                     <div>
-                                        <label for="location-filter" class="block text-sm font-medium mb-2 text-gray-300">
+                                        <label for="location-filter" class="block text-sm font-medium mb-2">
                                             Filter Locations:
                                         </label>
                                         <input
                                             type="text"
                                             id="location-filter"
-                                            placeholder="Type to filter locations..."
-                                            class="form-input-style"
+                                            placeholder="Filter locations..."
+                                            class="form-input-style mb-2"
                                         />
-                                        <div class="mt-2 flex gap-2">
-                                            <button id="select-all-locations" class="text-xs text-pink-400 hover:text-pink-300">Select All</button>
-                                            <button id="deselect-all-locations" class="text-xs text-pink-400 hover:text-pink-300">Clear All</button>
+                                        <div class="flex justify-between">
+                                            <button id="select-all-locations" class="text-xs text-pink-400 hover:text-pink-300">Select All Visible</button>
+                                            <button id="deselect-all-locations" class="text-xs text-pink-400 hover:text-pink-300">Deselect All Visible</button>
                                         </div>
                                     </div>
                                     
-                                    <!-- Location Chips -->
+                                    <!-- Location List -->
                                     <div>
-                                        <label class="block text-sm font-medium mb-2 text-gray-300">Locations:</label>
-                                        <div id="location-chips" class="flex flex-wrap max-h-32 overflow-y-auto border border-gray-600 rounded-lg p-3 bg-gray-700">
-                                            <!-- Location chips populated by JS -->
+                                        <label class="block text-sm font-medium mb-2">Select Locations/Total:</label>
+                                        <div id="location-checkbox-container" class="location-checkbox-container">
+                                            <!-- Location checkboxes populated by JS -->
                                         </div>
-                                    </div>
-                                    
-                                    <!-- Chart Options -->
-                                    <div class="flex flex-wrap gap-4">
-                                        <label class="inline-flex items-center">
-                                            <input id="y-axis-toggle" type="checkbox" class="form-checkbox rounded text-pink-600 focus:ring-pink-500" checked />
-                                            <span class="ml-2 text-sm">Start Y-Axis at Zero</span>
-                                        </label>
                                     </div>
                                 </div>
                             </div>
@@ -263,18 +317,18 @@
                     </div>
                 </div>
 
-                <!-- Secondary Actions (Moved to bottom, less prominent) -->
+                <!-- Voting Resources -->
                 <div class="card">
-                    <h3 class="text-lg font-semibold mb-3 text-gray-200">Voting Resources</h3>
-                    <div class="flex flex-col sm:flex-row flex-wrap gap-3">
-                        <a href="https://www.bexar.org/2231/Who-represents-me-Search" target="_blank" rel="noopener noreferrer" class="button-pink">
-                            📄 Sample Ballot
+                    <h3 class="text-lg font-semibold mb-4 text-gray-200">🗳️ Voting Resources</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                        <a href="https://www.bexar.org/2231/Who-represents-me-Search" target="_blank" rel="noopener noreferrer" class="button-pink text-center">
+                            See Your Sample Ballot
                         </a>
-                        <a href="https://www.bexar.org/2229/Voter-Registration-Check-Polling-Locatio" target="_blank" rel="noopener noreferrer" class="button-pink">
-                            ✅ Check Registration
+                        <a href="https://www.bexar.org/2229/Voter-Registration-Check-Polling-Locatio" target="_blank" rel="noopener noreferrer" class="button-pink text-center">
+                            Verify Voter Registration
                         </a>
-                        <a href="https://lwvsa.org/handlers/celinks.ashx?id=74871" target="_blank" rel="noopener noreferrer" class="button-secondary">
-                            📖 Voter Guide
+                        <a href="https://lwvsa.org/handlers/celinks.ashx?id=74871" target="_blank" rel="noopener noreferrer" class="button-secondary text-center">
+                            League of Women Voters Guide
                         </a>
                     </div>
                 </div>
@@ -285,6 +339,32 @@
                 </p>
             </div>
         </div>
+
+        <!-- Add the collapsible functionality -->
+        <script>
+            // Handle location controls toggle
+            document.addEventListener('DOMContentLoaded', function() {
+                const locationToggle = document.getElementById('location-toggle');
+                const locationControls = document.getElementById('location-controls');
+                const locationArrow = document.getElementById('location-arrow');
+                
+                if (locationToggle && locationControls && locationArrow) {
+                    locationToggle.addEventListener('click', function() {
+                        const isExpanded = locationControls.classList.contains('controls-expanded');
+                        
+                        if (isExpanded) {
+                            locationControls.classList.remove('controls-expanded');
+                            locationControls.classList.add('controls-collapsed');
+                            locationArrow.style.transform = 'rotate(0deg)';
+                        } else {
+                            locationControls.classList.remove('controls-collapsed');
+                            locationControls.classList.add('controls-expanded');
+                            locationArrow.style.transform = 'rotate(180deg)';
+                        }
+                    });
+                }
+            });
+        </script>
 
         <script type="module" src="js/main.js"></script>
     </body>
