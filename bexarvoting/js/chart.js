@@ -1,17 +1,17 @@
 // js/chart.js
 import { CAT_IMAGES, CHART_COLORS, TOTAL_TURNOUT_KEY } from "./config.js";
 import { getDataForSelection, getDatesForYear } from "./data.js";
-import { getSelectedYears, getSelectedLocations, getToggleStates, manageDisplay } from "./ui.js"; // Import manageDisplay
+import { getSelectedYears, getSelectedLocations, getToggleStates, manageDisplay } from "./ui.js";
 import { debounce } from "./utils.js";
-import { updateURLFromState } from "./main.js"; // For updating URL after chart render
+import { updateURLFromState } from "./main.js";
 
 let turnoutChart = null;
 let catContainer = null;
 
 const chartCanvas = document.getElementById("turnoutChart");
-const chartContainerElement = document.getElementById("chart-container"); // Renamed to avoid conflict with local chartContainer var
+const chartContainerElement = document.getElementById("chart-container");
 
-export const getCurrentChartInstance = () => turnoutChart; // Export for ui.js
+export const getCurrentChartInstance = () => turnoutChart;
 
 const getRandomCatImage = () => {
     return CAT_IMAGES[Math.floor(Math.random() * CAT_IMAGES.length)];
@@ -31,12 +31,10 @@ const showCat = () => {
         catContainer.id = "cat-container";
         catContainer.className =
             "absolute inset-0 flex flex-col items-center justify-center p-4 text-center";
-        // Prepend to chartContainerElement so it's behind status message if status is also absolute
         chartContainerElement.insertBefore(catContainer, chartContainerElement.firstChild);
     }
     catContainer.style.display = "flex";
-    catContainer.classList.remove("hidden");
-
+    catContainer.classList.remove("hidden"); // Ensure it's not hidden
 
     const catMessage = document.createElement("p");
     catMessage.textContent = "oops, no data... have a cat instead?";
@@ -47,7 +45,7 @@ const showCat = () => {
     img.alt = "A cute cat";
     img.className = "max-w-full max-h-[70%] object-contain rounded";
 
-    catContainer.innerHTML = "";
+    catContainer.innerHTML = ""; // Clear previous content
     catContainer.appendChild(catMessage);
     catContainer.appendChild(img);
 };
@@ -55,12 +53,13 @@ const showCat = () => {
 const hideCat = () => {
     if (catContainer) {
         catContainer.style.display = "none";
-        catContainer.classList.add("hidden");
+        catContainer.classList.add("hidden"); // Explicitly hide
     }
     if (chartCanvas) {
         chartCanvas.style.display = "block";
     }
 };
+
 
 const createChartConfig = (
     labels,
@@ -135,14 +134,15 @@ const createChartConfig = (
 };
 
 const renderChart = () => {
+    const startTime = performance.now(); // Start timing for performance metric
     const selectedYears = getSelectedYears();
     const selectedLocations = getSelectedLocations();
-    const { showEarlyVoting, showElectionDay, startYAtZero, showDataTable } = getToggleStates();
+    const { showEarlyVoting, showElectionDay, startYAtZero, showDataTable, showCumulative } = getToggleStates();
 
     const ctx = chartCanvas?.getContext("2d");
     if (!ctx) {
         console.error("Failed to get canvas context.");
-        manageDisplay(); // Manage display even if canvas fails
+        manageDisplay();
         return;
     }
 
@@ -151,14 +151,20 @@ const renderChart = () => {
         selectedLocations.length === 0 ||
         (!showEarlyVoting && !showElectionDay)
     ) {
-        showCat(); // This will set turnoutChart to null
+        showCat();
         manageDisplay();
-        updateURLFromState(); // Update URL to reflect empty state
+        updateURLFromState();
+        logMetric("renderTime", performance.now() - startTime); // Log render time even if showing cat
         return;
     }
 
-    // --- GROUPED BAR MODE ---
-    if (showElectionDay && !showEarlyVoting && selectedYears.length > 1 && selectedLocations.length > 0) {
+     // --- ELECTION DAY ONLY GROUPED BAR CHART MODE ---
+    // This mode is specifically for comparing ONLY Election Day turnout
+    // across multiple years for the SAME set of locations.
+    const isElectionDayOnlyComparison =
+        showElectionDay && !showEarlyVoting && selectedYears.length > 1 && selectedLocations.length > 0;
+
+    if (isElectionDayOnlyComparison && !showCumulative) { // Cumulative doesn't make sense for single day
         hideCat();
         const labels = selectedLocations;
         let datasets = [];
@@ -166,33 +172,47 @@ const renderChart = () => {
         for (const year of selectedYears) {
             const data = [];
             for (const location of selectedLocations) {
-                const selectionData = getDataForSelection(year, location, false, true);
+                 // Need to get data for the *Election Day* only for this year/location
+                const selectionData = getDataForSelection(year, location, false, true); // Only get ED data
+
                 let edValue = null;
-                if (selectionData && selectionData.dates && selectionData.dates.length > 0) {
-                    for (let i = 0; i < selectionData.dates.length; i++) {
-                        if (selectionData.dates[i].isElectionDay) {
-                            edValue = selectionData.data[i];
-                            break;
-                        }
-                    }
+                if (selectionData && selectionData.data && selectionData.data.length > 0) {
+                     // Assuming getDataForSelection(false, true) returns an array with only the ED value if present
+                     edValue = selectionData.data[0];
                 }
                 data.push(edValue);
             }
-            const color = CHART_COLORS[colorIndex % CHART_COLORS.length];
-            colorIndex++;
-            datasets.push({
-                label: year,
-                data,
-                backgroundColor: color,
-                borderColor: color,
-            });
+             // If all locations for a year have null ED data, skip this year's dataset
+             if (data.some(val => val !== null)) {
+                const color = CHART_COLORS[colorIndex % CHART_COLORS.length];
+                colorIndex++;
+                datasets.push({
+                    label: year,
+                    data,
+                    backgroundColor: color,
+                    borderColor: color,
+                    borderWidth: 1, // Add border for better visibility
+                });
+            }
         }
+
+         if (datasets.length === 0) {
+            showCat();
+            manageDisplay();
+            updateURLFromState();
+            logMetric("renderTime", performance.now() - startTime);
+            return;
+        }
+
+
         const chartTitle = `Election Day Turnout by Location (Grouped by Year)`;
         const chartType = "bar";
+
         if (turnoutChart && turnoutChart.config.type !== chartType) {
             turnoutChart.destroy();
             turnoutChart = null;
         }
+
         if (turnoutChart) {
             turnoutChart.data.labels = labels;
             turnoutChart.data.datasets = datasets;
@@ -203,56 +223,73 @@ const renderChart = () => {
             const config = createChartConfig(labels, datasets, chartTitle, startYAtZero, chartType);
             turnoutChart = new Chart(ctx, config);
         }
+
         manageDisplay();
         updateURLFromState();
+        logMetric("renderTime", performance.now() - startTime);
         return;
     }
-    hideCat(); // Hide cat for other line/bar chart types
+    // --- END ELECTION DAY ONLY GROUPED BAR CHART MODE ---
+
+
+    // --- LINE / CUMULATIVE / STANDARD BAR CHART MODE ---
+    hideCat();
 
     let datasets = [];
     let labels = [];
     let colorIndex = 0;
-    let maxDays = 0;
+    let maxDays = 0; // Max number of voting days (EV + possibly ED) across selected years/data types
 
-    selectedYears.forEach((year) => {
+    // Determine the maximum number of relevant days (EV + ED if selected) to set labels
+    selectedYears.forEach(year => {
         const yearDates = getDatesForYear(year);
-        if (yearDates) {
-            const nonElectionDayCount = yearDates.filter((d) => !d.isElectionDay).length;
-            const electionDayPresent = yearDates.some((d) => d.isElectionDay);
-            let currentYearMaxDays = nonElectionDayCount;
-            if (electionDayPresent && showElectionDay) currentYearMaxDays++; // Only count ED if shown
-            else if (!showEarlyVoting && electionDayPresent && showElectionDay) currentYearMaxDays = 1; // If only ED shown
-            
-            if (!showEarlyVoting && !showElectionDay) currentYearMaxDays = 0;
+        if (!yearDates) return;
 
+        // Filter dates based on toggles
+        const relevantDates = yearDates.filter(dateInfo =>
+            (dateInfo.isElectionDay && showElectionDay) || (!dateInfo.isElectionDay && showEarlyVoting)
+        );
 
-            if (currentYearMaxDays > maxDays) {
-                maxDays = currentYearMaxDays;
-            }
+        if (relevantDates.length > maxDays) {
+            maxDays = relevantDates.length;
         }
     });
-    
-    // If only ED is shown, maxDays might be 1. If only EV, it's the count of EV days.
-    // If both, it's EV days + 1 for ED (if ED exists and is shown).
 
-    // Generate labels based on maxDays, considering what's toggled
+    // Generate labels based on maxDays and toggles
+    const allDatesFromMostDaysYear = selectedYears
+        .map(year => ({ year, dates: getDatesForYear(year) }))
+        .filter(({ dates }) => dates && dates.filter(d => (d.isElectionDay && showElectionDay) || (!d.isElectionDay && showEarlyVoting)).length === maxDays)
+        .sort((a, b) => Object.keys(DATA_FILES).indexOf(a.year) - Object.keys(DATA_FILES).indexOf(b.year)) // Prefer earlier years for label consistency if maxDays are equal
+        [0]?.dates || [];
+
+
     let dayCounter = 1;
-    for (let i = 1; i <= maxDays; i++) {
-        // This simplified logic assumes that if Election Day is shown and present,
-        // it will be the last day in the 'maxDays' sequence.
-        if (showElectionDay && i === maxDays && selectedYears.some(year => getDatesForYear(year)?.some(d => d.isElectionDay))) {
-            labels.push("Election Day");
-        } else if (showEarlyVoting) {
+     allDatesFromMostDaysYear.forEach(dateInfo => {
+         if (!dateInfo.isElectionDay && showEarlyVoting) {
              labels.push(`Day ${dayCounter++}`);
-        } else if (showElectionDay && maxDays === 1) { // Only ED is shown across all years
+         } else if (dateInfo.isElectionDay && showElectionDay) {
              labels.push("Election Day");
-             break; // Only one label needed
-        }
-    }
-    // If after loop, labels is empty (e.g. only ED checked but no year has ED, or maxDays was 0)
-    if (labels.length === 0 && showElectionDay && selectedYears.some(year => getDatesForYear(year)?.some(d => d.isElectionDay))) {
-        labels.push("Election Day"); // Fallback if only ED is possible and was missed
-    }
+         }
+     });
+
+    // Fallback if somehow labels didn't generate (e.g., no data, or only ED and no ED data)
+     if (labels.length === 0 && selectedYears.length > 0 && selectedLocations.length > 0) {
+         if (showElectionDay && selectedYears.some(year => getDatesForYear(year)?.some(d => d.isElectionDay))) {
+              // If only ED is toggled and at least one year has ED data, add "Election Day" label
+             labels.push("Election Day");
+         } else if (showEarlyVoting && selectedYears.some(year => getDatesForYear(year)?.some(d => !d.isElectionDay))) {
+             // If only EV is toggled and at least one year has EV data, find max EV days and add labels
+              let maxEVDays = 0;
+              selectedYears.forEach(year => {
+                  const yearDates = getDatesForYear(year);
+                  if (yearDates) {
+                      const evDays = yearDates.filter(d => !d.isElectionDay).length;
+                      if (evDays > maxEVDays) maxEVDays = evDays;
+                  }
+              });
+              for(let i = 1; i <= maxEVDays; i++) labels.push(`Day ${i}`);
+         }
+     }
 
 
     selectedYears.forEach((year) => {
@@ -263,31 +300,33 @@ const renderChart = () => {
             const selectionData = getDataForSelection(year, locationKey, showEarlyVoting, showElectionDay);
 
             if (selectionData && selectionData.data.length > 0) {
-                const alignedData = new Array(labels.length).fill(null);
-                let currentLabelIndex = 0;
+                let processedData = selectionData.data;
 
-                selectionData.dates.forEach((dateInfo, dataIndex) => {
-                    if (currentLabelIndex < labels.length) {
-                         // Map selectionData.data to the correct position in alignedData based on generated labels
-                        if (dateInfo.isElectionDay && showElectionDay && labels[labels.length-1] === "Election Day") {
-                            alignedData[labels.length-1] = selectionData.data[dataIndex];
-                        } else if (!dateInfo.isElectionDay && showEarlyVoting) {
-                            // Find the `Day X` label that corresponds to this early voting day
-                            // This requires careful indexing if `labels` are generated generically
-                            // For now, assume they align if both EV and ED are shown, or just EV.
-                             const targetLabel = `Day ${dateInfo.dayIndex}`; // Assuming dayIndex is from original full set
-                             const labelIdxInCurrent = labels.findIndex(l => l === targetLabel);
-                             if (labelIdxInCurrent !== -1) {
-                                alignedData[labelIdxInCurrent] = selectionData.data[dataIndex];
-                             } else if (labels[currentLabelIndex] && labels[currentLabelIndex].startsWith("Day ")) {
-                                // Fallback: place sequentially if labels are just "Day X"
-                                alignedData[currentLabelIndex] = selectionData.data[dataIndex];
-                             }
-                        }
-                        currentLabelIndex++;
-                    }
-                });
+                if (showCumulative) {
+                     processedData = processedData.map((sum => value => sum += value)(0));
+                }
 
+                 // Align data to the common set of labels (maxDays)
+                 const alignedData = new Array(labels.length).fill(null);
+                 let processedDataIndex = 0;
+
+                 // Map days from selectionData back to the labels array
+                 selectionData.dates.forEach((dateInfo) => {
+                     let labelToFind = '';
+                     if (dateInfo.isElectionDay) labelToFind = "Election Day";
+                     else labelToFind = `Day ${dateInfo.dayIndex}`; // Use original dayIndex
+
+                     const labelIndex = labels.indexOf(labelToFind);
+
+                     if (labelIndex !== -1 && processedDataIndex < processedData.length) {
+                         alignedData[labelIndex] = processedData[processedDataIndex];
+                         processedDataIndex++;
+                     } else {
+                         // If label not found or processed data exhausted, skip
+                         // This can happen if a year has fewer EV days than the maxDays year
+                         // or if Election Day wasn't present in the maxDays year's labels
+                     }
+                 });
 
                 const color = CHART_COLORS[colorIndex % CHART_COLORS.length];
                 colorIndex++;
@@ -298,10 +337,10 @@ const renderChart = () => {
                     borderColor: color,
                     backgroundColor: color + "33",
                     tension: 0.1,
-                    fill: false,
+                    fill: false, // Changed fill to false for line charts by default
                     pointRadius: 3,
                     pointHoverRadius: 5,
-                    spanGaps: true,
+                    spanGaps: true, // Connect points over null values
                 });
             }
         });
@@ -311,36 +350,23 @@ const renderChart = () => {
         showCat();
         manageDisplay();
         updateURLFromState();
+        logMetric("renderTime", performance.now() - startTime);
         return;
     }
 
-
-    const chartType =
-        datasets.length === 1 &&
-        showElectionDay &&
-        !showEarlyVoting &&
-        datasets[0].data.filter((d) => d !== null).length === 1 &&
-        labels[datasets[0].data.findIndex((d) => d !== null)]?.startsWith("Election Day")
-            ? "bar"
-            : "line";
-
-    const chartTitle = datasets.length === 1 ? `${datasets[0].label} Daily Turnout` : "Comparative Daily Turnout";
-
-    if (chartType === "bar") {
-        datasets.forEach((ds) => {
-            ds.backgroundColor = ds.borderColor; // Solid color for bars
-            delete ds.tension; delete ds.fill; delete ds.pointRadius; delete ds.pointHoverRadius; delete ds.spanGaps;
-        });
-    } else {
-         datasets.forEach((ds) => { // Ensure line chart properties are correctly set
-            ds.backgroundColor = ds.borderColor + "33"; // For area fill if enabled
-            ds.tension = 0.1;
-            ds.fill = false; // Explicitly false for line
-            ds.pointRadius = 3;
-            ds.pointHoverRadius = 5;
-            ds.spanGaps = true;
-        });
+    // Determine chart type (line or bar)
+    let chartType = "line";
+    // If it's a single dataset and only one data point (e.g., only Election Day selected for one year)
+    if (datasets.length === 1 && datasets[0].data.filter(d => d !== null).length === 1) {
+         const singleDataPointIndex = datasets[0].data.findIndex(d => d !== null);
+         if (singleDataPointIndex !== -1 && labels[singleDataPointIndex] === "Election Day" && !showEarlyVoting && showElectionDay && !showCumulative) {
+             chartType = "bar";
+         }
     }
+
+
+    const chartTitleBase = showCumulative ? "Cumulative Turnout" : "Daily Turnout";
+    const chartTitle = datasets.length === 1 && datasets[0].label ? `${datasets[0].label} ${chartTitleBase}` : `Comparative ${chartTitleBase}`;
 
 
     if (turnoutChart && turnoutChart.config.type !== chartType) {
@@ -353,14 +379,51 @@ const renderChart = () => {
         turnoutChart.data.datasets = datasets;
         turnoutChart.options.plugins.title.text = chartTitle;
         turnoutChart.options.scales.y.beginAtZero = startYAtZero;
+
+        // Adjust dataset properties based on chart type
+         datasets.forEach(ds => {
+             if (chartType === "bar") {
+                ds.backgroundColor = ds.borderColor; // Solid color for bars
+                ds.borderWidth = 1;
+                delete ds.tension; delete ds.fill; delete ds.pointRadius; delete ds.pointHoverRadius; delete ds.spanGaps;
+            } else { // Line chart properties
+                ds.backgroundColor = ds.borderColor + "33";
+                ds.tension = 0.1;
+                ds.fill = false;
+                ds.pointRadius = 3;
+                ds.pointHoverRadius = 5;
+                ds.spanGaps = true;
+                delete ds.borderWidth; // Remove border if not a bar chart
+            }
+         });
+
+
         turnoutChart.update();
     } else {
+         // Adjust dataset properties for the initial config based on determined chart type
+         datasets.forEach(ds => {
+             if (chartType === "bar") {
+                ds.backgroundColor = ds.borderColor; // Solid color for bars
+                ds.borderWidth = 1;
+                delete ds.tension; delete ds.fill; delete ds.pointRadius; delete ds.pointHoverRadius; delete ds.spanGaps;
+            } else { // Line chart properties
+                ds.backgroundColor = ds.borderColor + "33";
+                ds.tension = 0.1;
+                ds.fill = false;
+                ds.pointRadius = 3;
+                ds.pointHoverRadius = 5;
+                ds.spanGaps = true;
+                 delete ds.borderWidth; // Remove border if not a bar chart
+            }
+         });
         const config = createChartConfig(labels, datasets, chartTitle, startYAtZero, chartType);
         turnoutChart = new Chart(ctx, config);
     }
 
-    manageDisplay(); // Let UI module handle showing chart/table
-    updateURLFromState(); // Update URL after successful render
+    manageDisplay();
+    updateURLFromState();
+    logMetric("renderTime", performance.now() - startTime); // Log render time
 };
+
 
 export const debouncedRenderChart = debounce(renderChart, 250);

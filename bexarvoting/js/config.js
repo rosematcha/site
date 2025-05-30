@@ -11,7 +11,60 @@ export const DATA_FILES = {
     "November 2020": { name: "November 2020", path: "csv/November 2020 General.csv" },
     "June 2019": { name: "June 2019", path: "csv/June 2019 Municipal Runoff.csv" },
     "May 2019": { name: "May 2019", path: "csv/May 2019 Municipal.csv" },
-    // Add future years here when data is available
+};
+
+// Default years to select when no URL parameters are present
+export const DEFAULT_SELECTED_YEARS = [
+    "June 2025",
+    "June 2023",
+    "June 2021",
+    "June 2019"
+];
+
+// Preset configurations for quick selection
+export const PRESET_CONFIGURATIONS = {
+    "all-june": {
+        name: "All June Elections",
+        years: ["June 2025", "June 2023", "June 2021", "June 2019"],
+        locations: ["total"],
+        toggles: { ev: true, ed: true, yz: true, dt: false, cum: false }
+    },
+    "all-november": {
+        name: "All November Elections",
+        years: ["November 2022", "November 2020"],
+        locations: ["total"],
+        toggles: { ev: true, ed: true, yz: true, dt: false, cum: false }
+    },
+    "all-may": {
+        name: "All May Elections",
+        years: ["May 2025", "May 2023", "May 2021", "May 2019"],
+        locations: ["total"],
+        toggles: { ev: true, ed: true, yz: true, dt: false, cum: false }
+    },
+    "recent-years": {
+        name: "Recent Years (2022+)",
+        years: ["June 2025", "May 2025", "June 2023", "May 2023", "November 2022"],
+        locations: ["total"],
+        toggles: { ev: true, ed: true, yz: true, dt: false, cum: false }
+    },
+     "compare-runoffs-early": { // Renamed to be more specific
+        name: "Compare Runoffs (Early Voting)",
+        years: ["June 2025", "June 2023", "June 2021", "June 2019"],
+        locations: ["total"],
+        toggles: { ev: true, ed: false, yz: true, dt: false, cum: false }
+    },
+     "compare-runoffs-total": {
+        name: "Compare Runoffs (Total)",
+        years: ["June 2025", "June 2023", "June 2021", "June 2019"],
+        locations: ["total"],
+        toggles: { ev: true, ed: true, yz: true, dt: false, cum: false }
+    },
+    "cumulative-runoffs": { // New preset for cumulative view
+        name: "Cumulative Runoffs",
+        years: ["June 2025", "June 2023", "June 2021", "June 2019"],
+        locations: ["total"],
+        toggles: { ev: true, ed: true, yz: true, dt: false, cum: true }
+    }
 };
 
 export const CAT_IMAGES = [
