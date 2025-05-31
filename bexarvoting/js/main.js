@@ -1,6 +1,5 @@
-// js/main.js
 import { DATA_FILES, DEFAULT_SELECTED_YEARS } from "./config.js";
-import { loadYearData } from "./data.js";
+import { loadYearData, initializeMasterLocationList } from "./data.js";
 import {
     populateYearCheckboxes,
     populateLocationDropdown,
@@ -14,7 +13,7 @@ import {
 } from "./ui.js";
 import { debouncedRenderChart } from "./chart.js";
 
-// Simplified performance tracking (optional - you could remove this entirely)
+// Simplified performance tracking
 let interactionCount = 0;
 export const logMetric = (category, value) => {
     if (category === "interactions") {
@@ -55,6 +54,9 @@ const applyStateFromURL = () => {
 const initialize = async () => {
     updateStatusMessage("Initializing...");
 
+    // Initialize master location list first
+    await initializeMasterLocationList();
+
     const locationsFromURL = applyStateFromURL();
     populateYearCheckboxes(locationsFromURL.length > 0 ? getSelectedYears() : DEFAULT_SELECTED_YEARS);
 
@@ -81,7 +83,7 @@ const initialize = async () => {
     updateStatusMessage("");
 };
 
-// Simplified performance getter (optional)
+// Simplified performance getter
 window.getPerformanceMetrics = () => ({
     totalInteractions: interactionCount,
 });

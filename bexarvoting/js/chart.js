@@ -1,4 +1,3 @@
-// js/chart.js
 import { CAT_IMAGES, CHART_COLORS, TOTAL_TURNOUT_KEY, DATA_FILES } from "./config.js";
 import { getDataForSelection, getDatesForYear } from "./data.js";
 import { getSelectedYears, getSelectedLocations, getToggleStates, manageDisplay, updateURLFromState } from "./ui.js";
@@ -242,21 +241,19 @@ const renderChart = () => {
                     (dateInfo.isElectionDay && showElectionDay) || (!dateInfo.isElectionDay && showEarlyVoting)
                 );
                 if (relevantDatesForYear.length === maxRelevantDays) {
-                    // Sort by original DATA_FILES order to prefer earlier years for label consistency
                     if (!representativeYearForLabels || Object.keys(DATA_FILES).indexOf(year) < Object.keys(DATA_FILES).indexOf(representativeYearForLabels)) {
                         representativeYearForLabels = year;
                     }
                 }
             }
         }
-         // If still no representative year (e.g. maxRelevantDays is 0), try to find one with at least some data
         if (!representativeYearForLabels && selectedYears.length > 0) {
             representativeYearForLabels = selectedYears.find(year => {
                 const yearDates = getDatesForYear(year);
                 return yearDates && yearDates.filter(dateInfo =>
                     (dateInfo.isElectionDay && showElectionDay) || (!dateInfo.isElectionDay && showEarlyVoting)
                 ).length > 0;
-            }) || selectedYears[0]; // Fallback to first selected year
+            }) || selectedYears[0];
         }
 
         if (representativeYearForLabels) {
@@ -300,7 +297,6 @@ const renderChart = () => {
                         if (dateInfoFromSelection.isElectionDay) {
                             labelToFind = "Election Day";
                         } else {
-                            // Count EV days *within this specific selectionData.dates* up to the current one
                             let evDayCounterForThisSeries = 0;
                             for(const d of selectionData.dates){
                                 if(!d.isElectionDay) evDayCounterForThisSeries++;
@@ -339,9 +335,14 @@ const renderChart = () => {
             showCat();
         } else {
             let chartType = "line";
+            // Check if it should be a bar chart (single ED point, not cumulative)
             if (datasets.length === 1 && datasets[0].data.filter(d => d !== null).length === 1) {
                  const singleDataPointIndex = datasets[0].data.findIndex(d => d !== null);
-                 if (singleDataPointIndex !== -1 && labels[singleDataPointIndex] === "Election Day" && !showEarlyVoting && showElectionDay && !showCumulative) {
+                 if (singleDataPointIndex !== -1 && 
+                     labels[singleDataPointIndex] === "Election Day" && 
+                     !showEarlyVoting && 
+                     showElectionDay && 
+                     !showCumulative) {
                      chartType = "bar";
                  }
             }
@@ -356,17 +357,22 @@ const renderChart = () => {
             
             datasets.forEach(ds => {
                 if (chartType === "bar") {
-                   ds.backgroundColor = ds.borderColor;
+                   ds.backgroundColor = ds.borderColor; // Solid color for bars
                    ds.borderWidth = 1;
-                   delete ds.tension; delete ds.fill; delete ds.pointRadius; delete ds.pointHoverRadius; delete ds.spanGaps;
-               } else {
-                   ds.backgroundColor = ds.borderColor + "33";
+                   // Remove line-specific properties
+                   delete ds.tension; 
+                   delete ds.fill; 
+                   delete ds.pointRadius; 
+                   delete ds.pointHoverRadius; 
+                   delete ds.spanGaps;
+               } else { // Line chart properties
+                   ds.backgroundColor = ds.borderColor + "33"; // Semi-transparent fill for lines
                    ds.tension = 0.1;
-                   ds.fill = false;
+                   ds.fill = false; // Can be set to true if area under line is desired
                    ds.pointRadius = 3;
                    ds.pointHoverRadius = 5;
                    ds.spanGaps = true;
-                   delete ds.borderWidth;
+                   delete ds.borderWidth; // Not typically used for line charts like this
                }
             });
 
@@ -383,8 +389,8 @@ const renderChart = () => {
         }
     }
 
-    manageDisplay(); // Called after all chart logic (or cat logic)
-    updateURLFromState(); // Called after all chart logic
+    manageDisplay();
+    updateURLFromState();
 };
 
 export const debouncedRenderChart = debounce(renderChart, 300);

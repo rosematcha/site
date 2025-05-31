@@ -1,10 +1,9 @@
-// js/ui.js
 import { DATA_FILES, TOTAL_TURNOUT_KEY, DEFAULT_SELECTED_YEARS, PRESET_CONFIGURATIONS } from "./config.js";
-import { getAllLoadedLocations, getLocationProperties, isDataLoaded, loadYearData } from "./data.js";
+import { getAllLoadedLocations, getLocationProperties, isDataLoaded, loadYearData, getAllMasterLocationNames, isLocationInYearData } from "./data.js";
 import { debouncedRenderChart, getCurrentChartInstance } from "./chart.js";
-import { logMetric } from "./main.js"; // logMetric is still in main.js
+import { logMetric } from "./main.js";
 
-// DOM Elements (ensure all are correctly identified)
+// DOM Elements
 const elements = {
     yearOptionsContainer: document.getElementById("year-options"),
     locationCheckboxContainer: document.getElementById("location-checkbox-container"),
@@ -27,7 +26,6 @@ const elements = {
 
 let statusMessageElement = null;
 
-// Moved updateURLFromState here
 export const updateURLFromState = () => {
     const years = getSelectedYears();
     const locations = getSelectedLocations();
@@ -40,15 +38,12 @@ export const updateURLFromState = () => {
     params.set("ev", showEarlyVoting ? "1" : "0");
     params.set("ed", showElectionDay ? "1" : "0");
     params.set("yz", startYAtZero ? "1" : "0");
-    params.set("pres", dataPresentation); // 'per-day' or 'cumulative'
-    params.set("disp", displayAs);      // 'graph' or 'table'
-
+    params.set("pres", dataPresentation);
+    params.set("disp", displayAs);
 
     const newRelativePathQuery = window.location.pathname + "?" + params.toString();
-    // Use replaceState to avoid polluting history too much during rapid changes
     history.replaceState(null, "", newRelativePathQuery);
 };
-
 
 function ensureStatusMessageElement() {
     if (!statusMessageElement && elements.chartContainer) {
@@ -81,7 +76,7 @@ export const updateStatusMessage = (message) => {
 };
 
 const updateYearLabelState = (label, checked) => {
-    if (label && label.classList) { // Add null check for label
+    if (label && label.classList) {
         if (checked) {
             label.classList.add("checked");
         } else {
@@ -103,12 +98,10 @@ export const populateYearCheckboxes = (selectedYearsFromURLOrDefaults = []) => {
 
         const input = document.createElement("input");
         input.type = "checkbox";
-        input.className = "form-checkbox rounded text-pink-600 focus:ring-pink-500"; // This class is hidden by CSS
+        input.className = "form-checkbox rounded text-pink-600 focus:ring-pink-500";
         input.value = yearKey;
 
-        // Use provided selected years (from URL or defaults passed by main.js)
         input.checked = !disabled && selectedYearsFromURLOrDefaults.includes(yearKey);
-        
         input.disabled = !!disabled;
         
         input.addEventListener("change", (event) => {
@@ -117,13 +110,13 @@ export const populateYearCheckboxes = (selectedYearsFromURLOrDefaults = []) => {
         });
 
         const span = document.createElement("span");
-        span.className = "ml-2 text-sm"; // This span is part of the visible "pill"
+        span.className = "ml-2 text-sm";
         span.textContent = name + (disabled ? " (pending)" : "");
 
         label.appendChild(input);
         label.appendChild(span);
         elements.yearOptionsContainer.appendChild(label);
-        updateYearLabelState(label, input.checked); // Set initial visual state
+        updateYearLabelState(label, input.checked);
     });
 };
 
@@ -183,34 +176,58 @@ export const populateLocationDropdown = (selectedLocationsFromURL = []) => {
     const container = elements.locationCheckboxContainer;
     if (!container) return;
 
-    const currentSelection = getSelectedLocations();
     container.innerHTML = "";
 
-    let effectiveSelection = selectedLocationsFromURL.length > 0 ? selectedLocationsFromURL : currentSelection;
-
-    if (selectedLocationsFromURL.length === 0 && currentSelection.length === 0) {
-       effectiveSelection = [TOTAL_TURNOUT_KEY];
-    } else if (selectedLocationsFromURL.length > 0 && currentSelection.length === 0) {
-        effectiveSelection = selectedLocationsFromURL;
+    // Determine initial checked state for "Total Turnout"
+    let totalChecked = false;
+    if (selectedLocationsFromURL.length > 0) {
+        totalChecked = selectedLocationsFromURL.includes(TOTAL_TURNOUT_KEY);
+    } else {
+        const currentSelected = getSelectedLocations();
+        if (currentSelected.length === 0 || (currentSelected.length === 1 && currentSelected[0] === TOTAL_TURNOUT_KEY)) {
+            totalChecked = true;
+        }
     }
 
+    if (selectedLocationsFromURL.length === 0 && getSelectedLocations().length === 0) {
+        totalChecked = true;
+    }
+
+    // Always add "Total Turnout" first
     createCheckboxOption(
         container,
         "Total Turnout",
         TOTAL_TURNOUT_KEY,
-        effectiveSelection.includes(TOTAL_TURNOUT_KEY)
+        totalChecked
     );
 
-    const locations = getAllLoadedLocations();
-    locations.forEach((name) => {
-        createCheckboxOption(
-            container,
-            name,
-            name,
-            effectiveSelection.includes(name)
-        );
+    // Add all master location names
+    const masterNames = getAllMasterLocationNames();
+    masterNames.forEach((name) => {
+        const isChecked = selectedLocationsFromURL.includes(name);
+        createCheckboxOption(container, name, name, isChecked);
     });
+
+    // Apply filters to set initial visibility
     filterLocations();
+
+    // Handle total/specific checkbox logic after filtering
+    const allCheckboxes = Array.from(container.querySelectorAll("input[type=checkbox]"));
+    const totalCheckbox = allCheckboxes.find((cb) => cb.value === TOTAL_TURNOUT_KEY);
+    const specificCheckboxes = allCheckboxes.filter((cb) => cb.value !== TOTAL_TURNOUT_KEY);
+    const specificCheckedCount = specificCheckboxes.filter((cb) => cb.checked).length;
+
+    if (totalCheckbox) {
+        if (specificCheckedCount > 0 && totalCheckbox.checked && 
+            selectedLocationsFromURL.includes(TOTAL_TURNOUT_KEY) && 
+            selectedLocationsFromURL.some(loc => loc !== TOTAL_TURNOUT_KEY)) {
+            totalCheckbox.checked = false;
+        } else if (specificCheckedCount === 0 && !totalCheckbox.checked) {
+            if (selectedLocationsFromURL.length === 0 || selectedLocationsFromURL.includes(TOTAL_TURNOUT_KEY)) {
+                totalCheckbox.checked = true;
+            }
+        }
+    }
 };
 
 const handleYearChange = async (event) => {
@@ -221,9 +238,9 @@ const handleYearChange = async (event) => {
     if (isChecked) {
         updateStatusMessage(`Loading data for ${year}...`);
         await loadYearData(year);
-        updateStatusMessage(``); // Clear after loading
+        updateStatusMessage("");
     }
-    populateLocationDropdown(getSelectedLocations()); // Preserve current location selections
+    populateLocationDropdown(getSelectedLocations());
     debouncedRenderChart();
     updateURLFromState();
 };
@@ -234,34 +251,65 @@ function filterLocations() {
     if (!container) return;
 
     const { showEarlyVoting, showElectionDay } = getToggleStates();
+    const selectedYears = getSelectedYears();
     const options = container.querySelectorAll(".location-option");
 
     options.forEach((optionLabel) => {
         const inputElement = optionLabel.querySelector("input");
-        const locationName = inputElement?.value;
+        if (!inputElement) return;
+        const locationName = inputElement.value;
         const labelSpan = optionLabel.querySelector("span");
         const locationDisplayName = labelSpan ? labelSpan.textContent.toLowerCase() : "";
 
         let isVisible = false;
-        const matchesSearch = filterText.length > 0 && locationDisplayName.includes(filterText);
-        const noSearch = filterText.length === 0;
 
+        // Rule 5: "Total Turnout" visibility
         if (locationName === TOTAL_TURNOUT_KEY) {
-            if (noSearch || matchesSearch) isVisible = true;
-        } else if (locationName) {
-            const props = getLocationProperties(locationName);
-            const isEDOnlyLocation = props && props.isElectionDayOnly;
+            if (filterText) {
+                isVisible = locationDisplayName.includes(filterText);
+            } else {
+                isVisible = true; // Always visible by default if no search
+            }
+            optionLabel.style.display = isVisible ? "flex" : "none";
+            return;
+        }
 
-            if (matchesSearch) {
-                isVisible = true;
-            } else if (noSearch) {
-                if (isEDOnlyLocation) {
-                    if (showElectionDay) isVisible = true;
-                    else if (!showEarlyVoting && !showElectionDay) isVisible = false; 
-                    else if (showEarlyVoting && !showElectionDay) isVisible = false; 
-                    else isVisible = true; 
-                } else {
+        // Rule 3 & 4: Search Override
+        if (filterText) {
+            isVisible = locationDisplayName.includes(filterText);
+        } else {
+            // No search text, apply Rules #1 and #2
+            // Rule 1: Contextual Listing (Selected Years)
+            let isInSelectedYearData = false;
+            if (selectedYears.length > 0) {
+                for (const year of selectedYears) {
+                    if (isLocationInYearData(locationName, year)) {
+                        isInSelectedYearData = true;
+                        break;
+                    }
+                }
+            } else {
+                isInSelectedYearData = false;
+            }
+
+            if (!isInSelectedYearData) {
+                isVisible = false;
+            } else {
+                // Rule 2: "Election Day Only" (EDO) Location Logic
+                const props = getLocationProperties(locationName);
+                const isEDOLocation = props ? props.isElectionDayOnly : false;
+
+                if (!showEarlyVoting && !showElectionDay) {
+                    isVisible = false; // Edge case: nothing selected to show
+                } else if (showEarlyVoting && showElectionDay) {
+                    // Show if NOT EDO (i.e., has EV data). EDOs are hidden here.
+                    isVisible = !isEDOLocation;
+                } else if (!showEarlyVoting && showElectionDay) {
+                    // Show all (EDOs and non-EDOs, as they all have ED data if present in dataset)
                     isVisible = true;
+                } else if (showEarlyVoting && !showElectionDay) {
+                    // Show if NOT EDO (i.e., has EV data). EDOs are hidden.
+                    isVisible = !isEDOLocation;
                 }
             }
         }
@@ -281,12 +329,12 @@ function setAllSpecificLocations(checkedState) {
 
     const totalCheckbox = container.querySelector(`input[value="${TOTAL_TURNOUT_KEY}"]`);
     if (totalCheckbox) {
-        if (checkedState && specificCheckboxes.length > 0) { // Only uncheck total if specifics were actually selected
+        if (checkedState && specificCheckboxes.length > 0) {
             totalCheckbox.checked = false;
-        } else if (!checkedState) { // If deselecting all specifics
+        } else if (!checkedState) {
             const currentlySelectedSpecifics = Array.from(container.querySelectorAll("input[type=checkbox]")).filter(cb => cb.value !== TOTAL_TURNOUT_KEY && cb.checked).length;
-            if (currentlySelectedSpecifics === 0) { // And no specifics are left checked
-                totalCheckbox.checked = true; // Then check Total
+            if (currentlySelectedSpecifics === 0) {
+                totalCheckbox.checked = true;
             }
         }
     }
@@ -343,13 +391,10 @@ export const manageDisplay = () => {
     } else { 
         elements.dataTableContainer.classList.add("hidden");
         elements.chartContainer.classList.remove("hidden");
-        // If chart is to be shown, ensure cat is hidden if there's a chart instance
         if (chartInstance && catContainer) {
             catContainer.classList.add("hidden");
             elements.chartCanvas.style.display = "block";
         } else if (!chartInstance && catContainer) {
-            // If no chart instance (e.g. no data), cat should be visible
-            // showCat() in chart.js handles this, but good to be explicit
             catContainer.classList.remove("hidden");
             elements.chartCanvas.style.display = "none";
         }
@@ -382,7 +427,7 @@ export const setupEventListeners = () => {
 
     const commonChangeHandler = () => {
         logMetric("interactions", 1);
-        filterLocations(); // This might not be needed for all common changes
+        filterLocations();
         debouncedRenderChart();
         updateURLFromState();
     };
@@ -393,17 +438,15 @@ export const setupEventListeners = () => {
     
     elements.dataPresentationRadios.forEach(radio => radio.addEventListener('change', () => {
         updateRadioVisuals(elements.dataPresentationRadios);
-        commonChangeHandler(); // This will trigger chart re-render
+        commonChangeHandler();
     }));
+    
     elements.displayAsRadios.forEach(radio => {
         radio.addEventListener('change', () => {
             logMetric("interactions", 1);
             updateRadioVisuals(elements.displayAsRadios);
-            manageDisplay(); // This handles showing/hiding chart/table
+            manageDisplay();
             updateURLFromState();
-            // If switching to graph view, and data changed, chart will re-render via debouncedRenderChart
-            // If only displayAs changed, manageDisplay is sufficient.
-            // If switching to graph and chart needs to be explicitly re-rendered:
             if (radio.value === 'graph') {
                 debouncedRenderChart();
             }
@@ -427,7 +470,7 @@ export const setupEventListeners = () => {
         });
     }
 
-    setupPresetButtons(); // Call this to create and attach listeners for preset buttons
+    setupPresetButtons();
 };
 
 export const setSelectedYears = (yearsToSelect) => {
@@ -462,7 +505,7 @@ export const setSelectedLocations = (locationsToSelect) => {
             totalCheckbox.checked = false;
         } else if (locationsToSelect.includes(TOTAL_TURNOUT_KEY)) {
             totalCheckbox.checked = true;
-        } else { // If no specifics and Total wasn't in the list, default to checking Total
+        } else {
             totalCheckbox.checked = true;
         }
     }
@@ -478,7 +521,7 @@ export const setToggleStates = (states) => {
             radio.checked = radio.value === states.presentation;
         });
         updateRadioVisuals(elements.dataPresentationRadios);
-    } else { // Default if not in URL
+    } else {
         elements.dataPresentationRadios.forEach(radio => {
             if (radio.value === 'per-day') radio.checked = true;
         });
@@ -490,8 +533,8 @@ export const setToggleStates = (states) => {
             radio.checked = radio.value === states.display;
         });
         updateRadioVisuals(elements.displayAsRadios);
-    } else { // Default if not in URL
-         elements.displayAsRadios.forEach(radio => {
+    } else {
+        elements.displayAsRadios.forEach(radio => {
             if (radio.value === 'graph') radio.checked = true;
         });
         updateRadioVisuals(elements.displayAsRadios);
@@ -527,7 +570,6 @@ export const getToggleStates = () => {
             if (radio.checked) displayAsValue = radio.value;
         });
     }
-    
 
     return {
         showEarlyVoting: elements.earlyVotingToggle ? elements.earlyVotingToggle.checked : true,
@@ -579,7 +621,7 @@ const applyPresetConfiguration = async (presetKey) => {
     let config;
     if (presetKey === "default") {
         config = {
-            name: "Default View", // Add name for status message
+            name: "Default View",
             years: DEFAULT_SELECTED_YEARS,
             locations: [TOTAL_TURNOUT_KEY],
             toggles: { ev: true, ed: true, yz: true, presentation: 'per-day', display: 'graph' }
@@ -600,17 +642,16 @@ const applyPresetConfiguration = async (presetKey) => {
         await Promise.allSettled(yearsToLoad.map(loadYearData));
     }
 
-    populateLocationDropdown([]); // Repopulate locations based on newly loaded years
+    populateLocationDropdown([]);
     
-    // Delay setting locations and toggles to ensure dropdown is populated
     setTimeout(() => {
         setSelectedLocations(config.locations);
-        setToggleStates(config.toggles); // This will also update radio visuals
-        filterLocations(); // Apply filter after locations are set
+        setToggleStates(config.toggles);
+        filterLocations();
         
-        manageDisplay(); // Ensure correct view (graph/table) is shown
-        debouncedRenderChart(); // Render the chart/prepare data for table
+        manageDisplay();
+        debouncedRenderChart();
         updateURLFromState();
-        updateStatusMessage(""); // Clear status message
-    }, 150); // Increased delay slightly
+        updateStatusMessage("");
+    }, 150);
 };

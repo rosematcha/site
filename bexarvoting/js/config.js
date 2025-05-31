@@ -1,5 +1,3 @@
-// js/config.js
-
 export const DATA_FILES = {
     "June 2025": { name: "June 2025", path: "csv/June 2025 Municipal Runoff.csv" },
     "May 2025": { name: "May 2025", path: "csv/May 2025 Municipal.csv" },
@@ -86,7 +84,6 @@ export const CAT_IMAGES = [
     "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Planting_time_LCCN2013648290.jpg/1280px-Planting_time_LCCN2013648290.jpg",
 ];
 
-// Color palette for chart lines (add more if needed)
 export const CHART_COLORS = [
     "#EC4899", // Pink-500
     "#8B5CF6", // Violet-500
@@ -100,4 +97,4 @@ export const CHART_COLORS = [
     "#06B6D4", // Cyan-500
 ];
 
-export const TOTAL_TURNOUT_KEY = "total"; // Consistent key for total turnout
+export const TOTAL_TURNOUT_KEY = "total";

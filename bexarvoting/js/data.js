@@ -1,4 +1,3 @@
-// js/data.js
 import { DATA_FILES, TOTAL_TURNOUT_KEY } from "./config.js";
 import { updateStatusMessage } from "./ui.js";
 import { logMetric } from "./main.js";
@@ -6,10 +5,81 @@ import { logMetric } from "./main.js";
 // In-memory store for parsed data { year: { locations: [], dates: [], totals: [] } }
 const parsedData = {};
 
+// Master location list for search functionality
+let masterLocationNames = new Set();
+let masterLocationListInitialized = false;
+
+/**
+ * Initialize master location list by scanning all CSV files for location names
+ */
+export async function initializeMasterLocationList() {
+    if (masterLocationListInitialized) return;
+    console.log("Initializing master location list...");
+
+    const allFileKeys = Object.keys(DATA_FILES);
+    const namePromises = allFileKeys.map(async (yearKey) => {
+        const fileInfo = DATA_FILES[yearKey];
+        if (!fileInfo || !fileInfo.path) {
+            console.warn(`No path for ${yearKey} in DATA_FILES.`);
+            return [];
+        }
+        const filePath = fileInfo.path;
+        try {
+            const response = await fetch(filePath);
+            if (!response.ok) {
+                console.warn(`Could not fetch ${filePath} for master location list. Status: ${response.status}`);
+                return [];
+            }
+            const csvString = await response.text();
+            const lines = csvString.trim().split('\n');
+            const namesInFile = new Set();
+            // Start from the first data row (index 1), assuming header is index 0
+            for (let i = 1; i < lines.length; i++) {
+                const line = lines[i].trim();
+                if (!line) continue; // Skip empty lines
+
+                const firstCommaIndex = line.indexOf(',');
+                if (firstCommaIndex !== -1) {
+                    const locationName = line.substring(0, firstCommaIndex).trim();
+                    // Ensure it's a valid location name and not a summary line like "Total in Person"
+                    if (locationName && 
+                        locationName.toLowerCase() !== "total in person" && 
+                        !locationName.toLowerCase().startsWith("total")) {
+                        namesInFile.add(locationName);
+                    }
+                }
+            }
+            return Array.from(namesInFile);
+        } catch (error) {
+            console.warn(`Error processing ${filePath} for master location list:`, error);
+            return [];
+        }
+    });
+
+    const results = await Promise.allSettled(namePromises);
+    results.forEach(result => {
+        if (result.status === "fulfilled" && result.value) {
+            result.value.forEach(name => masterLocationNames.add(name));
+        }
+    });
+
+    masterLocationListInitialized = true;
+    console.log(`Master location list initialized with ${masterLocationNames.size} unique names.`);
+}
+
+/**
+ * Get all master location names for UI population
+ */
+export function getAllMasterLocationNames() {
+    if (!masterLocationListInitialized) {
+        console.warn("Master location list accessed before initialization.");
+        return [];
+    }
+    return Array.from(masterLocationNames).sort();
+}
+
 /**
  * Fetches data for a given year (no caching).
- * @param {string} year - The year to fetch data for.
- * @returns {Promise<string|null>} CSV data as string or null on error.
  */
 const fetchData = async (year) => {
     const fileInfo = DATA_FILES[year];
@@ -89,14 +159,20 @@ const parseCSV = (csvString, year) => {
                 (_, index) => parseFloat(columns[index + 2]?.trim() || "0") || 0
             );
 
-            // Determine if location is election day only
+            // Revised EDO logic: if all EV days are zero, it's considered EDO
             let isElectionDayOnly = false;
             if (dailyData.length > 0 && headers.length === dailyData.length) {
-                const hasNonZeroData = dailyData.some(d => d > 0);
-                if (hasNonZeroData) {
-                    isElectionDayOnly = !dailyData.some((value, idx) => 
-                        value > 0 && !headers[idx].isElectionDay
-                    );
+                let hasNonZeroEVData = false;
+                for (let i = 0; i < headers.length; i++) {
+                    if (!headers[i].isElectionDay && dailyData[i] > 0) {
+                        hasNonZeroEVData = true;
+                        break;
+                    }
+                }
+                if (!hasNonZeroEVData) {
+                    // If there's no non-zero early voting data, it's considered EDO.
+                    // This includes cases where all data (EV and ED) is zero.
+                    isElectionDayOnly = true;
                 }
             }
 
@@ -164,6 +240,16 @@ export const getLocationProperties = (locationName) => {
         }
     }
     return null;
+};
+
+/**
+ * Check if a location exists in a specific year's data
+ */
+export const isLocationInYearData = (locationName, year) => {
+    if (isDataLoaded(year) && parsedData[year] && parsedData[year].locations) {
+        return parsedData[year].locations.some(loc => loc.name === locationName);
+    }
+    return false;
 };
 
 const getRawData = (year, locationOrTotalKey) => {
