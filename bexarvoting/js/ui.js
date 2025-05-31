@@ -2,9 +2,9 @@
 import { DATA_FILES, TOTAL_TURNOUT_KEY, DEFAULT_SELECTED_YEARS, PRESET_CONFIGURATIONS } from "./config.js";
 import { getAllLoadedLocations, getLocationProperties, isDataLoaded, loadYearData } from "./data.js";
 import { debouncedRenderChart, getCurrentChartInstance } from "./chart.js";
-import { logMetric, updateURLFromState } from "./main.js";
+import { logMetric } from "./main.js"; // logMetric is still in main.js
 
-// DOM Elements
+// DOM Elements (ensure all are correctly identified)
 const elements = {
     yearOptionsContainer: document.getElementById("year-options"),
     locationCheckboxContainer: document.getElementById("location-checkbox-container"),
@@ -26,6 +26,29 @@ const elements = {
 };
 
 let statusMessageElement = null;
+
+// Moved updateURLFromState here
+export const updateURLFromState = () => {
+    const years = getSelectedYears();
+    const locations = getSelectedLocations();
+    const { showEarlyVoting, showElectionDay, startYAtZero, dataPresentation, displayAs } = getToggleStates();
+
+    const params = new URLSearchParams();
+    if (years.length > 0) params.set("y", years.join(","));
+    if (locations.length > 0) params.set("l", locations.join(","));
+
+    params.set("ev", showEarlyVoting ? "1" : "0");
+    params.set("ed", showElectionDay ? "1" : "0");
+    params.set("yz", startYAtZero ? "1" : "0");
+    params.set("pres", dataPresentation); // 'per-day' or 'cumulative'
+    params.set("disp", displayAs);      // 'graph' or 'table'
+
+
+    const newRelativePathQuery = window.location.pathname + "?" + params.toString();
+    // Use replaceState to avoid polluting history too much during rapid changes
+    history.replaceState(null, "", newRelativePathQuery);
+};
+
 
 function ensureStatusMessageElement() {
     if (!statusMessageElement && elements.chartContainer) {
@@ -58,14 +81,16 @@ export const updateStatusMessage = (message) => {
 };
 
 const updateYearLabelState = (label, checked) => {
-    if (checked) {
-        label.classList.add("checked");
-    } else {
-        label.classList.remove("checked");
+    if (label && label.classList) { // Add null check for label
+        if (checked) {
+            label.classList.add("checked");
+        } else {
+            label.classList.remove("checked");
+        }
     }
 };
 
-export const populateYearCheckboxes = (selectedYearsFromURL = []) => {
+export const populateYearCheckboxes = (selectedYearsFromURLOrDefaults = []) => {
     if (!elements.yearOptionsContainer) return;
     elements.yearOptionsContainer.innerHTML = "";
 
@@ -78,14 +103,12 @@ export const populateYearCheckboxes = (selectedYearsFromURL = []) => {
 
         const input = document.createElement("input");
         input.type = "checkbox";
-        input.className = "form-checkbox rounded text-pink-600 focus:ring-pink-500";
+        input.className = "form-checkbox rounded text-pink-600 focus:ring-pink-500"; // This class is hidden by CSS
         input.value = yearKey;
 
-        if (selectedYearsFromURL.length > 0) {
-            input.checked = selectedYearsFromURL.includes(yearKey);
-        } else {
-            input.checked = !disabled && DEFAULT_SELECTED_YEARS.includes(yearKey);
-        }
+        // Use provided selected years (from URL or defaults passed by main.js)
+        input.checked = !disabled && selectedYearsFromURLOrDefaults.includes(yearKey);
+        
         input.disabled = !!disabled;
         
         input.addEventListener("change", (event) => {
@@ -94,13 +117,13 @@ export const populateYearCheckboxes = (selectedYearsFromURL = []) => {
         });
 
         const span = document.createElement("span");
-        span.className = "ml-2 text-sm";
+        span.className = "ml-2 text-sm"; // This span is part of the visible "pill"
         span.textContent = name + (disabled ? " (pending)" : "");
 
         label.appendChild(input);
         label.appendChild(span);
         elements.yearOptionsContainer.appendChild(label);
-        updateYearLabelState(label, input.checked);
+        updateYearLabelState(label, input.checked); // Set initial visual state
     });
 };
 
@@ -196,9 +219,11 @@ const handleYearChange = async (event) => {
     const isChecked = event.target.checked;
 
     if (isChecked) {
+        updateStatusMessage(`Loading data for ${year}...`);
         await loadYearData(year);
+        updateStatusMessage(``); // Clear after loading
     }
-    populateLocationDropdown(getSelectedLocations());
+    populateLocationDropdown(getSelectedLocations()); // Preserve current location selections
     debouncedRenderChart();
     updateURLFromState();
 };
@@ -256,12 +281,12 @@ function setAllSpecificLocations(checkedState) {
 
     const totalCheckbox = container.querySelector(`input[value="${TOTAL_TURNOUT_KEY}"]`);
     if (totalCheckbox) {
-        if (checkedState) {
+        if (checkedState && specificCheckboxes.length > 0) { // Only uncheck total if specifics were actually selected
             totalCheckbox.checked = false;
-        } else {
+        } else if (!checkedState) { // If deselecting all specifics
             const currentlySelectedSpecifics = Array.from(container.querySelectorAll("input[type=checkbox]")).filter(cb => cb.value !== TOTAL_TURNOUT_KEY && cb.checked).length;
-            if (currentlySelectedSpecifics === 0) {
-                totalCheckbox.checked = true;
+            if (currentlySelectedSpecifics === 0) { // And no specifics are left checked
+                totalCheckbox.checked = true; // Then check Total
             }
         }
     }
@@ -318,10 +343,19 @@ export const manageDisplay = () => {
     } else { 
         elements.dataTableContainer.classList.add("hidden");
         elements.chartContainer.classList.remove("hidden");
+        // If chart is to be shown, ensure cat is hidden if there's a chart instance
+        if (chartInstance && catContainer) {
+            catContainer.classList.add("hidden");
+            elements.chartCanvas.style.display = "block";
+        } else if (!chartInstance && catContainer) {
+            // If no chart instance (e.g. no data), cat should be visible
+            // showCat() in chart.js handles this, but good to be explicit
+            catContainer.classList.remove("hidden");
+            elements.chartCanvas.style.display = "none";
+        }
     }
 };
 
-// Helper to update radio button visual state using CSS classes
 const updateRadioVisuals = (radioNodeList) => {
     radioNodeList.forEach(radio => {
         const span = radio.nextElementSibling;
@@ -348,7 +382,7 @@ export const setupEventListeners = () => {
 
     const commonChangeHandler = () => {
         logMetric("interactions", 1);
-        filterLocations();
+        filterLocations(); // This might not be needed for all common changes
         debouncedRenderChart();
         updateURLFromState();
     };
@@ -358,15 +392,21 @@ export const setupEventListeners = () => {
     if (elements.yAxisToggle) elements.yAxisToggle.addEventListener("change", commonChangeHandler);
     
     elements.dataPresentationRadios.forEach(radio => radio.addEventListener('change', () => {
-        commonChangeHandler();
         updateRadioVisuals(elements.dataPresentationRadios);
+        commonChangeHandler(); // This will trigger chart re-render
     }));
     elements.displayAsRadios.forEach(radio => {
         radio.addEventListener('change', () => {
             logMetric("interactions", 1);
-            manageDisplay();
-            updateURLFromState();
             updateRadioVisuals(elements.displayAsRadios);
+            manageDisplay(); // This handles showing/hiding chart/table
+            updateURLFromState();
+            // If switching to graph view, and data changed, chart will re-render via debouncedRenderChart
+            // If only displayAs changed, manageDisplay is sufficient.
+            // If switching to graph and chart needs to be explicitly re-rendered:
+            if (radio.value === 'graph') {
+                debouncedRenderChart();
+            }
         });
     });
 
@@ -387,7 +427,7 @@ export const setupEventListeners = () => {
         });
     }
 
-    setupPresetButtons();
+    setupPresetButtons(); // Call this to create and attach listeners for preset buttons
 };
 
 export const setSelectedYears = (yearsToSelect) => {
@@ -422,7 +462,7 @@ export const setSelectedLocations = (locationsToSelect) => {
             totalCheckbox.checked = false;
         } else if (locationsToSelect.includes(TOTAL_TURNOUT_KEY)) {
             totalCheckbox.checked = true;
-        } else {
+        } else { // If no specifics and Total wasn't in the list, default to checking Total
             totalCheckbox.checked = true;
         }
     }
@@ -438,10 +478,21 @@ export const setToggleStates = (states) => {
             radio.checked = radio.value === states.presentation;
         });
         updateRadioVisuals(elements.dataPresentationRadios);
+    } else { // Default if not in URL
+        elements.dataPresentationRadios.forEach(radio => {
+            if (radio.value === 'per-day') radio.checked = true;
+        });
+        updateRadioVisuals(elements.dataPresentationRadios);
     }
+
     if (states.display !== undefined) {
         elements.displayAsRadios.forEach(radio => {
             radio.checked = radio.value === states.display;
+        });
+        updateRadioVisuals(elements.displayAsRadios);
+    } else { // Default if not in URL
+         elements.displayAsRadios.forEach(radio => {
+            if (radio.value === 'graph') radio.checked = true;
         });
         updateRadioVisuals(elements.displayAsRadios);
     }
@@ -464,14 +515,19 @@ export const getSelectedLocations = () => {
 
 export const getToggleStates = () => {
     let dataPresentationValue = 'per-day';
-    elements.dataPresentationRadios.forEach(radio => {
-        if (radio.checked) dataPresentationValue = radio.value;
-    });
+    if (elements.dataPresentationRadios && elements.dataPresentationRadios.length > 0) {
+        elements.dataPresentationRadios.forEach(radio => {
+            if (radio.checked) dataPresentationValue = radio.value;
+        });
+    }
 
     let displayAsValue = 'graph';
-    elements.displayAsRadios.forEach(radio => {
-        if (radio.checked) displayAsValue = radio.value;
-    });
+    if (elements.displayAsRadios && elements.displayAsRadios.length > 0) {
+        elements.displayAsRadios.forEach(radio => {
+            if (radio.checked) displayAsValue = radio.value;
+        });
+    }
+    
 
     return {
         showEarlyVoting: elements.earlyVotingToggle ? elements.earlyVotingToggle.checked : true,
@@ -523,6 +579,7 @@ const applyPresetConfiguration = async (presetKey) => {
     let config;
     if (presetKey === "default") {
         config = {
+            name: "Default View", // Add name for status message
             years: DEFAULT_SELECTED_YEARS,
             locations: [TOTAL_TURNOUT_KEY],
             toggles: { ev: true, ed: true, yz: true, presentation: 'per-day', display: 'graph' }
@@ -543,14 +600,17 @@ const applyPresetConfiguration = async (presetKey) => {
         await Promise.allSettled(yearsToLoad.map(loadYearData));
     }
 
-    populateLocationDropdown([]);
+    populateLocationDropdown([]); // Repopulate locations based on newly loaded years
+    
+    // Delay setting locations and toggles to ensure dropdown is populated
     setTimeout(() => {
         setSelectedLocations(config.locations);
         setToggleStates(config.toggles); // This will also update radio visuals
-        filterLocations();
-        manageDisplay(); // Call manageDisplay to ensure correct view (graph/table)
-        debouncedRenderChart();
+        filterLocations(); // Apply filter after locations are set
+        
+        manageDisplay(); // Ensure correct view (graph/table) is shown
+        debouncedRenderChart(); // Render the chart/prepare data for table
         updateURLFromState();
-        updateStatusMessage("");
-    }, 100);
+        updateStatusMessage(""); // Clear status message
+    }, 150); // Increased delay slightly
 };

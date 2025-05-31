@@ -1,5 +1,5 @@
 // js/main.js
-import { DATA_FILES, REFRESH_INTERVAL, TOTAL_TURNOUT_KEY } from "./config.js";
+import { DATA_FILES, REFRESH_INTERVAL, DEFAULT_SELECTED_YEARS } from "./config.js"; // Removed TOTAL_TURNOUT_KEY as it's not directly used here
 import { loadYearData, isDataLoaded } from "./data.js";
 import {
     populateYearCheckboxes,
@@ -7,13 +7,15 @@ import {
     setupEventListeners,
     updateStatusMessage,
     updateAttribution,
-    getSelectedYears,
-    getSelectedLocations,
-    getToggleStates,
-    setSelectedYears,     // New setter
-    setSelectedLocations, // New setter
-    setToggleStates,      // New setter
-    manageDisplay,        // For managing chart/table view
+    getSelectedYears,    // Still needed for interval check
+    // setSelectedYears,  // applyStateFromURL calls this
+    // setSelectedLocations, // applyStateFromURL calls this
+    // setToggleStates, // applyStateFromURL calls this
+    // manageDisplay, // Called by chart.js or event handlers in ui.js
+    // updateURLFromState, // MOVED to ui.js
+    setSelectedYears, // Keep for applyStateFromURL
+    setSelectedLocations, // Keep for applyStateFromURL
+    setToggleStates, // Keep for applyStateFromURL
 } from "./ui.js";
 import { debouncedRenderChart } from "./chart.js";
 
@@ -46,21 +48,23 @@ const applyStateFromURL = () => {
     const showEV = params.get("ev");
     const showED = params.get("ed");
     const yz = params.get("yz");
-    const showDT = params.get("dt"); // Data Table
+    // New radio button params
+    const presentation = params.get("pres"); // e.g., 'per-day' or 'cumulative'
+    const display = params.get("disp");      // e.g., 'graph' or 'table'
+
 
     if (years.length > 0) {
         setSelectedYears(years);
     }
-    // setSelectedLocations will be called after initial years are loaded and populateLocationDropdown runs,
-    // so we store the locationsFromURL to be applied then.
-    // However, if called here, it might try to check locations that aren't populated yet.
-    // Let's defer specific location setting to after initial year loads in initialize().
+    // Locations will be set after initial year loads in initialize
 
     const toggleStates = {};
     if (showEV !== null) toggleStates.ev = showEV === "1";
     if (showED !== null) toggleStates.ed = showED === "1";
     if (yz !== null) toggleStates.yz = yz === "1";
-    if (showDT !== null) toggleStates.dt = showDT === "1";
+    if (presentation !== null) toggleStates.presentation = presentation;
+    if (display !== null) toggleStates.display = display;
+
 
     if (Object.keys(toggleStates).length > 0) {
         setToggleStates(toggleStates);
@@ -68,38 +72,27 @@ const applyStateFromURL = () => {
     return locations; // Return locations from URL to be applied later
 };
 
-/**
- * Updates the URL query parameters based on the current UI state.
- */
-export const updateURLFromState = () => {
-    const years = getSelectedYears();
-    const locations = getSelectedLocations();
-    const { showEarlyVoting, showElectionDay, startYAtZero, showDataTable } = getToggleStates();
-
-    const params = new URLSearchParams();
-    if (years.length > 0) params.set("y", years.join(","));
-    if (locations.length > 0) params.set("l", locations.join(","));
-
-    params.set("ev", showEarlyVoting ? "1" : "0");
-    params.set("ed", showElectionDay ? "1" : "0");
-    params.set("yz", startYAtZero ? "1" : "0");
-    params.set("dt", showDataTable ? "1" : "0"); // Data Table
-
-    const newRelativePathQuery = window.location.pathname + "?" + params.toString();
-    history.pushState(null, "", newRelativePathQuery);
-};
-
+// updateURLFromState is now in ui.js and imported/called by chart.js and ui.js event handlers
 
 const initialize = async () => {
     updateStatusMessage("Initializing...");
 
-    // Apply state from URL first to determine which years/toggles are active
-    const locationsFromURL = applyStateFromURL(); // This sets year checkboxes and toggles
+    const locationsFromURL = applyStateFromURL();
 
-    populateYearCheckboxes(getSelectedYears()); // Populates based on current state (potentially from URL)
+    // Populate year checkboxes based on current state (potentially from URL or defaults)
+    // If URL had years, setSelectedYears was called. If not, populateYearCheckboxes uses defaults.
+    populateYearCheckboxes(locationsFromURL.length > 0 ? getSelectedYears() : DEFAULT_SELECTED_YEARS);
+
 
     const initialYears = getSelectedYears();
-    const loadPromises = initialYears.map((year) => loadYearData(year));
+    if (initialYears.length === 0 && DEFAULT_SELECTED_YEARS.length > 0) {
+        // If no years selected (e.g. bad URL or cleared state), apply defaults
+        setSelectedYears(DEFAULT_SELECTED_YEARS);
+        // initialYears = DEFAULT_SELECTED_YEARS; // Re-fetch after setting
+    }
+
+
+    const loadPromises = getSelectedYears().map((year) => loadYearData(year)); // Use current selection
 
     try {
         await Promise.allSettled(loadPromises);
@@ -108,41 +101,51 @@ const initialize = async () => {
         updateStatusMessage("⚠️ Unexpected error during initialization.");
     }
 
-    const hasLoadedData = initialYears.some((year) => isDataLoaded(year));
+    const hasLoadedData = getSelectedYears().some((year) => isDataLoaded(year));
 
-    // Populate location dropdown now that initial years are loaded
-    populateLocationDropdown(locationsFromURL); // Pass locations from URL to ensure they are selected
-    setupEventListeners(); // Setup all listeners, including new buttons
+    populateLocationDropdown(locationsFromURL);
+    setupEventListeners();
     updateAttribution();
 
-    debouncedRenderChart(); // Initial render will use current (possibly URL-derived) state
+    // Initial render will use current (possibly URL-derived or default) state
     // manageDisplay() is called at the end of renderChart (or debouncedRenderChart flow)
+    // or by displayAs radio button handler.
+    // We need to ensure the correct view (graph/table) is set initially.
+    const { displayAs } = await import('./ui.js').then(ui => ui.getToggleStates()); // Dynamically import to avoid issues if ui.js isn't ready
+    if (displayAs === 'table') {
+        await import('./ui.js').then(ui => ui.manageDisplay());
+    }
+    debouncedRenderChart();
 
-    const statusElement = document.querySelector("#chart-container > p.absolute");
+
+    const statusElement = document.querySelector("#chart-container > p.absolute"); // More robust selector
     if (hasLoadedData) {
-        if (statusElement && !statusElement.textContent.includes("⚠️")) {
+        if (statusElement && !statusMessageElement.textContent.includes("⚠️")) { // Check the actual status message element
             updateStatusMessage("");
         }
+    } else if (getSelectedYears().length > 0) { // Only show "no data" if years were actually selected
+        updateStatusMessage("No data available for selected year(s).");
     } else {
-        updateStatusMessage("No data available to display.");
+        updateStatusMessage("Please select one or more years to display data.");
     }
+
 
     setInterval(async () => {
         console.log("Checking for data updates...");
-        const yearsToCheck = getSelectedYears();
+        const currentSelectedYears = getSelectedYears(); // Get current selection
         let dataChanged = false;
 
-        const updatePromises = yearsToCheck.map(async (year) => {
+        const updatePromises = currentSelectedYears.map(async (year) => {
             const cacheKey = `voting-data-${year}`;
             const oldDataTimestamp = localStorage.getItem(cacheKey)
                 ? JSON.parse(localStorage.getItem(cacheKey)).timestamp
                 : null;
-            await loadYearData(year);
+            await loadYearData(year); // This fetches with cache logic
             const newDataTimestamp = localStorage.getItem(cacheKey)
                 ? JSON.parse(localStorage.getItem(cacheKey)).timestamp
                 : null;
             if (oldDataTimestamp !== newDataTimestamp) {
-                return true;
+                return true; // Data changed for this year
             }
             return false;
         });
@@ -154,7 +157,9 @@ const initialize = async () => {
 
         if (dataChanged) {
             console.log("Data changed, re-rendering...");
-            populateLocationDropdown(getSelectedLocations()); // Preserve current selections while refreshing list
+            // Preserve current location selections while refreshing list if necessary
+            const currentSelectedLocations = await import('./ui.js').then(ui => ui.getSelectedLocations());
+            populateLocationDropdown(currentSelectedLocations);
             debouncedRenderChart();
             updateAttribution();
         } else {

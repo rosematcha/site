@@ -8,12 +8,11 @@ import { updateURLFromState } from "./main.js"; // For updating URL after chart 
 // ... (rest of the existing chart.js code remains the same until renderChart)
 
 const renderChart = () => {
-    const startTime = performance.now();
+    // const startTime = performance.now(); // If you re-enable logging
     const selectedYears = getSelectedYears();
     const selectedLocations = getSelectedLocations();
-    // Destructure new state from getToggleStates
     const { showEarlyVoting, showElectionDay, startYAtZero, dataPresentation, displayAs } = getToggleStates();
-    const showCumulative = dataPresentation === 'cumulative'; // Derive showCumulative
+    const showCumulative = dataPresentation === 'cumulative';
 
     const ctx = chartCanvas?.getContext("2d");
     if (!ctx) {
@@ -26,10 +25,7 @@ const renderChart = () => {
     // but data still needs to be processed for the table.
     // manageDisplay() will handle showing the table.
     if (displayAs === 'table') {
-        // We still need to prepare datasets if the table is visible,
-        // so the chart rendering logic below will run, but the chart itself won't be shown.
-        // Alternatively, if table data generation is very different, you could have a separate path.
-        // For now, let chart logic run to populate data, manageDisplay will hide the canvas.
+        // Table is handled by manageDisplay, but chart logic might still run to prepare data
     }
 
 
@@ -39,8 +35,8 @@ const renderChart = () => {
         (!showEarlyVoting && !showElectionDay)
     ) {
         showCat();
-        manageDisplay(); // Ensure this is called to hide chart/show cat
-        updateURLFromState();
+        manageDisplay(); 
+        updateURLFromState(); // This now comes from ui.js
         return;
     }
 
@@ -288,4 +284,5 @@ const renderChart = () => {
     updateURLFromState();
 };
 
-export const debouncedRenderChart = debounce(renderChart, 300); // Slightly increased debounce
+export const debouncedRenderChart = debounce(renderChart, 300);
+export const getCurrentChartInstance = () => turnoutChart;
