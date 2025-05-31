@@ -1,3 +1,4 @@
+// js/ui.js
 import { DATA_FILES, TOTAL_TURNOUT_KEY, DEFAULT_SELECTED_YEARS, PRESET_CONFIGURATIONS } from "./config.js";
 import { getAllLoadedLocations, getLocationProperties, isDataLoaded, loadYearData, getAllMasterLocationNames, isLocationInYearData } from "./data.js";
 import { debouncedRenderChart, getCurrentChartInstance } from "./chart.js";
@@ -103,7 +104,7 @@ export const populateYearCheckboxes = (selectedYearsFromURLOrDefaults = []) => {
 
         input.checked = !disabled && selectedYearsFromURLOrDefaults.includes(yearKey);
         input.disabled = !!disabled;
-        
+
         input.addEventListener("change", (event) => {
             updateYearLabelState(label, event.target.checked);
             handleYearChange(event);
@@ -176,58 +177,126 @@ export const populateLocationDropdown = (selectedLocationsFromURL = []) => {
     const container = elements.locationCheckboxContainer;
     if (!container) return;
 
-    container.innerHTML = "";
+    container.innerHTML = ""; // Clear existing options
+
+    const allMasterNames = getAllMasterLocationNames();
+    const initialCheckboxStates = {}; // To store what should be checked
 
     // Determine initial checked state for "Total Turnout"
-    let totalChecked = false;
+    let totalIsInitiallyChecked = false;
     if (selectedLocationsFromURL.length > 0) {
-        totalChecked = selectedLocationsFromURL.includes(TOTAL_TURNOUT_KEY);
-    } else {
-        const currentSelected = getSelectedLocations();
-        if (currentSelected.length === 0 || (currentSelected.length === 1 && currentSelected[0] === TOTAL_TURNOUT_KEY)) {
-            totalChecked = true;
+        if (selectedLocationsFromURL.includes(TOTAL_TURNOUT_KEY)) {
+            const specificLocationsInURL = selectedLocationsFromURL.filter(loc => loc !== TOTAL_TURNOUT_KEY);
+            if (specificLocationsInURL.length === 0) {
+                totalIsInitiallyChecked = true;
+            } else {
+                totalIsInitiallyChecked = false;
+            }
         }
+    } else {
+        totalIsInitiallyChecked = true;
+    }
+    initialCheckboxStates[TOTAL_TURNOUT_KEY] = totalIsInitiallyChecked;
+
+    // Determine initial checked states for specific locations from URL
+    allMasterNames.forEach(name => {
+        if (selectedLocationsFromURL.includes(name)) {
+            initialCheckboxStates[name] = true;
+            if (totalIsInitiallyChecked) {
+                 initialCheckboxStates[TOTAL_TURNOUT_KEY] = false;
+            }
+        } else {
+            initialCheckboxStates[name] = false;
+        }
+    });
+
+    const anySpecificChecked = Object.entries(initialCheckboxStates)
+                                .filter(([key, value]) => key !== TOTAL_TURNOUT_KEY && value)
+                                .length > 0;
+    if (!anySpecificChecked && !initialCheckboxStates[TOTAL_TURNOUT_KEY]) {
+        initialCheckboxStates[TOTAL_TURNOUT_KEY] = true;
     }
 
-    if (selectedLocationsFromURL.length === 0 && getSelectedLocations().length === 0) {
-        totalChecked = true;
-    }
 
-    // Always add "Total Turnout" first
+    // Create "Total Turnout" checkbox
     createCheckboxOption(
         container,
         "Total Turnout",
         TOTAL_TURNOUT_KEY,
-        totalChecked
+        initialCheckboxStates[TOTAL_TURNOUT_KEY] || false
     );
 
-    // Add all master location names
-    const masterNames = getAllMasterLocationNames();
-    masterNames.forEach((name) => {
-        const isChecked = selectedLocationsFromURL.includes(name);
-        createCheckboxOption(container, name, name, isChecked);
+    // Create all master location checkboxes
+    allMasterNames.forEach((name) => {
+        createCheckboxOption(
+            container,
+            name,
+            name,
+            initialCheckboxStates[name] || false
+        );
     });
 
-    // Apply filters to set initial visibility
+    // --- Apply visibility rules AFTER creating and setting initial checked states ---
     filterLocations();
 
-    // Handle total/specific checkbox logic after filtering
+     // Ensure total/specific checkbox logic is correct after initial population based on URL and filtering
     const allCheckboxes = Array.from(container.querySelectorAll("input[type=checkbox]"));
     const totalCheckbox = allCheckboxes.find((cb) => cb.value === TOTAL_TURNOUT_KEY);
     const specificCheckboxes = allCheckboxes.filter((cb) => cb.value !== TOTAL_TURNOUT_KEY);
     const specificCheckedCount = specificCheckboxes.filter((cb) => cb.checked).length;
+    const specificVisibleCheckedCount = specificCheckboxes.filter((cb) => cb.checked && cb.parentElement && cb.parentElement.style.display !== 'none').length;
+
 
     if (totalCheckbox) {
-        if (specificCheckedCount > 0 && totalCheckbox.checked && 
-            selectedLocationsFromURL.includes(TOTAL_TURNOUT_KEY) && 
-            selectedLocationsFromURL.some(loc => loc !== TOTAL_TURNOUT_KEY)) {
-            totalCheckbox.checked = false;
-        } else if (specificCheckedCount === 0 && !totalCheckbox.checked) {
-            if (selectedLocationsFromURL.length === 0 || selectedLocationsFromURL.includes(TOTAL_TURNOUT_KEY)) {
-                totalCheckbox.checked = true;
-            }
+         // If any specific is checked AND visible, uncheck Total
+        if (specificVisibleCheckedCount > 0) {
+             totalCheckbox.checked = false;
+        } else if (specificVisibleCheckedCount === 0) {
+            // If NO specific locations are checked AND visible, check Total, UNLESS
+            // the original URL explicitly had specific locations selected (and not Total).
+            const urlHadSpecificsOnly = selectedLocationsFromURL.length > 0 && 
+                                         !selectedLocationsFromURL.includes(TOTAL_TURNOUT_KEY) &&
+                                         selectedLocationsFromURL.some(loc => loc !== TOTAL_TURNOUT_KEY);
+
+             if (!urlHadSpecificsOnly || selectedLocationsFromURL.length === 0) {
+                 totalCheckbox.checked = true;
+             } else {
+                 // If URL had specific-only, and none are visible/checked, keep total unchecked.
+                 totalCheckbox.checked = false;
+             }
         }
+         // If URL had specific locations, ensure they are checked *if* they are visible, otherwise leave unchecked (as set initially).
+         selectedLocationsFromURL.forEach(loc => {
+             if (loc !== TOTAL_TURNOUT_KEY) {
+                 const cb = container.querySelector(`input[value="${loc}"]`);
+                 if (cb && cb.parentElement && cb.parentElement.style.display !== 'none') {
+                     cb.checked = true; // Ensure explicitly requested visible specific is checked
+                 }
+             }
+         });
+         // Re-evaluate total based on final checked specifics
+          const specificFinalCheckedCount = specificCheckboxes.filter((cb) => cb.checked && cb.parentElement && cb.parentElement.style.display !== 'none').length;
+          if (specificFinalCheckedCount > 0) {
+              totalCheckbox.checked = false;
+          } else {
+               const urlHadSpecificsOnly = selectedLocationsFromURL.length > 0 && 
+                                         !selectedLocationsFromURL.includes(TOTAL_TURNOUT_KEY) &&
+                                         selectedLocationsFromURL.some(loc => loc !== TOTAL_TURNOUT_KEY);
+               if (!urlHadSpecificsOnly || selectedLocationsFromURL.length === 0) {
+                    totalCheckbox.checked = true;
+               } else {
+                   totalCheckbox.checked = false;
+               }
+          }
     }
+     // Trigger handleLocationChange for checked items to sync chart/URL
+     // This seems slightly redundant as filterLocations/debouncedRenderChart is called,
+     // but might help ensure consistent state. Let's remove for now and see if it's needed.
+     // getSelectedLocations().forEach(loc => {
+     //    const cb = container.querySelector(`input[value="${loc}"]`);
+     //    if(cb && cb.checked) handleLocationChange({target: cb}); // Simulate change
+     // });
+
 };
 
 const handleYearChange = async (event) => {
@@ -240,12 +309,16 @@ const handleYearChange = async (event) => {
         await loadYearData(year);
         updateStatusMessage("");
     }
-    populateLocationDropdown(getSelectedLocations());
+    // Preserve current location selections when repopulating dropdown
+    // This might be tricky - let's just re-apply the *concept* of the URL selection
+    // rather than the actual checked checkboxes, as filterLocations will re-evaluate visibility.
+    populateLocationDropdown(getSelectedLocations()); // Use getSelectedLocations to pass current state
     debouncedRenderChart();
     updateURLFromState();
 };
 
 function filterLocations() {
+    console.log("filterLocations called"); // Add initial log
     const filterText = elements.locationFilterInput?.value?.toLowerCase().trim() || "";
     const container = elements.locationCheckboxContainer;
     if (!container) return;
@@ -253,6 +326,8 @@ function filterLocations() {
     const { showEarlyVoting, showElectionDay } = getToggleStates();
     const selectedYears = getSelectedYears();
     const options = container.querySelectorAll(".location-option");
+
+    console.log(`Filtering with: {filterText: "${filterText}", showEarlyVoting: ${showEarlyVoting}, showElectionDay: ${showElectionDay}, selectedYears: ${selectedYears.join(", ") || "none"}}`);
 
     options.forEach((optionLabel) => {
         const inputElement = optionLabel.querySelector("input");
@@ -270,52 +345,85 @@ function filterLocations() {
             } else {
                 isVisible = true; // Always visible by default if no search
             }
-            optionLabel.style.display = isVisible ? "flex" : "none";
-            return;
-        }
-
-        // Rule 3 & 4: Search Override
-        if (filterText) {
-            isVisible = locationDisplayName.includes(filterText);
+            // Don't set display here yet, do it after all checks
         } else {
-            // No search text, apply Rules #1 and #2
-            // Rule 1: Contextual Listing (Selected Years)
-            let isInSelectedYearData = false;
-            if (selectedYears.length > 0) {
-                for (const year of selectedYears) {
-                    if (isLocationInYearData(locationName, year)) {
-                        isInSelectedYearData = true;
-                        break;
+            // Rule 3 & 4: Search Override
+            if (filterText) {
+                isVisible = locationDisplayName.includes(filterText);
+            } else {
+                // No search text, apply Rules #1 and #2
+                // Rule 1: Contextual Listing (Selected Years)
+                let isInSelectedYearData = false;
+                if (selectedYears.length > 0) {
+                    for (const year of selectedYears) {
+                        if (isLocationInYearData(locationName, year)) {
+                            isInSelectedYearData = true;
+                            break;
+                        }
                     }
+                } else {
+                    isInSelectedYearData = false;
                 }
-            } else {
-                isInSelectedYearData = false;
-            }
+                console.log(`Location: ${locationName}, isInSelectedYearData: ${isInSelectedYearData}`);
 
-            if (!isInSelectedYearData) {
-                isVisible = false;
-            } else {
-                // Rule 2: "Election Day Only" (EDO) Location Logic
-                const props = getLocationProperties(locationName);
-                const isEDOLocation = props ? props.isElectionDayOnly : false;
+                if (!isInSelectedYearData) {
+                    isVisible = false;
+                } else {
+                    // Rule 2: "Election Day Only" (EDO) Location Logic
+                    const props = getLocationProperties(locationName);
+                    const isEDOLocation = props ? props.isElectionDayOnly : false;
+                    console.log(`Location: ${locationName}, props: ${JSON.stringify(props)}, isEDOLocation: ${isEDOLocation}`);
 
-                if (!showEarlyVoting && !showElectionDay) {
-                    isVisible = false; // Edge case: nothing selected to show
-                } else if (showEarlyVoting && showElectionDay) {
-                    // Show if NOT EDO (i.e., has EV data). EDOs are hidden here.
-                    isVisible = !isEDOLocation;
-                } else if (!showEarlyVoting && showElectionDay) {
-                    // Show all (EDOs and non-EDOs, as they all have ED data if present in dataset)
-                    isVisible = true;
-                } else if (showEarlyVoting && !showElectionDay) {
-                    // Show if NOT EDO (i.e., has EV data). EDOs are hidden.
-                    isVisible = !isEDOLocation;
+                    if (!showEarlyVoting && !showElectionDay) {
+                        isVisible = false;
+                    } else if (showEarlyVoting && showElectionDay) {
+                        // Show if NOT EDO (i.e., has EV data). EDOs are hidden here.
+                        isVisible = !isEDOLocation;
+                    } else if (!showEarlyVoting && showElectionDay) {
+                        // Show all (EDOs and non-EDOs, as they all have ED data if present in dataset)
+                        isVisible = true; // If present in data & ED is on, show it.
+                    } else if (showEarlyVoting && !showElectionDay) {
+                        // Show if NOT EDO (i.e., has EV data). EDOs are hidden.
+                        isVisible = !isEDOLocation;
+                    }
+                    console.log(`Location: ${locationName}, Rule 2 result - isVisible: ${isVisible}`);
                 }
             }
         }
+        
+        // Apply the determined visibility
+        console.log(`FINAL for ${locationName}: isVisible = ${isVisible}, current display: ${optionLabel.style.display}`);
+        console.log(optionLabel); // Log the actual DOM element
         optionLabel.style.display = isVisible ? "flex" : "none";
     });
+     // After filtering, adjust "Select All Visible" / "Deselect All Visible" text/state
+     updateSelectAllVisibleButtonState();
 }
+
+// Add this helper function to update button visibility/text
+function updateSelectAllVisibleButtonState() {
+    const container = elements.locationCheckboxContainer;
+    if (!container || !elements.selectAllButton || !elements.deselectAllButton) return;
+
+    const visibleSpecificCheckboxes = Array.from(
+        container.querySelectorAll(".location-option:not([style*='display: none']) input[type=checkbox]")
+    ).filter((cb) => cb.value !== TOTAL_TURNOUT_KEY);
+
+    const visibleCheckedCount = visibleSpecificCheckboxes.filter(cb => cb.checked).length;
+
+    if (visibleSpecificCheckboxes.length > 0) {
+        elements.selectAllButton.textContent = `Select All Visible (${visibleSpecificCheckboxes.length})`;
+        elements.deselectAllButton.textContent = `Deselect All Visible (${visibleCheckedCount} Selected)`;
+        elements.selectAllButton.disabled = visibleCheckedCount === visibleSpecificCheckboxes.length;
+        elements.deselectAllButton.disabled = visibleCheckedCount === 0;
+    } else {
+        elements.selectAllButton.textContent = `Select All Visible (0)`;
+        elements.deselectAllButton.textContent = `Deselect All Visible (0 Selected)`;
+        elements.selectAllButton.disabled = true;
+        elements.deselectAllButton.disabled = true;
+    }
+}
+
 
 function setAllSpecificLocations(checkedState) {
     const container = elements.locationCheckboxContainer;
@@ -325,24 +433,24 @@ function setAllSpecificLocations(checkedState) {
         container.querySelectorAll(".location-option:not([style*='display: none']) input[type=checkbox]")
     ).filter((cb) => cb.value !== TOTAL_TURNOUT_KEY);
 
-    specificCheckboxes.forEach((cb) => (cb.checked = checkedState));
-
-    const totalCheckbox = container.querySelector(`input[value="${TOTAL_TURNOUT_KEY}"]`);
-    if (totalCheckbox) {
-        if (checkedState && specificCheckboxes.length > 0) {
-            totalCheckbox.checked = false;
-        } else if (!checkedState) {
-            const currentlySelectedSpecifics = Array.from(container.querySelectorAll("input[type=checkbox]")).filter(cb => cb.value !== TOTAL_TURNOUT_KEY && cb.checked).length;
-            if (currentlySelectedSpecifics === 0) {
-                totalCheckbox.checked = true;
-            }
-        }
-    }
-
+    specificCheckboxes.forEach((cb) => {
+         if (cb.parentElement && cb.parentElement.style.display !== 'none') { // Only affect visible ones
+             cb.checked = checkedState;
+             // Simulate change event to trigger handleLocationChange for each,
+             // which updates Total checkbox, chart, and URL.
+             const event = new Event('change', { bubbles: true });
+             cb.dispatchEvent(event);
+         }
+     });
+     // Re-run filtering after potential Total state changes
+    // filterLocations(); // This is already triggered by handleLocationChange
+     // Update button state after selection change
+    updateSelectAllVisibleButtonState();
     logMetric("interactions", 1);
-    debouncedRenderChart();
-    updateURLFromState();
+    // debouncedRenderChart(); // Triggered by handleLocationChange
+    // updateURLFromState(); // Triggered by handleLocationChange
 }
+
 
 export const renderDataTable = (chartInstance) => {
     if (!elements.dataTableContainer) return;
@@ -388,7 +496,7 @@ export const manageDisplay = () => {
         if (catContainer) catContainer.classList.add("hidden");
         elements.dataTableContainer.classList.remove("hidden");
         renderDataTable(chartInstance);
-    } else { 
+    } else {
         elements.dataTableContainer.classList.add("hidden");
         elements.chartContainer.classList.remove("hidden");
         if (chartInstance && catContainer) {
@@ -422,12 +530,13 @@ export const setupEventListeners = () => {
         elements.selectAllButton.addEventListener("click", () => setAllSpecificLocations(true));
     }
     if (elements.deselectAllButton) {
-        elements.deselectAllButton.addEventListener("click", () => setAllSpecificLocations(false));
+        elements.deselectAllLocations.addEventListener("click", () => setAllSpecificLocations(false)); // Corrected ID here
     }
+
 
     const commonChangeHandler = () => {
         logMetric("interactions", 1);
-        filterLocations();
+        filterLocations(); // Re-filter locations based on toggle changes
         debouncedRenderChart();
         updateURLFromState();
     };
@@ -435,12 +544,12 @@ export const setupEventListeners = () => {
     if (elements.earlyVotingToggle) elements.earlyVotingToggle.addEventListener("change", commonChangeHandler);
     if (elements.electionDayToggle) elements.electionDayToggle.addEventListener("change", commonChangeHandler);
     if (elements.yAxisToggle) elements.yAxisToggle.addEventListener("change", commonChangeHandler);
-    
+
     elements.dataPresentationRadios.forEach(radio => radio.addEventListener('change', () => {
         updateRadioVisuals(elements.dataPresentationRadios);
         commonChangeHandler();
     }));
-    
+
     elements.displayAsRadios.forEach(radio => {
         radio.addEventListener('change', () => {
             logMetric("interactions", 1);
@@ -494,22 +603,36 @@ export const setSelectedLocations = (locationsToSelect) => {
         locationsToSelect = [TOTAL_TURNOUT_KEY];
     }
 
+    // First, set the checked state for all checkboxes
     checkboxes.forEach(cb => {
         cb.checked = locationsToSelect.includes(cb.value);
     });
-    
+
+    // Then, enforce the "Total vs Specifics" rule based on the target selection
     const totalCheckbox = container.querySelector(`input[value="${TOTAL_TURNOUT_KEY}"]`);
-    const specificSelected = locationsToSelect.some(loc => loc !== TOTAL_TURNOUT_KEY);
+    const specificSelectedInTarget = locationsToSelect.some(loc => loc !== TOTAL_TURNOUT_KEY);
+
     if (totalCheckbox) {
-        if (specificSelected) {
-            totalCheckbox.checked = false;
+        if (specificSelectedInTarget) {
+            totalCheckbox.checked = false; // If target includes specifics, total is unchecked
         } else if (locationsToSelect.includes(TOTAL_TURNOUT_KEY)) {
-            totalCheckbox.checked = true;
+            totalCheckbox.checked = true; // If target is just total, total is checked
         } else {
-            totalCheckbox.checked = true;
+             // If target is empty or contains only non-existent specific locations,
+             // default to checking Total.
+             const allMasterNames = getAllMasterLocationNames();
+             const validSpecificsInTarget = locationsToSelect.filter(loc => loc !== TOTAL_TURNOUT_KEY && allMasterNames.includes(loc)).length;
+             if(validSpecificsInTarget === 0) {
+                  totalCheckbox.checked = true;
+             } else {
+                 totalCheckbox.checked = false;
+             }
         }
     }
+    // After setting checked states, apply the filter to show/hide
+    filterLocations();
 };
+
 
 export const setToggleStates = (states) => {
     if (elements.earlyVotingToggle && states.ev !== undefined) elements.earlyVotingToggle.checked = states.ev;
@@ -642,16 +765,20 @@ const applyPresetConfiguration = async (presetKey) => {
         await Promise.allSettled(yearsToLoad.map(loadYearData));
     }
 
-    populateLocationDropdown([]);
-    
-    setTimeout(() => {
-        setSelectedLocations(config.locations);
-        setToggleStates(config.toggles);
-        filterLocations();
-        
-        manageDisplay();
-        debouncedRenderChart();
+    // Repopulate location dropdown with all master locations, applying preset selections and visibility filter
+    populateLocationDropdown(config.locations);
+
+    // Set toggles, which also calls filterLocations and debouncedRenderChart indirectly via commonChangeHandler
+    // Set toggles AFTER locations are populated and filtered.
+     setTimeout(() => { // Add a slight delay just in case DOM isn't fully ready
+        setToggleStates(config.toggles); // This should trigger commonChangeHandler -> filterLocations & renderChart
+        // If setToggleStates doesn't trigger filterLocations automatically, uncomment the next line:
+        // filterLocations();
+        // Also ensure manageDisplay is called after renderChart is complete or its debounce fires
+        // manageDisplay(); // manageDisplay is called by debouncedRenderChart now
         updateURLFromState();
         updateStatusMessage("");
-    }, 150);
+     }, 100); // Small delay
+
 };
+
