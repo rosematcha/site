@@ -1,10 +1,8 @@
 // js/chart.js
 import { CAT_IMAGES, CHART_COLORS, TOTAL_TURNOUT_KEY, DATA_FILES } from "./config.js";
 import { getDataForSelection, getDatesForYear } from "./data.js";
-// Corrected import: updateURLFromState now comes from ui.js
 import { getSelectedYears, getSelectedLocations, getToggleStates, manageDisplay, updateURLFromState } from "./ui.js";
 import { debounce } from "./utils.js";
-// logMetric is in main.js, but chart.js doesn't directly use it. If it did, it would be: import { logMetric } from "./main.js";
 
 let turnoutChart = null;
 let catContainer = null;
@@ -134,7 +132,6 @@ const createChartConfig = (
 };
 
 const renderChart = () => {
-    // const startTime = performance.now(); // For performance logging if re-enabled
     const selectedYears = getSelectedYears();
     const selectedLocations = getSelectedLocations();
     const { showEarlyVoting, showElectionDay, startYAtZero, dataPresentation, displayAs } = getToggleStates();
@@ -143,7 +140,7 @@ const renderChart = () => {
     const ctx = chartCanvas?.getContext("2d");
     if (!ctx) {
         console.error("Failed to get canvas context.");
-        manageDisplay(); // Let ui.js handle display state
+        manageDisplay();
         return;
     }
 
@@ -158,9 +155,8 @@ const renderChart = () => {
         (!showEarlyVoting && !showElectionDay)
     ) {
         showCat();
-        manageDisplay(); // Ensure this is called to hide chart/show cat
-        updateURLFromState(); // This now comes from ui.js
-        // logMetric("renderTime", performance.now() - startTime);
+        manageDisplay();
+        updateURLFromState();
         return;
     }
 
@@ -199,7 +195,6 @@ const renderChart = () => {
             showCat();
             manageDisplay();
             updateURLFromState();
-            // logMetric("renderTime", performance.now() - startTime);
             return;
         }
 
@@ -221,7 +216,6 @@ const renderChart = () => {
             const config = createChartConfig(labels, datasets, chartTitle, startYAtZero, chartType);
             turnoutChart = new Chart(ctx, config);
         }
-        // manageDisplay and updateURLFromState are called at the end
     } else { // Line / Cumulative / Standard Bar Chart Mode
         hideCat();
         let datasets = [];
@@ -264,7 +258,6 @@ const renderChart = () => {
                 ).length > 0;
             }) || selectedYears[0]; // Fallback to first selected year
         }
-
 
         if (representativeYearForLabels) {
             const representativeDates = getDatesForYear(representativeYearForLabels).filter(dateInfo =>
@@ -344,7 +337,6 @@ const renderChart = () => {
 
         if (datasets.length === 0 || labels.length === 0) {
             showCat();
-            // manageDisplay and updateURLFromState are called at the end
         } else {
             let chartType = "line";
             if (datasets.length === 1 && datasets[0].data.filter(d => d !== null).length === 1) {
@@ -393,7 +385,6 @@ const renderChart = () => {
 
     manageDisplay(); // Called after all chart logic (or cat logic)
     updateURLFromState(); // Called after all chart logic
-    // logMetric("renderTime", performance.now() - startTime);
 };
 
 export const debouncedRenderChart = debounce(renderChart, 300);

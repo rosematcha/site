@@ -1,48 +1,24 @@
 // js/data.js
-import { DATA_FILES, TOTAL_TURNOUT_KEY, CACHE_EXPIRY } from "./config.js";
-import { updateStatusMessage } from "./ui.js"; // For error reporting
-import { logMetric } from "./main.js"; // Import logMetric
+import { DATA_FILES, TOTAL_TURNOUT_KEY } from "./config.js";
+import { updateStatusMessage } from "./ui.js";
+import { logMetric } from "./main.js";
 
 // In-memory store for parsed data { year: { locations: [], dates: [], totals: [] } }
 const parsedData = {};
-const memoizedLocations = new Map(); // Cache for specific location data access
 
 /**
- * Fetches data for a given year, using cache if available and not expired.
+ * Fetches data for a given year (no caching).
  * @param {string} year - The year to fetch data for.
  * @returns {Promise<string|null>} CSV data as string or null on error.
  */
-const fetchWithCache = async (year) => {
-    const cacheKey = `voting-data-${year}`;
-    const now = new Date();
-    const currentTime = now.getTime();
+const fetchData = async (year) => {
     const fileInfo = DATA_FILES[year];
-
     if (!fileInfo || !fileInfo.path) {
         console.error(`No data file path defined for year ${year}`);
         return null;
     }
 
-    const cached = localStorage.getItem(cacheKey);
-    if (cached) {
-        try {
-            const { data, timestamp } = JSON.parse(cached);
-            const cachedDate = new Date(timestamp);
-            // Use cache if same day and within expiry time
-            if (
-                cachedDate.toDateString() === now.toDateString() &&
-                currentTime - timestamp < CACHE_EXPIRY
-            ) {
-                console.log(`Using cached data for ${year}`);
-                return data;
-            }
-        } catch (e) {
-            console.error("Error parsing cache, fetching fresh data", e);
-            localStorage.removeItem(cacheKey); // Clear corrupted cache
-        }
-    }
-
-    console.log(`Fetching fresh data for ${year}`);
+    console.log(`Fetching data for ${year}`);
     const startTime = performance.now();
     try {
         const response = await fetch(fileInfo.path);
@@ -56,42 +32,20 @@ const fetchWithCache = async (year) => {
             throw new Error(`Fetched file ${fileInfo.path} is empty.`);
         }
 
-        localStorage.setItem(
-            cacheKey,
-            JSON.stringify({ data, timestamp: currentTime })
-        );
         logMetric("dataLoadTime", performance.now() - startTime);
         return data;
     } catch (error) {
         console.error("Fetch error:", error);
         updateStatusMessage(`⚠️ Error loading data for ${year}.`);
-        // Fallback to stale cache if fetch fails
-        if (cached) {
-            console.warn("Fetch failed, using stale cached data as fallback.");
-            updateStatusMessage(
-                `⚠️ Error loading latest data for ${year}. Displaying older data.`
-            );
-            try {
-                return JSON.parse(cached).data;
-            } catch (e) {
-                console.error("Error parsing stale cache during fallback", e);
-                return null;
-            }
-        }
-        return null; // No data could be retrieved
+        return null;
     }
 };
 
 /**
  * Parses CSV string into structured data for a given year.
- * @param {string} csvString - The raw CSV data.
- * @param {string} year - The year this data represents.
- * @returns {boolean} True if parsing was successful, false otherwise.
  */
 const parseCSV = (csvString, year) => {
-    // Reset data for the year
     parsedData[year] = { locations: [], dates: [], totals: [] };
-    memoizedLocations.clear(); // Clear memoization cache when data changes
 
     if (!csvString) {
         console.warn(`No CSV string provided for year ${year}.`);
@@ -106,20 +60,19 @@ const parseCSV = (csvString, year) => {
     }
 
     try {
-        // Parse headers, identify election days, and assign dayIndex
         const headers = lines[0]
             .split(",")
-            .slice(2) // Skip location and total columns
-            .map((h, index) => { // Added index for dayIndex
+            .slice(2)
+            .map((h, index) => {
                 const trimmedHeader = h.trim();
                 const isElectionDay = trimmedHeader.startsWith("*");
                 return {
                     date: trimmedHeader.replace("*", ""),
                     isElectionDay: isElectionDay,
-                    dayIndex: index + 1, // Assign 1-based day index
+                    dayIndex: index + 1,
                 };
             })
-            .filter((h) => h.date); // Filter out potentially empty headers
+            .filter((h) => h.date);
 
         if (headers.length === 0) {
             console.warn(`No valid date headers found in CSV for ${year}.`);
@@ -130,52 +83,22 @@ const parseCSV = (csvString, year) => {
         lines.slice(1).forEach((line) => {
             const columns = line.split(",");
             const locationName = columns[0]?.trim();
-            if (!locationName) return; // Skip empty lines
+            if (!locationName) return;
 
             const dailyData = headers.map(
                 (_, index) => parseFloat(columns[index + 2]?.trim() || "0") || 0
             );
 
+            // Determine if location is election day only
             let isElectionDayOnly = false;
             if (dailyData.length > 0 && headers.length === dailyData.length) {
-                isElectionDayOnly = true; // Assume true initially
-                let hasNonZeroDataOutsideED = false;
-                for (let i = 0; i < headers.length; i++) {
-                    if (!headers[i].isElectionDay && dailyData[i] > 0) {
-                        // Data found on a non-election day
-                        isElectionDayOnly = false;
-                        break;
-                    }
-                    if (headers[i].isElectionDay && dailyData[i] > 0) {
-                        // Good, data on election day
-                    }
-                    if (!headers[i].isElectionDay && dailyData[i] === 0) {
-                        // Zero data on non-election day, still potentially ED only
-                    }
+                const hasNonZeroData = dailyData.some(d => d > 0);
+                if (hasNonZeroData) {
+                    isElectionDayOnly = !dailyData.some((value, idx) => 
+                        value > 0 && !headers[idx].isElectionDay
+                    );
                 }
-                 // If all data points are zero, it's not an "election day only" location in a meaningful way.
-                if (dailyData.every(d => d === 0)) {
-                    isElectionDayOnly = false;
-                }
-                // Further check: if it has data, does it ONLY have data on days marked isElectionDay?
-                if (isElectionDayOnly && dailyData.some(d => d > 0)) {
-                    let hasDataOnNonEDDay = false;
-                    for (let i = 0; i < headers.length; i++) {
-                        if (dailyData[i] > 0 && !headers[i].isElectionDay) {
-                            hasDataOnNonEDDay = true;
-                            break;
-                        }
-                    }
-                    if (hasDataOnNonEDDay) {
-                        isElectionDayOnly = false;
-                    }
-                }
-
-
-            } else {
-                isElectionDayOnly = false; 
             }
-
 
             if (locationName.toLowerCase().startsWith("total")) {
                 parsedData[year].totals = dailyData;
@@ -188,14 +111,12 @@ const parseCSV = (csvString, year) => {
             }
         });
 
-        // Sort locations alphabetically
         parsedData[year].locations.sort((a, b) => a.name.localeCompare(b.name));
         console.log(`Successfully parsed data for ${year}`);
         return true;
     } catch (error) {
         console.error(`Error parsing CSV for ${year}:`, error);
         updateStatusMessage(`⚠️ Error processing data for ${year}.`);
-        // Clear potentially corrupted data
         parsedData[year] = { locations: [], dates: [], totals: [] };
         return false;
     }
@@ -203,32 +124,25 @@ const parseCSV = (csvString, year) => {
 
 /**
  * Loads and parses data for a specific year if not already loaded.
- * @param {string} year - The year to load data for.
- * @returns {Promise<boolean>} True if data is loaded and parsed successfully, false otherwise.
  */
 export const loadYearData = async (year) => {
     if (parsedData[year] && parsedData[year].dates.length > 0) {
         console.log(`Data for ${year} already loaded.`);
-        return true; // Already loaded
+        return true;
     }
     updateStatusMessage(`Loading data for ${year}...`);
-    const csvText = await fetchWithCache(year);
+    const csvText = await fetchData(year);
     if (csvText) {
         const success = parseCSV(csvText, year);
         if (success) {
-            updateStatusMessage(""); // Clear loading message on success
+            updateStatusMessage("");
         }
         return success;
     }
-    // Fetch failed or returned null
     updateStatusMessage(`Failed to load data for ${year}.`);
     return false;
 };
 
-/**
- * Gets all unique location names from the currently loaded years.
- * @returns {string[]} Sorted list of unique location names.
- */
 export const getAllLoadedLocations = () => {
     const locationSet = new Set();
     Object.values(parsedData).forEach((yearData) => {
@@ -237,11 +151,6 @@ export const getAllLoadedLocations = () => {
     return Array.from(locationSet).sort();
 };
 
-/**
- * Gets properties for a specific location.
- * @param {string} locationName - The name of the location.
- * @returns {{isElectionDayOnly: boolean}|null} Properties or null if not found.
- */
 export const getLocationProperties = (locationName) => {
     for (const year in parsedData) {
         const yearData = parsedData[year];
@@ -257,45 +166,21 @@ export const getLocationProperties = (locationName) => {
     return null;
 };
 
-/**
- * Retrieves the raw data for a specific location or total for a given year.
- * Uses memoization for efficiency.
- * @param {string} year - The year.
- * @param {string} locationOrTotalKey - Location name or TOTAL_TURNOUT_KEY.
- * @returns {{name: string, data: number[]}|null} The location/total data or null if not found.
- */
 const getRawData = (year, locationOrTotalKey) => {
     if (!parsedData[year]) return null;
 
-    const cacheKey = `${year}-${locationOrTotalKey}`;
-    if (memoizedLocations.has(cacheKey)) {
-        return memoizedLocations.get(cacheKey);
-    }
-
-    let result = null;
     if (locationOrTotalKey === TOTAL_TURNOUT_KEY) {
         if (parsedData[year].totals?.length > 0) {
-            result = { name: "Total Turnout", data: parsedData[year].totals };
+            return { name: "Total Turnout", data: parsedData[year].totals };
         }
     } else {
-        result =
-            parsedData[year].locations.find(
-                (loc) => loc.name === locationOrTotalKey
-            ) || null;
+        return parsedData[year].locations.find(
+            (loc) => loc.name === locationOrTotalKey
+        ) || null;
     }
-
-    memoizedLocations.set(cacheKey, result);
-    return result;
+    return null;
 };
 
-/**
- * Gets data for a specific selection, filtered by date type toggles.
- * @param {string} year - The year.
- * @param {string} locationOrTotalKey - Location name or TOTAL_TURNOUT_KEY.
- * @param {boolean} showEarlyVoting - Whether to include early voting days.
- * @param {boolean} showElectionDay - Whether to include election day.
- * @returns {{name: string, data: number[], dates: {date: string, isElectionDay: boolean}[], indices: number[]}|null} Filtered data or null.
- */
 export const getDataForSelection = (
     year,
     locationOrTotalKey,
@@ -313,12 +198,12 @@ export const getDataForSelection = (
         .map((dateInfo, index) => {
             if (dateInfo.isElectionDay && showElectionDay) return index;
             if (!dateInfo.isElectionDay && showEarlyVoting) return index;
-            return -1; // Mark for removal
+            return -1;
         })
         .filter((index) => index !== -1);
 
     if (indicesToKeep.length === 0) {
-        return null; // No data points match the filter
+        return null;
     }
 
     const filteredData = indicesToKeep.map((index) => raw.data[index]);
@@ -327,25 +212,15 @@ export const getDataForSelection = (
     return {
         name: raw.name,
         data: filteredData,
-        dates: filteredDates, // Dates corresponding to the filtered data points
-        indices: indicesToKeep, // Original indices kept after filtering
+        dates: filteredDates,
+        indices: indicesToKeep,
     };
 };
 
-/**
- * Gets the date objects for a specific year.
- * @param {string} year The year.
- * @returns {{date: string, isElectionDay: boolean}[] | null} Array of date objects or null.
- */
 export const getDatesForYear = (year) => {
     return parsedData[year]?.dates || null;
 };
 
-/**
- * Checks if data for a specific year is loaded.
- * @param {string} year The year to check.
- * @returns {boolean} True if data is loaded, false otherwise.
- */
 export const isDataLoaded = (year) => {
     return !!parsedData[year] && parsedData[year].dates?.length > 0;
 };

@@ -13,7 +13,6 @@ export const DATA_FILES = {
     "May 2019": { name: "May 2019", path: "csv/May 2019 Municipal.csv" },
 };
 
-// Default years to select when no URL parameters are present
 export const DEFAULT_SELECTED_YEARS = [
     "June 2025",
     "June 2023",
@@ -21,7 +20,6 @@ export const DEFAULT_SELECTED_YEARS = [
     "June 2019"
 ];
 
-// Preset configurations for quick selection
 export const PRESET_CONFIGURATIONS = {
     "all-june": {
         name: "All June Elections",
@@ -47,19 +45,19 @@ export const PRESET_CONFIGURATIONS = {
         locations: ["total"],
         toggles: { ev: true, ed: true, yz: true, dt: false, cum: false }
     },
-     "compare-runoffs-early": { // Renamed to be more specific
+    "compare-runoffs-early": {
         name: "Compare Runoffs (Early Voting)",
         years: ["June 2025", "June 2023", "June 2021", "June 2019"],
         locations: ["total"],
         toggles: { ev: true, ed: false, yz: true, dt: false, cum: false }
     },
-     "compare-runoffs-total": {
+    "compare-runoffs-total": {
         name: "Compare Runoffs (Total)",
         years: ["June 2025", "June 2023", "June 2021", "June 2019"],
         locations: ["total"],
         toggles: { ev: true, ed: true, yz: true, dt: false, cum: false }
     },
-    "cumulative-runoffs": { // New preset for cumulative view
+    "cumulative-runoffs": {
         name: "Cumulative Runoffs",
         years: ["June 2025", "June 2023", "June 2021", "June 2019"],
         locations: ["total"],
@@ -103,5 +101,3 @@ export const CHART_COLORS = [
 ];
 
 export const TOTAL_TURNOUT_KEY = "total"; // Consistent key for total turnout
-export const REFRESH_INTERVAL = 900000; // 15 minutes
-export const CACHE_EXPIRY = 900000; // 15 minutes
