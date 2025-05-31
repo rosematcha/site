@@ -7,6 +7,7 @@
         <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
         <style>
+            /* ... (previous styles remain the same up to radio buttons) ... */
             body {
                 background-color: #111827; /* bg-gray-900 */
                 color: #f3f4f6; /* text-gray-100 */
@@ -192,10 +193,12 @@
                 accent-color: #db2777; /* accent-pink-600 */
             }
 
-            /* Radio button group styling */
+            /* Radio button group styling - REVISED */
             .radio-group-label {
                 display: block;
-                text-sm font-medium mb-1; /* text-sm font-medium text-gray-300 mb-1 */
+                font-size: 0.875rem; /* text-sm */
+                font-weight: 500; /* font-medium */
+                margin-bottom: 0.25rem; /* mb-1 */
             }
             .radio-button-group {
                 display: flex;
@@ -205,13 +208,10 @@
             }
             .radio-button-group label {
                 flex-grow: 1;
-                text-align: center;
-                padding: 0.5rem 0.75rem; /* py-2 px-3 */
-                background-color: #374151; /* bg-gray-700 */
-                color: #d1d5db; /* text-gray-300 */
+                /* Remove padding from label */
+                background-color: #374151; /* Default unselected background for the label itself */
                 cursor: pointer;
-                transition: background-color 0.2s;
-                font-size: 0.875rem; /* text-sm */
+                transition: background-color 0.2s; /* Transition for label background on hover */
             }
             .radio-button-group label:not(:last-child) {
                 border-right: 1px solid #4b5563; /* border-r border-gray-600 */
@@ -219,18 +219,23 @@
             .radio-button-group input[type="radio"] {
                 display: none; /* Hide actual radio */
             }
-            .radio-button-group input[type="radio"]:checked + span {
-                background-color: #db2777; /* bg-pink-600 */
-                color: white;
-            }
-             .radio-button-group label:hover span:not(.selected-radio) { /* Apply hover only if not selected */
-                background-color: #4b5563; /* hover:bg-gray-500 */
-            }
             .radio-button-group label span {
-                display: block;
+                display: block; /* Or flex for centering */
+                text-align: center;
+                padding: 0.5rem 0.75rem; /* Add padding to span */
+                color: #d1d5db; /* text-gray-300 */
+                font-size: 0.875rem; /* text-sm */
                 width: 100%;
                 height: 100%;
-                border-radius: inherit; /* Inherit border radius for inner span if needed */
+                box-sizing: border-box; /* Ensure padding is included in width/height */
+                transition: background-color 0.2s, color 0.2s;
+            }
+            .radio-button-group label:hover span:not(.radio-selected) { /* Hover for non-selected spans */
+                background-color: #4b5563; /* Slightly lighter background on hover */
+            }
+            .radio-button-group label span.radio-selected { /* Class applied by JS */
+                background-color: #db2777; /* bg-pink-600 */
+                color: white;
             }
             
             @media (max-width: 768px) { /* md breakpoint */
@@ -263,7 +268,7 @@
             }
         </style>
     </head>
-    <body class="font-sans">
+    <body>
         <div class="min-h-screen bg-gray-900">
             <!-- Header -->
             <header class="bg-gray-800 border-b border-gray-700">
@@ -318,11 +323,10 @@
                                 <div id="year-options" class="year-checkbox-container">
                                     <!-- Year checkboxes populated by JS -->
                                 </div>
-                                <!-- Removed "other years pending" text -->
                             </div>
                             
                             <!-- Data Type Toggles -->
-                            <div class="flex flex-col justify-start space-y-3"> <!-- Changed justify-center to justify-start -->
+                            <div class="flex flex-col justify-start space-y-3">
                                 <label class="block text-sm font-medium mb-1 text-gray-300">Show Data Types:</label>
                                 <label class="inline-flex items-center">
                                     <input id="early-voting-toggle" type="checkbox" class="form-checkbox rounded text-pink-600 focus:ring-pink-500" checked />
@@ -335,7 +339,7 @@
                             </div>
                             
                             <!-- View Options -->
-                            <div class="flex flex-col justify-start space-y-3"> <!-- Changed justify-center to justify-start -->
+                            <div class="flex flex-col justify-start space-y-3">
                                 <label class="block text-sm font-medium mb-1 text-gray-300">Chart Options:</label>
                                 <label class="inline-flex items-center">
                                     <input id="y-axis-toggle" type="checkbox" class="form-checkbox rounded text-pink-600 focus:ring-pink-500" checked />
@@ -346,7 +350,7 @@
                                     <div class="radio-button-group">
                                         <label>
                                             <input type="radio" name="data-presentation" value="per-day" checked>
-                                            <span class="selected-radio">Per-Day</span>
+                                            <span>Per-Day</span> <!-- Removed selected-radio class initially -->
                                         </label>
                                         <label>
                                             <input type="radio" name="data-presentation" value="cumulative">
@@ -359,7 +363,7 @@
                                     <div class="radio-button-group">
                                         <label>
                                             <input type="radio" name="display-as" value="graph" checked>
-                                            <span class="selected-radio">Graph</span>
+                                            <span>Graph</span> <!-- Removed selected-radio class initially -->
                                         </label>
                                         <label>
                                             <input type="radio" name="display-as" value="table">
@@ -418,7 +422,7 @@
                         <a href="https://www.bexar.org/2229/Voter-Registration-Check-Polling-Locatio" target="_blank" rel="noopener noreferrer" class="button-pink text-center">
                             Verify Voter Registration
                         </a>
-                        <a href="https://lwvsa.org/handlers/celinks.ashx?id=74871" target="_blank" rel="noopener noreferrer" class="button-pink text-center"> <!-- Changed to button-pink -->
+                        <a href="https://lwvsa.org/handlers/celinks.ashx?id=74871" target="_blank" rel="noopener noreferrer" class="button-pink text-center">
                             League of Women Voters Guide
                         </a>
                     </div>
@@ -431,7 +435,7 @@
             </div>
         </div>
 
-        <!-- Collapsible & Radio Button JS -->
+        <!-- Collapsible & Radio Button JS (Simplified) -->
         <script>
             document.addEventListener('DOMContentLoaded', function() {
                 // Location Controls Toggle
@@ -454,32 +458,8 @@
                     });
                 }
 
-                // Radio Button Group Styling
-                const radioGroups = document.querySelectorAll('.radio-button-group');
-                radioGroups.forEach(group => {
-                    const radios = group.querySelectorAll('input[type="radio"]');
-                    const labels = group.querySelectorAll('label');
-
-                    const updateRadioSelection = () => {
-                        radios.forEach(radio => {
-                            const span = radio.nextElementSibling;
-                            if (radio.checked) {
-                                span.classList.add('selected-radio'); // Used for hover logic
-                                span.style.backgroundColor = '#db2777'; // pink-600
-                                span.style.color = 'white';
-                            } else {
-                                span.classList.remove('selected-radio');
-                                span.style.backgroundColor = ''; // Revert to default
-                                span.style.color = ''; // Revert to default
-                            }
-                        });
-                    };
-
-                    radios.forEach(radio => {
-                        radio.addEventListener('change', updateRadioSelection);
-                    });
-                    updateRadioSelection(); // Initial state
-                });
+                // Initial visual state for radio buttons will be handled by ui.js's setToggleStates
+                // No need for change listeners here as ui.js will handle them.
             });
         </script>
 

@@ -14,7 +14,6 @@ const elements = {
     earlyVotingToggle: document.getElementById("early-voting-toggle"),
     electionDayToggle: document.getElementById("election-day-toggle"),
     yAxisToggle: document.getElementById("y-axis-toggle"),
-    // New radio groups
     dataPresentationRadios: document.querySelectorAll('input[name="data-presentation"]'),
     displayAsRadios: document.querySelectorAll('input[name="display-as"]'),
     chartContainer: document.getElementById("chart-container"),
@@ -232,14 +231,10 @@ function filterLocations() {
                 isVisible = true;
             } else if (noSearch) {
                 if (isEDOnlyLocation) {
-                     // Show ED-only locations if ED is shown, regardless of EV toggle,
-                     // OR if only EV is shown (they will appear with no data, which is fine).
-                     // This simplifies logic: if it's an ED-only location, its visibility isn't tied to EV toggle.
                     if (showElectionDay) isVisible = true;
-                    else if (!showEarlyVoting && !showElectionDay) isVisible = false; // Hide if neither shown
-                    else if (showEarlyVoting && !showElectionDay) isVisible = false; // Hide if only EV shown
-                    else isVisible = true; // Default to show if ED is part of the view
-
+                    else if (!showEarlyVoting && !showElectionDay) isVisible = false; 
+                    else if (showEarlyVoting && !showElectionDay) isVisible = false; 
+                    else isVisible = true; 
                 } else {
                     isVisible = true;
                 }
@@ -312,19 +307,32 @@ export const renderDataTable = (chartInstance) => {
 
 export const manageDisplay = () => {
     const chartInstance = getCurrentChartInstance();
-    const { displayAs } = getToggleStates(); // Changed from showDataTable
+    const { displayAs } = getToggleStates();
     const catContainer = document.getElementById("cat-container");
 
-    if (displayAs === "table") { // Changed condition
+    if (displayAs === "table") {
         elements.chartContainer.classList.add("hidden");
         if (catContainer) catContainer.classList.add("hidden");
         elements.dataTableContainer.classList.remove("hidden");
         renderDataTable(chartInstance);
-    } else { // displayAs === "graph"
+    } else { 
         elements.dataTableContainer.classList.add("hidden");
         elements.chartContainer.classList.remove("hidden");
-        // Chart.js showCat/hideCat handles chartCanvas and catContainer visibility
     }
+};
+
+// Helper to update radio button visual state using CSS classes
+const updateRadioVisuals = (radioNodeList) => {
+    radioNodeList.forEach(radio => {
+        const span = radio.nextElementSibling;
+        if (span) {
+            if (radio.checked) {
+                span.classList.add('radio-selected');
+            } else {
+                span.classList.remove('radio-selected');
+            }
+        }
+    });
 };
 
 export const setupEventListeners = () => {
@@ -334,7 +342,7 @@ export const setupEventListeners = () => {
     if (elements.selectAllButton) {
         elements.selectAllButton.addEventListener("click", () => setAllSpecificLocations(true));
     }
-    if (elements.deselectAllButton) { // Corrected from deselectAllLocationsButton
+    if (elements.deselectAllButton) {
         elements.deselectAllButton.addEventListener("click", () => setAllSpecificLocations(false));
     }
 
@@ -349,19 +357,18 @@ export const setupEventListeners = () => {
     if (elements.electionDayToggle) elements.electionDayToggle.addEventListener("change", commonChangeHandler);
     if (elements.yAxisToggle) elements.yAxisToggle.addEventListener("change", commonChangeHandler);
     
-    // Event listeners for new radio groups
-    elements.dataPresentationRadios.forEach(radio => radio.addEventListener('change', commonChangeHandler));
+    elements.dataPresentationRadios.forEach(radio => radio.addEventListener('change', () => {
+        commonChangeHandler();
+        updateRadioVisuals(elements.dataPresentationRadios);
+    }));
     elements.displayAsRadios.forEach(radio => {
         radio.addEventListener('change', () => {
             logMetric("interactions", 1);
-            manageDisplay(); // This specifically handles graph/table switch
+            manageDisplay();
             updateURLFromState();
-            // If switching to graph view and chart needs re-render due to other changes,
-            // debouncedRenderChart() will be called by other handlers or presets.
-            // If only displayAs changed, manageDisplay is sufficient.
+            updateRadioVisuals(elements.displayAsRadios);
         });
     });
-
 
     if (elements.copyShareLinkButton) {
         elements.copyShareLinkButton.addEventListener("click", () => {
@@ -421,25 +428,6 @@ export const setSelectedLocations = (locationsToSelect) => {
     }
 };
 
-// Helper to update radio button visual state
-const updateRadioVisuals = (radioNodeList) => {
-    radioNodeList.forEach(radio => {
-        const span = radio.nextElementSibling;
-        if (span) { // Ensure span exists
-            if (radio.checked) {
-                span.classList.add('selected-radio');
-                span.style.backgroundColor = '#db2777';
-                span.style.color = 'white';
-            } else {
-                span.classList.remove('selected-radio');
-                span.style.backgroundColor = '';
-                span.style.color = '';
-            }
-        }
-    });
-};
-
-
 export const setToggleStates = (states) => {
     if (elements.earlyVotingToggle && states.ev !== undefined) elements.earlyVotingToggle.checked = states.ev;
     if (elements.electionDayToggle && states.ed !== undefined) elements.electionDayToggle.checked = states.ed;
@@ -489,8 +477,8 @@ export const getToggleStates = () => {
         showEarlyVoting: elements.earlyVotingToggle ? elements.earlyVotingToggle.checked : true,
         showElectionDay: elements.electionDayToggle ? elements.electionDayToggle.checked : true,
         startYAtZero: elements.yAxisToggle ? elements.yAxisToggle.checked : true,
-        dataPresentation: dataPresentationValue, // 'per-day' or 'cumulative'
-        displayAs: displayAsValue,           // 'graph' or 'table'
+        dataPresentation: dataPresentationValue,
+        displayAs: displayAsValue,
     };
 };
 
@@ -502,7 +490,6 @@ export const updateAttribution = () => {
             month: "long",
             day: "numeric",
         });
-        // Updated text
         elements.attribution.textContent = `Data sourced from the Bexar County Elections Department via Public Information Act request. Updated as of ${dateString}.`;
     }
 };
@@ -512,9 +499,7 @@ export const setupPresetButtons = () => {
         console.error("Preset buttons container not found");
         return;
     }
-
     elements.presetButtonsContainer.innerHTML = '';
-    
     Object.entries(PRESET_CONFIGURATIONS).forEach(([key, preset]) => {
         const button = document.createElement('button');
         button.id = `preset-${key}`;
@@ -535,13 +520,11 @@ export const setupPresetButtons = () => {
 
 const applyPresetConfiguration = async (presetKey) => {
     logMetric("interactions", 1);
-
     let config;
     if (presetKey === "default") {
         config = {
             years: DEFAULT_SELECTED_YEARS,
             locations: [TOTAL_TURNOUT_KEY],
-            // Ensure toggles match the new structure for radio buttons
             toggles: { ev: true, ed: true, yz: true, presentation: 'per-day', display: 'graph' }
         };
     } else {
@@ -552,9 +535,7 @@ const applyPresetConfiguration = async (presetKey) => {
         console.error(`Unknown preset key: ${presetKey}`);
         return;
     }
-
     updateStatusMessage(`Applying "${config.name || presetKey}" preset...`);
-
     setSelectedYears(config.years);
 
     const yearsToLoad = config.years.filter(year => DATA_FILES[year] && !isDataLoaded(year));
@@ -565,20 +546,11 @@ const applyPresetConfiguration = async (presetKey) => {
     populateLocationDropdown([]);
     setTimeout(() => {
         setSelectedLocations(config.locations);
-        setToggleStates(config.toggles); // This will now set radio buttons too
+        setToggleStates(config.toggles); // This will also update radio visuals
         filterLocations();
-        
-        // Manage display explicitly after setting toggles, especially for graph/table
-        const currentDisplayAs = getToggleStates().displayAs;
-        if (currentDisplayAs === 'table') {
-            manageDisplay(); // Show table if selected
-        }
-
-        debouncedRenderChart(); // Render chart (or prepare data for table)
+        manageDisplay(); // Call manageDisplay to ensure correct view (graph/table)
+        debouncedRenderChart();
         updateURLFromState();
         updateStatusMessage("");
     }, 100);
 };
-
-// Initial call to setup preset buttons on DOM ready
-// document.addEventListener('DOMContentLoaded', setupPresetButtons); // This is called in main.js
