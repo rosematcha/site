@@ -14,8 +14,9 @@ const elements = {
     earlyVotingToggle: document.getElementById("early-voting-toggle"),
     electionDayToggle: document.getElementById("election-day-toggle"),
     yAxisToggle: document.getElementById("y-axis-toggle"),
-    dataTableToggle: document.getElementById("data-table-toggle"),
-    cumulativeToggle: document.getElementById("cumulative-toggle"),
+    // New radio groups
+    dataPresentationRadios: document.querySelectorAll('input[name="data-presentation"]'),
+    displayAsRadios: document.querySelectorAll('input[name="display-as"]'),
     chartContainer: document.getElementById("chart-container"),
     chartCanvas: document.getElementById("turnoutChart"),
     dataTableContainer: document.getElementById("data-table-container"),
@@ -57,7 +58,6 @@ export const updateStatusMessage = (message) => {
     }
 };
 
-// Firefox-compatible year checkbox handling
 const updateYearLabelState = (label, checked) => {
     if (checked) {
         label.classList.add("checked");
@@ -82,16 +82,13 @@ export const populateYearCheckboxes = (selectedYearsFromURL = []) => {
         input.className = "form-checkbox rounded text-pink-600 focus:ring-pink-500";
         input.value = yearKey;
 
-        // Use URL params first, then DEFAULT_SELECTED_YEARS
         if (selectedYearsFromURL.length > 0) {
             input.checked = selectedYearsFromURL.includes(yearKey);
         } else {
             input.checked = !disabled && DEFAULT_SELECTED_YEARS.includes(yearKey);
         }
-
         input.disabled = !!disabled;
         
-        // Firefox-compatible event handling
         input.addEventListener("change", (event) => {
             updateYearLabelState(label, event.target.checked);
             handleYearChange(event);
@@ -104,8 +101,6 @@ export const populateYearCheckboxes = (selectedYearsFromURL = []) => {
         label.appendChild(input);
         label.appendChild(span);
         elements.yearOptionsContainer.appendChild(label);
-
-        // Set initial visual state
         updateYearLabelState(label, input.checked);
     });
 };
@@ -237,7 +232,14 @@ function filterLocations() {
                 isVisible = true;
             } else if (noSearch) {
                 if (isEDOnlyLocation) {
-                    if (showElectionDay && !showEarlyVoting) isVisible = true;
+                     // Show ED-only locations if ED is shown, regardless of EV toggle,
+                     // OR if only EV is shown (they will appear with no data, which is fine).
+                     // This simplifies logic: if it's an ED-only location, its visibility isn't tied to EV toggle.
+                    if (showElectionDay) isVisible = true;
+                    else if (!showEarlyVoting && !showElectionDay) isVisible = false; // Hide if neither shown
+                    else if (showEarlyVoting && !showElectionDay) isVisible = false; // Hide if only EV shown
+                    else isVisible = true; // Default to show if ED is part of the view
+
                 } else {
                     isVisible = true;
                 }
@@ -310,17 +312,18 @@ export const renderDataTable = (chartInstance) => {
 
 export const manageDisplay = () => {
     const chartInstance = getCurrentChartInstance();
-    const { showDataTable } = getToggleStates();
+    const { displayAs } = getToggleStates(); // Changed from showDataTable
     const catContainer = document.getElementById("cat-container");
 
-    if (showDataTable) {
+    if (displayAs === "table") { // Changed condition
         elements.chartContainer.classList.add("hidden");
         if (catContainer) catContainer.classList.add("hidden");
         elements.dataTableContainer.classList.remove("hidden");
         renderDataTable(chartInstance);
-    } else {
+    } else { // displayAs === "graph"
         elements.dataTableContainer.classList.add("hidden");
         elements.chartContainer.classList.remove("hidden");
+        // Chart.js showCat/hideCat handles chartCanvas and catContainer visibility
     }
 };
 
@@ -331,7 +334,7 @@ export const setupEventListeners = () => {
     if (elements.selectAllButton) {
         elements.selectAllButton.addEventListener("click", () => setAllSpecificLocations(true));
     }
-    if (elements.deselectAllButton) {
+    if (elements.deselectAllButton) { // Corrected from deselectAllLocationsButton
         elements.deselectAllButton.addEventListener("click", () => setAllSpecificLocations(false));
     }
 
@@ -345,15 +348,20 @@ export const setupEventListeners = () => {
     if (elements.earlyVotingToggle) elements.earlyVotingToggle.addEventListener("change", commonChangeHandler);
     if (elements.electionDayToggle) elements.electionDayToggle.addEventListener("change", commonChangeHandler);
     if (elements.yAxisToggle) elements.yAxisToggle.addEventListener("change", commonChangeHandler);
-    if (elements.cumulativeToggle) elements.cumulativeToggle.addEventListener("change", commonChangeHandler);
-
-    if (elements.dataTableToggle) {
-        elements.dataTableToggle.addEventListener("change", () => {
+    
+    // Event listeners for new radio groups
+    elements.dataPresentationRadios.forEach(radio => radio.addEventListener('change', commonChangeHandler));
+    elements.displayAsRadios.forEach(radio => {
+        radio.addEventListener('change', () => {
             logMetric("interactions", 1);
-            manageDisplay();
+            manageDisplay(); // This specifically handles graph/table switch
             updateURLFromState();
+            // If switching to graph view and chart needs re-render due to other changes,
+            // debouncedRenderChart() will be called by other handlers or presets.
+            // If only displayAs changed, manageDisplay is sufficient.
         });
-    }
+    });
+
 
     if (elements.copyShareLinkButton) {
         elements.copyShareLinkButton.addEventListener("click", () => {
@@ -413,12 +421,42 @@ export const setSelectedLocations = (locationsToSelect) => {
     }
 };
 
+// Helper to update radio button visual state
+const updateRadioVisuals = (radioNodeList) => {
+    radioNodeList.forEach(radio => {
+        const span = radio.nextElementSibling;
+        if (span) { // Ensure span exists
+            if (radio.checked) {
+                span.classList.add('selected-radio');
+                span.style.backgroundColor = '#db2777';
+                span.style.color = 'white';
+            } else {
+                span.classList.remove('selected-radio');
+                span.style.backgroundColor = '';
+                span.style.color = '';
+            }
+        }
+    });
+};
+
+
 export const setToggleStates = (states) => {
     if (elements.earlyVotingToggle && states.ev !== undefined) elements.earlyVotingToggle.checked = states.ev;
     if (elements.electionDayToggle && states.ed !== undefined) elements.electionDayToggle.checked = states.ed;
     if (elements.yAxisToggle && states.yz !== undefined) elements.yAxisToggle.checked = states.yz;
-    if (elements.dataTableToggle && states.dt !== undefined) elements.dataTableToggle.checked = states.dt;
-    if (elements.cumulativeToggle && states.cum !== undefined) elements.cumulativeToggle.checked = states.cum;
+
+    if (states.presentation !== undefined) {
+        elements.dataPresentationRadios.forEach(radio => {
+            radio.checked = radio.value === states.presentation;
+        });
+        updateRadioVisuals(elements.dataPresentationRadios);
+    }
+    if (states.display !== undefined) {
+        elements.displayAsRadios.forEach(radio => {
+            radio.checked = radio.value === states.display;
+        });
+        updateRadioVisuals(elements.displayAsRadios);
+    }
 };
 
 export const getSelectedYears = () => {
@@ -437,12 +475,22 @@ export const getSelectedLocations = () => {
 };
 
 export const getToggleStates = () => {
+    let dataPresentationValue = 'per-day';
+    elements.dataPresentationRadios.forEach(radio => {
+        if (radio.checked) dataPresentationValue = radio.value;
+    });
+
+    let displayAsValue = 'graph';
+    elements.displayAsRadios.forEach(radio => {
+        if (radio.checked) displayAsValue = radio.value;
+    });
+
     return {
         showEarlyVoting: elements.earlyVotingToggle ? elements.earlyVotingToggle.checked : true,
         showElectionDay: elements.electionDayToggle ? elements.electionDayToggle.checked : true,
         startYAtZero: elements.yAxisToggle ? elements.yAxisToggle.checked : true,
-        showDataTable: elements.dataTableToggle ? elements.dataTableToggle.checked : false,
-        showCumulative: elements.cumulativeToggle ? elements.cumulativeToggle.checked : false,
+        dataPresentation: dataPresentationValue, // 'per-day' or 'cumulative'
+        displayAs: displayAsValue,           // 'graph' or 'table'
     };
 };
 
@@ -454,7 +502,8 @@ export const updateAttribution = () => {
             month: "long",
             day: "numeric",
         });
-        elements.attribution.textContent = `Data sourced from the Bexar County Elections Department. Updated as of ${dateString}.`;
+        // Updated text
+        elements.attribution.textContent = `Data sourced from the Bexar County Elections Department via Public Information Act request. Updated as of ${dateString}.`;
     }
 };
 
@@ -492,7 +541,8 @@ const applyPresetConfiguration = async (presetKey) => {
         config = {
             years: DEFAULT_SELECTED_YEARS,
             locations: [TOTAL_TURNOUT_KEY],
-            toggles: { ev: true, ed: true, yz: true, dt: false, cum: false }
+            // Ensure toggles match the new structure for radio buttons
+            toggles: { ev: true, ed: true, yz: true, presentation: 'per-day', display: 'graph' }
         };
     } else {
         config = PRESET_CONFIGURATIONS[presetKey];
@@ -515,10 +565,20 @@ const applyPresetConfiguration = async (presetKey) => {
     populateLocationDropdown([]);
     setTimeout(() => {
         setSelectedLocations(config.locations);
-        setToggleStates(config.toggles);
+        setToggleStates(config.toggles); // This will now set radio buttons too
         filterLocations();
-        debouncedRenderChart();
+        
+        // Manage display explicitly after setting toggles, especially for graph/table
+        const currentDisplayAs = getToggleStates().displayAs;
+        if (currentDisplayAs === 'table') {
+            manageDisplay(); // Show table if selected
+        }
+
+        debouncedRenderChart(); // Render chart (or prepare data for table)
         updateURLFromState();
         updateStatusMessage("");
     }, 100);
 };
+
+// Initial call to setup preset buttons on DOM ready
+// document.addEventListener('DOMContentLoaded', setupPresetButtons); // This is called in main.js

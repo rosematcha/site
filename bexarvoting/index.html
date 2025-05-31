@@ -8,37 +8,37 @@
         <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
         <style>
             body {
-                background-color: #111827;
-                color: #f3f4f6;
+                background-color: #111827; /* bg-gray-900 */
+                color: #f3f4f6; /* text-gray-100 */
             }
             .card {
-                background-color: #1f2937;
-                border-radius: 0.5rem;
-                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-                padding: 1.5rem;
+                background-color: #1f2937; /* bg-gray-800 */
+                border-radius: 0.5rem; /* rounded-lg */
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-lg */
+                padding: 1.5rem; /* p-6 */
             }
             .form-input-style, .form-multiselect-style {
-                margin-top: 0.25rem;
+                margin-top: 0.25rem; /* mt-1 */
                 display: block;
                 width: 100%;
-                border-radius: 0.375rem;
-                border-color: #4b5563;
-                background-color: #374151;
-                color: #d1d5db;
-                box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+                border-radius: 0.375rem; /* rounded-md */
+                border-color: #4b5563; /* border-gray-600 */
+                background-color: #374151; /* bg-gray-700 */
+                color: #d1d5db; /* text-gray-200 */
+                box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); /* shadow-sm */
             }
             .form-input-style:focus, .form-multiselect-style:focus {
-                border-color: #db2777;
-                --tw-ring-color: #f9a8d4;
-                box-shadow: 0 0 0 3px var(--tw-ring-color);
+                border-color: #db2777; /* focus:border-pink-600 */
+                --tw-ring-color: #f9a8d4; /* focus:ring-pink-300 */
+                box-shadow: 0 0 0 3px var(--tw-ring-color); /* focus:ring focus:ring-opacity-50 */
             }
             .button-pink {
                 display: inline-block;
                 padding: 0.75rem 1.5rem;
-                background-color: #db2777;
-                color: #ffffff;
-                font-weight: 600;
-                border-radius: 0.5rem;
+                background-color: #db2777; /* bg-pink-600 */
+                color: #ffffff; /* text-white */
+                font-weight: 600; /* font-semibold */
+                border-radius: 0.5rem; /* rounded-md */
                 text-align: center;
                 transition: all 0.2s;
                 text-decoration: none;
@@ -46,176 +46,220 @@
                 cursor: pointer;
             }
             .button-pink:hover {
-                background-color: #be185d;
+                background-color: #be185d; /* hover:bg-pink-700 */
                 transform: translateY(-1px);
             }
             .button-secondary {
                 display: inline-block;
-                padding: 0.75rem 1.5rem; /* Made consistent with button-pink */
-                background-color: #4b5563;
-                color: #ffffff;
-                font-weight: 600; /* Made consistent with button-pink */
-                border-radius: 0.5rem; /* Made consistent with button-pink */
+                padding: 0.625rem 1.25rem; /* Adjusted padding for consistency */
+                background-color: #4b5563; /* bg-gray-600 */
+                color: #ffffff; /* text-white */
+                font-weight: 600; /* font-semibold */
+                border-radius: 0.5rem; /* rounded-md */
                 text-align: center;
                 transition: all 0.2s;
                 text-decoration: none;
                 border: none;
                 cursor: pointer;
+                font-size: 0.875rem; /* text-sm */
             }
             .button-secondary:hover {
-                background-color: #374151;
-                transform: translateY(-1px); /* Added consistent hover effect */
+                background-color: #374151; /* hover:bg-gray-700 */
+                transform: translateY(-1px);
             }
             
             /* Preset buttons */
             .preset-button {
                 padding: 0.5rem 1rem;
-                background-color: #374151;
-                color: #d1d5db;
-                border: 1px solid #4b5563;
-                border-radius: 0.375rem;
-                font-size: 0.875rem;
+                background-color: #374151; /* bg-gray-700 */
+                color: #d1d5db; /* text-gray-300 */
+                border: 1px solid #4b5563; /* border-gray-600 */
+                border-radius: 0.375rem; /* rounded-md */
+                font-size: 0.875rem; /* text-sm */
                 cursor: pointer;
                 transition: all 0.2s;
             }
             .preset-button:hover {
-                background-color: #4b5563;
-                border-color: #db2777;
+                background-color: #4b5563; /* hover:bg-gray-500 */
+                border-color: #db2777; /* hover:border-pink-500 */
             }
             
             .data-table-container {
-                margin-top: 1.5rem;
-                max-height: 36rem;
+                margin-top: 1.5rem; /* mt-6 */
+                max-height: 36rem; /* max-h-[36rem] */
                 overflow: auto;
             }
             .data-table {
-                width: 100%;
-                font-size: 0.875rem;
-                text-align: left;
+                width: 100%; /* w-full */
+                font-size: 0.875rem; /* text-sm */
+                text-align: left; /* text-left */
             }
             .data-table th, .data-table td {
-                padding: 0.75rem 1rem;
-                border-bottom: 1px solid #374151;
+                padding: 0.75rem 1rem; /* px-4 py-3 */
+                border-bottom: 1px solid #374151; /* border-b border-gray-700 */
             }
             .data-table th {
-                background-color: #374151;
-                font-weight: 600;
+                background-color: #374151; /* bg-gray-700 */
+                font-weight: 600; /* font-semibold */
                 position: sticky;
                 top: 0;
             }
             .data-table tbody tr:hover {
-                background-color: #374151;
+                background-color: #374151; /* hover:bg-gray-700 */
             }
             .hidden {
                 display: none !important;
             }
             
-            /* Collapsible controls */
             .controls-collapsed {
                 max-height: 0;
                 overflow: hidden;
-                transition: max-height 0.3s ease-out;
+                transition: max-height 0.3s ease-out, opacity 0.2s ease-out;
                 opacity: 0;
+                margin-top: 0;
             }
             .controls-expanded {
-                max-height: 1000px;
-                transition: max-height 0.3s ease-in, opacity 0.3s ease-in;
+                max-height: 1000px; /* Sufficiently large value */
+                transition: max-height 0.4s ease-in, opacity 0.3s 0.1s ease-in;
                 opacity: 1;
+                margin-top: 1rem; /* mt-4 */
             }
             
-            /* Firefox-compatible year checkbox styling */
             .year-checkbox-container {
                 display: flex;
                 flex-wrap: wrap;
-                gap: 0.5rem;
-                padding: 0.75rem;
-                background-color: #374151;
-                border-radius: 0.5rem;
-                border: 1px solid #4b5563;
+                gap: 0.5rem; /* gap-2 */
+                padding: 0.75rem; /* p-3 */
+                background-color: #374151; /* bg-gray-700 */
+                border-radius: 0.5rem; /* rounded-lg */
+                border: 1px solid #4b5563; /* border-gray-600 */
             }
             
             .year-checkbox-container label {
                 display: flex !important;
                 align-items: center;
-                padding: 0.5rem 1rem;
-                background-color: #4b5563;
+                padding: 0.5rem 1rem; /* px-4 py-2 */
+                background-color: #4b5563; /* bg-gray-600 */
                 border: 2px solid transparent;
-                border-radius: 2rem;
+                border-radius: 2rem; /* rounded-full */
                 cursor: pointer;
                 transition: all 0.2s;
                 user-select: none;
-                font-size: 0.875rem;
-                font-weight: 500;
+                font-size: 0.875rem; /* text-sm */
+                font-weight: 500; /* font-medium */
             }
             
             .year-checkbox-container label:hover {
-                border-color: #db2777;
-                background-color: #6b7280;
+                border-color: #db2777; /* hover:border-pink-500 */
+                background-color: #6b7280; /* hover:bg-gray-500 */
             }
             
             .year-checkbox-container input[type="checkbox"] {
-                display: none;
+                display: none; /* Hide the actual checkbox */
             }
             
-            /* Firefox-compatible checked state - using class instead of :has() */
             .year-checkbox-container label.checked {
-                background-color: #db2777;
-                border-color: #db2777;
+                background-color: #db2777; /* bg-pink-600 */
+                border-color: #db2777; /* border-pink-600 */
                 color: white;
             }
             
-            /* Better location checkbox styling */
             .location-checkbox-container {
-                max-height: 16rem;
+                max-height: 16rem; /* max-h-64 */
                 overflow-y: auto;
-                border: 1px solid #4b5563;
-                border-radius: 0.5rem;
-                padding: 0.75rem;
-                background-color: #374151;
+                border: 1px solid #4b5563; /* border-gray-600 */
+                border-radius: 0.5rem; /* rounded-lg */
+                padding: 0.75rem; /* p-3 */
+                background-color: #374151; /* bg-gray-700 */
             }
             
             .location-checkbox-container .location-option {
                 display: flex !important;
                 align-items: center;
-                padding: 0.5rem 0.75rem;
-                margin: 0.125rem 0;
-                border-radius: 0.375rem;
+                padding: 0.5rem 0.75rem; /* px-3 py-2 */
+                margin: 0.125rem 0; /* my-0.5 */
+                border-radius: 0.375rem; /* rounded-md */
                 cursor: pointer;
                 transition: all 0.2s;
             }
             
             .location-checkbox-container .location-option:hover {
-                background-color: #4b5563;
+                background-color: #4b5563; /* hover:bg-gray-600 */
             }
             
             .location-checkbox-container .location-option input[type="checkbox"] {
-                margin-right: 0.75rem;
-                accent-color: #db2777;
+                margin-right: 0.75rem; /* mr-3 */
+                accent-color: #db2777; /* accent-pink-600 */
+            }
+
+            /* Radio button group styling */
+            .radio-group-label {
+                display: block;
+                text-sm font-medium mb-1; /* text-sm font-medium text-gray-300 mb-1 */
+            }
+            .radio-button-group {
+                display: flex;
+                border-radius: 0.375rem; /* rounded-md */
+                overflow: hidden;
+                border: 1px solid #4b5563; /* border-gray-600 */
+            }
+            .radio-button-group label {
+                flex-grow: 1;
+                text-align: center;
+                padding: 0.5rem 0.75rem; /* py-2 px-3 */
+                background-color: #374151; /* bg-gray-700 */
+                color: #d1d5db; /* text-gray-300 */
+                cursor: pointer;
+                transition: background-color 0.2s;
+                font-size: 0.875rem; /* text-sm */
+            }
+            .radio-button-group label:not(:last-child) {
+                border-right: 1px solid #4b5563; /* border-r border-gray-600 */
+            }
+            .radio-button-group input[type="radio"] {
+                display: none; /* Hide actual radio */
+            }
+            .radio-button-group input[type="radio"]:checked + span {
+                background-color: #db2777; /* bg-pink-600 */
+                color: white;
+            }
+             .radio-button-group label:hover span:not(.selected-radio) { /* Apply hover only if not selected */
+                background-color: #4b5563; /* hover:bg-gray-500 */
+            }
+            .radio-button-group label span {
+                display: block;
+                width: 100%;
+                height: 100%;
+                border-radius: inherit; /* Inherit border radius for inner span if needed */
             }
             
-            /* Responsive improvements */
-            @media (max-width: 768px) {
+            @media (max-width: 768px) { /* md breakpoint */
                 .card {
-                    padding: 1rem;
+                    padding: 1rem; /* p-4 */
                 }
                 .year-checkbox-container {
-                    gap: 0.25rem;
+                    gap: 0.25rem; /* gap-1 */
                 }
                 .year-checkbox-container label {
-                    padding: 0.375rem 0.75rem;
+                    padding: 0.375rem 0.75rem; /* px-3 py-1.5 */
                     font-size: 0.8rem;
+                }
+                .header-buttons {
+                    flex-direction: column;
+                    align-items: flex-end;
+                    gap: 0.5rem; /* gap-2 */
+                }
+                .header-buttons .button-secondary {
+                    width: 100%;
+                    padding: 0.5rem 1rem; /* Adjust padding for stacked buttons */
                 }
             }
             
             h2, label, span, p, option, th, td {
-                color: #d1d5db;
+                color: #d1d5db; /* text-gray-200 */
             }
             p.text-sm, p.text-xs {
-                color: #9ca3af;
-            }
-            select[multiple] option:checked {
-                background-color: rgba(219, 39, 119, 0.5);
-                color: #ffffff;
+                color: #9ca3af; /* text-gray-400 */
             }
         </style>
     </head>
@@ -232,8 +276,8 @@
                             height="92"
                             class="max-w-[70%] md:max-w-md h-auto"
                         />
-                        <div class="flex items-center gap-3">
-                            <button id="reset-view-button" class="button-secondary text-sm">
+                        <div class="flex items-center gap-3 header-buttons">
+                            <button id="reset-view-button" class="button-secondary">
                                 🔄 Reset View
                             </button>
                             <button id="copy-share-link-button" class="button-secondary">
@@ -245,7 +289,7 @@
             </header>
 
             <div class="container mx-auto px-4 py-6">
-                <!-- Chart/Table Area (Now on Top!) -->
+                <!-- Chart/Table Area -->
                 <div id="visualization-area" class="mb-6">
                     <div id="chart-container" class="relative card h-96 lg:h-[36rem]">
                         <canvas id="turnoutChart"></canvas>
@@ -255,12 +299,12 @@
                     </div>
                 </div>
 
-                <!-- Quick Controls Bar -->
+                <!-- Controls Bar -->
                 <div class="mb-6">
                     <div class="card">
                         <!-- Preset Buttons -->
                         <div class="mb-4 pb-4 border-b border-gray-600">
-                            <label class="block text-sm font-medium mb-2">Quick Selections:</label>
+                            <label class="block text-sm font-medium mb-2 text-gray-300">Quick Selections:</label>
                             <div id="preset-buttons-container" class="flex flex-wrap gap-2">
                                 <!-- Preset buttons populated by JS -->
                             </div>
@@ -270,43 +314,59 @@
                         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-4">
                             <!-- Years -->
                             <div>
-                                <label class="block text-sm font-medium mb-2">Select Years:</label>
+                                <label class="block text-sm font-medium mb-2 text-gray-300">Select Years:</label>
                                 <div id="year-options" class="year-checkbox-container">
                                     <!-- Year checkboxes populated by JS -->
                                 </div>
-                                <p class="text-xs text-gray-400 mt-1">
-                                    other years pending public info request
-                                </p>
+                                <!-- Removed "other years pending" text -->
                             </div>
                             
                             <!-- Data Type Toggles -->
-                            <div class="flex flex-col justify-center space-y-3">
-                                <label class="block text-sm font-medium mb-1">Show Data Types:</label>
+                            <div class="flex flex-col justify-start space-y-3"> <!-- Changed justify-center to justify-start -->
+                                <label class="block text-sm font-medium mb-1 text-gray-300">Show Data Types:</label>
                                 <label class="inline-flex items-center">
                                     <input id="early-voting-toggle" type="checkbox" class="form-checkbox rounded text-pink-600 focus:ring-pink-500" checked />
-                                    <span class="ml-2 text-sm">Early Voting</span>
+                                    <span class="ml-2 text-sm text-gray-300">Early Voting</span>
                                 </label>
                                 <label class="inline-flex items-center">
                                     <input id="election-day-toggle" type="checkbox" class="form-checkbox rounded text-pink-600 focus:ring-pink-500" checked />
-                                    <span class="ml-2 text-sm">Election Day</span>
+                                    <span class="ml-2 text-sm text-gray-300">Election Day</span>
                                 </label>
                             </div>
                             
                             <!-- View Options -->
-                            <div class="flex flex-col justify-center space-y-3">
-                                <label class="block text-sm font-medium mb-1">View Options:</label>
+                            <div class="flex flex-col justify-start space-y-3"> <!-- Changed justify-center to justify-start -->
+                                <label class="block text-sm font-medium mb-1 text-gray-300">Chart Options:</label>
                                 <label class="inline-flex items-center">
                                     <input id="y-axis-toggle" type="checkbox" class="form-checkbox rounded text-pink-600 focus:ring-pink-500" checked />
-                                    <span class="ml-2 text-sm">Start Y-Axis at Zero</span>
+                                    <span class="ml-2 text-sm text-gray-300">Start Y-Axis at Zero</span>
                                 </label>
-                                <label class="inline-flex items-center">
-                                    <input id="data-table-toggle" type="checkbox" class="form-checkbox rounded text-pink-600 focus:ring-pink-500" />
-                                    <span class="ml-2 text-sm">Show Data Table</span>
-                                </label>
-                                <label class="inline-flex items-center">
-                                    <input id="cumulative-toggle" type="checkbox" class="form-checkbox rounded text-pink-600 focus:ring-pink-500" />
-                                    <span class="ml-2 text-sm">Cumulative View</span>
-                                </label>
+                                <div>
+                                    <label class="radio-group-label text-gray-300">Data Presentation:</label>
+                                    <div class="radio-button-group">
+                                        <label>
+                                            <input type="radio" name="data-presentation" value="per-day" checked>
+                                            <span class="selected-radio">Per-Day</span>
+                                        </label>
+                                        <label>
+                                            <input type="radio" name="data-presentation" value="cumulative">
+                                            <span>Cumulative</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="radio-group-label text-gray-300">Display As:</label>
+                                    <div class="radio-button-group">
+                                        <label>
+                                            <input type="radio" name="display-as" value="graph" checked>
+                                            <span class="selected-radio">Graph</span>
+                                        </label>
+                                        <label>
+                                            <input type="radio" name="display-as" value="table">
+                                            <span>Table</span>
+                                        </label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         
@@ -321,9 +381,8 @@
                             
                             <div id="location-controls" class="controls-collapsed">
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    <!-- Location Filter -->
                                     <div>
-                                        <label for="location-filter" class="block text-sm font-medium mb-2">
+                                        <label for="location-filter" class="block text-sm font-medium mb-2 text-gray-300">
                                             Filter Locations:
                                         </label>
                                         <input
@@ -337,10 +396,8 @@
                                             <button id="deselect-all-locations" class="text-xs text-pink-400 hover:text-pink-300">Deselect All Visible</button>
                                         </div>
                                     </div>
-                                    
-                                    <!-- Location List -->
                                     <div>
-                                        <label class="block text-sm font-medium mb-2">Select Locations/Total:</label>
+                                        <label class="block text-sm font-medium mb-2 text-gray-300">Select Locations/Total:</label>
                                         <div id="location-checkbox-container" class="location-checkbox-container">
                                             <!-- Location checkboxes populated by JS -->
                                         </div>
@@ -361,7 +418,7 @@
                         <a href="https://www.bexar.org/2229/Voter-Registration-Check-Polling-Locatio" target="_blank" rel="noopener noreferrer" class="button-pink text-center">
                             Verify Voter Registration
                         </a>
-                        <a href="https://lwvsa.org/handlers/celinks.ashx?id=74871" target="_blank" rel="noopener noreferrer" class="button-pink text-center">
+                        <a href="https://lwvsa.org/handlers/celinks.ashx?id=74871" target="_blank" rel="noopener noreferrer" class="button-pink text-center"> <!-- Changed to button-pink -->
                             League of Women Voters Guide
                         </a>
                     </div>
@@ -369,14 +426,15 @@
 
                 <!-- Attribution -->
                 <p id="attribution" class="text-sm text-gray-400 mt-6 text-center">
-                    Data sourced from the Bexar County Elections Department.
+                    Data sourced from the Bexar County Elections Department via Public Information Act request.
                 </p>
             </div>
         </div>
 
-        <!-- Collapsible functionality -->
+        <!-- Collapsible & Radio Button JS -->
         <script>
             document.addEventListener('DOMContentLoaded', function() {
+                // Location Controls Toggle
                 const locationToggle = document.getElementById('location-toggle');
                 const locationControls = document.getElementById('location-controls');
                 const locationArrow = document.getElementById('location-arrow');
@@ -384,7 +442,6 @@
                 if (locationToggle && locationControls && locationArrow) {
                     locationToggle.addEventListener('click', function() {
                         const isExpanded = locationControls.classList.contains('controls-expanded');
-                        
                         if (isExpanded) {
                             locationControls.classList.remove('controls-expanded');
                             locationControls.classList.add('controls-collapsed');
@@ -396,6 +453,33 @@
                         }
                     });
                 }
+
+                // Radio Button Group Styling
+                const radioGroups = document.querySelectorAll('.radio-button-group');
+                radioGroups.forEach(group => {
+                    const radios = group.querySelectorAll('input[type="radio"]');
+                    const labels = group.querySelectorAll('label');
+
+                    const updateRadioSelection = () => {
+                        radios.forEach(radio => {
+                            const span = radio.nextElementSibling;
+                            if (radio.checked) {
+                                span.classList.add('selected-radio'); // Used for hover logic
+                                span.style.backgroundColor = '#db2777'; // pink-600
+                                span.style.color = 'white';
+                            } else {
+                                span.classList.remove('selected-radio');
+                                span.style.backgroundColor = ''; // Revert to default
+                                span.style.color = ''; // Revert to default
+                            }
+                        });
+                    };
+
+                    radios.forEach(radio => {
+                        radio.addEventListener('change', updateRadioSelection);
+                    });
+                    updateRadioSelection(); // Initial state
+                });
             });
         </script>
 
