@@ -7,7 +7,6 @@
         <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
         <style>
-            /* ... keeping all the existing styles ... */
             body {
                 background-color: #111827;
                 color: #f3f4f6;
@@ -43,6 +42,8 @@
                 text-align: center;
                 transition: all 0.2s;
                 text-decoration: none;
+                border: none;
+                cursor: pointer;
             }
             .button-pink:hover {
                 background-color: #be185d;
@@ -50,18 +51,20 @@
             }
             .button-secondary {
                 display: inline-block;
-                padding: 0.5rem 1rem;
+                padding: 0.75rem 1.5rem; /* Made consistent with button-pink */
                 background-color: #4b5563;
                 color: #ffffff;
-                font-weight: 500;
-                border-radius: 0.375rem;
+                font-weight: 600; /* Made consistent with button-pink */
+                border-radius: 0.5rem; /* Made consistent with button-pink */
                 text-align: center;
                 transition: all 0.2s;
                 text-decoration: none;
-                font-size: 0.875rem;
+                border: none;
+                cursor: pointer;
             }
             .button-secondary:hover {
                 background-color: #374151;
+                transform: translateY(-1px); /* Added consistent hover effect */
             }
             
             /* Preset buttons */
@@ -120,7 +123,7 @@
                 opacity: 1;
             }
             
-            /* Better checkbox styling that looks like pills */
+            /* Firefox-compatible year checkbox styling */
             .year-checkbox-container {
                 display: flex;
                 flex-wrap: wrap;
@@ -154,7 +157,8 @@
                 display: none;
             }
             
-            .year-checkbox-container label:has(input:checked) {
+            /* Firefox-compatible checked state - using class instead of :has() */
+            .year-checkbox-container label.checked {
                 background-color: #db2777;
                 border-color: #db2777;
                 color: white;
@@ -257,12 +261,8 @@
                         <!-- Preset Buttons -->
                         <div class="mb-4 pb-4 border-b border-gray-600">
                             <label class="block text-sm font-medium mb-2">Quick Selections:</label>
-                            <div class="flex flex-wrap gap-2">
-                                <button id="preset-all-june" class="preset-button">All June Elections</button>
-                                <button id="preset-all-november" class="preset-button">All November Elections</button>
-                                <button id="preset-all-may" class="preset-button">All May Elections</button>
-                                <button id="preset-recent-years" class="preset-button">Recent Years (2022+)</button>
-                                <button id="preset-compare-runoffs" class="preset-button">Compare Runoffs</button>
+                            <div id="preset-buttons-container" class="flex flex-wrap gap-2">
+                                <!-- Preset buttons populated by JS -->
                             </div>
                         </div>
                         
@@ -361,7 +361,7 @@
                         <a href="https://www.bexar.org/2229/Voter-Registration-Check-Polling-Locatio" target="_blank" rel="noopener noreferrer" class="button-pink text-center">
                             Verify Voter Registration
                         </a>
-                        <a href="https://lwvsa.org/handlers/celinks.ashx?id=74871" target="_blank" rel="noopener noreferrer" class="button-secondary text-center">
+                        <a href="https://lwvsa.org/handlers/celinks.ashx?id=74871" target="_blank" rel="noopener noreferrer" class="button-pink text-center">
                             League of Women Voters Guide
                         </a>
                     </div>

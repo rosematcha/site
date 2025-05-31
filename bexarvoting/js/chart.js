@@ -1,5 +1,5 @@
 // js/chart.js
-import { CAT_IMAGES, CHART_COLORS, TOTAL_TURNOUT_KEY } from "./config.js";
+import { CAT_IMAGES, CHART_COLORS, TOTAL_TURNOUT_KEY, DATA_FILES } from "./config.js"; // Added DATA_FILES
 import { getDataForSelection, getDatesForYear } from "./data.js";
 import { getSelectedYears, getSelectedLocations, getToggleStates, manageDisplay } from "./ui.js";
 import { debounce } from "./utils.js";
@@ -154,17 +154,15 @@ const renderChart = () => {
         showCat();
         manageDisplay();
         updateURLFromState();
-        logMetric("renderTime", performance.now() - startTime); // Log render time even if showing cat
+        // logMetric("renderTime", performance.now() - startTime); // Log render time even if showing cat
         return;
     }
 
      // --- ELECTION DAY ONLY GROUPED BAR CHART MODE ---
-    // This mode is specifically for comparing ONLY Election Day turnout
-    // across multiple years for the SAME set of locations.
     const isElectionDayOnlyComparison =
         showElectionDay && !showEarlyVoting && selectedYears.length > 1 && selectedLocations.length > 0;
 
-    if (isElectionDayOnlyComparison && !showCumulative) { // Cumulative doesn't make sense for single day
+    if (isElectionDayOnlyComparison && !showCumulative) {
         hideCat();
         const labels = selectedLocations;
         let datasets = [];
@@ -172,17 +170,14 @@ const renderChart = () => {
         for (const year of selectedYears) {
             const data = [];
             for (const location of selectedLocations) {
-                 // Need to get data for the *Election Day* only for this year/location
-                const selectionData = getDataForSelection(year, location, false, true); // Only get ED data
+                const selectionData = getDataForSelection(year, location, false, true);
 
                 let edValue = null;
                 if (selectionData && selectionData.data && selectionData.data.length > 0) {
-                     // Assuming getDataForSelection(false, true) returns an array with only the ED value if present
                      edValue = selectionData.data[0];
                 }
                 data.push(edValue);
             }
-             // If all locations for a year have null ED data, skip this year's dataset
              if (data.some(val => val !== null)) {
                 const color = CHART_COLORS[colorIndex % CHART_COLORS.length];
                 colorIndex++;
@@ -191,7 +186,7 @@ const renderChart = () => {
                     data,
                     backgroundColor: color,
                     borderColor: color,
-                    borderWidth: 1, // Add border for better visibility
+                    borderWidth: 1,
                 });
             }
         }
@@ -200,7 +195,7 @@ const renderChart = () => {
             showCat();
             manageDisplay();
             updateURLFromState();
-            logMetric("renderTime", performance.now() - startTime);
+            // logMetric("renderTime", performance.now() - startTime);
             return;
         }
 
@@ -226,7 +221,7 @@ const renderChart = () => {
 
         manageDisplay();
         updateURLFromState();
-        logMetric("renderTime", performance.now() - startTime);
+        // logMetric("renderTime", performance.now() - startTime);
         return;
     }
     // --- END ELECTION DAY ONLY GROUPED BAR CHART MODE ---
@@ -238,14 +233,12 @@ const renderChart = () => {
     let datasets = [];
     let labels = [];
     let colorIndex = 0;
-    let maxDays = 0; // Max number of voting days (EV + possibly ED) across selected years/data types
+    let maxDays = 0;
 
-    // Determine the maximum number of relevant days (EV + ED if selected) to set labels
     selectedYears.forEach(year => {
         const yearDates = getDatesForYear(year);
         if (!yearDates) return;
 
-        // Filter dates based on toggles
         const relevantDates = yearDates.filter(dateInfo =>
             (dateInfo.isElectionDay && showElectionDay) || (!dateInfo.isElectionDay && showEarlyVoting)
         );
@@ -255,11 +248,10 @@ const renderChart = () => {
         }
     });
 
-    // Generate labels based on maxDays and toggles
     const allDatesFromMostDaysYear = selectedYears
         .map(year => ({ year, dates: getDatesForYear(year) }))
         .filter(({ dates }) => dates && dates.filter(d => (d.isElectionDay && showElectionDay) || (!d.isElectionDay && showEarlyVoting)).length === maxDays)
-        .sort((a, b) => Object.keys(DATA_FILES).indexOf(a.year) - Object.keys(DATA_FILES).indexOf(b.year)) // Prefer earlier years for label consistency if maxDays are equal
+        .sort((a, b) => Object.keys(DATA_FILES).indexOf(a.year) - Object.keys(DATA_FILES).indexOf(b.year))
         [0]?.dates || [];
 
 
@@ -272,13 +264,10 @@ const renderChart = () => {
          }
      });
 
-    // Fallback if somehow labels didn't generate (e.g., no data, or only ED and no ED data)
      if (labels.length === 0 && selectedYears.length > 0 && selectedLocations.length > 0) {
          if (showElectionDay && selectedYears.some(year => getDatesForYear(year)?.some(d => d.isElectionDay))) {
-              // If only ED is toggled and at least one year has ED data, add "Election Day" label
              labels.push("Election Day");
          } else if (showEarlyVoting && selectedYears.some(year => getDatesForYear(year)?.some(d => !d.isElectionDay))) {
-             // If only EV is toggled and at least one year has EV data, find max EV days and add labels
               let maxEVDays = 0;
               selectedYears.forEach(year => {
                   const yearDates = getDatesForYear(year);
@@ -303,28 +292,36 @@ const renderChart = () => {
                 let processedData = selectionData.data;
 
                 if (showCumulative) {
-                     processedData = processedData.map((sum => value => sum += value)(0));
+                     processedData = processedData.map((sum => value => sum += (value || 0))(0)); // Ensure nulls are treated as 0 for sum
                 }
 
-                 // Align data to the common set of labels (maxDays)
                  const alignedData = new Array(labels.length).fill(null);
                  let processedDataIndex = 0;
 
-                 // Map days from selectionData back to the labels array
                  selectionData.dates.forEach((dateInfo) => {
                      let labelToFind = '';
-                     if (dateInfo.isElectionDay) labelToFind = "Election Day";
-                     else labelToFind = `Day ${dateInfo.dayIndex}`; // Use original dayIndex
+                     // Use the dayIndex from the original full set of dates for the year
+                     const originalDayIndex = yearDates.findIndex(d => d.date === dateInfo.date && d.isElectionDay === dateInfo.isElectionDay) + 1;
+
+                     if (dateInfo.isElectionDay) {
+                        labelToFind = "Election Day";
+                     } else {
+                        // Find the correct "Day X" label based on its position among *visible* EV days
+                        // This requires knowing how many EV days *before* this one were *also visible*
+                        let visibleEVDayCounter = 0;
+                        for(let i=0; i < selectionData.dates.length; i++){
+                            if(i > selectionData.dates.indexOf(dateInfo)) break;
+                            if(!selectionData.dates[i].isElectionDay) visibleEVDayCounter++;
+                        }
+                        labelToFind = `Day ${visibleEVDayCounter}`;
+                     }
+
 
                      const labelIndex = labels.indexOf(labelToFind);
 
                      if (labelIndex !== -1 && processedDataIndex < processedData.length) {
                          alignedData[labelIndex] = processedData[processedDataIndex];
                          processedDataIndex++;
-                     } else {
-                         // If label not found or processed data exhausted, skip
-                         // This can happen if a year has fewer EV days than the maxDays year
-                         // or if Election Day wasn't present in the maxDays year's labels
                      }
                  });
 
@@ -337,10 +334,10 @@ const renderChart = () => {
                     borderColor: color,
                     backgroundColor: color + "33",
                     tension: 0.1,
-                    fill: false, // Changed fill to false for line charts by default
+                    fill: false,
                     pointRadius: 3,
                     pointHoverRadius: 5,
-                    spanGaps: true, // Connect points over null values
+                    spanGaps: true,
                 });
             }
         });
@@ -350,13 +347,11 @@ const renderChart = () => {
         showCat();
         manageDisplay();
         updateURLFromState();
-        logMetric("renderTime", performance.now() - startTime);
+        // logMetric("renderTime", performance.now() - startTime);
         return;
     }
 
-    // Determine chart type (line or bar)
     let chartType = "line";
-    // If it's a single dataset and only one data point (e.g., only Election Day selected for one year)
     if (datasets.length === 1 && datasets[0].data.filter(d => d !== null).length === 1) {
          const singleDataPointIndex = datasets[0].data.findIndex(d => d !== null);
          if (singleDataPointIndex !== -1 && labels[singleDataPointIndex] === "Election Day" && !showEarlyVoting && showElectionDay && !showCumulative) {
@@ -380,40 +375,38 @@ const renderChart = () => {
         turnoutChart.options.plugins.title.text = chartTitle;
         turnoutChart.options.scales.y.beginAtZero = startYAtZero;
 
-        // Adjust dataset properties based on chart type
          datasets.forEach(ds => {
              if (chartType === "bar") {
-                ds.backgroundColor = ds.borderColor; // Solid color for bars
+                ds.backgroundColor = ds.borderColor;
                 ds.borderWidth = 1;
                 delete ds.tension; delete ds.fill; delete ds.pointRadius; delete ds.pointHoverRadius; delete ds.spanGaps;
-            } else { // Line chart properties
+            } else {
                 ds.backgroundColor = ds.borderColor + "33";
                 ds.tension = 0.1;
                 ds.fill = false;
                 ds.pointRadius = 3;
                 ds.pointHoverRadius = 5;
                 ds.spanGaps = true;
-                delete ds.borderWidth; // Remove border if not a bar chart
+                delete ds.borderWidth;
             }
          });
 
 
         turnoutChart.update();
     } else {
-         // Adjust dataset properties for the initial config based on determined chart type
          datasets.forEach(ds => {
              if (chartType === "bar") {
-                ds.backgroundColor = ds.borderColor; // Solid color for bars
+                ds.backgroundColor = ds.borderColor;
                 ds.borderWidth = 1;
                 delete ds.tension; delete ds.fill; delete ds.pointRadius; delete ds.pointHoverRadius; delete ds.spanGaps;
-            } else { // Line chart properties
+            } else {
                 ds.backgroundColor = ds.borderColor + "33";
                 ds.tension = 0.1;
                 ds.fill = false;
                 ds.pointRadius = 3;
                 ds.pointHoverRadius = 5;
                 ds.spanGaps = true;
-                 delete ds.borderWidth; // Remove border if not a bar chart
+                 delete ds.borderWidth;
             }
          });
         const config = createChartConfig(labels, datasets, chartTitle, startYAtZero, chartType);
@@ -422,7 +415,7 @@ const renderChart = () => {
 
     manageDisplay();
     updateURLFromState();
-    logMetric("renderTime", performance.now() - startTime); // Log render time
+    // logMetric("renderTime", performance.now() - startTime);
 };
 
 

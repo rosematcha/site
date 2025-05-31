@@ -15,12 +15,13 @@ const elements = {
     electionDayToggle: document.getElementById("election-day-toggle"),
     yAxisToggle: document.getElementById("y-axis-toggle"),
     dataTableToggle: document.getElementById("data-table-toggle"),
-    cumulativeToggle: document.getElementById("cumulative-toggle"), // New cumulative toggle
+    cumulativeToggle: document.getElementById("cumulative-toggle"),
     chartContainer: document.getElementById("chart-container"),
     chartCanvas: document.getElementById("turnoutChart"),
     dataTableContainer: document.getElementById("data-table-container"),
     copyShareLinkButton: document.getElementById("copy-share-link-button"),
-    resetViewButton: document.getElementById("reset-view-button"), // Reset button
+    resetViewButton: document.getElementById("reset-view-button"),
+    presetButtonsContainer: document.getElementById("preset-buttons-container"),
     attribution: document.getElementById("attribution"),
 };
 
@@ -56,13 +57,22 @@ export const updateStatusMessage = (message) => {
     }
 };
 
+// Firefox-compatible year checkbox handling
+const updateYearLabelState = (label, checked) => {
+    if (checked) {
+        label.classList.add("checked");
+    } else {
+        label.classList.remove("checked");
+    }
+};
+
 export const populateYearCheckboxes = (selectedYearsFromURL = []) => {
     if (!elements.yearOptionsContainer) return;
     elements.yearOptionsContainer.innerHTML = "";
 
     Object.entries(DATA_FILES).forEach(([yearKey, { name, disabled }]) => {
         const label = document.createElement("label");
-        label.className = "block inline-flex items-center"; // Tailwind for Flex + Items Center
+        label.className = "block inline-flex items-center";
         if (disabled) {
             label.classList.add("opacity-50", "cursor-not-allowed");
         }
@@ -80,18 +90,25 @@ export const populateYearCheckboxes = (selectedYearsFromURL = []) => {
         }
 
         input.disabled = !!disabled;
-        input.addEventListener("change", handleYearChange);
+        
+        // Firefox-compatible event handling
+        input.addEventListener("change", (event) => {
+            updateYearLabelState(label, event.target.checked);
+            handleYearChange(event);
+        });
 
         const span = document.createElement("span");
-        span.className = "ml-2 text-sm"; // Adjusted for spacing next to custom checkbox style
+        span.className = "ml-2 text-sm";
         span.textContent = name + (disabled ? " (pending)" : "");
 
         label.appendChild(input);
         label.appendChild(span);
         elements.yearOptionsContainer.appendChild(label);
+
+        // Set initial visual state
+        updateYearLabelState(label, input.checked);
     });
 };
-
 
 function handleLocationChange(event) {
     logMetric("interactions", 1);
@@ -113,18 +130,13 @@ function handleLocationChange(event) {
         if (totalCheckbox) totalCheckbox.checked = false;
     } else if (!isTotalCheckbox && !isChecked) {
         if (specificCheckedCount === 0 && totalCheckbox && !totalCheckbox.checked) {
-             // If the last specific location is unchecked, and Total is NOT checked, check Total
-             totalCheckbox.checked = true;
+            totalCheckbox.checked = true;
         }
-    } else if (isTotalCheckbox && !isChecked && specificCheckedCount === 0) {
-        // If Total is unchecked, and no specifics are checked, allow it (user wants no location lines)
-        // No action needed here, chart will show a cat.
     }
 
     debouncedRenderChart();
     updateURLFromState();
 }
-
 
 function createCheckboxOption(container, labelText, value, checked) {
     const label = document.createElement("label");
@@ -159,15 +171,11 @@ export const populateLocationDropdown = (selectedLocationsFromURL = []) => {
 
     let effectiveSelection = selectedLocationsFromURL.length > 0 ? selectedLocationsFromURL : currentSelection;
 
-     // If no URL params and nothing was previously selected, default to Total
     if (selectedLocationsFromURL.length === 0 && currentSelection.length === 0) {
        effectiveSelection = [TOTAL_TURNOUT_KEY];
     } else if (selectedLocationsFromURL.length > 0 && currentSelection.length === 0) {
-        // If URL params exist but currentSelection was empty (first load), use URL
         effectiveSelection = selectedLocationsFromURL;
     }
-    // Otherwise, stick with currentSelection
-
 
     createCheckboxOption(
         container,
@@ -188,7 +196,6 @@ export const populateLocationDropdown = (selectedLocationsFromURL = []) => {
     filterLocations();
 };
 
-
 const handleYearChange = async (event) => {
     logMetric("interactions", 1);
     const year = event.target.value;
@@ -197,15 +204,13 @@ const handleYearChange = async (event) => {
     if (isChecked) {
         await loadYearData(year);
     }
-    // Repopulate locations if a year was added/removed, as available locations might change.
-    // Pass current selections so they are preserved.
     populateLocationDropdown(getSelectedLocations());
     debouncedRenderChart();
     updateURLFromState();
 };
 
 function filterLocations() {
-    const filterText = elements.locationFilterInput.value.toLowerCase().trim();
+    const filterText = elements.locationFilterInput?.value?.toLowerCase().trim() || "";
     const container = elements.locationCheckboxContainer;
     if (!container) return;
 
@@ -222,7 +227,6 @@ function filterLocations() {
         const matchesSearch = filterText.length > 0 && locationDisplayName.includes(filterText);
         const noSearch = filterText.length === 0;
 
-        // Always show "Total Turnout" if it matches search or no search is active
         if (locationName === TOTAL_TURNOUT_KEY) {
             if (noSearch || matchesSearch) isVisible = true;
         } else if (locationName) {
@@ -232,59 +236,44 @@ function filterLocations() {
             if (matchesSearch) {
                 isVisible = true;
             } else if (noSearch) {
-                 // If no search, filter based on data type toggles for ED-only locations
                 if (isEDOnlyLocation) {
-                     if (showElectionDay && !showEarlyVoting) isVisible = true;
-                     // If ED is shown, but EV is not, show ED-only locations
-                     // If both are shown, still show ED-only locations (they'll just have one data point)
-                     // If only EV is shown, hide ED-only locations (they have no EV data)
+                    if (showElectionDay && !showEarlyVoting) isVisible = true;
                 } else {
-                    isVisible = true; // Always show non-ED-only locations if no search
+                    isVisible = true;
                 }
             }
         }
-        optionLabel.style.display = isVisible ? "flex" : "none"; // Use flex to maintain layout
+        optionLabel.style.display = isVisible ? "flex" : "none";
     });
 }
-
 
 function setAllSpecificLocations(checkedState) {
     const container = elements.locationCheckboxContainer;
     if (!container) return;
 
-    // Select/Deselect only the currently visible specific location checkboxes
     const specificCheckboxes = Array.from(
         container.querySelectorAll(".location-option:not([style*='display: none']) input[type=checkbox]")
     ).filter((cb) => cb.value !== TOTAL_TURNOUT_KEY);
 
     specificCheckboxes.forEach((cb) => (cb.checked = checkedState));
 
-    // Handle the "Total" checkbox based on specific selections
     const totalCheckbox = container.querySelector(`input[value="${TOTAL_TURNOUT_KEY}"]`);
     if (totalCheckbox) {
         if (checkedState) {
-            // If selecting all specifics, uncheck total
             totalCheckbox.checked = false;
         } else {
-            // If deselecting all specifics, check total (unless Total was already deselected manually)
-             const currentlySelectedSpecifics = Array.from(container.querySelectorAll("input[type=checkbox]")).filter(cb => cb.value !== TOTAL_TURNOUT_KEY && cb.checked).length;
-             if (currentlySelectedSpecifics === 0) {
-                 totalCheckbox.checked = true;
-             }
+            const currentlySelectedSpecifics = Array.from(container.querySelectorAll("input[type=checkbox]")).filter(cb => cb.value !== TOTAL_TURNOUT_KEY && cb.checked).length;
+            if (currentlySelectedSpecifics === 0) {
+                totalCheckbox.checked = true;
+            }
         }
     }
-
 
     logMetric("interactions", 1);
     debouncedRenderChart();
     updateURLFromState();
 }
 
-
-/**
- * Renders the data from the chart into an HTML table.
- * @param {Chart|null} chartInstance - The current Chart.js instance.
- */
 export const renderDataTable = (chartInstance) => {
     if (!elements.dataTableContainer) return;
 
@@ -319,11 +308,6 @@ export const renderDataTable = (chartInstance) => {
     elements.dataTableContainer.innerHTML = tableHTML;
 };
 
-
-/**
- * Manages the visibility of the chart, data table, and cat image.
- * Called after chart rendering logic.
- */
 export const manageDisplay = () => {
     const chartInstance = getCurrentChartInstance();
     const { showDataTable } = getToggleStates();
@@ -337,7 +321,6 @@ export const manageDisplay = () => {
     } else {
         elements.dataTableContainer.classList.add("hidden");
         elements.chartContainer.classList.remove("hidden");
-        // showCat/hideCat in chart.js handles chartCanvas and catContainer visibility
     }
 };
 
@@ -349,12 +332,12 @@ export const setupEventListeners = () => {
         elements.selectAllButton.addEventListener("click", () => setAllSpecificLocations(true));
     }
     if (elements.deselectAllButton) {
-        elements.deselectAllLocationsButton.addEventListener("click", () => setAllSpecificLocations(false));
+        elements.deselectAllButton.addEventListener("click", () => setAllSpecificLocations(false));
     }
 
     const commonChangeHandler = () => {
         logMetric("interactions", 1);
-        filterLocations(); // Filter might be affected by EV/ED toggles for ED-only sites
+        filterLocations();
         debouncedRenderChart();
         updateURLFromState();
     };
@@ -362,7 +345,7 @@ export const setupEventListeners = () => {
     if (elements.earlyVotingToggle) elements.earlyVotingToggle.addEventListener("change", commonChangeHandler);
     if (elements.electionDayToggle) elements.electionDayToggle.addEventListener("change", commonChangeHandler);
     if (elements.yAxisToggle) elements.yAxisToggle.addEventListener("change", commonChangeHandler);
-    if (elements.cumulativeToggle) elements.cumulativeToggle.addEventListener("change", commonChangeHandler); // Added cumulative toggle listener
+    if (elements.cumulativeToggle) elements.cumulativeToggle.addEventListener("change", commonChangeHandler);
 
     if (elements.dataTableToggle) {
         elements.dataTableToggle.addEventListener("change", () => {
@@ -389,15 +372,18 @@ export const setupEventListeners = () => {
         });
     }
 
-    setupPresetButtons(); // Initialize preset buttons
+    setupPresetButtons();
 };
 
-// --- Functions to SET UI state from URL and Presets ---
 export const setSelectedYears = (yearsToSelect) => {
     if (!elements.yearOptionsContainer) return;
-    const checkboxes = elements.yearOptionsContainer.querySelectorAll("input[type=checkbox]");
-    checkboxes.forEach(cb => {
-        cb.checked = yearsToSelect.includes(cb.value);
+    const labels = elements.yearOptionsContainer.querySelectorAll("label");
+    labels.forEach(label => {
+        const checkbox = label.querySelector("input[type=checkbox]");
+        if (checkbox) {
+            checkbox.checked = yearsToSelect.includes(checkbox.value);
+            updateYearLabelState(label, checkbox.checked);
+        }
     });
 };
 
@@ -406,7 +392,6 @@ export const setSelectedLocations = (locationsToSelect) => {
     if (!container) return;
     const checkboxes = container.querySelectorAll("input[type=checkbox]");
 
-    // If locationsToSelect is empty or null, default to checking "Total"
     if (!locationsToSelect || locationsToSelect.length === 0) {
         locationsToSelect = [TOTAL_TURNOUT_KEY];
     }
@@ -414,7 +399,7 @@ export const setSelectedLocations = (locationsToSelect) => {
     checkboxes.forEach(cb => {
         cb.checked = locationsToSelect.includes(cb.value);
     });
-    // Ensure intelligent selection rules are met (e.g., if specific selected, uncheck total)
+    
     const totalCheckbox = container.querySelector(`input[value="${TOTAL_TURNOUT_KEY}"]`);
     const specificSelected = locationsToSelect.some(loc => loc !== TOTAL_TURNOUT_KEY);
     if (totalCheckbox) {
@@ -423,8 +408,6 @@ export const setSelectedLocations = (locationsToSelect) => {
         } else if (locationsToSelect.includes(TOTAL_TURNOUT_KEY)) {
             totalCheckbox.checked = true;
         } else {
-            // If no specifics are selected and "Total" wasn't in the list,
-            // we still need at least one selected, so default to Total.
             totalCheckbox.checked = true;
         }
     }
@@ -435,7 +418,7 @@ export const setToggleStates = (states) => {
     if (elements.electionDayToggle && states.ed !== undefined) elements.electionDayToggle.checked = states.ed;
     if (elements.yAxisToggle && states.yz !== undefined) elements.yAxisToggle.checked = states.yz;
     if (elements.dataTableToggle && states.dt !== undefined) elements.dataTableToggle.checked = states.dt;
-    if (elements.cumulativeToggle && states.cum !== undefined) elements.cumulativeToggle.checked = states.cum; // Added cumulative toggle state
+    if (elements.cumulativeToggle && states.cum !== undefined) elements.cumulativeToggle.checked = states.cum;
 };
 
 export const getSelectedYears = () => {
@@ -459,10 +442,9 @@ export const getToggleStates = () => {
         showElectionDay: elements.electionDayToggle ? elements.electionDayToggle.checked : true,
         startYAtZero: elements.yAxisToggle ? elements.yAxisToggle.checked : true,
         showDataTable: elements.dataTableToggle ? elements.dataTableToggle.checked : false,
-        showCumulative: elements.cumulativeToggle ? elements.cumulativeToggle.checked : false, // Added cumulative state
+        showCumulative: elements.cumulativeToggle ? elements.cumulativeToggle.checked : false,
     };
 };
-
 
 export const updateAttribution = () => {
     if (elements.attribution) {
@@ -476,29 +458,28 @@ export const updateAttribution = () => {
     }
 };
 
-// Preset Button Logic
 export const setupPresetButtons = () => {
-     // Create and add preset buttons dynamically
-    const presetButtonContainer = document.querySelector(".flex.flex-wrap.gap-2");
-    if(presetButtonContainer) {
-         presetButtonContainer.innerHTML = ''; // Clear existing
-         Object.entries(PRESET_CONFIGURATIONS).forEach(([key, preset]) => {
-            const button = document.createElement('button');
-            button.id = `preset-${key}`;
-            button.className = 'preset-button';
-            button.textContent = preset.name;
-            button.addEventListener('click', () => {
-                applyPresetConfiguration(key);
-            });
-            presetButtonContainer.appendChild(button);
-         });
+    if (!elements.presetButtonsContainer) {
+        console.error("Preset buttons container not found");
+        return;
     }
 
-    // Reset view button
-    const resetButton = document.getElementById("reset-view-button");
-    if (resetButton) {
-        resetButton.addEventListener("click", () => {
-            applyPresetConfiguration("default"); // Use a special key for default
+    elements.presetButtonsContainer.innerHTML = '';
+    
+    Object.entries(PRESET_CONFIGURATIONS).forEach(([key, preset]) => {
+        const button = document.createElement('button');
+        button.id = `preset-${key}`;
+        button.className = 'preset-button';
+        button.textContent = preset.name;
+        button.addEventListener('click', () => {
+            applyPresetConfiguration(key);
+        });
+        elements.presetButtonsContainer.appendChild(button);
+    });
+
+    if (elements.resetViewButton) {
+        elements.resetViewButton.addEventListener("click", () => {
+            applyPresetConfiguration("default");
         });
     }
 };
@@ -508,7 +489,6 @@ const applyPresetConfiguration = async (presetKey) => {
 
     let config;
     if (presetKey === "default") {
-        // Define the default state here
         config = {
             years: DEFAULT_SELECTED_YEARS,
             locations: [TOTAL_TURNOUT_KEY],
@@ -525,30 +505,20 @@ const applyPresetConfiguration = async (presetKey) => {
 
     updateStatusMessage(`Applying "${config.name || presetKey}" preset...`);
 
-    // Apply year selection first
     setSelectedYears(config.years);
 
-    // Load any new years that are selected by this preset but not already loaded
     const yearsToLoad = config.years.filter(year => DATA_FILES[year] && !isDataLoaded(year));
     if (yearsToLoad.length > 0) {
         await Promise.allSettled(yearsToLoad.map(loadYearData));
     }
 
-    // Repopulate and select locations
-    populateLocationDropdown([]); // Repopulate first
-     // Give a small delay to ensure the DOM is updated after repopulating
+    populateLocationDropdown([]);
     setTimeout(() => {
         setSelectedLocations(config.locations);
         setToggleStates(config.toggles);
-
-        // Ensure location filter is applied after locations are selected
         filterLocations();
-
         debouncedRenderChart();
         updateURLFromState();
-        updateStatusMessage(""); // Clear status message
-    }, 100); // Small delay might be needed
+        updateStatusMessage("");
+    }, 100);
 };
-
-// Initial call to setup preset buttons on DOM ready
-document.addEventListener('DOMContentLoaded', setupPresetButtons);
