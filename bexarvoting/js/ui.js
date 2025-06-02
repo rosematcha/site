@@ -261,7 +261,9 @@ const handleYearChange = async (event) => {
         await loadYearData(year);
         updateStatusMessage("");
     }
-    populateLocationDropdown(getSelectedLocations());
+    // Preserve current selections when repopulating based on year changes
+    const currentSelectedLocations = getSelectedLocations();
+    populateLocationDropdown(currentSelectedLocations.length > 0 ? currentSelectedLocations : [TOTAL_TURNOUT_KEY]);
     debouncedRenderChart();
     updateURLFromState();
 };
@@ -315,11 +317,11 @@ function filterLocations() {
                     if (!showEarlyVoting && !showElectionDay) {
                         isVisible = false;
                     } else if (showEarlyVoting && showElectionDay) {
-                        isVisible = !isEDOLocation;
-                    } else if (!showEarlyVoting && showElectionDay) {
-                        isVisible = true;
-                    } else if (showEarlyVoting && !showElectionDay) {
-                        isVisible = !isEDOLocation;
+                        isVisible = !isEDOLocation; // Show if not EDO (i.e., has EV data) or if it's EDO and we show ED
+                    } else if (!showEarlyVoting && showElectionDay) { // Only ED
+                        isVisible = true; // All locations are potentially visible if they have ED data
+                    } else if (showEarlyVoting && !showElectionDay) { // Only EV
+                        isVisible = !isEDOLocation; // Show only if it's not an EDO location
                     }
                 }
             }
@@ -373,18 +375,12 @@ function setAllSpecificLocations(checkedState) {
          }
      });
 
-    // If nothing was actually changed by checking/unchecking specifics (e.g., all were already in the target state)
-    // but the total checkbox might need updating, handle it.
-    // However, handleLocationChange should cover total's state.
-    // The main thing is to ensure chart/URL update if any actual change happened.
     if (changed) {
-        // handleLocationChange is called for each item, which calls debouncedRenderChart and updateURLFromState.
-        // No need for explicit calls here if event dispatch works.
+        // handleLocationChange calls debouncedRenderChart and updateURLFromState.
     } else {
-        // If no specific checkboxes were changed, ensure Total is correct if it was the only thing to change
         const totalCheckbox = container.querySelector(`input[value="${TOTAL_TURNOUT_KEY}"]`);
         if (totalCheckbox) {
-            const shouldTotalBeChecked = !checkedState; // If deselecting all specifics, total should be checked, and vice-versa
+            const shouldTotalBeChecked = !checkedState; 
             if (totalCheckbox.checked !== shouldTotalBeChecked) {
                 totalCheckbox.checked = shouldTotalBeChecked;
                 const event = new Event('change', { bubbles: true });
@@ -470,8 +466,6 @@ export const setupEventListeners = () => {
     if (elements.locationFilterInput) {
         elements.locationFilterInput.addEventListener("input", () => {
             filterLocations();
-            // After filtering, the selected locations might change implicitly if some are hidden
-            // So, we might need to update the chart and URL
             debouncedRenderChart();
             updateURLFromState();
         });
@@ -479,13 +473,13 @@ export const setupEventListeners = () => {
     if (elements.selectAllButton) {
         elements.selectAllButton.addEventListener("click", () => setAllSpecificLocations(true));
     }
-    if (elements.deselectAllButton) { // Corrected to use elements.deselectAllButton
+    if (elements.deselectAllButton) { 
         elements.deselectAllButton.addEventListener("click", () => setAllSpecificLocations(false));
     }
 
     const commonChangeHandler = () => {
         logMetric("interactions", 1);
-        filterLocations();
+        filterLocations(); // Ensure location visibility is updated based on EV/ED toggles
         debouncedRenderChart();
         updateURLFromState();
     };
@@ -503,8 +497,11 @@ export const setupEventListeners = () => {
         radio.addEventListener('change', () => {
             logMetric("interactions", 1);
             updateRadioVisuals(elements.displayAsRadios);
-            manageDisplay();
+            manageDisplay(); // This will call renderDataTable if switching to table
             updateURLFromState();
+            // If switching to graph, and data is already processed, chart might need explicit re-render
+            // if manageDisplay doesn't trigger it (e.g. if cat was shown).
+            // debouncedRenderChart will handle cat logic.
             if (radio.value === 'graph') {
                 debouncedRenderChart();
             }
@@ -544,29 +541,12 @@ export const setSelectedYears = (yearsToSelect) => {
 };
 
 export const setSelectedLocations = (locationsToSelect) => {
-    const container = elements.locationCheckboxContainer;
-    if (!container) return;
-
-    if (!locationsToSelect || locationsToSelect.length === 0) {
-        locationsToSelect = [TOTAL_TURNOUT_KEY];
-    }
-    
-    // This function is primarily for setting state from URL/presets.
-    // populateLocationDropdown will handle the creation and initial checked states.
-    // This function ensures the *intended* selections are passed to populateLocationDropdown.
-    // The actual DOM checkbox states will be set by populateLocationDropdown.
-    // So, this function doesn't need to directly manipulate checkboxes here.
-    // It's more about ensuring the `locationsToSelect` array is correct for `populateLocationDropdown`.
-
-    // The actual setting of checkboxes and filtering is now handled in populateLocationDropdown
-    // and filterLocations. This function's role is reduced to preparing the `locationsToSelect`
-    // array if needed, but `populateLocationDropdown` already does a good job with its argument.
-    // For now, let's assume `populateLocationDropdown(locationsToSelect)` is called directly.
-    // If we need to call this from presets, it should just update the state that populateLocationDropdown uses.
-    // For simplicity, presets now directly call populateLocationDropdown.
+    // This function is mostly a placeholder now.
+    // populateLocationDropdown is the primary way to set location selections based on an array.
+    // Presets or URL loading will call populateLocationDropdown directly or indirectly.
 };
 
-export const setToggleStates = (states) => {
+export const setToggleStates = (states) => { // states is an object
     if (elements.earlyVotingToggle && states.ev !== undefined) elements.earlyVotingToggle.checked = states.ev;
     if (elements.electionDayToggle && states.ed !== undefined) elements.electionDayToggle.checked = states.ed;
     if (elements.yAxisToggle && states.yz !== undefined) elements.yAxisToggle.checked = states.yz;
@@ -576,24 +556,14 @@ export const setToggleStates = (states) => {
             radio.checked = radio.value === states.presentation;
         });
         updateRadioVisuals(elements.dataPresentationRadios);
-    } else {
-        elements.dataPresentationRadios.forEach(radio => {
-            if (radio.value === 'per-day') radio.checked = true;
-        });
-        updateRadioVisuals(elements.dataPresentationRadios);
-    }
+    } // No 'else' for defaulting if not specified
 
     if (states.display !== undefined) {
         elements.displayAsRadios.forEach(radio => {
             radio.checked = radio.value === states.display;
         });
         updateRadioVisuals(elements.displayAsRadios);
-    } else {
-        elements.displayAsRadios.forEach(radio => {
-            if (radio.value === 'graph') radio.checked = true;
-        });
-        updateRadioVisuals(elements.displayAsRadios);
-    }
+    } // No 'else' for defaulting if not specified
 };
 
 export const getSelectedYears = () => {
@@ -606,7 +576,6 @@ export const getSelectedYears = () => {
 export const getSelectedLocations = () => {
     const container = elements.locationCheckboxContainer;
     if (!container) return [];
-    // Only return *visible* and checked locations
     return Array.from(
         container.querySelectorAll(".location-option input[type=checkbox]:checked")
     )
@@ -615,18 +584,16 @@ export const getSelectedLocations = () => {
 };
 
 export const getToggleStates = () => {
-    let dataPresentationValue = 'per-day';
+    let dataPresentationValue = 'per-day'; // Default if no radio is checked (should not happen with HTML)
     if (elements.dataPresentationRadios && elements.dataPresentationRadios.length > 0) {
-        elements.dataPresentationRadios.forEach(radio => {
-            if (radio.checked) dataPresentationValue = radio.value;
-        });
+        const checkedRadio = Array.from(elements.dataPresentationRadios).find(radio => radio.checked);
+        if (checkedRadio) dataPresentationValue = checkedRadio.value;
     }
 
-    let displayAsValue = 'graph';
+    let displayAsValue = 'graph'; // Default
     if (elements.displayAsRadios && elements.displayAsRadios.length > 0) {
-        elements.displayAsRadios.forEach(radio => {
-            if (radio.checked) displayAsValue = radio.value;
-        });
+        const checkedRadio = Array.from(elements.displayAsRadios).find(radio => radio.checked);
+        if (checkedRadio) displayAsValue = checkedRadio.value;
     }
 
     return {
@@ -691,24 +658,38 @@ const applyPresetConfiguration = async (presetKey) => {
     }
     updateStatusMessage(`Applying "${config.name || presetKey}" preset...`);
     
-    // Set years first
-    setSelectedYears(config.years);
+    // 1. Apply years if specified
+    if (config.years) {
+        setSelectedYears(config.years); // Updates year checkboxes
 
-    // Load data for these years if not already loaded
-    const yearsToLoad = config.years.filter(year => DATA_FILES[year] && !isDataLoaded(year));
-    if (yearsToLoad.length > 0) {
-        await Promise.allSettled(yearsToLoad.map(loadYearData));
+        // Manually trigger data loading for newly selected years
+        const yearsToLoad = config.years.filter(year => DATA_FILES[year] && !isDataLoaded(year));
+        if (yearsToLoad.length > 0) {
+            await Promise.allSettled(yearsToLoad.map(loadYearData));
+        }
     }
+
+    // 2. Apply toggles ONLY if specified in the preset configuration
+    if (config.toggles && typeof config.toggles === 'object') {
+        setToggleStates(config.toggles);
+    }
+    // If config.toggles is not defined for a preset, current toggle states are preserved.
+
+    // 3. Handle locations:
+    // If config.locations is specified, use them.
+    // Otherwise, preserve current selections.
+    // In either case, repopulateLocationDropdown to refresh the list based on (potentially new) years
+    // and apply the determined selections.
+    const locationsToUseForRepopulation = config.locations 
+        ? config.locations 
+        : getSelectedLocations();
     
-    // Set toggles BEFORE populating locations, so filterLocations inside populateLocationDropdown uses correct toggle state
-    setToggleStates(config.toggles);
+    populateLocationDropdown(locationsToUseForRepopulation.length > 0 ? locationsToUseForRepopulation : [TOTAL_TURNOUT_KEY]);
     
-    // Repopulate location dropdown. It will use the `config.locations` to set initial checks
-    // and then filter based on the (now set) years and toggles.
-    populateLocationDropdown(config.locations);
-    
-    // All necessary updates (filter, render, URL) should be triggered by the above calls.
-    // Explicitly call render and update URL to be sure.
+    // All necessary updates (filter, render, URL) should be triggered.
+    // filterLocations() is called by populateLocationDropdown.
+    // Toggle changes (if any) would have called their handlers.
+    // Explicitly call render and update URL to ensure all changes are reflected.
     debouncedRenderChart();
     updateURLFromState();
     updateStatusMessage("");

@@ -154,7 +154,7 @@ const renderChart = () => {
         (!showEarlyVoting && !showElectionDay)
     ) {
         showCat();
-        manageDisplay();
+        manageDisplay(); // Ensure table is hidden if cat is shown
         updateURLFromState();
         return;
     }
@@ -268,13 +268,15 @@ const renderChart = () => {
                     labels.push("Election Day");
                 }
             });
-        } else if (maxRelevantDays > 0) {
-            if (showEarlyVoting && !showElectionDay) {
+        } else if (maxRelevantDays > 0) { // Fallback if no representative year found but we know max days
+            if (showEarlyVoting && !showElectionDay) { // Only EV days
                 for (let i = 1; i <= maxRelevantDays; i++) labels.push(`Day ${i}`);
-            } else if (showElectionDay && !showEarlyVoting && maxRelevantDays === 1) {
+            } else if (showElectionDay && !showEarlyVoting && maxRelevantDays === 1) { // Only ED
                 labels.push("Election Day");
             }
+            // If both EV and ED are shown, this fallback might be tricky; representativeYearForLabels should ideally cover it.
         }
+
 
         selectedYears.forEach((year) => {
             const yearDatesFull = getDatesForYear(year);
@@ -291,19 +293,14 @@ const renderChart = () => {
                     
                     const alignedData = new Array(labels.length).fill(null);
                     let currentDataIndex = 0;
+                    let evDayCounterForThisSeries = 0; // Tracks EV day number within this specific series
 
                     selectionData.dates.forEach(dateInfoFromSelection => {
                         let labelToFind;
                         if (dateInfoFromSelection.isElectionDay) {
                             labelToFind = "Election Day";
-                        } else {
-                            let evDayCounterForThisSeries = 0;
-                            for(const d of selectionData.dates){
-                                if(!d.isElectionDay) evDayCounterForThisSeries++;
-                                if(d.date === dateInfoFromSelection.date && d.isElectionDay === dateInfoFromSelection.isElectionDay) {
-                                    break;
-                                }
-                            }
+                        } else { // Is an Early Voting day for this series
+                            evDayCounterForThisSeries++;
                             labelToFind = `Day ${evDayCounterForThisSeries}`;
                         }
 
@@ -314,18 +311,19 @@ const renderChart = () => {
                         currentDataIndex++;
                     });
 
+
                     const color = CHART_COLORS[colorIndex % CHART_COLORS.length];
                     colorIndex++;
                     datasets.push({
                         label: `${selectionData.name} - ${year}`,
                         data: alignedData,
                         borderColor: color,
-                        backgroundColor: color + "33",
+                        backgroundColor: color + "33", // Default for line, will be overridden for bar
                         tension: 0.1,
                         fill: false,
                         pointRadius: 3,
                         pointHoverRadius: 5,
-                        spanGaps: true,
+                        spanGaps: false, // MODIFIED: Do not span gaps for line charts
                     });
                 }
             });
@@ -335,7 +333,7 @@ const renderChart = () => {
             showCat();
         } else {
             let chartType = "line";
-            // Check if it should be a bar chart (single ED point, not cumulative)
+            // Check if it should be a bar chart (single ED point, not cumulative, only ED shown)
             if (datasets.length === 1 && datasets[0].data.filter(d => d !== null).length === 1) {
                  const singleDataPointIndex = datasets[0].data.findIndex(d => d !== null);
                  if (singleDataPointIndex !== -1 && 
@@ -359,20 +357,19 @@ const renderChart = () => {
                 if (chartType === "bar") {
                    ds.backgroundColor = ds.borderColor; // Solid color for bars
                    ds.borderWidth = 1;
-                   // Remove line-specific properties
                    delete ds.tension; 
                    delete ds.fill; 
                    delete ds.pointRadius; 
                    delete ds.pointHoverRadius; 
-                   delete ds.spanGaps;
+                   delete ds.spanGaps; // Bar charts don't use spanGaps in this way
                } else { // Line chart properties
-                   ds.backgroundColor = ds.borderColor + "33"; // Semi-transparent fill for lines
+                   ds.backgroundColor = ds.borderColor + "33"; 
                    ds.tension = 0.1;
-                   ds.fill = false; // Can be set to true if area under line is desired
+                   ds.fill = false; 
                    ds.pointRadius = 3;
                    ds.pointHoverRadius = 5;
-                   ds.spanGaps = true;
-                   delete ds.borderWidth; // Not typically used for line charts like this
+                   ds.spanGaps = false; // Ensure spanGaps is false for lines
+                   delete ds.borderWidth; 
                }
             });
 

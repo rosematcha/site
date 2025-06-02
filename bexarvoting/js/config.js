@@ -22,44 +22,20 @@ export const PRESET_CONFIGURATIONS = {
     "all-june": {
         name: "All June Elections",
         years: ["June 2025", "June 2023", "June 2021", "June 2019"],
-        locations: ["total"],
-        toggles: { ev: true, ed: true, yz: true, dt: false, cum: false }
     },
     "all-november": {
         name: "All November Elections",
         years: ["November 2022", "November 2020"],
-        locations: ["total"],
-        toggles: { ev: true, ed: true, yz: true, dt: false, cum: false }
     },
     "all-may": {
         name: "All May Elections",
         years: ["May 2025", "May 2023", "May 2021", "May 2019"],
-        locations: ["total"],
-        toggles: { ev: true, ed: true, yz: true, dt: false, cum: false }
     },
     "recent-years": {
         name: "Recent Years (2022+)",
         years: ["June 2025", "May 2025", "June 2023", "May 2023", "November 2022"],
         locations: ["total"],
-        toggles: { ev: true, ed: true, yz: true, dt: false, cum: false }
-    },
-    "compare-runoffs-early": {
-        name: "Compare Runoffs (Early Voting)",
-        years: ["June 2025", "June 2023", "June 2021", "June 2019"],
-        locations: ["total"],
-        toggles: { ev: true, ed: false, yz: true, dt: false, cum: false }
-    },
-    "compare-runoffs-total": {
-        name: "Compare Runoffs (Total)",
-        years: ["June 2025", "June 2023", "June 2021", "June 2019"],
-        locations: ["total"],
-        toggles: { ev: true, ed: true, yz: true, dt: false, cum: false }
-    },
-    "cumulative-runoffs": {
-        name: "Cumulative Runoffs",
-        years: ["June 2025", "June 2023", "June 2021", "June 2019"],
-        locations: ["total"],
-        toggles: { ev: true, ed: true, yz: true, dt: false, cum: true }
+        toggles: { ev: true, ed: true, yz: true, presentation: 'per-day', display: 'graph' }
     }
 };
 
