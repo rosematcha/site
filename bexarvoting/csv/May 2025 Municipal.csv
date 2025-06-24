@@ -1,48 +1,249 @@
-Early Voting Locations,Total,04/22/24,04/23/24,04/24/24,04/25/24,04/26/24,04/27/24,04/28/24,04/29/24
-Alamo Heights ISD Admin. Bldg.,925,90,64,88,105,74,52,145,307
-Bexar County Elections Department,1828,153,174,180,219,133,69,312,588
-Bexar County Justice Center,816,97,88,83,90,20,6,137,295
-Brookhollow Branch Library,5431,495,614,566,660,562,282,909,1343
-Castle Hills City Hall,2015,147,184,195,229,186,106,379,589
-Christian Family Baptist Church,199,20,23,23,20,10,12,26,65
-Claude Black Community Center,891,91,70,86,70,67,40,158,309
-Cody Branch Library,4522,429,455,446,539,522,258,753,1120
-Copernicus Community Center,659,55,59,57,82,48,35,135,188
-Cortez Branch Library,1080,108,85,101,123,137,67,174,285
-East Central ISD Admin. Bldg.,588,48,79,73,84,58,23,85,138
-Elmendorf City Hall,148,10,12,20,27,12,7,22,38
-Encino Branch Library,2626,174,247,294,323,235,157,446,750
-Great Northwest Branch Library,3261,248,304,330,418,309,173,586,893
-Henry A. Guerra Jr. Library,1212,115,110,112,129,113,49,213,371
-Igo Branch Library,3289,248,286,290,406,364,202,541,952
-Johnston Branch Library,1059,139,92,108,115,97,36,181,291
-Kirby City Hall,691,84,58,81,78,53,35,122,180
-Ladera Elementary School,46,3,4,4,6,3,1,5,20
-Leon Valley Conference Center,2058,161,189,190,255,205,119,348,591
-Lion's Field Adult and Senior Center,3015,301,330,304,344,299,144,471,822
-Maury Maverick Jr. Library,3637,330,339,379,432,344,212,607,994
-McCreless Branch Library,2100,196,178,196,248,211,100,363,608
-Memorial Branch Library,1626,138,161,155,168,129,76,306,493
-Mission Branch Library,1779,163,193,162,166,168,95,288,544
-Northeast Lakeview College,320,36,37,32,48,32,1,49,85
-Northside Activity Center,1506,130,128,171,171,131,66,258,451
-Northwest Vista College,1033,80,93,88,93,116,51,183,329
-Our Lady of the Lake University,909,97,92,98,89,77,44,180,232
-Palo Alto College,360,27,38,28,32,42,24,57,112
-Parman Branch Library @ Stone Oak,2676,208,265,273,351,269,192,477,641
-Precinct 1 Satellite Office,878,85,106,86,103,79,17,125,277
-Precinct 3 Satellite Office,1479,128,144,138,161,124,53,264,467
-San Antonio College,1625,154,143,154,166,146,83,288,491
-Schaefer Branch Library,1110,102,93,103,112,128,71,200,301
-Julia Yates Semmes Library,3601,316,387,445,410,339,182,639,883
-Shavano Park City Hall,2984,191,274,329,360,340,138,518,834
-Somerset City Hall,143,13,20,12,19,18,10,19,32
-Southside ISD Admin. Bldg.,104,7,10,12,11,7,4,22,31
-St. Hedwig City Hall,253,16,22,36,32,21,10,41,75
-St. Phillips College,247,23,12,17,24,15,26,43,87
-Tobin Branch Library @ Oakwell,3204,267,307,340,408,331,156,554,841
-Universal City Library,1125,138,118,134,156,113,43,172,251
-University of Texas at San Antonio,1087,109,109,92,112,98,66,180,321
-Windcrest Civic Center,554,49,46,51,57,34,35,95,187
-Wonderland Mall of the Americas,3405,308,333,331,401,345,165,593,929
-Total in Person,74104,6527,7175,7493,8652,7164,3793,12669,20631
+Early Voting Locations,Total,04/22/24,04/23/24,04/24/24,04/25/24,04/26/24,04/27/24,04/28/24,04/29/24,*05/03/25
+Adams Elementary School,70,0,0,0,0,0,0,0,0,70
+Adams Hill Elementary School,110,0,0,0,0,0,0,0,0,110
+Agnes Cotton Academy,244,0,0,0,0,0,0,0,0,244
+Alamo Convocation Center,88,0,0,0,0,0,0,0,0,88
+Alamo Heights City Hall,194,0,0,0,0,0,0,0,0,194
+Alamo Heights ISD Admin. Bldg.,1143,90,64,88,105,74,52,145,307,218
+Alan B. Shepard Middle School,67,0,0,0,0,0,0,0,0,67
+Antonio Margil Elementary School,45,0,0,0,0,0,0,0,0,45
+Artemisia Bowden Academy,115,0,0,0,0,0,0,0,0,115
+Aue Elementary School,140,0,0,0,0,0,0,0,0,140
+Barkley-Ruiz Elementary School,40,0,0,0,0,0,0,0,0,40
+Beacon Hill Academy,84,0,0,0,0,0,0,0,0,84
+Beard Elementary School,152,0,0,0,0,0,0,0,0,152
+Behlau Elementary School,46,0,0,0,0,0,0,0,0,46
+Bexar County Elections Department,2331,153,174,180,219,133,69,312,588,503
+Bexar County Justice Center,910,97,88,83,90,20,6,137,295,94
+Blossom Athletic Center,72,0,0,0,0,0,0,0,0,72
+Bob Hope Elementary School,45,0,0,0,0,0,0,0,0,45
+Bode Community Center,103,0,0,0,0,0,0,0,0,103
+Boone Elementary School,170,0,0,0,0,0,0,0,0,170
+Bradley Middle School,114,0,0,0,0,0,0,0,0,114
+Brauchle Elementary School,124,0,0,0,0,0,0,0,0,124
+Brentwood Steam School Innovation,111,0,0,0,0,0,0,0,0,111
+Brookhill Baptist Church,41,0,0,0,0,0,0,0,0,41
+Brookhollow Branch Library,6533,495,614,566,660,562,282,909,1343,1102
+Bulverde Creek Elementary School,94,0,0,0,0,0,0,0,0,94
+Burke Elementary School,97,0,0,0,0,0,0,0,0,97
+Bush Middle School,151,0,0,0,0,0,0,0,0,151
+Carlos Coon Elementary School,139,0,0,0,0,0,0,0,0,139
+Carnahan Elementary School,146,0,0,0,0,0,0,0,0,146
+Carson Elementary School,136,0,0,0,0,0,0,0,0,136
+Castle Hills City Hall,2470,147,184,195,229,186,106,379,589,455
+Central Library,99,0,0,0,0,0,0,0,0,99
+Charles Graebner Elementary School,70,0,0,0,0,0,0,0,0,70
+China Grove City Hall,48,0,0,0,0,0,0,0,0,48
+Christa McAuliffe Middle School,73,0,0,0,0,0,0,0,0,73
+Christian Family Baptist Church,308,20,23,23,20,10,12,26,65,109
+Churchill High School,106,0,0,0,0,0,0,0,0,106
+Cibolo Green Elementary School,40,0,0,0,0,0,0,0,0,40
+City of Olmos Park City Hall,250,0,0,0,0,0,0,0,0,250
+Clark High School,170,0,0,0,0,0,0,0,0,170
+Claude Black Community Center,1163,91,70,86,70,67,40,158,309,272
+Clear Spring Elementary School,55,0,0,0,0,0,0,0,0,55
+Cody Branch Library,5566,429,455,446,539,522,258,753,1120,1044
+Cody Elementary School,158,0,0,0,0,0,0,0,0,158
+Collier Elementary School,71,0,0,0,0,0,0,0,0,71
+Collins Garden Branch Library,326,0,0,0,0,0,0,0,0,326
+Colonial Hills United Methodist Church,284,0,0,0,0,0,0,0,0,284
+Community Alliance Traffic Safety,77,0,0,0,0,0,0,0,0,77
+Connally Middle School,95,0,0,0,0,0,0,0,0,95
+Copernicus Community Center,850,55,59,57,82,48,35,135,188,191
+Coronado Village Elementary School,13,0,0,0,0,0,0,0,0,13
+Cortez Branch Library,1351,108,85,101,123,137,67,174,285,271
+Dellview Elementary School,145,0,0,0,0,0,0,0,0,145
+East Central Development Center,22,0,0,0,0,0,0,0,0,22
+East Central High School,28,0,0,0,0,0,0,0,0,28
+East Central ISD Admin. Bldg.,712,48,79,73,84,58,23,85,138,124
+East Terrell Hills Elementary Science Academy,104,0,0,0,0,0,0,0,0,104
+Ed White Middle School,81,0,0,0,0,0,0,0,0,81
+Edgewood Gym,65,0,0,0,0,0,0,0,0,65
+El Dorado Elementary School,104,0,0,0,0,0,0,0,0,104
+Ellison Elementary School,138,0,0,0,0,0,0,0,0,138
+Elmendorf City Hall,208,10,12,20,27,12,7,22,38,60
+Eloise Japhet Academy,42,0,0,0,0,0,0,0,0,42
+Elolf Steam Academy,70,0,0,0,0,0,0,0,0,70
+Elrod Elementary School,69,0,0,0,0,0,0,0,0,69
+Encino Branch Library,3350,174,247,294,323,235,157,446,750,724
+Esparza Elementary School,58,0,0,0,0,0,0,0,0,58
+Evers Elementary School,158,0,0,0,0,0,0,0,0,158
+Fair Oaks Ranch City Hall,240,0,0,0,0,0,0,0,0,240
+Fernandez Elementary School,129,0,0,0,0,0,0,0,0,129
+Fields Elementary School,54,0,0,0,0,0,0,0,0,54
+First Chinese Baptist Church,160,0,0,0,0,0,0,0,0,160
+Frank Madla Elementary School,73,0,0,0,0,0,0,0,0,73
+Galm Elementary School,72,0,0,0,0,0,0,0,0,72
+Gardendale Early Learning Program,54,0,0,0,0,0,0,0,0,54
+Gillette Elementary School,37,0,0,0,0,0,0,0,0,37
+Glenn Elementary School,93,0,0,0,0,0,0,0,0,93
+Great Northwest Branch Library,4000,248,304,330,418,309,173,586,893,739
+Grey Forest Community Center,25,0,0,0,0,0,0,0,0,25
+Guerra Branch Library,263,0,0,0,0,0,0,0,0,263
+Gus Garcia University School,31,0,0,0,0,0,0,0,0,31
+Hardy Oak Elementary School,136,0,0,0,0,0,0,0,0,136
+Harmony Elementary School,59,0,0,0,0,0,0,0,0,59
+Harmony Hills Elementary School,208,0,0,0,0,0,0,0,0,208
+Harry H. Rogers Middle School,126,0,0,0,0,0,0,0,0,126
+Hartman Center II - Building,253,0,0,0,0,0,0,0,0,253
+Hatchett Elementary School,95,0,0,0,0,0,0,0,0,95
+Health Careers High School,99,0,0,0,0,0,0,0,0,99
+Hector Garcia Middle School,67,0,0,0,0,0,0,0,0,67
+Helotes Elementary School,66,0,0,0,0,0,0,0,0,66
+Henderson Elementary School,79,0,0,0,0,0,0,0,0,79
+Henry A. Guerra Jr. Library,1212,115,110,112,129,113,49,213,371,0
+Henry Wadsworth Longfellow Middle School,80,0,0,0,0,0,0,0,0,80
+Herman Hirsch Elementary School,45,0,0,0,0,0,0,0,0,45
+Hidden Forest Elementary School,101,0,0,0,0,0,0,0,0,101
+Highland Hills Elementary School,57,0,0,0,0,0,0,0,0,57
+Hill Country Village City Hall,114,0,0,0,0,0,0,0,0,114
+Hollywood Park City Hall,157,0,0,0,0,0,0,0,0,157
+Honor Elementary School,48,0,0,0,0,0,0,0,0,48
+Hope Church,188,0,0,0,0,0,0,0,0,188
+Huebner Elementary School,362,0,0,0,0,0,0,0,0,362
+Huisache Avenue Baptist Church,121,0,0,0,0,0,0,0,0,121
+Hunters Creek Swim and Racquet Club,240,0,0,0,0,0,0,0,0,240
+Igo Branch Library,4076,248,286,290,406,364,202,541,952,787
+Indian Springs Elementary School,106,0,0,0,0,0,0,0,0,106
+Joe Ward Recreation Center,210,0,0,0,0,0,0,0,0,210
+John Greenleaf Whittier Middle School,75,0,0,0,0,0,0,0,0,75
+John Hoffmann Elementary School,87,0,0,0,0,0,0,0,0,87
+John Marshall High School,96,0,0,0,0,0,0,0,0,96
+Johnston Branch Library,1378,139,92,108,115,97,36,181,291,326
+Judson ISD ERC,56,0,0,0,0,0,0,0,0,56
+Judson ISD PAC,82,0,0,0,0,0,0,0,0,82
+Kelly Academy @ Lowell Middle School,41,0,0,0,0,0,0,0,0,41
+Kingsborough Middle School,84,0,0,0,0,0,0,0,0,84
+Kirby City Hall,940,84,58,81,78,53,35,122,180,249
+Krueger Middle School,89,0,0,0,0,0,0,0,0,89
+Ladera Elementary School,73,3,4,4,6,3,1,5,20,27
+Langley Elementary School,55,0,0,0,0,0,0,0,0,55
+Larkspur Elementary School,147,0,0,0,0,0,0,0,0,147
+Las Lomas Elementary School,93,0,0,0,0,0,0,0,0,93
+Laurel Heights United Methodist Church,200,0,0,0,0,0,0,0,0,200
+Leon Springs Elementary School,249,0,0,0,0,0,0,0,0,249
+Leon Valley Conference Center,2510,161,189,190,255,205,119,348,591,452
+Lewis Elementary School,180,0,0,0,0,0,0,0,0,180
+Lion's Field Adult and Senior Center,3795,301,330,304,344,299,144,471,822,780
+Longs Creek Elementary School,121,0,0,0,0,0,0,0,0,121
+Lopez Middle School,105,0,0,0,0,0,0,0,0,105
+Los Reyes Elementary School,11,0,0,0,0,0,0,0,0,11
+Luther Burbank High School,57,0,0,0,0,0,0,0,0,57
+Macedonia Baptist Church,82,0,0,0,0,0,0,0,0,82
+Marin B. Fenwick Academy,56,0,0,0,0,0,0,0,0,56
+Martin Luther King Jr. Academy for Arts Integration,10,0,0,0,0,0,0,0,0,10
+Maury Maverick Jr. Library,4432,330,339,379,432,344,212,607,994,795
+May Elementary School,96,0,0,0,0,0,0,0,0,96
+McCreless Branch Library,2727,196,178,196,248,211,100,363,608,627
+Mead Elementary School,107,0,0,0,0,0,0,0,0,107
+Meadow Village Elementary School,50,0,0,0,0,0,0,0,0,50
+Memorial Branch Library,1997,138,161,155,168,129,76,306,493,371
+Metzger Middle School,43,0,0,0,0,0,0,0,0,43
+Michael Elementary School,26,0,0,0,0,0,0,0,0,26
+Millers Point Elementary School,34,0,0,0,0,0,0,0,0,34
+Mireles Elementary School,73,0,0,0,0,0,0,0,0,73
+Mission Academy,143,0,0,0,0,0,0,0,0,143
+Mission Branch Library,2284,163,193,162,166,168,95,288,544,505
+Mission Del Lago Community Center,85,0,0,0,0,0,0,0,0,85
+Montgomery Elementary School,44,0,0,0,0,0,0,0,0,44
+Mount Calvary Lutheran Evangelical Church,201,0,0,0,0,0,0,0,0,201
+Murnin Elementary School,150,0,0,0,0,0,0,0,0,150
+Neff Middle School,65,0,0,0,0,0,0,0,0,65
+Nichols Elementary School,129,0,0,0,0,0,0,0,0,129
+Nimitz Middle School,99,0,0,0,0,0,0,0,0,99
+Northeast Lakeview College,413,36,37,32,48,32,1,49,85,93
+Northern Hills Elementary School,140,0,0,0,0,0,0,0,0,140
+Northside Activity Center,1857,130,128,171,171,131,66,258,451,351
+Northwest Church of Christ,40,0,0,0,0,0,0,0,0,40
+Northwest Crossing Elementary School,97,0,0,0,0,0,0,0,0,97
+Northwest Vista College,1301,80,93,88,93,116,51,183,329,268
+Northwood Elementary School,254,0,0,0,0,0,0,0,0,254
+Oak Grove Elementary School,52,0,0,0,0,0,0,0,0,52
+Oak Hills Terrace Elementary School,72,0,0,0,0,0,0,0,0,72
+Oak Meadow United Methodist Church,263,0,0,0,0,0,0,0,0,263
+Ott Elementary School,37,0,0,0,0,0,0,0,0,37
+Our Lady of the Lake University,1091,97,92,98,89,77,44,180,232,182
+Palo Alto College,434,27,38,28,32,42,24,57,112,74
+Park Village Blended Learning Academy,70,0,0,0,0,0,0,0,0,70
+Parman Branch Library @ Stone Oak,3296,208,265,273,351,269,192,477,641,620
+Paschall Elementary School,72,0,0,0,0,0,0,0,0,72
+Pease Middle School,135,0,0,0,0,0,0,0,0,135
+Pecan Valley Elementary School,69,0,0,0,0,0,0,0,0,69
+Pieper Ranch High School,61,0,0,0,0,0,0,0,0,61
+Powell Elementary School,54,0,0,0,0,0,0,0,0,54
+Pre-K Academy @ West Avenue,121,0,0,0,0,0,0,0,0,121
+Precinct 1 Satellite Office,1184,85,106,86,103,79,17,125,277,306
+Precinct 3 Satellite Office,1737,128,144,138,161,124,53,264,467,258
+Raba Elementary School,158,0,0,0,0,0,0,0,0,158
+Rawlinson Middle School,105,0,0,0,0,0,0,0,0,105
+Ray D Corbett Jr High School,10,0,0,0,0,0,0,0,0,10
+Rayburn Elementary School,41,0,0,0,0,0,0,0,0,41
+Redland Oaks Elementary School,294,0,0,0,0,0,0,0,0,294
+Regency Place Elementary School,160,0,0,0,0,0,0,0,0,160
+Rhodes Elementary School,65,0,0,0,0,0,0,0,0,65
+Ridgeview Elementary School,230,0,0,0,0,0,0,0,0,230
+Riverside Park Elementary School,60,0,0,0,0,0,0,0,0,60
+Roan Forest Elementary School,51,0,0,0,0,0,0,0,0,51
+Royal Ridge Elementary School,127,0,0,0,0,0,0,0,0,127
+Rudder Middle School,249,0,0,0,0,0,0,0,0,249
+Sac Victory Center,263,0,0,0,0,0,0,0,0,263
+Sam Houston High School,27,0,0,0,0,0,0,0,0,27
+Samuel A. Maverick Elementary School,77,0,0,0,0,0,0,0,0,77
+San Antonio M.U.D. #1,37,0,0,0,0,0,0,0,0,37
+Sarah King Elementary School,43,0,0,0,0,0,0,0,0,43
+Scarborough Elementary School,140,0,0,0,0,0,0,0,0,140
+Schaefer Branch Library,1489,102,93,103,112,128,71,200,301,379
+Scobee Elementary School,127,0,0,0,0,0,0,0,0,127
+Julia Yates Semmes Library,4484,316,387,445,410,339,182,639,883,883
+Shavano Park City Hall,3579,191,274,329,360,340,138,518,834,595
+Shepherd King Lutheran Church,100,0,0,0,0,0,0,0,0,100
+Sidney Lanier High School,61,0,0,0,0,0,0,0,0,61
+Smith Elementary School,47,0,0,0,0,0,0,0,0,47
+Somerset City Hall,167,13,20,12,19,18,10,19,32,24
+South San Antonio High School,64,0,0,0,0,0,0,0,0,64
+Southside ISD Admin. Bldg.,151,7,10,12,11,7,4,22,31,47
+Southwest ISD Admin. Building,19,0,0,0,0,0,0,0,0,19
+Specht Elementary School,76,0,0,0,0,0,0,0,0,76
+Spring Meadows Elementary School,62,0,0,0,0,0,0,0,0,62
+St. Hedwig City Hall,391,16,22,36,32,21,10,41,75,138
+St. James Catholic Church,70,0,0,0,0,0,0,0,0,70
+St. Phillips College,292,23,12,17,24,15,26,43,87,45
+Stahl Elementary School,116,0,0,0,0,0,0,0,0,116
+Steubing Ranch Elementary School,116,0,0,0,0,0,0,0,0,116
+Stevenson Middle School,126,0,0,0,0,0,0,0,0,126
+Stone Oak Elementary School,127,0,0,0,0,0,0,0,0,127
+Taft High School,44,0,0,0,0,0,0,0,0,44
+Tejeda Middle School,118,0,0,0,0,0,0,0,0,118
+Terrell Hills City Hall,106,0,0,0,0,0,0,0,0,106
+Texas A&M University San Antonio,54,0,0,0,0,0,0,0,0,54
+Thomas Edison High School,151,0,0,0,0,0,0,0,0,151
+Thousand Oaks Elementary School,246,0,0,0,0,0,0,0,0,246
+Thousand Oaks Library,255,0,0,0,0,0,0,0,0,255
+Tobin Branch Library @ Oakwell,3991,267,307,340,408,331,156,554,841,787
+Trinity United Methodist Church,102,0,0,0,0,0,0,0,0,102
+Tuscany Heights Elementary School,45,0,0,0,0,0,0,0,0,45
+Universal City Hall,93,0,0,0,0,0,0,0,0,93
+Universal City Library,1323,138,118,134,156,113,43,172,251,198
+University of Texas at San Antonio,1259,109,109,92,112,98,66,180,321,172
+Veterans Memorial High School,15,0,0,0,0,0,0,0,0,15
+Villarreal Elementary School,81,0,0,0,0,0,0,0,0,81
+Vineyard Ranch Elementary School,311,0,0,0,0,0,0,0,0,311
+Von Ormy Municipal Building,83,0,0,0,0,0,0,0,0,83
+Wanke Elementary School,118,0,0,0,0,0,0,0,0,118
+Ward Elementary School,37,0,0,0,0,0,0,0,0,37
+Westminster Square Management,119,0,0,0,0,0,0,0,0,119
+Westwood Terrace Elementary School,45,0,0,0,0,0,0,0,0,45
+Wetmore Elementary School,370,0,0,0,0,0,0,0,0,370
+Wilshire Elementary School,66,0,0,0,0,0,0,0,0,66
+Windcrest Civic Center,674,49,46,51,57,34,35,95,187,120
+Wonderland Mall of the Americas,4004,308,333,331,401,345,165,593,929,599
+Woodlake Hills Middle School,30,0,0,0,0,0,0,0,0,30
+Woodlawn Academy,185,0,0,0,0,0,0,0,0,185
+Woodlawn Hills Elementary School,41,0,0,0,0,0,0,0,0,41
+Woodstone Elementary School,69,0,0,0,0,0,0,0,0,69
+Wortham Oaks Elementary School,10,0,0,0,0,0,0,0,0,10
+Wright Elementary School,44,0,0,0,0,0,0,0,0,44
+Young Men's Leadership Academy,29,0,0,0,0,0,0,0,0,29
+Young Women's Leadership Academy,262,0,0,0,0,0,0,0,0,262
+Zachry Middle School,100,0,0,0,0,0,0,0,0,100
+Total in Person,82025,6527,7175,7493,8652,7164,3793,12669,20631,14921

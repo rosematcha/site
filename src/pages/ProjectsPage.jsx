@@ -13,6 +13,7 @@ const projectsData = [
     description:
       "Inspired by Tabliss, this is a customizable new tab page for Firefox browsers.",
     tech: "Vanilla JavaScript, HTML, CSS",
+    buttonText: "Install on Firefox",
   },
   {
     id: "brahdb",
@@ -108,7 +109,7 @@ function ProjectsPage() {
                 rel="noopener noreferrer"
                 className="project-link-button geocities-button" // Re-use button style
               >
-                Visit Project Site
+                {project.buttonText || "Visit Project Site"}
               </a>
             </div>
           </div>
