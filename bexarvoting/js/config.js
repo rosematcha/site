@@ -26,7 +26,7 @@ export const PRESET_CONFIGURATIONS = {
     },
     "all-november": {
         name: "All November Elections",
-        years: ["November 2022", "November 2020"],
+        years: ["November 2024", "November 2022", "November 2020"],
     },
     "all-may": {
         name: "All May Elections",
@@ -34,7 +34,7 @@ export const PRESET_CONFIGURATIONS = {
     },
     "recent-years": {
         name: "Recent Years (2022+)",
-        years: ["June 2025", "May 2025", "June 2023", "May 2023", "November 2022"],
+        years: ["June 2025", "May 2025", "November 2024", "June 2023", "May 2023", "November 2022"],
         locations: ["total"],
         toggles: { ev: true, ed: true, yz: true, presentation: 'per-day', display: 'graph' }
     }
