@@ -1,6 +1,7 @@
 export const DATA_FILES = {
     "June 2025": { name: "June 2025", path: "csv/June 2025 Municipal Runoff.csv" },
     "May 2025": { name: "May 2025", path: "csv/May 2025 Municipal.csv" },
+    "November 2022": { name: "November 2024", path: "csv/November 2024 General.csv" },
     "June 2023": { name: "June 2023", path: "csv/June 2023 Municipal Runoff.csv" },
     "May 2023": { name: "May 2023", path: "csv/May 2023 Municipal.csv" },
     "November 2022": { name: "November 2022", path: "csv/November 2022 General.csv" },
