@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // netlify/functions/get-guestbook-entries.js
 const fetch = require("node-fetch"); // Using node-fetch v2 for CommonJS compatibility
 

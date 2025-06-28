@@ -17,7 +17,7 @@ function ResumePage() {
 
   return (
     <div className="page-content">
-      <div className="resume-header" style={{ marginBottom: "20px" }}>
+      <div className="resume-header">
         {" "}
         {/* MODIFIED: Added className, kept marginBottom for now, can be moved to CSS */}
         <h2>Digital Resume</h2>

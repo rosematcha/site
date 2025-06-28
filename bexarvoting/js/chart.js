@@ -1,3 +1,4 @@
+/* global Chart */
 import { CAT_IMAGES, CHART_COLORS, TOTAL_TURNOUT_KEY, DATA_FILES } from "./config.js";
 import { getDataForSelection, getDatesForYear } from "./data.js";
 import { getSelectedYears, getSelectedLocations, getToggleStates, manageDisplay, updateURLFromState } from "./ui.js";

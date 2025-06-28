@@ -1,6 +1,6 @@
 // js/ui.js
 import { DATA_FILES, TOTAL_TURNOUT_KEY, DEFAULT_SELECTED_YEARS, PRESET_CONFIGURATIONS } from "./config.js";
-import { getAllLoadedLocations, getLocationProperties, isDataLoaded, loadYearData, getAllMasterLocationNames, isLocationInYearData } from "./data.js";
+import { getLocationProperties, isDataLoaded, loadYearData, getAllMasterLocationNames, isLocationInYearData } from "./data.js";
 import { debouncedRenderChart, getCurrentChartInstance } from "./chart.js";
 import { logMetric } from "./main.js";
 
@@ -540,7 +540,7 @@ export const setSelectedYears = (yearsToSelect) => {
     });
 };
 
-export const setSelectedLocations = (locationsToSelect) => {
+export const setSelectedLocations = (locationsToSelect) => { // eslint-disable-line no-unused-vars
     // This function is mostly a placeholder now.
     // populateLocationDropdown is the primary way to set location selections based on an array.
     // Presets or URL loading will call populateLocationDropdown directly or indirectly.

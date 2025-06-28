@@ -8,7 +8,6 @@ import {
     updateAttribution,
     getSelectedYears,
     setSelectedYears,
-    setSelectedLocations,
     setToggleStates,
 } from "./ui.js";
 import { debouncedRenderChart } from "./chart.js";
