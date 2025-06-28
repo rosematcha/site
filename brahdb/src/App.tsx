@@ -84,7 +84,7 @@ function App() {
 
   // Handle initial loading state
   useEffect(() => {
-    let timeoutId: number;
+    let timeoutId: NodeJS.Timeout;
     
     if (!loading && logosLoaded) {
       if (logoErrors.length > 0) {

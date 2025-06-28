@@ -2,63 +2,7 @@
 base = "/"
 publish = "_site"
 
-  command = """
-    echo "Starting combined build..." && \
-
-    # --- CLEAN DIRECTORY
-
-    rm -rf _site && \
-    mkdir -p _site && \
-    
-    # --- BUILD ROOT APP
-    
-    echo "Building root app..." && \
-    npm install && npm run build && \
-    # Copy root React build output to _site
-    cp -r dist/* _site/ || true && \
-
-    # --- BUILD BRAHDB
-
-    echo "Building brahdb (Vite)..." && \
-    (cd brahdb && npm install && npm run build) && \
-
-    # --- BUILD GARAGE SALE
-
-    echo "Building garagesale (Vite)..." && \
-    (cd garagesale && npm install && npm run build) && \
-
-    # --- COPY GARAGESALE BUILD OUTPUT
-    echo "Copying garagesale build output..." && \
-    mkdir -p _site/garagesale && \
-    cp -r garagesale/dist/* _site/garagesale/ || true && \
-    # --- COPY GARAGESALE PUBLIC FOLDER (if exists)
-    cp -r garagesale/public _site/garagesale/public || true && \
-
-    
-    # --- BUILD DECKS
-    
-    echo "Building decks (Eleventy)..." && \
-    (cd decks && npm install && npm run build) && \
-
-    # --- COPY STATIC
-    
-    echo "Copying static projects and root files..." && \
-    cp -r css _site/css || true && \
-    cp -r bexarvoting _site/bexarvoting || true && \
-    cp -r friendfinder _site/friendfinder || true && \
-    cp -r public _site/public || true && \
-    cp -r public/img _site/img || true && \
-    cp -r public/data _site/data || true && \
-    cp -r src/assets _site/assets || true && \
-    
-    echo "Copying built projects..." && \
-    mkdir -p _site/brahdb && \
-    cp -r brahdb/dist/* _site/brahdb/ || true && \
-    cp -r brahdb/public/logos _site/brahdb/ || true && \
-    cp -r brahdb/public/reviews _site/brahdb/ || true && \
-    cp -r decks/_site _site/decks || true && \
-    echo "Combined build finished successfully."
-  """
+  command = "npm run build"
 
 # Specify Node.js version for modern features
 [build.environment]
