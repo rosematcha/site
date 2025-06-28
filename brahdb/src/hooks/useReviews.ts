@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import type { Review, Restaurant } from '../types/Review';
-import { restaurantDisplay } from '../components/ReviewCard';
+import { restaurantDisplay } from '../constants/restaurantDisplay';
 
 export const RATING_MIN = 0;
 export const RATING_MAX = 10;
@@ -13,8 +13,7 @@ export function useReviews() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Calculate restaurants with fewer than 4 reviews
-  const getRestaurantsWithFewReviews = (reviews: Review[]): Set<Restaurant> => {
+  const getRestaurantsWithFewReviews = useCallback((reviews: Review[]): Set<Restaurant> => {
     const reviewCounts = reviews.reduce((acc, review) => {
       acc[review.restaurant] = (acc[review.restaurant] || 0) + 1;
       return acc;
@@ -22,13 +21,13 @@ export function useReviews() {
 
     return new Set(
       Object.entries(reviewCounts)
-        .filter(([_, count]) => count < 4)
+        .filter(([, count]) => count < 4)
         .map(([restaurant]) => restaurant as Restaurant)
     );
-  };
+  }, []);
 
   // Get restaurants to show in dropdown (excluding those with few reviews)
-  const getRestaurantOptions = (reviews: Review[]) => {
+  const getRestaurantOptions = useCallback((reviews: Review[]) => {
     const fewReviewRestaurants = getRestaurantsWithFewReviews(reviews);
     const allRestaurants = new Set(reviews.map(review => review.restaurant));
     
@@ -43,9 +42,9 @@ export function useReviews() {
           label: restaurantDisplay[restaurant]?.display || restaurant
         }))
     ];
-  };
+  }, [getRestaurantsWithFewReviews]);
 
-  const fetchReviews = async () => {
+  const fetchReviews = useCallback(async () => {
     try {
       const url = '/brahdb/reviews/reviews.json';
       console.log('[useReviews] Fetching reviews from', url);
@@ -68,11 +67,11 @@ export function useReviews() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [getRestaurantOptions]);
 
   useEffect(() => {
     fetchReviews();
-  }, []);
+  }, [fetchReviews]);
 
   return {
     reviews,

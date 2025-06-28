@@ -1,6 +1,6 @@
 import type { Review } from './types/Review';
 import { useStats } from './hooks/useStats';
-import { restaurantDisplay } from './components/ReviewCard';
+import { restaurantDisplay } from './constants/restaurantDisplay';
 
 interface StatsProps {
   reviews: Review[];

@@ -42,7 +42,8 @@
     </style>
 
     <!-- Preload critical assets -->
-    <link rel="preload" href="/brahdb/loading.png" as="image" fetchpriority="high" />
+    <link rel="preload" href="/brahdb/loading.webp" as="image" type="image/webp" fetchpriority="high" />
+    <link rel="preload" href="/brahdb/loading.png" as="image" type="image/png" fetchpriority="high" />
     <link rel="preload" href="/brahdb/reviews/reviews.json" as="fetch" crossorigin />
     
     <!-- Preload all restaurant logos -->
@@ -94,15 +95,18 @@
   <body>
     <div id="root">
       <div class="loading-spinner">
-        <img
-          src="/brahdb/loading.png"
-          alt="Loading..."
-          width={113}
-          height={150}
-          class="spinner-image"
-          loading="eager"
-          fetchpriority="high"
-        />
+        <picture>
+          <source srcset="/brahdb/loading.webp" type="image/webp">
+          <img
+            src="/brahdb/loading.png"
+            alt="Loading..."
+            width={113}
+            height={150}
+            class="spinner-image"
+            loading="eager"
+            fetchpriority="high"
+          />
+        </picture>
       </div>
     </div>
     <script type="module" src="/src/main.tsx"></script>

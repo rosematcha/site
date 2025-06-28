@@ -1,98 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import type { Review, Restaurant } from '../types/Review';
+import type { Review } from '../types/Review';
 import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline';
 
 interface ReviewCardProps {
   review: Review;
 }
-
-export const restaurantDisplay: Record<Restaurant, { display: string, logo: string }> = {
-  'Arbys': { display: "Arby's", logo: 'arbys' },
-  'AW': { display: 'A&W', logo: 'aw' },
-  'BurgerKing': { display: 'Burger King', logo: 'burgerking' },
-  'ChickFilA': { display: 'Chick-fil-A', logo: 'chickfila' },
-  'Chipotle': { display: 'Chipotle', logo: 'chipotle' },
-  'Culvers': { display: "Culver's", logo: 'culvers' },
-  'DairyQueen': { display: 'Dairy Queen', logo: 'dairyqueen' },
-  'DelTaco': { display: 'Del Taco', logo: 'deltaco' },
-  'DiGiorno': { display: 'DiGiorno', logo: 'digiorno' },
-  'Dominos': { display: "Domino's", logo: 'dominos' },
-  'Dunkin': { display: 'Dunkin', logo: 'dunkin' },
-  'FiveGuys': { display: 'Five Guys', logo: 'fiveguys' },
-  'Freschetta': { display: 'Freschetta', logo: 'freschetta' },
-  'Hardees': { display: "Hardee's", logo: 'hardees' },
-  'HebrewNational': { display: 'Hebrew National', logo: 'hebrewnational' },
-  'JackInTheBox': { display: 'Jack In The Box', logo: 'jackinthebox' },
-  'JellO': { display: 'Jell-O', logo: 'jello' },
-  'JimmyJohns': { display: "Jimmy John's", logo: 'jimmyjohns' },
-  'KFC': { display: 'KFC', logo: 'kfc' },
-  'KrispyKreme': { display: 'Krispy Kreme', logo: 'krispykreme' },
-  'LittleCaesars': { display: "Little Caesar's", logo: 'littlecaesars' },
-  'McDonalds': { display: "McDonald's", logo: 'mcdonalds' },
-  'MrBeastBurger': { display: 'Mr. Beast Burger', logo: 'mrbeast' },
-  'PandaExpress': { display: 'Panda Express', logo: 'pandaexpress' },
-  'PaneraBread': { display: 'Panera Bread', logo: 'panerabread' },
-  'PapaJohns': { display: "Papa John's", logo: 'papajohns' },
-  'PDQ': { display: 'PDQ', logo: 'pdq' },
-  'PizzaHut': { display: 'Pizza Hut', logo: 'pizzahut' },
-  'Popeyes': { display: "Popeyes", logo: 'popeyes' },
-  'RedBaron': { display: 'Red Baron Pizza', logo: 'redbaron' },
-  'Sonic': { display: 'Sonic', logo: 'sonic' },
-  'Starbucks': { display: 'Starbucks', logo: 'starbucks' },
-  'SteakNShake': { display: "Steak 'n Shake", logo: 'steaknshake' },
-  'Subway': { display: 'Subway', logo: 'subway' },
-  'TacoBell': { display: 'Taco Bell', logo: 'tacobell' },
-  'Wendys': { display: "Wendy's", logo: 'wendys' },
-  'Wingstop': { display: 'Wingstop', logo: 'wingstop' },
-  'Applebees': { display: "Applebee's", logo: 'applebees' },
-  'BuffaloWildWings': { display: 'Buffalo Wild Wings', logo: 'buffalowildwings' },
-  'CaliPizzaKitchen': { display: 'California Pizza Kitchen', logo: 'cpk' },
-  'Coke': { display: 'Coca-Cola', logo: 'coke' },
-  'Dennys': { display: "Denny's", logo: 'dennys' },
-  'ShakeShack': { display: 'Shake Shack', logo: 'shakeshack' },
-  'Zaxbys': { display: "Zaxby's", logo: 'zaxbys' },
-  'Other': { display: 'Other', logo: 'other' },
-  'Gerber': { display: 'Gerber', logo: 'gerber' },
-  'Disney': { display: 'Walt Disney World', logo: 'disney' },
-  'CheckersRallys': { display: "Checkers / Rally's", logo: 'checkers' },
-  'Publix': { display: 'Publix', logo: 'publix' },
-  'Sbarro': { display: 'Sbarro', logo: 'sbarro' },
-  'HungryHowies': { display: "Hungry Howie's", logo: 'hungryhowies' },
-  'WhiteCastle': { display: 'White Castle', logo: 'whitecastle' },
-  'Oreo': { display: 'Oreo', logo: 'oreo' },
-  'MunchPak': { display: 'MunchPak', logo: 'munchpak' },
-  'CookOut': { display: 'Cook-Out', logo: 'cookout' },
-  'Bojangles': { display: 'Bojangles', logo: 'bojangles' },
-  'InNOut': { display: "In N' Out", logo: 'innout' },
-  'ChipsAhoy': { display: 'Chips Ahoy', logo: 'chipsahoy' },
-  'M&Ms': { display: "M&M's", logo: 'mms' },
-  'Nathans': { display: "Nathan's Famous", logo: 'nathans' },
-  'LongJohnSilvers': { display: "Long John Silver's", logo: 'longjohn' },
-  'BostonMarket': { display: 'Boston Market', logo: 'bostonmarket' },
-  'Pepsi': { display: 'Pepsi', logo: 'pepsi' },
-  'MtnDew': { display: 'Mountain Dew', logo: 'mtndew' },
-  'Soylent': { display: 'Soylent', logo: 'soylent' },
-  'Hooters': { display: 'Hooters', logo: 'hooters' },
-  'Krystal': { display: 'Krystal', logo: 'krystal' },
-  'Biscuitville': { display: 'Biscuitville', logo: 'biscuitville' },
-};
-
-function getRatingColor(rating: number | null) {
-  if (rating === null) return 'text-gray-400';
-  if (rating >= 9.5) return 'font-bold text-yellow-300 drop-shadow-[0_0_6px_gold] animate-pulse';
-  // Linear interpolate from red (1.0) to muted green (9.0)
-  const min = 1, max = 9;
-  const clamped = Math.max(min, Math.min(max, rating));
-  const percent = (clamped - min) / (max - min);
-  // Red to muted green: hsl(0,100%,50%) to hsl(120,60%,38%)
-  const hue = 0 + percent * 120;
-  const sat = 100 - percent * 40; // 100% to 60%
-  const light = 50 - percent * 12; // 50% to 38%
-  return `font-bold text-[hsl(${hue},${sat}%,${light}%)]`;
-}
-
-// Global cache for logo load/error state
-const logoStatus: Record<string, 'loaded' | 'error' | undefined> = {};
+import { restaurantDisplay } from '../constants/restaurantDisplay';
+import { getRatingColor, logoStatus } from '../utils/reviewUtils';
 
 export const ReviewCard: React.FC<ReviewCardProps> = ({ review }) => {
   const { display, logo } = restaurantDisplay[review.restaurant] || { display: review.restaurant, logo: 'other' };

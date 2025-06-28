@@ -4,10 +4,10 @@ import type { Review, Restaurant } from './types/Review';
 import Stats from './Stats';
 import LoadingSpinner from './components/LoadingSpinner';
 import { useReviews } from './hooks/useReviews';
-import { useFilters } from './hooks/useFilters';
+import { useFilters, SortOption } from './hooks/useFilters';
 import { usePagination } from './hooks/usePagination';
 import { useLogos } from './hooks/useLogos';
-import { restaurantDisplay } from './components/ReviewCard';
+import { restaurantDisplay } from './constants/restaurantDisplay';
 import Slider from '@mui/material/Slider';
 import { Dialog } from '@headlessui/react';
 import { XMarkIcon, FunnelIcon } from '@heroicons/react/24/outline';
@@ -42,12 +42,12 @@ const globalStyles = `
     background-color: #2c313a !important;
     box-shadow: 0 4px 16px 0 #0004 !important;
   }
-  .bg-blue-500, .bg-blue-600, .text-blue-400, .hover\:text-blue-300:hover, .button-accent {
+  .bg-blue-500, .bg-blue-600, .text-blue-400, .hover:text-blue-300:hover, .button-accent {
     background-color: #2563eb !important;
     color: #f3f4f6 !important;
     border: none !important;
   }
-  .hover\:bg-blue-500:hover, .hover\:bg-blue-600:hover, button:hover, .button-accent:hover {
+  .hover:bg-blue-500:hover, .hover:bg-blue-600:hover, button:hover, .button-accent:hover {
     background-color: #3b82f6 !important;
     color: #f3f4f6 !important;
   }
@@ -80,24 +80,17 @@ function App() {
   
   // Use custom hooks
   const { reviews, loading, error, refetch } = useReviews();
-  const { logosLoaded, errors: logoErrors } = useLogos();
+  const { errors: logoErrors } = useLogos();
 
   // Handle initial loading state
   useEffect(() => {
-    let timeoutId: NodeJS.Timeout;
-    
-    if (!loading && logosLoaded) {
+    if (!loading) {
       if (logoErrors.length > 0) {
         console.warn('Some logos failed to load, continuing anyway');
       }
       setInitialLoading(false);
-      timeoutId = setTimeout(() => {}, 300);
     }
-
-    return () => {
-      if (timeoutId) clearTimeout(timeoutId);
-    };
-  }, [loading, logosLoaded, logoErrors]);
+  }, [loading, logoErrors]);
 
   // Handle view changes only (not filter changes)
   useEffect(() => {
@@ -251,7 +244,7 @@ function App() {
                     </select>
                     <select
                       value={sortBy}
-                      onChange={e => setSortBy(e.target.value as any)}
+                      onChange={e => setSortBy(e.target.value as SortOption)}
                       className="bg-gray-700 text-white px-4 py-2 rounded-lg border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400 transition w-full"
                     >
                       <option value="newest">Newest First</option>
@@ -319,7 +312,7 @@ function App() {
                       </select>
                       <select
                         value={sortBy}
-                        onChange={e => setSortBy(e.target.value as any)}
+                        onChange={e => setSortBy(e.target.value as SortOption)}
                         className="w-full bg-gray-700 text-white px-4 py-2 rounded"
                       >
                         <option value="newest">Newest First</option>

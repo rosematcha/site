@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import type { Review, Restaurant } from '../types/Review';
-import { restaurantDisplay } from '../components/ReviewCard';
+import { restaurantDisplay } from '../constants/restaurantDisplay';
 
 interface RestaurantStats {
   restaurant: Restaurant;

@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
 import type { Review, Restaurant } from '../types/Review';
-import { restaurantDisplay } from '../components/ReviewCard';
+import { restaurantDisplay } from '../constants/restaurantDisplay';
 
 export type SortOption = 'newest' | 'oldest' | 'highest' | 'lowest';
 
@@ -20,12 +20,12 @@ export function useFilters(
     }, {} as Record<Restaurant, number>);
 
     const mainRestaurants = Object.entries(counts)
-      .filter(([_, count]) => count > 5)
+      .filter(([, count]) => count > 5)
       .map(([restaurant]) => restaurant as Restaurant)
       .sort();
 
     const otherRestaurants = Object.entries(counts)
-      .filter(([_, count]) => count <= 5)
+      .filter(([, count]) => count <= 5)
       .map(([restaurant]) => restaurant as Restaurant)
       .sort();
 
@@ -37,7 +37,7 @@ export function useFilters(
 
   const filteredReviews = useMemo(() => {
     // Sort by selected option
-    let sortedReviews = [...reviews];
+    const sortedReviews = [...reviews];
     switch (sortBy) {
       case 'oldest':
         sortedReviews.sort((a, b) => new Date(a.reviewDate).getTime() - new Date(b.reviewDate).getTime());
