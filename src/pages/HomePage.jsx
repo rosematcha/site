@@ -28,8 +28,6 @@ function HomePage() {
         <img
           src="/img/haruhi.gif"
           alt="Haruhi Suzumiya dancing"
-          width="147"
-          height="147"
           className="intro-gif"
         />
       </div>

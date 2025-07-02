@@ -72,6 +72,18 @@ publish = "_site"
   status = 200
   force = false
 
+[[redirects]]
+  from = "/moviemap"
+  to = "/moviemap/index.html"
+  status = 200
+  force = false
+
+[[redirects]]
+  from = "/moviemap/*"
+  to = "/moviemap/:splat"
+  status = 200
+  force = false
+
 # Assets handling
 [[headers]]
   for = "/*"

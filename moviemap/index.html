@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Letterboxd Favorites Network</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- The data is now imported like a regular script -->
+    <script src="favorites_network.js"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; overflow: hidden; }
+        .node-group { cursor: pointer; }
+        .node-border {
+            stroke: #4A5568;
+            stroke-width: 1.5px;
+            transition: opacity 0.2s ease-in-out;
+            fill: #2D3748; /* Fallback background color */
+        }
+        .node-poster {
+            transition: opacity 0.2s ease-in-out;
+        }
+        .link { stroke-opacity: 0.6; transition: all 0.2s ease-in-out; }
+        .node-label { pointer-events: none; font-size: 14px; fill: #fff; font-weight: 500; text-shadow: 0 1px 4px rgba(0,0,0,1); display: none; }
+        .connection-link { cursor: pointer; transition: color 0.2s; }
+        .connection-link:hover { color: #68D391; }
+        .info-close-btn { cursor: pointer; color: #718096; transition: color 0.2s; flex-shrink: 0; }
+        .info-close-btn:hover { color: #fff; }
+    </style>
+</head>
+<body class="bg-gray-900 text-white h-screen">
+    <main class="relative w-full h-full">
+        <div id="graph-container" class="absolute inset-0"></div>
+        <div id="info-panel" class="absolute top-4 left-4 bg-gray-800/70 backdrop-blur-md p-4 rounded-lg shadow-lg w-80 z-10 border border-gray-700 max-h-[calc(100vh-2rem)] overflow-y-auto">
+            <div id="info-content" class="relative">
+                <p class="text-lg font-bold border-b border-gray-600 pb-2 mb-2">Network Details</p>
+                <div id="mobile-warning" class="hidden bg-yellow-500/70 text-white p-3 rounded-lg mb-4">
+                    <p class="font-bold">Warning:</p>
+                    <p>This site may perform poorly on mobile devices. For the best experience, please use a desktop browser.</p>
+                </div>
+                <p class="text-gray-300">Hover or click a movie to see details.</p>
+                <button id="export-btn" class="mt-2 bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded hidden">Export Positions</button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileWarning = document.getElementById('mobile-warning');
+            if (window.innerWidth <= 768) { // Adjust breakpoint as needed
+                mobileWarning.classList.remove('hidden');
+            }
+
+            if (typeof graphData !== 'undefined' && graphData.nodes && graphData.nodes.length > 0) {
+                drawGraph(graphData);
+            } else {
+                document.getElementById('info-content').innerHTML = `<p class="text-red-400 font-bold">Error: No graph data found.</p><p>Please make sure 'favorites_network.js' is in the same directory and contains the 'graphData' variable.</p>`;
+            }
+        });
+
+        function drawGraph(graph) {
+            const container = document.getElementById('graph-container');
+            d3.select(container).selectAll("*").remove();
+
+            const width = container.clientWidth;
+            const height = container.clientHeight;
+
+            const svg = d3.select(container).append("svg")
+                .attr("width", "100%")
+                .attr("height", "100%")
+                .attr("viewBox", `0 0 ${width} ${height}`);
+
+            const g = svg.append("g");
+
+            const infoContent = d3.select("#info-content");
+
+            let pinnedNode = null;
+
+            const nodeMap = new Map(graph.nodes.map(node => [node.id, node]));
+
+            const maxCount = d3.max(graph.nodes, d => d.count) || 1;
+            const posterAspectRatio = 1.5;
+            const widthScale = d3.scaleSqrt().domain([1, maxCount]).range([30, 100]);
+
+            const maxValue = d3.max(graph.links, d => d.value) || 1;
+            const linkScale = d3.scaleLinear().domain([1, maxValue]).range([1.5, 15]);
+
+            // --- FORCE SIMULATION ---
+            const simulation = d3.forceSimulation(graph.nodes)
+                .force("link", d3.forceLink(graph.links).id(d => d.id).strength(0.1))
+                .force("charge", d3.forceManyBody().strength(-200))
+                .force("center", d3.forceCenter(width / 2, height / 2))
+                .force("collide", d3.forceCollide().radius(d => (widthScale(d.count) / 2) + 15).strength(1));
+
+            const link = g.append("g")
+                .selectAll("line")
+                .data(graph.links)
+                .join("line")
+                .attr("class", "link")
+                .attr("stroke", "#4A5568")
+                .attr("stroke-width", d => linkScale(d.value));
+
+            // Create a group for each node to hold the image and border.
+            const node = g.append("g")
+                .selectAll("g.node-group")
+                .data(graph.nodes)
+                .join("g")
+                .attr("class", "node-group")
+                .on("mouseover", onMouseOver)
+                .on("mouseout", onMouseOut)
+                .on("click", onClick);
+
+            // Add a rectangle for the border and fallback background
+            node.append("rect")
+                .attr("class", "node-border")
+                .attr("width", d => widthScale(d.count))
+                .attr("height", d => widthScale(d.count) * posterAspectRatio)
+                .attr("rx", 4) // Rounded corners
+                .attr("ry", 4);
+
+            // Add the poster image
+            node.append("image")
+                .attr("class", "node-poster")
+                .attr("href", d => d.poster_path ? `https://image.tmdb.org/t/p/w185${d.poster_path}` : '')
+                .attr("width", d => widthScale(d.count))
+                .attr("height", d => widthScale(d.count) * posterAspectRatio)
+                .attr("preserveAspectRatio", "xMidYMid meet")
+                .style("display", d => d.poster_path ? "block" : "none");
+
+
+            const labels = g.selectAll(".node-label")
+                .data(graph.nodes)
+                .join("text")
+                .attr("class", "node-label")
+                .text(d => d.title)
+                .attr("text-anchor", "middle");
+
+            simulation.on("tick", () => {
+                link
+                    .attr("x1", d => d.source.x)
+                    .attr("y1", d => d.source.y)
+                    .attr("x2", d => d.target.x)
+                    .attr("y2", d => d.target.y);
+
+                node
+                    .attr("transform", d => `translate(${d.x - widthScale(d.count) / 2}, ${d.y - (widthScale(d.count) * posterAspectRatio) / 2})`);
+
+                labels
+                    .attr("transform", d => `translate(${d.x}, ${d.y + (widthScale(d.count) * posterAspectRatio / 2) + 18})`);
+            });
+
+            function onMouseOver(event, d) { if (!pinnedNode) highlight(d); }
+            function onMouseOut() { if (!pinnedNode) highlight(null); }
+            
+            function highlight(centerNode) {
+                if (centerNode) {
+                    const neighborIds = new Set(graph.links
+                        .filter(l => l.source.id === centerNode.id || l.target.id === centerNode.id)
+                        .map(l => l.source.id === centerNode.id ? l.target.id : l.source.id));
+
+                    node.style("opacity", n => n.id === centerNode.id || neighborIds.has(n.id) ? 1.0 : 0.15);
+                    labels.style("display", n => n.id === centerNode.id || neighborIds.has(n.id) ? "block" : "none");
+                    link.style("stroke-opacity", l => l.source.id === centerNode.id || l.target.id === centerNode.id ? 1.0 : 0.1);
+                } else {
+                    node.style("opacity", 1);
+                    labels.style("display", "none");
+                    link.style("stroke-opacity", 0.6);
+                }
+            }
+
+            function onClick(event, d) {
+                event.stopPropagation();
+                if (pinnedNode && pinnedNode.id === d.id) {
+                    pinnedNode = null;
+                    if (d.fx && d.fy) {
+                       d.fx = null;
+                       d.fy = null;
+                    }
+                } else {
+                    pinnedNode = d;
+                    d.fx = d.x;
+                    d.fy = d.y;
+                }
+                simulation.alpha(0.3).restart();
+                highlight(pinnedNode);
+                updateInfoPanel(pinnedNode);
+            }
+
+            function updateInfoPanel(d) {
+                if (!d) {
+                    infoContent.html(`<p class="text-lg font-bold border-b border-gray-600 pb-2 mb-2">Network Details</p><p class="text-gray-300">Click a movie to pin its details.</p>`);
+                    return;
+                }
+                const connectedLinks = graph.links
+                    .filter(l => l.source.id === d.id || l.target.id === d.id)
+                    .sort((a, b) => b.value - a.value);
+
+                let connectionsHtml = '<h3 class="font-bold mt-4 mb-2 text-gray-200">Top Connections</h3><ol class="list-decimal list-inside space-y-1 text-gray-300">';
+                connectedLinks.forEach(l => {
+                    const neighbor = l.source.id === d.id ? l.target : l.source;
+                    connectionsHtml += `<li><a class="connection-link" data-target-id="${neighbor.id}">${neighbor.title || neighbor.id}</a> <span class="text-green-400 font-semibold">(${l.value})</span></li>`;
+                });
+                connectionsHtml += '</ol>';
+
+                infoContent.html(`
+                    <div class="flex justify-between items-center border-b border-gray-600 pb-2 mb-2">
+                        <p class="font-bold text-xl text-green-400 pr-2">${d.title}</p>
+                        <button id="info-close-btn" class="info-close-btn" title="Deselect movie">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                              <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                            </svg>
+                        </button>
+                    </div>
+                    ${d.poster_path ? `<img src="https://image.tmdb.org/t/p/w185${d.poster_path}" class="rounded-lg float-left mr-4 mb-2 w-24">` : ''}
+                    <p class="text-gray-300 clear-both pt-2">Favorited by <span class="font-bold text-white">${d.count}</span> users.</p>
+                    ${connectionsHtml}
+                `);
+            }
+
+            infoContent.on('click', function(event) {
+                const target = event.target;
+                if (target.classList.contains('connection-link')) {
+                    const nodeId = target.getAttribute('data-target-id');
+                    const targetNode = nodeMap.get(nodeId);
+                    if (targetNode) {
+                        onClick(event, targetNode);
+                        panToNode(targetNode);
+                    }
+                } else if (target.closest('#info-close-btn')) {
+                    const currentNode = pinnedNode;
+                    pinnedNode = null;
+                    if (currentNode) {
+                        currentNode.fx = null;
+                        currentNode.fy = null;
+                    }
+                    highlight(null);
+                    updateInfoPanel(null);
+                }
+            });
+
+            const zoom = d3.zoom().scaleExtent([0.1, 5]).on("zoom", ({transform}) => {
+                g.attr("transform", transform);
+            });
+            
+            function panToNode(targetNode) {
+                const t = d3.zoomIdentity
+                      .translate(width / 2, height / 2)
+                      .scale(2)
+                      .translate(-targetNode.x, -targetNode.y);
+                svg.transition().duration(750).call(zoom.transform, t);
+            }
+
+            svg.on("click", () => {
+                if (pinnedNode) {
+                   pinnedNode.fx = null;
+                   pinnedNode.fy = null;
+                }
+                pinnedNode = null;
+                highlight(null);
+                updateInfoPanel(null);
+            }).call(zoom);
+
+            function dragstarted(event, d) {
+                if (!event.active) simulation.alphaTarget(0.3).restart();
+                d.fx = d.x;
+                d.fy = d.y;
+            }
+            function dragged(event, d) {
+                d.fx = event.x;
+                d.fy = event.y;
+            }
+            function dragended(event, d) {
+                if (!event.active) simulation.alphaTarget(0);
+                if (!pinnedNode || pinnedNode.id !== d.id) {
+                   d.fx = null;
+                   d.fy = null;
+                }
+            }
+
+            document.getElementById('export-btn').addEventListener('click', () => {
+                const positions = graph.nodes.map(d => ({ id: d.id, x: d.x, y: d.y }));
+                const blob = new Blob([JSON.stringify(positions, null, 2)], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'positions.json';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            });
+        }
+    </script>
+</body>
+</html>

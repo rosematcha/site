@@ -6,6 +6,15 @@ import "./ProjectsPage.css"; // Specific styles for this page
 // Project Data - this could also be moved to a separate JSON file and imported
 const projectsData = [
   {
+    id: "moviemap",
+    title: "Movie Map",
+    path: "/moviemap",
+    thumbnail: "/img/projects/moviemap-thumb.jpg",
+    description:
+      "Visualizing the connections between people's four favorite movies on Letterboxd.",
+    tech: "D3.js, Python",
+  },
+  {
     id: "matchatab",
     title: "MatchaTab",
     path: "https://addons.mozilla.org/en-US/firefox/addon/matchatab/", // Now links to Firefox Add-ons
@@ -52,7 +61,8 @@ const projectsData = [
     description:
       '<a href="https://x.com/rachellapides/status/1868875739732623414" target="_blank" rel="noopener noreferrer">Inspired by a Tweet,</a> a simple tool for finding Letterboxd users with your same top four favorite films.',
     tech: "Single-page static site",
-  },
+  }
+  
   // Add more projects here as needed
 ];
 

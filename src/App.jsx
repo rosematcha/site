@@ -5,7 +5,6 @@ import Footer from "./components/Footer";
 import HomePage from "./pages/HomePage";
 import ProjectsPage from "./pages/ProjectsPage";
 import ResumePage from "./pages/ResumePage";
-import PopePage from "./pages/PopePage";
 import GuestbookPage from "./pages/GuestbookPage";
 import NotFoundPage from "./pages/NotFoundPage";
 
@@ -19,7 +18,6 @@ function App() {
           <Route path="/projects" element={<ProjectsPage />} />
           <Route path="/resume" element={<ResumePage />} />
           <Route path="/guestbook" element={<GuestbookPage />} />
-          <Route path="/pope" element={<PopePage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>

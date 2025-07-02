@@ -1,5 +1,9 @@
+.hidden {
+  display: none !important;
+}
+
 .page-content {
-  padding: 0px 25px;
+  padding: 0px 25px 0px 25px;
   margin: 15px;
   background-color: rgba(25, 0, 40, 0.6); /* More purpleish */
   border-radius: 8px; /* Rounded corners for content boxes */
@@ -14,30 +18,7 @@
   text-align: justify;
 }
 
-.page-content h2 { /* For main page titles like on Resume/Projects */
-  color: #ff80bf; /* Medium pink */
-  font-family: "Tahoma", "Geneva", sans-serif;
-  border-bottom: 2px dotted #ffb3da; /* Dotted pink underline */
-  text-align: left;
-  font-size: 1.8em;
-  margin-top: 0;
-  padding-bottom: 5px;
-  margin-bottom: 20px; /* Added margin for spacing */
-}
 
-.page-content h3 { /* Default h3 style (e.g., for project cards, if not overridden) */
-  color: #f0e6ff; /* Light lavender for sub-headings */
-  font-size: 1.4em;
-  margin-top: 25px;
-  margin-bottom: 10px; /* Added margin for spacing */
-}
-
-.page-content h4 { /* Default h4 style (e.g., for resume sub-sections) */
-  color: #ffb3da; /* Lighter pink */
-  font-size: 1.2em;
-  margin-top: 20px; /* Added margin for spacing */
-  margin-bottom: 8px; /* Added margin for spacing */
-}
 
 /* --- Homepage Specific Styles --- */
 .intro-paragraph {

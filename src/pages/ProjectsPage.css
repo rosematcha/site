@@ -48,8 +48,6 @@
 }
 
 .project-details h3 {
-  color: #ffb3da; /* Lighter pink for project titles */
-  font-size: 1.5em; /* Slightly larger than default h3 in PageStyles */
   margin-top: 0;
   margin-bottom: 10px;
   border-bottom: 1px dotted #ff80bf;
@@ -104,8 +102,5 @@
   .project-entry-card {
     padding: 10px;
     font-size: 0.98em;
-  }
-  .project-details h3 {
-    font-size: 1.1em;
   }
 }

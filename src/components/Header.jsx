@@ -48,7 +48,7 @@ function Header() {
             </NavLink>
           </li>
           <li>
-            <a href="mailto:me@rosematcha.com">Contact</a>
+            <a href="mailto:hi@rosematcha.com">Contact</a>
           </li>
         </ul>
       </nav>
