@@ -94,6 +94,49 @@
   padding: 8px 18px; /* Slightly smaller padding for project buttons */
 }
 
+.project-tags {
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+
+.project-tags p {
+  margin-bottom: 5px;
+  font-size: 0.9em;
+  color: #f0e6ff;
+}
+
+.tag-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
+.tag-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 10px;
+  border-radius: 15px; /* Makes it pill-shaped */
+  font-size: 0.75em;
+  font-weight: bold;
+  text-transform: lowercase;
+  white-space: nowrap;
+  border: 1px solid;
+}
+
+.tech-tag {
+  background-color: rgba(128, 0, 128, 0.3); /* Purple */
+  color: #ffb3da;
+  border-color: #ff80bf;
+}
+
+.category-tag {
+  background-color: rgba(255, 105, 180, 0.3); /* Hot pink */
+  color: #f0e6ff;
+  border-color: #ffb3da;
+}
+
 @media (max-width: 885px) {
   .project-showcase-container {
     grid-template-columns: 1fr;

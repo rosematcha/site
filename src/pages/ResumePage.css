@@ -7,26 +7,52 @@
 
 .resume-header {
   text-align: center;
-  margin-bottom: 20px; /* Increased spacing */
+  margin-bottom: 30px; /* Increased spacing */
 }
 
+.resume-header h2 {
+  font-size: 2.5em; /* Larger title */
+  color: #ffb3da; /* Existing color */
+  margin-bottom: 5px; /* Reduced space below h2 */
+}
+
+.resume-name {
+  text-align: center;
+  font-size: 1.8em; /* Slightly smaller than main title */
+  color: #f0e6ff; /* Lighter color for name */
+  margin-bottom: 8px;
+}
+
+.contact-info {
+  text-align: center;
+  margin-bottom: 30px; /* Increased spacing */
+  font-size: 0.95em;
+}
+
+.contact-info a {
+  color: #ff80bf; /* Existing link color */
+  margin: 0 10px; /* Space out links */
+}
+
+/* Section Titles (Summary, Skills, etc.) */
 .page-content h4 { /* Targeting all h4 within the resume page content */
-  font-size: 1.8em; /* Larger font */
+  font-size: 1.6em;
   color: #ffb3da;
-  margin-top: 45px; /* More space above */
-  margin-bottom: 30px; /* More space below */
-  border-bottom: 4px double #ff80bf; /* Double line border */
-  padding-bottom: 12px; /* More padding */
+  margin-top: 40px;
+  margin-bottom: 25px;
+  border-bottom: 3px solid #ff80bf;
+  padding-bottom: 10px;
   text-transform: uppercase;
-  letter-spacing: 2px; /* Increased letter spacing */
-  text-shadow: 2px 2px 5px rgba(0,0,0,0.5); /* More pronounced shadow */
-  text-align: center; /* Center align section titles */
-  background-color: rgba(50, 20, 70, 0.4); /* Subtle background */
-  padding-top: 10px;
-  border-radius: 5px;
+  letter-spacing: 1.5px;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
 }
 
-
+/* ADDED: Add margin-top to the first card of each type after a h4 */
+.page-content h4 + .job-entry,
+.page-content h4 + .education-entry,
+.page-content h4 + .additional-entry {
+  margin-top: 10px; /* Adjust as needed for spacing */
+}
 
 /* Paragraphs and general text */
 .page-content p,
@@ -51,23 +77,22 @@
 .job-entry,
 .education-entry,
 .additional-entry {
-  background-color: rgba(60, 30, 80, 0.55); /* Slightly more opaque background */
-  border-radius: 10px; /* More rounded corners */
-  padding: 25px; /* Increased padding */
-  margin-bottom: 20px; /* Reduced space between cards */
-  border-left: 8px solid #ff80bf; /* Thicker accent border */
-  box-shadow: none; /* Removed glow */
-  transition: background-color 0.3s ease-in-out; /* Smoother transition */
-  position: relative;
+  background-color: rgba(60, 30, 80, 0.45); /* ADDED: Subtle background, related to theme */
+  border-radius: 8px; /* ADDED: Rounded corners */
+  padding: 20px; /* MODIFIED: Uniform padding */
+  margin-bottom: 30px; /* MODIFIED: More space between cards */
+  border-left: 5px solid #ff80bf; /* MODIFIED: Keep as accent, slightly thicker */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25); /* ADDED: More pronounced shadow */
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* ADDED: For hover */
+  position: relative; /* Ensure this is present if needed for other pseudo-elements */
 }
 
 /* ADDED: Hover effect for entries */
 .job-entry:hover,
 .education-entry:hover,
 .additional-entry:hover {
-  transform: none; /* Removed lift */
-  box-shadow: none; /* Removed glow on hover */
-  background-color: rgba(70, 40, 90, 0.65); /* Slightly lighter on hover */
+  transform: translateY(-4px); /* Slightly more lift */
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
 }
 
 .job-entry h5,
@@ -77,12 +102,10 @@
   font-size: 1.2em; /* Slightly larger */
   margin-top: 0;
   margin-bottom: 8px; /* Increased space */
-  cursor: pointer; /* Indicate clickable titles */
-  display: flex; /* For aligning title and toggle icon */
-  justify-content: space-between; /* Push icon to the right */
-  align-items: center; /* Vertically align icon with text */
-  padding: 10px; /* Expanded clickable area */
-  margin: -10px; /* Offset padding to maintain card size */
+  cursor: pointer; /* ADDED: Indicate clickable titles */
+  display: flex; /* ADDED: For aligning title and toggle icon */
+  justify-content: space-between; /* ADDED: Push icon to the right */
+  align-items: center; /* ADDED: Vertically align icon with text */
 }
 
 .job-entry p strong,
@@ -95,14 +118,8 @@
 .job-entry p,
 .education-entry p,
 .additional-entry p {
-  margin: 0 0 0 0; /* Adjusted spacing, removed bottom margin */
+  margin: 4px 0 10px 0; /* Adjusted spacing */
   font-size: 0.98em; /* Slightly larger */
-}
-
-.job-entry > *:last-child,
-.education-entry > *:last-child,
-.additional-entry > *:last-child {
-  margin-bottom: 0;
 }
 
 .job-entry p strong a,
@@ -121,44 +138,28 @@
 
 .job-entry ul,
 .skills-list {
-  list-style-type: none; /* Remove default bullet */
-  margin-left: 0;
-  padding-left: 0;
+  list-style-type: disc; /* Changed from square for a more common look */
+  margin-left: 20px;
+  padding-left: 15px; /* Increased padding */
 }
 
 .job-entry ul li,
 .skills-list li {
-  margin-bottom: 10px; /* Increased spacing */
-  line-height: 1.6;
-  position: relative;
-  padding-left: 25px; /* Space for custom bullet */
-}
-
-.job-entry ul li::before,
-.skills-list li::before {
-  content: '✨'; /* Custom sparkle bullet */
-  position: absolute;
-  left: 0;
-  color: #ffb3da; /* Sparkle color */
-  font-size: 0.8em;
-  top: 0;
+  margin-bottom: 8px; /* Increased spacing */
+  line-height: 1.55;
 }
 
 .skills-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive columns */
-  gap: 20px; /* Space between columns and rows */
-  padding-left: 0; /* Ensure no extra padding */
+  padding-left: 0; /* Remove extra padding for skills list if it\'s directly under h4 */
+}
+
+.skills-list li {
+  margin-bottom: 10px; /* More space for skill items */
 }
 
 .skills-list li strong {
-  color: #f0e6ff; /* Lighter color for category */
-  font-weight: 700;
-  display: block; /* Make category a block for better separation */
-  margin-bottom: 5px;
-  font-size: 1.1em;
-  border-bottom: 1px dotted rgba(255, 128, 191, 0.5); /* Subtle underline */
-  padding-bottom: 3px;
+  color: #ffb3da;
+  font-weight: 700; /* MODIFIED: Bolder */
 }
 
 /* Button Styling - keeping existing geocities style but with minor tweaks */
@@ -192,53 +193,25 @@
 
 /* ADDED: Styling for the toggle icon */
 .toggle-icon {
-  font-size: 1.2em; /* Larger icon */
+  font-size: 0.9em;
   font-weight: bold;
-  color: #ffb3da; /* Lighter pink for icon */
-  margin-left: 15px; /* More space */
+  color: #ff80bf; /* Use accent color */
+  margin-left: 10px;
   transition: transform 0.2s ease-in-out;
-}
-
-.clickable-area {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 25%;
-  height: 100%;
-  cursor: pointer;
-  z-index: 1;
 }
 
 /* ADDED: Styling for the job details list when expanded */
 .job-details {
-  list-style-type: none; /* Changed to none for custom bullet */
-  margin-left: 0; /* Reset margin */
-  padding-left: 25px; /* Space for custom bullet */
+  list-style-type: disc;
+  margin-left: 20px; /* Keep original indentation */
+  padding-left: 15px;
   margin-top: 10px; /* Space between title and details */
-  overflow: hidden; /* For height transition */
-  max-height: 500px; /* Realistic max-height for expansion */
-  opacity: 1;
-  transition: max-height 0.2s ease-out, opacity 0.2s ease-out; /* Faster Expanding animation */
-}
-
-.job-details.collapsed {
-  max-height: 0;
-  opacity: 0;
+  animation: fadeInDetails 0.5s ease-out; /* ADDED: Fade-in animation */
 }
 
 .job-details li {
   margin-bottom: 8px;
   line-height: 1.55;
-  position: relative; /* For custom bullet positioning */
-}
-
-.job-details li::before {
-  content: '✨'; /* Custom sparkle bullet */
-  position: absolute;
-  left: 0;
-  color: #ffb3da; /* Sparkle color */
-  font-size: 0.8em;
-  top: 3px;
 }
 
 /* ADDED: Keyframes for fade-in animation */

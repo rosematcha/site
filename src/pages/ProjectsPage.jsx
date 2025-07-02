@@ -12,7 +12,8 @@ const projectsData = [
     thumbnail: "/img/projects/moviemap-thumb.jpg",
     description:
       "Visualizing the connections between people's four favorite movies on Letterboxd.",
-    tech: "D3.js, Python",
+    tech: ["d3.js", "python"],
+    tags: ["data visualization", "letterboxd", "weekend project"],
   },
   {
     id: "matchatab",
@@ -21,7 +22,8 @@ const projectsData = [
     thumbnail: "/img/projects/matchatab-thumb.jpg",
     description:
       "Inspired by Tabliss, this is a customizable new tab page for Firefox browsers.",
-    tech: "Vanilla JavaScript, HTML, CSS",
+    tech: ["javascript", "html", "css"],
+    tags: ["browser extension", "weekend project"],
     buttonText: "Install on Firefox",
   },
   {
@@ -31,7 +33,8 @@ const projectsData = [
     thumbnail: "/img/projects/brahdb-thumb.jpg", // Replace with your actual image path
     description:
       "A visualization tool for the gospel of our greatest food critic, ReportOfTheWeek. Explore reviews and ratings in a dynamic interface.",
-    tech: "Vite, React, TypeScript",
+    tech: ["vite", "react", "typescript"],
+    tags: ["data visualization", "weekend project"],
   },
   {
     id: "bexarvoting",
@@ -40,7 +43,8 @@ const projectsData = [
     thumbnail: "/img/projects/bexarvoting-thumb.jpg",
     description:
       "Dissatisfied with the County's lack of transparency, I created a site to visualize historical and present voter turnout data for Bexar County.",
-    tech: "Vanilla JavaScript, Chart.js, TailwindCSS",
+    tech: ["javascript", "chart.js", "tailwindcss"],
+    tags: ["data visualization", "civic tech", "weekend project"],
   },
   /*
   {
@@ -50,7 +54,8 @@ const projectsData = [
     thumbnail: "/img/projects/decks-thumb.jpg",
     description:
       "An Eleventy-based site for viewing and sharing Pokémon Trading Card Game decks. Card data is parsed from .txt files.",
-    tech: "Eleventy (11ty), JavaScript, TailwindCSS",
+    tech: ["eleventy (11ty)", "javascript", "tailwindcss"],
+    tags: ["static site", "gaming"],
   },
   */
   {
@@ -60,7 +65,8 @@ const projectsData = [
     thumbnail: "/img/projects/friendfinder-thumb.jpg",
     description:
       '<a href="https://x.com/rachellapides/status/1868875739732623414" target="_blank" rel="noopener noreferrer">Inspired by a Tweet,</a> a simple tool for finding Letterboxd users with your same top four favorite films.',
-    tech: "Single-page static site",
+    tech: ["javascript", "html", "css"],
+    tags: ["static site", "letterboxd", "weekend project"],
   }
   
   // Add more projects here as needed
@@ -110,9 +116,24 @@ function ProjectsPage() {
                 dangerouslySetInnerHTML={{ __html: project.description }}
               ></p>
 
-              <p className="project-tech">
-                <strong>Tech:</strong> {project.tech}
-              </p>
+              <div className="project-tags">
+                <p><strong>Tech:</strong></p>
+                <div className="tag-container">
+                  {project.tech.map((techItem) => (
+                    <span key={techItem} className="tag-badge tech-tag">
+                      {techItem}
+                    </span>
+                  ))}
+                </div>
+                <p><strong>Categories:</strong></p>
+                <div className="tag-container">
+                  {project.tags.map((tag) => (
+                    <span key={tag} className="tag-badge category-tag">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
               <a
                 href={getProjectUrl(project.path)}
                 target="_blank"
