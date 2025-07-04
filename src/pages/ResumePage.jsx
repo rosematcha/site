@@ -40,6 +40,34 @@ function ResumePage() {
 
       {/* --- WORK EXPERIENCE --- */}
       <h4>Work Experience</h4>
+      
+      <div className="job-entry">
+        <h5 onClick={() => toggleEntry("saySiAdmin")}>
+          Systems Administrator
+          <span className="toggle-icon">
+            {expandedEntries["saySiAdmin"] ? "[-]" : "[+]"}{" "}
+          </span>
+        </h5>
+        <p>
+          <a href="https://saysi.org/" target="_blank" rel="noopener noreferrer"><strong>SAY Sí</strong></a> | January 2023 - Present
+        </p>
+        {expandedEntries["saySiAdmin"] && (
+          <ul className="job-details">
+            <li>
+              Maintain and troubleshoot 100+ multi-platform devices (Windows,
+              Mac, iOS).
+            </li>
+            <li>
+              Implemented an inventory system for 500+ items and led data-driven
+              infrastructure improvements.
+            </li>
+            <li>
+              Develop automation scripts and maintain technical documentation and
+              security protocols.
+            </li>
+          </ul>
+        )}
+      </div>
 
       <div className="job-entry">
         <h5 onClick={() => toggleEntry("rubyCity")}>
@@ -54,13 +82,16 @@ function ResumePage() {
         {expandedEntries["rubyCity"] && (
           <ul className="job-details">
             <li>
-              Deliver exceptional guest experiences by conveying knowledge of
-              Foundation policies, collections, and architecture.
+              As a Visitor Services Associate, I am a primary point of contact for guests at Ruby City, a free contemporary art space in San Antonio.
             </li>
             <li>
-              Proactively address guest needs, resolve issues, and support public
-              programs and events.
+              My role is to convey information on the Linda Pace Foundation's collection, our current exhibitions, Foundation policies, and the building's architecture.
             </li>
+            <li>
+              I proactively address guest needs and resolve issues to ensure all visits are smooth and positive.
+            </li>
+            <li>
+              I also provide direct support for public programs and events, assisting with logistics and guest management.
           </ul>
         )}
       </div>
@@ -78,10 +109,20 @@ function ResumePage() {
         {expandedEntries["stonewallAction"] && (
           <ul className="job-details">
             <li>
-              Organize community events and create social media content to promote
-              advocacy.
+              Stonewall Action is a non-profit to protect and enshrine the rights of LGBTQ+ folks in Central Texas. On a contract basis, I was assigned to consult with them in partnership with Collective Campaigns.
             </li>
-            <li>Refine activist language for impactful communication.</li>
+            <li>
+              I kickstarted the nonprofit's operations and developed a support network of capable volunteers and community members to make it function independently.
+            </li>
+            <li>
+              I organized several events for Stonewall Action, including our launch event and the "Lights, Camera, Action!" event.
+            </li>
+            <li>
+              I designed graphics, filmed video, and edited visuals for promotion of Stonewall Action events and causes.
+            </li>
+            <li>
+              I designed a website using WordPress for users, and developed bespoke extensions for specific use cases, such as a serialized check-in system for assigning roles to volunteers.
+            </li>
           </ul>
         )}
       </div>
@@ -123,37 +164,13 @@ function ResumePage() {
         {expandedEntries["utsaSouthwest"] && (
           <ul className="job-details">
             <li>
-              Teach pinhole photography to youth in a free art exploration
-              program, guiding hands-on learning.
-            </li>
-          </ul>
-        )}
-      </div>
-
-      <div className="job-entry">
-        <h5 onClick={() => toggleEntry("saySiAdmin")}>
-          Systems Administrator
-          <span className="toggle-icon">
-            {expandedEntries["saySiAdmin"] ? "[-]" : "[+]"}{" "}
-          </span>
-        </h5>
-        <p>
-          <a href="https://saysi.org/" target="_blank" rel="noopener noreferrer"><strong>SAY Sí</strong></a> | January 2023 - Present
-        </p>
-        {expandedEntries["saySiAdmin"] && (
-          <ul className="job-details">
-            <li>
-              Maintain and troubleshoot 100+ multi-platform devices (Windows,
-              Mac, iOS).
+              I teach with UTSA's "Saturday Morning Discovery" program, a no-cost program for San Antonio youth to expose them to different artistic mediums.
             </li>
             <li>
-              Implemented an inventory system for 500+ items and led data-driven
-              infrastructure improvements.
+              Through much of the year, I teach our "Pinhole Photography" course. I teach young artists from ages 7 to 18 (and their parents, if they're so courageous) how to use an analog pinhole camera, develop film in a darkroom, and create prints of their work.
             </li>
             <li>
-              Develop automation scripts and maintain technical documentation and
-              security protocols.
-            </li>
+              I developed a curriculum for a summer "3-D Photography" course, introducing young artists aged 7 to 12 to the fundamentals of photography and photo editing, as well as a technique to make their photos appear 3-D using anaglyph glasses.
           </ul>
         )}
       </div>
@@ -245,12 +262,16 @@ function ResumePage() {
         {expandedEntries["mcDonalds"] && (
           <ul className="job-details">
             <li>
-              Provided customer service and operated POS systems in a fast-paced
-              environment.
+              I bagged orders, made drinks and fries, served customers in the front and drive-thru, and maintained a clean front lobby.
             </li>
             <li>
-              Handled cash transactions accurately and maintained service area
-              cleanliness.
+              I prioritized a good customer experience, and recieved several manager-directed compliments about the quality of my service. Several customers drove to our location specifically from further out just to see me.
+            </li>
+            <li>
+              I trained new staff on the company's policies and procedures, and answered staff questions.
+            </li>
+            <li>
+              Even though this was my first job, I was the "employee of the month" four times in my time here!
             </li>
           </ul>
         )}
