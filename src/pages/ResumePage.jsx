@@ -92,6 +92,7 @@ function ResumePage() {
             </li>
             <li>
               I also provide direct support for public programs and events, assisting with logistics and guest management.
+            </li>
           </ul>
         )}
       </div>
