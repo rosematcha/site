@@ -7,7 +7,6 @@ function garagesaleRedirectPlugin(): Plugin {
     name: 'garagesale-trailing-slash-redirect',
     configureServer(server) {
       server.middlewares.use((req, res, next) => {
-        // @ts-expect-error: url is present on req in Vite dev server
         if (req.url === '/garagesale') {
           res.writeHead(301, { Location: '/garagesale/' });
           res.end();

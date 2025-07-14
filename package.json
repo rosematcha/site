@@ -5,7 +5,8 @@
   "type": "module",
   "workspaces": [
     "brahdb",
-    "decks"
+    "decks",
+    "garagesale"
   ],
   "scripts": {
     "dev": "vite",
@@ -13,7 +14,7 @@
     "build": "npm-run-all -p build:root build:workspaces && npm run copy-static",
     "build:root": "vite build --outDir _site",
     "build:workspaces": "npm run build --workspaces --if-present",
-    "copy-static": "cpx \"css/**\" _site/css && cpx \"bexarvoting/**\" _site/bexarvoting && cpx \"friendfinder/**\" _site/friendfinder && cpx \"moviemap/**\" _site/moviemap && cpx \"public/**\" _site && cpx \"src/assets/**\" _site/assets",
+    "copy-static": "cpx \"css/**\" _site/css && cpx \"bexarvoting/**\" _site/bexarvoting && cpx \"friendfinder/**\" _site/friendfinder && cpx \"moviemap/**\" _site/moviemap && cpx \"public/**\" _site && cpx \"src/assets/**\" _site/assets && cpx \"garagesale/dist/**\" _site/garagesale",
     "lint": "eslint .",
     "preview": "vite preview"
     
