@@ -172,6 +172,7 @@ function ResumePage() {
             </li>
             <li>
               I developed a curriculum for a summer "3-D Photography" course, introducing young artists aged 7 to 12 to the fundamentals of photography and photo editing, as well as a technique to make their photos appear 3-D using anaglyph glasses.
+            </li>
           </ul>
         )}
       </div>
