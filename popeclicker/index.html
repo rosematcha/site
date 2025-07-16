@@ -12,7 +12,8 @@
             <h1>Pope Clicker</h1>
             <div class="stats">
                 <div class="stat">
-                    <span>Pope Points: </span>
+                    <img src="naturevalley_small.png" alt="Nature Valley Bar" class="stat-icon">
+                    <span>Nature Valley Bars: </span>
                     <span id="popePoints">0</span>
                 </div>
                 <div class="stat">
@@ -23,8 +24,14 @@
                     <span>Per Click: </span>
                     <span id="clickPower">1</span>
                 </div>
+                <div class="stat" id="prestigePointsStat" style="display: none;">
+                    <span>Prestige Points: </span>
+                    <span id="prestigePoints">0</span>
+                </div>
             </div>
-            <button id="resetSave" class="reset-btn" style="margin: 18px auto 0 auto; display: block; font-size: 1.1em; padding: 10px 28px; border-radius: 12px; background: #ffd700; color: #1a1a2e; font-weight: bold; border: none; box-shadow: 0 2px 8px #ffd70044; cursor: pointer; transition: background 0.18s, color 0.18s;">Reset Save</button>
+            <button id="resetSave" class="reset-btn" style="margin: 18px auto 0 auto; display: none; font-size: 1.1em; padding: 10px 28px; border-radius: 12px; background: #ffd700; color: #1a1a2e; font-weight: bold; border: none; box-shadow: 0 2px 8px #ffd70044; cursor: pointer; transition: background 0.18s, color 0.18s;">Reset Save</button>
+            <button id="debugUnlock" class="reset-btn" style="margin: 18px auto 0 auto; display: none; font-size: 1.1em; padding: 10px 28px; border-radius: 12px; background: #ff0000; color: #ffffff; font-weight: bold; border: none; box-shadow: 0 2px 8px #ff000044; cursor: pointer; transition: background 0.18s, color 0.18s;">Unlock All</button>
+            <button id="prestige" class="reset-btn" style="margin: 18px auto 0 auto; display: none; font-size: 1.1em; padding: 10px 28px; border-radius: 12px; background: #800080; color: #ffffff; font-weight: bold; border: none; box-shadow: 0 2px 8px #80008044; cursor: pointer; transition: background 0.18s, color 0.18s;">Prestige</button>
         </header>
 
         <main>
@@ -37,13 +44,29 @@
             </div>
 
             <div class="upgrades-panel">
-                <h2>Upgrades</h2>
+                <div class="upgrade-tabs" id="upgradeTabs">
+                    <button class="upgrade-tab active" data-tab="click">Clicks</button>
+                    <button class="upgrade-tab" data-tab="persecond">Passives</button>
+                    <button class="upgrade-tab" data-tab="prestige">Prestige</button>
+                </div>
                 <div class="upgrades-container" id="upgradesContainer">
                     <!-- Upgrades will be dynamically generated here -->
                 </div>
             </div>
         </main>
     </div>
+
+    <!-- Anti-RSI Mode Toggle -->
+    <div class="anti-rsi-container" id="antiRsiContainer" style="display: none;">
+        <div class="anti-rsi-toggle">
+            <label for="antiRsiToggle">Anti-RSI Mode</label>
+            <input type="checkbox" id="antiRsiToggle" class="toggle-switch">
+            <span class="toggle-slider"></span>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
 
     <script src="script.js"></script>
 </body>

@@ -1,0 +1,28 @@
+<!-- Instructions for adding the click sound -->
+<!-- You need to add a "click.ogg" file to this directory -->
+
+How to get a click sound:
+1. **Record your own**: Use any audio recording app to record a short click or pop sound
+2. **Download free sounds**: Search for "click sound effect" on sites like:
+   - freesound.org
+   - zapsplat.com
+   - Adobe Stock (free sounds)
+3. **Convert to OGG format**: Use online converters or software like:
+   - Online-convert.com
+   - VLC Media Player
+   - Audacity
+
+Requirements:
+- File name: click.ogg
+- Duration: 0.1 - 0.5 seconds (short and snappy)
+- Format: OGG Vorbis
+- Size: Keep under 100KB for fast loading
+
+Tips:
+- A short "pop" or "click" sound works best
+- Avoid sounds that are too long or complex
+- Test the volume - it should be pleasant, not jarring
+- The game will work without sound, but it's more fun with it!
+
+Temporary solution:
+If you don't have a sound file yet, the game will still work perfectly. The click sound will just be silent until you add the click.ogg file.

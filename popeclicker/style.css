@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Roboto:wght@400;700&display=swap');
 
+/* Animation speed variables - adjust these to tune the pope animations */
+:root {
+    --pope-rotation-speed: 20s; /* How long it takes to complete one full rotation cycle */
+    --pope-float-speed: 7s; /* How long it takes to complete one float cycle */
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -65,6 +71,16 @@ h1 {
     color: #ffd700;
 }
 
+.stat-icon {
+    width: 36px;
+    height: 12px;
+    margin-right: 8px;
+    vertical-align: middle;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    object-fit: cover;
+}
+
 .stat.animated {
     animation: statPop 0.4s;
 }
@@ -101,6 +117,9 @@ main {
     align-items: center;
     justify-content: center;
     overflow: visible;
+    background: none;
+    border: none;
+    box-shadow: none;
 }
 
 .pope-image {
@@ -111,44 +130,42 @@ main {
     cursor: pointer;
     object-fit: contain;
     background: none;
-    /* Remove gold glow, keep only a soft shadow for depth */
-    box-shadow: 0 8px 32px 0 rgba(0,0,0,0.18);
-    transition: filter 0.2s, box-shadow 0.2s, transform 0.5s cubic-bezier(.23,1.12,.32,1);
-    animation: popeFloat 7s ease-in-out infinite alternate, popePulse 2.5s ease-in-out infinite, popeSpin 12s linear infinite;
+    /* Clean appearance with minimal shadow */
+    box-shadow: 0 4px 16px 0 rgba(0,0,0,0.15);
+    transition: transform 0.3s cubic-bezier(.23,1,.32,1), filter 0.2s;
+    animation: popeFloat var(--pope-float-speed) ease-in-out infinite alternate, popeBounceRotate var(--pope-rotation-speed) ease-in-out infinite;
     will-change: transform;
 }
 
 @keyframes popeFloat {
-    0% { transform: translateY(0) scale(1) rotate(-2deg); }
-    20% { transform: translateY(-10px) scale(1.03) rotate(2deg); }
-    40% { transform: translateY(10px) scale(0.98) rotate(-3deg); }
-    60% { transform: translateY(-8px) scale(1.01) rotate(3deg); }
-    80% { transform: translateY(8px) scale(1.02) rotate(-1deg); }
-    100% { transform: translateY(0) scale(1) rotate(2deg); }
+    0% { transform: translateY(0) scale(1); }
+    20% { transform: translateY(-10px) scale(1.03); }
+    40% { transform: translateY(10px) scale(0.98); }
+    60% { transform: translateY(-8px) scale(1.01); }
+    80% { transform: translateY(8px) scale(1.02); }
+    100% { transform: translateY(0) scale(1); }
 }
-@keyframes popePulse {
-    0%, 100% { filter: brightness(1) drop-shadow(0 0 10px #ffd70088); }
-    50% { filter: brightness(1.12) drop-shadow(0 0 30px #ffd700cc); }
-}
-@keyframes popeSpin {
-    0% { transform: rotate(-2deg); }
-    100% { transform: rotate(8deg); }
+
+@keyframes popeBounceRotate {
+    0% { transform: rotate(-20deg); }
+    50% { transform: rotate(20deg); }
+    100% { transform: rotate(-20deg); }
 }
 
 .pope-image:hover {
     z-index: 2;
-    filter: brightness(1.2) drop-shadow(0 0 40px #ffd700);
-    /* Remove gold box-shadow on hover, keep only a soft shadow */
-    box-shadow: 0 8px 32px 0 rgba(0,0,0,0.22);
-    /* Smoothly scale up and rotate a bit more on hover */
-    transform: scale(1.18) rotate(8deg) !important;
-    transition: transform 0.5s cubic-bezier(.23,1.12,.32,1), filter 0.2s, box-shadow 0.2s;
+    filter: brightness(1.1);
+    /* Clean hover effect without glow */
+    box-shadow: 0 6px 20px 0 rgba(0,0,0,0.20);
+    /* Smooth scale transition that doesn't override rotation */
+    transform: scale(1.15);
+    transition: transform 0.3s cubic-bezier(.23,1,.32,1), filter 0.2s, box-shadow 0.2s;
 }
 
 .pope-image:active {
-    filter: brightness(0.95) drop-shadow(0 0 10px #ffd700);
-    box-shadow: 0 8px 32px 0 rgba(0,0,0,0.22);
-    transform: scale(1.05) rotate(0deg) !important;
+    filter: brightness(0.95);
+    box-shadow: 0 2px 8px 0 rgba(0,0,0,0.25);
+    transform: scale(1.05);
 }
 
 .click-effect {
@@ -204,16 +221,43 @@ main {
     position: relative;
 }
 .upgrades-panel h2 {
-    font-family: 'Merriweather', serif;
-    text-align: center;
+    display: none; /* Hide old Upgrades header, replaced by tabs */
+}
+
+.upgrade-tabs {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
     margin-bottom: 18px;
+    gap: 0;
+}
+.upgrade-tab {
+    background: #23234a;
     color: #ffd700;
-    font-size: 1.7em;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.18);
-    border-bottom: 1.5px solid #ffd70033;
-    padding-bottom: 8px;
-    margin-left: -18px;
-    margin-right: -18px;
+    border: 1.5px solid #ffd70044;
+    border-bottom: none;
+    font-family: 'Merriweather', serif;
+    font-size: 1.1em;
+    font-weight: bold;
+    padding: 10px 32px 8px 32px;
+    border-radius: 18px 18px 0 0;
+    margin: 0 2px;
+    cursor: pointer;
+    transition: background 0.18s, color 0.18s;
+    outline: none;
+    position: relative;
+    top: 2px;
+    z-index: 2;
+}
+.upgrade-tab.active {
+    background: #ffd700;
+    color: #1a1a2e;
+    border-bottom: 2.5px solid #ffd700;
+    z-index: 3;
+}
+.upgrade-tab:not(.active):hover {
+    background: #ffd70033;
+    color: #fff;
 }
 
 .upgrade-item {
@@ -348,4 +392,85 @@ main {
         gap: 10px;
         align-items: center;
     }
+}
+
+/* Anti-RSI Mode Styles */
+.anti-rsi-container {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    background: rgba(23, 26, 48, 0.95);
+    border: 2px solid #ffd700;
+    border-radius: 12px;
+    padding: 15px 20px;
+    box-shadow: 0 4px 20px rgba(255, 215, 0, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+.anti-rsi-toggle {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    color: #ffd700;
+    font-size: 1.1em;
+}
+
+.toggle-switch {
+    position: relative;
+    width: 50px;
+    height: 24px;
+    appearance: none;
+    background: #333;
+    border-radius: 12px;
+    outline: none;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.toggle-switch:checked {
+    background: #ffd700;
+}
+
+.toggle-switch::before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 20px;
+    height: 20px;
+    background: #fff;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+.toggle-switch:checked::before {
+    transform: translateX(26px);
+    background: #1a1a2e;
+}
+
+/* Toast Notification Styles */
+.toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1001;
+    background: #ffd700;
+    color: #1a1a2e;
+    padding: 15px 20px;
+    border-radius: 8px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    box-shadow: 0 4px 20px rgba(255, 215, 0, 0.3);
+    transform: translateX(100%);
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.toast.show {
+    transform: translateX(0);
+    opacity: 1;
 }
