@@ -13,7 +13,8 @@ const quotes = [
   "i miss my wife, tails. i miss her a lot. i'll be back.",
   "life is great, man! you can eat at denny's, wear a hat, whatever you want!",
   "it's always the wrong thing when it's me who's saying it",
-  "once you've seen the signs around the barn, it becomes impossible to see the barn"
+  "once you've seen the signs around the barn, it becomes impossible to see the barn",
+  "the soul ends with death, unless we act to preserve it."
 ];
 
 export default quotes;
