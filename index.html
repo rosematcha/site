@@ -2,48 +2,26 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#ec4899" />
+    <title>rosematcha · Reese Ferguson</title>
+    <meta name="description" content="Reese Ferguson - photographer, developer, organizer. Portfolio, projects, and guestbook." />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="rosematcha · Reese Ferguson" />
+    <meta property="og:description" content="Photographer, developer, organizer. Portfolio, projects, and guestbook." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://rosematcha.com" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>rosematcha.com</title>
-    <link rel="preload" as="image" href="/img/haruhi.gif" type="image/gif" />
-    <link
-      rel="preload"
-      as="image"
-      href="/img/projects/brahdb-thumb.jpg"
-      type="image/jpeg"
-    />
-    <link
-      rel="preload"
-      as="image"
-      href="/img/projects/bexarvoting-thumb.jpg"
-      type="image/jpeg"
-    />
-    <link
-      rel="preload"
-      as="image"
-      href="/img/sign_my_guestbook.gif"
-      type="image/gif"
-    />
   </head>
   <body>
     <div id="root"></div>
-
-    <!-- form for guestbook, placed here so it can load later -->
-    <form
-      name="guestbook"
-      netlify
-      netlify-honeypot="bot-field"
-      hidden
-      aria-hidden="true"
-      style="display: none !important;"
-    >
-      <input type="text" name="name" />
-      <input type="url" name="website" />
-      <textarea name="message"></textarea>
-      <input name="bot-field" /> {/* Honeypot field */}
-    </form>
-
-    <!-- load main site -->
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

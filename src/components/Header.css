@@ -1,78 +1,9 @@
 /* src/components/Header.css */
-.main-header {
-  padding: 20px 15px 15px 15px;
-  text-align: center;
-}
+/* Visual styles are defined in src/index.css using design tokens.
+   This file keeps only minimal layout hooks specific to Header markup. */
 
-.site-main-title, .site-title-link {
-  margin-top: 0;
-  margin-bottom: 12px; /* Adjusted margin slightly */
-  font-family: "Impact", "Arial Black", "Franklin Gothic Medium", sans-serif;
-  font-weight: normal; /* Impact is very bold by default, 'normal' might not change it much */
-  font-size: 2em; 
-  color: #ff80bf;
-  text-decoration: none;
-  letter-spacing: 0.5px; /* Adjusted letter spacing slightly */
-  line-height: 1.1;
-}
+.site-main-title { margin: 0; }
 
-.main-nav ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0 0 15px 0;
-}
+.brand-row { display: flex; align-items: center; gap: 10px; }
 
-.main-nav ul li {
-  display: inline-block;
-  margin: 0 12px;
-}
-
-.main-nav ul li a {
-  color: #f0e6ff;
-  text-decoration: none;
-  font-weight: normal;
-  font-size: 1em;
-  padding: 5px 0;
-}
-
-.main-nav ul li a.active {
-  color: #ffb3da;
-  font-weight: bold;
-}
-
-.header-divider {
-  border: 0;
-  height: 1px;
-  background-image: linear-gradient(
-    to right,
-    rgba(255, 128, 191, 0.1),
-    rgba(255, 128, 191, 0.6),
-    rgba(255, 128, 191, 0.1)
-  );
-  margin-top: 10px;
-}
-
-.header {
-  flex-wrap: wrap;
-}
-
-@media (max-width: 885px) {
-  .header {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 10px 8px;
-  }
-  .header-title {
-    font-size: 1.3em;
-    margin-bottom: 6px;
-  }
-  .main-nav {
-    width: 100%;
-    justify-content: flex-start;
-    gap: 10px;
-    margin-top: 10px;
-  }
-  .main-header {
-    font-size: 1em !important;
-  }
-}
+.main-nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 8px; }

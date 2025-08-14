@@ -1,221 +1,336 @@
-/* General Page Structure & Typography */
-.page-content { /* Assuming this is the main container from PageStyles.css or similar */
+/* Enhanced Resume Page Styles */
+.page-content {
   padding: 20px;
-  max-width: 800px; /* Limit width for better readability */
-  margin: 0 auto; /* Center the content */
+  max-width: 900px;
+  margin: 0 auto;
 }
 
+/* Header with Actions */
 .resume-header {
   text-align: center;
-  margin-bottom: 30px; /* Increased spacing */
+  margin-bottom: 30px;
+  padding: 24px;
+  background: linear-gradient(135deg, var(--panel), var(--panel-2));
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
 }
 
 .resume-header h2 {
-  font-size: 2.5em; /* Larger title */
-  color: #ffb3da; /* Existing color */
-  margin-bottom: 5px; /* Reduced space below h2 */
+  font-size: 2.5em;
+  color: var(--brand);
+  margin-bottom: 16px;
+  background: linear-gradient(135deg, var(--brand), var(--brand-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.resume-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+
+/* Contact Card */
+.resume-contact-card {
+  background: linear-gradient(135deg, var(--panel), var(--panel-2));
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 24px;
+  text-align: center;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  position: relative;
 }
 
 .resume-name {
+  font-size: 2em;
+  color: var(--text);
+  margin-bottom: 16px;
+  font-weight: 800;
+}
+
+.contact-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* remove .contact-item button styling; use shared .button */
+
+.copy-feedback {
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--brand);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  animation: fadeInOut 2s ease-in-out;
+}
+
+@keyframes fadeInOut {
+  0%, 100% { opacity: 0; transform: translateX(-50%) translateY(10px); }
+  20%, 80% { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+/* Quick Stats */
+.resume-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.stat-item {
   text-align: center;
-  font-size: 1.8em; /* Slightly smaller than main title */
-  color: #f0e6ff; /* Lighter color for name */
-  margin-bottom: 8px;
+  padding: 16px;
+  background: linear-gradient(135deg, var(--panel), var(--panel-2));
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  transition: transform 0.2s ease;
 }
 
-.contact-info {
+.stat-item:hover {
+  transform: translateY(-2px);
+}
+
+.stat-number {
+  font-size: 2em;
+  font-weight: 800;
+  color: var(--brand);
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 4px;
+  font-weight: 600;
+}
+
+/* Filter */
+.resume-filter {
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.filter-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--panel);
+  color: var(--text);
+  font-size: 16px;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.filter-input:focus {
+  border-color: var(--brand);
+  box-shadow: 0 0 0 4px var(--ring);
+}
+
+/* Category Filters */
+.category-filters {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 6px;
+  margin-bottom: 16px;
+}
+
+.filter-label {
+  font-size: 14px;
+  color: var(--muted);
+  font-weight: 600;
+  white-space: nowrap;
+  margin-right: 4px;
+}
+
+/* removed .category-filter overrides to use shared .button */
+
+.filter-results {
+  font-size: 14px;
+  color: var(--muted);
+  font-style: italic;
   text-align: center;
-  margin-bottom: 30px; /* Increased spacing */
-  font-size: 0.95em;
+  padding: 8px;
 }
 
-.contact-info a {
-  color: #ff80bf; /* Existing link color */
-  margin: 0 10px; /* Space out links */
+/* No Results */
+.no-results {
+  text-align: center;
+  padding: 40px 20px;
+  background: linear-gradient(135deg, var(--panel), var(--panel-2));
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--muted);
 }
 
-/* Section Titles (Summary, Skills, etc.) */
-.page-content h4 { /* Targeting all h4 within the resume page content */
-  font-size: 1.6em;
-  color: #ffb3da;
-  margin-top: 40px;
-  margin-bottom: 25px;
-  border-bottom: 3px solid #ff80bf;
-  padding-bottom: 10px;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+.no-results p {
+  margin-bottom: 16px;
+  font-size: 16px;
 }
 
-/* ADDED: Add margin-top to the first card of each type after a h4 */
-.page-content h4 + .job-entry,
-.page-content h4 + .education-entry,
-.page-content h4 + .additional-entry {
-  margin-top: 10px; /* Adjust as needed for spacing */
+/* Sections */
+.resume-section {
+  margin-bottom: 32px;
 }
 
-/* Paragraphs and general text */
-.page-content p,
-.page-content ul li {
-  line-height: 1.6; /* Improved readability */
-  color: #e0d8f0; /* Slightly lighter than pure white for less harshness */
+.resume-section h4 {
+  font-size: 1.8em;
+  color: var(--brand);
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--border);
+  position: relative;
 }
 
-.resume-divider {
-  border: 0;
-  height: 1px;
-  background-image: linear-gradient(
-    to right,
-    rgba(255, 128, 191, 0.1),
-    rgba(255, 128, 191, 0.7),
-    rgba(255, 128, 191, 0.1)
-  );
-  margin: 35px 0; /* MODIFIED: Increased spacing around dividers */
+.resume-section h4::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 60px;
+  height: 2px;
+  background: var(--brand);
 }
 
-/* MODIFIED: Complete replacement for entry styling */
-.job-entry,
-.education-entry,
-.additional-entry {
-  background-color: rgba(60, 30, 80, 0.45); /* ADDED: Subtle background, related to theme */
-  border-radius: 8px; /* ADDED: Rounded corners */
-  padding: 20px; /* MODIFIED: Uniform padding */
-  margin-bottom: 30px; /* MODIFIED: More space between cards */
-  border-left: 5px solid #ff80bf; /* MODIFIED: Keep as accent, slightly thicker */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25); /* ADDED: More pronounced shadow */
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* ADDED: For hover */
-  position: relative; /* Ensure this is present if needed for other pseudo-elements */
+/* Summary Card */
+.summary-card {
+  background: linear-gradient(135deg, var(--panel), var(--panel-2));
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
 }
 
-/* ADDED: Hover effect for entries */
-.job-entry:hover,
-.education-entry:hover,
-.additional-entry:hover {
-  transform: translateY(-4px); /* Slightly more lift */
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+.summary-card p {
+  margin: 0;
+  line-height: 1.7;
+  color: var(--text);
 }
 
-.job-entry h5,
-.education-entry h5,
-.additional-entry h5 {
-  color: #ffb3da;
-  font-size: 1.2em; /* Slightly larger */
-  margin-top: 0;
-  margin-bottom: 8px; /* Increased space */
-  cursor: pointer; /* ADDED: Indicate clickable titles */
-  display: flex; /* ADDED: For aligning title and toggle icon */
-  justify-content: space-between; /* ADDED: Push icon to the right */
-  align-items: center; /* ADDED: Vertically align icon with text */
+/* Experience Container */
+.experience-container {
+  position: relative;
 }
 
-.job-entry p strong,
-.education-entry p strong,
-.additional-entry p strong {
-  color: #f0e6ff;
-  font-weight: 600; /* Slightly bolder */
+/* Job Entries */
+.job-entry {
+  background: linear-gradient(135deg, var(--panel), var(--panel-2));
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  transition: all 0.2s ease;
+  position: relative;
 }
 
-.job-entry p,
-.education-entry p,
-.additional-entry p {
-  margin: 4px 0 10px 0; /* Adjusted spacing */
-  font-size: 0.98em; /* Slightly larger */
+.job-entry:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
 }
 
-.job-entry p strong a,
-.education-entry p strong a,
-.additional-entry p strong a {
-  color: #f0e6ff; /* Match existing strong tag color */
-  text-decoration: none;
+.job-header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
-.job-entry p strong a:hover,
-.education-entry p strong a:hover,
-.additional-entry p strong a:hover {
-  text-decoration: underline;
-  color: #ffb3da; /* Hover color for links */
+.job-entry h5 {
+  color: var(--brand);
+  font-size: 1.3em;
+  margin: 0;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 700;
 }
 
-.job-entry ul,
-.skills-list {
-  list-style-type: disc; /* Changed from square for a more common look */
-  margin-left: 20px;
-  padding-left: 15px; /* Increased padding */
-}
-
-.job-entry ul li,
-.skills-list li {
-  margin-bottom: 8px; /* Increased spacing */
-  line-height: 1.55;
-}
-
-.skills-list {
-  padding-left: 0; /* Remove extra padding for skills list if it\'s directly under h4 */
-}
-
-.skills-list li {
-  margin-bottom: 10px; /* More space for skill items */
-}
-
-.skills-list li strong {
-  color: #ffb3da;
-  font-weight: 700; /* MODIFIED: Bolder */
-}
-
-/* Button Styling - keeping existing geocities style but with minor tweaks */
-.geocities-button {
-  background-color: #ffb3da;
-  color: #1e002b;
-  padding: 12px 22px; /* Slightly larger padding */
-  text-decoration: none;
-  border: 2px outset #ff80bf;
-  border-radius: 5px;
-  font-weight: bold;
-  transition: all 0.2s ease-in-out;
-  display: inline-block; /* Ensure proper padding and margin */
-  margin-top: 20px; /* Space above button */
-}
-
-.geocities-button:hover {
-  background-color: #ff80bf;
-  color: #ffffff;
-  border-style: inset;
-  transform: translateY(-1px); /* Subtle hover effect */
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-}
-
-.geocities-button img {
-  width: 20px;
-  height: auto;
-  vertical-align: middle;
-  margin-right: 8px; /* More space next to icon */
-}
-
-/* ADDED: Styling for the toggle icon */
 .toggle-icon {
-  font-size: 0.9em;
-  font-weight: bold;
-  color: #ff80bf; /* Use accent color */
-  margin-left: 10px;
-  transition: transform 0.2s ease-in-out;
+  font-size: 0.8em;
+  color: var(--brand-2);
+  transition: transform 0.2s ease;
 }
 
-/* ADDED: Styling for the job details list when expanded */
+.job-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.job-meta p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.job-meta strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.job-meta a {
+  color: var(--brand);
+  text-decoration: none;
+}
+
+.job-meta a:hover {
+  text-decoration: underline;
+}
+
+/* Job Tags */
+.job-tags {
+  display: flex;
+  gap: 6px; /* match projects page */
+  flex-wrap: wrap;
+}
+
+.tag {
+  padding: 4px 10px;                 /* match .tag-badge */
+  border-radius: 999px;               /* pill */
+  font-size: 12px;
+  font-weight: 700;                   /* match weight */
+  border: 1px solid var(--border);
+  background: color-mix(in oklab, var(--brand) 15%, transparent);
+  color: var(--text);
+}
+
+/* Job Details */
 .job-details {
-  list-style-type: disc;
-  margin-left: 20px; /* Keep original indentation */
-  padding-left: 15px;
-  margin-top: 10px; /* Space between title and details */
-  animation: fadeInDetails 0.5s ease-out; /* ADDED: Fade-in animation */
+  list-style: disc;               /* standard bullets */
+  padding-left: 1.2em;            /* modest indent */
+  margin: 16px 0 0 0;
+  animation: expandDetails 0.3s ease-out;
 }
 
 .job-details li {
-  margin-bottom: 8px;
-  line-height: 1.55;
+  padding: 6px 0;                 /* lighter spacing */
+  padding-left: 0;                /* no extra indent (marker handles it) */
+  position: static;               /* reset from relative */
+  line-height: 1.6;
+  color: var(--text);
 }
 
-/* ADDED: Keyframes for fade-in animation */
-@keyframes fadeInDetails {
+/* Use a subtle marker and remove custom triangle */
+.job-details li::before { content: none; }
+.job-details li::marker { color: var(--muted); font-size: 0.9em; }
+
+@keyframes expandDetails {
   from {
     opacity: 0;
     transform: translateY(-10px);
@@ -226,73 +341,264 @@
   }
 }
 
-/* Responsive adjustments */
-@media (max-width: 885px) {
+/* Skills Visualization */
+.skills-visualization {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.skill-category {
+  background: linear-gradient(135deg, var(--panel), var(--panel-2));
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+
+.skill-category h5 {
+  margin: 0 0 16px 0;
+  color: var(--brand);
+  font-size: 1.2em;
+  font-weight: 700;
+}
+
+.skill-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.skill-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.skill-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.skill-name {
+  font-size: 14px;
+  color: var(--text);
+  font-weight: 500;
+}
+
+.skill-percentage {
+  font-size: 12px;
+  color: var(--brand);
+  font-weight: 600;
+}
+
+.skill-bar {
+  height: 6px;
+  background: var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+  position: relative;
+}
+
+.skill-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--brand), var(--brand-2));
+  border-radius: 3px;
+  animation: fillSkill 1.5s ease-out;
+  position: relative;
+}
+
+.skill-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes fillSkill {
+  from { width: 0% !important; }
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Education */
+.education-entry {
+  background: linear-gradient(135deg, var(--panel), var(--panel-2));
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+
+.education-entry h5 {
+  color: var(--brand);
+  font-size: 1.2em;
+  margin: 0 0 8px 0;
+  font-weight: 700;
+}
+
+.education-entry p {
+  margin: 0;
+  color: var(--text);
+  line-height: 1.6;
+}
+
+/* Recommendations */
+.recommendations {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.recommendation-card {
+  background: linear-gradient(135deg, var(--panel), var(--panel-2));
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  position: relative;
+  transition: transform 0.2s ease;
+}
+
+.recommendation-card:hover {
+  transform: translateY(-2px);
+}
+
+.quote-mark {
+  font-size: 3em;
+  color: var(--brand);
+  opacity: 0.3;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.recommendation-card p {
+  margin: 0 0 12px 0;
+  line-height: 1.6;
+  color: var(--text);
+  font-style: italic;
+}
+
+.recommendation-source {
+  font-size: 12px;
+  color: var(--brand);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Print Styles */
+@media print {
+  .resume-actions,
+  .resume-filter,
+  .copy-feedback {
+    display: none !important;
+  }
+  
   .page-content {
-    padding: 15px;
+    max-width: none;
+    padding: 0;
+    margin: 0;
   }
-  .resume-header h2 {
-    font-size: 2em;
+  
+  .job-entry,
+  .skill-category,
+  .education-entry,
+  .recommendation-card {
+    break-inside: avoid;
+    margin-bottom: 16px;
   }
-  .resume-name {
-    font-size: 1.5em;
+  
+  .skill-fill {
+    animation: none;
   }
-  .page-content h4 { /* MODIFIED: Responsive adjustments for section titles */
-    font-size: 1.4em;
-    margin-bottom: 20px;
-    padding-bottom: 8px;
-    letter-spacing: 1px;
+  
+  .timeline-line {
+    display: none;
   }
-  .job-entry, .education-entry, .additional-entry {
-    padding: 15px; /* MODIFIED: Reduce padding from 20px for cards */
-    margin-bottom: 25px; /* MODIFIED: Slightly reduce margin from 30px */
-    /* Removed general font-size: 0.95em; rely on more specific styles */
-  }
-  .resume-divider {
-    margin: 25px 0; /* MODIFIED: Adjusted spacing */
+  
+  .job-entry.timeline-item::before {
+    display: none;
   }
 }
 
-@media (max-width: 600px) {
-  .resume-header h2 {
-    font-size: 1.8em;
+/* Responsive Design */
+@media (max-width: 768px) {
+  .page-content {
+    padding: 16px;
   }
-  .resume-name {
-    font-size: 1.3em;
+  
+  .resume-actions {
+    flex-direction: column;
+    align-items: center;
   }
-  .contact-info {
-    font-size: 0.9em;
+  
+  .contact-actions {
+    flex-direction: column;
   }
-  .contact-info a {
-    display: block;
-    margin: 8px 0; /* MODIFIED: Increased margin for stacked links */
+  
+  .resume-stats {
+    grid-template-columns: repeat(2, 1fr);
   }
-  .page-content h4 { /* MODIFIED: Responsive adjustments for section titles */
-    font-size: 1.25em; /* Further adjust */
-    margin-bottom: 18px;
-    padding-bottom: 7px;
-    letter-spacing: 0.8px;
+  
+  .skills-visualization {
+    grid-template-columns: 1fr;
   }
-  .job-entry, .education-entry, .additional-entry { /* MODIFIED: Responsive adjustments for cards */
-    padding: 12px;
-    margin-bottom: 20px;
-    border-left-width: 4px; /* Slightly thinner border for smaller cards */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Softer shadow for smaller cards */
+  
+  .recommendations {
+    grid-template-columns: 1fr;
   }
-  .job-entry h5,
-  .education-entry h5,
-  .additional-entry h5 {
-    font-size: 1.1em;
+  
+  .experience-container.timeline {
+    padding-left: 20px;
   }
-  .job-entry p,
-  .education-entry p,
-  .additional-entry p,
-  .job-entry ul li,
-  .skills-list li {
-    font-size: 0.92em;
+  
+  .timeline-line {
+    left: 10px;
   }
-  .geocities-button {
-    padding: 10px 18px;
-    font-size: 0.95em;
+  
+  .job-entry.timeline-item::before {
+    left: -31px;
+  }
+  
+  .category-filters {
+    justify-content: center;
+  }
+  
+  .filter-label {
+    width: 100%;
+    text-align: center;
   }
 }
+
+@media (max-width: 480px) {
+  .resume-header h2 {
+    font-size: 2em;
+  }
+  
+  .resume-name {
+    font-size: 1.6em;
+  }
+  
+  .resume-stats {
+    grid-template-columns: 1fr;
+  }
+  
+  .stat-number {
+    font-size: 1.5em;
+  }
+}
+
+/* Remove timeline view styles */
+.experience-container.timeline { all: unset; }
+.timeline-line { display: none !important; }
+.job-entry.timeline-item { all: unset; }
+.job-entry.timeline-item::before { display: none !important; content: none !important; }

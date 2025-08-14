@@ -127,7 +127,7 @@ reviewbrah-db/
 - **No routing library**: Page swapping is handled by state in `App.tsx` for simplicity and static deployment.
 - **All filtering, sorting, and pagination** are performed on the client, in-memory.
 - **Stats page** is a separate component, not a route.
-- **Loading spinner** is reusable for any async operation—just set `loading` to `true`.
+- **Loading spinner** is reusable for any async operation - just set `loading` to `true`.
 - **Design is modern, accessible, and mobile-friendly**.
 - **SVG logos** must be named and mapped exactly as in the enum/mapping.
 - **If the database grows large**, consider splitting `realReviews.ts` or loading data in chunks (see lazy loading section).
@@ -135,14 +135,14 @@ reviewbrah-db/
 ---
 
 ## 📁 File Structure (Summary)
-- `src/App.tsx` — Main app, state, filtering, pagination, loading, navigation
-- `src/Stats.tsx` — Stats page (top restaurants, ratings distribution)
-- `src/data/realReviews.ts` — All review data
-- `src/types/Review.ts` — Types and enums
-- `src/components/ReviewCard.tsx` — Review card UI and logo mapping
-- `src/components/LoadingSpinner.tsx` — Custom spinner
-- `src/logos/` — SVG logos
-- `public/loading.png` — Spinner image
+- `src/App.tsx` - Main app, state, filtering, pagination, loading, navigation
+- `src/Stats.tsx` - Stats page (top restaurants, ratings distribution)
+- `src/data/realReviews.ts` - All review data
+- `src/types/Review.ts` - Types and enums
+- `src/components/ReviewCard.tsx` - Review card UI and logo mapping
+- `src/components/LoadingSpinner.tsx` - Custom spinner
+- `src/logos/` - SVG logos
+- `public/loading.png` - Spinner image
 
 ---
 

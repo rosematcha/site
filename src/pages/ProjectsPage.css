@@ -1,149 +1,143 @@
+/* Projects grid: one per row */
 .project-showcase-container {
   display: grid;
-  grid-template-columns: repeat(
-    auto-fit,
-    minmax(300px, 1fr)
-  );
-  gap: 25px;
-  margin-top: 20px;
+  grid-template-columns: 1fr; /* single column at all widths */
+  gap: var(--space-5);
+  margin-top: var(--space-4);
 }
 
 .project-entry-card {
-  background-color: rgba(50, 20, 70, 0.4);
-  border: 2px solid #ff80bf;
-  border-radius: 8px;
-  padding: 20px;
+  background: linear-gradient(180deg, var(--panel), var(--panel-2));
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: var(--space-5);
   display: flex;
-  flex-direction: column;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  flex-direction: column; /* stack by default for small screens */
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+  transition:
+    transform var(--press-dur, 150ms) ease,
+    box-shadow var(--press-dur, 150ms) ease;
+}
+
+/* Removed legacy order rules; CTA now lives inside .project-details */
+/* .project-thumbnail-link { order: 1; }
+.project-details { order: 2; }
+.project-link-button { order: 3; } */
+
+/* Clean horizontal card layout on wider screens using grid */
+@media (min-width: 900px) {
+  .project-entry-card {
+    display: grid;
+    grid-template-columns: clamp(260px, 36%, 380px) 1fr;
+    grid-template-areas:
+      "media details"
+      "media details"; /* two-row grid keeps balanced height; CTA stays within details */
+    align-items: start;
+    gap: var(--space-6);
+  }
+  .project-thumbnail-link { grid-area: media; margin-bottom: 0; }
+  .project-details {
+    grid-area: details;
+    display: flex;            /* keep flex for simple vertical flow */
+    flex-direction: column;
+    gap: var(--space-3);
+    max-width: 62ch;
+  }
 }
 
 .project-entry-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(255, 128, 191, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Respect reduced motion: no hover motion */
+@media (prefers-reduced-motion: reduce) {
+  .project-entry-card { transition: box-shadow var(--press-dur, 150ms) ease; }
+  .project-entry-card:hover { transform: none; }
 }
 
 .project-thumbnail-link {
-  display: block; /* Make the link a block for the image */
-  margin-bottom: 15px;
-  border-radius: 6px; /* Rounded corners for the image container */
-  overflow: hidden; /* Ensure image stays within rounded corners */
-  border: 1px solid #ffb3da; /* Subtle pink border around thumbnail */
+  display: block;
+  margin-bottom: 12px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border);
 }
 
 .project-thumbnail {
   width: 100%;
-  height: auto; /* Maintain aspect ratio */
-  display: block; /* Remove extra space below image */
-  aspect-ratio: 16 / 9; /* Or your preferred aspect ratio, e.g., 4/3, 1/1 */
-  object-fit: cover; /* Cover the area, might crop a bit */
-  border-radius: 5px; /* Match link's border-radius if image itself needs it */
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
 }
 
 .project-details {
-  flex-grow: 1; /* Allows button to be pushed to bottom if card heights vary */
   display: flex;
   flex-direction: column;
+  gap: 10px;
 }
 
+/* Louder titles without heavy dividers */
 .project-details h3 {
-  margin-top: 0;
-  margin-bottom: 10px;
-  border-bottom: 1px dotted #ff80bf;
-  padding-bottom: 5px;
+  margin: 0 0 4px 0;
+  border-bottom: none;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  color: color-mix(in oklab, var(--text) 85%, var(--brand-2) 15%);
 }
 
 .project-details h3 a {
-  color: inherit; /* Inherit pink from h3 */
+  color: inherit;
   text-decoration: none;
 }
 
 .project-details h3 a:hover {
   text-decoration: underline;
-  color: #ffffff; /* White on hover */
+  text-decoration-color: color-mix(in oklab, var(--brand) 60%, var(--brand-2) 40%);
 }
 
 .project-description {
-  font-size: 0.95em;
-  color: #e0cff0; /* Main paragraph text color */
-  line-height: 1.6;
-  margin-bottom: 12px;
-  flex-grow: 1; /* Pushes tech and button down */
+  color: var(--muted);
+  margin: 2px 0 4px;
+  max-width: 62ch; /* add breathing room on wide cards */
 }
 
-.project-tech {
-  font-size: 0.85em;
-  color: #ffb3da; /* Light pink for tech stack */
-  margin-bottom: 15px;
-  font-style: italic;
-}
-
-.project-tech strong {
-  color: #f0e6ff; /* Light lavender for "Tech:" label */
-  font-style: normal;
-}
-
+/* CTA under description, larger and aligned to start */
 .project-link-button {
-  /* Uses .geocities-button styles from PageStyles.css */
-  /* Add any specific overrides or additional styles here if needed */
-  display: inline-block; /* Ensure it behaves like a button */
-  text-align: center;
-  margin-top: auto; /* Pushes button to the bottom of the card */
-  align-self: center; /* Center button if it's narrower than card */
-  padding: 8px 18px; /* Slightly smaller padding for project buttons */
+  display: inline-flex; /* uses shared .button styles as base */
+  align-self: start;
+  padding: 12px 20px;
+  font-size: 15px;
+  margin-top: var(--space-2);
 }
 
-.project-tags {
-  margin-top: 10px;
-  margin-bottom: 15px;
+/* Unified tags row at the very bottom */
+.project-tags-row { display: none; }
+@media (min-width: 900px) {
+  .project-tags-row { display: none; }
 }
 
-.project-tags p {
-  margin-bottom: 5px;
-  font-size: 0.9em;
-  color: #f0e6ff;
-}
-
-.tag-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 5px;
-  margin-bottom: 10px;
-}
-
+/* Keep badge visuals */
 .tag-badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 4px 10px;
-  border-radius: 15px; /* Makes it pill-shaped */
-  font-size: 0.75em;
-  font-weight: bold;
-  text-transform: lowercase;
-  white-space: nowrap;
-  border: 1px solid;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  border: 1px solid var(--border);
 }
+.tech-tag { background: color-mix(in oklab, var(--brand-2) 15%, transparent); color: var(--text); }
+.category-tag { background: color-mix(in oklab, var(--brand) 12%, transparent); color: var(--text); }
 
-.tech-tag {
-  background-color: rgba(128, 0, 128, 0.3); /* Purple */
-  color: #ffb3da;
-  border-color: #ff80bf;
-}
-
-.category-tag {
-  background-color: rgba(255, 105, 180, 0.3); /* Hot pink */
-  color: #f0e6ff;
-  border-color: #ffb3da;
-}
+/* Remove old grouped tag layout (kept for backward compatibility if present) */
+.project-tags { display: none; }
 
 @media (max-width: 885px) {
   .project-showcase-container {
     grid-template-columns: 1fr;
-    gap: 12px;
+    gap: var(--space-4);
   }
   .project-entry-card {
-    padding: 10px;
-    font-size: 0.98em;
+    padding: var(--space-4);
   }
 }

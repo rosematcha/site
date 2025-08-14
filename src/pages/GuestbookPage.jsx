@@ -30,7 +30,7 @@ function GuestbookPage() {
       const data = await response.json();
       setEntries(data);
     } catch (error) {
-      console.error("Error fetching guestbook entries:", error);
+      console.error("[Guestbook] Error fetching entries:", error);
       setFetchError(error.message);
       setEntries([]); // Optionally clear entries or show a persistent error
     } finally {
@@ -66,24 +66,17 @@ function GuestbookPage() {
         }, 2500); // Adjust delay if needed
       } else {
         const errorText = await response.text();
-        console.error("Form submission HTTP error:", response.status, errorText);
+        console.error("[Guestbook] Form submission HTTP error:", response.status, errorText);
         setSubmissionStatus("error");
       }
     } catch (error) {
-      console.error("Form submission network/JS error:", error);
+      console.error("[Guestbook] Form submission network/JS error:", error);
       setSubmissionStatus("error");
     }
   };
 
   return (
     <div className="page-content guestbook-container">
-      <div style={{ textAlign: "center" }}>
-        <img
-          src="/img/sign_my_guestbook.gif"
-          alt="Sign My Guestbook!"
-          style={{ marginBottom: "15px", maxWidth: "200px" }}
-        />
-      </div>
       <h2>Sign the Guestbook!</h2>
 
       <form
@@ -95,7 +88,7 @@ function GuestbookPage() {
         className="guestbook-form"
       >
         <input type="hidden" name="form-name" value="guestbook" />
-        <p className="hidden-field" style={{ display: "none" }}>
+        <p className="hidden visually-hidden">
           <label>
             Don’t fill this out if you’re human: <input name="bot-field" />
           </label>
@@ -139,21 +132,10 @@ function GuestbookPage() {
         </div>
         <button
           type="submit"
-          className="submit-button"
+          className="button"
           disabled={submissionStatus === "submitting"}
         >
-          {submissionStatus === "submitting" ? (
-            "Posting..."
-          ) : (
-            <>
-              <img
-                src="/img/submit_button_pixel.gif"
-                alt="Submit"
-                style={{ verticalAlign: "middle", marginRight: "5px" }}
-              />
-              Post Message
-            </>
-          )}
+          {submissionStatus === "submitting" ? "Posting..." : "Post Message"}
         </button>
 
         {submissionStatus === "success" && (
@@ -208,13 +190,9 @@ function GuestbookPage() {
         <p>No messages yet. Womp womp.</p>
       )}
 
-      <div style={{ textAlign: "center", marginTop: "30px" }}>
-        <Link to="/" className="geocities-button">
-          <img
-            src="/img/back_button.gif"
-            alt="Back to Home"
-            style={{ verticalAlign: "middle", marginRight: "5px" }}
-          />
+      <div className="text-center mt-7">
+        <Link to="/" className="button">
+          <svg className="icon-inline mr-2" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M10 19l-7-7 7-7v4h8v6h-8v4z"/></svg>
           Back to Home
         </Link>
       </div>

@@ -1,104 +1,122 @@
 // src/components/Footer.jsx
-import React, { useRef, useState, useEffect, useCallback } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import quotes from "../assets/quotes";
 
-function getRandomQuote(lastIndex) {
-  let idx;
-  do {
-    idx = Math.floor(Math.random() * quotes.length);
-  } while (quotes.length > 1 && idx === lastIndex);
-  return idx;
+const SPEED_PX_PER_S = 80; // px per second; tune via token if desired
+
+function usePrefersReducedMotion() {
+  const [reduced, setReduced] = useState(false);
+  useEffect(() => {
+    if (typeof window === "undefined" || typeof window.matchMedia !== "function") return;
+    const mql = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const onChange = (e) => setReduced(e.matches);
+    setReduced(mql.matches);
+    if (typeof mql.addEventListener === "function") mql.addEventListener("change", onChange);
+    else if (typeof mql.addListener === "function") mql.addListener(onChange);
+    return () => {
+      if (typeof mql.removeEventListener === "function") mql.removeEventListener("change", onChange);
+      else if (typeof mql.removeListener === "function") mql.removeListener(onChange);
+    };
+  }, []);
+  return reduced;
 }
 
-const MARQUEE_SPEED = 80; // px per second (adjust for desired speed)
+function pickRandomQuote(prev) {
+  if (!Array.isArray(quotes) || quotes.length === 0) return "";
+  if (quotes.length === 1) return quotes[0];
+  let q = prev;
+  // avoid immediate repeat
+  while (q === prev) {
+    q = quotes[Math.floor(Math.random() * quotes.length)];
+  }
+  return q;
+}
 
 function Footer() {
-  const currentYear = new Date().getFullYear();
-  const [quoteIndex, setQuoteIndex] = useState(() => getRandomQuote(-1));
-  const lastIndexRef = useRef(quoteIndex);
-  const textRef = useRef(null);
   const containerRef = useRef(null);
-  const [animKey, setAnimKey] = useState(0);
-  const [duration, setDuration] = useState(0);
-  const [distance, setDistance] = useState(0);
+  const trackRef = useRef(null);
 
-  function renderQuote(text) {
-    return <><span role="img" aria-label="sparkle">✨</span> {text} <span role="img" aria-label="sparkle">✨</span></>;
-  }
+  const initialQuote = useMemo(() => pickRandomQuote(undefined), []);
+  const [quote, setQuote] = useState(initialQuote);
+  const [cycle, setCycle] = useState(0);
 
-  // Calculate animation duration and distance based on text width
-  const setupAnimation = useCallback(() => {
-    const textEl = textRef.current;
-    const container = containerRef.current;
-    if (!textEl || !container) return;
-    const textWidth = textEl.offsetWidth;
-    const containerWidth = container.offsetWidth;
-    // Distance to travel: textWidth + containerWidth
-    const totalDistance = textWidth + containerWidth;
-    const newDuration = totalDistance / MARQUEE_SPEED;
-    setDuration(newDuration);
-    setDistance(totalDistance);
-    setAnimKey((k) => k + 1); // force re-render to restart animation
+  const reduced = usePrefersReducedMotion();
+
+  // Dev override: allow ?motion=on or <html class="allow-motion"> to bypass reduced motion for testing
+  const effectiveReduced = useMemo(() => {
+    try {
+      if (typeof document !== "undefined" && document.documentElement.classList.contains("allow-motion")) return false;
+      if (typeof window !== "undefined") {
+        const p = new URLSearchParams(window.location.search).get("motion");
+        if (p === "on") return false;
+      }
+    } catch {}
+    return reduced;
+  }, [reduced]);
+
+  useEffect(() => {
+    if (typeof document === "undefined") return;
+    const p = new URLSearchParams(window.location.search).get("motion");
+    if (p === "on") document.documentElement.classList.add("allow-motion");
+    if (p === "off") document.documentElement.classList.remove("allow-motion");
   }, []);
 
-  // When quote changes, recalc duration and restart
   useEffect(() => {
-    setupAnimation();
-    // eslint-disable-next-line
-  }, [quoteIndex]);
+    if (effectiveReduced) return; // static display when reduced
+    const container = containerRef.current;
+    const track = trackRef.current;
+    if (!container || !track) return;
 
-  // On window resize, recalc duration
+    // Clear any running animation, then start a new one after measuring
+    track.style.animation = "none";
+
+    let raf = 0;
+    const start = () => {
+      const distance = container.clientWidth + track.scrollWidth; // px to travel
+      const durationMs = Math.max(8000, Math.round((distance / SPEED_PX_PER_S) * 1000));
+      // Set per-instance end translation using container width
+      track.style.setProperty("--marquee-x-end", `${-distance}px`);
+      // Force reflow
+      // eslint-disable-next-line no-unused-expressions
+      track.offsetHeight;
+      track.style.animation = `marquee-run ${durationMs}ms linear 1`;
+    };
+    raf = window.requestAnimationFrame(start);
+
+    return () => {
+      if (raf) cancelAnimationFrame(raf);
+      track.style.animation = "none";
+      track.style.removeProperty("--marquee-x-end");
+    };
+  }, [cycle, effectiveReduced]);
+
+  // Restart on resize to keep speed consistent for current viewport
   useEffect(() => {
-    window.addEventListener("resize", setupAnimation);
-    return () => window.removeEventListener("resize", setupAnimation);
-  }, [setupAnimation]);
+    if (effectiveReduced) return;
+    const onResize = () => setCycle((c) => c + 1);
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, [effectiveReduced]);
 
-  // When animation ends, pick a new quote
-  const handleAnimationEnd = () => {
-    const newIdx = getRandomQuote(lastIndexRef.current);
-    lastIndexRef.current = newIdx;
-    setQuoteIndex(newIdx);
+  const handleEnd = () => {
+    setQuote((prev) => pickRandomQuote(prev));
+    setCycle((c) => c + 1);
   };
 
   return (
-    <>
-      <div
-        className="custom-marquee-container"
-        ref={containerRef}
-        style={{ minHeight: 20 }}
-      >
+    <footer className="footer panel retro-marquee" role="contentinfo">
+      <div ref={containerRef} className="marquee" aria-hidden="true">
         <div
-          key={animKey}
-          ref={textRef}
-          className="custom-marquee-text"
-          style={{
-            position: "absolute",
-            left: '100%', // MODIFIED: Start off-screen to the right
-            top: "50%",
-            transform: "translateY(-50%)", // Base vertical centering
-            whiteSpace: "nowrap",
-            willChange: "transform",
-            animation: duration && distance
-              ? `marquee-scroll-px ${duration}s linear 1`
-              : undefined,
-            // Custom property for dynamic distance
-            ['--marquee-distance']: distance ? `-${distance}px` : undefined,
-          }}
-          onAnimationEnd={handleAnimationEnd}
+          ref={trackRef}
+          key={`marquee-cycle-${cycle}`}
+          className="marquee__track"
+          onAnimationEnd={handleEnd}
         >
-          {renderQuote(quotes[quoteIndex])}
+          {quote}
         </div>
       </div>
-      <div style={{ textAlign: "center", color: "#ffb3da", fontSize: "0.95em", margin: "10px 20px 20px 20px" }}>
-        &copy; {currentYear}
-      </div>
-    </>
+    </footer>
   );
 }
 
 export default Footer;
-// Add this to your CSS (index.css):
-// @keyframes marquee-scroll {
-//   0% { transform: translateX(0); }
-//   100% { transform: translateX(-100%); }
-// }

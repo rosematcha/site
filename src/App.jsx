@@ -12,7 +12,7 @@ function App() {
   return (
     <>
       <Header />
-      <main style={{ flexGrow: 1 }}>
+      <main className="panel page">
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/projects" element={<ProjectsPage />} />
