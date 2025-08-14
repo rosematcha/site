@@ -1,8 +1,9 @@
 // src/pages/ProjectsPage.jsx
-import React from "react";
+import React, { useEffect } from "react";
 import "./PageStyles.css";
 import "./ProjectsPage.css";
 import { projectsData } from "../data/projects";
+import { warmProjectsThumbnails } from "../utils/prefetch";
 
 function getProjectUrl(path) {
   if (!path) return undefined;
@@ -11,6 +12,10 @@ function getProjectUrl(path) {
 }
 
 function ProjectsPage() {
+  useEffect(() => {
+    // Ensure warming kicks off even on direct loads or fast clicks
+    warmProjectsThumbnails();
+  }, []);
   return (
     <div className="page-content">
       <h2 className="text-center">My Projects</h2>
@@ -19,7 +24,7 @@ function ProjectsPage() {
       </p>
 
       <div className="project-showcase-container">
-        {projectsData.map((project) => (
+        {projectsData.map((project, idx) => (
           <div key={project.id} className="project-entry-card">
             <a
               href={getProjectUrl(project.path)}
@@ -31,6 +36,12 @@ function ProjectsPage() {
                 src={project.thumbnail}
                 alt={`${project.title} thumbnail`}
                 className="project-thumbnail"
+                loading={idx < 2 ? "eager" : "lazy"}
+                decoding="async"
+                // First two items likely above the fold on desktop; boost priority
+                fetchpriority={idx < 2 ? "high" : "auto"}
+                // Provide a sizes hint to help the browser choose efficient candidate
+                sizes="(min-width: 900px) 36vw, 100vw"
               />
             </a>
             <div className="project-details">

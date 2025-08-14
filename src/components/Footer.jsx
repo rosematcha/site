@@ -50,7 +50,9 @@ function Footer() {
         const p = new URLSearchParams(window.location.search).get("motion");
         if (p === "on") return false;
       }
-    } catch {}
+    } catch (e) {
+      // ignore URL/search parsing errors in exotic environments
+    }
     return reduced;
   }, [reduced]);
 
@@ -67,18 +69,22 @@ function Footer() {
     const track = trackRef.current;
     if (!container || !track) return;
 
-    // Clear any running animation, then start a new one after measuring
-    track.style.animation = "none";
+  // Clear any running animation, then start a new one after measuring
+  track.style.animation = "none";
 
     let raf = 0;
     const start = () => {
-      const distance = container.clientWidth + track.scrollWidth; // px to travel
-      const durationMs = Math.max(8000, Math.round((distance / SPEED_PX_PER_S) * 1000));
-      // Set per-instance end translation using container width
-      track.style.setProperty("--marquee-x-end", `${-distance}px`);
-      // Force reflow
-      // eslint-disable-next-line no-unused-expressions
-      track.offsetHeight;
+      const containerWidth = container.clientWidth;
+      const trackWidth = track.scrollWidth;
+      const distance = containerWidth + trackWidth; // px to travel
+      // add ~5% of the container width as off-screen breathing on each edge
+      const pad = Math.round(containerWidth * 0.05);
+      const durationMs = Math.max(8000, Math.round(( (distance + pad * 2) / SPEED_PX_PER_S) * 1000));
+      // Start slightly offset to the right (+pad), end past the left by distance+pad
+      track.style.setProperty("--marquee-x-start", `${pad}px`);
+      track.style.setProperty("--marquee-x-end", `${-(distance + pad)}px`);
+  // Force reflow
+  void track.offsetHeight;
       track.style.animation = `marquee-run ${durationMs}ms linear 1`;
     };
     raf = window.requestAnimationFrame(start);
@@ -87,6 +93,7 @@ function Footer() {
       if (raf) cancelAnimationFrame(raf);
       track.style.animation = "none";
       track.style.removeProperty("--marquee-x-end");
+      track.style.removeProperty("--marquee-x-start");
     };
   }, [cycle, effectiveReduced]);
 

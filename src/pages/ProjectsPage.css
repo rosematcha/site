@@ -7,13 +7,13 @@
 }
 
 .project-entry-card {
-  background: linear-gradient(180deg, var(--panel), var(--panel-2));
+  background: var(--chrome-top);
   border: 1px solid var(--border);
   border-radius: 14px;
   padding: var(--space-5);
   display: flex;
   flex-direction: column; /* stack by default for small screens */
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22);
   transition:
     transform var(--press-dur, 150ms) ease,
     box-shadow var(--press-dur, 150ms) ease;
@@ -47,7 +47,7 @@
 
 .project-entry-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.28);
 }
 
 /* Respect reduced motion: no hover motion */

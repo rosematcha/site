@@ -1,16 +1,19 @@
 :root {
-  --bg: #faf9fb;
-  --panel: #ffffff;
-  --panel-2: #fff7fb;
+  --bg: #fff7fa;
+  --panel: #fffafc;
+  --panel-2: #fff1f6;
   --text: #1d1220;
-  --muted: #6b5b68;
+  --muted: #7a5a66;
   --brand: #ff3e8a; /* hot pink */
   --brand-2: #ff8fc0; /* lighter pink */
   --ring: rgba(255, 62, 138, 0.35);
   --border: #f1d5e4; /* pinkish border */
+  /* high-contrast heading color */
+  --heading: #14080e;
   --marquee-duration: 20s;
   --marquee-distance: 100%;
-  --chrome-top: linear-gradient(180deg, #ffe4f0, #ffd2e8 55%, #ffc1df);
+  /* warmer pink-forward chrome */
+  --chrome-top: linear-gradient(180deg, #ffe7f3, #ffd6ea 55%, #ffc6e4);
   --chrome-accent: color-mix(in oklab, var(--brand) 62%, var(--brand-2));
   /* Feedback tokens */
   --success: #16a34a; /* green-600 */
@@ -35,13 +38,15 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #120f13;
-    --panel: #18151a;
-    --panel-2: #201a20;
-    --text: #f7f2f7;
-    --muted: #bda8b9;
-    --border: #3b2f39;
-    --chrome-top: linear-gradient(180deg, #2a1f28, #241b24 55%, #1e1620);
+  --bg: #140a10;
+  --panel: #1b1217;
+  --panel-2: #23161c;
+  --text: #f7f2f7;
+  --muted: #c9a1b3;
+  --border: #5b3546;
+  --heading: #fff5f9;
+  /* pink-forward dark chrome - lifted to contrast against panel */
+  --chrome-top: linear-gradient(180deg, #451a2d, #381826 55%, #2f1a24);
     /* Feedback tokens can remain; adjust if needed in the future */
   }
 }
@@ -57,9 +62,7 @@ html, body { overflow-x: hidden; }
 
 body {
   margin: 0;
-  background: radial-gradient(1200px 800px at 10% -10%, rgba(255,143,192,0.18), transparent),
-              radial-gradient(1000px 700px at 110% 10%, rgba(255,62,138,0.15), transparent),
-              var(--bg);
+  background: var(--bg);
   color: var(--text);
   font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
   line-height: 1.6;
@@ -88,7 +91,7 @@ body { padding-bottom: 0; }
 #root::after { display: none; }
 
 /* Headings */
-h1, h2, h3, h4, h5 { font-weight: 700; letter-spacing: -0.02em; color: var(--text); margin: 0; }
+h1, h2, h3, h4, h5 { font-weight: 700; letter-spacing: -0.02em; color: var(--heading, var(--text)); margin: 0; }
 h1 { font-size: clamp(30px, 6vw, 42px); }
 h2 { font-size: clamp(22px, 3.5vw, 28px); }
 h3 { font-size: clamp(18px, 2.8vw, 22px); }
@@ -99,7 +102,7 @@ a:hover { text-decoration: underline; text-decoration-color: color-mix(in oklab,
 
 /* Panels */
 .panel {
-  background: linear-gradient(180deg, var(--panel), var(--panel-2));
+  background: var(--panel);
   border: 1px solid var(--border);
   border-radius: 14px;
   box-shadow: 0 6px 20px rgba(0,0,0,0.08);
@@ -115,9 +118,10 @@ a:hover { text-decoration: underline; text-decoration-color: color-mix(in oklab,
   inset: 0;
   border-radius: inherit;
   pointer-events: none;
+  /* soften bevel to reduce chrome visual weight */
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.8),
-    inset 0 -1px 0 rgba(255,255,255,0.6);
+    inset 0 1px 0 rgba(255,255,255,0.5),
+    inset 0 -1px 0 rgba(255,255,255,0.35);
 }
 /* Prevent stacked chrome on the header panel */
 .main-header.panel::before { display: none; }
@@ -198,14 +202,10 @@ a:hover { text-decoration: underline; text-decoration-color: color-mix(in oklab,
 }
 .main-header .main-nav a:hover { background: color-mix(in oklab, var(--panel) 80%, var(--brand-2) 20%); text-decoration: none; }
 .main-header .main-nav a.active {
-  background: linear-gradient(
-    180deg,
-    color-mix(in oklab, var(--brand-2) 60%, white 40%) 0%,
-    color-mix(in oklab, var(--brand-2) 50%, var(--brand) 50%) 60%,
-    color-mix(in oklab, var(--brand-2) 60%, white 40%) 100%
-  );
+  /* flatter active state */
+  background: color-mix(in oklab, var(--brand-2) 35%, var(--panel) 65%);
   border-color: color-mix(in oklab, var(--border) 55%, var(--brand) 45%);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.55), inset 0 -1px 0 rgba(255,255,255,0.35);
+  box-shadow: none;
 }
 
 /* Footer */
@@ -231,7 +231,8 @@ footer.footer.panel::before { display: none; }
   position: absolute;
   left: 100%;
   top: 50%;
-  transform: translateY(-50%);
+  /* allow an x-offset at start via --marquee-x-start (default 0px) */
+  transform: translateY(-50%) translateX(var(--marquee-x-start, 0px));
   white-space: nowrap;
   will-change: transform;
   pointer-events: none;
@@ -242,7 +243,10 @@ footer.footer.panel::before { display: none; }
   text-shadow: 0 1px 0 color-mix(in oklab, var(--panel) 60%, var(--brand-2) 40%);
 }
 @keyframes marquee-run {
-  from { transform: translateY(-50%) translateX(0); }
+  /* Animate from a configurable start X to a configurable end X. JS will set
+    --marquee-x-start (e.g. +pad px) and --marquee-x-end (e.g. -{distance+pad}px)
+    to give a bit of off-screen breathing at both edges. */
+  from { transform: translateY(-50%) translateX(var(--marquee-x-start, 0px)); }
   to { transform: translateY(-50%) translateX(var(--marquee-x-end, calc(-100vw - 100%))); }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -265,7 +269,7 @@ footer.footer.panel::before { display: none; }
 
 /* Buttons */
 .button, .geocities-button, .project-link-button, .submit-button {
-  --btn-bg: color-mix(in oklab, var(--brand) 60%, var(--brand-2));
+  --btn-bg: color-mix(in oklab, var(--brand) 50%, var(--brand-2));
   --btn-fg: white;
   display: inline-flex;
   align-items: center;
@@ -284,10 +288,10 @@ footer.footer.panel::before { display: none; }
   appearance: none;
   cursor: pointer; /* ensure pointer on anchors too */
   transition: transform var(--press-dur, 150ms) ease, box-shadow var(--press-dur, 150ms) ease, opacity .2s ease;
-  box-shadow: 0 6px 14px rgba(236,72,153,0.25);
+  box-shadow: 0 4px 12px rgba(236,72,153,0.18);
 }
 .button:hover, .geocities-button:hover, .project-link-button:hover, .submit-button:hover {
-  text-decoration: none; transform: translateY(-1px); box-shadow: 0 10px 22px rgba(236,72,153,0.28);
+  text-decoration: none; transform: translateY(-1px); box-shadow: 0 6px 18px rgba(236,72,153,0.22);
 }
 .button:active, .geocities-button:active, .project-link-button:active, .submit-button:active {
   transform: translateY(0) scale(var(--press-scale, .97));
@@ -295,7 +299,7 @@ footer.footer.panel::before { display: none; }
 .button:focus-visible { outline: none; box-shadow: 0 0 0 4px var(--ring), 0 6px 14px rgba(236,72,153,0.25); }
 
 /* Small button variant */
-.button--sm { padding: 6px 12px; font-size: 13px; border-radius: 999px; box-shadow: 0 4px 10px rgba(236,72,153,0.18); }
+.button--sm { padding: 6px 12px; font-size: 13px; border-radius: 999px; box-shadow: 0 3px 8px rgba(236,72,153,0.16); }
 
 /* Ghost button variant (good for filter chips) */
 .button--ghost { --btn-bg: transparent; --btn-fg: var(--text); border-color: var(--border); box-shadow: none; background: transparent; color: var(--btn-fg); }

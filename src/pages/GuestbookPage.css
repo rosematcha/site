@@ -3,7 +3,7 @@
   padding: 16px;
   margin: 16px 0;
   border-radius: 14px;
-  background: linear-gradient(180deg, var(--panel), var(--panel-2));
+  background: var(--chrome-top);
 }
 
 .form-group {

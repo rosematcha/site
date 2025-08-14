@@ -52,6 +52,8 @@ function Header() {
                 className={({ isActive }) => (isActive ? "active" : "")}
                 onMouseEnter={onProjectsIntent}
                 onPointerEnter={onProjectsIntent}
+                onPointerDown={onProjectsIntent}
+                onMouseDown={onProjectsIntent}
                 onTouchStart={onProjectsIntent}
                 onFocus={onProjectsIntent}
               >
