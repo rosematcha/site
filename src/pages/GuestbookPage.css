@@ -69,6 +69,7 @@
   border-radius: 12px;
   padding: 14px;
   background: var(--panel);
+  margin: 10px 0;
 }
 
 .guestbook-entry .entry-meta {
