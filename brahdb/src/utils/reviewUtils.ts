@@ -12,7 +12,4 @@ function getRatingColor(rating: number | null) {
   return `font-bold text-[hsl(${hue},${sat}%,${light}%)]`;
 }
 
-// Global cache for logo load/error state
-const logoStatus: Record<string, 'loaded' | 'error' | undefined> = {};
-
-export { getRatingColor, logoStatus };
+export { getRatingColor };

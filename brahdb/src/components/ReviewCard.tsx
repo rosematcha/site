@@ -1,33 +1,33 @@
 import React, { useState, useEffect } from 'react';
 import type { Review } from '../types/Review';
 import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline';
+import { restaurantDisplay } from '../constants/restaurantDisplay';
+import { getRatingColor } from '../utils/reviewUtils';
+import { getLogoStatus } from '../hooks/useOptimizedLogos';
 
 interface ReviewCardProps {
   review: Review;
 }
-import { restaurantDisplay } from '../constants/restaurantDisplay';
-import { getRatingColor, logoStatus } from '../utils/reviewUtils';
 
 export const ReviewCard: React.FC<ReviewCardProps> = ({ review }) => {
   const { display, logo } = restaurantDisplay[review.restaurant] || { display: review.restaurant, logo: 'other' };
   const logoPath = `/brahdb/logos/${logo}.svg`;
-  // Use global cache to initialize state
-  const [logoLoaded, setLogoLoaded] = useState(() => logoStatus[logoPath] === 'loaded');
-  const [logoError, setLogoError] = useState(() => logoStatus[logoPath] === 'error');
+  
+  // Use optimized logo status cache to initialize state
+  const cachedStatus = getLogoStatus(logoPath);
+  const [logoLoaded, setLogoLoaded] = useState(() => cachedStatus === 'loaded');
+  const [logoError, setLogoError] = useState(() => cachedStatus === 'error');
 
   useEffect(() => {
-    // If logo is already loaded or errored, don't re-run
-    if (logoStatus[logoPath] === 'loaded') {
+    // Update state when cached status changes
+    const status = getLogoStatus(logoPath);
+    if (status === 'loaded') {
       setLogoLoaded(true);
       setLogoError(false);
-      return;
-    }
-    if (logoStatus[logoPath] === 'error') {
+    } else if (status === 'error') {
       setLogoLoaded(false);
       setLogoError(true);
-      return;
     }
-    // Otherwise, let the <img> handlers update state
   }, [logoPath]);
 
   return (
@@ -38,13 +38,12 @@ export const ReviewCard: React.FC<ReviewCardProps> = ({ review }) => {
           alt={`${display} logo`}
           className={`w-full h-full object-contain transition-opacity duration-300 ${logoLoaded && !logoError ? 'opacity-100' : 'opacity-0'}`}
           loading="lazy"
+          decoding="async"
           onLoad={() => {
-            logoStatus[logoPath] = 'loaded';
             setLogoLoaded(true);
             setLogoError(false);
           }}
           onError={() => {
-            logoStatus[logoPath] = 'error';
             setLogoLoaded(false);
             setLogoError(true);
           }}
