@@ -7,7 +7,7 @@ import { useReviews } from './hooks/useReviews';
 import { useFilters } from './hooks/useFilters';
 import type { SortOption } from './hooks/useFilters';
 import { usePagination } from './hooks/usePagination';
-import { useLogos } from './hooks/useLogos';
+import { useOptimizedLogos } from './hooks/useOptimizedLogos';
 import { restaurantDisplay } from './constants/restaurantDisplay';
 import Slider from '@mui/material/Slider';
 import { Dialog } from '@headlessui/react';
@@ -81,17 +81,18 @@ function App() {
   
   // Use custom hooks
   const { reviews, loading, error, refetch } = useReviews();
-  const { errors: logoErrors } = useLogos();
+  const { errors: logoErrors, loaded: logosLoaded, loadingCount, totalCount } = useOptimizedLogos();
 
   // Handle initial loading state
   useEffect(() => {
-    if (!loading) {
+    if (!loading && logosLoaded) {
       if (logoErrors.length > 0) {
-        console.warn('Some logos failed to load, continuing anyway');
+        console.warn(`${logoErrors.length} logos failed to load, continuing anyway`);
+        console.log(`Successfully loaded ${loadingCount}/${totalCount} logos`);
       }
       setInitialLoading(false);
     }
-  }, [loading, logoErrors]);
+  }, [loading, logosLoaded, logoErrors.length, loadingCount, totalCount]);
 
   // Handle view changes only (not filter changes)
   useEffect(() => {
