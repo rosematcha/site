@@ -4,6 +4,7 @@ import "./PageStyles.css";
 import "./ProjectsPage.css";
 import { projectsData } from "../data/projects";
 import { warmProjectsThumbnails } from "../utils/prefetch";
+import OptimizedImage from "../components/OptimizedImage";
 
 function getProjectUrl(path) {
   if (!path) return undefined;
@@ -16,6 +17,7 @@ function ProjectsPage() {
     // Ensure warming kicks off even on direct loads or fast clicks
     warmProjectsThumbnails();
   }, []);
+  
   return (
     <div className="page-content">
       <h2 className="text-center">My Projects</h2>
@@ -32,16 +34,23 @@ function ProjectsPage() {
               rel="noopener noreferrer"
               className="project-thumbnail-link"
             >
-              <img
+              <OptimizedImage
                 src={project.thumbnail}
                 alt={`${project.title} thumbnail`}
                 className="project-thumbnail"
                 loading={idx < 2 ? "eager" : "lazy"}
                 decoding="async"
                 // First two items likely above the fold on desktop; boost priority
-                fetchpriority={idx < 2 ? "high" : "auto"}
+                fetchPriority={idx < 2 ? "high" : "auto"}
                 // Provide a sizes hint to help the browser choose efficient candidate
                 sizes="(min-width: 900px) 36vw, 100vw"
+                placeholder={
+                  <div className="animate-pulse bg-gray-300 dark:bg-gray-600 rounded">
+                    <div className="h-full w-full flex items-center justify-center text-gray-400">
+                      Loading...
+                    </div>
+                  </div>
+                }
               />
             </a>
             <div className="project-details">
