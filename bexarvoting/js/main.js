@@ -12,6 +12,7 @@ import {
     getToggleStates,
     manageDisplay,
     refreshSelectionSummary,
+    updateChartDescription,
 } from "./ui.js";
 import { debouncedRenderChart } from "./chart.js";
 
@@ -74,6 +75,7 @@ const initialize = async () => {
     populateLocationDropdown(locationsFromURL);
     setupEventListeners();
     updateAttribution();
+    updateChartDescription();
     refreshSelectionSummary();
 
     // Initial render

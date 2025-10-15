@@ -11,7 +11,7 @@ const elements = {
     locationCheckboxContainer: document.getElementById("location-checkbox-container"),
     locationFilterInput: document.getElementById("location-filter"),
     selectAllButton: document.getElementById("select-all-locations"),
-    deselectAllButton: document.getElementById("deselect-all-locations"), // Corrected key
+    deselectAllButton: document.getElementById("deselect-all-locations"),
     earlyVotingToggle: document.getElementById("early-voting-toggle"),
     electionDayToggle: document.getElementById("election-day-toggle"),
     yAxisToggle: document.getElementById("y-axis-toggle"),
@@ -24,10 +24,15 @@ const elements = {
     resetViewButton: document.getElementById("reset-view-button"),
     presetButtonsContainer: document.getElementById("preset-buttons-container"),
     attribution: document.getElementById("attribution"),
-    selectionSummary: document.getElementById("selection-summary"),
+};
+
+// Chart description removed - no longer needed
+export const updateChartDescription = () => {
+    // Function kept for compatibility but does nothing
 };
 
 let statusMessageElement = null;
+const STATUS_WARNING_PREFIX = "Warning:";
 const numberFormatter = new Intl.NumberFormat("en-US", { maximumFractionDigits: 0 });
 
 export const updateURLFromState = () => {
@@ -50,55 +55,23 @@ export const updateURLFromState = () => {
 };
 
 export const refreshSelectionSummary = () => {
-    if (!elements.selectionSummary) return;
-
-    const years = getSelectedYears();
-    const locations = getSelectedLocations();
-    const { showEarlyVoting, showElectionDay, dataPresentation, displayAs } = getToggleStates();
-
-    const locationLabels = locations.map((loc) => (loc === TOTAL_TURNOUT_KEY ? "Total Turnout" : loc));
-    const yearSummary = formatReadableList(years, 4);
-    const locationSummary = locationLabels.length > 0 ? formatReadableList(locationLabels, 3) : "None";
-
-    const dataSegments = [];
-    if (showEarlyVoting) dataSegments.push("Early Voting");
-    if (showElectionDay) dataSegments.push("Election Day");
-    const dataSummary = dataSegments.length > 0 ? formatReadableList(dataSegments, 2) : "Hidden";
-
-    const modeSummary = dataPresentation === "cumulative" ? "Cumulative" : "Per-Day";
-    const displaySummary = displayAs === "table" ? "Table" : "Graph";
-    const summaryEntries = [
-        { title: "Years", value: yearSummary },
-        { title: "Locations", value: locationSummary },
-        { title: "Data", value: dataSummary },
-        { title: "View", value: `${modeSummary} • ${displaySummary}` },
-    ];
-
-    if (typeof elements.selectionSummary.replaceChildren === "function") {
-        elements.selectionSummary.replaceChildren();
-    } else {
-        elements.selectionSummary.innerHTML = "";
-    }
-    summaryEntries.forEach(({ title, value }) => {
-        const dl = document.createElement("dl");
-        const dt = document.createElement("dt");
-        dt.textContent = title;
-        const dd = document.createElement("dd");
-        dd.textContent = value;
-        dl.append(dt, dd);
-        elements.selectionSummary.appendChild(dl);
-    });
+    // Removed "Currently Viewing" section for cleaner UX
+    // The chart and controls are now self-explanatory
 };
+
 
 function ensureStatusMessageElement() {
     if (!statusMessageElement && elements.chartContainer) {
         statusMessageElement = document.createElement("p");
         statusMessageElement.className =
             "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center text-gray-400 my-4 z-10";
-        elements.chartContainer.insertBefore(
-            statusMessageElement,
-            elements.chartCanvas.nextSibling
-        );
+        // Append to the chart container instead of using insertBefore
+        const wrapper = elements.chartContainer.querySelector('.chart-canvas-wrapper');
+        if (wrapper) {
+            wrapper.appendChild(statusMessageElement);
+        } else {
+            elements.chartContainer.appendChild(statusMessageElement);
+        }
     } else if (!elements.chartContainer) {
         // console.error("Chart container not found for status message."); // Keep if needed for debugging
     }
@@ -109,10 +82,10 @@ export const updateStatusMessage = (message) => {
     if (statusMessageElement) {
         if (
             message &&
-            !message.includes("⚠️") &&
-            statusMessageElement.textContent.includes("⚠️")
+            !message.startsWith(STATUS_WARNING_PREFIX) &&
+            statusMessageElement.textContent.startsWith(STATUS_WARNING_PREFIX)
         ) {
-            // Don't overwrite error
+            // Preserve warning copy until a new warning or clear message replaces it
         } else {
             statusMessageElement.textContent = message;
             statusMessageElement.classList.toggle("hidden", !message);
@@ -539,6 +512,7 @@ export const setupEventListeners = () => {
 
     elements.dataPresentationRadios.forEach(radio => radio.addEventListener('change', () => {
         updateRadioVisuals(elements.dataPresentationRadios);
+        updateChartDescription();
         refreshSelectionSummary();
         commonChangeHandler();
     }));
@@ -547,6 +521,7 @@ export const setupEventListeners = () => {
         radio.addEventListener('change', () => {
             logMetric("interactions", 1);
             updateRadioVisuals(elements.displayAsRadios);
+            updateChartDescription();
             manageDisplay(); // This will call renderDataTable if switching to table
             refreshSelectionSummary();
             updateURLFromState();

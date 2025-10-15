@@ -147,7 +147,7 @@ const fetchData = async (year) => {
         return data;
     } catch (error) {
         console.error("Fetch error:", error);
-        updateStatusMessage(`⚠️ Error loading data for ${year}.`);
+        updateStatusMessage(`Warning: Error loading data for ${year}.`);
         return null;
     }
 };
@@ -234,7 +234,7 @@ const parseCSV = (csvString, year) => {
         return true;
     } catch (error) {
         console.error(`Error parsing CSV for ${year}:`, error);
-        updateStatusMessage(`⚠️ Error processing data for ${year}.`);
+        updateStatusMessage(`Warning: Error processing data for ${year}.`);
         parsedData[year] = { locations: [], dates: [], totals: [] };
         return false;
     }
