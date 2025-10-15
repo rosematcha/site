@@ -1,0 +1,754 @@
+{
+  "election_date": "November 4, 2025",
+  "election_name": "Joint Constitutional Amendment, General, Special and Bond Election",
+  "county": "Bexar County, Texas",
+  "categories": [
+    {
+      "category": "State of Texas Constitutional Amendments",
+      "scope": "statewide",
+      "description": "All Texas voters vote on these propositions",
+      "questions": [
+        {
+          "id": "state_prop_1",
+          "number": 1,
+          "title": "Texas State Technical College System Funding",
+          "text": "The constitutional amendment providing for the creation of the permanent technical institution infrastructure fund and the available workforce education fund to support the capital needs of educational programs offered by the Texas State Technical College System.",
+          "plain_language": "Creates a $52 million permanent fund for the Texas State Technical College System and uses the investment earnings to pay for land, buildings, and equipment for its workforce programs.",
+          "arguments_for": [
+            "Provides a reliable funding source for TSTC.",
+            "Supports a skilled workforce needed by Texas industry.",
+            "Strengthens technical career pathways for Texans."
+          ],
+          "arguments_against": [
+            "Funds could instead support community colleges serving up to 700,000 students.",
+            "Businesses should fund their own training and certifications.",
+            "Money for the permanent fund should be returned to taxpayers."
+          ],
+          "options": [
+            "For",
+            "Against"
+          ]
+        },
+        {
+          "id": "state_prop_2",
+          "number": 2,
+          "title": "Prohibition on Capital Gains Tax",
+          "text": "The constitutional amendment prohibiting the imposition of a tax on the realized or unrealized capital gains of an individual, family, estate, or trust.",
+          "plain_language": "Keeps Texas from ever adding a state tax on capital gains for individuals, families, estates, or trusts.",
+          "arguments_for": [
+            "Maintains Texas's business- and tax-friendly reputation.",
+            "Capital gains taxes can reduce savings, investment, and economic growth.",
+            "A constitutional ban provides certainty for financial institutions considering Texas."
+          ],
+          "arguments_against": [
+            "Removes a potential future revenue option during budget deficits.",
+            "Unnecessary because no such tax is being considered.",
+            "Shifts the tax burden from wealth holders to residents who pay sales taxes."
+          ],
+          "options": [
+            "For",
+            "Against"
+          ]
+        },
+        {
+          "id": "state_prop_3",
+          "number": 3,
+          "title": "Bail Requirements for Certain Felonies",
+          "text": "The constitutional amendment requiring the denial of bail under certain circumstances to persons accused of certain offenses punishable as a felony.",
+          "plain_language": "Lets judges deny bail altogether for people accused of the most serious violent felonies when the court finds they are too dangerous to release.",
+          "arguments_for": [
+            "Prevents high-risk individuals from committing additional crimes while on bail.",
+            "Applies to the most serious offenses, targeting the greatest risks.",
+            "Includes safeguards such as counsel at bail hearings, appeals, and speedy trial provisions."
+          ],
+          "arguments_against": [
+            "Judges can already set high bail to prevent release.",
+            "Could increase jail overcrowding and costs.",
+            "Denial of bail raises costs for defendants and challenges the presumption of innocence."
+          ],
+          "options": [
+            "For",
+            "Against"
+          ]
+        },
+        {
+          "id": "state_prop_4",
+          "number": 4,
+          "title": "Texas Water Fund",
+          "text": "The constitutional amendment to dedicate a portion of the revenue derived from state sales and use taxes to the Texas water fund and to provide for the allocation and use of that revenue.",
+          "plain_language": "Automatically sends the first $1 billion in state sales tax collections above $46.5 billion each year into the Texas Water Fund through 2047 to pay for water supply and infrastructure projects.",
+          "arguments_for": [
+            "Funds aging infrastructure and new supply projects, improving safety and addressing supply-demand gaps.",
+            "Considered critical for economic growth and agriculture.",
+            "Provides reliable long-term funding."
+          ],
+          "arguments_against": [
+            "New supply projects such as desalination or produced water reuse may pose environmental risks without safeguards.",
+            "Shifts oversight to a governor-appointed board.",
+            "Lacks explicit water conservation measures."
+          ],
+          "options": [
+            "For",
+            "Against"
+          ]
+        },
+        {
+          "id": "state_prop_5",
+          "number": 5,
+          "title": "Property Tax Exemption for Animal Feed",
+          "text": "The constitutional amendment authorizing the legislature to exempt from ad valorem taxation tangible personal property consisting of animal feed held by the owner of the property for sale at retail.",
+          "plain_language": "Lets the Legislature exempt animal feed that retailers keep in stock from the property taxes normally charged on business inventory.",
+          "arguments_for": [
+            "Lowers costs for farmers and ranchers facing rising expenses.",
+            "Treats animal feed like other parts of the food chain that are already exempt.",
+            "Seasonal inventory peaks can inflate taxes that are passed on to consumers."
+          ],
+          "arguments_against": [
+            "Treats feed retailers differently than other businesses whose inventory is taxed.",
+            "Exemptions can shift the burden to other taxpayers.",
+            "Constantly changing inventory complicates measuring the tax break."
+          ],
+          "options": [
+            "For",
+            "Against"
+          ]
+        },
+        {
+          "id": "state_prop_6",
+          "number": 6,
+          "title": "Prohibition on Securities Transaction Tax",
+          "text": "The constitutional amendment prohibiting the legislature from enacting a law imposing an occupation tax on certain entities that enter into transactions conveying securities or imposing a tax on certain securities transactions.",
+          "plain_language": "Blocks Texas from adding any future state tax on buying or selling stocks, bonds, and other securities.",
+          "arguments_for": [
+            "Protects retirement savers from reduced returns.",
+            "Avoids trading costs that could harm investments and the economy.",
+            "Constitutional certainty may attract investment businesses and jobs."
+          ],
+          "arguments_against": [
+            "Removes a potential future budget tool.",
+            "Could increase reliance on sales taxes, burdening lower-income residents.",
+            "Unnecessary because no such tax is currently proposed."
+          ],
+          "options": [
+            "For",
+            "Against"
+          ]
+        },
+        {
+          "id": "state_prop_7",
+          "number": 7,
+          "title": "Property Tax Exemption for Veterans' Surviving Spouses",
+          "text": "The constitutional amendment authorizing the legislature to provide for an exemption from ad valorem taxation of all or part of the market value of the residence homestead of the surviving spouse of a veteran who died as a result of a condition or disease that is presumed under federal law to have been service-connected.",
+          "plain_language": "Allows surviving spouses of veterans who died from a presumed service-connected illness to receive a property tax exemption on their home, even if the veteran was not fully disabled.",
+          "arguments_for": [
+            "Ensures fair treatment for families of affected veterans.",
+            "Has minimal fiscal impact but provides meaningful help to military communities.",
+            "Letting the exemption transfer to a new home keeps the benefit in place if the spouse moves."
+          ],
+          "arguments_against": [
+            "Reduces revenue for school districts and local taxing authorities, especially near military communities.",
+            "Shifts the tax burden to other homeowners, potentially affecting affordability."
+          ],
+          "options": [
+            "For",
+            "Against"
+          ]
+        },
+        {
+          "id": "state_prop_8",
+          "number": 8,
+          "title": "Prohibition on Death Taxes",
+          "text": "The constitutional amendment to prohibit the legislature from imposing death taxes applicable to a decedent's property or the transfer of an estate, inheritance, legacy, succession, or gift.",
+          "plain_language": "Prevents Texas from ever creating a state estate, inheritance, or gift transfer tax.",
+          "arguments_for": [
+            "Avoids double taxation of already-taxed assets.",
+            "Helps preserve family-owned businesses without forced liquidation.",
+            "Inheritance taxes are complex and costly to administer or comply with."
+          ],
+          "arguments_against": [
+            "Forfeits potential revenue for public services and deficit reduction.",
+            "Could help reduce wealth concentration by limiting inheritances.",
+            "Encourages lifetime saving and investing rather than reliance on inheritances."
+          ],
+          "options": [
+            "For",
+            "Against"
+          ]
+        },
+        {
+          "id": "state_prop_9",
+          "number": 9,
+          "title": "Property Tax Exemption for Income-Producing Property",
+          "text": "The constitutional amendment to authorize the legislature to exempt from ad valorem taxation a portion of the market value of tangible personal property a person owns that is held or used for the production of income.",
+          "plain_language": "Raises the statewide business personal property tax exemption from $2,500 to $125,000 and lets small businesses skip reporting under that amount.",
+          "arguments_for": [
+            "Eases the tax burden on small businesses, supporting investment and growth.",
+            "Simplifies compliance for businesses with less than $125,000 in personal property.",
+            "The Legislature may use state general revenue to backfill school districts."
+          ],
+          "arguments_against": [
+            "No backfill is promised for cities, counties, hospitals, or college districts, which may prompt tax hikes or service cuts.",
+            "The state may be unable to fully backfill schools in an economic downturn.",
+            "Favors businesses at the expense of residential taxpayers and local entities."
+          ],
+          "options": [
+            "For",
+            "Against"
+          ]
+        },
+        {
+          "id": "state_prop_10",
+          "number": 10,
+          "title": "Property Tax Relief for Fire-Damaged Homes",
+          "text": "The constitutional amendment to authorize the legislature to provide for a temporary exemption from ad valorem taxation of the appraised value of an improvement to a residence homestead that is completely destroyed by a fire.",
+          "plain_language": "Lets homeowners whose house is completely destroyed by fire get a temporary property tax exemption on the structure after appraisal.",
+          "arguments_for": [
+            "Creates a process to adjust tax bills when a home is destroyed after appraisal.",
+            "Provides timely relief to affected homeowners."
+          ],
+          "arguments_against": [
+            "Applies only when the home is completely destroyed, excluding major damage.",
+            "Does not cover other disaster types unless they are in a governor-declared disaster area."
+          ],
+          "options": [
+            "For",
+            "Against"
+          ]
+        },
+        {
+          "id": "state_prop_11",
+          "number": 11,
+          "title": "Increased Homestead Exemption for Elderly/Disabled",
+          "text": "The constitutional amendment authorizing the legislature to increase the amount of the exemption from ad valorem taxation by a school district of the market value of the residence homestead of a person who is elderly or disabled.",
+          "plain_language": "Increases the additional school district homestead exemption for homeowners who are 65 or older or disabled from $10,000 to $60,000 starting in 2025.",
+          "arguments_for": [
+            "Protects fixed-income seniors and disabled homeowners.",
+            "Expected to benefit over 2 million homeowners.",
+            "Includes legislative reimbursement for school districts."
+          ],
+          "arguments_against": [
+            "Reduces available funds for public services.",
+            "Budget surplus may not persist, so permanent commitments risk future deficits.",
+            "An ability-to-pay test might be better because not all seniors or disabled individuals are low-income."
+          ],
+          "options": [
+            "For",
+            "Against"
+          ]
+        },
+        {
+          "id": "state_prop_12",
+          "number": 12,
+          "title": "State Commission on Judicial Conduct",
+          "text": "The constitutional amendment regarding the membership of the State Commission on Judicial Conduct, the membership of the tribunal to review the commission's recommendations, and the authority of the commission, the tribunal, and the Texas Supreme Court to more effectively sanction judges and justices for judicial misconduct.",
+          "plain_language": "Reworks who serves on the State Commission on Judicial Conduct and its review tribunal, adds timelines, and gives the Supreme Court more authority to discipline judges and adjust judicial salaries without tying them to legislators' pensions.",
+          "arguments_for": [
+            "Adds more governor-appointed members, which supporters say increases public accountability.",
+            "Reforms may reduce case backlogs with clearer timelines, transparency, and efficiency.",
+            "Allows judicial salary adjustments without affecting legislators' pensions."
+          ],
+          "arguments_against": [
+            "Concentrates power in the executive branch because the governor would appoint 7 of 13 members.",
+            "Accountability measures may overreach into judicial independence.",
+            "Increases costs for salaries and commission staffing."
+          ],
+          "options": [
+            "For",
+            "Against"
+          ]
+        },
+        {
+          "id": "state_prop_13",
+          "number": 13,
+          "title": "School Homestead Exemption Increase",
+          "text": "The constitutional amendment to increase the amount of the exemption of residence homesteads from ad valorem taxation by a school district from $100,000 to $140,000.",
+          "plain_language": "Raises the standard school district homestead exemption from $100,000 to $140,000, with the state covering districts' lost revenue under current law.",
+          "arguments_for": [
+            "Helps low-income families remain in their homes.",
+            "Legislature set aside $8.5 billion for school districts to reduce reliance on property taxes.",
+            "Higher appraisals could otherwise drive tax bills up even when rates stay the same."
+          ],
+          "arguments_against": [
+            "Shifting away from property taxes may increase sales or business taxes or leave schools underfunded.",
+            "Offers no relief to renters facing high rents.",
+            "Even with $8.5 billion, Texas schools are already underfunded and could be hurt in an economic slowdown."
+          ],
+          "options": [
+            "For",
+            "Against"
+          ]
+        },
+        {
+          "id": "state_prop_14",
+          "number": 14,
+          "title": "Dementia Prevention and Research Institute",
+          "text": "The constitutional amendment providing for the establishment of the Dementia Prevention and Research Institute of Texas, establishing the Dementia Prevention and Research Fund to provide money for research on and prevention and treatment of dementia, Alzheimer's disease, Parkinson's disease, and related disorders in this state, and transferring to that fund $3 billion from state general revenue.",
+          "plain_language": "Creates the Dementia Prevention and Research Institute of Texas with $3 billion in state funding to support research, prevention, treatment, and related facilities for dementia, Alzheimer's, Parkinson's, and similar disorders.",
+          "arguments_for": [
+            "Addresses the urgent and growing number of Texans living with dementia and related diseases.",
+            "Large, long-term funding could accelerate innovation and attract top researchers to Texas.",
+            "Potential commercial and societal benefits from breakthroughs."
+          ],
+          "arguments_against": [
+            "Political appointments could risk favoritism over scientific merit.",
+            "Opponents would prefer returning funds to citizens rather than creating new bureaucracy.",
+            "Medical research should be funded privately or through the market."
+          ],
+          "options": [
+            "For",
+            "Against"
+          ]
+        },
+        {
+          "id": "state_prop_15",
+          "number": 15,
+          "title": "Parental Rights",
+          "text": "The constitutional amendment affirming that parents are the primary decision makers for their children.",
+          "plain_language": "Adds language to the Texas Constitution stating that parents are the primary decision makers for raising and educating their children.",
+          "arguments_for": [
+            "Affirms parents' primary authority and limits government control.",
+            "Could empower parents regarding public school content and values.",
+            "Supporters say parents best understand their children's needs."
+          ],
+          "arguments_against": [
+            "Could disrupt public schools if parents attempt broad control based on individual beliefs.",
+            "Parental rights are already well-established in law.",
+            "Constitutional elevation may hinder necessary interventions for abuse or neglect."
+          ],
+          "options": [
+            "For",
+            "Against"
+          ]
+        },
+        {
+          "id": "state_prop_16",
+          "number": 16,
+          "title": "Citizenship Requirement for Voting",
+          "text": "The constitutional amendment clarifying that a voter must be a United States citizen.",
+          "plain_language": "States directly in the Texas Constitution that only U.S. citizens can vote in state or local elections.",
+          "arguments_for": [
+            "Prevents local non-citizen voting options that some other states allow.",
+            "Constitutionalizes the rule, making future changes harder."
+          ],
+          "arguments_against": [
+            "Redundant because non-citizen voting is already illegal and rare in Texas.",
+            "Citizenship is already verified during voter registration."
+          ],
+          "options": [
+            "For",
+            "Against"
+          ]
+        },
+        {
+          "id": "state_prop_17",
+          "number": 17,
+          "title": "Property Tax Exemption for Border Security Infrastructure",
+          "text": "The constitutional amendment to authorize the legislature to provide for an exemption from ad valorem taxation of the amount of the market value of real property located in a county that borders the United Mexican States that arises from the installation or construction on the property of border security infrastructure and related improvements.",
+          "plain_language": "Lets the Legislature exempt any increased property value from border security infrastructure built on land in counties along the Texas-Mexico border.",
+          "arguments_for": [
+            "Encourages private property owners to support border security projects.",
+            "Exempts any value increase from border infrastructure on the property.",
+            "Does not reduce the appraised value of existing property."
+          ],
+          "arguments_against": [
+            "Narrows the tax base, shifting the burden or reducing local revenues.",
+            "Infrastructure types and qualifications are undefined and left to future legislation.",
+            "May encourage militarization of the border through tax incentives."
+          ],
+          "options": [
+            "For",
+            "Against"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Bexar County Propositions",
+      "scope": "countywide",
+      "description": "All Bexar County voters vote on these propositions",
+      "questions": [
+        {
+          "id": "bexar_prop_a",
+          "number": "A",
+          "title": "Freeman Coliseum & Frost Bank Center Funding",
+          "text": "Authorizing Bexar County, Texas to provide for the planning, acquisition, establishment, development, construction, renovation, and financing of the Freeman Coliseum, Frost Bank Center, and other San Antonio Stock Show & Rodeo facilities (together, the 'Coliseum Complex Venue Project'), and related infrastructure and (i) to increase the County hotel occupancy tax to a maximum rate of two percent (2%) and (ii) to authorize the use of the existing County short-term motor vehicle rental tax at a maximum rate of five percent (5%) for the purpose of financing the Coliseum Complex Venue Project.",
+          "tax_increase": true,
+          "plain_language": "Raises the county hotel occupancy tax by up to 2% and allows the existing 5% rental car tax to help pay for upgrades to the Freeman Coliseum, Frost Bank Center, and rodeo facilities.",
+          "arguments_for": [
+            "Improved facilities could attract more tourists and national events, boosting the economy.",
+            "Funded by tourist taxes, so residents pay only if they book local hotel rooms or rental cars.",
+            "Enhances year-round use and preserves county assets and western heritage."
+          ],
+          "arguments_against": [
+            "Timeline and lack of economic analyses pose financial risk.",
+            "Higher hotel costs may deter tourists and conventions.",
+            "Benefits may not reach nearby neighborhoods, and construction and traffic impacts are negative.",
+            "Limited nearby hotels and restaurants reduce competitiveness for large events."
+          ],
+          "options": [
+            "For",
+            "Against"
+          ]
+        },
+        {
+          "id": "bexar_prop_b",
+          "number": "B",
+          "title": "San Antonio Spurs Arena Funding",
+          "text": "Authorizing Bexar County, Texas to provide for the planning, acquisition, establishment, development, construction, or renovation of a new multipurpose arena designed primarily as the home venue for the San Antonio Spurs basketball team and (i) to increase the County hotel occupancy tax to a maximum rate of two percent (2%) and (ii) to authorize the use of the existing County short-term motor vehicle rental tax at a maximum rate of five percent (5%) for the purpose of financing the Arena Venue Project.",
+          "tax_increase": true,
+          "plain_language": "Raises the county hotel occupancy tax by up to 2% and allows the existing 5% rental car tax to help finance a new multipurpose downtown arena primarily for the San Antonio Spurs.",
+          "arguments_for": [
+            "County funding would come from tourist taxes rather than property taxes.",
+            "A downtown arena could boost nearby businesses and venues.",
+            "Helps maintain the Spurs' presence and its economic and community benefits.",
+            "County participation is considered a necessary first step."
+          ],
+          "arguments_against": [
+            "Hotel and rental car costs also affect residents.",
+            "Timeline, multiple funding sources, and incomplete public information create financial risk.",
+            "Downtown construction would disrupt traffic and businesses for years.",
+            "If the measure passes construction is likely, while failure makes it doubtful."
+          ],
+          "options": [
+            "For",
+            "Against"
+          ]
+        }
+      ]
+    },
+    {
+      "category": "City Elections",
+      "scope": "municipal",
+      "description": "Only voters in specific cities vote on these",
+      "jurisdictions": [
+        {
+          "name": "City of Converse",
+          "type": "General Election",
+          "races": [
+            {
+              "office": "Mayor",
+              "vote_for": 1,
+              "candidates": [
+                "John Shadron",
+                "Al Suarez",
+                "Marc Gilbert",
+                "Emilio Silvas"
+              ]
+            },
+            {
+              "office": "Council, Place 1",
+              "vote_for": 1,
+              "candidates": [
+                "Renee Paschall",
+                "Stephanie Gonzalez"
+              ]
+            },
+            {
+              "office": "Council, Place 3",
+              "vote_for": 1,
+              "candidates": [
+                "Robert E. Raney",
+                "Kassandra Leon"
+              ]
+            },
+            {
+              "office": "Council, Place 5",
+              "vote_for": 1,
+              "candidates": [
+                "Terry Bourland",
+                "Stacy L. Adams Jr."
+              ]
+            }
+          ]
+        },
+        {
+          "name": "City of Schertz",
+          "type": "General Election",
+          "races": [
+            {
+              "office": "Mayor",
+              "vote_for": 1,
+              "candidates": [
+                "Ralph Rodriguez",
+                "Ralph Gutierrez"
+              ]
+            },
+            {
+              "office": "Councilmember, Place 1",
+              "vote_for": 1,
+              "candidates": [
+                "Mark E. Davis"
+              ]
+            },
+            {
+              "office": "Councilmember, Place 2",
+              "vote_for": 1,
+              "candidates": [
+                "John D. Carbon",
+                "Michelle Watson"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "City of Schertz",
+          "type": "Special Election",
+          "questions": [
+            {
+              "id": "schertz_prop_a",
+              "number": "A",
+              "title": "Annexation and Land Use Near Randolph AFB",
+              "text": "Option 1: YES Annexation: Shall the City of Schertz annex for full purposes certain areas in the City's extraterritorial jurisdiction within five miles of the boundary of the Joint Base San Antonio Randolph? Option 2: NO Annexation but with land use regulations: Shall the City of Schertz be provided with the authority to adopt and enforce an ordinance regulating the land use in the City's extraterritorial jurisdiction within five miles of the boundary of the Joint Base San Antonio Randolph in the manner recommended by the most recent Joint Land Use Study, for the purpose of protecting the military missions, and including the authority to adopt and impose related fees, fines and other charges?",
+              "options": [
+                "YES",
+                "NO"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "City of Windcrest",
+          "type": "General Election",
+          "races": [
+            {
+              "office": "Mayor",
+              "vote_for": 1,
+              "candidates": [
+                "Dan Reese",
+                "Alan E. Baxter",
+                "Robert Maloy"
+              ]
+            },
+            {
+              "office": "Council, Place 4",
+              "vote_for": 1,
+              "candidates": [
+                "Narquiz Cervantes",
+                "Rainbeau Presti"
+              ]
+            },
+            {
+              "office": "Council, Place 5",
+              "vote_for": 1,
+              "candidates": [
+                "Rick Cockerham",
+                "Billy Gipson",
+                "Adam Astleford"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "City of Windcrest",
+          "type": "Special Election",
+          "questions": [
+            {
+              "id": "windcrest_measure_a",
+              "number": "Measure A",
+              "title": "Street Maintenance Sales Tax Reauthorization",
+              "text": "Shall the City reauthorize the local sales and use tax in the City of Windcrest, Texas at the rate of one-fourth of one percent to continue providing revenue for maintenance and repair of municipal streets? This tax expires on the fourth anniversary date of this election unless the imposition of the tax is reauthorized.",
+              "tax_increase": true,
+              "options": [
+                "For",
+                "Against"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "category": "School District Elections",
+      "scope": "school_district",
+      "description": "Only voters in specific school districts vote on these",
+      "jurisdictions": [
+        {
+          "name": "Boerne Independent School District",
+          "type": "Special Election",
+          "questions": [
+            {
+              "id": "boerne_isd_prop_a",
+              "number": "A",
+              "title": "Tax Rate Ratification",
+              "text": "Ratifying the ad valorem tax rate of $1.0109 per $100 valuation resulting in an increase of 4.05% in maintenance and operations tax revenue, an additional $1,906,341.",
+              "tax_increase": true,
+              "options": [
+                "For",
+                "Against"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "East Central Independent School District",
+          "type": "Special Election",
+          "questions": [
+            {
+              "id": "ec_isd_prop_a",
+              "number": "A",
+              "title": "Tax Rate Ratification",
+              "text": "Ratifying the ad valorem tax rate of $0.9819 per $100 valuation resulting in an increase of 13.77% in maintenance and operations tax revenue, an additional $7,603,042.",
+              "tax_increase": true,
+              "options": [
+                "For",
+                "Against"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Judson Independent School District",
+          "type": "Special Election",
+          "questions": [
+            {
+              "id": "judson_isd_prop_a",
+              "number": "A",
+              "title": "Tax Rate Ratification",
+              "text": "Ratifying the ad valorem tax rate of $1.0796 per $100 valuation resulting in an increase of 3.78% in maintenance and operations tax revenue, an additional $3,824,720.",
+              "tax_increase": true,
+              "options": [
+                "For",
+                "Against"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "North East Independent School District",
+          "type": "Bond Election",
+          "questions": [
+            {
+              "id": "neisd_prop_a",
+              "number": "A",
+              "title": "Facilities, Safety, and Infrastructure Bonds",
+              "text": "The issuance of not to exceed $400,345,000 for facilities, safety and security, roof and HVAC replacements, technology infrastructure, and new school buses and vehicles and the levying of a tax sufficient to pay the principal and interest and the cost of any credit agreements.",
+              "tax_increase": true,
+              "options": [
+                "For",
+                "Against"
+              ]
+            },
+            {
+              "id": "neisd_prop_b",
+              "number": "B",
+              "title": "Technology Equipment Bonds",
+              "text": "The issuance of not to exceed $53,480,000 for acquiring and updating instructional technology equipment and the levying of a tax sufficient to pay the principal and interest and the cost of any credit agreements.",
+              "tax_increase": true,
+              "options": [
+                "For",
+                "Against"
+              ]
+            },
+            {
+              "id": "neisd_prop_c",
+              "number": "C",
+              "title": "Athletic Facilities Bonds",
+              "text": "The issuance of not to exceed $29,165,000 for designing, constructing, renovating, improving, upgrading, updating, expanding, acquiring, and equipping athletic facilities including Blossom Athletic Center facilities, North East Sports Park, and the District's Softball Complex on Judson Road and the levying of a tax sufficient to pay the principal and interest and the cost of any credit agreements.",
+              "tax_increase": true,
+              "options": [
+                "For",
+                "Against"
+              ]
+            },
+            {
+              "id": "neisd_prop_d",
+              "number": "D",
+              "title": "Stadium Renovations Bonds",
+              "text": "The issuance of not to exceed $9,685,000 for renovations and improvements to Jerry Comalander Stadium and Heroes Stadium and the levying of a tax sufficient to pay the principal and interest and the cost of any credit agreements.",
+              "tax_increase": true,
+              "options": [
+                "For",
+                "Against"
+              ]
+            },
+            {
+              "id": "neisd_prop_e",
+              "number": "E",
+              "title": "Natatorium Renovations Bonds",
+              "text": "The issuance of not to exceed $2,325,000 for renovations and improvements to Josh Davis Natatorium and Walker Natatorium and the levying of a tax sufficient to pay the principal and interest and the cost of any credit agreements.",
+              "tax_increase": true,
+              "options": [
+                "For",
+                "Against"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Schertz-Cibolo-Universal City Independent School District",
+          "type": "General Election",
+          "races": [
+            {
+              "office": "Trustee, Place 4",
+              "vote_for": 1
+            },
+            {
+              "office": "Trustee, Place 5",
+              "vote_for": 1
+            },
+            {
+              "office": "Trustee, Place 6",
+              "vote_for": 1
+            },
+            {
+              "office": "Trustee, Place 7",
+              "vote_for": 1
+            }
+          ]
+        },
+        {
+          "name": "Schertz-Cibolo-Universal City Independent School District",
+          "type": "Special Election",
+          "questions": [
+            {
+              "id": "scuc_isd_prop_a",
+              "number": "A",
+              "title": "Tax Rate Ratification",
+              "text": "Ratifying the ad valorem tax rate of $1.1969 per $100 valuation resulting in an increase of 10.37% in maintenance and operations tax revenue, an additional $5,482,115.",
+              "tax_increase": true,
+              "options": [
+                "For",
+                "Against"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Emergency Services District Elections",
+      "scope": "special_district",
+      "description": "Only voters in specific emergency services districts vote on these",
+      "jurisdictions": [
+        {
+          "name": "Bexar County Emergency Services District No. 9",
+          "type": "Special Election",
+          "questions": [
+            {
+              "id": "esd9_prop_a",
+              "number": "A",
+              "title": "Sales Tax (Excluding China Grove)",
+              "text": "The adoption of a local sales and use tax in Bexar County Emergency Services District No. 9, excluding the City Limits of the City of China Grove, at the rate of 1.50 percent.",
+              "tax_increase": true,
+              "options": [
+                "For",
+                "Against"
+              ]
+            },
+            {
+              "id": "esd9_prop_b",
+              "number": "B",
+              "title": "Sales Tax (China Grove Only)",
+              "text": "The adoption of a local sales and use tax in the City Limits of the City of China Grove for Bexar County Emergency Services District No. 9 at the rate of 0.25 percent.",
+              "tax_increase": true,
+              "options": [
+                "For",
+                "Against"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

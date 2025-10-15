@@ -1,0 +1,590 @@
+[
+  {
+    "name": "Brook Hollow Branch Library",
+    "street_address": "530 Heimer Rd",
+    "city": "San Antonio",
+    "state": "TX",
+    "zip": "78232",
+    "full_address": "530 Heimer Rd, San Antonio, TX 78232",
+    "coordinates": {
+      "x": 2135944.325315763,
+      "y": 13755014.848021282
+    }
+  },
+  {
+    "name": "Castle Hills City Hall",
+    "street_address": "209 Lemonwood Dr",
+    "city": "Castle Hills",
+    "state": "TX",
+    "zip": "78213",
+    "full_address": "209 Lemonwood Dr, Castle Hills, TX 78213",
+    "coordinates": {
+      "x": 2120685.4530279143,
+      "y": 13737640.618491972
+    }
+  },
+  {
+    "name": "Christian Family Baptist Church",
+    "street_address": "1589 Grosenbacher Rd",
+    "city": "San Antonio",
+    "state": "TX",
+    "zip": "78245",
+    "full_address": "1589 Grosenbacher Rd, San Antonio, TX 78245",
+    "coordinates": {
+      "x": 2052388.8184154623,
+      "y": 13699194.49625194
+    }
+  },
+  {
+    "name": "Claude Black Community Center",
+    "street_address": "2805 E Commerce St",
+    "city": "San Antonio",
+    "state": "TX",
+    "zip": "78203",
+    "full_address": "2805 E Commerce St, San Antonio, TX 78203",
+    "coordinates": {
+      "x": 2145035.5507577895,
+      "y": 13700850.426646162
+    }
+  },
+  {
+    "name": "Cody Branch Library",
+    "street_address": "11441 Vance Jackson Rd",
+    "city": "San Antonio",
+    "state": "TX",
+    "zip": "78230",
+    "full_address": "11441 Vance Jackson Rd, San Antonio, TX 78230",
+    "coordinates": {
+      "x": 2106684.0487145362,
+      "y": 13746758.94641184
+    }
+  },
+  {
+    "name": "Collins Garden Branch Library",
+    "street_address": "200 N Park Blvd",
+    "city": "San Antonio",
+    "state": "TX",
+    "zip": "78204",
+    "full_address": "200 N Park Blvd, San Antonio, TX 78204",
+    "coordinates": {
+      "x": 2122880.9460394518,
+      "y": 13692721.2847727
+    }
+  },
+  {
+    "name": "Converse Community Event Center",
+    "street_address": "407 S Seguin Rd",
+    "city": "Converse",
+    "state": "TX",
+    "zip": "78109",
+    "full_address": "407 S Seguin Rd, Converse, TX 78109",
+    "coordinates": {
+      "x": 2187277.318306013,
+      "y": 13735318.651966814
+    }
+  },
+  {
+    "name": "Copernicus Community Center",
+    "street_address": "5003 Lord Rd",
+    "city": "San Antonio",
+    "state": "TX",
+    "zip": "78220",
+    "full_address": "5003 Lord Rd, San Antonio, TX 78220",
+    "coordinates": {
+      "x": 2161479.2839258662,
+      "y": 13698687.092015302
+    }
+  },
+  {
+    "name": "Cortez Branch Library",
+    "street_address": "2803 Hunter Blvd",
+    "city": "San Antonio",
+    "state": "TX",
+    "zip": "78224",
+    "full_address": "2803 Hunter Blvd, San Antonio, TX 78224",
+    "coordinates": {
+      "x": 2111244.7797394297,
+      "y": 13669577.846793095
+    }
+  },
+  {
+    "name": "East Central ISD Admin. Office \u2013 Board Room",
+    "street_address": "6634 New Sulphur Springs Rd",
+    "city": "San Antonio",
+    "state": "TX",
+    "zip": "78263",
+    "full_address": "6634 New Sulphur Springs Rd, San Antonio, TX 78263",
+    "coordinates": {
+      "x": 2172335.1125539946,
+      "y": 13679934.639060955
+    }
+  },
+  {
+    "name": "Encino Branch Library",
+    "street_address": "2515 E Evans Rd",
+    "city": "San Antonio",
+    "state": "TX",
+    "zip": "78259",
+    "full_address": "2515 E Evans Rd, San Antonio, TX 78259",
+    "coordinates": {
+      "x": 2143437.5643607723,
+      "y": 13779492.573602857
+    }
+  },
+  {
+    "name": "Fair Oaks Ranch Police Dept. \u2013 Training Room",
+    "street_address": "7286 Dietz Elkhorn Dr",
+    "city": "Fair Oaks Ranch",
+    "state": "TX",
+    "zip": "78015",
+    "full_address": "7286 Dietz Elkhorn Dr, Fair Oaks Ranch, TX 78015",
+    "coordinates": {
+      "x": 2087107.885082484,
+      "y": 13813256.685858928
+    }
+  },
+  {
+    "name": "Frank Garrett Multi Service Center",
+    "street_address": "1226 NW 18th St",
+    "city": "San Antonio",
+    "state": "TX",
+    "zip": "78207",
+    "full_address": "1226 NW 18th St, San Antonio, TX 78207",
+    "coordinates": {
+      "x": 2117631.5101147396,
+      "y": 13708702.370260965
+    }
+  },
+  {
+    "name": "Great Northwest Branch Library",
+    "street_address": "9050 Wellwood St",
+    "city": "San Antonio",
+    "state": "TX",
+    "zip": "78250",
+    "full_address": "9050 Wellwood St, San Antonio, TX 78250",
+    "coordinates": {
+      "x": 2075744.2261505786,
+      "y": 13723444.732443478
+    }
+  },
+  {
+    "name": "Guerra Branch Library",
+    "street_address": "7978 W Military Dr",
+    "city": "San Antonio",
+    "state": "TX",
+    "zip": "78227",
+    "full_address": "7978 W Military Dr, San Antonio, TX 78227",
+    "coordinates": {
+      "x": 2087667.8165050698,
+      "y": 13702134.486728288
+    }
+  },
+  {
+    "name": "Igo Branch Library",
+    "street_address": "13330 Kyle Seale Pkwy",
+    "city": "San Antonio",
+    "state": "TX",
+    "zip": "78249",
+    "full_address": "13330 Kyle Seale Pkwy, San Antonio, TX 78249",
+    "coordinates": {
+      "x": 2081909.0410561524,
+      "y": 13754823.82569215
+    }
+  },
+  {
+    "name": "Johnston Branch Library",
+    "street_address": "6307 Sun Valley Dr",
+    "city": "San Antonio",
+    "state": "TX",
+    "zip": "78227",
+    "full_address": "6307 Sun Valley Dr, San Antonio, TX 78227",
+    "coordinates": {
+      "x": 2083289.2871958283,
+      "y": 13682917.89026622
+    }
+  },
+  {
+    "name": "Kirby City Hall",
+    "street_address": "112 Bauman St",
+    "city": "Kirby",
+    "state": "TX",
+    "zip": "78219",
+    "full_address": "112 Bauman St, Kirby, TX 78219",
+    "coordinates": {
+      "x": 2165203.9897267795,
+      "y": 13719572.192922516
+    }
+  },
+  {
+    "name": "Leon Valley Conference Center",
+    "street_address": "6427 Evers Rd",
+    "city": "Leon Valley",
+    "state": "TX",
+    "zip": "78238",
+    "full_address": "6427 Evers Rd, Leon Valley, TX 78238",
+    "coordinates": {
+      "x": 2092283.070517087,
+      "y": 13730584.372459367
+    }
+  },
+  {
+    "name": "Lions Field Adult and Senior Center",
+    "street_address": "2809 Broadway St",
+    "city": "San Antonio",
+    "state": "TX",
+    "zip": "78209",
+    "full_address": "2809 Broadway St, San Antonio, TX 78209",
+    "coordinates": {
+      "x": 2136184.148281135,
+      "y": 13712898.148829922
+    }
+  },
+  {
+    "name": "Macedonia Baptist Church",
+    "street_address": "111 Hobart St",
+    "city": "San Antonio",
+    "state": "TX",
+    "zip": "78237",
+    "full_address": "111 Hobart St, San Antonio, TX 78237",
+    "coordinates": {
+      "x": 2100939.8020655354,
+      "y": 13698438.886422431
+    }
+  },
+  {
+    "name": "Maverick Branch Library",
+    "street_address": "8700 Mystic Park",
+    "city": "San Antonio",
+    "state": "TX",
+    "zip": "78254",
+    "full_address": "8700 Mystic Park, San Antonio, TX 78254",
+    "coordinates": {
+      "x": 2082382.4664014822,
+      "y": 13738488.649674343
+    }
+  },
+  {
+    "name": "McCreless Branch Library",
+    "street_address": "1023 Ada St",
+    "city": "San Antonio",
+    "state": "TX",
+    "zip": "78223",
+    "full_address": "1023 Ada St, San Antonio, TX 78223",
+    "coordinates": {
+      "x": 2141127.5396461887,
+      "y": 13686652.40835291
+    }
+  },
+  {
+    "name": "Memorial Branch Library",
+    "street_address": "3222 Culebra Rd",
+    "city": "San Antonio",
+    "state": "TX",
+    "zip": "78228",
+    "full_address": "3222 Culebra Rd, San Antonio, TX 78228",
+    "coordinates": {
+      "x": 2107172.8900373294,
+      "y": 13710789.062454266
+    }
+  },
+  {
+    "name": "Mission Branch Library",
+    "street_address": "3134 Roosevelt Ave",
+    "city": "San Antonio",
+    "state": "TX",
+    "zip": "78214",
+    "full_address": "3134 Roosevelt Ave, San Antonio, TX 78214",
+    "coordinates": {
+      "x": 2134120.738306225,
+      "y": 13680648.331733348
+    }
+  },
+  {
+    "name": "Northeast Lakeview College \u2013 Medina CTE Rm. 104 Bldg. 800",
+    "street_address": "1201 Kitty Hawk Rd",
+    "city": "Universal City",
+    "state": "TX",
+    "zip": "78148",
+    "full_address": "1201 Kitty Hawk Rd, Universal City, TX 78148",
+    "coordinates": {
+      "x": 2183670.1449458166,
+      "y": 13746784.395602662
+    }
+  },
+  {
+    "name": "Northside Activity Center",
+    "street_address": "7001 Culebra Rd",
+    "city": "San Antonio",
+    "state": "TX",
+    "zip": "78238",
+    "full_address": "7001 Culebra Rd, San Antonio, TX 78238",
+    "coordinates": {
+      "x": 2087290.824844393,
+      "y": 13712088.20070533
+    }
+  },
+  {
+    "name": "Northwest Vista College \u2013 Mountain Laurel Hall Rm. 100 A&B",
+    "street_address": "3535 N Ellison Dr",
+    "city": "San Antonio",
+    "state": "TX",
+    "zip": "78251",
+    "full_address": "3535 N Ellison Dr, San Antonio, TX 78251",
+    "coordinates": {
+      "x": 2061607.855575459,
+      "y": 13719037.87250003
+    }
+  },
+  {
+    "name": "Our Lady of the Lake Univ. \u2013 Sueltenfuss Library Community Room",
+    "street_address": "411 SW 24th St",
+    "city": "San Antonio",
+    "state": "TX",
+    "zip": "78207",
+    "full_address": "411 SW 24th St, San Antonio, TX 78207",
+    "coordinates": {
+      "x": 2113792.022885171,
+      "y": 13702760.692638032
+    }
+  },
+  {
+    "name": "Palo Alto College \u2013 Palomino Center Rm. 110",
+    "street_address": "1400 W Villaret Blvd",
+    "city": "San Antonio",
+    "state": "TX",
+    "zip": "78224",
+    "full_address": "1400 W Villaret Blvd, San Antonio, TX 78224",
+    "coordinates": {
+      "x": 2113614.919057028,
+      "y": 13665843.329729656
+    }
+  },
+  {
+    "name": "Parman Branch Library at Stone Oak",
+    "street_address": "20735 Wilderness Oak",
+    "city": "San Antonio",
+    "state": "TX",
+    "zip": "78258",
+    "full_address": "20735 Wilderness Oak, San Antonio, TX 78258",
+    "coordinates": {
+      "x": 2122559.178248347,
+      "y": 13779298.675628915
+    }
+  },
+  {
+    "name": "Precinct 1 Satellite Office",
+    "street_address": "3505 Pleasanton Rd",
+    "city": "San Antonio",
+    "state": "TX",
+    "zip": "78221",
+    "full_address": "3505 Pleasanton Rd, San Antonio, TX 78221",
+    "coordinates": {
+      "x": 2126146.685328471,
+      "y": 13673005.26653921
+    }
+  },
+  {
+    "name": "Precinct 3 Satellite Office",
+    "street_address": "320 Interpark Blvd",
+    "city": "San Antonio",
+    "state": "TX",
+    "zip": "78216",
+    "full_address": "320 Interpark Blvd, San Antonio, TX 78216",
+    "coordinates": {
+      "x": 2131271.0537960096,
+      "y": 13750775.725923542
+    }
+  },
+  {
+    "name": "San Antonio College \u2013 Victory Center Rm. 117",
+    "street_address": "1819 N Main Ave",
+    "city": "San Antonio",
+    "state": "TX",
+    "zip": "78212",
+    "full_address": "1819 N Main Ave, San Antonio, TX 78212",
+    "coordinates": {
+      "x": 2128566.8855972793,
+      "y": 13709271.391285287
+    }
+  },
+  {
+    "name": "Schaefer Branch Library",
+    "street_address": "6322 US Hwy 87 E",
+    "city": "San Antonio",
+    "state": "TX",
+    "zip": "78222",
+    "full_address": "6322 US Hwy 87 E, San Antonio, TX 78222",
+    "coordinates": {
+      "x": 2170374.3346809405,
+      "y": 13691034.060325628
+    }
+  },
+  {
+    "name": "Semmes Branch Library",
+    "street_address": "15060 Judson Rd",
+    "city": "San Antonio",
+    "state": "TX",
+    "zip": "78247",
+    "full_address": "15060 Judson Rd, San Antonio, TX 78247",
+    "coordinates": {
+      "x": 2167923.5739100073,
+      "y": 13758697.246386023
+    }
+  },
+  {
+    "name": "Shavano Park City Hall",
+    "street_address": "900 Saddletree Ct",
+    "city": "Shavano Park",
+    "state": "TX",
+    "zip": "78231",
+    "full_address": "900 Saddletree Ct, Shavano Park, TX 78231",
+    "coordinates": {
+      "x": 2110062.5561236343,
+      "y": 13760523.047498578
+    }
+  },
+  {
+    "name": "Somerset City Hall",
+    "street_address": "7360 E 6th St",
+    "city": "Somerset",
+    "state": "TX",
+    "zip": "78069",
+    "full_address": "7360 E 6th St, Somerset, TX 78069",
+    "coordinates": {
+      "x": 2081320.2182155077,
+      "y": 13629326.04392034
+    }
+  },
+  {
+    "name": "Southside ISD Admin. Bldg.",
+    "street_address": "1460 Martinez-Losoya Rd",
+    "city": "San Antonio",
+    "state": "TX",
+    "zip": "78221",
+    "full_address": "1460 Martinez-Losoya Rd, San Antonio, TX 78221",
+    "coordinates": {
+      "x": 2136604.044646291,
+      "y": 13635627.444617586
+    }
+  },
+  {
+    "name": "St. Hedwig City Hall",
+    "street_address": "13065 FM 1346",
+    "city": "St. Hedwig",
+    "state": "TX",
+    "zip": "78152",
+    "full_address": "13065 FM 1346, St. Hedwig, TX 78152",
+    "coordinates": {
+      "x": 2214942.149141294,
+      "y": 13702775.821004901
+    }
+  },
+  {
+    "name": "St. Philip\u2019s College \u2013 William Hudgens (WAC) Rm. 100",
+    "street_address": "1801 Martin Luther King Dr",
+    "city": "San Antonio",
+    "state": "TX",
+    "zip": "78203",
+    "full_address": "1801 Martin Luther King Dr, San Antonio, TX 78203",
+    "coordinates": {
+      "x": 2142476.782222752,
+      "y": 13699071.232134521
+    }
+  },
+  {
+    "name": "Texas A&M University\u2013San Antonio \u2013 Mays Ctr. Ste. 111",
+    "street_address": "One University Way",
+    "city": "San Antonio",
+    "state": "TX",
+    "zip": "78224",
+    "full_address": "One University Way, San Antonio, TX 78224",
+    "coordinates": {
+      "x": 2120009.7002964104,
+      "y": 13658142.560458476
+    }
+  },
+  {
+    "name": "Thousand Oaks Branch Library",
+    "street_address": "4618 Thousand Oaks Dr",
+    "city": "San Antonio",
+    "state": "TX",
+    "zip": "78233",
+    "full_address": "4618 Thousand Oaks Dr, San Antonio, TX 78233",
+    "coordinates": {
+      "x": 2158815.069210384,
+      "y": 13746184.166610979
+    }
+  },
+  {
+    "name": "Tobin Library at Oakwell",
+    "street_address": "4134 Harry Wurzbach Rd",
+    "city": "San Antonio",
+    "state": "TX",
+    "zip": "78209",
+    "full_address": "4134 Harry Wurzbach Rd, San Antonio, TX 78209",
+    "coordinates": {
+      "x": 2148574.197779091,
+      "y": 13733631.943748003
+    }
+  },
+  {
+    "name": "Universal City Library",
+    "street_address": "100 Northview Dr",
+    "city": "Universal City",
+    "state": "TX",
+    "zip": "78148",
+    "full_address": "100 Northview Dr, Universal City, TX 78148",
+    "coordinates": {
+      "x": 2192046.4781700857,
+      "y": 13747877.771439094
+    }
+  },
+  {
+    "name": "UTSA \u2013 Bexar Room",
+    "street_address": "1 UTSA Circle",
+    "city": "San Antonio",
+    "state": "TX",
+    "zip": "78249",
+    "full_address": "1 UTSA Circle, San Antonio, TX 78249",
+    "coordinates": {
+      "x": 2090314.9712961812,
+      "y": 13760276.364323698
+    }
+  },
+  {
+    "name": "Windcrest Civic Center (TAKAS)",
+    "street_address": "9310 Jim Seal Dr",
+    "city": "Windcrest",
+    "state": "TX",
+    "zip": "78239",
+    "full_address": "9310 Jim Seal Dr, Windcrest, TX 78239",
+    "coordinates": {
+      "x": 2165842.2538816966,
+      "y": 13738792.034102082
+    }
+  },
+  {
+    "name": "Wonderland of the Americas",
+    "street_address": "4522 Fredericksburg Rd",
+    "city": "Balcones Heights",
+    "state": "TX",
+    "zip": "78201",
+    "full_address": "4522 Fredericksburg Rd, Balcones Heights, TX 78201",
+    "coordinates": {
+      "x": 2111285.2304648734,
+      "y": 13727026.48586531
+    }
+  },
+  {
+    "name": "Woodlawn Pointe Center",
+    "street_address": "702 Donaldson Ave",
+    "city": "San Antonio",
+    "state": "TX",
+    "zip": "78201",
+    "full_address": "702 Donaldson Ave, San Antonio, TX 78201",
+    "coordinates": {
+      "x": 2115831.3179019312,
+      "y": 13716274.332223486
+    }
+  }
+]

@@ -278,6 +278,8 @@ const renderChart = () => {
             // If both EV and ED are shown, this fallback might be tricky; representativeYearForLabels should ideally cover it.
         }
 
+        const labelIndexMap = new Map(labels.map((label, index) => [label, index]));
+
 
         selectedYears.forEach((year) => {
             const yearDatesFull = getDatesForYear(year);
@@ -305,7 +307,7 @@ const renderChart = () => {
                             labelToFind = `Day ${evDayCounterForThisSeries}`;
                         }
 
-                        const targetLabelIndex = labels.indexOf(labelToFind);
+                        const targetLabelIndex = labelIndexMap.get(labelToFind);
                         if (targetLabelIndex !== -1 && currentDataIndex < processedData.length) {
                             alignedData[targetLabelIndex] = processedData[currentDataIndex];
                         }

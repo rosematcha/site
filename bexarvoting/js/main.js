@@ -9,6 +9,9 @@ import {
     getSelectedYears,
     setSelectedYears,
     setToggleStates,
+    getToggleStates,
+    manageDisplay,
+    refreshSelectionSummary,
 } from "./ui.js";
 import { debouncedRenderChart } from "./chart.js";
 
@@ -71,11 +74,12 @@ const initialize = async () => {
     populateLocationDropdown(locationsFromURL);
     setupEventListeners();
     updateAttribution();
+    refreshSelectionSummary();
 
     // Initial render
-    const { displayAs } = await import('./ui.js').then(ui => ui.getToggleStates());
-    if (displayAs === 'table') {
-        await import('./ui.js').then(ui => ui.manageDisplay());
+    const { displayAs } = getToggleStates();
+    if (displayAs === "table") {
+        manageDisplay();
     }
     debouncedRenderChart();
 

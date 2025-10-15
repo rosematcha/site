@@ -1,0 +1,41 @@
+
+# IDE and AI rules
+.github/instructions/codacy.instructions.md
+.vscode/
+.idea/
+
+# Python artifacts
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.Python
+venv/
+env/
+ENV/
+
+# Generated outputs
+sample_ballot.*
+
+# Test artifacts
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# Environment variables
+.env
+.env.local
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log

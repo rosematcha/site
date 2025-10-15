@@ -73,6 +73,18 @@ publish = "_site"
   force = false
 
 [[redirects]]
+  from = "/sampleballot"
+  to = "/sampleballot/index.html"
+  status = 200
+  force = false
+
+[[redirects]]
+  from = "/sampleballot/*"
+  to = "/sampleballot/:splat"
+  status = 200
+  force = false
+
+[[redirects]]
   from = "/moviemap"
   to = "/moviemap/index.html"
   status = 200

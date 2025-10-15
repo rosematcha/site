@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bexar County Voter Precinct Finder</title>
+    <link rel="stylesheet" href="./assets/styles.css" />
+    <script type="module" src="./assets/main.js" defer></script>
+  </head>
+  <body>
+    <div class="ballot-progress" id="ballotProgress" aria-hidden="true">
+      <div class="ballot-progress__bar"></div>
+    </div>
+    <header class="page-header" role="banner">
+      <div class="shell page-header__content">
+        <div class="page-header__intro stack-sm" role="presentation">
+          <p class="page-eyebrow">Bexar County voters</p>
+          <h1 class="page-title">Bexar County Precinct Finder</h1>
+          <p class="page-subtitle">Find your voter precinct, nearby polling locations, and upcoming ballot questions.</p>
+        </div>
+        <aside class="callout callout--note stack-xs" aria-label="Project status" id="statusCallout">
+          <button type="button" class="callout__close" aria-label="Dismiss notice" id="dismissCallout">&times;</button>
+          <h2 class="callout__title">Still polishing the experience</h2>
+          <p>This is a work-in-progress, and not ready to go live. Please send Reese any feedback!<span class="callout__signature"></span></p>
+        </aside>
+      </div>
+    </header>
+
+    <main class="shell layout-stack" aria-label="Precinct lookup tool">
+      <section class="panel panel--accent stack-md" aria-labelledby="address-label">
+        <div class="panel__header stack-xs">
+          <h2 id="address-label" class="section-title">Start with your address</h2>
+          <p class="panel__lede">We'll use it to match you with the right precinct, ballot, and nearby voting locations.</p>
+          <span class="field-hint" id="address-hint">Include at least the house number and street name.</span>
+        </div>
+        <form id="addressForm" class="form stack-sm" role="search" aria-describedby="address-hint quick-help">
+          <label class="field stack-xs" for="address">
+            <span class="field-label">Street address</span>
+            <input
+              type="text"
+              id="address"
+              name="address"
+              placeholder="100 Dolorosa St, San Antonio, TX 78205"
+              inputmode="text"
+              autocomplete="off"
+              autocapitalize="none"
+              autocorrect="off"
+              role="combobox"
+              aria-autocomplete="list"
+              aria-controls="autocomplete-dropdown"
+              aria-expanded="false"
+              aria-describedby="address-hint"
+              required
+            />
+            <div id="autocomplete-dropdown" class="autocomplete-dropdown" role="listbox" aria-label="Address suggestions" aria-hidden="true"></div>
+          </label>
+          <button type="submit" class="button" id="submitBtn">Find my precinct</button>
+        </form>
+      </section>
+
+      <div class="loading" id="loading" role="status" aria-live="polite" aria-hidden="true" aria-busy="false">
+        <div class="spinner" aria-hidden="true"></div>
+        <p>Gathering ballot information…</p>
+      </div>
+
+      <section
+        id="results"
+        class="results"
+        tabindex="-1"
+        role="region"
+        aria-label="Lookup results"
+        aria-live="polite"
+        aria-busy="false"
+      ></section>
+    </main>
+
+    <div id="phoneWarningModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
+      <div class="modal__overlay"></div>
+      <div class="modal__content">
+        <div class="modal__header">
+          <h2 id="modalTitle" class="modal__title">Important reminder</h2>
+        </div>
+        <div class="modal__body">
+          <p><strong>Phones must be powered off within 100 feet of a polling place.</strong></p>
+          <p>You will not be able to take your phone out at the polling station to reference this image.</p>
+          <p>Consider printing your selections instead.</p>
+        </div>
+        <div class="modal__footer">
+          <button type="button" class="button button--ghost" id="modalCancel">Cancel</button>
+          <button type="button" class="button" id="modalConfirm">Save anyway</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

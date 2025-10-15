@@ -4,10 +4,48 @@ import { logMetric } from "./main.js";
 
 // In-memory store for parsed data { year: { locations: [], dates: [], totals: [] } }
 const parsedData = {};
+const rawCSVCache = new Map();
 
 // Master location list for search functionality
 let masterLocationNames = new Set();
 let masterLocationListInitialized = false;
+let masterLocationListCache = [];
+let masterListDirty = true;
+
+const addMasterLocationName = (name) => {
+    if (!name) return;
+    const trimmed = name.trim();
+    if (!trimmed) return;
+    if (!masterLocationNames.has(trimmed)) {
+        masterLocationNames.add(trimmed);
+        masterListDirty = true;
+    }
+};
+
+const splitCsvLine = (line) => {
+    const result = [];
+    let current = "";
+    let inQuotes = false;
+
+    for (let i = 0; i < line.length; i++) {
+        const char = line[i];
+        if (char === '"') {
+            if (inQuotes && line[i + 1] === '"') {
+                current += '"';
+                i++;
+            } else {
+                inQuotes = !inQuotes;
+            }
+        } else if (char === "," && !inQuotes) {
+            result.push(current);
+            current = "";
+        } else {
+            current += char;
+        }
+    }
+    result.push(current);
+    return result;
+};
 
 /**
  * Initialize master location list by scanning all CSV files for location names
@@ -18,19 +56,12 @@ export async function initializeMasterLocationList() {
 
     const allFileKeys = Object.keys(DATA_FILES);
     const namePromises = allFileKeys.map(async (yearKey) => {
-        const fileInfo = DATA_FILES[yearKey];
-        if (!fileInfo || !fileInfo.path) {
-            console.warn(`No path for ${yearKey} in DATA_FILES.`);
-            return [];
-        }
-        const filePath = fileInfo.path;
         try {
-            const response = await fetch(filePath);
-            if (!response.ok) {
-                console.warn(`Could not fetch ${filePath} for master location list. Status: ${response.status}`);
+            const csvString = await fetchData(yearKey);
+            if (!csvString) {
+                console.warn(`No CSV content available for ${yearKey} while building master list.`);
                 return [];
             }
-            const csvString = await response.text();
             const lines = csvString.trim().split('\n');
             const namesInFile = new Set();
             // Start from the first data row (index 1), assuming header is index 0
@@ -38,20 +69,18 @@ export async function initializeMasterLocationList() {
                 const line = lines[i].trim();
                 if (!line) continue; // Skip empty lines
 
-                const firstCommaIndex = line.indexOf(',');
-                if (firstCommaIndex !== -1) {
-                    const locationName = line.substring(0, firstCommaIndex).trim();
-                    // Ensure it's a valid location name and not a summary line like "Total in Person"
-                    if (locationName && 
-                        locationName.toLowerCase() !== "total in person" && 
-                        !locationName.toLowerCase().startsWith("total")) {
-                        namesInFile.add(locationName);
-                    }
-                }
+                const [rawLocationName] = splitCsvLine(line);
+                const locationName = rawLocationName?.trim();
+                if (!locationName) continue;
+
+                const lower = locationName.toLowerCase();
+                if (lower === "total in person" || lower.startsWith("total")) continue;
+
+                namesInFile.add(locationName);
             }
             return Array.from(namesInFile);
         } catch (error) {
-            console.warn(`Error processing ${filePath} for master location list:`, error);
+            console.warn(`Error processing CSV for ${yearKey} while building master list:`, error);
             return [];
         }
     });
@@ -59,11 +88,12 @@ export async function initializeMasterLocationList() {
     const results = await Promise.allSettled(namePromises);
     results.forEach(result => {
         if (result.status === "fulfilled" && result.value) {
-            result.value.forEach(name => masterLocationNames.add(name));
+            result.value.forEach(addMasterLocationName);
         }
     });
 
     masterLocationListInitialized = true;
+    masterListDirty = true;
     console.log(`Master location list initialized with ${masterLocationNames.size} unique names.`);
 }
 
@@ -75,7 +105,13 @@ export function getAllMasterLocationNames() {
         console.warn("Master location list accessed before initialization.");
         return [];
     }
-    return Array.from(masterLocationNames).sort();
+    if (masterListDirty) {
+        masterLocationListCache = Array.from(masterLocationNames).sort((a, b) =>
+            a.localeCompare(b, undefined, { sensitivity: "base" })
+        );
+        masterListDirty = false;
+    }
+    return masterLocationListCache;
 }
 
 /**
@@ -86,6 +122,10 @@ const fetchData = async (year) => {
     if (!fileInfo || !fileInfo.path) {
         console.error(`No data file path defined for year ${year}`);
         return null;
+    }
+
+    if (rawCSVCache.has(year)) {
+        return rawCSVCache.get(year);
     }
 
     console.log(`Fetching data for ${year}`);
@@ -103,6 +143,7 @@ const fetchData = async (year) => {
         }
 
         logMetric("dataLoadTime", performance.now() - startTime);
+        rawCSVCache.set(year, data);
         return data;
     } catch (error) {
         console.error("Fetch error:", error);
@@ -130,8 +171,8 @@ const parseCSV = (csvString, year) => {
     }
 
     try {
-        const headers = lines[0]
-            .split(",")
+        const headerColumns = splitCsvLine(lines[0]);
+        const headers = headerColumns
             .slice(2)
             .map((h, index) => {
                 const trimmedHeader = h.trim();
@@ -151,7 +192,7 @@ const parseCSV = (csvString, year) => {
         parsedData[year].dates = headers;
 
         lines.slice(1).forEach((line) => {
-            const columns = line.split(",");
+            const columns = splitCsvLine(line);
             const locationName = columns[0]?.trim();
             if (!locationName) return;
 
@@ -179,6 +220,7 @@ const parseCSV = (csvString, year) => {
             if (locationName.toLowerCase().startsWith("total")) {
                 parsedData[year].totals = dailyData;
             } else {
+                addMasterLocationName(locationName);
                 parsedData[year].locations.push({
                     name: locationName,
                     data: dailyData,

@@ -3,6 +3,7 @@ import { DATA_FILES, TOTAL_TURNOUT_KEY, DEFAULT_SELECTED_YEARS, PRESET_CONFIGURA
 import { getLocationProperties, isDataLoaded, loadYearData, getAllMasterLocationNames, isLocationInYearData } from "./data.js";
 import { debouncedRenderChart, getCurrentChartInstance } from "./chart.js";
 import { logMetric } from "./main.js";
+import { formatReadableList } from "./utils.js";
 
 // DOM Elements
 const elements = {
@@ -23,9 +24,11 @@ const elements = {
     resetViewButton: document.getElementById("reset-view-button"),
     presetButtonsContainer: document.getElementById("preset-buttons-container"),
     attribution: document.getElementById("attribution"),
+    selectionSummary: document.getElementById("selection-summary"),
 };
 
 let statusMessageElement = null;
+const numberFormatter = new Intl.NumberFormat("en-US", { maximumFractionDigits: 0 });
 
 export const updateURLFromState = () => {
     const years = getSelectedYears();
@@ -44,6 +47,47 @@ export const updateURLFromState = () => {
 
     const newRelativePathQuery = window.location.pathname + "?" + params.toString();
     history.replaceState(null, "", newRelativePathQuery);
+};
+
+export const refreshSelectionSummary = () => {
+    if (!elements.selectionSummary) return;
+
+    const years = getSelectedYears();
+    const locations = getSelectedLocations();
+    const { showEarlyVoting, showElectionDay, dataPresentation, displayAs } = getToggleStates();
+
+    const locationLabels = locations.map((loc) => (loc === TOTAL_TURNOUT_KEY ? "Total Turnout" : loc));
+    const yearSummary = formatReadableList(years, 4);
+    const locationSummary = locationLabels.length > 0 ? formatReadableList(locationLabels, 3) : "None";
+
+    const dataSegments = [];
+    if (showEarlyVoting) dataSegments.push("Early Voting");
+    if (showElectionDay) dataSegments.push("Election Day");
+    const dataSummary = dataSegments.length > 0 ? formatReadableList(dataSegments, 2) : "Hidden";
+
+    const modeSummary = dataPresentation === "cumulative" ? "Cumulative" : "Per-Day";
+    const displaySummary = displayAs === "table" ? "Table" : "Graph";
+    const summaryEntries = [
+        { title: "Years", value: yearSummary },
+        { title: "Locations", value: locationSummary },
+        { title: "Data", value: dataSummary },
+        { title: "View", value: `${modeSummary} • ${displaySummary}` },
+    ];
+
+    if (typeof elements.selectionSummary.replaceChildren === "function") {
+        elements.selectionSummary.replaceChildren();
+    } else {
+        elements.selectionSummary.innerHTML = "";
+    }
+    summaryEntries.forEach(({ title, value }) => {
+        const dl = document.createElement("dl");
+        const dt = document.createElement("dt");
+        dt.textContent = title;
+        const dd = document.createElement("dd");
+        dd.textContent = value;
+        dl.append(dt, dd);
+        elements.selectionSummary.appendChild(dl);
+    });
 };
 
 function ensureStatusMessageElement() {
@@ -119,6 +163,7 @@ export const populateYearCheckboxes = (selectedYearsFromURLOrDefaults = []) => {
         elements.yearOptionsContainer.appendChild(label);
         updateYearLabelState(label, input.checked);
     });
+    refreshSelectionSummary();
 };
 
 function handleLocationChange(event) {
@@ -145,6 +190,7 @@ function handleLocationChange(event) {
         }
     }
     updateSelectAllVisibleButtonState(); // Update button state after a manual check/uncheck
+    refreshSelectionSummary();
     debouncedRenderChart();
     updateURLFromState();
 }
@@ -249,6 +295,7 @@ export const populateLocationDropdown = (selectedLocationsFromURL = []) => {
         }
     }
     updateSelectAllVisibleButtonState();
+    refreshSelectionSummary();
 };
 
 const handleYearChange = async (event) => {
@@ -264,6 +311,7 @@ const handleYearChange = async (event) => {
     // Preserve current selections when repopulating based on year changes
     const currentSelectedLocations = getSelectedLocations();
     populateLocationDropdown(currentSelectedLocations.length > 0 ? currentSelectedLocations : [TOTAL_TURNOUT_KEY]);
+    refreshSelectionSummary();
     debouncedRenderChart();
     updateURLFromState();
 };
@@ -417,7 +465,7 @@ export const renderDataTable = (chartInstance) => {
         tableHTML += `<tr><td>${label}</td>`;
         datasets.forEach(dataset => {
             const value = dataset.data[index];
-            tableHTML += `<td>${value !== null && value !== undefined ? value.toLocaleString() : 'N/A'}</td>`;
+            tableHTML += `<td>${value !== null && value !== undefined ? numberFormatter.format(value) : 'N/A'}</td>`;
         });
         tableHTML += '</tr>';
     });
@@ -480,6 +528,7 @@ export const setupEventListeners = () => {
     const commonChangeHandler = () => {
         logMetric("interactions", 1);
         filterLocations(); // Ensure location visibility is updated based on EV/ED toggles
+        refreshSelectionSummary();
         debouncedRenderChart();
         updateURLFromState();
     };
@@ -490,6 +539,7 @@ export const setupEventListeners = () => {
 
     elements.dataPresentationRadios.forEach(radio => radio.addEventListener('change', () => {
         updateRadioVisuals(elements.dataPresentationRadios);
+        refreshSelectionSummary();
         commonChangeHandler();
     }));
 
@@ -498,6 +548,7 @@ export const setupEventListeners = () => {
             logMetric("interactions", 1);
             updateRadioVisuals(elements.displayAsRadios);
             manageDisplay(); // This will call renderDataTable if switching to table
+            refreshSelectionSummary();
             updateURLFromState();
             // If switching to graph, and data is already processed, chart might need explicit re-render
             // if manageDisplay doesn't trigger it (e.g. if cat was shown).
@@ -538,6 +589,7 @@ export const setSelectedYears = (yearsToSelect) => {
             updateYearLabelState(label, checkbox.checked);
         }
     });
+    refreshSelectionSummary();
 };
 
 export const setSelectedLocations = (locationsToSelect) => { // eslint-disable-line no-unused-vars
@@ -564,6 +616,7 @@ export const setToggleStates = (states) => { // states is an object
         });
         updateRadioVisuals(elements.displayAsRadios);
     } // No 'else' for defaulting if not specified
+    refreshSelectionSummary();
 };
 
 export const getSelectedYears = () => {
@@ -578,9 +631,7 @@ export const getSelectedLocations = () => {
     if (!container) return [];
     return Array.from(
         container.querySelectorAll(".location-option input[type=checkbox]:checked")
-    )
-    .filter(cb => cb.parentElement && cb.parentElement.style.display !== 'none')
-    .map((cb) => cb.value);
+    ).map((cb) => cb.value);
 };
 
 export const getToggleStates = () => {
@@ -692,5 +743,6 @@ const applyPresetConfiguration = async (presetKey) => {
     // Explicitly call render and update URL to ensure all changes are reflected.
     debouncedRenderChart();
     updateURLFromState();
+    refreshSelectionSummary();
     updateStatusMessage("");
 };
