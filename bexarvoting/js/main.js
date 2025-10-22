@@ -35,6 +35,7 @@ const applyStateFromURL = () => {
     const showED = params.get("ed");
     const yz = params.get("yz");
     const presentation = params.get("pres");
+    const timeline = params.get("tl");
     const display = params.get("disp");
 
     if (years.length > 0) {
@@ -46,6 +47,7 @@ const applyStateFromURL = () => {
     if (showED !== null) toggleStates.ed = showED === "1";
     if (yz !== null) toggleStates.yz = yz === "1";
     if (presentation !== null) toggleStates.presentation = presentation;
+    if (timeline === "normalized" || timeline === "actual") toggleStates.timeline = timeline;
     if (display !== null) toggleStates.display = display;
 
     if (Object.keys(toggleStates).length > 0) {

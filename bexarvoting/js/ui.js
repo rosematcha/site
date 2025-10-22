@@ -16,6 +16,7 @@ const elements = {
     electionDayToggle: document.getElementById("election-day-toggle"),
     yAxisToggle: document.getElementById("y-axis-toggle"),
     dataPresentationRadios: document.querySelectorAll('input[name="data-presentation"]'),
+    timelineModeRadios: document.querySelectorAll('input[name="timeline-mode"]'),
     displayAsRadios: document.querySelectorAll('input[name="display-as"]'),
     chartContainer: document.getElementById("chart-container"),
     chartCanvas: document.getElementById("turnoutChart"),
@@ -38,7 +39,14 @@ const numberFormatter = new Intl.NumberFormat("en-US", { maximumFractionDigits: 
 export const updateURLFromState = () => {
     const years = getSelectedYears();
     const locations = getSelectedLocations();
-    const { showEarlyVoting, showElectionDay, startYAtZero, dataPresentation, displayAs } = getToggleStates();
+    const {
+        showEarlyVoting,
+        showElectionDay,
+        startYAtZero,
+        dataPresentation,
+        displayAs,
+        timelineMode
+    } = getToggleStates();
 
     const params = new URLSearchParams();
     if (years.length > 0) params.set("y", years.join(","));
@@ -48,6 +56,7 @@ export const updateURLFromState = () => {
     params.set("ed", showElectionDay ? "1" : "0");
     params.set("yz", startYAtZero ? "1" : "0");
     params.set("pres", dataPresentation);
+    params.set("tl", timelineMode);
     params.set("disp", displayAs);
 
     const newRelativePathQuery = window.location.pathname + "?" + params.toString();
@@ -517,6 +526,14 @@ export const setupEventListeners = () => {
         commonChangeHandler();
     }));
 
+    if (elements.timelineModeRadios && elements.timelineModeRadios.length > 0) {
+        elements.timelineModeRadios.forEach(radio => radio.addEventListener('change', () => {
+            updateRadioVisuals(elements.timelineModeRadios);
+            refreshSelectionSummary();
+            commonChangeHandler();
+        }));
+    }
+
     elements.displayAsRadios.forEach(radio => {
         radio.addEventListener('change', () => {
             logMetric("interactions", 1);
@@ -585,6 +602,13 @@ export const setToggleStates = (states) => { // states is an object
         updateRadioVisuals(elements.dataPresentationRadios);
     } // No 'else' for defaulting if not specified
 
+    if (states.timeline !== undefined && elements.timelineModeRadios && elements.timelineModeRadios.length > 0) {
+        elements.timelineModeRadios.forEach(radio => {
+            radio.checked = radio.value === states.timeline;
+        });
+        updateRadioVisuals(elements.timelineModeRadios);
+    }
+
     if (states.display !== undefined) {
         elements.displayAsRadios.forEach(radio => {
             radio.checked = radio.value === states.display;
@@ -616,6 +640,12 @@ export const getToggleStates = () => {
         if (checkedRadio) dataPresentationValue = checkedRadio.value;
     }
 
+    let timelineModeValue = 'actual';
+    if (elements.timelineModeRadios && elements.timelineModeRadios.length > 0) {
+        const checkedTimelineRadio = Array.from(elements.timelineModeRadios).find(radio => radio.checked);
+        if (checkedTimelineRadio) timelineModeValue = checkedTimelineRadio.value;
+    }
+
     let displayAsValue = 'graph'; // Default
     if (elements.displayAsRadios && elements.displayAsRadios.length > 0) {
         const checkedRadio = Array.from(elements.displayAsRadios).find(radio => radio.checked);
@@ -627,6 +657,7 @@ export const getToggleStates = () => {
         showElectionDay: elements.electionDayToggle ? elements.electionDayToggle.checked : true,
         startYAtZero: elements.yAxisToggle ? elements.yAxisToggle.checked : true,
         dataPresentation: dataPresentationValue,
+        timelineMode: timelineModeValue,
         displayAs: displayAsValue,
     };
 };
@@ -672,7 +703,7 @@ const applyPresetConfiguration = async (presetKey) => {
             name: "Default View",
             years: DEFAULT_SELECTED_YEARS,
             locations: [TOTAL_TURNOUT_KEY],
-            toggles: { ev: true, ed: true, yz: true, presentation: 'per-day', display: 'graph' }
+            toggles: { ev: true, ed: true, yz: true, presentation: 'per-day', timeline: 'actual', display: 'graph' }
         };
     } else {
         config = PRESET_CONFIGURATIONS[presetKey];
