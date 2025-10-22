@@ -1,4 +1,5 @@
 export const DATA_FILES = {
+    "November 2025": { name: "November 2025", path: "csv/November 2025 State.csv" },
     "June 2025": { name: "June 2025", path: "csv/June 2025 Municipal Runoff.csv" },
     "May 2025": { name: "May 2025", path: "csv/May 2025 Municipal.csv" },
     "November 2024": { name: "November 2024", path: "csv/November 2024 General.csv" },
@@ -13,10 +14,10 @@ export const DATA_FILES = {
 };
 
 export const DEFAULT_SELECTED_YEARS = [
-    "June 2025",
-    "June 2023",
-    "June 2021",
-    "June 2019"
+    "November 2025",
+    "November 2024",
+    "November 2022",
+    "November 2020"
 ];
 
 export const PRESET_CONFIGURATIONS = {
@@ -26,15 +27,15 @@ export const PRESET_CONFIGURATIONS = {
     },
     "all-november": {
         name: "All November Elections",
-        years: ["November 2024", "November 2022", "November 2020"],
+        years: ["November 2025", "November 2024", "November 2022", "November 2020"],
     },
     "all-may": {
         name: "All May Elections",
         years: ["May 2025", "May 2023", "May 2021", "May 2019"],
     },
     "recent-years": {
-        name: "Recent Years (2022+)",
-        years: ["June 2025", "May 2025", "November 2024", "June 2023", "May 2023", "November 2022"],
+        name: "Recent Years",
+        years: ["November 2025", "June 2025", "May 2025", "November 2024", "June 2023", "May 2023"],
         locations: ["total"],
         toggles: { ev: true, ed: true, yz: true, presentation: 'per-day', display: 'graph' }
     }
