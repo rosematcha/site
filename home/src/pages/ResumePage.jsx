@@ -1,7 +1,7 @@
 // src/pages/ResumePage.jsx
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "./PageStyles.css";
+import { Mail, Globe, FileText, ChevronRight } from "lucide-react";
 import "./ResumePage.css";
 
 function ResumePage() {
@@ -252,9 +252,7 @@ function ResumePage() {
   };
 
   return (
-    <div className="page-content">
-      {/* Header with actions removed */}
-
+    <div className="page-content resume-container">
       {/* Contact Info with Copy Actions */}
       <div className="resume-contact-card">
         <h3 className="resume-name">Reese Ferguson</h3>
@@ -264,25 +262,26 @@ function ResumePage() {
             onClick={() => copyToClipboard('hi@rosematcha.com', 'Email')}
             title="Copy email"
           >
-            <svg className="icon-inline mr-2" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            <Mail size={18} />
             hi@rosematcha.com
           </button>
           <button 
-            className="button"
+            className="button button--ghost"
             onClick={() => copyToClipboard('https://rosematcha.com', 'Website')}
             title="Copy website URL"
           >
-            <svg className="icon-inline mr-2" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1 2.1A8.02 8.02 0 0 0 6.2 7H11V4.1zM4.1 11A8.02 8.02 0 0 1 7 6.2V11H4.1zM11 19.9A8.02 8.02 0 0 1 6.2 17H11v2.9zM7 13v4.8A8.02 8.02 0 0 0 11 19v-6H7zm6 6a8.02 8.02 0 0 0 3.8-2.2H13V19zm4.9-6A8.02 8.02 0 0 1 17 17.8V13h2.9zM13 11V4.1A8.02 8.02 0 0 1 17.8 7H13z"/></svg>
+            <Globe size={18} />
             rosematcha.com
           </button>
           <a 
-            className="button"
+            className="button button--ghost"
             href="https://github.com/rosematcha"
             target="_blank"
             rel="noopener noreferrer"
+            title="View GitHub Profile"
           >
-            <svg className="icon-inline mr-2" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h16v2H4V4zm0 6h16v2H4v-2zm0 6h10v2H4v-2z"/></svg>
-            GitHub
+            <FileText size={18} />
+            View GitHub
           </a>
         </div>
         {copyFeedback && <div className="copy-feedback">{copyFeedback}</div>}
@@ -339,19 +338,18 @@ function ResumePage() {
         
         <div className={`experience-container`}>
           {filteredJobs.map((job) => (
-            <div key={job.id} className={`job-entry`}>
-              <div className="job-header">
-                <h5 onClick={() => toggleEntry(job.id)}>
-                  {job.title}
+            <div key={job.id} className={`job-entry`} data-expanded={expandedEntries[job.id]}>
+              <div className="job-header" onClick={() => toggleEntry(job.id)}>
+                <h3>
                   <span className="toggle-icon">
-                    {expandedEntries[job.id] ? "[-]" : "[+]"
-                    }
+                    <ChevronRight size={20} />
                   </span>
-                </h5>
+                  {job.title}
+                </h3>
                 <div className="job-meta">
                   <p>
                     {job.companyUrl ? (
-                      <a href={job.companyUrl} target="_blank" rel="noopener noreferrer">
+                      <a href={job.companyUrl} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>
                         <strong>{job.company}</strong>
                       </a>
                     ) : (
@@ -407,13 +405,7 @@ function ResumePage() {
                       <span className="skill-percentage">{skill.level}%</span>
                     </div>
                     <div className="skill-bar">
-                      <div 
-                        className="skill-fill"
-                        style={{ 
-                          width: `${skill.level}%`,
-                          animationDelay: `${Math.random() * 0.5}s`
-                        }}
-                      ></div>
+                      <div className="skill-fill">{skill.level}%</div>
                     </div>
                   </div>
                 ))}

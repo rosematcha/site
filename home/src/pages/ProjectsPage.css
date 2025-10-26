@@ -1,143 +1,171 @@
-/* Projects grid: one per row */
+/* ProjectsPage Styles */
+
+.projects-page-wrapper {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: var(--space-6) var(--space-4) var(--space-8);
+}
+
+.projects-header {
+  text-align: center;
+  margin-bottom: var(--space-6);
+}
+
+.projects-header h2 {
+  margin-bottom: var(--space-2);
+  color: var(--accent-primary);
+}
+
+.projects-header p {
+  font-size: var(--font-body-lg);
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
 .project-showcase-container {
   display: grid;
-  grid-template-columns: 1fr; /* single column at all widths */
-  gap: var(--space-5);
-  margin-top: var(--space-4);
+  gap: var(--space-3);
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
 .project-entry-card {
-  background: var(--chrome-top);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: var(--space-5);
-  display: flex;
-  flex-direction: column; /* stack by default for small screens */
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22);
-  transition:
-    transform var(--press-dur, 150ms) ease,
-    box-shadow var(--press-dur, 150ms) ease;
-}
-
-/* Removed legacy order rules; CTA now lives inside .project-details */
-/* .project-thumbnail-link { order: 1; }
-.project-details { order: 2; }
-.project-link-button { order: 3; } */
-
-/* Clean horizontal card layout on wider screens using grid */
-@media (min-width: 900px) {
-  .project-entry-card {
-    display: grid;
-    grid-template-columns: clamp(260px, 36%, 380px) 1fr;
-    grid-template-areas:
-      "media details"
-      "media details"; /* two-row grid keeps balanced height; CTA stays within details */
-    align-items: start;
-    gap: var(--space-6);
-  }
-  .project-thumbnail-link { grid-area: media; margin-bottom: 0; }
-  .project-details {
-    grid-area: details;
-    display: flex;            /* keep flex for simple vertical flow */
-    flex-direction: column;
-    gap: var(--space-3);
-    max-width: 62ch;
-  }
+  display: grid;
+  grid-template-columns: 35% 65%;
+  gap: var(--space-3);
+  background-color: var(--bg-tertiary);
+  border: 2px solid var(--accent-primary);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  transition: all var(--transition-base);
+  max-height: 280px;
 }
 
 .project-entry-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.28);
-}
-
-/* Respect reduced motion: no hover motion */
-@media (prefers-reduced-motion: reduce) {
-  .project-entry-card { transition: box-shadow var(--press-dur, 150ms) ease; }
-  .project-entry-card:hover { transform: none; }
+  box-shadow: 0 8px 32px rgba(233, 30, 99, 0.2);
+  border-color: var(--accent-hover);
 }
 
 .project-thumbnail-link {
   display: block;
-  margin-bottom: 12px;
-  border-radius: 12px;
+  position: relative;
   overflow: hidden;
-  border: 1px solid var(--border);
+  border-radius: 0;
+  height: 100%;
 }
 
 .project-thumbnail {
   width: 100%;
-  aspect-ratio: 16 / 9;
+  height: 100%;
   object-fit: cover;
-  display: block;
+  transition: transform var(--transition-slow);
+}
+
+.project-entry-card:hover .project-thumbnail {
+  transform: scale(1.05);
 }
 
 .project-details {
+  padding: var(--space-2) var(--space-3);
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  justify-content: space-between;
+  overflow: hidden;
 }
 
-/* Louder titles without heavy dividers */
 .project-details h3 {
-  margin: 0 0 4px 0;
-  border-bottom: none;
-  font-weight: 800;
-  letter-spacing: -0.01em;
-  line-height: 1.25;
-  color: color-mix(in oklab, var(--text) 85%, var(--brand-2) 15%);
+  font-size: var(--font-h3);
+  margin-bottom: var(--space-1);
+  color: var(--accent-primary);
+  font-weight: 500;
 }
 
 .project-details h3 a {
-  color: inherit;
-  text-decoration: none;
+  color: var(--text-primary);
+  border: none;
+  transition: color var(--transition-fast);
 }
 
 .project-details h3 a:hover {
-  text-decoration: underline;
-  text-decoration-color: color-mix(in oklab, var(--brand) 60%, var(--brand-2) 40%);
+  color: var(--accent-primary);
 }
 
 .project-description {
-  color: var(--muted);
-  margin: 2px 0 4px;
-  max-width: 62ch; /* add breathing room on wide cards */
+  font-size: var(--font-sm);
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: var(--space-2);
+  flex-grow: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
-/* CTA under description, larger and aligned to start */
 .project-link-button {
-  display: inline-flex; /* uses shared .button styles as base */
-  align-self: start;
-  padding: 12px 20px;
-  font-size: 15px;
-  margin-top: var(--space-2);
+  align-self: flex-start;
+  margin-bottom: var(--space-2);
+  padding: 0.375rem 0.875rem;
+  font-size: var(--font-sm);
+  min-height: 32px;
+  gap: 0.375rem;
+  font-weight: 500;
 }
 
-/* Unified tags row at the very bottom */
-.project-tags-row { display: none; }
-@media (min-width: 900px) {
-  .project-tags-row { display: none; }
+.project-tags-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--accent-primary);
 }
 
-/* Keep badge visuals */
 .tag-badge {
-  padding: 6px 12px;
-  border-radius: 999px;
-  font-size: 12px;
-  font-weight: 700;
-  border: 1px solid var(--border);
+  font-size: 0.625rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 99px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1;
 }
-.tech-tag { background: color-mix(in oklab, var(--brand-2) 15%, transparent); color: var(--text); }
-.category-tag { background: color-mix(in oklab, var(--brand) 12%, transparent); color: var(--text); }
 
-/* Remove old grouped tag layout (kept for backward compatibility if present) */
-.project-tags { display: none; }
+.tech-tag {
+  background-color: var(--accent-primary);
+  color: var(--bg-primary);
+  border: 2px solid var(--accent-primary);
+  font-weight: 700;
+}
 
-@media (max-width: 885px) {
-  .project-showcase-container {
+.category-tag {
+  background-color: var(--bg-secondary);
+  color: var(--accent-primary);
+  border: 2px solid var(--accent-primary);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .project-entry-card {
     grid-template-columns: 1fr;
+  }
+  
+  .project-thumbnail-link {
+    aspect-ratio: 16 / 9;
+  }
+}
+
+@media (max-width: 640px) {
+  .project-showcase-container {
     gap: var(--space-4);
   }
-  .project-entry-card {
-    padding: var(--space-4);
+  
+  .project-details {
+    padding: var(--space-3);
+  }
+  
+  .project-details h3 {
+    font-size: var(--font-h3);
   }
 }

@@ -1,9 +1,0 @@
-/* src/components/Header.css */
-/* Visual styles are defined in src/index.css using design tokens.
-   This file keeps only minimal layout hooks specific to Header markup. */
-
-.site-main-title { margin: 0; }
-
-.brand-row { display: flex; align-items: center; gap: 10px; }
-
-.main-nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 8px; }

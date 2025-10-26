@@ -1,10 +1,10 @@
 // src/pages/ProjectsPage.jsx
 import React, { useEffect } from "react";
-import "./PageStyles.css";
-import "./ProjectsPage.css";
+import { ExternalLink } from "lucide-react";
 import { projectsData } from "../data/projects";
 import { warmProjectsThumbnails } from "../utils/prefetch";
 import OptimizedImage from "../components/OptimizedImage";
+import "./ProjectsPage.css";
 
 function getProjectUrl(path) {
   if (!path) return undefined;
@@ -19,11 +19,13 @@ function ProjectsPage() {
   }, []);
   
   return (
-    <div className="page-content">
-      <h2 className="text-center">My Projects</h2>
-      <p className="text-center mb-5">
-        You can't put websites on the fridge, so this is the next best thing.
-      </p>
+    <div className="projects-page-wrapper">
+      <div className="projects-header">
+        <h2>My Projects</h2>
+        <p>
+          You can't put websites on the fridge, so this is the next best thing.
+        </p>
+      </div>
 
       <div className="project-showcase-container">
         {projectsData.map((project, idx) => (
@@ -40,9 +42,7 @@ function ProjectsPage() {
                 className="project-thumbnail"
                 loading={idx < 2 ? "eager" : "lazy"}
                 decoding="async"
-                // First two items likely above the fold on desktop; boost priority
                 fetchPriority={idx < 2 ? "high" : "auto"}
-                // Provide a sizes hint to help the browser choose efficient candidate
                 sizes="(min-width: 900px) 36vw, 100vw"
                 placeholder={
                   <div className="animate-pulse bg-gray-300 dark:bg-gray-600 rounded">
@@ -54,31 +54,32 @@ function ProjectsPage() {
               />
             </a>
             <div className="project-details">
-              <h3>
+              <div>
+                <h3>
+                  <a
+                    href={getProjectUrl(project.path)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {project.title}
+                  </a>
+                </h3>
+                <p
+                  className="project-description"
+                  dangerouslySetInnerHTML={{ __html: project.description }}
+                ></p>
+
                 <a
                   href={getProjectUrl(project.path)}
                   target="_blank"
                   rel="noopener noreferrer"
+                  className="project-link-button button"
                 >
-                  {project.title}
+                  <ExternalLink size={16} />
+                  {project.buttonText || "Visit Project Site"}
                 </a>
-              </h3>
-              <p
-                className="project-description"
-                dangerouslySetInnerHTML={{ __html: project.description }}
-              ></p>
+              </div>
 
-              {/* CTA moved under description for better prominence */}
-              <a
-                href={getProjectUrl(project.path)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="project-link-button button"
-              >
-                {project.buttonText || "Visit Project Site"}
-              </a>
-
-              {/* Unified tags row at the bottom */}
               <div className="project-tags-row" aria-label="Project tags">
                 {project.tech.map((techItem, i) => (
                   <span key={`tech-${i}-${techItem}`} className="tag-badge tech-tag">

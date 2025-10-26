@@ -1,30 +1,21 @@
 // src/pages/NotFoundPage.jsx
 import React from "react";
 import { Link } from "react-router-dom";
-import "./PageStyles.css";
+import { Home, AlertCircle } from "lucide-react";
 
 function NotFoundPage() {
   return (
-    <div className="page-content text-center">
-      <div className="intro-image-container text-center mt-0 mb-3">
-        <img
-          src="/img/404.gif"
-          alt="Haruhi Suzumiya hitting Kyon on the head"
-          className="intro-gif"
-        />
-      </div>
-      <p className="text-center">whoops! either something went wrong or this page doesn't exist.</p>
+    <div className="page-content" style={{ textAlign: 'center', paddingTop: 'var(--space-16)' }}>
+      <AlertCircle size={80} style={{ color: 'var(--accent-primary)', margin: '0 auto var(--space-6)' }} />
+      <h1 style={{ marginBottom: 'var(--space-4)' }}>404 - Page Not Found</h1>
+      <p style={{ fontSize: 'var(--font-body-lg)', color: 'var(--text-secondary)', marginBottom: 'var(--space-8)' }}>
+        Whoops! Either something went wrong or this page doesn't exist.
+      </p>
 
-      <div className="mt-8">
-        <Link to="/" className="button">
-          <img
-            src="/img/back_button.gif"
-            alt="Back to Home"
-            className="icon-inline mr-2"
-          />
-          Back to Home
-        </Link>
-      </div>
+      <Link to="/" className="button">
+        <Home size={20} />
+        Back to Home
+      </Link>
     </div>
   );
 }

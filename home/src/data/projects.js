@@ -1,6 +1,16 @@
 // Centralized project data for reuse (listing and intelligent preloading)
 export const projectsData = [
   {
+    id: "ciphermaniac",
+    title: "Ciphermaniac",
+    path: "https://ciphermaniac.com/",
+    thumbnail: "/img/projects/ciphermaniac-thumb.jpg",
+    description:
+      "To show my local players what cards are frequently used in the Pokémon card game, I created this tool tracking the usage of cards in major tournaments. Now with over 1,000 daily users.",
+    tech: ["react", "node.js", "tailwindcss"],
+    tags: ["data visualization", "pokémon"],
+  },
+  {
     id: "moviemap",
     title: "Movie Map",
     path: "/moviemap",

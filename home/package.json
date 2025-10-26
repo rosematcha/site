@@ -5,11 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-  "build": "vite build --outDir ../_site",
-  "preview": "vite preview --outDir ../_site",
+    "build": "vite build --outDir ../_site",
+    "preview": "vite preview --outDir ../_site",
     "lint": "eslint src"
   },
   "dependencies": {
+    "lucide-react": "^0.548.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-router-dom": "^7.6.0"

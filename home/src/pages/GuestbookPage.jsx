@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
-import "./PageStyles.css";
+import { ArrowLeft, Send } from "lucide-react";
 import "./GuestbookPage.css";
 
 function GuestbookPage() {
@@ -135,6 +135,7 @@ function GuestbookPage() {
           className="button"
           disabled={submissionStatus === "submitting"}
         >
+          <Send size={18} />
           {submissionStatus === "submitting" ? "Posting..." : "Post Message"}
         </button>
 
@@ -191,8 +192,8 @@ function GuestbookPage() {
       )}
 
       <div className="text-center mt-7">
-        <Link to="/" className="button">
-          <svg className="icon-inline mr-2" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M10 19l-7-7 7-7v4h8v6h-8v4z"/></svg>
+        <Link to="/" className="button button--ghost">
+          <ArrowLeft size={18} />
           Back to Home
         </Link>
       </div>

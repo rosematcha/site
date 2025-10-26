@@ -1,6 +1,7 @@
 // src/components/Header.jsx
 import React, { useCallback, useRef } from "react";
-import { NavLink } from "react-router-dom"; // Using NavLink for potential active styling
+import { NavLink } from "react-router-dom";
+import { Home, Briefcase, FileText, MessageSquare, Mail } from "lucide-react";
 import { warmProjectsThumbnails, warmGuestbook, prefetchProjectRoutes } from "../utils/prefetch";
 
 function Header() {
@@ -42,8 +43,10 @@ function Header() {
                 to="/"
                 className={({ isActive }) => (isActive ? "active" : "")}
                 end
+                title="Home"
               >
-                Home
+                <Home size={18} />
+                <span>Home</span>
               </NavLink>
             </li>
             <li>
@@ -56,16 +59,20 @@ function Header() {
                 onMouseDown={onProjectsIntent}
                 onTouchStart={onProjectsIntent}
                 onFocus={onProjectsIntent}
+                title="Projects"
               >
-                Projects
+                <Briefcase size={18} />
+                <span>Projects</span>
               </NavLink>
             </li>
             <li>
               <NavLink
                 to="/resume"
                 className={({ isActive }) => (isActive ? "active" : "")}
+                title="Resume"
               >
-                Resume
+                <FileText size={18} />
+                <span>Resume</span>
               </NavLink>
             </li>
             <li>
@@ -76,12 +83,17 @@ function Header() {
                 onPointerEnter={onGuestbookIntent}
                 onTouchStart={onGuestbookIntent}
                 onFocus={onGuestbookIntent}
+                title="Guestbook"
               >
-                Guestbook
+                <MessageSquare size={18} />
+                <span>Guestbook</span>
               </NavLink>
             </li>
             <li>
-              <a href="mailto:hi@rosematcha.com">Contact</a>
+              <a href="mailto:hi@rosematcha.com" title="Contact">
+                <Mail size={18} />
+                <span>Contact</span>
+              </a>
             </li>
           </ul>
         </nav>
