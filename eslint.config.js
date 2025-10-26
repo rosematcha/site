@@ -4,7 +4,16 @@ import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
 
 export default [
-  { ignores: ['dist', '_site'] },
+  {
+    ignores: [
+      '_site',
+      '**/dist/**',
+      'apps/bexarvoting/**',
+      'apps/friendfinder/**',
+      'apps/moviemap/**',
+      'apps/sampleballot/**',
+    ],
+  },
   {
     files: ['**/*.{js,jsx}'],
     languageOptions: {

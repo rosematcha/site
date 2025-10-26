@@ -1,29 +1,26 @@
 {
-  "name": "rosematcha-dot-dcom",
+  "name": "rosematcha.com",
   "private": true,
   "version": "1.0.0",
   "type": "module",
   "workspaces": [
-    "brahdb",
-    "decks",
-    "garagesale"
+    "home",
+    "apps/brahdb",
+    "apps/garagesale"
   ],
   "scripts": {
-    "dev": "vite",
+    "dev": "npm run -w home dev",
     "prebuild": "rimraf _site",
-    "build": "npm-run-all -p build:root build:workspaces && npm run copy-static",
-    "build:root": "vite build --outDir _site",
+    "build": "npm-run-all -s build:workspaces copy-static",
     "build:workspaces": "npm run build --workspaces --if-present",
-    "copy-static": "cpx \"css/**\" _site/css && cpx \"bexarvoting/**\" _site/bexarvoting && cpx \"friendfinder/**\" _site/friendfinder && cpx \"moviemap/**\" _site/moviemap && cpx \"popeclicker/**\" _site/popeclicker && cpx \"public/**\" _site && cpx \"src/assets/**\" _site/assets && cpx \"garagesale/dist/**\" _site/garagesale && cpx \"sampleballot/index.html\" _site/sampleballot && cpx \"sampleballot/assets/**\" _site/sampleballot/assets && cpx \"sampleballot/*.json\" _site/sampleballot",
-    "lint": "eslint .",
-    "preview": "vite preview"
-    
+    "copy-static": "cpx \"apps/bexarvoting/**\" _site/bexarvoting && cpx \"apps/friendfinder/**\" _site/friendfinder && cpx \"apps/moviemap/**\" _site/moviemap && cpx \"home/public/**\" _site && cpx \"home/src/assets/**\" _site/assets && cpx \"apps/garagesale/dist/**\" _site/garagesale && cpx \"apps/sampleballot/index.html\" _site/sampleballot && cpx \"apps/sampleballot/assets/**\" _site/sampleballot/assets && cpx \"apps/sampleballot/*.json\" _site/sampleballot",
+    "lint": "npm-run-all lint:root lint:workspaces",
+    "lint:root": "eslint netlify/functions",
+    "lint:workspaces": "npm run lint --workspaces --if-present",
+    "preview": "npm run -w home preview"
   },
   "dependencies": {
-    "node-fetch": "^2.7.0",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
-    "react-router-dom": "^7.6.0"
+    "node-fetch": "^2.7.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",

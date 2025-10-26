@@ -26,12 +26,6 @@ function ResumePage() {
     });
   };
 
-  // Generate PDF (placeholder - would need actual implementation)
-  const downloadPDF = () => {
-    // This would typically use jsPDF or similar library
-    alert('PDF download would be implemented here');
-  };
-
   // Job categories and data
   const jobCategories = {
     'default': 'Key Positions',
@@ -331,27 +325,16 @@ function ResumePage() {
         
         {/* Category Filters */}
         <div className="category-filters">
-          {Object.entries(jobCategories).map(([key, label]) => {
-            let count = 0;
-            if (key === 'default') {
-              count = allJobs.filter(job => job.featured).length;
-            } else if (key === 'all') {
-              count = allJobs.length;
-            } else {
-              count = allJobs.filter(job => job.categories.includes(key)).length;
-            }
-            
-            return (
-              <button
-                key={key}
-                className={`button button--sm button--ghost`}
-                aria-pressed={selectedCategories.includes(key)}
-                onClick={() => toggleCategory(key)}
-              >
-                {label}
-              </button>
-            );
-          })}
+          {Object.entries(jobCategories).map(([key, label]) => (
+            <button
+              key={key}
+              className="button button--sm button--ghost"
+              aria-pressed={selectedCategories.includes(key)}
+              onClick={() => toggleCategory(key)}
+            >
+              {label}
+            </button>
+          ))}
         </div>
         
         <div className={`experience-container`}>

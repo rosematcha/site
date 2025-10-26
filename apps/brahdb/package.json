@@ -5,9 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build --outDir ../_site/brahdb",
+    "build": "vite build --outDir ../../_site/brahdb",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview --outDir ../../_site/brahdb"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -15,7 +15,17 @@
     "@headlessui/react": "^2.2.2",
     "@heroicons/react": "^2.1.1",
     "@mui/material": "^7.1.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
     "react-range": "^1.10.0",
     "typescript-eslint": "^8.35.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.2",
+    "@types/react-dom": "^19.1.2",
+    "@vitejs/plugin-react": "^4.4.1",
+    "@vitejs/plugin-react-swc": "^3.5.0",
+    "typescript": "^5.3.3",
+    "vite": "^6.3.5"
   }
 }

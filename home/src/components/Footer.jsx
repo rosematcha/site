@@ -50,7 +50,7 @@ function Footer() {
         const p = new URLSearchParams(window.location.search).get("motion");
         if (p === "on") return false;
       }
-    } catch (e) {
+    } catch {
       // ignore URL/search parsing errors in exotic environments
     }
     return reduced;
@@ -69,8 +69,8 @@ function Footer() {
     const track = trackRef.current;
     if (!container || !track) return;
 
-  // Clear any running animation, then start a new one after measuring
-  track.style.animation = "none";
+    // Clear any running animation, then start a new one after measuring
+    track.style.animation = "none";
 
     let raf = 0;
     const start = () => {
@@ -80,11 +80,11 @@ function Footer() {
       // add ~5% of the container width as off-screen breathing on each edge
       const pad = Math.round(containerWidth * 0.05);
       const durationMs = Math.max(8000, Math.round(( (distance + pad * 2) / SPEED_PX_PER_S) * 1000));
-      // Start slightly offset to the right (+pad), end past the left by distance+pad
-      track.style.setProperty("--marquee-x-start", `${pad}px`);
-      track.style.setProperty("--marquee-x-end", `${-(distance + pad)}px`);
-  // Force reflow
-  void track.offsetHeight;
+    // Start slightly offset to the right (+pad), end past the left by distance+pad
+    track.style.setProperty("--marquee-x-start", `${pad}px`);
+    track.style.setProperty("--marquee-x-end", `${-(distance + pad)}px`);
+    // Force reflow
+    void track.offsetHeight;
       track.style.animation = `marquee-run ${durationMs}ms linear 1`;
     };
     raf = window.requestAnimationFrame(start);
