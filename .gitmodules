@@ -1,3 +1,8 @@
 [submodule "friendfinder"]
+  path = apps/friendfinder
+  url = https://github.com/rosematcha/friendfinder
+  branch = main
+[submodule "apps/friendfinder"]
 	path = apps/friendfinder
 	url = https://github.com/rosematcha/friendfinder
+	branch = main
