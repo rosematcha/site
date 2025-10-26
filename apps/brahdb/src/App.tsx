@@ -75,23 +75,57 @@ const globalStyles = `
 function App() {
   // Page state
   const [showStats, setShowStats] = useState(false);
-
-  // Loading states
-  const [initialLoading, setInitialLoading] = useState(true);
   
   // Use custom hooks
   const { reviews, loading, error, refetch } = useReviews();
   const { errors: logoErrors, loaded: logosLoaded, loadingCount, totalCount } = useOptimizedLogos();
 
-  // Handle initial loading state
+  // Track when it's safe to move past the initial loading screen
+  const [logoReady, setLogoReady] = useState(false);
+  const logoFallbackTimeout = useRef<number | null>(null);
+  const logoFallbackDelayMs = 2000;
+
+  // Handle initial loading state with a logo preloading fallback
   useEffect(() => {
-    if (!loading && logosLoaded) {
+    if (typeof window === 'undefined') {
+      setLogoReady(true);
+      return;
+    }
+
+    const clearFallbackTimer = () => {
+      if (logoFallbackTimeout.current !== null) {
+        window.clearTimeout(logoFallbackTimeout.current);
+        logoFallbackTimeout.current = null;
+      }
+    };
+
+    if (loading) {
+      setLogoReady(false);
+      clearFallbackTimer();
+      return;
+    }
+
+    if (logosLoaded) {
+      clearFallbackTimer();
       if (logoErrors.length > 0) {
         console.warn(`${logoErrors.length} logos failed to load, continuing anyway`);
         console.log(`Successfully loaded ${loadingCount}/${totalCount} logos`);
       }
-      setInitialLoading(false);
+      setLogoReady(true);
+      return;
     }
+
+    if (logoFallbackTimeout.current === null) {
+      logoFallbackTimeout.current = window.setTimeout(() => {
+        console.warn(`Logo preloading exceeded ${logoFallbackDelayMs}ms, continuing without waiting for remaining logos.`);
+        setLogoReady(true);
+        logoFallbackTimeout.current = null;
+      }, logoFallbackDelayMs);
+    }
+
+    return () => {
+      clearFallbackTimer();
+    };
   }, [loading, logosLoaded, logoErrors.length, loadingCount, totalCount]);
 
   // Handle view changes only (not filter changes)
@@ -161,10 +195,6 @@ function App() {
     setRatingRange([minRating, maxRating]);
   }
 
-  if (initialLoading) {
-    return <LoadingSpinner />;
-  }
-
   if (error) {
     return (
       <div className="min-h-screen bg-gray-900 text-white flex items-center justify-center">
@@ -180,6 +210,10 @@ function App() {
         </div>
       </div>
     );
+  }
+
+  if (loading || !logoReady) {
+    return <LoadingSpinner />;
   }
 
   return (
