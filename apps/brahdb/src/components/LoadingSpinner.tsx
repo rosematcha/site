@@ -7,6 +7,9 @@ interface LoadingSpinnerProps {
 const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({ fadeOut }) => {
   const [isVisible, setIsVisible] = useState(true);
   const spinnerRef = useRef<HTMLDivElement>(null);
+  const assetBase = import.meta.env.BASE_URL ?? '/';
+  const spinnerPng = `${assetBase}loading.png`;
+  const spinnerWebp = `${assetBase}loading.webp`;
   
   useEffect(() => {
     if (fadeOut) {
@@ -35,20 +38,24 @@ const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({ fadeOut }) => {
         }
       }}
     >
-      <img
-        src="/loading.png"
-        alt="Loading..."
-        width={91}
-        height={120}
-        className="spinner-image"
-        loading="eager"
-        fetchPriority="high"
-        style={{
-          width: 91,
-          height: 120,
-          display: 'block',
-        }}
-      />
+      <picture style={{ width: 91, height: 120, display: 'block' }}>
+        <source srcSet={spinnerWebp} type="image/webp" />
+        <source srcSet={spinnerPng} type="image/png" />
+        <img
+          src={spinnerPng}
+          alt="Loading animation"
+          width={91}
+          height={120}
+          className="spinner-image"
+          loading="eager"
+          fetchPriority="high"
+          style={{
+            width: 91,
+            height: 120,
+            display: 'block',
+          }}
+        />
+      </picture>
     </div>
   );
 };
