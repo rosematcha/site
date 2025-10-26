@@ -42,6 +42,8 @@
     "autoprefixer": "^10.4.17"
   },
   "optionalDependencies": {
-    "@rollup/rollup-linux-x64-gnu": "^4.40.2"
+    "@rollup/rollup-linux-x64-gnu": "^4.40.2",
+    "@swc/core-linux-x64-gnu": "^1.12.7",
+    "@swc/core-linux-x64-musl": "^1.12.7"
   }
 }
