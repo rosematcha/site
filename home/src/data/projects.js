@@ -5,6 +5,8 @@ export const projectsData = [
     title: "Ciphermaniac",
     path: "https://ciphermaniac.com/",
     thumbnail: "/img/projects/ciphermaniac-thumb.jpg",
+    thumbnailWidth: 327,
+    thumbnailHeight: 184,
     description:
       "To show my local players what cards are frequently used in the Pokémon card game, I created this tool tracking the usage of cards in major tournaments. Now with over 1,000 daily users.",
     tech: ["react", "node.js", "tailwindcss"],
@@ -15,6 +17,8 @@ export const projectsData = [
     title: "Movie Map",
     path: "/moviemap",
     thumbnail: "/img/projects/moviemap-thumb.jpg",
+    thumbnailWidth: 327,
+    thumbnailHeight: 184,
     description:
       "Visualizing the connections between people's four favorite movies on Letterboxd.",
     tech: ["d3.js", "python"],
@@ -25,6 +29,8 @@ export const projectsData = [
     title: "MatchaTab",
     path: "https://addons.mozilla.org/en-US/firefox/addon/matchatab/",
     thumbnail: "/img/projects/matchatab-thumb.jpg",
+    thumbnailWidth: 330,
+    thumbnailHeight: 183,
     description:
       "Inspired by Tabliss, a deeply customizable and modular new tab page to meet my needs. Built for Firefox browsers.",
     tech: ["javascript", "html", "css"],
@@ -36,6 +42,8 @@ export const projectsData = [
     title: "BrahDB",
     path: "/brahdb",
     thumbnail: "/img/projects/brahdb-thumb.jpg",
+    thumbnailWidth: 333,
+    thumbnailHeight: 184,
     description:
       "A visualization tool of the gospel of ReportOfTheWeek, with data scraped, collected, and transformed from subtitles.",
     tech: ["vite", "react", "typescript"],
@@ -46,26 +54,20 @@ export const projectsData = [
     title: "Bexar County Voting Data",
     path: "/bexarvoting",
     thumbnail: "/img/projects/bexarvoting-thumb.jpg",
+    thumbnailWidth: 327,
+    thumbnailHeight: 184,
     description:
       "Dissatisfied with the County's lack of transparency, I created a site to visualize historical and present Bexar County voting data.",
     tech: ["javascript", "chart.js", "tailwindcss"],
-    tags: ["data visualization", "civic tech", "weekend project"],
+    tags: ["data visualization", "civic tech"],
   },
-  // {
-  //   id: "decks",
-  //   title: "Pokémon Deck Viewer",
-  //   path: "/decks",
-  //   thumbnail: "/img/projects/decks-thumb.jpg",
-  //   description:
-  //     "An Eleventy-based site for viewing and sharing Pokémon Trading Card Game decks. Card data is parsed from .txt files.",
-  //   tech: ["eleventy (11ty)", "javascript", "tailwindcss"],
-  //   tags: ["static site", "gaming"],
-  // },
   {
     id: "friendfinder",
     title: "Favorite Film Friend Finder",
     path: "/friendfinder",
     thumbnail: "/img/projects/friendfinder-thumb.jpg",
+    thumbnailWidth: 327,
+    thumbnailHeight: 184,
     description:
       '<a href="https://x.com/rachellapides/status/1868875739732623414" target="_blank" rel="noopener noreferrer">Inspired by a Tweet,</a> a simple tool for finding Letterboxd users with your same top four favorite films.',
     tech: ["javascript", "html", "css"],

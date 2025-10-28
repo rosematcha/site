@@ -10,6 +10,10 @@ const OptimizedImage = ({
   decoding = 'async',
   fetchPriority = 'auto', // Note: React expects camelCase
   sizes,
+  width,
+  height,
+  aspectRatio,
+  style,
   onLoad,
   onError,
   placeholder = null,
@@ -20,6 +24,12 @@ const OptimizedImage = ({
   const [shouldLoad, setShouldLoad] = useState(loading === 'eager');
   const imgRef = useRef(null);
   const observerRef = useRef(null);
+
+  const computedAspectRatio = aspectRatio ?? (width && height ? width / height : undefined);
+  const wrapperStyle = style ? { ...style } : {};
+  if (computedAspectRatio && wrapperStyle.aspectRatio === undefined) {
+    wrapperStyle.aspectRatio = computedAspectRatio;
+  }
 
   useEffect(() => {
     const imgElement = imgRef.current;
@@ -56,7 +66,11 @@ const OptimizedImage = ({
   };
 
   return (
-    <div className={`relative overflow-hidden ${className}`} {...props}>
+    <div
+      className={`relative overflow-hidden ${className}`}
+      style={wrapperStyle}
+      {...props}
+    >
       {/* Placeholder while loading */}
       {!isLoaded && !hasError && placeholder && (
         <div className="absolute inset-0 flex items-center justify-center bg-gray-100 dark:bg-gray-800">
@@ -69,6 +83,8 @@ const OptimizedImage = ({
         ref={imgRef}
         src={shouldLoad ? src : undefined}
         alt={alt}
+        width={width}
+        height={height}
         className={`w-full h-full object-cover transition-opacity duration-300 ${
           isLoaded ? 'opacity-100' : 'opacity-0'
         }`}

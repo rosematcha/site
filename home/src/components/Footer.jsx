@@ -53,7 +53,7 @@ function Footer() {
         {quote}
       </div>
       <div className="footer-copyright">
-        © {new Date().getFullYear()} Reese Ferguson
+        © {new Date().getFullYear()} Reese Lundquist
       </div>
     </footer>
   );

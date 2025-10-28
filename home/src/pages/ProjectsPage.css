@@ -13,7 +13,7 @@
 
 .projects-header h2 {
   margin-bottom: var(--space-2);
-  color: var(--accent-primary);
+  color: var(--text-primary);
 }
 
 .projects-header p {
@@ -78,7 +78,7 @@
 .project-details h3 {
   font-size: var(--font-h3);
   margin-bottom: var(--space-1);
-  color: var(--accent-primary);
+  color: var(--text-primary);
   font-weight: 500;
 }
 
@@ -149,10 +149,12 @@
 @media (max-width: 900px) {
   .project-entry-card {
     grid-template-columns: 1fr;
+    max-height: none;
   }
   
   .project-thumbnail-link {
     aspect-ratio: 16 / 9;
+    height: auto;
   }
 }
 

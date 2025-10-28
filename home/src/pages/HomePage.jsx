@@ -14,7 +14,6 @@ function HomePage() {
     <div className="page-content">
       {/* Hero Section */}
       <section className="hero-section">
-        <p className="breadcrumb">/home · Reese Ferguson</p>
         <h1 className="hero-title">Hi, I'm Reese!</h1>
         <p className="hero-tagline">
           Designer, developer, and organizer—creating meaningful digital experiences and community connections.

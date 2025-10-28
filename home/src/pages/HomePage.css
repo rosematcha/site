@@ -9,21 +9,12 @@
   margin-bottom: var(--space-5);
 }
 
-.breadcrumb {
-  font-size: var(--font-sm);
-  color: var(--accent-primary);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin-bottom: var(--space-2);
-  font-weight: 600;
-}
-
 .hero-title {
   font-size: var(--font-display);
   font-weight: 300;
   letter-spacing: -0.03em;
   margin-bottom: var(--space-3);
-  color: var(--accent-primary);
+  color: var(--text-primary);
 }
 
 .hero-tagline {
@@ -35,10 +26,16 @@
 }
 
 .hero-actions {
-  display: flex;
-  gap: var(--space-3);
-  justify-content: center;
-  flex-wrap: wrap;
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .hero-actions {
+    display: flex;
+    gap: var(--space-3);
+    justify-content: center;
+    flex-wrap: wrap;
+  }
 }
 
 /* Quick Actions */
@@ -48,8 +45,14 @@
 
 .quick-actions-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: var(--space-3);
+}
+
+@media (max-width: 768px) {
+  .quick-actions-section {
+    display: none;
+  }
 }
 
 .quick-action-card {
@@ -99,7 +102,7 @@
 .about-section h2 {
   text-align: center;
   margin-bottom: var(--space-4);
-  color: var(--accent-primary);
+  color: var(--text-primary);
 }
 
 .about-content {
@@ -121,7 +124,7 @@
 .interests-section h3 {
   text-align: center;
   margin-bottom: var(--space-4);
-  color: var(--accent-primary);
+  color: var(--text-primary);
 }
 
 .interests-grid {
@@ -153,7 +156,7 @@
 .interest-card h4 {
   font-size: var(--font-h3);
   margin-bottom: var(--space-2);
-  color: var(--accent-primary);
+  color: var(--text-primary);
 }
 
 .interest-card p {
@@ -172,7 +175,7 @@
 
 .tech-section h3 {
   margin-bottom: var(--space-3);
-  color: var(--accent-primary);
+  color: var(--text-primary);
 }
 
 .tech-description {
@@ -199,10 +202,6 @@
   .hero-actions {
     flex-direction: column;
     align-items: stretch;
-  }
-  
-  .quick-actions-grid {
-    grid-template-columns: 1fr;
   }
   
   .interests-grid {

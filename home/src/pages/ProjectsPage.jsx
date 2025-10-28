@@ -39,6 +39,8 @@ function ProjectsPage() {
               <OptimizedImage
                 src={project.thumbnail}
                 alt={`${project.title} thumbnail`}
+                width={project.thumbnailWidth}
+                height={project.thumbnailHeight}
                 className="project-thumbnail"
                 loading={idx < 2 ? "eager" : "lazy"}
                 decoding="async"
