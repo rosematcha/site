@@ -4,7 +4,7 @@
 .hero-section {
   text-align: center;
   padding: var(--space-5) 0 var(--space-2);
-  margin-bottom: var(--space-3);
+  margin-bottom: var(--space-1);
   animation: fadeUp 0.6s ease-out both;
 }
 
@@ -13,7 +13,7 @@
   font-size: var(--font-display);
   font-weight: 700;
   letter-spacing: -0.02em;
-  margin-bottom: var(--space-2);
+  margin-bottom: 0;
   color: var(--text-primary);
   animation: fadeUp 0.5s ease-out both;
 }
@@ -40,7 +40,7 @@
 
 /* About Section */
 .about-section {
-  margin-top: var(--space-4);
+  margin-top: var(--space-2);
   animation: fadeUp 0.6s ease-out both;
   animation-delay: 0.1s;
 }
@@ -127,7 +127,7 @@
 
 /* Tech Section */
 .tech-section {
-  margin-top: var(--space-3);
+  margin-top: 0;
   padding: var(--space-4) 0;
   border-top: 1px solid var(--border-subtle);
   text-align: center;

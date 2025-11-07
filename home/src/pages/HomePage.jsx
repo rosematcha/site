@@ -9,26 +9,10 @@ function HomePage() {
       {/* Hero Section */}
       <section className="hero-section">
         <h1 className="hero-title">Howdy, I'm Reese!</h1>
-        <p className="hero-tagline">
-          Developer, photographer, editor, and follower of life's side quests based in San Antonio.
-        </p>
-        
-        <div className="hero-actions">
-          <a href="mailto:hi@rosematcha.com" className="button">
-            <Mail size={20} />
-            Get in Touch
-          </a>
-          <Link to="/projects" className="button button--ghost">
-            <Briefcase size={20} />
-            View My Work
-          </Link>
-        </div>
       </section>
 
       {/* About Section */}
       <section className="about-section">
-        <h2>About</h2>
-        
         <div className="about-content">
           <p>
             Being exposed to the internet at too young an age was key to my development, as it allowed me to experiment with design and development on Scratch and create and edit video on early YouTube. I've been lucky enough to continue to work on things I love in adulthood, with key experiences as a{" "}
@@ -47,6 +31,17 @@ function HomePage() {
           </p>
         </div>
 
+        <div className="hero-actions">
+          <a href="mailto:hi@rosematcha.com" className="button">
+            <Mail size={20} />
+            Get in Touch
+          </a>
+          <Link to="/projects" className="button button--ghost">
+            <Briefcase size={20} />
+            View My Work
+          </Link>
+        </div>
+
         {/* Interests */}
         <div className="interests-section">
           <h3>Beyond Work</h3>
@@ -54,21 +49,22 @@ function HomePage() {
             <div className="interest-card">
               <Camera size={32} className="interest-icon" />
               <h4>Photography</h4>
-              <p>Specializing in event and candid photography</p>
+              <p>Specializing in event work and candid photography</p>
             </div>
             <div className="interest-card">
               <Sparkles size={32} className="interest-icon" />
               <h4>Pokémon TCG</h4>
-              <p>Organizing a local card league</p>
+              <p>Running weekly tournaments for a local card league</p>
             </div>
             <div className="interest-card">
               <Clapperboard size={32} className="interest-icon" />
               <h4>Film</h4>
-              <p>
-                <a href="https://letterboxd.com/rosematcha/" target="_blank" rel="noopener noreferrer">
-                  Watching lots of movies
-                </a>
-              </p>
+                <p>
+                  <a href="https://letterboxd.com/rosematcha/" target="_blank" rel="noopener noreferrer">
+                    Watching lots of movies
+                  </a>{" "}
+                  with a deep passion for the movie theater
+                </p>
             </div>
           </div>
         </div>
