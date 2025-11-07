@@ -261,6 +261,17 @@
                 position: relative;
                 background: linear-gradient(to bottom, #1f2937 0%, #1a2332 100%);
             }
+
+            .hidden {
+                display: none !important;
+            }
+
+            .chart-footnote {
+                margin-top: 0.75rem;
+                font-size: 0.75rem;
+                line-height: 1.4;
+                color: #9ca3af;
+            }
             
             .chart-canvas-wrapper {
                 position: relative;
@@ -681,6 +692,7 @@
                         <div class="chart-canvas-wrapper">
                             <canvas id="turnoutChart"></canvas>
                         </div>
+                        <p id="chart-footnote" class="chart-footnote hidden"></p>
                     </div>
 
                     <div class="card controls-card">
@@ -755,18 +767,12 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <label class="radio-group-label text-gray-300">Timeline Scale</label>
-                                        <p class="text-xs text-gray-400 mb-2">Normalize early voting to a standard week to compare shapes across elections.</p>
-                                        <div class="radio-button-group">
-                                            <label>
-                                                <input type="radio" name="timeline-mode" value="actual" checked>
-                                                <span>Actual Duration</span>
-                                            </label>
-                                            <label>
-                                                <input type="radio" name="timeline-mode" value="normalized">
-                                                <span>Normalized Week</span>
-                                            </label>
-                                        </div>
+                                        <label class="radio-group-label text-gray-300">Extended Windows</label>
+                                        <p class="text-xs text-gray-400 mb-2">Collapse unusually long early voting periods unless you need the full breakdown.</p>
+                                        <label class="inline-flex items-center">
+                                            <input id="extended-days-toggle" type="checkbox" class="form-checkbox rounded text-pink-600 focus:ring-pink-500">
+                                            <span class="ml-2 text-sm text-gray-300">Show full early voting period</span>
+                                        </label>
                                     </div>
                                     <div>
                                         <label class="radio-group-label text-gray-300">Format</label>

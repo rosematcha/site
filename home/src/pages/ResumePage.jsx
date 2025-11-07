@@ -255,7 +255,7 @@ function ResumePage() {
     <div className="page-content resume-container">
       {/* Contact Info with Copy Actions */}
       <div className="resume-contact-card">
-        <h3 className="resume-name">Reese Ferguson</h3>
+        <h3 className="resume-name">Reese Lundquist</h3>
         <div className="contact-actions">
           <button 
             className="button"

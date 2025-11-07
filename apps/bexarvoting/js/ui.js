@@ -15,8 +15,8 @@ const elements = {
     earlyVotingToggle: document.getElementById("early-voting-toggle"),
     electionDayToggle: document.getElementById("election-day-toggle"),
     yAxisToggle: document.getElementById("y-axis-toggle"),
+    extendedDaysToggle: document.getElementById("extended-days-toggle"),
     dataPresentationRadios: document.querySelectorAll('input[name="data-presentation"]'),
-    timelineModeRadios: document.querySelectorAll('input[name="timeline-mode"]'),
     displayAsRadios: document.querySelectorAll('input[name="display-as"]'),
     chartContainer: document.getElementById("chart-container"),
     chartCanvas: document.getElementById("turnoutChart"),
@@ -45,7 +45,7 @@ export const updateURLFromState = () => {
         startYAtZero,
         dataPresentation,
         displayAs,
-        timelineMode
+        includeExtendedDays
     } = getToggleStates();
 
     const params = new URLSearchParams();
@@ -56,8 +56,8 @@ export const updateURLFromState = () => {
     params.set("ed", showElectionDay ? "1" : "0");
     params.set("yz", startYAtZero ? "1" : "0");
     params.set("pres", dataPresentation);
-    params.set("tl", timelineMode);
     params.set("disp", displayAs);
+    params.set("ext", includeExtendedDays ? "1" : "0");
 
     const newRelativePathQuery = window.location.pathname + "?" + params.toString();
     history.replaceState(null, "", newRelativePathQuery);
@@ -518,6 +518,7 @@ export const setupEventListeners = () => {
     if (elements.earlyVotingToggle) elements.earlyVotingToggle.addEventListener("change", commonChangeHandler);
     if (elements.electionDayToggle) elements.electionDayToggle.addEventListener("change", commonChangeHandler);
     if (elements.yAxisToggle) elements.yAxisToggle.addEventListener("change", commonChangeHandler);
+    if (elements.extendedDaysToggle) elements.extendedDaysToggle.addEventListener("change", commonChangeHandler);
 
     elements.dataPresentationRadios.forEach(radio => radio.addEventListener('change', () => {
         updateRadioVisuals(elements.dataPresentationRadios);
@@ -525,14 +526,6 @@ export const setupEventListeners = () => {
         refreshSelectionSummary();
         commonChangeHandler();
     }));
-
-    if (elements.timelineModeRadios && elements.timelineModeRadios.length > 0) {
-        elements.timelineModeRadios.forEach(radio => radio.addEventListener('change', () => {
-            updateRadioVisuals(elements.timelineModeRadios);
-            refreshSelectionSummary();
-            commonChangeHandler();
-        }));
-    }
 
     elements.displayAsRadios.forEach(radio => {
         radio.addEventListener('change', () => {
@@ -594,6 +587,7 @@ export const setToggleStates = (states) => { // states is an object
     if (elements.earlyVotingToggle && states.ev !== undefined) elements.earlyVotingToggle.checked = states.ev;
     if (elements.electionDayToggle && states.ed !== undefined) elements.electionDayToggle.checked = states.ed;
     if (elements.yAxisToggle && states.yz !== undefined) elements.yAxisToggle.checked = states.yz;
+    if (elements.extendedDaysToggle && states.ext !== undefined) elements.extendedDaysToggle.checked = states.ext;
 
     if (states.presentation !== undefined) {
         elements.dataPresentationRadios.forEach(radio => {
@@ -601,13 +595,6 @@ export const setToggleStates = (states) => { // states is an object
         });
         updateRadioVisuals(elements.dataPresentationRadios);
     } // No 'else' for defaulting if not specified
-
-    if (states.timeline !== undefined && elements.timelineModeRadios && elements.timelineModeRadios.length > 0) {
-        elements.timelineModeRadios.forEach(radio => {
-            radio.checked = radio.value === states.timeline;
-        });
-        updateRadioVisuals(elements.timelineModeRadios);
-    }
 
     if (states.display !== undefined) {
         elements.displayAsRadios.forEach(radio => {
@@ -640,12 +627,6 @@ export const getToggleStates = () => {
         if (checkedRadio) dataPresentationValue = checkedRadio.value;
     }
 
-    let timelineModeValue = 'actual';
-    if (elements.timelineModeRadios && elements.timelineModeRadios.length > 0) {
-        const checkedTimelineRadio = Array.from(elements.timelineModeRadios).find(radio => radio.checked);
-        if (checkedTimelineRadio) timelineModeValue = checkedTimelineRadio.value;
-    }
-
     let displayAsValue = 'graph'; // Default
     if (elements.displayAsRadios && elements.displayAsRadios.length > 0) {
         const checkedRadio = Array.from(elements.displayAsRadios).find(radio => radio.checked);
@@ -657,7 +638,7 @@ export const getToggleStates = () => {
         showElectionDay: elements.electionDayToggle ? elements.electionDayToggle.checked : true,
         startYAtZero: elements.yAxisToggle ? elements.yAxisToggle.checked : true,
         dataPresentation: dataPresentationValue,
-        timelineMode: timelineModeValue,
+        includeExtendedDays: elements.extendedDaysToggle ? elements.extendedDaysToggle.checked : false,
         displayAs: displayAsValue,
     };
 };
@@ -703,7 +684,7 @@ const applyPresetConfiguration = async (presetKey) => {
             name: "Default View",
             years: DEFAULT_SELECTED_YEARS,
             locations: [TOTAL_TURNOUT_KEY],
-            toggles: { ev: true, ed: true, yz: true, presentation: 'per-day', timeline: 'actual', display: 'graph' }
+            toggles: { ev: true, ed: true, yz: true, presentation: 'per-day', display: 'graph', ext: false }
         };
     } else {
         config = PRESET_CONFIGURATIONS[presetKey];

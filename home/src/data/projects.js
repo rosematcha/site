@@ -8,21 +8,9 @@ export const projectsData = [
     thumbnailWidth: 327,
     thumbnailHeight: 184,
     description:
-      "To show my local players what cards are frequently used in the Pokémon card game, I created this tool tracking the usage of cards in major tournaments. Now with over 1,000 daily users.",
+      "To show my local league players what cards are frequently used in the Pokemon card game, I created this tool tracking the usage of cards in major tournaments. Now serves thousands of daily users.",
     tech: ["react", "node.js", "tailwindcss"],
-    tags: ["data visualization", "pokémon"],
-  },
-  {
-    id: "moviemap",
-    title: "Movie Map",
-    path: "/moviemap",
-    thumbnail: "/img/projects/moviemap-thumb.jpg",
-    thumbnailWidth: 327,
-    thumbnailHeight: 184,
-    description:
-      "Visualizing the connections between people's four favorite movies on Letterboxd.",
-    tech: ["d3.js", "python"],
-    tags: ["data visualization", "letterboxd", "weekend project"],
+    tags: ["data visualization", "pokemon"],
   },
   {
     id: "matchatab",
@@ -32,7 +20,7 @@ export const projectsData = [
     thumbnailWidth: 330,
     thumbnailHeight: 183,
     description:
-      "Inspired by Tabliss, a deeply customizable and modular new tab page to meet my needs. Built for Firefox browsers.",
+      "Inspired by Tabliss, a deeply customizable and modular new tab page to meet my needs. Built for Firefox browsers (my preference.)",
     tech: ["javascript", "html", "css"],
     tags: ["browser extension", "weekend project"],
     buttonText: "Install on Firefox",
@@ -45,7 +33,7 @@ export const projectsData = [
     thumbnailWidth: 333,
     thumbnailHeight: 184,
     description:
-      "A visualization tool of the gospel of ReportOfTheWeek, with data scraped, collected, and transformed from subtitles.",
+      "Processed data visualization from YouTube's finest fast food reviewer, ReportOfTheWeek, with data scraped, collected, and transformed from subtitles using Python.",
     tech: ["vite", "react", "typescript"],
     tags: ["data visualization", "weekend project"],
   },
@@ -72,5 +60,17 @@ export const projectsData = [
       '<a href="https://x.com/rachellapides/status/1868875739732623414" target="_blank" rel="noopener noreferrer">Inspired by a Tweet,</a> a simple tool for finding Letterboxd users with your same top four favorite films.',
     tech: ["javascript", "html", "css"],
     tags: ["static site", "letterboxd", "weekend project"],
+  },
+  {
+    id: "moviemap",
+    title: "Movie Map",
+    path: "/moviemap",
+    thumbnail: "/img/projects/moviemap-thumb.jpg",
+    thumbnailWidth: 327,
+    thumbnailHeight: 184,
+    description:
+      "Visualizing the connections between people's four favorite movies on Letterboxd.",
+    tech: ["d3.js", "python"],
+    tags: ["data visualization", "letterboxd", "weekend project"],
   },
 ];

@@ -1,6 +1,6 @@
 // src/components/Header.jsx
-import React, { useCallback, useRef, useState } from "react";
-import { NavLink } from "react-router-dom";
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import { NavLink, useLocation } from "react-router-dom";
 import {
   Home,
   Briefcase,
@@ -13,6 +13,7 @@ import {
 import { warmProjectsThumbnails, warmGuestbook, prefetchProjectRoutes } from "../utils/prefetch";
 
 function Header() {
+  const location = useLocation();
   const warmed = useRef({ projects: false, guestbook: false });
   const [isNavOpen, setIsNavOpen] = useState(false);
 
@@ -37,27 +38,68 @@ function Header() {
     setIsNavOpen((prev) => !prev);
   }, []);
 
+  useEffect(() => {
+    setIsNavOpen(false);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    if (typeof document === "undefined") return undefined;
+    const body = document.body;
+    if (isNavOpen) {
+      body.classList.add("nav-menu-open");
+    } else {
+      body.classList.remove("nav-menu-open");
+    }
+    return () => {
+      body.classList.remove("nav-menu-open");
+    };
+  }, [isNavOpen]);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return undefined;
+    const handleResize = () => {
+      if (window.innerWidth > 700) {
+        setIsNavOpen(false);
+      }
+    };
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        setIsNavOpen(false);
+      }
+    };
+    window.addEventListener("resize", handleResize);
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+
   return (
     <header className={`main-header panel ${isNavOpen ? "nav-open" : ""}`}>
       <div className="header-inner">
         <div className="brand-row">
           <h1 className="site-main-title">
-            <NavLink to="/" className="site-title-link">
+            <NavLink to="/" className="site-title-link" onClick={closeNav}>
               <span className="brand-primary">rosematcha</span>
               <span className="badge ">portfolio</span>
             </NavLink>
           </h1>
-          <button
-            type="button"
-            className="nav-toggle"
-            aria-expanded={isNavOpen}
-            aria-controls="site-primary-nav"
-            onClick={toggleNav}
-          >
-            <span className="sr-only">Toggle navigation</span>
-            {isNavOpen ? <X size={20} /> : <Menu size={20} />}
-          </button>
         </div>
+        <button
+          type="button"
+          className={`nav-toggle ${isNavOpen ? "is-active" : ""}`}
+          aria-expanded={isNavOpen}
+          aria-controls="site-primary-nav"
+          aria-label={isNavOpen ? "Close menu" : "Open menu"}
+          data-state={isNavOpen ? "open" : "closed"}
+          onClick={toggleNav}
+        >
+          <span className="nav-toggle__icon" aria-hidden="true">
+            {isNavOpen ? <X size={20} /> : <Menu size={20} />}
+          </span>
+          <span className="nav-toggle__label">Menu</span>
+        </button>
         <nav
           id="site-primary-nav"
           className={`main-nav ${isNavOpen ? "is-open" : ""}`}
@@ -127,6 +169,11 @@ function Header() {
             </li>
           </ul>
         </nav>
+        <div
+          className={`nav-backdrop ${isNavOpen ? "is-visible" : ""}`}
+          aria-hidden="true"
+          onClick={closeNav}
+        />
       </div>
     </header>
   );

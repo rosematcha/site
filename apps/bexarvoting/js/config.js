@@ -37,7 +37,7 @@ export const PRESET_CONFIGURATIONS = {
         name: "Recent Years",
         years: ["November 2025", "June 2025", "May 2025", "November 2024", "June 2023", "May 2023"],
         locations: ["total"],
-        toggles: { ev: true, ed: true, yz: true, presentation: 'per-day', timeline: 'actual', display: 'graph' }
+        toggles: { ev: true, ed: true, yz: true, presentation: 'per-day', display: 'graph', ext: false }
     }
 };
 

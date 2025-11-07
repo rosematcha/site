@@ -14,7 +14,9 @@ const quotes = [
   "life is great, man! you can eat at denny's, wear a hat, whatever you want!",
   "it's always the wrong thing when it's me who's saying it",
   "once you've seen the signs around the barn, it becomes impossible to see the barn",
-  "the soul ends with death, unless we act to preserve it."
+  "the soul ends with death, unless we act to preserve it.",
+  "apathy's a tragedy, and boredom is a crime",
+  "if you want to make an apple pie from scratch, you must first invent the universe"
 ];
 
 export default quotes;

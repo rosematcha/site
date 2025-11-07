@@ -1,22 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Mail, Briefcase, BookOpen, MessageSquare, Camera, Clapperboard, Sparkles } from "lucide-react";
+import { Mail, Briefcase, Camera, Clapperboard, Sparkles } from "lucide-react";
 import "./HomePage.css";
-
-const quickActions = [
-  { label: "View Projects", to: "/projects", icon: Briefcase },
-  { label: "Read Resume", to: "/resume", icon: BookOpen },
-  { label: "Sign Guestbook", to: "/guestbook", icon: MessageSquare },
-];
 
 function HomePage() {
   return (
     <div className="page-content">
       {/* Hero Section */}
       <section className="hero-section">
-        <h1 className="hero-title">Hi, I'm Reese!</h1>
+        <h1 className="hero-title">Howdy, I'm Reese!</h1>
         <p className="hero-tagline">
-          Designer, developer, and organizer—creating meaningful digital experiences and community connections.
+          Developer, photographer, editor, and follower of life's side quests based in San Antonio.
         </p>
         
         <div className="hero-actions">
@@ -28,21 +22,6 @@ function HomePage() {
             <Briefcase size={20} />
             View My Work
           </Link>
-        </div>
-      </section>
-
-      {/* Quick Actions Grid */}
-      <section className="quick-actions-section">
-        <div className="quick-actions-grid">
-          {quickActions.map((action) => {
-            const Icon = action.icon;
-            return (
-              <Link key={action.label} to={action.to} className="quick-action-card">
-                <Icon size={24} className="quick-action-icon" />
-                <span className="quick-action-label">{action.label}</span>
-              </Link>
-            );
-          })}
         </div>
       </section>
 
