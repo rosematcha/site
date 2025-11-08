@@ -1,0 +1,30 @@
+# node stuff
+node_modules/
+
+# outputs of local builds (we rely on ci/cd)
+_site/
+dist/
+
+# vitest coverage
+coverage/
+
+# environment variables
+.env
+.env.local
+.env*.local
+
+# logs
+*.log
+
+# caches
+.eslintcache
+.stylelintcache
+
+# for (gags) macs
+.DS_Store
+
+# from editors
+.vscode/
+.idea/
+*.swp
+*~

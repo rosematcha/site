@@ -14,9 +14,15 @@ function HomePage() {
       {/* About Section */}
       <section className="about-section">
         <div className="about-content">
-          <p style={{ textAlign: 'center' }}>
-            I'm a developer, photographer, editor, and avid taker of life's side quests. With my multidisciplinary background, I create cool tools and experiences for the people and causes I care about. Currently teaching pinhole photography{" "}
-            <a href="https://www.utsa.edu/pace/community-art/youth.html" target="_blank" rel="noopener noreferrer">
+          <p style={{ textAlign: "center" }}>
+            I'm a developer, photographer, editor, and avid taker of life's side quests. With my
+            multidisciplinary background, I create cool tools and experiences for the people and
+            causes I care about. Currently teaching pinhole photography{" "}
+            <a
+              href="https://www.utsa.edu/pace/community-art/youth.html"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               at UTSA Southwest
             </a>
             , helping computers serve students{" "}
@@ -63,12 +69,16 @@ function HomePage() {
             <div className="interest-card">
               <Clapperboard size={32} className="interest-icon" />
               <h4>Film</h4>
-                <p>
-                  <a href="https://letterboxd.com/rosematcha/" target="_blank" rel="noopener noreferrer">
-                    Watching lots of movies
-                  </a>{" "}
-                  with a deep passion for the movie theater
-                </p>
+              <p>
+                <a
+                  href="https://letterboxd.com/rosematcha/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Watching lots of movies
+                </a>{" "}
+                with a deep passion for the movie theater
+              </p>
             </div>
           </div>
         </div>
@@ -88,8 +98,8 @@ function HomePage() {
             . Many of the other sub-projects use{" "}
             <a href="https://www.11ty.dev/" target="_blank" rel="noopener noreferrer">
               Eleventy
-            </a>
-            {" "}and{" "}
+            </a>{" "}
+            and{" "}
             <a href="https://tailwindcss.com/" target="_blank" rel="noopener noreferrer">
               TailwindCSS
             </a>

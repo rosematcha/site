@@ -6,7 +6,9 @@ import { loadProjectThumbnails } from "./imageLoader";
 
 const hasSaveData = () => {
   try {
-    return typeof navigator !== "undefined" && navigator.connection && navigator.connection.saveData;
+    return (
+      typeof navigator !== "undefined" && navigator.connection && navigator.connection.saveData
+    );
   } catch {
     return false;
   }

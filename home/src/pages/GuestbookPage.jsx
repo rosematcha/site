@@ -19,12 +19,12 @@ function GuestbookPage() {
     try {
       // The path to your Netlify Function
       const response = await fetch(
-        "/.netlify/functions/get-guestbook-entries", // <<< THIS IS THE CORRECT FETCH URL
+        "/.netlify/functions/get-guestbook-entries" // <<< THIS IS THE CORRECT FETCH URL
       );
       if (!response.ok) {
         const errorData = await response.json(); // Attempt to parse error response as JSON
         throw new Error(
-          errorData.error || `Server error: ${response.statusText} (Status: ${response.status})`,
+          errorData.error || `Server error: ${response.statusText} (Status: ${response.status})`
         );
       }
       const data = await response.json();
@@ -42,13 +42,14 @@ function GuestbookPage() {
     fetchEntries();
   }, [fetchEntries]); // Depend on fetchEntries
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async event => {
     event.preventDefault();
     setSubmissionStatus("submitting");
     const formData = new FormData(event.target);
 
     try {
-      const response = await fetch("/", { // Submit to Netlify Forms endpoint
+      const response = await fetch("/", {
+        // Submit to Netlify Forms endpoint
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: new URLSearchParams(formData).toString(),
@@ -101,7 +102,7 @@ function GuestbookPage() {
             id="name"
             name="name"
             value={name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={e => setName(e.target.value)}
             required
             disabled={submissionStatus === "submitting"}
           />
@@ -113,7 +114,7 @@ function GuestbookPage() {
             id="website"
             name="website"
             value={website}
-            onChange={(e) => setWebsite(e.target.value)}
+            onChange={e => setWebsite(e.target.value)}
             placeholder="https://www.example.com"
             disabled={submissionStatus === "submitting"}
           />
@@ -125,16 +126,12 @@ function GuestbookPage() {
             name="message"
             rows="4"
             value={message}
-            onChange={(e) => setMessage(e.target.value)}
+            onChange={e => setMessage(e.target.value)}
             required
             disabled={submissionStatus === "submitting"}
           ></textarea>
         </div>
-        <button
-          type="submit"
-          className="button"
-          disabled={submissionStatus === "submitting"}
-        >
+        <button type="submit" className="button" disabled={submissionStatus === "submitting"}>
           <Send size={18} />
           {submissionStatus === "submitting" ? "Posting..." : "Post Message"}
         </button>
@@ -157,12 +154,13 @@ function GuestbookPage() {
       {isLoadingEntries && <p>Loading awesome messages...</p>}
       {fetchError && (
         <p className="error-message">
-          Could not load messages: {fetchError} <br /> (This might be because the Form ID or API Token isn't set up on Netlify yet, or the form hasn't received submissions.)
+          Could not load messages: {fetchError} <br /> (This might be because the Form ID or API
+          Token isn't set up on Netlify yet, or the form hasn't received submissions.)
         </p>
       )}
       {!isLoadingEntries && !fetchError && entries.length > 0 && (
         <div className="guestbook-entries">
-          {entries.map((entry) => (
+          {entries.map(entry => (
             <div key={entry.id} className="guestbook-entry">
               <p className="entry-meta">
                 <strong>From:</strong> {entry.name}

@@ -1,15 +1,7 @@
 // src/components/Header.jsx
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import {
-  Home,
-  Briefcase,
-  FileText,
-  MessageSquare,
-  Mail,
-  Menu,
-  X,
-} from "lucide-react";
+import { Home, Briefcase, FileText, MessageSquare, Mail, Menu, X } from "lucide-react";
 import { warmProjectsThumbnails, warmGuestbook, prefetchProjectRoutes } from "../utils/prefetch";
 
 function Header() {
@@ -35,7 +27,7 @@ function Header() {
   }, []);
 
   const toggleNav = useCallback(() => {
-    setIsNavOpen((prev) => !prev);
+    setIsNavOpen(prev => !prev);
   }, []);
 
   useEffect(() => {
@@ -62,7 +54,7 @@ function Header() {
         setIsNavOpen(false);
       }
     };
-    const handleKeyDown = (event) => {
+    const handleKeyDown = event => {
       if (event.key === "Escape") {
         setIsNavOpen(false);
       }
@@ -106,18 +98,6 @@ function Header() {
           aria-label="Primary"
         >
           <ul>
-            <li className="nav-item nav-item--home">
-              <NavLink
-                to="/"
-                className={({ isActive }) => (isActive ? "active" : "")}
-                end
-                title="Home"
-                onClick={closeNav}
-              >
-                <Home size={18} />
-                <span>Home</span>
-              </NavLink>
-            </li>
             <li className="nav-item nav-item--projects">
               <NavLink
                 to="/projects"

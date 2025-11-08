@@ -68,8 +68,7 @@ export const projectsData = [
     thumbnail: "/img/projects/moviemap-thumb.jpg",
     thumbnailWidth: 327,
     thumbnailHeight: 184,
-    description:
-      "Visualizing the connections between people's four favorite movies on Letterboxd.",
+    description: "Visualizing the connections between people's four favorite movies on Letterboxd.",
     tech: ["d3.js", "python"],
     tags: ["data visualization", "letterboxd", "weekend project"],
   },

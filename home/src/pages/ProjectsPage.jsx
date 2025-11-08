@@ -17,14 +17,12 @@ function ProjectsPage() {
     // Ensure warming kicks off even on direct loads or fast clicks
     warmProjectsThumbnails();
   }, []);
-  
+
   return (
     <div className="projects-page-wrapper">
       <div className="projects-header">
         <h2>My Projects</h2>
-        <p>
-          You can't put websites on the fridge, so this is the next best thing.
-        </p>
+        <p>You can't put websites on the fridge, so this is the next best thing.</p>
       </div>
 
       <div className="project-showcase-container">
@@ -58,11 +56,7 @@ function ProjectsPage() {
             <div className="project-details">
               <div>
                 <h3>
-                  <a
-                    href={getProjectUrl(project.path)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
+                  <a href={getProjectUrl(project.path)} target="_blank" rel="noopener noreferrer">
                     {project.title}
                   </a>
                 </h3>
