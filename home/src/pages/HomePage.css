@@ -9,9 +9,14 @@
 }
 
 .hero-title {
-  font-family: 'Tiempos Headline', Georgia, serif;
+  font-family: 'Fraunces', serif;
+  font-optical-sizing: auto;
   font-size: var(--font-display);
   font-weight: 700;
+  font-style: normal;
+  font-variation-settings:
+    "SOFT" 50,
+    "WONK" 1;
   letter-spacing: -0.02em;
   margin-bottom: 0;
   color: var(--text-primary);

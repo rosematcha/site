@@ -14,20 +14,24 @@ function HomePage() {
       {/* About Section */}
       <section className="about-section">
         <div className="about-content">
-          <p>
-            Being exposed to the internet at too young an age was key to my development, as it allowed me to experiment with design and development on Scratch and create and edit video on early YouTube. I've been lucky enough to continue to work on things I love in adulthood, with key experiences as a{" "}
-            <a href="https://saysi.org/" target="_blank" rel="noopener noreferrer">
-              teaching artist at SAY Si
-            </a>
-            , a{" "}
+          <p style={{ textAlign: 'center' }}>
+            I'm a developer, photographer, editor, and avid taker of life's side quests. With my multidisciplinary background, I create cool tools and experiences for the people and causes I care about. Currently teaching pinhole photography{" "}
             <a href="https://www.utsa.edu/pace/community-art/youth.html" target="_blank" rel="noopener noreferrer">
-              youth artist instructor with UTSA
+              at UTSA Southwest
             </a>
-            , an{" "}
-            <a href="https://stonewallaction.org/" target="_blank" rel="noopener noreferrer">
-              organizer with Stonewall Action
+            , helping computers serve students{" "}
+            <a href="https://saysi.org/" target="_blank" rel="noopener noreferrer">
+              at SAY Sí
             </a>
-            , and plenty of other opportunities in between.
+            , maintaining{" "}
+            <a href="https://ciphermaniac.com" target="_blank" rel="noopener noreferrer">
+              Ciphermaniac
+            </a>
+            , and creating civic tech to service{" "}
+            <a href="https://rosematcha.com/bexarvoting" target="_blank" rel="noopener noreferrer">
+              the voters of Bexar County
+            </a>
+            .
           </p>
         </div>
 

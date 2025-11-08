@@ -6,12 +6,14 @@
 /* Font Import */
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap');
 
-@font-face {
-  font-family: 'Tiempos Headline';
-  src: url('/fonts/TiemposHeadline-Bold.woff') format('woff');
+.fraunces-headline {
+  font-family: "Fraunces", serif;
+  font-optical-sizing: auto;
   font-weight: 700;
   font-style: normal;
-  font-display: swap;
+  font-variation-settings:
+    "SOFT" 50,
+    "WONK" 1;
 }
 
 /* CSS Custom Properties */
@@ -139,9 +141,20 @@ main,
    Typography
    =================================== */
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Tiempos Headline', Georgia, serif;
+.fraunces-headline,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Fraunces", serif;
+  font-optical-sizing: auto;
   font-weight: 700;
+  font-style: normal;
+  font-variation-settings:
+    "SOFT" 50,
+    "WONK" 1;
   line-height: 1.2;
   margin-bottom: var(--space-2);
   color: var(--text-primary);
