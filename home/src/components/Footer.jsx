@@ -1,6 +1,6 @@
 // src/components/Footer.jsx
 import React, { useMemo, useState, useRef } from "react";
-import quotes from "../assets/quotes";
+import quotes from "../data/quotes";
 
 function Footer() {
   // Track which quotes have been shown in the current cycle
