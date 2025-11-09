@@ -97,7 +97,15 @@ function HomePage() {
             </a>{" "}
             and built with{" "}
             <a href="https://react.dev/" target="_blank" rel="noopener noreferrer">
-              ReactJS
+              React
+            </a>
+            ,{" "}
+            <a href="https://vitejs.dev/" target="_blank" rel="noopener noreferrer">
+              Vite
+            </a>
+            , and{" "}
+            <a href="https://reactrouter.com/" target="_blank" rel="noopener noreferrer">
+              React Router
             </a>
             . Many of the other sub-projects use{" "}
             <a href="https://www.11ty.dev/" target="_blank" rel="noopener noreferrer">
