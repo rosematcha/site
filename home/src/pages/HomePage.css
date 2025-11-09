@@ -3,14 +3,15 @@
 /* Hero Section */
 .hero-section {
   animation: fadeUp 0.6s ease-out both;
-  margin-bottom: var(--space-1);
-  padding: var(--space-5) 0 var(--space-2);
+  margin: var(--space-5) auto var(--space-4);
+  max-width: var(--max-width-narrow);
+  padding: 0 var(--space-4) var(--space-4);
   text-align: center;
 }
 
 .hero-title {
   animation: fadeUp 0.5s ease-out both;
-  color: var(--text-primary);
+  color: var(--heading-color);
   font-family: Fraunces, serif;
   font-optical-sizing: auto;
   font-size: var(--font-display);
@@ -19,8 +20,11 @@
     "SOFT" 50,
     "WONK" 1;
   font-weight: 700;
-  letter-spacing: -0.02em;
-  margin-bottom: 0;
+  letter-spacing: -0.0125em;
+  line-height: 1.12;
+  margin: 0 auto var(--space-2);
+  max-width: 20ch;
+  text-wrap: balance;
 }
 
 .hero-tagline {
@@ -29,69 +33,57 @@
   color: var(--text-secondary);
   font-size: var(--font-body);
   line-height: 1.6;
-  margin: 0 auto;
-  max-width: 600px;
+  margin: 0 auto var(--space-3);
+  max-width: 64ch;
+  text-align: center;
 }
 
 .hero-actions {
   animation: fadeUp 0.6s ease-out both;
   animation-delay: 0.1s;
-  display: flex;
+  display: inline-flex;
   flex-wrap: wrap;
-  gap: var(--space-3);
+  gap: var(--space-2);
   justify-content: center;
-  margin-top: var(--space-3);
-}
-
-/* About Section */
-.about-section {
-  animation: fadeUp 0.6s ease-out both;
-  animation-delay: 0.1s;
-  margin-top: var(--space-2);
-}
-
-.about-section h2 {
-  color: var(--text-primary);
-  font-size: var(--font-h2);
-  margin-bottom: var(--space-3);
-  text-align: center;
-}
-
-.about-content {
-  margin-bottom: var(--space-4);
-}
-
-.about-content p {
-  font-size: var(--font-body);
-  line-height: 1.7;
 }
 
 /* Interests Section */
+.about-section {
+  margin: 0 auto var(--space-5);
+  max-width: var(--max-width-narrow);
+  padding: 0 var(--space-4);
+  text-align: center;
+}
+
 .interests-section {
   animation: fadeUp 0.6s ease-out both;
   animation-delay: 0.12s;
-  border-top: 1px solid var(--border-subtle);
-  margin-top: var(--space-4);
-  padding: var(--space-4) 0 var(--space-3) 0;
+  border-top: 1px solid var(--border-strong);
+  margin: var(--space-4) auto 0;
+  max-width: var(--max-width-narrow);
+  padding: var(--space-5) 0 var(--space-3);
 }
 
 .interests-section h3 {
-  color: var(--text-primary);
+  color: var(--heading-color);
   font-size: var(--font-h2);
   margin-bottom: var(--space-3);
-  text-align: center;
 }
 
 .interests-grid {
   display: grid;
   gap: var(--space-3);
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 }
 
 .interest-card {
+  align-items: center;
   background-color: transparent;
   border: none;
-  border-radius: 0;
+  border-radius: var(--border-radius-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
   padding: var(--space-3);
   text-align: center;
   transform: translateY(0);
@@ -112,19 +104,24 @@
 }
 
 .interest-icon {
-  color: var(--accent-primary);
-  margin-bottom: var(--space-2);
+  color: var(--icon-color);
+  height: 24px;
+  margin-bottom: var(--space-1);
   transition: transform var(--transition-base);
+  width: 24px;
 }
 
 .interest-card:hover .interest-icon {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 .interest-card h4 {
-  color: var(--text-primary);
+  color: var(--heading-color);
   font-size: var(--font-h3);
-  margin-bottom: var(--space-2);
+  margin-bottom: 0;
+  min-height: 2rem;
+  display: flex;
+  align-items: flex-end;
 }
 
 .interest-card p {
@@ -137,14 +134,15 @@
 .tech-section {
   animation: fadeUp 0.6s ease-out both;
   animation-delay: 0.14s;
-  border-top: 1px solid var(--border-subtle);
-  margin-top: 0;
-  padding: var(--space-4) 0;
+  border-top: 1px solid var(--border-strong);
+  margin: var(--space-4) auto 0;
+  max-width: var(--max-width-narrow);
+  padding: var(--space-5) 0 var(--space-3);
   text-align: center;
 }
 
 .tech-section h3 {
-  color: var(--text-primary);
+  color: var(--heading-color);
   font-size: var(--font-h2);
   margin-bottom: var(--space-2);
 }
@@ -153,26 +151,21 @@
   color: var(--text-secondary);
   font-size: var(--font-sm);
   margin: 0 auto;
-  max-width: 700px;
+  max-width: 64ch;
 }
 
 /* Responsive Design */
 @media (width <= 768px) {
   .hero-section {
-    padding: var(--space-4) 0 var(--space-3);
+    padding: 0 var(--space-3) var(--space-3);
   }
 
   .hero-title {
-    font-size: 2rem;
-  }
-
-  .hero-tagline {
-    font-size: var(--font-sm);
+    font-size: 2.5rem;
   }
 
   .hero-actions {
-    align-items: stretch;
-    flex-direction: column;
+    width: 100%;
   }
 
   .interests-grid {
@@ -182,42 +175,8 @@
 
 @media (width <= 480px) {
   .hero-title {
-    font-size: 1.75rem;
+    font-size: 2rem;
   }
-}
-
-@media (width <= 640px) {
-  .quick-actions-grid {
-    display: flex;
-    gap: var(--space-2);
-    overflow-x: auto;
-    padding-bottom: var(--space-1);
-    scroll-snap-type: x proximity;
-  }
-
-  .quick-action-card {
-    border: 1px solid var(--border-subtle);
-    border-radius: var(--border-radius-sm);
-    min-width: 170px;
-    padding: var(--space-2);
-    scroll-snap-align: start;
-  }
-}
-
-body:not(.initial-visit)
-  :where(
-    .hero-section,
-    .hero-title,
-    .hero-tagline,
-    .hero-actions,
-    .quick-actions-section,
-    .about-section,
-    .interests-section,
-    .tech-section
-  ) {
-  animation: none !important;
-  opacity: 1 !important;
-  transform: none !important;
 }
 
 @keyframes fadeUp {

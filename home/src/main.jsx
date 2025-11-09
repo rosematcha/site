@@ -1,7 +1,9 @@
+/* eslint-disable react-refresh/only-export-components */
 import React, { useEffect } from "react";
 import ReactDOM from "react-dom/client"; // takes react code and makes it viewable
 import { BrowserRouter, useLocation } from "react-router-dom"; // for having sub-pages not reload everything
 import App from "./App.jsx";
+import { ThemeProvider } from "./context/ThemeContext.jsx";
 import "./index.css";
 
 if (typeof document !== "undefined" && !document.body.classList.contains("initial-visit")) {
@@ -23,7 +25,9 @@ function AppWithInitialLoad() {
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
-      <AppWithInitialLoad />
+      <ThemeProvider>
+        <AppWithInitialLoad />
+      </ThemeProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

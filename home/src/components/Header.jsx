@@ -1,8 +1,9 @@
 // src/components/Header.jsx
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import { Home, Briefcase, FileText, MessageSquare, Mail, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { warmProjectsThumbnails, warmGuestbook, prefetchProjectRoutes } from "../utils/prefetch";
+import ThemeToggle from "./ThemeToggle";
 
 function Header() {
   const location = useLocation();
@@ -74,24 +75,9 @@ function Header() {
           <h1 className="site-main-title">
             <NavLink to="/" className="site-title-link" onClick={closeNav}>
               <span className="brand-primary">rosematcha</span>
-              <span className="badge ">portfolio</span>
             </NavLink>
           </h1>
         </div>
-        <button
-          type="button"
-          className={`nav-toggle ${isNavOpen ? "is-active" : ""}`}
-          aria-expanded={isNavOpen}
-          aria-controls="site-primary-nav"
-          aria-label={isNavOpen ? "Close menu" : "Open menu"}
-          data-state={isNavOpen ? "open" : "closed"}
-          onClick={toggleNav}
-        >
-          <span className="nav-toggle__icon" aria-hidden="true">
-            {isNavOpen ? <X size={20} /> : <Menu size={20} />}
-          </span>
-          <span className="nav-toggle__label">Menu</span>
-        </button>
         <nav
           id="site-primary-nav"
           className={`main-nav ${isNavOpen ? "is-open" : ""}`}
@@ -111,8 +97,7 @@ function Header() {
                 title="Projects"
                 onClick={closeNav}
               >
-                <Briefcase size={18} />
-                <span>Projects</span>
+                Projects
               </NavLink>
             </li>
             <li className="nav-item nav-item--resume">
@@ -122,8 +107,7 @@ function Header() {
                 title="Resume"
                 onClick={closeNav}
               >
-                <FileText size={18} />
-                <span>Resume</span>
+                Resume
               </NavLink>
             </li>
             <li className="nav-item nav-item--guestbook">
@@ -137,18 +121,33 @@ function Header() {
                 title="Guestbook"
                 onClick={closeNav}
               >
-                <MessageSquare size={18} />
-                <span>Guestbook</span>
+                Guestbook
               </NavLink>
             </li>
             <li className="nav-item nav-item--contact">
               <a href="mailto:hi@rosematcha.com" title="Contact" onClick={closeNav}>
-                <Mail size={18} />
-                <span>Contact</span>
+                Contact
               </a>
             </li>
           </ul>
         </nav>
+        <div className="header-controls">
+          <ThemeToggle />
+          <button
+            type="button"
+            className={`nav-toggle ${isNavOpen ? "is-active" : ""}`}
+            aria-expanded={isNavOpen}
+            aria-controls="site-primary-nav"
+            aria-label={isNavOpen ? "Close menu" : "Open menu"}
+            data-state={isNavOpen ? "open" : "closed"}
+            onClick={toggleNav}
+          >
+            <span className="nav-toggle__icon" aria-hidden="true">
+              {isNavOpen ? <X size={20} /> : <Menu size={20} />}
+            </span>
+            <span className="nav-toggle__label">Menu</span>
+          </button>
+        </div>
         <div
           className={`nav-backdrop ${isNavOpen ? "is-visible" : ""}`}
           aria-hidden="true"

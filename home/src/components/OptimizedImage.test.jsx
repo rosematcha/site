@@ -113,7 +113,7 @@ describe("OptimizedImage", () => {
   });
 
   it("should apply custom styles", () => {
-    const customStyle = { border: "1px solid red" };
+    const customStyle = { border: "1px solid var(--border-strong)" };
     render(<OptimizedImage src="test.jpg" alt="Test" style={customStyle} />);
 
     // Custom styles should be applied (testing implementation)
