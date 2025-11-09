@@ -1,8 +1,7 @@
 // Lightweight prefetch helpers to warm assets/data on intent
-// Respect data saver and avoid duplicate work under React Strict Mode
+// Browser's native lazy loading handles image loading automatically
 
 import { projectsData } from "../data/projects";
-import { loadProjectThumbnails } from "./imageLoader";
 
 const hasSaveData = () => {
   try {
@@ -14,16 +13,10 @@ const hasSaveData = () => {
   }
 };
 
-let projectsPrefetchStarted = false;
-export async function warmProjectsThumbnails() {
-  if (projectsPrefetchStarted || hasSaveData()) return;
-  projectsPrefetchStarted = true;
-  try {
-    // Use enhanced parallel loading from imageLoader utility
-    await loadProjectThumbnails(projectsData);
-  } catch {
-    // noop
-  }
+// No-op for compatibility - browser handles image loading natively
+export function warmProjectsThumbnails() {
+  // Browser's native lazy loading is more efficient
+  return Promise.resolve();
 }
 
 function isInternal(path) {

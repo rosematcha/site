@@ -4,7 +4,7 @@ export const projectsData = [
     id: "ciphermaniac",
     title: "Ciphermaniac",
     path: "https://ciphermaniac.com/",
-    thumbnail: "/img/projects/ciphermaniac-thumb.jpg",
+    thumbnail: "/img/projects/ciphermaniac-thumb.webp",
     thumbnailWidth: 327,
     thumbnailHeight: 184,
     description:
@@ -16,7 +16,7 @@ export const projectsData = [
     id: "matchatab",
     title: "MatchaTab",
     path: "https://addons.mozilla.org/en-US/firefox/addon/matchatab/",
-    thumbnail: "/img/projects/matchatab-thumb.jpg",
+    thumbnail: "/img/projects/matchatab-thumb.webp",
     thumbnailWidth: 330,
     thumbnailHeight: 183,
     description:
@@ -29,7 +29,7 @@ export const projectsData = [
     id: "brahdb",
     title: "BrahDB",
     path: "/brahdb",
-    thumbnail: "/img/projects/brahdb-thumb.jpg",
+    thumbnail: "/img/projects/brahdb-thumb.webp",
     thumbnailWidth: 333,
     thumbnailHeight: 184,
     description:
@@ -41,7 +41,7 @@ export const projectsData = [
     id: "bexarvoting",
     title: "Bexar County Voting Data",
     path: "/bexarvoting",
-    thumbnail: "/img/projects/bexarvoting-thumb.jpg",
+    thumbnail: "/img/projects/bexarvoting-thumb.webp",
     thumbnailWidth: 327,
     thumbnailHeight: 184,
     description:
@@ -53,7 +53,7 @@ export const projectsData = [
     id: "friendfinder",
     title: "Favorite Film Friend Finder",
     path: "/friendfinder",
-    thumbnail: "/img/projects/friendfinder-thumb.jpg",
+    thumbnail: "/img/projects/friendfinder-thumb.webp",
     thumbnailWidth: 327,
     thumbnailHeight: 184,
     description:
