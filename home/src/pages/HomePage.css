@@ -3,10 +3,26 @@
 /* Hero Section */
 .hero-section {
   animation: fadeUp 0.6s ease-out both;
-  margin: var(--space-5) auto var(--space-4);
-  max-width: var(--max-width-narrow);
-  padding: 0 var(--space-4) var(--space-4);
-  text-align: center;
+  margin: var(--space-2) auto var(--space-4);
+  max-width: min(calc(var(--max-width) + 320px), 1720px);
+  padding: 0 var(--space-6) var(--space-4);
+}
+
+.hero-layout {
+  display: flex;
+  align-items: center;
+  gap: clamp(var(--space-3), 7vw, var(--space-10));
+}
+
+.hero-media {
+  flex: 0 0 min(320px, 28%);
+  display: flex;
+  justify-content: center;
+}
+
+.hero-copy {
+  flex: 1;
+  max-width: 640px;
 }
 
 .hero-title {
@@ -22,7 +38,7 @@
   font-weight: 700;
   letter-spacing: -0.0125em;
   line-height: 1.12;
-  margin: 0 auto var(--space-2);
+  margin: 0 0 var(--space-2);
   max-width: 20ch;
   text-wrap: balance;
 }
@@ -33,9 +49,9 @@
   color: var(--text-secondary);
   font-size: var(--font-body);
   line-height: 1.6;
-  margin: 0 auto var(--space-3);
-  max-width: 64ch;
-  text-align: center;
+  margin: 0 0 var(--space-3);
+  max-width: 60ch;
+  text-align: left;
 }
 
 .hero-actions {
@@ -44,7 +60,7 @@
   display: inline-flex;
   flex-wrap: wrap;
   gap: var(--space-2);
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 /* Interests Section */
@@ -155,6 +171,31 @@
 }
 
 /* Responsive Design */
+@media (width <= 1024px) {
+  .hero-layout {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-copy {
+    text-align: center;
+  }
+
+  .hero-media {
+    width: min(360px, 70vw);
+  }
+
+  .hero-tagline {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+}
+
 @media (width <= 768px) {
   .hero-section {
     padding: 0 var(--space-3) var(--space-3);
