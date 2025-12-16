@@ -200,11 +200,6 @@
   font-size: var(--font-xs);
   line-height: 1.5;
   margin-bottom: var(--space-1);
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2);
-  justify-content: space-between;
-  align-items: center;
 }
 
 .entry-meta strong {
