@@ -151,6 +151,22 @@ function hideSpinner() {
 
 /* ----------------- layout -------------------- */
 function init(graph) {
+  // Initialize x/y from fx/fy if present (pre-computed positions)
+  graph.nodes.forEach(n => {
+    if (n.x === undefined && n.fx !== undefined) n.x = n.fx;
+    if (n.y === undefined && n.fy !== undefined) n.y = n.fy;
+  });
+
+  // If all nodes already have valid coordinates, skip layout computation
+  const allHaveCoords = graph.nodes.every(n => 
+    n.x !== undefined && n.y !== undefined && 
+    !Number.isNaN(n.x) && !Number.isNaN(n.y)
+  );
+  if (allHaveCoords) {
+    draw(graph);
+    return;
+  }
+
   const key = `lb_coords_${graph.nodes.length}_${graph.links.length}`;
   const cache = localStorage.getItem(key);
   
