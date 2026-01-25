@@ -2,13 +2,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Home } from "lucide-react";
+import OptimizedImage from "../components/OptimizedImage";
 
 function NotFoundPage() {
   return (
     <div className="page-content" style={{ textAlign: "center", paddingTop: "var(--space-16)" }}>
-      <img
+      <OptimizedImage
         src="/img/404.gif"
         alt="404 - Page Not Found"
+        loading="eager"
+        decoding="async"
         style={{
           maxWidth: "250px",
           width: "100%",

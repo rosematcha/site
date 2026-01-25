@@ -60,7 +60,7 @@ describe("OptimizedImage", () => {
     img.dispatchEvent(new Event("load"));
 
     await waitFor(() => {
-      expect(screen.queryByTestId("placeholder")).not.toBeInTheDocument();
+      expect(screen.getByTestId("placeholder").parentElement).toHaveClass("is-hidden");
     });
   });
 
@@ -153,14 +153,14 @@ describe("OptimizedImage", () => {
 
     const img = screen.getByAltText("Test");
 
-    // Initially should be transparent
-    expect(img).toHaveClass("opacity-0");
+    // Initially should not be marked as loaded
+    expect(img).not.toHaveClass("is-loaded");
 
     // Simulate load
     img.dispatchEvent(new Event("load"));
 
     await waitFor(() => {
-      expect(img).toHaveClass("opacity-100");
+      expect(img).toHaveClass("is-loaded");
     });
   });
 });

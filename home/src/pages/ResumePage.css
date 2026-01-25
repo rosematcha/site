@@ -3,36 +3,38 @@
 .resume-container {
   animation: fadeUp 0.55s ease-out both;
   max-width: var(--max-width);
-  padding: var(--space-4) var(--space-4) var(--space-6);
 }
 
 /* Contact Card */
 .resume-contact-card {
   animation: fadeUp 0.6s ease-out both;
   animation-delay: 0.05s;
-  background-color: transparent;
-  border: none;
-  border-bottom: 1px solid var(--border-medium);
-  border-radius: 0;
-  box-shadow: none;
+  background-color: var(--bg-tertiary);
+  border: 1px solid var(--border-subtle);
+  border-left: 3px solid var(--accent-primary);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
   margin-bottom: var(--space-4);
   padding: var(--space-4);
   text-align: left;
   transition:
     border-color var(--transition-base),
-    box-shadow var(--transition-base);
+    box-shadow var(--transition-base),
+    transform var(--transition-base),
+    background-color var(--transition-base);
 }
 
 .resume-contact-card:hover {
-  border-bottom-color: var(--accent-primary);
-  box-shadow: var(--shadow-sm);
+  background-color: var(--bg-secondary);
+  border-left-color: var(--accent-hover);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
 }
 
 .resume-name {
   color: var(--heading-color);
   font-size: var(--font-h1);
-  font-weight: 400;
-  margin-bottom: var(--space-3);
+  margin-bottom: var(--space-2);
 }
 
 .contact-actions {
@@ -40,7 +42,7 @@
   animation-delay: 0.08s;
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-3);
+  gap: var(--space-2);
   justify-content: flex-start;
 }
 
@@ -71,24 +73,34 @@
 .resume-filter {
   animation: fadeUp 0.6s ease-out both;
   animation-delay: 0.1s;
+  display: grid;
+  gap: var(--space-2);
   margin-bottom: var(--space-4);
 }
 
 .filter-input {
-  background-color: var(--bg-tertiary);
-  border: 2px solid var(--border-medium);
-  border-radius: var(--border-radius);
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--border-radius-sm);
   color: var(--text-primary);
   font-family: inherit;
-  font-size: var(--font-body);
-  padding: 0.875rem 1rem;
+  font-size: var(--font-sm);
+  padding: 0.75rem 1rem;
   transition: all var(--transition-fast);
   width: 100%;
 }
 
+.filter-input::placeholder {
+  color: var(--text-tertiary);
+}
+
+.filter-input:hover {
+  border-color: var(--accent-primary);
+}
+
 .filter-input:focus {
   border-color: var(--accent-primary);
-  box-shadow: 0 0 0 3px var(--accent-light);
+  box-shadow: 0 0 0 2px var(--accent-light);
   outline: none;
 }
 
@@ -102,10 +114,15 @@
 .resume-section {
   animation: fadeUp 0.6s ease-out both;
   animation-delay: 0.12s;
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--space-5);
 }
 
-.resume-section h2 {
+.resume-section + .resume-section {
+  border-top: 1px solid var(--border-subtle);
+  padding-top: var(--space-4);
+}
+
+.resume-section__title {
   border-bottom: 1px solid var(--border-subtle);
   color: var(--heading-color);
   font-size: var(--font-h2);
@@ -115,11 +132,11 @@
 
 /* Summary Card */
 .summary-card {
-  background-color: transparent;
-  border: none;
+  background-color: var(--bg-tertiary);
+  border: 1px solid var(--border-subtle);
   border-left: 3px solid var(--accent-primary);
-  border-radius: 0;
-  box-shadow: none;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
   color: var(--text-secondary);
   font-size: var(--font-body);
   line-height: 1.7;
@@ -145,10 +162,11 @@
 
 /* Job Entry */
 .job-entry {
-  background-color: transparent;
-  border: none;
-  border-left: 2px solid var(--border-subtle);
-  border-radius: 0;
+  background-color: var(--bg-tertiary);
+  border: 1px solid var(--border-subtle);
+  border-left: 3px solid transparent;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
   overflow: hidden;
   transform: translateY(0);
   transition:
@@ -161,8 +179,8 @@
 .job-entry:hover {
   background-color: var(--bg-secondary);
   border-left-color: var(--accent-primary);
-  box-shadow: var(--shadow-sm);
-  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
 }
 
 .job-entry:active {
@@ -171,7 +189,7 @@
 
 .job-header {
   cursor: pointer;
-  padding: var(--space-3);
+  padding: var(--space-3) var(--space-4);
   transition: background-color var(--transition-fast);
   user-select: none;
 }
@@ -205,7 +223,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-1);
-  margin-bottom: var(--space-2);
+  margin-bottom: 0;
 }
 
 .job-meta p {
@@ -234,8 +252,8 @@
   border: 1px solid var(--border-subtle);
   border-radius: 4px;
   color: var(--text-secondary);
-  font-size: var(--font-xs);
-  font-weight: 500;
+  font-size: 0.625rem;
+  font-weight: 600;
   letter-spacing: 0.05em;
   padding: 0.25rem 0.5rem;
   text-transform: uppercase;
@@ -244,7 +262,7 @@
 /* Job Details */
 .job-details {
   list-style: none;
-  padding: 0 var(--space-3) var(--space-3);
+  padding: 0 var(--space-4) var(--space-4);
 }
 
 .job-details li {
@@ -275,8 +293,9 @@
 .no-results {
   background-color: var(--bg-tertiary);
   border: 1px solid var(--border-subtle);
-  border-radius: var(--border-radius-lg);
-  padding: var(--space-8);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-6);
   text-align: center;
 }
 
@@ -356,16 +375,12 @@ body:not(.initial-visit)
 }
 
 @media (width <= 640px) {
-  .resume-container {
-    padding: var(--space-3) var(--space-2) var(--space-5);
-  }
-
   .resume-contact-card,
   .summary-card {
     padding: var(--space-3);
   }
 
-  .resume-section h2 {
+  .resume-section__title {
     font-size: var(--font-h2);
     text-align: left;
   }

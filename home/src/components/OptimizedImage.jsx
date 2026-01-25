@@ -1,6 +1,7 @@
 // Optimized image component with intersection observer and progressive loading
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import { createImageObserver } from "../utils/imageLoader";
+import "./OptimizedImage.css";
 
 const OptimizedImage = ({
   src,
@@ -24,12 +25,18 @@ const OptimizedImage = ({
   const [shouldLoad, setShouldLoad] = useState(loading === "eager");
   const imgRef = useRef(null);
   const observerRef = useRef(null);
+  const hasPlaceholder = Boolean(placeholder);
 
   const computedAspectRatio = aspectRatio ?? (width && height ? width / height : undefined);
   const wrapperStyle = style ? { ...style } : {};
   if (computedAspectRatio && wrapperStyle.aspectRatio === undefined) {
     wrapperStyle.aspectRatio = computedAspectRatio;
   }
+
+  useEffect(() => {
+    setIsLoaded(false);
+    setHasError(false);
+  }, [src]);
 
   useEffect(() => {
     const imgElement = imgRef.current;
@@ -41,9 +48,15 @@ const OptimizedImage = ({
 
     // Only set up intersection observer for lazy-loaded images
     if (loading === "lazy" && imgElement) {
-      observerRef.current = createImageObserver(imgElement, () => {
+      const observer = createImageObserver(imgElement, () => {
         setShouldLoad(true);
       });
+      observerRef.current = observer;
+      if (!observer) {
+        setShouldLoad(true);
+      }
+    } else {
+      setShouldLoad(true);
     }
 
     return () => {
@@ -53,10 +66,23 @@ const OptimizedImage = ({
     };
   }, [loading, fetchPriority]);
 
+  const markLoaded = useCallback(
+    event => {
+      setIsLoaded(true);
+      setHasError(false);
+      if (event) {
+        onLoad?.(event);
+      }
+    },
+    [onLoad]
+  );
+
   const handleLoad = e => {
-    setIsLoaded(true);
-    setHasError(false);
-    onLoad?.(e);
+    markLoaded(e);
+    const img = e.currentTarget;
+    if (img && typeof img.decode === "function") {
+      img.decode().catch(() => {});
+    }
   };
 
   const handleError = e => {
@@ -65,11 +91,26 @@ const OptimizedImage = ({
     onError?.(e);
   };
 
+  useEffect(() => {
+    const imgElement = imgRef.current;
+    if (!imgElement || !shouldLoad || isLoaded || hasError) {
+      return;
+    }
+
+    if (imgElement.complete && imgElement.naturalWidth > 0) {
+      markLoaded(undefined);
+    }
+  }, [shouldLoad, src, isLoaded, hasError, markLoaded]);
+
   return (
-    <div className={`relative overflow-hidden ${className}`} style={wrapperStyle} {...props}>
+    <div className={`optimized-image ${className}`} style={wrapperStyle} {...props}>
       {/* Placeholder while loading */}
-      {!isLoaded && !hasError && placeholder && (
-        <div className="absolute inset-0 flex items-center justify-center bg-gray-100 dark:bg-gray-800">
+      {hasPlaceholder && (
+        <div
+          className={`optimized-image__placeholder${
+            isLoaded || hasError ? " is-hidden" : ""
+          }`}
+        >
           {placeholder}
         </div>
       )}
@@ -81,9 +122,7 @@ const OptimizedImage = ({
         alt={alt}
         width={width}
         height={height}
-        className={`w-full h-full object-cover transition-opacity duration-300 ${
-          isLoaded ? "opacity-100" : "opacity-0"
-        }`}
+        className={`optimized-image__img${isLoaded ? " is-loaded" : ""}`}
         loading={loading}
         decoding={decoding}
         sizes={sizes}
@@ -93,10 +132,10 @@ const OptimizedImage = ({
 
       {/* Error fallback */}
       {hasError && (
-        <div className="absolute inset-0 flex items-center justify-center bg-gray-200 dark:bg-gray-700 text-gray-500 dark:text-gray-400">
-          <div className="text-center p-4">
+        <div className="optimized-image__error">
+          <div className="optimized-image__error-content">
             <svg
-              className="mx-auto h-12 w-12 mb-2"
+              className="optimized-image__error-icon"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -108,7 +147,7 @@ const OptimizedImage = ({
                 d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
               />
             </svg>
-            <span className="text-xs">Image unavailable</span>
+            <span className="optimized-image__error-text">Image unavailable</span>
           </div>
         </div>
       )}

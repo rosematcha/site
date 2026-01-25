@@ -1,5 +1,6 @@
 ﻿import React from "react";
 import PropTypes from "prop-types";
+import OptimizedImage from "./OptimizedImage";
 import "./PolaroidStack.css";
 
 const defaultPhotos = [
@@ -115,9 +116,13 @@ function PolaroidStack({ photos = defaultPhotos, cycleInterval = 5000, showLabel
               opacity: Math.max(1 - relativeIndex * 0.25, 0.3),
             }}
           >
-            <div className="polaroid-photo-wrapper">
-              <img src={photo.src} alt={photo.alt} loading="lazy" />
-            </div>
+            <OptimizedImage
+              src={photo.src}
+              alt={photo.alt}
+              className="polaroid-photo-wrapper"
+              loading="eager"
+              decoding="async"
+            />
             <figcaption
               className={showCaption ? "" : "is-hidden"}
               aria-hidden={!showCaption}

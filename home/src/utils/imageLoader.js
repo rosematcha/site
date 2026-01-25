@@ -21,7 +21,7 @@ export function createImageObserver(img, onVisible) {
       });
     },
     {
-      rootMargin: "50px 0px", // Load images 50px before they enter viewport
+      rootMargin: "200px 0px", // Load images before they enter viewport for smoother reveal
       threshold: 0,
     }
   );

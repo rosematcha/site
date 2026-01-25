@@ -28,11 +28,11 @@ function ResumePage() {
 
   // Job categories and data
   const jobCategories = {
+    all: "All Positions",
     default: "Key Positions",
     technology: "Technology & Systems",
     arts: "Arts & Education",
     community: "Community & Service",
-    all: "All Positions",
   };
 
   const allJobs = [
@@ -255,8 +255,8 @@ function ResumePage() {
   return (
     <div className="page-content resume-container">
       {/* Contact Info with Copy Actions */}
-      <div className="resume-contact-card">
-        <h3 className="resume-name">Reese Lundquist</h3>
+      <div className="card resume-contact-card">
+        <h1 className="resume-name">Reese Lundquist</h1>
         <div className="contact-actions">
           <button
             className="button"
@@ -292,7 +292,7 @@ function ResumePage() {
       <div className="resume-filter">
         <input
           type="text"
-          placeholder="🔍 Filter by skills, technologies, or keywords..."
+          placeholder="Filter by skills, technologies, or keywords..."
           value={skillFilter}
           onChange={e => setSkillFilter(e.target.value)}
           className="filter-input"
@@ -307,8 +307,8 @@ function ResumePage() {
 
       {/* --- SUMMARY --- */}
       <section className="resume-section">
-        <h4>Summary</h4>
-        <div className="summary-card">
+        <h2 className="resume-section__title">Summary</h2>
+        <div className="card summary-card">
           <p>
             Versatile professional with expertise in systems administration, arts education, event
             organization, and web development. Skilled in managing technical infrastructure,
@@ -320,14 +320,16 @@ function ResumePage() {
 
       {/* --- WORK EXPERIENCE --- */}
       <section className="resume-section">
-        <h4>Work Experience</h4>
+        <h2 className="resume-section__title">Work Experience</h2>
 
         {/* Category Filters */}
         <div className="category-filters">
           {Object.entries(jobCategories).map(([key, label]) => (
             <button
               key={key}
-              className="button button--sm button--ghost"
+              className={`button button--sm button--ghost${
+                selectedCategories.includes(key) ? " is-active" : ""
+              }`}
               aria-pressed={selectedCategories.includes(key)}
               onClick={() => toggleCategory(key)}
             >
@@ -400,7 +402,7 @@ function ResumePage() {
 
       {/* --- SKILLS VISUALIZATION --- */}
       <section className="resume-section hidden">
-        <h4>Skills & Proficiency</h4>
+        <h2 className="resume-section__title">Skills & Proficiency</h2>
         <div className="skills-visualization">
           {Object.entries(skillsData).map(([category, skills]) => (
             <div key={category} className="skill-category">
@@ -425,7 +427,7 @@ function ResumePage() {
 
       {/* --- EDUCATION --- */}
       <section className="resume-section">
-        <h4>Education</h4>
+        <h2 className="resume-section__title">Education</h2>
         <div className="education-entry">
           <h5>Associate of Computer Science</h5>
           <p>
@@ -438,7 +440,7 @@ function ResumePage() {
 
       {/* --- RECOMMENDATIONS --- */}
       <section className="resume-section hidden">
-        <h4>Professional Highlights</h4>
+        <h2 className="resume-section__title">Professional Highlights</h2>
         <div className="recommendations">
           <div className="recommendation-card">
             <div className="quote-mark">"</div>
@@ -467,7 +469,7 @@ function ResumePage() {
         </div>
       </section>
 
-      <div className="text-center mt-6">
+      <div className="text-center mt-7">
         <Link to="/" className="button">
           <svg
             className="icon-inline mr-2"
