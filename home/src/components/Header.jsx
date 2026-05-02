@@ -3,7 +3,6 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { warmProjectsThumbnails, warmGuestbook, prefetchProjectRoutes } from "../utils/prefetch";
-import ThemeToggle from "./ThemeToggle";
 
 function Header() {
   const location = useLocation();
@@ -132,7 +131,6 @@ function Header() {
           </ul>
         </nav>
         <div className="header-controls">
-          <ThemeToggle />
           <button
             type="button"
             className={`nav-toggle ${isNavOpen ? "is-active" : ""}`}

@@ -1,6 +1,19 @@
 // Centralized project data for reuse (listing and intelligent preloading)
 export const projectsData = [
   {
+    id: "butterbook",
+    title: "Butterbook",
+    path: "https://butterbook.app",
+    thumbnail: "/img/projects/news/butterbook.png",
+    thumbnailWidth: 900,
+    thumbnailHeight: 666,
+    description:
+      "In my time in the arts nonprofit and museum world, I found gaps in the design of popular CRM and event management systems. I created Butterbook specifically for the small-scale nonprofits and solo entrepreneurs I worked with.",
+    tech: ["typescript", "next.js", "postgresql"],
+    tags: ["nonprofits", "saas", "events"],
+    featured: true,
+  },
+  {
     id: "ciphermaniac",
     title: "Ciphermaniac",
     path: "https://ciphermaniac.com/",
@@ -10,7 +23,8 @@ export const projectsData = [
     description:
       "To show my local league players what cards are frequently used in the Pokemon card game, I created this tool tracking the usage of cards in major tournaments. Now serves thousands of daily users.",
     tech: ["react", "node.js", "tailwindcss"],
-    tags: ["data visualization", "pokemon"],
+    tags: ["data viz", "pokemon"],
+    featured: true,
   },
   {
     id: "matchatab",
@@ -21,9 +35,58 @@ export const projectsData = [
     thumbnailHeight: 183,
     description:
       "Inspired by Tabliss, a deeply customizable and modular new tab page to meet my needs. Built for Firefox browsers (my preference.)",
-    tech: ["javascript", "html", "css"],
+    tech: ["javascript", "css"],
     tags: ["browser extension", "weekend project"],
     buttonText: "Install on Firefox",
+    featured: true,
+  },
+  {
+    id: "saysi",
+    title: "SAY Sí",
+    path: "https://saysi.org",
+    thumbnail: "/img/projects/saysi.webp",
+    thumbnailWidth: 900,
+    thumbnailHeight: 666,
+    description:
+      'I redesigned and upgraded SAY Sí\'s WordPress site, updating from an outdated PHP client and building a <a href="https://github.com/rosematcha/buttercup" target="_blank" rel="noopener noreferrer">bespoke WordPress plugin</a> to increase user flexibility. The new extensible system allows non-technical editors to better highlight the work the org does.',
+    tech: ["wordpress", "php", "javascript"],
+    tags: ["client work", "nonprofits", "custom plugin", "arts", "youth"],
+  },
+  {
+    id: "lasbookies",
+    title: "Las Bookies",
+    path: "https://lasbookies.com",
+    thumbnail: "/img/projects/lasbookies.webp",
+    thumbnailWidth: 900,
+    thumbnailHeight: 666,
+    description:
+      "I built a simple performant website for Las Bookies, a local accounting firm looking for a brochure website. I matched the client's desired vibes, and integrated Decap CMS and Netlify hosting for simple, low-cost hosting and editing.",
+    tech: ["astro", "decap cms", "netlify"],
+    tags: ["client work", "brochure site", "small business"],
+  },
+  {
+    id: "upo",
+    title: "United Professional Organizers",
+    path: "https://upounion.org",
+    thumbnail: "/img/projects/placeholder-thumb.webp",
+    thumbnailWidth: 327,
+    thumbnailHeight: 184,
+    description:
+      "I overhauled UPO's website from Google Sites to WordPress for greater editor accessibility and a modernized appearance. I built a member portal in integration with Patreon for union members to access confidential info.",
+    tech: ["wordpress", "patreon", "php"],
+    tags: ["client work", "member portal", "migration", "labor"],
+  },
+  {
+    id: "stonewallaction",
+    title: "Stonewall Action",
+    path: "https://stonewallaction.org/",
+    thumbnail: "/img/projects/placeholder-thumb.webp",
+    thumbnailWidth: 327,
+    thumbnailHeight: 184,
+    description:
+      "As part of a consulting contract with Stonewall Action, a queer activism nonprofit out of Austin, I redesigned their website. I valued legibility and accessibility to serve our inclusive mission.",
+    tech: ["wordpress", "php"],
+    tags: ["client work", "nonprofits", "accessibility", "lgbtq"],
   },
   {
     id: "brahdb",
@@ -35,7 +98,7 @@ export const projectsData = [
     description:
       "Processed data visualization from YouTube's finest fast food reviewer, ReportOfTheWeek, with data scraped, collected, and transformed from subtitles using Python.",
     tech: ["vite", "react", "typescript"],
-    tags: ["data visualization", "weekend project"],
+    tags: ["data viz", "weekend project"],
   },
   {
     id: "bexarvoting",
@@ -47,7 +110,7 @@ export const projectsData = [
     description:
       "Dissatisfied with the County's lack of transparency, I created a site to visualize historical and present Bexar County voting data.",
     tech: ["javascript", "chart.js", "tailwindcss"],
-    tags: ["data visualization", "civic tech"],
+    tags: ["data viz", "civic tech"],
   },
   {
     id: "friendfinder",
@@ -70,6 +133,6 @@ export const projectsData = [
     thumbnailHeight: 184,
     description: "Visualizing the connections between people's four favorite movies on Letterboxd.",
     tech: ["d3.js", "python"],
-    tags: ["data visualization", "letterboxd", "weekend project"],
+    tags: ["data viz", "letterboxd", "weekend project"],
   },
 ];

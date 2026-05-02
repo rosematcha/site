@@ -58,20 +58,25 @@ function HomePage() {
       <section className="about-section">
         {/* Interests */}
         <div className="interests-section">
-          <h3>Beyond Work</h3>
           <div className="interests-grid">
             <div className="interest-card">
-              <Camera size={24} className="interest-icon" />
+              <span className="interest-stamp" aria-hidden="true">
+                <Camera size={22} className="interest-icon" />
+              </span>
               <h4>Photography</h4>
               <p>Specializing in event work and candid photography</p>
             </div>
             <div className="interest-card">
-              <Sparkles size={24} className="interest-icon" />
+              <span className="interest-stamp" aria-hidden="true">
+                <Sparkles size={22} className="interest-icon" />
+              </span>
               <h4>Pokemon TCG</h4>
               <p>Running weekly tournaments for a local card league</p>
             </div>
             <div className="interest-card">
-              <Clapperboard size={24} className="interest-icon" />
+              <span className="interest-stamp" aria-hidden="true">
+                <Clapperboard size={22} className="interest-icon" />
+              </span>
               <h4>Film</h4>
               <p>
                 <a
@@ -90,36 +95,47 @@ function HomePage() {
         {/* Tech Stack */}
         <div className="tech-section">
           <h3>Built With</h3>
-          <p className="tech-description">
-            This site is hosted on{" "}
+          <p className="tech-intro">
+            Hosted on{" "}
             <a href="https://www.netlify.com/" target="_blank" rel="noopener noreferrer">
               Netlify
-            </a>{" "}
-            and built with{" "}
-            <a href="https://react.dev/" target="_blank" rel="noopener noreferrer">
-              React
             </a>
-            ,{" "}
-            <a href="https://vitejs.dev/" target="_blank" rel="noopener noreferrer">
-              Vite
-            </a>
-            , and{" "}
-            <a href="https://reactrouter.com/" target="_blank" rel="noopener noreferrer">
-              React Router
-            </a>
-            . Many of the other sub-projects use{" "}
-            <a href="https://www.11ty.dev/" target="_blank" rel="noopener noreferrer">
-              Eleventy
-            </a>{" "}
-            and{" "}
-            <a href="https://tailwindcss.com/" target="_blank" rel="noopener noreferrer">
-              TailwindCSS
-            </a>
-            . I'm also experienced in{" "}
-            <a href="https://wordpress.com/" target="_blank" rel="noopener noreferrer">
-              WordPress
-            </a>
-            , and am currently learning about JAM-compatible CMSes.
+            . The toolkit:
+          </p>
+          <ul className="tech-chips">
+            <li>
+              <a href="https://react.dev/" target="_blank" rel="noopener noreferrer">
+                React
+              </a>
+            </li>
+            <li>
+              <a href="https://vitejs.dev/" target="_blank" rel="noopener noreferrer">
+                Vite
+              </a>
+            </li>
+            <li>
+              <a href="https://reactrouter.com/" target="_blank" rel="noopener noreferrer">
+                React Router
+              </a>
+            </li>
+            <li>
+              <a href="https://www.11ty.dev/" target="_blank" rel="noopener noreferrer">
+                Eleventy
+              </a>
+            </li>
+            <li>
+              <a href="https://tailwindcss.com/" target="_blank" rel="noopener noreferrer">
+                TailwindCSS
+              </a>
+            </li>
+            <li>
+              <a href="https://wordpress.com/" target="_blank" rel="noopener noreferrer">
+                WordPress
+              </a>
+            </li>
+          </ul>
+          <p className="tech-outro">
+            Currently learning about JAM-compatible CMSes.
           </p>
         </div>
       </section>
