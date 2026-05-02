@@ -218,11 +218,11 @@ function ContactLinks({ copyToClipboard }) {
       <button
         type="button"
         className="resume-contact__link"
-        onClick={() => copyToClipboard("hi@rosematcha.com", "Email")}
+        onClick={() => copyToClipboard("howdy@rosematcha.com", "Email")}
         title="Copy email"
       >
         <Mail size={14} aria-hidden="true" />
-        <span>hi@rosematcha.com</span>
+        <span>howdy@rosematcha.com</span>
       </button>
       <a
         className="resume-contact__link"

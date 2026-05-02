@@ -57,14 +57,25 @@ function GuestbookPage() {
 
       if (response.ok) {
         setSubmissionStatus("success");
+        // Optimistically prepend the new entry so it's visible immediately
+        const newEntry = {
+          id: `optimistic-${Date.now()}`,
+          name,
+          website,
+          message,
+          date: new Date().toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+            hour: "2-digit",
+            minute: "2-digit",
+          }),
+        };
+        setEntries(prev => [newEntry, ...prev]);
         setName("");
         setMessage("");
         setWebsite("");
-        // Re-fetch entries after a short delay to allow Netlify to process
-        setTimeout(() => {
-          fetchEntries(); // <<< RE-FETCH ENTRIES
-          setSubmissionStatus(null); // Reset status after a bit
-        }, 2500); // Adjust delay if needed
+        setTimeout(() => setSubmissionStatus(null), 3000);
       } else {
         const errorText = await response.text();
         console.error("[Guestbook] Form submission HTTP error:", response.status, errorText);

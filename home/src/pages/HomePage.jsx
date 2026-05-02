@@ -45,7 +45,7 @@ function HomePage() {
                 <Briefcase size={20} />
                 View My Work
               </Link>
-              <a href="mailto:hi@rosematcha.com" className="button button--ghost">
+              <a href="mailto:howdy@rosematcha.com" className="button button--ghost">
                 <Mail size={20} />
                 Get in Touch
               </a>

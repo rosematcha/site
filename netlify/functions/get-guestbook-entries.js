@@ -50,6 +50,7 @@ exports.handler = async function (event, context) {
     );
 
     const formattedEntries = validSubmissions
+      .sort((a, b) => new Date(b.created_at) - new Date(a.created_at)) // Sort before formatting
       .map((submission) => ({
         id: submission.id,
         name: submission.data.name || "Anonymous",
@@ -62,11 +63,14 @@ exports.handler = async function (event, context) {
           hour: "2-digit",
           minute: "2-digit",
         }),
-      }))
-      .sort((a, b) => new Date(b.date) - new Date(a.date)); // Newest first
+      }));
 
     return {
       statusCode: 200,
+      headers: {
+        "Content-Type": "application/json",
+        "Cache-Control": "public, s-maxage=60, stale-while-revalidate=300",
+      },
       body: JSON.stringify(formattedEntries),
     };
   } catch (error) {

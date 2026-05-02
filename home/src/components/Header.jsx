@@ -124,7 +124,7 @@ function Header() {
               </NavLink>
             </li>
             <li className="nav-item nav-item--contact">
-              <a href="mailto:hi@rosematcha.com" title="Contact" onClick={closeNav}>
+              <a href="mailto:howdy@rosematcha.com" title="Contact" onClick={closeNav}>
                 Contact
               </a>
             </li>
