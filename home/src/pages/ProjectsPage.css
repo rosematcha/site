@@ -44,8 +44,8 @@
 
 .project-title {
   color: var(--heading-color);
-  font-family: Fraunces, serif;
-  font-weight: 500;
+  font-family: "Hanken Grotesk", sans-serif;
+  font-weight: 600;
   letter-spacing: -0.01em;
   line-height: 1.15;
   margin: 0;
@@ -116,8 +116,8 @@
 
 .project-tag--cat {
   background: transparent;
-  border: 1px solid var(--border-medium);
-  color: var(--text-tertiary);
+  border: 1px solid color-mix(in srgb, var(--matcha-primary) 55%, transparent);
+  color: var(--matcha-strong);
 }
 
 .project-visit {
@@ -218,10 +218,10 @@
 
 .project-placeholder__name {
   color: var(--text-secondary);
-  font-family: Fraunces, serif;
+  font-family: "Hanken Grotesk", sans-serif;
   font-size: clamp(1rem, 1.6vw, 1.5rem);
   font-style: italic;
-  font-weight: 300;
+  font-weight: 400;
   letter-spacing: -0.015em;
   line-height: 1.05;
   opacity: 0.78;

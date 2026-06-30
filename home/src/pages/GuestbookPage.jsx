@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { ArrowLeft, Send } from "lucide-react";
 import "./GuestbookPage.css";
 
+const NOTE_TONES = ["", "gb-note--rose", "", "gb-note--matcha", ""];
+
 function GuestbookPage() {
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
@@ -88,8 +90,11 @@ function GuestbookPage() {
   };
 
   return (
-    <div className="page-content guestbook-container">
-      <h2>Sign the Guestbook!</h2>
+    <div className="page-content guestbook">
+      <header className="guestbook__head">
+        <h2>Guestbook</h2>
+        <p>Leave a note, say hi, drop a link.</p>
+      </header>
 
       <form
         name="guestbook"
@@ -106,45 +111,49 @@ function GuestbookPage() {
           </label>
         </p>
 
-        <div className="form-group">
-          <label htmlFor="name">Your Name:</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={name}
-            onChange={e => setName(e.target.value)}
-            required
-            disabled={submissionStatus === "submitting"}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="website">Your Website (Optional):</label>
-          <input
-            type="url"
-            id="website"
-            name="website"
-            value={website}
-            onChange={e => setWebsite(e.target.value)}
-            placeholder="https://www.example.com"
-            disabled={submissionStatus === "submitting"}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="message">Your Message:</label>
-          <textarea
-            id="message"
-            name="message"
-            rows="4"
-            value={message}
-            onChange={e => setMessage(e.target.value)}
-            required
-            disabled={submissionStatus === "submitting"}
-          ></textarea>
+        <div className="guestbook-form__fields">
+          <div className="form-group">
+            <label htmlFor="name">Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={name}
+              onChange={e => setName(e.target.value)}
+              required
+              disabled={submissionStatus === "submitting"}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="website">
+              Website <span className="form-group__optional">optional</span>
+            </label>
+            <input
+              type="url"
+              id="website"
+              name="website"
+              value={website}
+              onChange={e => setWebsite(e.target.value)}
+              placeholder="https://www.example.com"
+              disabled={submissionStatus === "submitting"}
+            />
+          </div>
+          <div className="form-group form-group--message">
+            <label htmlFor="message">Message</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="2"
+              value={message}
+              onChange={e => setMessage(e.target.value)}
+              required
+              disabled={submissionStatus === "submitting"}
+            ></textarea>
+          </div>
         </div>
         <button type="submit" className="button" disabled={submissionStatus === "submitting"}>
           <Send size={18} />
-          {submissionStatus === "submitting" ? "Posting..." : "Post Message"}
+          {submissionStatus === "submitting" ? "Signing..." : "Sign the guestbook"}
         </button>
 
         {submissionStatus === "success" && (
@@ -159,10 +168,7 @@ function GuestbookPage() {
         )}
       </form>
 
-      <hr className="guestbook-divider" />
-
-      <h3>What Others Have Said...</h3>
-      {isLoadingEntries && <p>Loading awesome messages...</p>}
+      {isLoadingEntries && <p className="guestbook__status">Loading awesome messages...</p>}
       {fetchError && (
         <p className="error-message">
           Could not load messages: {fetchError} <br /> (This might be because the Form ID or API
@@ -170,34 +176,30 @@ function GuestbookPage() {
         </p>
       )}
       {!isLoadingEntries && !fetchError && entries.length > 0 && (
-        <div className="guestbook-entries">
-          {entries.map(entry => (
-            <div key={entry.id} className="guestbook-entry">
-              <p className="entry-meta">
-                <strong>From:</strong> {entry.name}
+        <div className="guestbook-wall">
+          {entries.map((entry, index) => (
+            <article key={entry.id} className={`gb-note ${NOTE_TONES[index % NOTE_TONES.length]}`}>
+              <p className="gb-note__message">{entry.message}</p>
+              <div className="gb-note__meta">
+                <span className="gb-note__name">{entry.name}</span>
                 {entry.website && (
-                  <>
-                    {" | "}
-                    <a
-                      href={entry.website}
-                      target="_blank"
-                      rel="noopener noreferrer nofollow"
-                      title={entry.website}
-                    >
-                      {entry.website.replace(/^https?:\/\//, "")}
-                    </a>
-                  </>
+                  <a
+                    href={entry.website}
+                    target="_blank"
+                    rel="noopener noreferrer nofollow"
+                    title={entry.website}
+                  >
+                    {entry.website.replace(/^https?:\/\//, "")}
+                  </a>
                 )}
-                <br />
-                <strong>Date:</strong> {entry.date}
-              </p>
-              <p className="entry-message">{entry.message}</p>
-            </div>
+                <span className="gb-note__date">{entry.date}</span>
+              </div>
+            </article>
           ))}
         </div>
       )}
       {!isLoadingEntries && !fetchError && entries.length === 0 && (
-        <p>No messages yet. Womp womp.</p>
+        <p className="guestbook__status">No messages yet. Womp womp.</p>
       )}
 
       <div className="text-center mt-7">

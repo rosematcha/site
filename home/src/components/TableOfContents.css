@@ -18,13 +18,11 @@
   color: var(--text-tertiary);
   cursor: pointer;
   display: flex;
-  font-size: 0.65rem;
-  font-weight: 500;
+  font-size: var(--font-xs);
+  font-weight: 600;
   gap: var(--space-1);
   justify-content: flex-start;
-  letter-spacing: 0.1em;
   padding: 0 0 var(--space-1);
-  text-transform: uppercase;
   width: 100%;
 }
 

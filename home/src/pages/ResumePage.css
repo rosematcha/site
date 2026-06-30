@@ -64,18 +64,12 @@ body.initial-visit .resume-panel:nth-child(4) { animation-delay: 0.28s; }
   color: var(--heading-color);
   cursor: default;
   display: inline-block;
-  font-family: Fraunces, serif;
-  font-size: clamp(1.875rem, 3.5vw, 2.25rem);
-  font-variation-settings: "SOFT" 50, "WONK" 1;
-  font-weight: 500;
-  letter-spacing: -0.02em;
+  font-family: Unbounded, sans-serif;
+  font-size: clamp(1.875rem, 3.5vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
   line-height: 1.05;
   margin: 0 0 0.4rem;
-  transition: font-variation-settings 0.5s var(--resume-ease-out);
-}
-
-.resume-name:hover {
-  font-variation-settings: "SOFT" 100, "WONK" 1;
 }
 
 .resume-tagline {
@@ -217,10 +211,10 @@ body.initial-visit .resume-panel:nth-child(4) { animation-delay: 0.28s; }
 
 .resume-section-title {
   color: var(--heading-color);
-  font-family: Fraunces, serif;
-  font-size: 1.375rem;
-  font-weight: 500;
-  letter-spacing: -0.01em;
+  font-family: Unbounded, sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
   margin: 0;
 }
 
@@ -435,9 +429,9 @@ body.initial-visit .resume-panel:nth-child(4) { animation-delay: 0.28s; }
 
 .resume-job__title {
   color: var(--heading-color);
-  font-family: Fraunces, serif;
+  font-family: "Hanken Grotesk", sans-serif;
   font-size: 1.0625rem;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 1.25;
   margin: 0;
 }
@@ -565,9 +559,9 @@ a.resume-job__company:hover {
 
 .resume-edu__degree {
   color: var(--heading-color);
-  font-family: Fraunces, serif;
+  font-family: "Hanken Grotesk", sans-serif;
   font-size: 1.0625rem;
-  font-weight: 500;
+  font-weight: 600;
   margin: 0;
 }
 

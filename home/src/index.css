@@ -3,17 +3,12 @@
    Swiss Spa Aesthetic
    =================================== */
 
-/* Font Import */
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap");
+/* Fonts loaded in index.html: Unbounded (display) + Hanken Grotesk (body). */
 
-.fraunces-headline {
-  font-family: Fraunces, serif;
-  font-optical-sizing: auto;
-  font-style: normal;
-  font-variation-settings:
-    "SOFT" 50,
-    "WONK" 1;
+.display-headline {
+  font-family: Unbounded, sans-serif;
   font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
 /* CSS Custom Properties — Warm Dark (single theme) */
@@ -47,6 +42,12 @@
   --accent-contrast: #fff;
   --accent-light: color-mix(in srgb, var(--accent-primary) 20%, transparent);
 
+  /* Matcha — secondary accent (the green half of "rosematcha") */
+  --matcha-primary: #7c9a6b;
+  --matcha-strong: #a8c298;
+  --matcha-muted: #1f2a1c;
+  --matcha-contrast: #0e140b;
+
   --button-ghost-border: #6d4f4d;
   --button-ghost-text: #f8f3ef;
   --border-subtle: #372d2c;
@@ -78,9 +79,9 @@
   --bg-texture-grain: rgb(0 0 0 / 0.3);
 
   --bg-noise-texture: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0%200%20256%20256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' seed='9' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)'/%3E%3C/svg%3E");
-  --bg-noise-opacity: 0.14;
+  --bg-noise-opacity: 0.09;
   --bg-noise-scale: 200px 200px;
-  --page-texture-opacity: 0.98;
+  --page-texture-opacity: 0.92;
   --page-background-image:
     radial-gradient(120% 80% at 50% -10%, color-mix(in srgb, var(--bg-tertiary) 60%, transparent) 0%, transparent 65%),
     linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-ink) 100%);
@@ -188,7 +189,7 @@ body {
 body {
   color: var(--text-primary);
   font-family:
-    "DM Sans",
+    "Hanken Grotesk",
     -apple-system,
     BlinkMacSystemFont,
     "Segoe UI",
@@ -219,7 +220,7 @@ body::before {
     center;
   background-repeat: var(--page-background-repeat);
   background-size: var(--page-background-size);
-  opacity: 0.98;
+  opacity: var(--page-texture-opacity);
 }
 
 body::after {
@@ -229,7 +230,7 @@ body::after {
   background-repeat: repeat;
   background-size: var(--bg-noise-scale);
   mix-blend-mode: soft-light;
-  opacity: 0.14;
+  opacity: var(--bg-noise-opacity);
   z-index: -1;
 }
 
@@ -260,7 +261,7 @@ main,
    Typography
    =================================== */
 
-.fraunces-headline,
+.display-headline,
 h1,
 h2,
 h3,
@@ -268,32 +269,40 @@ h4,
 h5,
 h6 {
   color: var(--heading-color);
-  font-family: Fraunces, serif;
-  font-optical-sizing: auto;
-  font-style: normal;
-  font-variation-settings:
-    "SOFT" 50,
-    "WONK" 1;
-  font-weight: 700;
   line-height: 1.2;
   margin-bottom: var(--space-2);
 }
 
-h1 {
-  font-size: var(--font-h1);
+/* Unbounded carries the big moments only — it's a display face and gets
+   hard to read small, so it stops at h2. */
+.display-headline,
+h1,
+h2 {
+  font-family: Unbounded, sans-serif;
   font-weight: 700;
   letter-spacing: -0.02em;
 }
 
+/* Hanken handles every smaller heading, subhead, and label. */
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Hanken Grotesk", sans-serif;
+  font-weight: 600;
+}
+
+h1 {
+  font-size: var(--font-h1);
+}
+
 h2 {
   font-size: var(--font-h2);
-  font-weight: 700;
   line-height: 1.25;
 }
 
 h3 {
   font-size: var(--font-h3);
-  font-weight: 700;
 }
 
 p {
@@ -717,6 +726,20 @@ body.initial-visit .page-transition {
   background-color: var(--accent-muted);
   border-color: var(--accent-primary);
   color: var(--accent-strong);
+}
+
+/* Matcha secondary — outline that fills on hover. Rose stays the primary
+   action color; matcha is the quieter second voice. */
+.button--matcha {
+  background-color: transparent;
+  border: 1px solid var(--matcha-primary);
+  color: var(--matcha-strong);
+}
+
+.button--matcha:hover {
+  background-color: var(--matcha-primary);
+  border-color: var(--matcha-primary);
+  color: var(--matcha-contrast);
 }
 
 .button--sm {

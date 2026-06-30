@@ -109,6 +109,16 @@ function Header() {
                 Resume
               </NavLink>
             </li>
+            <li className="nav-item nav-item--notes">
+              <NavLink
+                to="/notes"
+                className={({ isActive }) => (isActive ? "active" : "")}
+                title="Notes"
+                onClick={closeNav}
+              >
+                Notes
+              </NavLink>
+            </li>
             <li className="nav-item nav-item--guestbook">
               <NavLink
                 to="/guestbook"

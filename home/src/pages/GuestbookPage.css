@@ -1,63 +1,75 @@
 /* GuestbookPage Styles */
 
-.guestbook-container {
+.guestbook {
   animation: fadeUp 0.55s ease-out both;
   margin: 0 auto;
-  max-width: 900px;
-  text-align: center;
+  max-width: var(--max-width-narrow);
 }
 
-.guestbook-container h2 {
-  animation: fadeUp 0.6s ease-out both;
-  animation-delay: 0.05s;
-  color: var(--heading-color);
-  font-size: var(--font-h2);
+.guestbook__head {
   margin-bottom: var(--space-4);
-  text-align: center;
 }
 
-.guestbook-container h3 {
-  color: var(--heading-color);
-  font-size: var(--font-h3);
-  margin-bottom: var(--space-3);
-  margin-top: var(--space-6);
-  text-align: center;
+.guestbook__head h2 {
+  font-size: var(--font-h1);
+  margin-bottom: var(--space-1);
 }
 
-/* Form Styles */
+.guestbook__head p {
+  color: var(--text-tertiary);
+  font-size: var(--font-body);
+  margin: 0;
+}
+
+.guestbook__status {
+  color: var(--text-secondary);
+  font-size: var(--font-body);
+  padding: var(--space-5) 0;
+}
+
+/* ===================================
+   Form — full-bordered panel, compact field row
+   =================================== */
+
 .guestbook-form {
   animation: fadeUp 0.6s ease-out both;
   animation-delay: 0.08s;
-  background-color: transparent;
-  border: none;
-  border-left: 3px solid var(--accent-primary);
-  border-radius: 0;
-  box-shadow: none;
-  margin-bottom: var(--space-4);
+  background-color: var(--surface-panel);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--border-radius-lg);
+  margin-bottom: var(--space-6);
   padding: var(--space-4);
-  text-align: left;
-  transition:
-    border-color var(--transition-base),
-    background-color var(--transition-base),
-    box-shadow var(--transition-base);
 }
 
-.guestbook-form:hover {
-  background-color: var(--bg-secondary);
-  border-left-color: var(--accent-hover);
-  box-shadow: var(--shadow-sm);
-}
-
-.form-group {
+.guestbook-form__fields {
+  align-items: end;
+  display: grid;
+  gap: var(--space-3);
+  grid-template-columns: 1fr 1fr 1.5fr;
   margin-bottom: var(--space-3);
 }
 
+@media (width <= 720px) {
+  .guestbook-form__fields {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form-group {
+  margin: 0;
+}
+
 .form-group label {
-  color: var(--text-primary);
+  color: var(--text-secondary);
   display: block;
   font-size: var(--font-sm);
   font-weight: 500;
-  margin-bottom: var(--space-2);
+  margin-bottom: var(--space-1);
+}
+
+.form-group__optional {
+  color: var(--matcha-strong);
+  font-weight: 500;
 }
 
 .form-group input,
@@ -68,17 +80,12 @@
   color: var(--text-primary);
   font-family: inherit;
   font-size: var(--font-sm);
-  min-height: 38px;
-  padding: 0.625rem 0.875rem;
-  transform: translateY(0);
-  transition: all var(--transition-fast);
+  min-height: 40px;
+  padding: 0.55rem 0.875rem;
+  transition:
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
   width: 100%;
-}
-
-.form-group input:hover,
-.form-group textarea:hover {
-  border-color: var(--accent-primary);
-  transform: translateY(-1px);
 }
 
 .form-group input:focus,
@@ -96,7 +103,7 @@
 
 .form-group textarea {
   line-height: 1.6;
-  min-height: 120px;
+  min-height: 40px;
   resize: vertical;
 }
 
@@ -105,156 +112,108 @@
   color: var(--text-tertiary);
 }
 
-/* Success and Error Messages */
+/* Feedback */
+.success-message,
+.error-message {
+  border-radius: var(--border-radius-sm);
+  margin-top: var(--space-3);
+  padding: var(--space-2) var(--space-3);
+}
+
 .success-message {
   background-color: var(--feedback-success-bg);
   border: 1px solid var(--feedback-success-border);
-  border-radius: var(--border-radius-sm);
   color: var(--feedback-success-text);
-  margin-top: var(--space-4);
-  padding: var(--space-3) var(--space-4);
 }
 
 .error-message {
   background-color: var(--feedback-error-bg);
   border: 1px solid var(--feedback-error-border);
-  border-radius: var(--border-radius-sm);
   color: var(--feedback-error-text);
-  margin-top: var(--space-4);
-  padding: var(--space-3) var(--space-4);
 }
 
-/* Divider */
-.guestbook-divider {
-  background-color: var(--border-subtle);
-  border: none;
-  height: 1px;
-  margin: var(--space-4) 0;
-}
+/* ===================================
+   Signature wall — masonry of tinted notes
+   =================================== */
 
-/* Entries */
-.guestbook-entries {
+.guestbook-wall {
   animation: fadeUp 0.6s ease-out both;
   animation-delay: 0.1s;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
-  margin-top: var(--space-3);
+  column-gap: var(--space-3);
+  columns: 3 220px;
 }
 
-.guestbook-entry {
-  background: color-mix(in srgb, var(--bg-secondary) 75%, var(--bg-tertiary) 25%);
-  border: 1px solid color-mix(in srgb, var(--border-medium) 60%, transparent);
-  border-radius: var(--border-radius-lg);
-  box-shadow:
-    inset 0 0 0 1px rgb(0 0 0 / 0.08),
-    var(--shadow-sm);
-  overflow: hidden;
-  padding: var(--space-3) var(--space-4);
-  position: relative;
+.gb-note {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--border-radius);
+  break-inside: avoid;
+  margin-bottom: var(--space-3);
+  padding: var(--space-3);
   transition:
     transform var(--transition-base),
-    box-shadow var(--transition-base),
-    border-color var(--transition-base);
+    box-shadow var(--transition-base);
 }
 
-.guestbook-entry::before {
-  background: radial-gradient(
-    circle at top right,
-    color-mix(in srgb, var(--accent-primary) 12%, transparent) 0%,
-    transparent 65%
-  );
-  border-radius: inherit;
-  content: "";
-  inset: 0;
-  opacity: 0.5;
-  pointer-events: none;
-  position: absolute;
+.gb-note:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
 }
 
-.guestbook-entry::after {
-  background: linear-gradient(
-    180deg,
-    var(--accent-primary),
-    color-mix(in srgb, var(--accent-primary) 40%, transparent)
-  );
-  border-radius: 999px;
-  bottom: 16px;
-  content: "";
-  left: 1.75rem;
-  opacity: 0.5;
-  position: absolute;
-  top: 16px;
-  width: 2px;
+.gb-note--rose {
+  background: color-mix(in srgb, var(--accent-muted) 55%, var(--bg-tertiary));
+  border-color: color-mix(in srgb, var(--accent-primary) 30%, transparent);
 }
 
-.guestbook-entry:hover {
-  box-shadow:
-    inset 0 0 0 1px color-mix(in srgb, var(--border-medium) 50%, transparent),
-    var(--shadow-md);
-  transform: translateY(-4px);
+.gb-note--matcha {
+  background: color-mix(in srgb, var(--matcha-muted) 60%, var(--bg-tertiary));
+  border-color: color-mix(in srgb, var(--matcha-primary) 26%, transparent);
 }
 
-.entry-meta {
-  color: var(--text-tertiary);
-  font-size: var(--font-xs);
+.gb-note__message {
+  color: var(--text-primary);
+  font-size: var(--font-sm);
   line-height: 1.5;
-  margin-bottom: var(--space-1);
+  margin: 0;
 }
 
-.entry-meta strong {
+.gb-note__meta {
+  align-items: baseline;
+  color: var(--text-tertiary);
+  display: flex;
+  flex-wrap: wrap;
+  font-size: var(--font-xs);
+  gap: 0.35rem 0.5rem;
+  margin-top: var(--space-2);
+}
+
+.gb-note__name {
   color: var(--text-primary);
   font-weight: 600;
 }
 
-.entry-meta a {
-  color: var(--accent-primary);
+.gb-note__meta a {
+  color: var(--matcha-strong);
   font-weight: 500;
-  transition: color var(--transition-fast);
 }
 
-.entry-message {
-  color: var(--text-primary);
-  font-size: 1rem;
-  line-height: 1.6;
-  margin: var(--space-1) 0 0;
+.gb-note__meta a:hover {
+  color: var(--matcha-primary);
 }
 
-.entry-meta a:hover {
-  color: var(--accent-hover);
+.gb-note__date {
+  margin-left: auto;
 }
 
-/* Loading and Empty States */
-.guestbook-container > p {
-  color: var(--text-secondary);
-  font-size: var(--font-body);
-  padding: var(--space-6);
-  text-align: center;
-}
-
-/* Responsive */
 @media (width <= 640px) {
-  .guestbook-container {
-    padding: var(--space-3) var(--space-2) var(--space-5);
-  }
-
-  .guestbook-form,
-  .guestbook-entry {
+  .guestbook-form {
     padding: var(--space-3);
   }
 }
 
 body:not(.initial-visit)
-  :where(
-    .guestbook-container,
-    .guestbook-container h2,
-    .guestbook-container h3,
-    .guestbook-form,
-    .guestbook-entries
-  ) {
+  :where(.guestbook, .guestbook-form, .guestbook-wall) {
   animation: none !important;
-  opacity: 1 !important;
-  transform: none !important;
 }
 
 @keyframes fadeUp {

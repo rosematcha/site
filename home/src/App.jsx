@@ -6,6 +6,8 @@ import HomePage from "./pages/HomePage";
 import ProjectsPage from "./pages/ProjectsPage";
 import ResumePage from "./pages/ResumePage";
 import GuestbookPage from "./pages/GuestbookPage";
+import BlogPage from "./pages/BlogPage";
+import BlogPostPage from "./pages/BlogPostPage";
 import NotFoundPage from "./pages/NotFoundPage";
 
 function App() {
@@ -20,6 +22,8 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/projects" element={<ProjectsPage />} />
             <Route path="/resume" element={<ResumePage />} />
+            <Route path="/notes" element={<BlogPage />} />
+            <Route path="/notes/:slug" element={<BlogPostPage />} />
             <Route path="/guestbook" element={<GuestbookPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
