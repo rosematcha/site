@@ -1,16 +1,16 @@
 // Centralized project data for reuse (listing and intelligent preloading)
 export const projectsData = [
   {
-    id: "butterbook",
-    title: "Butterbook",
-    path: "https://butterbook.app",
-    thumbnail: "/img/projects/news/butterbook.png",
-    thumbnailWidth: 900,
-    thumbnailHeight: 666,
+    id: "gesso",
+    title: "Gesso",
+    path: "https://usegesso.com/",
+    thumbnail: "/img/projects/gesso.webp",
+    thumbnailWidth: 1200,
+    thumbnailHeight: 741,
     description:
-      "In my time in the arts nonprofit and museum world, I found gaps in the design of popular CRM and event management systems. I created Butterbook specifically for the small-scale nonprofits and solo entrepreneurs I worked with.",
-    tech: ["typescript", "next.js", "postgresql"],
-    tags: ["nonprofits", "saas", "events"],
+      'The artists I work with every day struggled to find an easy-to-use and autonomy-respecting portfolio builder. I built Gesso to empower artists to build their own portfolios in a way that respects their ownership and personality, for free. <a href="https://github.com/orgs/usegesso/repositories" target="_blank" rel="noopener noreferrer">Take a look at the code.</a>',
+    tech: ["astro"],
+    tags: ["arts", "portfolio", "no-code", "free"],
     featured: true,
   },
   {
@@ -18,8 +18,8 @@ export const projectsData = [
     title: "Ciphermaniac",
     path: "https://ciphermaniac.com/",
     thumbnail: "/img/projects/ciphermaniac-thumb.webp",
-    thumbnailWidth: 327,
-    thumbnailHeight: 184,
+    thumbnailWidth: 900,
+    thumbnailHeight: 1300,
     description:
       "To show my local league players what cards are frequently used in the Pokemon card game, I created this tool tracking the usage of cards in major tournaments. Now serves thousands of daily users.",
     tech: ["react", "node.js", "tailwindcss"],
@@ -68,9 +68,9 @@ export const projectsData = [
     id: "upo",
     title: "United Professional Organizers",
     path: "https://upounion.org",
-    thumbnail: "/img/projects/placeholder-thumb.webp",
-    thumbnailWidth: 327,
-    thumbnailHeight: 184,
+    thumbnail: "/img/projects/upo-thumb.webp",
+    thumbnailWidth: 654,
+    thumbnailHeight: 404,
     description:
       "I overhauled UPO's website from Google Sites to WordPress for greater editor accessibility and a modernized appearance. I built a member portal in integration with Patreon for union members to access confidential info.",
     tech: ["wordpress", "patreon", "php"],
@@ -80,9 +80,9 @@ export const projectsData = [
     id: "stonewallaction",
     title: "Stonewall Action",
     path: "https://stonewallaction.org/",
-    thumbnail: "/img/projects/placeholder-thumb.webp",
-    thumbnailWidth: 327,
-    thumbnailHeight: 184,
+    thumbnail: "/img/projects/stonewallaction-thumb.webp",
+    thumbnailWidth: 654,
+    thumbnailHeight: 404,
     description:
       "As part of a consulting contract with Stonewall Action, a queer activism nonprofit out of Austin, I redesigned their website. I valued legibility and accessibility to serve our inclusive mission.",
     tech: ["wordpress", "php"],
