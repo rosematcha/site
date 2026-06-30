@@ -204,17 +204,6 @@ body.initial-visit .resume-panel:nth-child(4) { animation-delay: 0.28s; }
 }
 
 /* =============================================================
-   Summary
-   ============================================================= */
-
-.resume-summary {
-  color: var(--text-secondary);
-  font-size: var(--font-body);
-  line-height: 1.65;
-  margin: 0;
-}
-
-/* =============================================================
    Section header row
    ============================================================= */
 
@@ -684,7 +673,6 @@ a.resume-job__company:hover {
   }
 
   .resume-tagline,
-  .resume-summary,
   .resume-job__meta,
   .resume-job__details,
   .resume-edu__school {

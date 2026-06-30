@@ -15,9 +15,6 @@ import "./ResumePage.css";
    Data
    ============================================================= */
 
-const summary =
-  "Versatile generalist working across systems administration, arts education, event organizing, and web development. Equally comfortable maintaining infrastructure for a hundred devices and teaching seven-year-olds how to develop film in a darkroom. Driven by user-centric design, open technologies, and the people I get to do the work with.";
-
 const jobCategories = {
   all: "All",
   default: "Featured",
@@ -65,7 +62,7 @@ const allJobs = [
     title: "Organizer",
     company: "Stonewall Action",
     companyUrl: "https://stonewallaction.org/",
-    dates: "March 2025 — Present",
+    dates: "March 2025 — February 2026",
     year: "2025",
     categories: ["community", "technology"],
     tags: ["Non-profit", "WordPress", "Event Planning"],
@@ -420,10 +417,6 @@ function ResumePage() {
           <ContactLinks copyToClipboard={copyToClipboard} />
           <PrintPill />
         </div>
-      </section>
-
-      <section className="resume-panel">
-        <p className="resume-summary">{summary}</p>
       </section>
 
       <section className="resume-panel">

@@ -1,6 +1,6 @@
 ﻿import React from "react";
 import { Link } from "react-router-dom";
-import { Mail, Briefcase, Camera, Clapperboard, Sparkles } from "lucide-react";
+import { Mail, Briefcase } from "lucide-react";
 import PolaroidStack from "../components/PolaroidStack";
 import "./HomePage.css";
 
@@ -54,91 +54,6 @@ function HomePage() {
         </div>
       </section>
 
-      {/* About Section */}
-      <section className="about-section">
-        {/* Interests */}
-        <div className="interests-section">
-          <div className="interests-grid">
-            <div className="interest-card">
-              <span className="interest-stamp" aria-hidden="true">
-                <Camera size={22} className="interest-icon" />
-              </span>
-              <h4>Photography</h4>
-              <p>Specializing in event work and candid photography</p>
-            </div>
-            <div className="interest-card">
-              <span className="interest-stamp" aria-hidden="true">
-                <Sparkles size={22} className="interest-icon" />
-              </span>
-              <h4>Pokemon TCG</h4>
-              <p>Running weekly tournaments for a local card league</p>
-            </div>
-            <div className="interest-card">
-              <span className="interest-stamp" aria-hidden="true">
-                <Clapperboard size={22} className="interest-icon" />
-              </span>
-              <h4>Film</h4>
-              <p>
-                <a
-                  href="https://letterboxd.com/rosematcha/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Watching lots of movies
-                </a>{" "}
-                with a deep passion for the movie theater
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Tech Stack */}
-        <div className="tech-section">
-          <h3>Built With</h3>
-          <p className="tech-intro">
-            Hosted on{" "}
-            <a href="https://www.netlify.com/" target="_blank" rel="noopener noreferrer">
-              Netlify
-            </a>
-            . The toolkit:
-          </p>
-          <ul className="tech-chips">
-            <li>
-              <a href="https://react.dev/" target="_blank" rel="noopener noreferrer">
-                React
-              </a>
-            </li>
-            <li>
-              <a href="https://vitejs.dev/" target="_blank" rel="noopener noreferrer">
-                Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://reactrouter.com/" target="_blank" rel="noopener noreferrer">
-                React Router
-              </a>
-            </li>
-            <li>
-              <a href="https://www.11ty.dev/" target="_blank" rel="noopener noreferrer">
-                Eleventy
-              </a>
-            </li>
-            <li>
-              <a href="https://tailwindcss.com/" target="_blank" rel="noopener noreferrer">
-                TailwindCSS
-              </a>
-            </li>
-            <li>
-              <a href="https://wordpress.com/" target="_blank" rel="noopener noreferrer">
-                WordPress
-              </a>
-            </li>
-          </ul>
-          <p className="tech-outro">
-            Currently learning about JAM-compatible CMSes.
-          </p>
-        </div>
-      </section>
     </div>
   );
 }

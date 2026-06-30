@@ -9,7 +9,7 @@ export const projectsData = [
     thumbnailWidth: 1200,
     thumbnailHeight: 741,
     description:
-      'The artists I work with every day struggled to find an easy-to-use and autonomy-respecting portfolio builder. I built Gesso to empower artists to build their own portfolios in a way that respects their ownership and personality, for free. <a href="https://github.com/orgs/usegesso/repositories" target="_blank" rel="noopener noreferrer">Take a look at the code.</a>',
+      "The artists I work with every day struggled to find an easy-to-use and autonomy-respecting portfolio builder. I built Gesso to empower artists to build their own portfolios in a way that respects their ownership and personality, for free.",
     tech: ["astro"],
     tags: ["arts", "portfolio", "no-code", "free"],
     featured: true,
