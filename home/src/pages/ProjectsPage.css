@@ -294,7 +294,10 @@
   padding: var(--space-5);
 }
 
-.project-feature__body .project-visit {
+.project-feature__body .project-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
   margin-top: auto;
 }
 
@@ -368,9 +371,16 @@
   flex: 1 1 auto;
 }
 
+.project-row__footer .project-actions {
+  display: flex;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-left: auto;
+}
+
 .project-row__footer .project-visit {
   flex-shrink: 0;
-  margin-left: auto;
 }
 
 /* =============================================================

@@ -2,7 +2,7 @@
 // Featured projects: full-width 50/50 panels alternating image side, numbered.
 // Lesser projects: condensed single-column rows with thumb + 2-line desc + tags + visit button.
 import React, { useEffect } from "react";
-import { ArrowUpRight, ExternalLink } from "lucide-react";
+import { ArrowUpRight, ExternalLink, Github } from "lucide-react";
 import { projectsData } from "../data/projects";
 import { warmProjectsThumbnails } from "../utils/prefetch";
 import OptimizedImage from "../components/OptimizedImage";
@@ -79,10 +79,23 @@ function FeaturedCard({ project, index, eager }) {
           dangerouslySetInnerHTML={{ __html: project.description }}
         />
         <Tags project={project} total={5} />
-        <a href={url} target="_blank" rel="noopener noreferrer" className="project-visit">
-          <ExternalLink size={14} aria-hidden="true" />
-          <span>{project.buttonText || "Visit Project Site"}</span>
-        </a>
+        <div className="project-actions">
+          <a href={url} target="_blank" rel="noopener noreferrer" className="project-visit">
+            <ExternalLink size={14} aria-hidden="true" />
+            <span>{project.buttonText || "Visit Project Site"}</span>
+          </a>
+          {project.github && (
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="project-visit project-visit--ghost"
+            >
+              <Github size={14} aria-hidden="true" />
+              <span>View on GitHub</span>
+            </a>
+          )}
+        </div>
       </div>
     </article>
   );
@@ -112,15 +125,28 @@ function LesserRow({ project }) {
         />
         <div className="project-row__footer">
           <Tags project={project} total={4} />
-          <a
-            href={url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="project-visit project-visit--sm project-visit--ghost"
-          >
-            <span>{project.buttonText || "Visit Project Site"}</span>
-            <ArrowUpRight size={14} aria-hidden="true" />
-          </a>
+          <div className="project-actions">
+            {project.github && (
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="project-visit project-visit--sm project-visit--ghost"
+              >
+                <Github size={12} aria-hidden="true" />
+                <span>View on GitHub</span>
+              </a>
+            )}
+            <a
+              href={url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="project-visit project-visit--sm project-visit--ghost"
+            >
+              <span>{project.buttonText || "Visit Project Site"}</span>
+              <ArrowUpRight size={14} aria-hidden="true" />
+            </a>
+          </div>
         </div>
       </div>
     </article>
