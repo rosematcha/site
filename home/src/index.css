@@ -3,12 +3,12 @@
    Swiss Spa Aesthetic
    =================================== */
 
-/* Fonts loaded in index.html: Unbounded (display) + Hanken Grotesk (body). */
+/* Fonts loaded in index.html: Barlow Semi Condensed (display) + Hanken Grotesk (body). */
 
 .display-headline {
-  font-family: Unbounded, sans-serif;
+  font-family: "Barlow Semi Condensed", sans-serif;
   font-weight: 700;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
 }
 
 /* CSS Custom Properties — Warm Dark (single theme) */
@@ -273,14 +273,14 @@ h6 {
   margin-bottom: var(--space-2);
 }
 
-/* Unbounded carries the big moments only — it's a display face and gets
-   hard to read small, so it stops at h2. */
+/* Barlow Semi Condensed carries the big moments only — it's the display
+   face, so it stops at h2. */
 .display-headline,
 h1,
 h2 {
-  font-family: Unbounded, sans-serif;
+  font-family: "Barlow Semi Condensed", sans-serif;
   font-weight: 700;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
 }
 
 /* Hanken handles every smaller heading, subhead, and label. */

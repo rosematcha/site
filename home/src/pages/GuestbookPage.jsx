@@ -183,16 +183,20 @@ function GuestbookPage() {
               <div className="gb-note__meta">
                 <span className="gb-note__name">{entry.name}</span>
                 {entry.website && (
-                  <a
-                    href={entry.website}
-                    target="_blank"
-                    rel="noopener noreferrer nofollow"
-                    title={entry.website}
-                  >
-                    {entry.website.replace(/^https?:\/\//, "")}
-                  </a>
+                  <>
+                    <span className="gb-note__sep" aria-hidden="true">·</span>
+                    <a
+                      href={entry.website}
+                      target="_blank"
+                      rel="noopener noreferrer nofollow"
+                      title={entry.website}
+                    >
+                      {entry.website.replace(/^https?:\/\//, "")}
+                    </a>
+                  </>
                 )}
-                <span className="gb-note__date">{entry.date}</span>
+                <span className="gb-note__sep" aria-hidden="true">·</span>
+                <time className="gb-note__date">{entry.date}</time>
               </div>
             </article>
           ))}

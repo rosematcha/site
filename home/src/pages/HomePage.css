@@ -27,8 +27,7 @@
   position: relative;
 }
 
-/* Rounded-geometry motif: a matcha ring and a rose dot frame the polaroids,
-   echoing Unbounded's round letterforms. */
+/* Rounded-geometry motif: a matcha ring and a rose dot frame the polaroids. */
 .hero-media__ring {
   border: 2px solid var(--matcha-primary);
   border-radius: 50%;
@@ -68,20 +67,26 @@
 .hero-title {
   animation: fadeUp 0.5s ease-out both;
   color: var(--heading-color);
-  font-family: Unbounded, sans-serif;
-  font-size: clamp(2.4rem, 6vw, 4rem);
+  font-family: "Barlow Semi Condensed", sans-serif;
+  font-size: clamp(2.6rem, 6.5vw, 4.4rem);
   font-weight: 700;
-  letter-spacing: -0.03em;
-  line-height: 1.0;
+  letter-spacing: -0.01em;
+  line-height: 1.14;
   margin: 0 0 var(--space-3);
   text-wrap: balance;
 }
 
+/* Marker-style highlight that hugs the word. inline-block + a short
+   line-height keeps the rose box close to the cap height instead of
+   ballooning to the full line box, and the extra line-height on the
+   title keeps it clear of the descenders above. */
 .hero-title__mark {
   background: var(--accent-primary);
-  border-radius: 0.18em;
+  border-radius: 0.12em;
   color: var(--accent-contrast);
-  padding: 0 0.16em;
+  display: inline-block;
+  line-height: 0.86;
+  padding: 0.12em 0.16em 0.08em;
   white-space: nowrap;
 }
 
@@ -126,7 +131,7 @@
 }
 
 .facet__title {
-  font-family: Unbounded, sans-serif;
+  font-family: "Barlow Semi Condensed", sans-serif;
   font-size: 1.25rem;
   font-weight: 600;
   letter-spacing: -0.02em;
