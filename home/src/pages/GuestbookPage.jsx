@@ -1,9 +1,14 @@
+// src/pages/GuestbookPage.jsx
+// The pinned wall: signatures become paper notes in four rotating stocks,
+// masonry-packed, each tilted a degree or two. The signing station is a
+// taped scrap up top. Backend unchanged (Netlify Forms + function) until
+// the Cloudflare move.
 import React, { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, Send } from "lucide-react";
 import "./GuestbookPage.css";
 
-const NOTE_TONES = ["", "gb-note--rose", "", "gb-note--matcha", ""];
+const STOCKS = ["", "gb-sig--rose", "gb-sig--butter", "gb-sig--mint"];
+const TILTS = [-1, 1.3, -0.5, 0.8];
 
 function GuestbookPage() {
   const [name, setName] = useState("");
@@ -13,36 +18,36 @@ function GuestbookPage() {
   const [entries, setEntries] = useState([]);
   const [isLoadingEntries, setIsLoadingEntries] = useState(true);
   const [fetchError, setFetchError] = useState(null);
+  const [shake, setShake] = useState(false);
 
-  // Use useCallback to memoize fetchEntries
   const fetchEntries = useCallback(async () => {
     setIsLoadingEntries(true);
     setFetchError(null);
     try {
-      // The path to your Netlify Function
-      const response = await fetch(
-        "/.netlify/functions/get-guestbook-entries" // <<< THIS IS THE CORRECT FETCH URL
-      );
-      if (!response.ok) {
-        const errorData = await response.json(); // Attempt to parse error response as JSON
-        throw new Error(
-          errorData.error || `Server error: ${response.statusText} (Status: ${response.status})`
-        );
+      const response = await fetch("/.netlify/functions/get-guestbook-entries");
+      const contentType = response.headers.get("content-type") || "";
+      if (!response.ok || !contentType.includes("application/json")) {
+        throw new Error("the wall isn't reachable right now");
       }
       const data = await response.json();
       setEntries(data);
     } catch (error) {
       console.error("[Guestbook] Error fetching entries:", error);
-      setFetchError(error.message);
-      setEntries([]); // Optionally clear entries or show a persistent error
+      setFetchError("The wall isn't reachable right now. Try again in a bit.");
+      setEntries([]);
     } finally {
       setIsLoadingEntries(false);
     }
-  }, []); // Empty dependency array means this function is created once
+  }, []);
 
   useEffect(() => {
     fetchEntries();
-  }, [fetchEntries]); // Depend on fetchEntries
+  }, [fetchEntries]);
+
+  const handleInvalid = () => {
+    setShake(false);
+    requestAnimationFrame(() => setShake(true));
+  };
 
   const handleSubmit = async event => {
     event.preventDefault();
@@ -51,7 +56,6 @@ function GuestbookPage() {
 
     try {
       const response = await fetch("/", {
-        // Submit to Netlify Forms endpoint
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: new URLSearchParams(formData).toString(),
@@ -59,7 +63,6 @@ function GuestbookPage() {
 
       if (response.ok) {
         setSubmissionStatus("success");
-        // Optimistically prepend the new entry so it's visible immediately
         const newEntry = {
           id: `optimistic-${Date.now()}`,
           name,
@@ -69,9 +72,8 @@ function GuestbookPage() {
             year: "numeric",
             month: "long",
             day: "numeric",
-            hour: "2-digit",
-            minute: "2-digit",
           }),
+          fresh: true,
         };
         setEntries(prev => [newEntry, ...prev]);
         setName("");
@@ -91,125 +93,132 @@ function GuestbookPage() {
 
   return (
     <div className="page-content guestbook">
-      <header className="guestbook__head">
-        <h2>Guestbook</h2>
-        <p>Leave a note, say hi, drop a link.</p>
-      </header>
-
       <form
         name="guestbook"
         method="POST"
         data-netlify="true"
         data-netlify-honeypot="bot-field"
         onSubmit={handleSubmit}
-        className="guestbook-form"
+        onInvalid={handleInvalid}
+        className={`guestbook-station scrap scrap--deckle tilt-l-sm ${shake ? "is-shaking" : ""}`}
+        onAnimationEnd={() => setShake(false)}
       >
+        <span className="tape" aria-hidden="true" />
         <input type="hidden" name="form-name" value="guestbook" />
-        <p className="hidden visually-hidden">
+        <p className="visually-hidden">
           <label>
             Don’t fill this out if you’re human: <input name="bot-field" />
           </label>
         </p>
 
-        <div className="guestbook-form__fields">
-          <div className="form-group">
-            <label htmlFor="name">Name</label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              value={name}
-              onChange={e => setName(e.target.value)}
-              required
-              disabled={submissionStatus === "submitting"}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="website">
-              Website <span className="form-group__optional">optional</span>
-            </label>
-            <input
-              type="url"
-              id="website"
-              name="website"
-              value={website}
-              onChange={e => setWebsite(e.target.value)}
-              placeholder="https://www.example.com"
-              disabled={submissionStatus === "submitting"}
-            />
-          </div>
-          <div className="form-group form-group--message">
-            <label htmlFor="message">Message</label>
-            <textarea
-              id="message"
-              name="message"
-              rows="2"
-              value={message}
-              onChange={e => setMessage(e.target.value)}
-              required
-              disabled={submissionStatus === "submitting"}
-            ></textarea>
-          </div>
+        <div className="guestbook-station__row">
+          <label className="visually-hidden" htmlFor="name">
+            Name
+          </label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="your name"
+            value={name}
+            onChange={e => setName(e.target.value)}
+            required
+            disabled={submissionStatus === "submitting"}
+          />
+          <label className="visually-hidden" htmlFor="website">
+            Website (optional)
+          </label>
+          <input
+            type="url"
+            id="website"
+            name="website"
+            placeholder="your site (optional)"
+            value={website}
+            onChange={e => setWebsite(e.target.value)}
+            disabled={submissionStatus === "submitting"}
+          />
+          <label className="visually-hidden" htmlFor="message">
+            Message
+          </label>
+          <input
+            type="text"
+            id="message"
+            name="message"
+            placeholder="say howdy…"
+            value={message}
+            onChange={e => setMessage(e.target.value)}
+            required
+            disabled={submissionStatus === "submitting"}
+          />
+          <button
+            type="submit"
+            className="button button--butter"
+            disabled={submissionStatus === "submitting"}
+          >
+            {submissionStatus === "submitting" ? "signing…" : "sign it ✿"}
+          </button>
         </div>
-        <button type="submit" className="button" disabled={submissionStatus === "submitting"}>
-          <Send size={18} />
-          {submissionStatus === "submitting" ? "Signing..." : "Sign the guestbook"}
-        </button>
+        <div className="mono-meta guestbook-station__hint">
+          no account, no email, no moderation queue. just say hi.
+        </div>
 
         {submissionStatus === "success" && (
-          <p className="success-message">
-            Thanks for signing! Your message should appear below shortly.
+          <p className="guestbook-station__ok">
+            Thanks for signing! Your note just joined the wall.
           </p>
         )}
         {submissionStatus === "error" && (
-          <p className="error-message">
-            Oops! Something went wrong with your post. Please try again.
+          <p className="guestbook-station__err">
+            Something went wrong with your post. Please try again.
           </p>
         )}
       </form>
 
-      {isLoadingEntries && <p className="guestbook__status">Loading awesome messages...</p>}
+      {isLoadingEntries && <p className="guestbook__status scrap">Loading the wall…</p>}
       {fetchError && (
-        <p className="error-message">
-          Could not load messages: {fetchError} <br /> (This might be because the Form ID or API
-          Token isn't set up on Netlify yet, or the form hasn't received submissions.)
-        </p>
+        <p className="guestbook__status guestbook__status--error scrap">{fetchError}</p>
       )}
       {!isLoadingEntries && !fetchError && entries.length > 0 && (
-        <div className="guestbook-wall">
-          {entries.map((entry, index) => (
-            <article key={entry.id} className={`gb-note ${NOTE_TONES[index % NOTE_TONES.length]}`}>
-              <p className="gb-note__message">{entry.message}</p>
-              <div className="gb-note__meta">
-                <span className="gb-note__name">{entry.name}</span>
-                {entry.website && (
-                  <>
-                    <span className="gb-note__sep" aria-hidden="true">·</span>
-                    <a
-                      href={entry.website}
-                      target="_blank"
-                      rel="noopener noreferrer nofollow"
-                      title={entry.website}
-                    >
-                      {entry.website.replace(/^https?:\/\//, "")}
-                    </a>
-                  </>
-                )}
-                <span className="gb-note__sep" aria-hidden="true">·</span>
-                <time className="gb-note__date">{entry.date}</time>
-              </div>
-            </article>
-          ))}
-        </div>
+        <>
+          <div className="mono-meta guestbook__tally">
+            {entries.length} signature{entries.length === 1 ? "" : "s"} on the wall
+          </div>
+          <div className="guestbook-wall">
+            {entries.map((entry, index) => (
+              <article
+                key={entry.id}
+                className={`gb-sig scrap ${STOCKS[index % STOCKS.length]} ${entry.fresh ? "gb-sig--fresh" : ""}`}
+                style={{ "--sig-tilt": `${TILTS[index % TILTS.length]}deg` }}
+              >
+                <p className="gb-sig__message">{entry.message}</p>
+                <div className="mono-meta gb-sig__meta">
+                  <span>
+                    {entry.website ? (
+                      <a
+                        href={entry.website}
+                        target="_blank"
+                        rel="noopener noreferrer nofollow"
+                      >
+                        {entry.name}
+                      </a>
+                    ) : (
+                      entry.name
+                    )}
+                  </span>
+                  <time>{entry.date}</time>
+                </div>
+              </article>
+            ))}
+          </div>
+        </>
       )}
       {!isLoadingEntries && !fetchError && entries.length === 0 && (
-        <p className="guestbook__status">No messages yet. Womp womp.</p>
+        <p className="guestbook__status">No messages yet. Be the first on the wall.</p>
       )}
 
-      <div className="text-center mt-7">
-        <Link to="/" className="button button--ghost">
-          <ArrowLeft size={18} />
-          Back to Home
+      <div className="guestbook__back">
+        <Link to="/" className="link-swipe">
+          ← back home
         </Link>
       </div>
     </div>

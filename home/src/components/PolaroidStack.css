@@ -1,60 +1,44 @@
+/* Polaroid stack: real instant-film proportions. Portrait 3:4 photo (the
+   source scans are 666×900), even side borders, thick chin, no captions.
+   Full color — photos are real objects taped onto the print. */
+
 .polaroid-stack {
-  align-items: center;
-  aspect-ratio: 54 / 86;
-  display: flex;
-  justify-content: center;
-  perspective: 1200px;
+  cursor: pointer;
+  height: 246px;
   position: relative;
   user-select: none;
-  width: min(280px, 34vw);
+  width: 158px;
 }
 
-.polaroid-stack[role="button"] {
-  cursor: pointer;
-}
-
+/* Flex column so the photo fills whatever height the card is given while the
+   chin stays a fixed strip. Lets the stack scale to match a layout column. */
 .polaroid-card {
-  background: linear-gradient(180deg, #fffef9 0%, #fef9f1 58%, #fbf2e5 100%);
-  border: 1px solid color-mix(in srgb, var(--border-medium) 35%, transparent);
-  border-radius: 22px;
-  box-shadow:
-    0 18px 35px rgb(23 9 5 / 0.28),
-    0 0 0 1px rgb(255 255 255 / 0.6) inset;
+  background: var(--stock-cream);
+  box-shadow: var(--shadow-object);
   display: flex;
   flex-direction: column;
   inset: 0;
-  justify-content: flex-start;
-  padding:
-    clamp(0.85rem, 1.8vw, 1.15rem)
-    clamp(0.75rem, 1.6vw, 1rem)
-    clamp(1.9rem, 3vw, 2.4rem);
-  pointer-events: none;
+  line-height: 0;
+  padding: 9px 9px 32px;
   position: absolute;
   transition:
-    transform 0.6s cubic-bezier(0.4, 0.14, 0.3, 1),
-    opacity 0.35s ease,
-    filter 0.35s ease;
+    transform 0.45s var(--ease-out),
+    opacity 0.45s var(--ease-out);
 }
 
-.polaroid-card.is-active {
-  filter: drop-shadow(0 28px 45px rgb(16 7 4 / 0.35));
-  pointer-events: auto;
+.polaroid-card .tape {
+  left: 50%;
+  margin-left: -2.3rem;
+  top: -0.65rem;
+  transform: rotate(-4deg);
 }
 
 .polaroid-photo-wrapper {
-  aspect-ratio: 46 / 60;
-  background: #f6ebe0;
-  border: 1px solid color-mix(in srgb, var(--border-medium) 45%, transparent);
-  border-radius: 12px;
-  box-shadow: inset 0 0 0 2px rgb(255 255 255 / 0.65);
+  display: block;
   flex: 1;
+  min-height: 0;
   overflow: hidden;
-  position: relative;
   width: 100%;
-}
-
-.polaroid-photo-wrapper.optimized-image {
-  background-color: #f6ebe0;
 }
 
 .polaroid-photo-wrapper img {
@@ -62,31 +46,4 @@
   height: 100%;
   object-fit: cover;
   width: 100%;
-}
-
-.polaroid-card figcaption {
-  align-items: center;
-  color: color-mix(in srgb, var(--text-secondary) 80%, #4a3d36 20%);
-  display: flex;
-  font-family: "Hanken Grotesk", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  font-size: 0.85rem;
-  font-weight: 600;
-  justify-content: center;
-  letter-spacing: 0.18em;
-  margin-top: 0.9rem;
-  min-height: 1.2rem;
-  text-align: center;
-  text-transform: uppercase;
-}
-
-.polaroid-card figcaption.is-hidden {
-  color: transparent;
-  text-shadow: none;
-}
-
-@media (width <= 768px) {
-  .polaroid-stack {
-    margin: 0 auto;
-    width: min(280px, 70vw);
-  }
 }

@@ -1,236 +1,194 @@
-/* GuestbookPage Styles */
+/* Guestbook: taped signing station + pinned wall of paper notes. */
 
-.guestbook {
-  animation: fadeUp 0.55s ease-out both;
-  margin: 0 auto;
-  max-width: var(--max-width-narrow);
-}
-
-.guestbook__head {
-  margin-bottom: var(--space-4);
-}
-
-.guestbook__head h2 {
-  font-size: var(--font-h1);
+/* The tally sits with the wall it counts, not floating under the header. */
+.guestbook__tally {
   margin-bottom: var(--space-1);
+  text-align: right;
 }
 
-.guestbook__head p {
-  color: var(--text-tertiary);
-  font-size: var(--font-body);
-  margin: 0;
+/* Signing station */
+.guestbook-station {
+  margin-bottom: var(--space-4);
+  margin-top: var(--space-3);
 }
 
+.guestbook-station .tape {
+  left: 44%;
+  top: -0.7rem;
+}
+
+.guestbook-station.is-shaking {
+  animation: gb-shake 0.35s;
+}
+
+@keyframes gb-shake {
+  20% {
+    transform: translateX(-6px);
+  }
+
+  40% {
+    transform: translateX(5px);
+  }
+
+  60% {
+    transform: translateX(-3px);
+  }
+
+  80% {
+    transform: translateX(2px);
+  }
+}
+
+.guestbook-station__row {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.guestbook-station__row input {
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid var(--cream-ink);
+  color: var(--cream-ink);
+  font: inherit;
+  font-size: 0.92rem;
+  padding: 0.25rem 0.2rem;
+}
+
+.guestbook-station__row input::placeholder {
+  color: var(--cream-ink-soft);
+}
+
+.guestbook-station__row input:focus {
+  outline: 2px solid var(--rose-deep);
+  outline-offset: 2px;
+}
+
+.guestbook-station__row input#name {
+  width: 8.5rem;
+}
+
+.guestbook-station__row input#website {
+  width: 11rem;
+}
+
+.guestbook-station__row input#message {
+  flex: 1;
+  min-width: 11rem;
+}
+
+.guestbook-station__row .button {
+  border-width: 2.5px;
+  font-size: 0.95rem;
+}
+
+.guestbook-station__hint {
+  color: var(--cream-ink-soft);
+  margin-top: 0.45rem;
+}
+
+.guestbook-station__ok {
+  color: var(--forest);
+  font-weight: 700;
+  margin-top: 0.5rem;
+}
+
+.guestbook-station__err {
+  color: var(--rose-deep);
+  font-weight: 700;
+  margin-top: 0.5rem;
+}
+
+/* The wall */
+.guestbook-wall {
+  column-gap: 0.75rem;
+  columns: 2;
+}
+
+.gb-sig {
+  break-inside: avoid;
+  font-size: 0.94rem;
+  margin-bottom: 0.75rem;
+  padding: 0.7rem 0.85rem;
+  transform: rotate(var(--sig-tilt, 0deg));
+}
+
+.gb-sig--rose {
+  background: var(--stock-rose);
+}
+
+.gb-sig--butter {
+  background: var(--stock-butter);
+}
+
+.gb-sig--mint {
+  background: var(--stock-mint);
+}
+
+.gb-sig--fresh {
+  animation: gb-drop 0.45s var(--ease-out);
+}
+
+@keyframes gb-drop {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) rotate(-3deg);
+  }
+}
+
+.gb-sig__message {
+  color: var(--cream-ink);
+  margin-bottom: 0.45rem;
+  overflow-wrap: anywhere;
+}
+
+.gb-sig__meta {
+  color: var(--cream-ink-soft);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.15rem 0.5rem;
+  justify-content: space-between;
+}
+
+.gb-sig__meta time {
+  white-space: nowrap;
+}
+
+.gb-sig__meta a {
+  color: var(--rose-deep);
+  text-decoration: underline;
+}
+
+/* Status messages ride on a scrap (set in JSX) so even the failure state
+   stays on paper instead of bare text over the green. */
 .guestbook__status {
-  color: var(--text-secondary);
-  font-size: var(--font-body);
-  padding: var(--space-5) 0;
+  display: inline-block;
+  margin-top: var(--space-2);
+  transform: rotate(-0.5deg);
 }
 
-/* ===================================
-   Form — full-bordered panel, compact field row
-   =================================== */
-
-.guestbook-form {
-  animation: fadeUp 0.6s ease-out both;
-  animation-delay: 0.08s;
-  background-color: var(--surface-panel);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--border-radius-lg);
-  margin-bottom: var(--space-6);
-  padding: var(--space-4);
+.guestbook__status--error {
+  color: var(--rose-deep);
 }
 
-.guestbook-form__fields {
-  display: grid;
-  gap: var(--space-2) var(--space-3);
-  grid-template-columns: 1fr 1fr;
-  margin-bottom: var(--space-3);
-}
-
-.form-group--message {
-  grid-column: 1 / -1;
+.guestbook__back {
+  font-weight: 700;
+  margin-top: var(--space-4);
 }
 
 @media (width <= 560px) {
-  .guestbook-form__fields {
-    grid-template-columns: 1fr;
-  }
-}
-
-.form-group {
-  margin: 0;
-}
-
-.form-group label {
-  color: var(--text-secondary);
-  display: block;
-  font-size: var(--font-sm);
-  font-weight: 500;
-  margin-bottom: var(--space-1);
-}
-
-.form-group__optional {
-  color: var(--matcha-strong);
-  font-weight: 500;
-}
-
-.form-group input,
-.form-group textarea {
-  background-color: var(--bg-primary);
-  border: 1px solid var(--border-medium);
-  border-radius: var(--border-radius-sm);
-  color: var(--text-primary);
-  font-family: inherit;
-  font-size: var(--font-sm);
-  min-height: 40px;
-  padding: 0.55rem 0.875rem;
-  transition:
-    border-color var(--transition-fast),
-    box-shadow var(--transition-fast);
-  width: 100%;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-  border-color: var(--accent-primary);
-  box-shadow: 0 0 0 2px var(--accent-light);
-  outline: none;
-}
-
-.form-group input:disabled,
-.form-group textarea:disabled {
-  cursor: not-allowed;
-  opacity: 0.6;
-}
-
-.form-group textarea {
-  line-height: 1.6;
-  min-height: 96px;
-  resize: vertical;
-}
-
-.form-group input::placeholder,
-.form-group textarea::placeholder {
-  color: var(--text-tertiary);
-}
-
-/* Feedback */
-.success-message,
-.error-message {
-  border-radius: var(--border-radius-sm);
-  margin-top: var(--space-3);
-  padding: var(--space-2) var(--space-3);
-}
-
-.success-message {
-  background-color: var(--feedback-success-bg);
-  border: 1px solid var(--feedback-success-border);
-  color: var(--feedback-success-text);
-}
-
-.error-message {
-  background-color: var(--feedback-error-bg);
-  border: 1px solid var(--feedback-error-border);
-  color: var(--feedback-error-text);
-}
-
-/* ===================================
-   Signature wall — masonry of tinted notes
-   =================================== */
-
-.guestbook-wall {
-  animation: fadeUp 0.6s ease-out both;
-  animation-delay: 0.1s;
-  column-gap: var(--space-3);
-  columns: 3 220px;
-}
-
-.gb-note {
-  background: var(--bg-tertiary);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--border-radius);
-  break-inside: avoid;
-  margin-bottom: var(--space-3);
-  padding: var(--space-3);
-  transition:
-    transform var(--transition-base),
-    box-shadow var(--transition-base);
-}
-
-.gb-note:hover {
-  box-shadow: var(--shadow-md);
-  transform: translateY(-3px);
-}
-
-.gb-note--rose {
-  background: color-mix(in srgb, var(--accent-muted) 55%, var(--bg-tertiary));
-  border-color: color-mix(in srgb, var(--accent-primary) 30%, transparent);
-}
-
-.gb-note--matcha {
-  background: color-mix(in srgb, var(--matcha-muted) 60%, var(--bg-tertiary));
-  border-color: color-mix(in srgb, var(--matcha-primary) 26%, transparent);
-}
-
-.gb-note__message {
-  color: var(--text-primary);
-  font-size: var(--font-sm);
-  line-height: 1.5;
-  margin: 0;
-}
-
-.gb-note__meta {
-  align-items: center;
-  color: var(--text-muted);
-  display: flex;
-  flex-wrap: wrap;
-  font-size: var(--font-xs);
-  gap: 0.3rem 0.4rem;
-  margin-top: var(--space-3);
-}
-
-.gb-note__name {
-  color: var(--text-primary);
-  font-weight: 600;
-}
-
-.gb-note__sep {
-  color: var(--border-strong);
-}
-
-.gb-note__meta a {
-  color: var(--matcha-strong);
-  font-weight: 500;
-}
-
-.gb-note__meta a:hover {
-  color: var(--matcha-primary);
-}
-
-.gb-note__date {
-  color: var(--text-muted);
-}
-
-@media (width <= 640px) {
-  .guestbook-form {
-    padding: var(--space-3);
-  }
-}
-
-body:not(.initial-visit)
-  :where(.guestbook, .guestbook-form, .guestbook-wall) {
-  animation: none !important;
-}
-
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
+  /* Stack the station: every field full width, button on its own line, so
+     the message input stops sharing a row with the submit button. */
+  .guestbook-station__row input#name,
+  .guestbook-station__row input#website,
+  .guestbook-station__row input#message {
+    flex: none;
+    min-width: 0;
+    width: 100%;
   }
 
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  .guestbook-wall {
+    columns: 1;
   }
 }

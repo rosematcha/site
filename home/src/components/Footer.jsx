@@ -1,58 +1,31 @@
 // src/components/Footer.jsx
-import React, { useMemo, useState, useRef } from "react";
+// The quote marquee: every quote on a slow loop, so returning visitors
+// eventually meet the whole list. Track is duplicated for a seamless wrap;
+// the copy is aria-hidden so screen readers hear each quote once.
+import React from "react";
 import quotes from "../data/quotes";
 
+const SEPARATOR = " ✿ ";
+
 function Footer() {
-  // Track which quotes have been shown in the current cycle
-  const shownQuotes = useRef(new Set());
-  const availableQuotes = useRef([...quotes]);
-
-  const getNextQuote = () => {
-    if (!Array.isArray(quotes) || quotes.length === 0) return "";
-    if (quotes.length === 1) return quotes[0];
-
-    // If all quotes have been shown, reset the cycle
-    if (availableQuotes.current.length === 0) {
-      shownQuotes.current.clear();
-      availableQuotes.current = [...quotes];
-    }
-
-    // Pick a random quote from the available ones
-    const randomIndex = Math.floor(Math.random() * availableQuotes.current.length);
-    const selectedQuote = availableQuotes.current[randomIndex];
-
-    // Remove the selected quote from available quotes
-    availableQuotes.current.splice(randomIndex, 1);
-    shownQuotes.current.add(selectedQuote);
-
-    return selectedQuote;
-  };
-
-  const initialQuote = useMemo(() => getNextQuote(), []);
-  const [quote, setQuote] = useState(initialQuote);
-
-  const handleClick = () => {
-    setQuote(getNextQuote());
-  };
+  const line = quotes.map(q => `“${q}”`).join(SEPARATOR) + SEPARATOR;
 
   return (
-    <footer className="footer panel" role="contentinfo">
-      <div
-        className="footer-quote"
-        onClick={handleClick}
-        role="button"
-        tabIndex={0}
-        onKeyDown={e => {
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            handleClick();
-          }
-        }}
-        title="Click for a new quote"
-      >
-        {quote}
+    <footer className="footer" role="contentinfo">
+      <div className="footer-marquee marquee">
+        <span className="marquee__track">
+          <span>{line}</span>
+          <span aria-hidden="true">{line}</span>
+        </span>
       </div>
-      <div className="footer-copyright">© {new Date().getFullYear()} Reese Lundquist</div>
+      <div className="footer-under">
+        <div className="footer-copyright">
+          © {new Date().getFullYear()} Reese Lundquist · San Antonio, TX
+        </div>
+        <a className="mono-meta link-swipe" href="mailto:howdy@rosematcha.com">
+          howdy@rosematcha.com
+        </a>
+      </div>
     </footer>
   );
 }

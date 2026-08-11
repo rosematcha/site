@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Mail, Briefcase, ArrowUpRight } from "lucide-react";
 import PolaroidStack from "../components/PolaroidStack";
 import OptimizedImage from "../components/OptimizedImage";
 import { projectsData } from "../data/projects";
@@ -11,19 +10,19 @@ const facets = [
     key: "build",
     title: "Build",
     body: "Civic tools, data viz, and sites for nonprofits and small businesses. React, Astro, WordPress.",
-    tone: "rose",
+    stock: "",
   },
   {
     key: "photograph",
     title: "Photograph",
     body: "Pinhole and analog work, plus teaching it to San Antonio youth at UTSA Southwest.",
-    tone: "matcha",
+    stock: "scrap--butter",
   },
   {
     key: "organize",
     title: "Organize",
     body: "Community and labor work: events, outreach, and the tech that keeps them running.",
-    tone: "rose-strong",
+    stock: "scrap--mint",
   },
 ];
 
@@ -34,118 +33,142 @@ function projectUrl(path) {
 }
 
 function HomePage() {
-  const selected = projectsData.filter((p) => p.featured).slice(0, 3);
+  const selected = projectsData.filter(p => p.featured).slice(0, 3);
 
   return (
     <div className="page-content home">
-      <section className="hero-section">
-        <div className="hero-layout">
-          <div className="hero-media">
-            <span className="hero-media__ring" aria-hidden="true" />
-            <span className="hero-media__dot" aria-hidden="true" />
-            <PolaroidStack />
-          </div>
-          <div className="hero-copy">
-            <h1 className="hero-title">
-              Howdy,
-              <br />
-              I'm <span className="hero-title__mark">Reese</span>
-            </h1>
-            <p className="hero-tagline">
-              I'm a developer, photographer, editor, and avid taker of life's side quests. With my
-              multidisciplinary background, I create cool tools and experiences for the people and
-              causes I care about. Currently teaching pinhole photography{" "}
+      <section className="home-top" aria-label="Introduction">
+        <div className="home-top__left">
+          <div className="home-hero__scrap scrap scrap--deckle">
+            <span className="tape" aria-hidden="true" />
+            <p>
+              Howdy, I'm Reese! I'm a web developer, educator, and photographer passionate about
+              making cool things. I'm currently teaching pinhole photography{" "}
               <a
+                className="link-swipe"
                 href="https://www.utsa.edu/pace/community-art/youth.html"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                at UTSA Southwest
+                at UTSA
               </a>
-              , helping computers serve students{" "}
-              <a href="https://saysi.org/" target="_blank" rel="noopener noreferrer">
-                at SAY Si
+              , administering tech{" "}
+              <a
+                className="link-swipe"
+                href="https://saysi.org/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                at SAY Sí
               </a>
-              , maintaining{" "}
-              <a href="https://ciphermaniac.com" target="_blank" rel="noopener noreferrer">
-                Ciphermaniac
-              </a>
-              , and creating civic tech to service{" "}
-              <a href="https://rosematcha.com/bexarvoting" target="_blank" rel="noopener noreferrer">
-                the voters of Bexar County
+              , maintaining too many personal projects, and protecting artwork at{" "}
+              <a
+                className="link-swipe"
+                href="https://rubycity.org/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Ruby City
               </a>
               .
             </p>
-            <div className="hero-actions">
-              <Link to="/projects" className="button">
-                <Briefcase size={20} />
-                View My Work
-              </Link>
-              <a href="mailto:howdy@rosematcha.com" className="button button--matcha">
-                <Mail size={20} />
-                Get in Touch
-              </a>
-            </div>
           </div>
+          <div className="home-facets">
+            {facets.map(facet => (
+              <div key={facet.key} className={`scrap ${facet.stock} home-facet`}>
+                <h2 className="home-facet__title">{facet.title}</h2>
+                <p className="home-facet__body">{facet.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="home-top__right tilt-r">
+          <PolaroidStack />
         </div>
       </section>
 
-      <section className="home-facets" aria-label="What I do">
-        {facets.map((facet) => (
-          <div key={facet.key} className="facet">
-            <h2 className={`facet__title facet__title--${facet.tone}`}>{facet.title}</h2>
-            <p className="facet__body">{facet.body}</p>
-          </div>
-        ))}
-      </section>
+      {/* Still pending your picks: darkroom strip (needs pinhole scans),
+          elsewhere links (needs account list), guestbook teaser. */}
 
       <section className="home-selected" aria-label="Selected work">
         <div className="home-selected__head">
-          <h2>Selected work</h2>
-          <Link to="/projects" className="home-selected__all">
-            See all projects
-            <ArrowUpRight size={16} aria-hidden="true" />
+          <h2 className="section-title home-selected__title">Selected work</h2>
+          <Link to="/projects" className="button button--cream home-selected__all">
+            see all projects →
           </Link>
         </div>
-        <div className="home-selected__grid">
-          {selected.map((project) => (
+        <hr className="candy-rule home-selected__rule" />
+        {selected.map((project, index) => (
+          <article key={project.id} className="home-proj">
             <a
-              key={project.id}
+              className={`shot home-proj__shot ${index % 2 ? "tilt-r" : "tilt-l"}`}
               href={projectUrl(project.path)}
               target="_blank"
               rel="noopener noreferrer"
-              className="work-card"
+              aria-label={`Visit ${project.title}`}
+              tabIndex={-1}
             >
-              <div className="work-card__media">
-                <OptimizedImage
-                  src={project.thumbnail}
-                  alt={`${project.title} thumbnail`}
-                  width={project.thumbnailWidth}
-                  height={project.thumbnailHeight}
-                  className="work-card__img"
-                  loading="lazy"
-                  decoding="async"
-                  sizes="(min-width: 760px) 33vw, 100vw"
-                />
-              </div>
-              <div className="work-card__body">
-                <h3 className="work-card__title">{project.title}</h3>
-                <p className="work-card__tags">{project.tags.slice(0, 2).join(" · ")}</p>
-              </div>
+              <span className="tape" aria-hidden="true" />
+              <OptimizedImage
+                src={project.thumbnail}
+                alt={`${project.title} thumbnail`}
+                width={project.thumbnailWidth}
+                height={project.thumbnailHeight}
+                aspectRatio={3 / 2}
+                className="home-proj__img"
+                loading={index === 0 ? "eager" : "lazy"}
+                decoding="async"
+                sizes="(min-width: 700px) 220px, 100vw"
+              />
             </a>
-          ))}
-        </div>
+            <div className="home-proj__body">
+              <h3 className="home-proj__name">{project.title}</h3>
+              <div className="mono-meta home-proj__meta">
+                {[...project.tech, ...project.tags].slice(0, 4).join(" · ")}
+              </div>
+              <p
+                className="home-proj__desc"
+                dangerouslySetInnerHTML={{ __html: project.description }}
+              />
+              <div className="home-proj__links">
+                <a
+                  className="link-swipe"
+                  href={projectUrl(project.path)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {project.buttonText || "visit site"} ↗
+                </a>
+                {project.github && (
+                  <a
+                    className="link-swipe"
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    github ↗
+                  </a>
+                )}
+              </div>
+            </div>
+          </article>
+        ))}
       </section>
 
-      <section className="home-cta">
-        <h2 className="home-cta__title">Working on something good?</h2>
+      <section className="home-cta tilt-l-sm" aria-label="Work with me">
+        <span className="tape" aria-hidden="true" />
+        <h2 className="home-cta__title">Got something cooking?</h2>
         <p className="home-cta__body">
-          Civic tech, arts nonprofits, small businesses, and the occasional weekend rabbit hole.
+          I'm always down to get involved with cool stuff. Let me lend you my skills!
         </p>
-        <a href="mailto:howdy@rosematcha.com" className="button">
-          <Mail size={20} />
-          Get in Touch
-        </a>
+        <div className="home-cta__actions">
+          <a href="mailto:howdy@rosematcha.com" className="button button--cream home-cta__button">
+            howdy@rosematcha.com
+          </a>
+          <Link to="/guestbook" className="home-cta__aside">
+            or just sign the guestbook →
+          </Link>
+        </div>
       </section>
     </div>
   );

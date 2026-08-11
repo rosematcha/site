@@ -1,8 +1,6 @@
 // src/pages/ProjectsPage.jsx
-// Featured projects: full-width 50/50 panels alternating image side, numbered.
-// Lesser projects: condensed single-column rows with thumb + 2-line desc + tags + visit button.
-import React, { useEffect } from "react";
-import { ArrowUpRight, ExternalLink, Github } from "lucide-react";
+// Every project in the same sincere row format, filed under tag filters.
+import React, { useEffect, useMemo, useState } from "react";
 import { projectsData } from "../data/projects";
 import { warmProjectsThumbnails } from "../utils/prefetch";
 import OptimizedImage from "../components/OptimizedImage";
@@ -18,81 +16,64 @@ function isPlaceholderThumb(src) {
   return typeof src === "string" && src.includes("placeholder-thumb");
 }
 
-function Thumb({ project, eager, sizes, hideName }) {
-  if (isPlaceholderThumb(project.thumbnail)) {
-    return (
-      <div className="project-placeholder" aria-hidden="true">
-        {!hideName && <span className="project-placeholder__name">{project.title}</span>}
-      </div>
-    );
-  }
-  return (
-    <OptimizedImage
-      src={project.thumbnail}
-      alt={`${project.title} thumbnail`}
-      width={project.thumbnailWidth}
-      height={project.thumbnailHeight}
-      className="project-thumb-img"
-      loading={eager ? "eager" : "lazy"}
-      decoding="async"
-      sizes={sizes || "(min-width: 900px) 50vw, 100vw"}
-    />
-  );
+// Filter tags shown in the "filed under" line: any tag on 2+ projects.
+function usefulTags() {
+  const counts = {};
+  projectsData.forEach(p => p.tags.forEach(t => (counts[t] = (counts[t] || 0) + 1)));
+  return Object.keys(counts)
+    .filter(t => counts[t] > 1)
+    .sort((a, b) => counts[b] - counts[a] || a.localeCompare(b));
 }
 
-function Tags({ project, total = 5 }) {
-  // Tech tags get priority. Fill remaining slots with category tags.
-  const tech = project.tech.slice(0, total);
-  const cats = project.tags.slice(0, Math.max(0, total - tech.length));
-  return (
-    <div className="project-tags">
-      {tech.map((t, i) => (
-        <span key={`t-${i}`} className="project-tag project-tag--tech">{t}</span>
-      ))}
-      {cats.map((t, i) => (
-        <span key={`c-${i}`} className="project-tag project-tag--cat">{t}</span>
-      ))}
-    </div>
-  );
-}
-
-function FeaturedCard({ project, index, eager }) {
+function ProjectRow({ project, index }) {
   const url = getProjectUrl(project.path);
   return (
-    <article className={`project-feature ${index % 2 ? "project-feature--reverse" : ""}`}>
+    <article className={`proj-row ${project.featured ? "proj-row--featured" : ""}`}>
       <a
+        className={`shot proj-row__shot ${index % 2 ? "tilt-r" : "tilt-l"}`}
         href={url}
         target="_blank"
         rel="noopener noreferrer"
-        className="project-feature__media"
         aria-label={`Visit ${project.title}`}
         tabIndex={-1}
       >
-        <Thumb project={project} eager={eager} sizes="(min-width: 900px) 50vw, 100vw" />
+        <span className="tape" aria-hidden="true" />
+        {isPlaceholderThumb(project.thumbnail) ? (
+          <div className="project-placeholder" aria-hidden="true">
+            <span>{project.title}</span>
+          </div>
+        ) : (
+          <OptimizedImage
+            src={project.thumbnail}
+            alt={`${project.title} thumbnail`}
+            width={project.thumbnailWidth}
+            height={project.thumbnailHeight}
+            aspectRatio={3 / 2}
+            className="proj-row__img"
+            loading={index < 2 ? "eager" : "lazy"}
+            decoding="async"
+            sizes="(min-width: 700px) 280px, 100vw"
+          />
+        )}
       </a>
-      <div className="project-feature__body">
-        <h3 className="project-title project-title--lg">
-          <a href={url} target="_blank" rel="noopener noreferrer">{project.title}</a>
-        </h3>
-        <p
-          className="project-desc"
-          dangerouslySetInnerHTML={{ __html: project.description }}
-        />
-        <Tags project={project} total={5} />
-        <div className="project-actions">
-          <a href={url} target="_blank" rel="noopener noreferrer" className="project-visit">
-            <ExternalLink size={14} aria-hidden="true" />
-            <span>{project.buttonText || "Visit Project Site"}</span>
+      <div>
+        <h3 className="proj-row__name">{project.title}</h3>
+        <div className="mono-meta proj-row__meta">
+          {[...project.tech, ...project.tags].join(" · ")}
+        </div>
+        <p className="proj-row__desc" dangerouslySetInnerHTML={{ __html: project.description }} />
+        <div className="proj-row__links">
+          <a className="link-swipe" href={url} target="_blank" rel="noopener noreferrer">
+            {project.buttonText || "visit site"} ↗
           </a>
           {project.github && (
             <a
+              className="link-swipe"
               href={project.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="project-visit project-visit--ghost"
             >
-              <Github size={14} aria-hidden="true" />
-              <span>View on GitHub</span>
+              github ↗
             </a>
           )}
         </div>
@@ -101,88 +82,45 @@ function FeaturedCard({ project, index, eager }) {
   );
 }
 
-function LesserRow({ project }) {
-  const url = getProjectUrl(project.path);
-  return (
-    <article className="project-row">
-      <a
-        href={url}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="project-row__media"
-        aria-label={`Visit ${project.title}`}
-        tabIndex={-1}
-      >
-        <Thumb project={project} sizes="200px" hideName />
-      </a>
-      <div className="project-row__main">
-        <h4 className="project-title project-title--sm">
-          <a href={url} target="_blank" rel="noopener noreferrer">{project.title}</a>
-        </h4>
-        <p
-          className="project-desc"
-          dangerouslySetInnerHTML={{ __html: project.description }}
-        />
-        <div className="project-row__footer">
-          <Tags project={project} total={4} />
-          <div className="project-actions">
-            {project.github && (
-              <a
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="project-visit project-visit--sm project-visit--ghost"
-              >
-                <Github size={12} aria-hidden="true" />
-                <span>View on GitHub</span>
-              </a>
-            )}
-            <a
-              href={url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="project-visit project-visit--sm project-visit--ghost"
-            >
-              <span>{project.buttonText || "Visit Project Site"}</span>
-              <ArrowUpRight size={14} aria-hidden="true" />
-            </a>
-          </div>
-        </div>
-      </div>
-    </article>
-  );
-}
-
 function ProjectsPage() {
+  const [tag, setTag] = useState(null);
+  const tags = useMemo(usefulTags, []);
+
   useEffect(() => {
     warmProjectsThumbnails();
   }, []);
 
-  const featured = projectsData.filter((p) => p.featured);
-  const lessers = projectsData.filter((p) => !p.featured);
+  const shown = tag ? projectsData.filter(p => p.tags.includes(tag)) : projectsData;
 
   return (
-    <div className="projects-page-wrapper">
-      <div className="projects-header">
-        <h2>My Projects</h2>
+    <div className="page-content projects-page-wrapper">
+      <div className="projects-filed">
+        <span className="mono-meta projects-filed__label">filed under</span>
+        <button
+          type="button"
+          className="is-all"
+          aria-pressed={tag === null}
+          onClick={() => setTag(null)}
+        >
+          all
+        </button>
+        {tags.map(t => (
+          <button
+            key={t}
+            type="button"
+            aria-pressed={tag === t}
+            onClick={() => setTag(current => (current === t ? null : t))}
+          >
+            {t}
+          </button>
+        ))}
       </div>
+      <hr className="candy-rule projects-rule" />
 
-      <section className="project-section" aria-label="Featured projects">
-        <div className="project-features">
-          {featured.map((p, i) => (
-            <FeaturedCard key={p.id} project={p} index={i} eager={i < 2} />
-          ))}
-        </div>
-      </section>
-
-      <section className="project-section project-section--lesser" aria-label="More projects">
-        <ul className="project-rows">
-          {lessers.map((p) => (
-            <li key={p.id} className="project-rows__item">
-              <LesserRow project={p} />
-            </li>
-          ))}
-        </ul>
+      <section aria-label="Projects">
+        {shown.map((p, i) => (
+          <ProjectRow key={p.id} project={p} index={i} />
+        ))}
       </section>
     </div>
   );

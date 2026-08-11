@@ -1,494 +1,140 @@
-/* ProjectsPage — Alternating split + condensed rows
-   ---------------------------------------------------
-   Featured: full-width 50/50 panels that flip image side every row,
-     numbered 01/02/03. Big imagery, generous breathing room.
-   Lesser:   single-column condensed rows — thumb + 2-line description
-     + clean tag wrap + visible "Visit" affordance on the right.
-*/
+/* Projects: every project in the same sincere row format, filed under
+   tag links. Featured entries get bigger prints. */
 
-.projects-page-wrapper {
-  animation: fadeUp 0.55s ease-out both;
-  margin: 0 auto;
-  max-width: 1100px;
-  padding: var(--space-4) var(--space-4) var(--space-6);
-}
-
-.projects-header {
-  animation: fadeUp 0.6s ease-out both;
-  animation-delay: 0.05s;
-  margin: 0 auto var(--space-5);
-  max-width: 820px;
-  text-align: center;
-}
-
-.projects-header h2 {
-  color: var(--heading-color);
-  font-size: var(--font-h2);
-  margin-bottom: var(--space-2);
-}
-
-.projects-header p {
-  color: var(--text-muted);
-  font-size: var(--font-body);
-  margin: 0 auto;
-  max-width: 60ch;
-}
-
-.project-section {
-  margin: 0 auto;
-}
-
-/* =============================================================
-   Shared atoms
-   ============================================================= */
-
-.project-title {
-  color: var(--heading-color);
-  font-family: "Hanken Grotesk", sans-serif;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  line-height: 1.15;
-  margin: 0;
-}
-
-.project-title a {
-  border: none;
-  color: inherit;
-  transition: color var(--transition-fast);
-}
-
-.project-title a:hover {
-  color: var(--accent-primary);
-}
-
-.project-title--lg {
-  font-size: clamp(1.375rem, 1.8vw, 1.75rem);
-}
-
-.project-title--sm {
-  font-size: 1.0625rem;
-  line-height: 1.25;
-}
-
-.project-desc {
-  color: var(--text-secondary);
-  font-size: var(--font-sm);
-  line-height: 1.55;
-  margin: 0;
-}
-
-.project-desc :where(a) {
-  color: var(--accent-primary);
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
-
-.project-desc--clamp2 {
-  -webkit-box-orient: vertical;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  line-clamp: 2;
-  overflow: hidden;
-}
-
-.project-tags {
+.projects-filed {
+  align-items: center;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.35rem 0.4rem;
+  gap: 0.4rem;
+  margin-bottom: var(--space-4);
+  padding-top: var(--space-3);
 }
 
-.project-tag {
-  border-radius: 999px;
-  font-size: 0.625rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  line-height: 1;
-  padding: 0.32rem 0.6rem;
-  text-transform: uppercase;
-  white-space: nowrap;
+.projects-filed__label {
+  color: var(--text-muted);
+  margin-right: 0.15rem;
 }
 
-.project-tag--tech {
-  background: var(--accent-primary);
-  border: 1px solid var(--accent-primary);
-  color: var(--accent-contrast);
-}
-
-.project-tag--cat {
+/* Filters are chips, matching the resume toolbar exactly. */
+.projects-filed button {
   background: transparent;
-  border: 1px solid color-mix(in srgb, var(--matcha-primary) 55%, transparent);
-  color: var(--matcha-strong);
-}
-
-.project-visit {
-  align-items: center;
-  align-self: flex-start;
-  background: var(--accent-primary);
-  border: 1px solid var(--accent-primary);
-  border-radius: 999px;
-  color: var(--accent-contrast);
-  display: inline-flex;
-  font-size: var(--font-xs);
-  font-weight: 600;
-  gap: 0.45rem;
-  padding: 0.5rem 1rem;
-  text-decoration: none;
+  border: 2px solid var(--cream);
+  border-radius: var(--radius-pill);
+  color: var(--cream);
+  cursor: pointer;
+  font-family: "Hanken Grotesk", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.14rem 0.65rem;
   transition:
-    background var(--transition-fast),
-    border-color var(--transition-fast),
     transform var(--transition-fast),
-    box-shadow var(--transition-fast),
+    background var(--transition-fast),
     color var(--transition-fast);
-  white-space: nowrap;
 }
 
-.project-visit:hover {
-  background: var(--accent-hover);
-  border-color: var(--accent-hover);
-  box-shadow: var(--shadow-sm);
-  color: var(--accent-contrast);
-  transform: translateY(-1px);
+.projects-filed button:hover {
+  transform: scale(1.05, 0.96);
 }
 
-.project-visit svg {
-  flex-shrink: 0;
+.projects-filed button[aria-pressed="true"] {
+  background: var(--rose);
+  border-color: var(--rose);
+  color: var(--rose-ink-contrast);
 }
 
-.project-visit--sm {
-  font-size: 0.6875rem;
-  gap: 0.3rem;
-  padding: 0.4rem 0.75rem;
+/* "all" is the emphasized escape hatch, same as the resume. */
+.projects-filed button.is-all {
+  background: var(--butter);
+  border-color: var(--butter);
+  color: var(--butter-ink);
 }
 
-.project-visit--sm svg {
-  height: 12px;
-  width: 12px;
+.projects-filed button.is-all[aria-pressed="true"] {
+  background: var(--rose);
+  border-color: var(--cream);
+  box-shadow: 0 0 0 2px var(--butter);
+  color: var(--rose-ink-contrast);
 }
 
-/* Outline pink pill — quieter, used in lesser rows so the page doesn't
-   become a wall of solid pink buttons. Hover fills it in. */
-.project-visit--ghost {
-  background: transparent;
-  border-color: var(--accent-primary);
-  color: var(--accent-strong);
+.projects-rule {
+  margin: 0 calc(-1 * var(--space-3)) var(--space-4);
 }
 
-.project-visit--ghost:hover {
-  background: var(--accent-primary);
-  border-color: var(--accent-primary);
-  color: var(--accent-contrast);
+.proj-row {
+  align-items: start;
+  display: grid;
+  gap: var(--space-3);
+  grid-template-columns: 220px 1fr;
+  margin-bottom: var(--space-5);
 }
 
-/* Thumbnail content */
+.proj-row--featured {
+  grid-template-columns: 280px 1fr;
+}
 
-.project-thumb-img,
-.project-thumb-img img {
+.proj-row__shot {
   display: block;
-  height: 100%;
+}
+
+.proj-row__shot .tape {
+  left: 2.6rem;
+  top: -0.7rem;
+}
+
+.proj-row__img img,
+img.proj-row__img {
+  aspect-ratio: 3 / 2;
+  height: auto;
   object-fit: cover;
-  object-position: top center;
+  object-position: top;
   width: 100%;
+}
+
+.proj-row__name {
+  font-family: "Young Serif", Georgia, serif;
+  font-weight: 400;
+  margin-bottom: 0.2rem;
+}
+
+.proj-row__meta {
+  margin-bottom: 0.5rem;
+}
+
+.proj-row__desc {
+  margin-bottom: 0.6rem;
+  max-width: 56ch;
+}
+
+.proj-row__desc a {
+  color: var(--rose-bright);
+}
+
+.proj-row__links {
+  display: flex;
+  flex-wrap: wrap;
+  font-weight: 700;
+  gap: var(--space-2);
 }
 
 .project-placeholder {
   align-items: center;
-  background:
-    radial-gradient(120% 100% at 80% 10%, color-mix(in srgb, var(--accent-primary) 18%, transparent) 0%, transparent 55%),
-    radial-gradient(90% 70% at 15% 85%, color-mix(in srgb, var(--accent-strong) 8%, transparent) 0%, transparent 60%),
-    linear-gradient(155deg, var(--bg-secondary) 0%, var(--bg-ink) 100%);
+  aspect-ratio: 3 / 2;
+  background: var(--forest-deep);
+  color: var(--text-muted);
   display: flex;
-  height: 100%;
+  font-family: "Sometype Mono", monospace;
+  font-size: var(--font-xs);
   justify-content: center;
-  overflow: hidden;
-  padding: 1rem;
-  position: relative;
-  width: 100%;
-}
-
-.project-placeholder::before {
-  background-image: var(--bg-noise-texture);
-  background-size: var(--bg-noise-scale);
-  content: "";
-  inset: 0;
-  mix-blend-mode: overlay;
-  opacity: 0.18;
-  pointer-events: none;
-  position: absolute;
-}
-
-.project-placeholder__name {
-  color: var(--text-secondary);
-  font-family: "Hanken Grotesk", sans-serif;
-  font-size: clamp(1rem, 1.6vw, 1.5rem);
-  font-style: italic;
-  font-weight: 400;
-  letter-spacing: -0.015em;
-  line-height: 1.05;
-  opacity: 0.78;
-  position: relative;
-  text-align: center;
-  z-index: 1;
-}
-
-.project-placeholder__name::after {
-  background: var(--accent-primary);
-  content: "";
-  display: block;
-  height: 1px;
-  margin: 0.7em auto 0;
-  opacity: 0.7;
-  width: 24px;
-}
-
-/* =============================================================
-   Featured — alternating 50/50 panels
-   ============================================================= */
-
-.project-features {
-  display: grid;
-  gap: var(--space-5);
-}
-
-.project-feature {
-  align-items: stretch;
-  background: var(--bg-tertiary);
-  border-radius: var(--border-radius-lg);
-  display: grid;
-  gap: 0;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  overflow: hidden;
-  transition:
-    transform var(--transition-base),
-    box-shadow var(--transition-base);
-}
-
-.project-feature:hover {
-  box-shadow: var(--shadow-lg);
-  transform: translateY(-2px);
-}
-
-.project-feature--reverse .project-feature__media {
-  order: 2;
-}
-
-.project-feature__media {
-  display: block;
-  height: 100%;
-  min-width: 0;
-  overflow: hidden;
-  position: relative;
-  width: 100%;
-}
-
-.project-feature__media .project-thumb-img,
-.project-feature__media .project-thumb-img img,
-.project-feature__media .project-placeholder {
-  inset: 0;
-  position: absolute;
-}
-
-.project-feature__body {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-  padding: var(--space-5);
-}
-
-.project-feature__body .project-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-top: auto;
-}
-
-/* =============================================================
-   Section spacing
-   ============================================================= */
-
-.project-section--lesser {
-  margin-top: var(--space-6);
-}
-
-/* =============================================================
-   Lesser — condensed rows
-   ============================================================= */
-
-.project-rows {
-  display: flex;
-  flex-direction: column;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.project-rows__item {
-  border-bottom: 1px solid var(--border-subtle);
-}
-
-.project-rows__item:first-child {
-  border-top: 1px solid var(--border-subtle);
-}
-
-.project-row {
-  align-items: stretch;
-  display: grid;
-  gap: var(--space-3);
-  grid-template-columns: 200px minmax(0, 1fr);
-  padding: var(--space-3) var(--space-2);
-  transition: background var(--transition-fast);
-}
-
-.project-row:hover {
-  background: color-mix(in srgb, var(--bg-tertiary) 50%, transparent);
-}
-
-.project-row__media {
-  align-self: center;
-  aspect-ratio: 4 / 3;
-  border-radius: var(--border-radius-sm);
-  display: block;
-  overflow: hidden;
-  width: 100%;
-}
-
-.project-row__main {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  min-width: 0;
-}
-
-.project-row__footer {
-  align-items: center;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem var(--space-2);
-  margin-top: auto;
-  padding-top: 0.5rem;
-}
-
-.project-row__footer .project-tags {
-  flex: 1 1 auto;
-}
-
-.project-row__footer .project-actions {
-  display: flex;
-  flex-shrink: 0;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-left: auto;
-}
-
-.project-row__footer .project-visit {
-  flex-shrink: 0;
-}
-
-/* =============================================================
-   Responsive
-   ============================================================= */
-
-@media (width <= 900px) {
-  .project-feature {
-    grid-template-columns: 1fr;
-  }
-
-  .project-feature--reverse .project-feature__media {
-    order: 0;
-  }
-
-  .project-feature__media {
-    aspect-ratio: 16 / 10;
-    height: auto;
-  }
-
-  .project-feature__body {
-    padding: var(--space-4);
-  }
-
-  .project-row {
-    grid-template-columns: 160px minmax(0, 1fr);
-  }
-
-  /* Hide tag chips on smaller viewports — keep the stacked card focused
-     on title, description, and visit pill. */
-  .project-feature .project-tags,
-  .project-row .project-tags {
-    display: none;
-  }
 }
 
 @media (width <= 640px) {
-  .projects-page-wrapper {
-    padding: var(--space-3) var(--space-2) var(--space-5);
+  .proj-row,
+  .proj-row--featured {
+    grid-template-columns: 1fr;
   }
 
-  .project-feature__body {
-    padding: var(--space-3);
+  /* Sub-tags are noise at phone width. */
+  .proj-row__meta {
+    display: none;
   }
-
-  /* Compact, list-style rows on mobile so lesser projects don't read as
-     featured. Small fixed thumb on the left, tight typography on the right,
-     no card chrome — just a clean index. */
-  .project-row {
-    align-items: center;
-    column-gap: var(--space-2);
-    grid-template-columns: 96px minmax(0, 1fr);
-    padding: var(--space-3) 0;
-  }
-
-  .project-row__media {
-    align-self: center;
-    width: 96px;
-  }
-
-  .project-row__main {
-    gap: 0.35rem;
-  }
-
-  .project-row .project-title {
-    font-size: 1rem;
-    line-height: 1.25;
-  }
-
-  .project-row .project-desc {
-    font-size: 0.8125rem;
-    line-height: 1.45;
-  }
-
-  .project-row__footer {
-    margin-top: 0.15rem;
-    padding-top: 0;
-  }
-
-  .project-row .project-visit {
-    background: transparent;
-    border: none;
-    color: var(--accent-strong);
-    font-size: 0.6875rem;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    margin-left: 0;
-    padding: 0;
-    text-transform: uppercase;
-  }
-
-  .project-row .project-visit:hover {
-    background: transparent;
-    box-shadow: none;
-    color: var(--accent-hover);
-    transform: none;
-  }
-}
-
-/* Animation override for return visits */
-body:not(.initial-visit)
-  :where(.projects-page-wrapper, .projects-header) {
-  animation: none !important;
-  opacity: 1 !important;
-  transform: none !important;
-}
-
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(10px); }
-  to   { opacity: 1; transform: translateY(0); }
 }

@@ -1,39 +1,41 @@
 // src/pages/NotFoundPage.jsx
+// The missing page as a literally torn-out scrap.
 import React from "react";
 import { Link } from "react-router-dom";
-import { Home } from "lucide-react";
 import OptimizedImage from "../components/OptimizedImage";
 
 function NotFoundPage() {
   return (
-    <div className="page-content" style={{ textAlign: "center", paddingTop: "var(--space-16)" }}>
-      <OptimizedImage
-        src="/img/404.gif"
-        alt="404 - Page Not Found"
-        loading="eager"
-        decoding="async"
-        style={{
-          maxWidth: "250px",
-          width: "100%",
-          margin: "0 auto var(--space-6)",
-          display: "block",
-          borderRadius: "6px",
-        }}
-      />
-      <p
-        style={{
-          fontSize: "var(--font-body-lg)",
-          color: "var(--text-secondary)",
-          marginBottom: "var(--space-8)",
-        }}
+    <div className="page-content" style={{ paddingTop: "var(--space-8)", textAlign: "center" }}>
+      <div
+        className="scrap scrap--deckle tilt-l"
+        style={{ display: "inline-block", marginBottom: "var(--space-4)", maxWidth: "22rem" }}
       >
-        Whoops! Either something went wrong or this page doesn't exist.
-      </p>
-
-      <Link to="/" className="button">
-        <Home size={20} />
-        Back to Home
-      </Link>
+        <span className="tape" aria-hidden="true" style={{ left: "40%", top: "-0.7rem" }} />
+        <div
+          style={{
+            color: "var(--rose-deep)",
+            fontFamily: '"Young Serif", Georgia, serif',
+            fontSize: "2.8rem",
+            lineHeight: 1.1,
+          }}
+        >
+          404
+        </div>
+        <OptimizedImage
+          src="/img/404.gif"
+          alt="Confused wandering around"
+          loading="eager"
+          decoding="async"
+          style={{ display: "block", margin: "0.5rem auto", maxWidth: "200px", width: "100%" }}
+        />
+        <p style={{ fontSize: "var(--font-body)" }}>this page got torn out of the notebook.</p>
+      </div>
+      <div>
+        <Link to="/" className="button tilt-r-sm">
+          back to the front
+        </Link>
+      </div>
     </div>
   );
 }

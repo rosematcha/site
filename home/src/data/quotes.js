@@ -16,7 +16,7 @@ const quotes = [
   "once you've seen the signs around the barn, it becomes impossible to see the barn",
   "the soul ends with death, unless we act to preserve it.",
   "apathy's a tragedy, and boredom is a crime",
-  "if you want to make an apple pie from scratch, you must first invent the universe"
+  "if you want to make an apple pie from scratch, you must first invent the universe",
 ];
 
 export default quotes;

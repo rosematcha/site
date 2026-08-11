@@ -106,11 +106,7 @@ const OptimizedImage = ({
     <div className={`optimized-image ${className}`} style={wrapperStyle} {...props}>
       {/* Placeholder while loading */}
       {hasPlaceholder && (
-        <div
-          className={`optimized-image__placeholder${
-            isLoaded || hasError ? " is-hidden" : ""
-          }`}
-        >
+        <div className={`optimized-image__placeholder${isLoaded || hasError ? " is-hidden" : ""}`}>
           {placeholder}
         </div>
       )}

@@ -1,729 +1,614 @@
-/* ResumePage — compact dense panel layout
-   -----------------------------------------
-   Header, summary, work, and education each sit in a warm-tertiary panel
-   with tight padding. Section headers carry inline counts. Engineering-
-   dossier feel.
-*/
+/* Resume: cream cards on forest stock, fade-mode expand, print view. */
 
-.resume-page {
-  --resume-ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
-  --resume-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
-
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
-  margin: 0 auto;
-  max-width: 1000px;
-  padding: var(--space-4) var(--space-4) var(--space-6);
+/* Header card: name leads, no eyebrow band, no photo, no pulsing dots. */
+.resume-idcard {
+  background: var(--stock-cream);
+  box-shadow: var(--shadow-md);
+  color: var(--cream-ink);
+  padding: 1.25rem 1.35rem 1.15rem;
+  position: relative;
 }
 
-.resume-panel {
-  background: var(--bg-tertiary);
-  border-radius: var(--border-radius);
-  padding: var(--space-4) var(--space-5);
-  transition:
-    transform 0.4s var(--resume-ease-out),
-    box-shadow 0.4s var(--resume-ease-out);
+.resume-idcard .tape {
+  left: 2.6rem;
+  top: -0.65rem;
+  transform: rotate(-4deg);
 }
 
-/* Stagger the panels in on first visit. Each panel rises slightly later
-   than the previous so the page assembles with a subtle cascade. */
-body.initial-visit .resume-panel {
-  animation: resumePanelIn 0.5s var(--resume-ease-out) both;
+.resume-idcard__main {
+  align-items: start;
+  display: grid;
+  gap: 1.4rem;
+  grid-template-columns: 1fr auto;
 }
 
-body.initial-visit .resume-panel:nth-child(1) { animation-delay: 0.04s; }
-body.initial-visit .resume-panel:nth-child(2) { animation-delay: 0.12s; }
-body.initial-visit .resume-panel:nth-child(3) { animation-delay: 0.20s; }
-body.initial-visit .resume-panel:nth-child(4) { animation-delay: 0.28s; }
-
-@keyframes resumePanelIn {
-  from {
-    opacity: 0;
-    transform: translateY(8px) scale(0.985);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-/* =============================================================
-   Header panel
-   ============================================================= */
-
-.resume-head {
-  align-items: center;
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-3);
-  justify-content: space-between;
-}
-
-.resume-name {
-  color: var(--heading-color);
-  cursor: default;
-  display: inline-block;
-  font-family: "Barlow Semi Condensed", sans-serif;
-  font-size: clamp(2rem, 3.8vw, 2.75rem);
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  line-height: 1.05;
-  margin: 0 0 0.4rem;
-}
-
-.resume-tagline {
-  color: var(--text-tertiary);
-  font-size: var(--font-sm);
+.resume-idcard__name {
+  color: var(--cream-ink);
+  font-size: clamp(1.8rem, 4.5vw, 2.35rem);
+  line-height: 1;
   margin: 0;
 }
 
-.resume-head__actions {
-  align-items: center;
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-3);
-}
-
-/* =============================================================
-   Contact links
-   ============================================================= */
-
-.resume-contact {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem 1.1rem;
-}
-
-.resume-contact__link {
-  align-items: center;
-  background: transparent;
-  border: none;
-  color: var(--text-secondary);
-  cursor: pointer;
-  display: inline-flex;
-  font-family: inherit;
-  font-size: var(--font-sm);
-  gap: 0.4rem;
-  padding: 0;
-  text-decoration: none;
-  transition:
-    color var(--transition-fast),
-    transform 0.25s var(--resume-ease-bounce);
-}
-
-.resume-contact__link:hover {
-  color: var(--accent-strong);
-  text-decoration: underline;
-  text-underline-offset: 2px;
-  transform: translateY(-1px);
-}
-
-.resume-contact__link:active {
-  transform: translateY(0) scale(0.97);
-}
-
-.resume-contact__link svg {
-  transition: transform 0.25s var(--resume-ease-bounce);
-}
-
-.resume-contact__link:hover svg {
-  transform: rotate(-6deg) scale(1.1);
-}
-
-.resume-contact__link svg {
-  flex-shrink: 0;
-  opacity: 0.85;
-}
-
-/* =============================================================
-   Pill (solid + ghost variants)
-   ============================================================= */
-
-.resume-pill {
-  align-items: center;
-  background: var(--accent-primary);
-  border: 1px solid var(--accent-primary);
-  border-radius: 999px;
-  color: var(--accent-contrast);
-  cursor: pointer;
-  display: inline-flex;
-  font-family: inherit;
-  font-size: var(--font-xs);
+.resume-idcard__role {
+  color: var(--rose-deep);
+  font-size: 0.97rem;
   font-weight: 600;
-  gap: 0.45rem;
-  padding: 0.5rem 1rem;
-  text-decoration: none;
-  transition:
-    background var(--transition-fast),
-    border-color var(--transition-fast),
-    transform 0.25s var(--resume-ease-bounce),
-    box-shadow var(--transition-fast),
-    color var(--transition-fast);
+  margin-top: 0.35rem;
+}
+
+.resume-idcard__where {
+  color: var(--cream-ink-soft);
+  font-size: 0.84rem;
+  margin-top: 0.6rem;
+}
+
+.resume-idcard__rail {
+  line-height: 2;
+  text-align: right;
   white-space: nowrap;
 }
 
-.resume-pill:hover {
-  background: var(--accent-hover);
-  border-color: var(--accent-hover);
-  box-shadow: var(--shadow-sm);
-  color: var(--accent-contrast);
-  transform: translateY(-2px) scale(1.02);
+.resume-idcard__rail a,
+.resume-idcard__rail button {
+  background: none;
+  border: 0;
+  color: var(--rose-deep);
+  cursor: pointer;
+  display: block;
+  font: inherit;
+  margin-left: auto;
+  padding: 0;
+  text-decoration: underline;
 }
 
-.resume-pill:active {
-  transform: translateY(0) scale(0.96);
-  transition-duration: 0.1s;
+.resume-pdf {
+  background: var(--butter) !important;
+  border: 2.5px solid var(--cream-ink) !important;
+  border-radius: var(--radius-pill);
+  color: var(--butter-ink) !important;
+  font-family: "Hanken Grotesk", sans-serif !important;
+  font-size: 0.85rem !important;
+  font-weight: 800;
+  margin-top: 0.55rem;
+  padding: 0.26rem 0.9rem !important;
+  text-decoration: none !important;
+  transition: transform var(--transition-fast);
 }
 
-.resume-pill svg {
-  flex-shrink: 0;
-  transition: transform 0.3s var(--resume-ease-bounce);
+.resume-pdf:hover {
+  transform: scale(1.05, 0.95);
 }
 
-.resume-pill:hover svg {
-  transform: rotate(-8deg) scale(1.1);
+.resume-pdf:active {
+  transform: scale(0.93, 1.05);
 }
 
-.resume-pill--ghost {
-  background: transparent;
-  border-color: var(--accent-primary);
-  color: var(--accent-strong);
-}
-
-.resume-pill--ghost:hover {
-  background: var(--accent-primary);
-  border-color: var(--accent-primary);
-  color: var(--accent-contrast);
-}
-
-/* =============================================================
-   Section header row
-   ============================================================= */
-
-.resume-section-row {
-  align-items: baseline;
-  display: flex;
-  gap: var(--space-2);
-  justify-content: space-between;
-  margin-bottom: var(--space-3);
-}
-
-.resume-section-title {
-  color: var(--heading-color);
-  font-family: "Barlow Semi Condensed", sans-serif;
-  font-size: 1.25rem;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  margin: 0;
-}
-
-.resume-count {
-  color: var(--text-muted);
-  font-size: 0.6875rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-/* =============================================================
-   Filter controls
-   ============================================================= */
-
-.resume-controls {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-  margin-bottom: var(--space-3);
-}
-
-.resume-filter-input {
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-medium);
-  border-radius: 999px;
-  color: var(--text-primary);
-  font-family: inherit;
-  font-size: var(--font-sm);
-  padding: 0.55rem 1rem;
-  transition:
-    border-color var(--transition-fast),
-    box-shadow var(--transition-fast),
-    transform 0.25s var(--resume-ease-out);
-  width: 100%;
-}
-
-.resume-filter-input::placeholder {
-  color: var(--text-muted);
-}
-
-.resume-filter-input:focus {
-  border-color: var(--accent-primary);
-  box-shadow: var(--focus-ring);
-  outline: none;
-  transform: scale(1.005);
-}
-
-.resume-chips {
+/* Toolbar */
+.resume-toolbar {
+  align-items: center;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4rem;
+  gap: 0.45rem;
+  margin: var(--space-3) 0 0.55rem;
 }
 
 .resume-chip {
   background: transparent;
-  border: 1px solid var(--border-medium);
-  border-radius: 999px;
-  color: var(--text-tertiary);
+  border: 2px solid var(--cream);
+  border-radius: var(--radius-pill);
+  color: var(--cream);
   cursor: pointer;
-  font-family: inherit;
-  font-size: 0.6875rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  padding: 0.35rem 0.75rem;
-  text-transform: uppercase;
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.18rem 0.7rem;
   transition:
+    transform var(--transition-fast),
     background var(--transition-fast),
-    border-color var(--transition-fast),
-    color var(--transition-fast),
-    transform 0.25s var(--resume-ease-bounce);
+    color var(--transition-fast);
 }
 
 .resume-chip:hover {
-  border-color: var(--accent-primary);
-  color: var(--accent-strong);
-  transform: translateY(-1px) scale(1.04);
+  transform: scale(1.05, 0.96);
 }
 
-.resume-chip:active {
-  transform: translateY(0) scale(0.94);
-  transition-duration: 0.1s;
+.resume-chip__n {
+  font-family: "Sometype Mono", monospace;
+  font-size: 0.68rem;
+  margin-left: 0.28rem;
+  opacity: 0.72;
 }
 
-.resume-chip.is-active {
-  animation: resumeChipPop 0.4s var(--resume-ease-bounce);
-  background: var(--accent-primary);
-  border-color: var(--accent-primary);
-  color: var(--accent-contrast);
+.resume-chip[aria-pressed="true"] {
+  background: var(--rose);
+  border-color: var(--rose);
+  color: var(--rose-ink-contrast);
 }
 
-@keyframes resumeChipPop {
-  0%   { transform: scale(1); }
-  40%  { transform: scale(1.08); }
-  100% { transform: scale(1); }
+/* "all" is the emphasized escape hatch. */
+.resume-chip--all {
+  background: var(--butter);
+  border-color: var(--butter);
+  color: var(--butter-ink);
 }
 
-.resume-controls__count {
-  color: var(--text-tertiary);
-  font-size: var(--font-xs);
-  font-style: italic;
+.resume-chip--all[aria-pressed="true"] {
+  background: var(--rose);
+  border-color: var(--cream);
+  box-shadow: 0 0 0 2px var(--butter);
+  color: var(--rose-ink-contrast);
 }
 
-/* =============================================================
-   No results
-   ============================================================= */
-
-.resume-no-results {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-  padding: var(--space-5) 0;
-  text-align: center;
-}
-
-.resume-no-results p {
-  color: var(--text-tertiary);
-  margin: 0;
-}
-
-/* =============================================================
-   Tags
-   ============================================================= */
-
-.resume-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.3rem 0.35rem;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.resume-tag {
-  background: transparent;
-  border: 1px solid var(--border-medium);
-  border-radius: 999px;
-  color: var(--text-tertiary);
-  font-size: 0.625rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  line-height: 1;
-  padding: 0.32rem 0.6rem;
-  text-transform: uppercase;
-  transition:
-    border-color 0.2s var(--resume-ease-out),
-    color 0.2s var(--resume-ease-out),
-    transform 0.25s var(--resume-ease-bounce);
-  white-space: nowrap;
-}
-
-.resume-job:hover .resume-tag {
-  border-color: var(--border-strong);
-}
-
-.resume-tag:hover {
-  border-color: var(--accent-primary);
-  color: var(--accent-strong);
-  transform: translateY(-1px) scale(1.05);
-}
-
-/* =============================================================
-   Job entries
-   ============================================================= */
-
-.resume-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.resume-job {
-  border-bottom: 1px solid var(--border-subtle);
-}
-
-.resume-job:last-child {
-  border-bottom: none;
-}
-
-.resume-job__head {
-  background: transparent;
-  border: none;
-  border-radius: var(--border-radius-sm);
-  color: inherit;
-  cursor: pointer;
-  display: block;
-  font-family: inherit;
-  margin: 0 calc(-1 * var(--space-2));
-  padding: var(--space-2);
-  text-align: left;
-  transition:
-    background 0.2s var(--resume-ease-out),
-    transform 0.2s var(--resume-ease-bounce);
-  width: calc(100% + var(--space-3));
-}
-
-.resume-job__head:hover {
-  background: color-mix(in srgb, var(--bg-secondary) 50%, transparent);
-}
-
-.resume-job__head:active {
-  transform: scale(0.99);
-  transition-duration: 0.1s;
-}
-
-.resume-job__top {
-  align-items: center;
-  display: flex;
-  gap: var(--space-2);
-  justify-content: space-between;
-}
-
-.resume-job__title {
-  color: var(--heading-color);
-  font-family: "Hanken Grotesk", sans-serif;
-  font-size: 1.0625rem;
-  font-weight: 600;
-  line-height: 1.25;
-  margin: 0;
-}
-
-.resume-job__chevron {
-  color: var(--text-tertiary);
-  flex-shrink: 0;
-  transition: transform 0.35s var(--resume-ease-bounce);
-}
-
-.resume-job__head:hover .resume-job__chevron {
-  color: var(--accent-strong);
-  transform: translateX(2px);
-}
-
-.resume-job.is-open .resume-job__chevron {
-  color: var(--accent-strong);
-  transform: rotate(90deg);
-}
-
-.resume-job.is-open .resume-job__head:hover .resume-job__chevron {
-  transform: rotate(90deg) translateX(2px);
-}
-
-.resume-job__meta {
-  align-items: baseline;
-  color: var(--text-tertiary);
-  display: flex;
-  flex-wrap: wrap;
-  font-size: var(--font-sm);
-  gap: 0.4rem;
-  margin: 0.3rem 0 0.55rem;
-}
-
-.resume-job__company {
-  color: var(--text-secondary);
-}
-
-a.resume-job__company:hover {
-  color: var(--accent-strong);
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
-
-.resume-job__dates::before {
-  color: var(--text-muted);
-  content: "·";
-  margin-right: 0.4rem;
-}
-
-.resume-job__details {
-  animation: resumeDetailsIn 0.35s var(--resume-ease-out) both;
-  color: var(--text-secondary);
-  display: flex;
-  flex-direction: column;
-  font-size: var(--font-sm);
-  gap: 0.4rem;
-  list-style: none;
-  margin: 0 0 var(--space-2);
-  padding: 0;
-  transform-origin: top;
-}
-
-@keyframes resumeDetailsIn {
-  from {
-    opacity: 0;
-    transform: translateY(-4px) scaleY(0.96);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scaleY(1);
-  }
-}
-
-.resume-job__details li {
-  animation: resumeDetailLi 0.4s var(--resume-ease-out) both;
-}
-
-.resume-job__details li:nth-child(1) { animation-delay: 0.04s; }
-.resume-job__details li:nth-child(2) { animation-delay: 0.08s; }
-.resume-job__details li:nth-child(3) { animation-delay: 0.12s; }
-.resume-job__details li:nth-child(4) { animation-delay: 0.16s; }
-.resume-job__details li:nth-child(5) { animation-delay: 0.2s; }
-
-@keyframes resumeDetailLi {
-  from {
-    opacity: 0;
-    transform: translateX(-4px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-.resume-job__details > li {
-  line-height: 1.55;
-  padding-left: 1rem;
+.resume-searchwrap {
+  flex: 1;
+  min-width: 11rem;
   position: relative;
 }
 
-.resume-job__details > li::before {
-  background: var(--accent-primary);
-  border-radius: 50%;
-  content: "";
-  height: 4px;
-  left: 0;
-  opacity: 0.7;
-  position: absolute;
-  top: 0.7em;
-  width: 4px;
+.resume-search {
+  background: var(--forest-panel);
+  border: 2px solid var(--cream);
+  color: var(--cream);
+  font: inherit;
+  font-size: 0.85rem;
+  padding: 0.2rem 1.8rem 0.2rem 0.6rem;
+  width: 100%;
 }
 
-/* =============================================================
-   Education
-   ============================================================= */
+.resume-search::placeholder {
+  color: var(--text-muted);
+}
+
+.resume-slash {
+  border: 1px solid var(--text-muted);
+  border-radius: 3px;
+  color: var(--text-muted);
+  font-family: "Sometype Mono", monospace;
+  font-size: 0.62rem;
+  padding: 0 0.25rem;
+  pointer-events: none;
+  position: absolute;
+  right: 0.4rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.resume-util {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  margin-bottom: 0.6rem;
+}
+
+.resume-util button,
+.resume-activetag button {
+  background: none;
+  border: 0;
+  color: var(--rose-bright);
+  cursor: pointer;
+  font: inherit;
+  padding: 0;
+  text-decoration: underline;
+}
+
+/* Entries. contain: expanding one card must not repaint the list.
+   Only transform transitions — never box-shadow (repaints per frame). */
+.resume-entry {
+  background: var(--stock-cream);
+  box-shadow: var(--shadow-sm);
+  color: var(--cream-ink);
+  contain: layout paint style;
+  margin-bottom: 0.55rem;
+  position: relative;
+  transition: transform 0.18s var(--ease-out);
+}
+
+.resume-entry:hover {
+  transform: rotate(0deg) translateY(-2px);
+}
+
+.resume-entry__head {
+  align-items: center;
+  background: none;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  display: grid;
+  font: inherit;
+  gap: 0.3rem 0.9rem;
+  grid-template-columns: 1fr auto auto;
+  padding: 0.7rem 0.9rem;
+  text-align: left;
+  width: 100%;
+}
+
+.resume-entry__title {
+  font-family: "Young Serif", Georgia, serif;
+  font-size: 1.05rem;
+  grid-column: 1;
+}
+
+.resume-entry__org {
+  color: var(--rose-deep);
+  font-size: 0.85rem;
+  font-weight: 700;
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.resume-entry__org a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+.resume-entry__dates {
+  align-self: center;
+  color: var(--cream-ink-soft);
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  white-space: nowrap;
+}
+
+.resume-now {
+  color: var(--rose-deep);
+  font-weight: 700;
+}
+
+/* The circular toggle, in its own column. */
+.resume-entry__toggle {
+  align-self: center;
+  border: 2px solid var(--rose-deep);
+  border-radius: 50%;
+  color: var(--rose-deep);
+  display: grid;
+  font-family: "Sometype Mono", monospace;
+  font-size: 1rem;
+  font-weight: 700;
+  grid-column: 3;
+  grid-row: 1 / span 2;
+  height: 26px;
+  line-height: 1;
+  place-items: center;
+  transition:
+    background var(--transition-base),
+    color var(--transition-base),
+    transform 0.25s var(--ease-out);
+  width: 26px;
+}
+
+.resume-entry__head:hover .resume-entry__toggle {
+  background: var(--rose-deep);
+  color: var(--stock-cream);
+}
+
+.resume-entry__head[aria-expanded="true"] .resume-entry__toggle {
+  background: var(--rose-deep);
+  color: var(--stock-cream);
+  transform: rotate(180deg);
+}
+
+.resume-entry__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.32rem;
+  padding: 0 0.9rem 0.65rem;
+}
+
+.resume-tag {
+  background: oklch(96% 0.02 95deg);
+  border: 1px solid oklch(72% 0.03 90deg);
+  border-radius: 3px;
+  color: var(--cream-ink-soft);
+  font: inherit;
+  font-family: "Sometype Mono", monospace;
+  font-size: 0.64rem;
+  padding: 0.06rem 0.42rem;
+}
+
+.resume-tag--clickable {
+  cursor: pointer;
+}
+
+.resume-tag--clickable:hover,
+.resume-tag.is-on {
+  background: var(--butter);
+  border-color: oklch(55% 0.12 90deg);
+  color: var(--butter-ink);
+}
+
+.resume-tag--solo {
+  border-style: dashed;
+  opacity: 0.62;
+}
+
+/* Fade mode expand: height snaps in one reflow, body fades and slides on
+   the GPU. Do NOT replace with an animated max-height — that is a layout
+   animation and it stutters in Firefox. */
+.resume-entry__bodywrap {
+  height: 0;
+  overflow: hidden;
+}
+
+.resume-entry__bodywrap.is-open {
+  height: auto;
+}
+
+.resume-entry__body {
+  font-size: 0.86rem;
+  line-height: 1.5;
+  margin: 0;
+  opacity: 0;
+  padding: 0 0.9rem 0.8rem 2rem;
+  transform: translateY(-7px);
+  transition:
+    opacity 0.24s ease-out,
+    transform 0.28s var(--ease-out);
+}
+
+.resume-entry__bodywrap.is-open .resume-entry__body {
+  opacity: 1;
+  transform: none;
+}
+
+.resume-entry mark {
+  background: var(--butter);
+  color: var(--butter-ink);
+  padding: 0 0.1em;
+}
+
+.resume-empty {
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.resume-empty button {
+  background: none;
+  border: 0;
+  color: var(--rose-deep);
+  cursor: pointer;
+  font: inherit;
+  text-decoration: underline;
+}
 
 .resume-edu {
   align-items: baseline;
+  background: var(--stock-butter);
+  box-shadow: var(--shadow-sm);
+  color: var(--butter-ink);
   display: flex;
   flex-wrap: wrap;
-  font-size: var(--font-sm);
-  gap: 0.5rem var(--space-2);
+  gap: var(--space-2);
+  justify-content: space-between;
+  margin-top: var(--space-2);
+  padding: 0.75rem 0.95rem;
 }
 
-.resume-edu__degree {
-  color: var(--heading-color);
-  font-family: "Hanken Grotesk", sans-serif;
-  font-size: 1.0625rem;
-  font-weight: 600;
-  margin: 0;
+.resume-edu strong {
+  font-family: "Young Serif", Georgia, serif;
+  font-size: 1.05rem;
+  font-weight: 400;
 }
 
-.resume-edu__school {
-  color: var(--text-tertiary);
+.resume-edu .mono-meta {
+  color: var(--butter-ink);
 }
 
-.resume-edu__year {
-  color: var(--text-muted);
-  font-style: italic;
-  margin-left: auto;
+.resume-printhead {
+  display: none;
 }
 
-/* =============================================================
-   Mobile
-   ============================================================= */
-
-@media (width <= 640px) {
-  .resume-page {
-    padding: var(--space-3) var(--space-2) var(--space-5);
+@media (width <= 620px) {
+  /* The three-column head starves the title at phone width; dates drop to
+     their own line under the org instead. */
+  .resume-entry__head {
+    grid-template-columns: 1fr auto;
   }
 
-  .resume-panel {
-    padding: var(--space-3) var(--space-3);
+  .resume-entry__dates {
+    grid-column: 1;
+    grid-row: 3;
+    white-space: normal;
   }
 
-  .resume-head {
-    align-items: flex-start;
-    flex-direction: column;
+  .resume-entry__toggle {
+    grid-column: 2;
+    grid-row: 1 / span 3;
   }
 
-  .resume-edu {
-    flex-direction: column;
-    gap: 0.4rem;
+  .resume-entry__tags {
+    display: none;
   }
 
-  .resume-edu__year {
+  .resume-idcard__main {
+    grid-template-columns: 1fr;
+  }
+
+  .resume-idcard__rail {
+    text-align: left;
+  }
+
+  .resume-idcard__rail a,
+  .resume-idcard__rail button {
     margin-left: 0;
   }
 }
 
-/* =============================================================
-   Copy feedback toast
-   ============================================================= */
-
-.copy-feedback {
-  background-color: var(--feedback-success-bg);
-  border: 1px solid var(--feedback-success-border);
-  border-radius: var(--border-radius);
-  bottom: var(--space-4);
-  color: var(--feedback-success-text);
-  font-size: var(--font-sm);
-  font-weight: 500;
-  left: 50%;
-  opacity: 0;
-  padding: var(--space-2) var(--space-3);
-  pointer-events: none;
-  position: fixed;
-  transform: translateX(-50%) translateY(20px);
-  transition:
-    opacity var(--transition-base),
-    transform var(--transition-base);
-  z-index: 100;
-}
-
-.copy-feedback.is-visible {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translateX(-50%) translateY(0);
-}
-
-/* =============================================================
-   Print
-   ============================================================= */
+/* ===================================
+   Print: a standard resume.
+   Everything expands (React sets printing state on beforeprint);
+   forest, tape, tilt, toolbar, tags, and toggles disappear.
+   =================================== */
 
 @media print {
-  .resume-page {
-    background: #fff;
-    color: #000;
+  @page {
+    margin: 0.55in;
+  }
+
+  body {
+    background: #fff !important;
+    color: #000 !important;
+    font-size: 10.5pt;
+    line-height: 1.35;
+  }
+
+  .main-header,
+  .footer,
+  .resume-toolbar,
+  .resume-util,
+  .resume-entry__tags,
+  .resume-entry__company-link,
+  .resume-entry__toggle,
+  .resume-pdf,
+  .resume-idcard .tape {
+    display: none !important;
+  }
+
+  .page-content {
     max-width: none;
     padding: 0;
   }
 
-  .resume-panel {
-    background: transparent;
-    border: 1px solid #ddd;
-    margin-bottom: var(--space-2);
-    padding: var(--space-3);
-  }
-
-  .resume-pill,
-  .resume-controls,
-  .resume-count,
-  .copy-feedback {
-    display: none !important;
-  }
-
-  .resume-name,
-  .resume-section-title,
-  .resume-job__title,
-  .resume-edu__degree {
-    color: #000;
-  }
-
-  .resume-tagline,
-  .resume-job__meta,
-  .resume-job__details,
-  .resume-edu__school {
-    color: #333;
-  }
-
-  .resume-tag {
-    border-color: #999;
-    color: #444;
-  }
-
-  /* Expand all job details when printing */
-  .resume-job__details {
-    display: flex !important;
-  }
-}
-
-/* =============================================================
-   Reduced-motion safety
-   ============================================================= */
-
-@media (prefers-reduced-motion: reduce) {
-  body.initial-visit .resume-panel {
-    animation: none;
-  }
-
-  .resume-pill,
-  .resume-pill:hover,
-  .resume-pill:active,
-  .resume-chip,
-  .resume-chip:hover,
-  .resume-chip:active,
-  .resume-tag:hover,
-  .resume-contact__link:hover,
-  .resume-contact__link:active,
-  .resume-job__head:active,
-  .resume-filter-input:focus {
+  .resume-idcard {
+    background: none !important;
+    border-bottom: 1.5pt solid #000;
+    box-shadow: none !important;
+    color: #000 !important;
+    margin-bottom: 10pt;
+    padding: 0 0 8pt !important;
     transform: none !important;
   }
 
-  .resume-pill svg,
-  .resume-contact__link svg,
-  .resume-job__chevron {
-    transition-duration: 0.01ms;
+  .resume-idcard__main {
+    display: block !important;
   }
 
-  .resume-job__details,
-  .resume-job__details li {
-    animation: none;
+  .resume-idcard__name {
+    color: #000 !important;
+    font-size: 20pt;
   }
 
-  @keyframes resumeChipPop {
-    0%, 100% { transform: none; }
+  .resume-idcard__role,
+  .resume-idcard__where {
+    color: #000 !important;
   }
-}
 
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(10px); }
-  to   { opacity: 1; transform: translateY(0); }
+  .resume-idcard__rail {
+    font-size: 9.5pt;
+    line-height: 1.5;
+    margin-top: 4pt;
+    text-align: left !important;
+    white-space: normal;
+  }
+
+  .resume-idcard__rail a,
+  .resume-idcard__rail button {
+    color: #000 !important;
+    display: inline !important;
+    margin: 0 0.6em 0 0 !important;
+    text-decoration: none !important;
+  }
+
+  .resume-printhead {
+    border-bottom: 1pt solid #000;
+    color: #000;
+    display: block;
+    font-size: 11pt;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    margin: 12pt 0 7pt;
+    padding-bottom: 2pt;
+    text-transform: uppercase;
+  }
+
+  .resume-entry {
+    background: none !important;
+    box-shadow: none !important;
+    break-inside: avoid;
+    contain: none;
+    margin: 0 0 9pt !important;
+    transform: none !important;
+  }
+
+  .resume-entry__head {
+    display: block !important;
+    padding: 0 !important;
+  }
+
+  .resume-entry__title {
+    color: #000;
+    display: inline;
+    font-family: "Hanken Grotesk", Arial, sans-serif;
+    font-size: 11pt;
+    font-weight: 800;
+  }
+
+  .resume-entry__title::after {
+    content: " · ";
+    font-weight: 400;
+  }
+
+  .resume-entry__org {
+    color: #000 !important;
+    display: inline !important;
+    font-size: 11pt;
+    font-weight: 600;
+  }
+
+  .resume-entry__org a {
+    color: #000 !important;
+    text-decoration: none !important;
+  }
+
+  .resume-entry__dates {
+    color: #000 !important;
+    display: block !important;
+    font-family: "Hanken Grotesk", Arial, sans-serif;
+    font-size: 9.5pt;
+    font-style: italic;
+    margin-top: 1pt;
+  }
+
+  .resume-now {
+    color: #000 !important;
+    font-weight: 400;
+  }
+
+  .resume-entry__bodywrap {
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  .resume-entry__body {
+    color: #000;
+    font-size: 10pt;
+    opacity: 1 !important;
+    padding: 2pt 0 0 14pt !important;
+    transform: none !important;
+  }
+
+  .resume-entry mark {
+    background: none !important;
+    color: #000 !important;
+  }
+
+  .resume-edu {
+    background: none !important;
+    box-shadow: none !important;
+    color: #000 !important;
+    display: block;
+    margin-top: 4pt !important;
+    padding: 0 !important;
+    transform: none !important;
+  }
+
+  .resume-edu strong {
+    font-family: "Hanken Grotesk", Arial, sans-serif;
+    font-size: 11pt;
+    font-weight: 800;
+  }
+
+  .resume-edu .mono-meta {
+    color: #000 !important;
+  }
 }

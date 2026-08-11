@@ -1,364 +1,282 @@
-/* HomePage Styles */
+/* Homepage: intro scrap + polaroid stack, then sincere selected work. */
 
-.home {
-  max-width: min(calc(var(--max-width) + 320px), 1720px);
-}
+/* The hero runs at 780px — slightly past the reading column, so it bleeds
+   out symmetrically only as far as the viewport leaves room (2rem margins).
 
-/* ===================================
-   Hero
-   =================================== */
-
-.hero-section {
-  animation: fadeUp 0.6s ease-out both;
-  margin: var(--space-2) auto var(--space-8);
-  padding: 0 var(--space-4) var(--space-2);
-}
-
-.hero-layout {
-  align-items: center;
-  display: flex;
-  gap: clamp(var(--space-3), 7vw, var(--space-10));
-}
-
-.hero-media {
-  display: flex;
-  flex: 0 0 min(320px, 30%);
-  justify-content: center;
-  position: relative;
-}
-
-/* Rounded-geometry motif: a matcha ring and a rose dot frame the polaroids. */
-.hero-media__ring {
-  border: 2px solid var(--matcha-primary);
-  border-radius: 50%;
-  height: min(280px, 80%);
-  left: 50%;
-  opacity: 0.5;
-  pointer-events: none;
-  position: absolute;
-  top: 50%;
-  transform: translate(-50%, -45%);
-  width: min(280px, 90%);
-  z-index: 0;
-}
-
-.hero-media__dot {
-  background: var(--accent-primary);
-  border-radius: 50%;
-  height: 26px;
-  pointer-events: none;
-  position: absolute;
-  right: 6%;
-  top: 8%;
-  width: 26px;
-  z-index: 2;
-}
-
-.hero-media .polaroid-stack {
-  position: relative;
-  z-index: 1;
-}
-
-.hero-copy {
-  flex: 1;
-  max-width: 640px;
-}
-
-.hero-title {
-  animation: fadeUp 0.5s ease-out both;
-  color: var(--heading-color);
-  font-family: "Barlow Semi Condensed", sans-serif;
-  font-size: clamp(2.6rem, 6.5vw, 4.4rem);
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  line-height: 1.14;
-  margin: 0 0 var(--space-3);
-  text-wrap: balance;
-}
-
-/* Marker-style highlight that hugs the word. inline-block + a short
-   line-height keeps the rose box close to the cap height instead of
-   ballooning to the full line box, and the extra line-height on the
-   title keeps it clear of the descenders above. */
-.hero-title__mark {
-  background: var(--accent-primary);
-  border-radius: 0.12em;
-  color: var(--accent-contrast);
-  display: inline-block;
-  line-height: 0.86;
-  padding: 0.12em 0.16em 0.08em;
-  white-space: nowrap;
-}
-
-.hero-tagline {
-  animation: fadeUp 0.55s ease-out both;
-  animation-delay: 0.05s;
-  color: var(--text-secondary);
-  font-size: var(--font-body);
-  line-height: 1.6;
-  margin: 0 0 var(--space-3);
-  max-width: 60ch;
-}
-
-.hero-actions {
-  animation: fadeUp 0.6s ease-out both;
-  animation-delay: 0.1s;
-  display: inline-flex;
-  flex-wrap: wrap;
-  gap: var(--space-2);
-}
-
-/* ===================================
-   What I do
-   =================================== */
-
-.home-facets {
-  animation: fadeUp 0.6s ease-out both;
-  display: grid;
-  gap: 1px;
-  grid-template-columns: repeat(3, 1fr);
-  background: var(--border-subtle);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--border-radius-lg);
-  margin: 0 auto var(--space-8);
-  max-width: var(--max-width-narrow);
-  overflow: hidden;
-}
-
-.facet {
-  background: var(--surface-panel);
-  padding: var(--space-4);
-}
-
-.facet__title {
-  font-family: "Barlow Semi Condensed", sans-serif;
-  font-size: 1.25rem;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  margin: 0 0 var(--space-1);
-  padding-left: 1.1rem;
-  position: relative;
-}
-
-.facet__title::before {
-  border-radius: 50%;
-  content: "";
-  height: 9px;
-  left: 0;
-  position: absolute;
-  top: 0.55em;
-  width: 9px;
-}
-
-.facet__title--rose::before {
-  background: var(--accent-primary);
-}
-
-.facet__title--matcha::before {
-  background: var(--matcha-primary);
-}
-
-.facet__title--rose-strong::before {
-  background: var(--accent-strong);
-}
-
-.facet__body {
-  color: var(--text-tertiary);
-  font-size: var(--font-sm);
-  margin: 0;
-}
-
-/* ===================================
-   Selected work
-   =================================== */
-
-.home-selected {
-  animation: fadeUp 0.6s ease-out both;
-  margin: 0 auto var(--space-8);
-  max-width: var(--max-width-narrow);
-}
-
-.home-selected__head {
-  align-items: baseline;
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2);
-  justify-content: space-between;
-  margin-bottom: var(--space-3);
-}
-
-.home-selected__head h2 {
-  font-size: var(--font-h2);
-  margin: 0;
-}
-
-.home-selected__all {
-  align-items: center;
-  border: none;
-  color: var(--text-secondary);
-  display: inline-flex;
-  font-size: var(--font-sm);
-  font-weight: 600;
-  gap: 0.3rem;
-}
-
-.home-selected__all:hover {
-  border: none;
-  color: var(--accent-strong);
-}
-
-.home-selected__grid {
+   The photo column is a definite width on purpose: sizing it from `auto` made
+   the track depend on a height that depended on the track, so the stack
+   resolved wider than its own column and hung off the right of the page. */
+.home-top {
+  align-items: stretch;
   display: grid;
   gap: var(--space-3);
+  grid-template-columns: minmax(0, 1fr) 280px;
+  margin-bottom: var(--space-6);
+  margin-inline: calc(-1 * clamp(0rem, (780px - 100%) / 2, (100vw - 100% - 4rem) / 2));
+  max-width: none;
+}
+
+/* Left column: intro on top, stickies beneath, sized to their text. */
+.home-top__left {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.home-hero__scrap {
+  font-size: var(--font-body-lg);
+  transform: rotate(0.5deg);
+}
+
+.home-hero__scrap .tape {
+  left: 40%;
+  top: -0.7rem;
+}
+
+.home-facets {
+  align-items: start;
+  display: grid;
+  gap: var(--space-2);
   grid-template-columns: repeat(3, 1fr);
 }
 
-.work-card {
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--border-radius);
-  background: var(--bg-tertiary);
+.home-facet {
+  padding: var(--space-2);
+}
+
+.home-facet:nth-child(1) {
+  transform: rotate(-0.8deg);
+}
+
+.home-facet:nth-child(2) {
+  transform: rotate(0.6deg);
+}
+
+.home-facet:nth-child(3) {
+  transform: rotate(-0.4deg);
+}
+
+.home-facet__title {
+  color: var(--rose-deep);
+  font-size: 1.15rem;
+  margin-bottom: 0.25rem;
+}
+
+.home-facet:nth-child(2) .home-facet__title {
+  color: var(--butter-ink);
+}
+
+.home-facet:nth-child(3) .home-facet__title {
+  color: var(--forest);
+}
+
+.home-facet__body {
+  color: var(--cream-ink);
+  font-size: var(--font-sm);
+  margin: 0;
+}
+
+/* Right column: the stack fills the track width and keeps true instant-film
+   proportions, centered against the taller text column. */
+.home-top__right {
+  align-items: center;
   display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  text-decoration: none;
-  transition:
-    transform var(--transition-base),
-    border-color var(--transition-base),
-    box-shadow var(--transition-base);
+  justify-content: center;
 }
 
-.work-card:hover {
-  border-color: var(--accent-primary);
-  box-shadow: var(--shadow-md);
-  transform: translateY(-3px);
-}
-
-.work-card__media {
-  aspect-ratio: 16 / 10;
-  overflow: hidden;
-}
-
-.work-card__img,
-.work-card__img img {
-  display: block;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center;
+.home-top__right .polaroid-stack {
+  aspect-ratio: 158 / 246;
+  height: auto;
   width: 100%;
 }
 
-.work-card__body {
-  padding: var(--space-2) var(--space-3) var(--space-3);
+@media (width <= 760px) {
+  .home-top {
+    gap: var(--space-4);
+    grid-template-columns: 1fr;
+  }
+
+  /* Mobile: the stickies go, so the intro and photos stay above the fold. */
+  .home-facets {
+    display: none;
+  }
+
+  /* Photos lead on mobile; a bigger, level stack reads much better than a
+     small tilted one. */
+  .home-top__right {
+    justify-content: center;
+    order: -1;
+    transform: none;
+  }
+
+  .home-top__right .polaroid-stack {
+    height: auto;
+    max-height: none;
+    width: min(232px, 62vw);
+  }
 }
 
-.work-card__title {
-  color: var(--heading-color);
-  font-family: "Hanken Grotesk", sans-serif;
-  font-size: 1.0625rem;
-  font-weight: 600;
-  margin: 0;
-}
-
-.work-card__tags {
-  color: var(--text-muted);
-  font-size: var(--font-xs);
-  margin: 0.15rem 0 0;
-}
-
-/* ===================================
-   Closing CTA band
-   =================================== */
+/* Work-with-me band: the loudest ink on the page. */
 
 .home-cta {
-  animation: fadeUp 0.6s ease-out both;
-  background:
-    radial-gradient(120% 140% at 50% 0%, color-mix(in srgb, var(--accent-primary) 26%, transparent), transparent 70%),
-    var(--bg-tertiary);
-  border: 1px solid var(--accent-muted);
-  border-radius: var(--border-radius-lg);
-  margin: 0 auto;
-  max-width: var(--max-width-narrow);
-  padding: var(--space-6) var(--space-4);
+  background: var(--rose);
+  border: 3px solid var(--cream);
+  box-shadow: var(--shadow-print);
+  color: var(--rose-ink-contrast);
+  margin: var(--space-6) auto 0;
+  max-width: 34rem;
+  padding: var(--space-3) var(--space-3) calc(var(--space-3) + 0.15rem);
+  position: relative;
   text-align: center;
 }
 
+.home-cta .tape {
+  left: 50%;
+  margin-left: -2.3rem;
+  top: -0.7rem;
+  transform: rotate(-3deg);
+}
+
 .home-cta__title {
+  color: var(--rose-ink-contrast);
   font-size: var(--font-h2);
-  margin: 0 0 var(--space-1);
+  margin-bottom: 0.3rem;
 }
 
 .home-cta__body {
-  color: var(--text-secondary);
-  font-size: var(--font-body);
+  color: var(--rose-ink-contrast);
   margin: 0 auto var(--space-3);
-  max-width: 44ch;
+  max-width: 38ch;
 }
 
-/* ===================================
-   Responsive
-   =================================== */
-
-@media (width <= 1024px) {
-  .hero-layout {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .hero-copy {
-    text-align: center;
-  }
-
-  .hero-media {
-    width: min(360px, 70vw);
-  }
-
-  .hero-title {
-    text-align: center;
-  }
-
-  .hero-tagline {
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .hero-actions {
-    justify-content: center;
-  }
+.home-cta__actions {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
 }
 
-@media (width <= 760px) {
-  .home-facets {
+.home-cta__button {
+  border-color: var(--rose-ink-contrast);
+  font-size: var(--font-body-lg);
+  padding: 0.5rem 1.2rem;
+}
+
+.home-cta__aside {
+  color: var(--rose-ink-contrast);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Selected work */
+
+.home-selected__head {
+  align-items: center;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: var(--space-2);
+  justify-content: space-between;
+  margin-bottom: var(--space-2);
+}
+
+.home-selected__title {
+  font-size: var(--font-h2);
+  margin-bottom: 0;
+}
+
+.home-selected__all {
+  flex: none;
+  font-size: var(--font-sm);
+  padding: 0.28rem 0.85rem;
+}
+
+.home-selected__rule {
+  margin: 0 calc(-1 * var(--space-3)) var(--space-4);
+}
+
+.home-proj {
+  align-items: start;
+  display: grid;
+  gap: var(--space-3);
+  grid-template-columns: 220px 1fr;
+  margin-bottom: var(--space-5);
+}
+
+.home-proj__shot {
+  display: block;
+}
+
+.home-proj__shot .tape {
+  left: 2.6rem;
+  top: -0.7rem;
+}
+
+.home-proj__img {
+  display: block;
+}
+
+.home-proj__img img,
+img.home-proj__img {
+  aspect-ratio: 3 / 2;
+  height: auto;
+  object-fit: cover;
+  object-position: top;
+  width: 100%;
+}
+
+.home-proj__name {
+  font-family: "Young Serif", Georgia, serif;
+  font-weight: 400;
+  margin-bottom: 0.2rem;
+}
+
+.home-proj__meta {
+  margin-bottom: 0.5rem;
+}
+
+.home-proj__desc {
+  margin-bottom: 0.6rem;
+  max-width: 56ch;
+}
+
+.home-proj__desc a {
+  color: var(--rose-bright);
+}
+
+.home-proj__links {
+  display: flex;
+  flex-wrap: wrap;
+  font-weight: 700;
+  gap: var(--space-2);
+}
+
+@media (width <= 640px) {
+  .home-proj {
     grid-template-columns: 1fr;
   }
 
-  .home-selected__grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (width <= 768px) {
-  .hero-section {
-    padding: 0 var(--space-3) var(--space-3);
+  /* Sub-tags are noise at phone width. */
+  .home-proj__meta {
+    display: none;
   }
 
-  .hero-actions {
-    width: 100%;
-  }
-}
-
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
+  /* Title and pill share one line at phone width; wrap is the escape hatch
+     for very narrow screens, not the default. */
+  .home-selected__head {
+    flex-wrap: wrap;
   }
 
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  .home-selected__title {
+    font-size: 1.25rem;
+    white-space: nowrap;
   }
-}
 
-body:not(.initial-visit)
-  :where(.hero-section, .home-facets, .home-selected, .home-cta) {
-  animation: none !important;
+  .home-selected__all {
+    border-width: 2px;
+    flex: none;
+    font-size: 0.72rem;
+    padding: 0.22rem 0.6rem;
+    white-space: nowrap;
+  }
 }

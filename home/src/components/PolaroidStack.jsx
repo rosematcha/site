@@ -21,14 +21,11 @@ const defaultPhotos = [
   },
 ];
 
-function PolaroidStack({ photos = defaultPhotos, cycleInterval = 5000, showLabels = false }) {
+function PolaroidStack({ photos = defaultPhotos, cycleInterval = 5000 }) {
   const [activeIndex, setActiveIndex] = React.useState(0);
   const timerRef = React.useRef(null);
 
-  const photoSet = React.useMemo(
-    () => photos.filter((photo) => Boolean(photo?.src)),
-    [photos],
-  );
+  const photoSet = React.useMemo(() => photos.filter(photo => Boolean(photo?.src)), [photos]);
 
   const clearTimer = React.useCallback(() => {
     if (timerRef.current) {
@@ -45,7 +42,7 @@ function PolaroidStack({ photos = defaultPhotos, cycleInterval = 5000, showLabel
 
     clearTimer();
     timerRef.current = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % photoSet.length);
+      setActiveIndex(prev => (prev + 1) % photoSet.length);
     }, cycleInterval);
   }, [clearTimer, cycleInterval, photoSet.length]);
 
@@ -62,7 +59,7 @@ function PolaroidStack({ photos = defaultPhotos, cycleInterval = 5000, showLabel
       return;
     }
 
-    setActiveIndex((prev) => (prev + 1) % photoSet.length);
+    setActiveIndex(prev => (prev + 1) % photoSet.length);
   }, [photoSet.length]);
 
   const handleInteraction = React.useCallback(() => {
@@ -70,7 +67,7 @@ function PolaroidStack({ photos = defaultPhotos, cycleInterval = 5000, showLabel
     startTimer();
   }, [handleAdvance, startTimer]);
 
-  const handleKeyDown = (event) => {
+  const handleKeyDown = event => {
     if (event.key === "Enter" || event.key === " ") {
       event.preventDefault();
       handleInteraction();
@@ -91,8 +88,7 @@ function PolaroidStack({ photos = defaultPhotos, cycleInterval = 5000, showLabel
       aria-live="polite"
     >
       {photoSet.map((photo, index) => {
-        const relativeIndex =
-          (index - activeIndex + photoSet.length) % photoSet.length;
+        const relativeIndex = (index - activeIndex + photoSet.length) % photoSet.length;
 
         if (relativeIndex >= visibleLayers) {
           return null;
@@ -103,8 +99,6 @@ function PolaroidStack({ photos = defaultPhotos, cycleInterval = 5000, showLabel
         const translateY = relativeIndex * 12;
         const rotation = rotationByLayer[relativeIndex] ?? 0;
         const scale = 1 - relativeIndex * 0.04;
-        const showCaption = showLabels && Boolean(photo.label);
-        const captionText = showCaption ? photo.label : "\u00A0";
 
         return (
           <figure
@@ -116,6 +110,7 @@ function PolaroidStack({ photos = defaultPhotos, cycleInterval = 5000, showLabel
               opacity: Math.max(1 - relativeIndex * 0.25, 0.3),
             }}
           >
+            {isActive && <span className="tape" aria-hidden="true" />}
             <OptimizedImage
               src={photo.src}
               alt={photo.alt}
@@ -123,12 +118,6 @@ function PolaroidStack({ photos = defaultPhotos, cycleInterval = 5000, showLabel
               loading="eager"
               decoding="async"
             />
-            <figcaption
-              className={showCaption ? "" : "is-hidden"}
-              aria-hidden={!showCaption}
-            >
-              {captionText}
-            </figcaption>
           </figure>
         );
       })}
@@ -141,11 +130,9 @@ PolaroidStack.propTypes = {
     PropTypes.shape({
       src: PropTypes.string.isRequired,
       alt: PropTypes.string,
-      label: PropTypes.string,
-    }),
+    })
   ),
   cycleInterval: PropTypes.number,
-  showLabels: PropTypes.bool,
 };
 
 export default PolaroidStack;

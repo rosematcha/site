@@ -1,5 +1,7 @@
 .optimized-image {
-  background-color: var(--surface-panel-muted);
+  /* Pre-load state must read as blank photo paper, not a hole in the page —
+     these frames sit inside cream polaroid mounts on a dark green ground. */
+  background-color: oklch(87% 0.03 100deg);
   overflow: hidden;
   position: relative;
 }
@@ -19,7 +21,7 @@
 
 .optimized-image__placeholder {
   align-items: center;
-  background-color: var(--surface-panel-muted);
+  background-color: oklch(87% 0.03 100deg);
   color: var(--text-tertiary);
   display: flex;
   inset: 0;
