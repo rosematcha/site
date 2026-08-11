@@ -3,7 +3,6 @@
 const fetch = require("node-fetch"); // Using node-fetch v2 for CommonJS compatibility
 
 const { NETLIFY_API_TOKEN, GUESTBOOK_FORM_ID } = process.env;
-
 exports.handler = async function (event, context) {
   if (!NETLIFY_API_TOKEN) {
     console.error("NETLIFY_API_TOKEN is not set in environment variables.");

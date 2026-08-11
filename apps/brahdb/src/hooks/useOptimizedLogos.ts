@@ -11,6 +11,7 @@ interface LogoLoadStatus {
 
 // Memory cache for logo load status across component instances
 const logoStatusCache = new Map<string, 'loaded' | 'error' | 'loading'>();
+const restaurantEntries = Object.values(restaurantDisplay);
 
 /**
  * Load images in parallel batches with configurable concurrency
@@ -96,7 +97,6 @@ export function useOptimizedLogos(): LogoLoadStatus {
   const [errors, setErrors] = useState<string[]>([]);
   const [loadingCount, setLoadingCount] = useState(0);
   
-  const restaurantEntries = Object.values(restaurantDisplay);
   const totalCount = restaurantEntries.length;
 
   useEffect(() => {
@@ -142,7 +142,7 @@ export function useOptimizedLogos(): LogoLoadStatus {
     };
 
     loadLogos();
-  }, []); // Empty dependency array since restaurant data is static
+  }, []);
 
   return {
     loaded,
