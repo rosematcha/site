@@ -1,20 +1,6 @@
 // Centralized project data for reuse (listing and intelligent preloading)
 export const projectsData = [
   {
-    id: "gesso",
-    title: "Gesso",
-    path: "https://usegesso.com/",
-    github: "https://github.com/usegesso",
-    thumbnail: "/img/projects/gesso.webp",
-    thumbnailWidth: 1200,
-    thumbnailHeight: 741,
-    description:
-      "The artists I work with every day struggled to find an easy-to-use and autonomy-respecting portfolio builder. I built Gesso to empower artists to build their own portfolios in a way that respects their ownership and personality, for free.",
-    tech: ["astro"],
-    tags: ["arts", "portfolio", "no-code", "free"],
-    featured: true,
-  },
-  {
     id: "ciphermaniac",
     title: "Ciphermaniac",
     path: "https://ciphermaniac.com/",
@@ -53,18 +39,7 @@ export const projectsData = [
       'I redesigned and upgraded SAY Sí\'s WordPress site, updating from an outdated PHP client and building a <a href="https://github.com/rosematcha/buttercup" target="_blank" rel="noopener noreferrer">bespoke WordPress plugin</a> to increase user flexibility. The new extensible system allows non-technical editors to better highlight the work the org does.',
     tech: ["wordpress", "php", "javascript"],
     tags: ["client work", "nonprofits", "custom plugin", "arts", "youth"],
-  },
-  {
-    id: "lasbookies",
-    title: "Las Bookies",
-    path: "https://lasbookies.com",
-    thumbnail: "/img/projects/lasbookies.webp",
-    thumbnailWidth: 900,
-    thumbnailHeight: 666,
-    description:
-      "I built a simple performant website for Las Bookies, a local accounting firm looking for a brochure website. I matched the client's desired vibes, and integrated Decap CMS and Netlify hosting for simple, low-cost hosting and editing.",
-    tech: ["astro", "decap cms", "netlify"],
-    tags: ["client work", "brochure site", "small business"],
+    featured: true,
   },
   {
     id: "upo",
@@ -89,6 +64,19 @@ export const projectsData = [
       "As part of a consulting contract with Stonewall Action, a queer activism nonprofit out of Austin, I redesigned their website. I valued legibility and accessibility to serve our inclusive mission.",
     tech: ["wordpress", "php"],
     tags: ["client work", "nonprofits", "accessibility", "lgbtq"],
+  },
+  {
+    id: "gesso",
+    title: "Gesso",
+    path: "https://usegesso.com/",
+    github: "https://github.com/usegesso",
+    thumbnail: "/img/projects/gesso.webp",
+    thumbnailWidth: 1200,
+    thumbnailHeight: 741,
+    description:
+      "The artists I work with every day struggled to find an easy-to-use and autonomy-respecting portfolio builder. I built Gesso to empower artists to build their own portfolios in a way that respects their ownership and personality, for free.",
+    tech: ["astro"],
+    tags: ["arts", "portfolio", "no-code", "free"],
   },
   {
     id: "brahdb",
