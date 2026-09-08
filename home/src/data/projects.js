@@ -99,7 +99,7 @@ export const projectsData = [
     github: "https://github.com/rosematcha/filmscraper",
     thumbnail: "/img/projects/filmscraper-thumb.webp",
     thumbnailWidth: 900,
-    thumbnailHeight: 599,
+    thumbnailHeight: 600,
     description:
       "Wanting a more user-friendly view of movies showing in town, I created a minimal frontend utilizing data from Fandango.",
     tech: ["typescript", "playwright", "netlify"],
