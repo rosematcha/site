@@ -19,9 +19,6 @@
     "lint:workspaces": "npm run lint --workspaces --if-present",
     "preview": "npm run -w home preview"
   },
-  "dependencies": {
-    "node-fetch": "^2.7.0"
-  },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
     "@types/react": "^19.1.2",

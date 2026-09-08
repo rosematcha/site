@@ -1,85 +1,72 @@
-/* eslint-disable no-unused-vars */
 // netlify/functions/get-guestbook-entries.js
-const fetch = require("node-fetch"); // Using node-fetch v2 for CommonJS compatibility
+// Reads guestbook signatures from the Netlify Forms API for the wall on /guestbook.
+// ESM: the root package.json sets "type": "module", so this file must not use require().
 
 const { NETLIFY_API_TOKEN, GUESTBOOK_FORM_ID } = process.env;
-exports.handler = async function (event, context) {
-  if (!NETLIFY_API_TOKEN) {
-    console.error("NETLIFY_API_TOKEN is not set in environment variables.");
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ error: "Configuration error: Missing Netlify API Token." }),
-    };
-  }
-  if (!GUESTBOOK_FORM_ID) {
-    console.error("GUESTBOOK_FORM_ID is not set in environment variables.");
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ error: "Configuration error: Missing Guestbook Form ID." }),
-    };
+
+const DATE_FORMAT = {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+  hour: "2-digit",
+  minute: "2-digit",
+};
+
+function jsonResponse(statusCode, payload, headers = {}) {
+  return {
+    statusCode,
+    headers: { "Content-Type": "application/json", ...headers },
+    body: JSON.stringify(payload),
+  };
+}
+
+function missingConfig() {
+  if (!NETLIFY_API_TOKEN) return "NETLIFY_API_TOKEN";
+  if (!GUESTBOOK_FORM_ID) return "GUESTBOOK_FORM_ID";
+  return null;
+}
+
+function formatEntry(submission) {
+  const data = submission.data || {};
+  return {
+    id: submission.id,
+    name: data.name || "Anonymous",
+    website: data.website || "",
+    message: data.message || "No message.",
+    date: new Date(submission.created_at).toLocaleDateString("en-US", DATE_FORMAT),
+  };
+}
+
+export async function handler() {
+  const missing = missingConfig();
+  if (missing) {
+    console.error(`${missing} is not set in environment variables.`);
+    return jsonResponse(500, { error: "Configuration error." });
   }
 
-  const API_ENDPOINT = `https://api.netlify.com/api/v1/forms/${GUESTBOOK_FORM_ID}/submissions`;
+  const endpoint = `https://api.netlify.com/api/v1/forms/${GUESTBOOK_FORM_ID}/submissions`;
 
   try {
-    const response = await fetch(API_ENDPOINT, {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${NETLIFY_API_TOKEN}`,
-        "Content-Type": "application/json",
-      },
+    const response = await fetch(endpoint, {
+      headers: { Authorization: `Bearer ${NETLIFY_API_TOKEN}` },
     });
 
     if (!response.ok) {
-      const errorText = await response.text();
-      console.error(`Netlify API error when fetching submissions: ${response.status} - ${errorText}`);
-      return {
-        statusCode: response.status,
-        body: JSON.stringify({
-          error: `Failed to fetch submissions. Status: ${response.statusText}`,
-          details: errorText,
-        }),
-      };
+      console.error(`Netlify API error ${response.status}: ${await response.text()}`);
+      return jsonResponse(response.status, { error: "Failed to fetch submissions." });
     }
 
     const submissions = await response.json();
+    const entries = submissions
+      .filter(submission => !submission.data?.["bot-field"])
+      .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+      .map(formatEntry);
 
-    const validSubmissions = submissions.filter(
-      (submission) => !submission.data["bot-field"] // Filter out honeypot submissions
-    );
-
-    const formattedEntries = validSubmissions
-      .sort((a, b) => new Date(b.created_at) - new Date(a.created_at)) // Sort before formatting
-      .map((submission) => ({
-        id: submission.id,
-        name: submission.data.name || "Anonymous",
-        website: submission.data.website || "",
-        message: submission.data.message || "No message.",
-        date: new Date(submission.created_at).toLocaleDateString("en-US", {
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-          hour: "2-digit",
-          minute: "2-digit",
-        }),
-      }));
-
-    return {
-      statusCode: 200,
-      headers: {
-        "Content-Type": "application/json",
-        "Cache-Control": "public, s-maxage=60, stale-while-revalidate=300",
-      },
-      body: JSON.stringify(formattedEntries),
-    };
+    return jsonResponse(200, entries, {
+      "Cache-Control": "public, s-maxage=60, stale-while-revalidate=300",
+    });
   } catch (error) {
-    console.error("Error within get-guestbook-entries function:", error);
-    return {
-      statusCode: 500,
-      body: JSON.stringify({
-        error: "Internal error fetching guestbook entries.",
-        details: error.message,
-      }),
-    };
+    console.error("Error fetching guestbook entries:", error);
+    return jsonResponse(500, { error: "Internal error fetching guestbook entries." });
   }
-};
+}
