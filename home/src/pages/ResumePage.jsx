@@ -77,7 +77,7 @@ const allJobs = [
       "Supported student work recognized with awards at local film festivals.",
       "Manage studio equipment and digital resources; coordinate enrollment, documentation, family communication, and program operations.",
     ],
-    featured: true,
+    featured: false,
   },
   {
     id: "combatPower",
@@ -181,7 +181,7 @@ const allJobs = [
       "Designed the organization's WordPress site, graphics, video, and campaign materials.",
       "Developed a custom volunteer check-in and role-assignment tool that replaced paper processes and produced accurate attendance data.",
     ],
-    featured: false,
+    featured: true,
   },
 ];
 
