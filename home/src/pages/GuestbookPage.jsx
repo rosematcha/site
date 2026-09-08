@@ -1,6 +1,6 @@
 // src/pages/GuestbookPage.jsx
-// The pinned wall: signatures become paper notes in four rotating stocks,
-// masonry-packed, each tilted a degree or two. The signing station is a
+// The wall: signatures become paper notes in four rotating stocks, stacked
+// newest to oldest, each tilted a degree or two. The signing station is a
 // taped scrap up top. Backend unchanged (Netlify Forms + function) until
 // the Cloudflare move.
 import React, { useState, useEffect, useCallback } from "react";

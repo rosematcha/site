@@ -1,4 +1,4 @@
-/* Guestbook: taped signing station + pinned wall of paper notes. */
+/* Guestbook: taped signing station + top-down stack of paper notes. */
 
 /* The tally sits with the wall it counts, not floating under the header. */
 .guestbook__tally {
@@ -100,16 +100,15 @@
   margin-top: 0.5rem;
 }
 
-/* The wall */
+/* The wall: one top-down stack, newest signature first. */
 .guestbook-wall {
-  column-gap: 0.75rem;
-  columns: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
 }
 
 .gb-sig {
-  break-inside: avoid;
   font-size: 0.94rem;
-  margin-bottom: 0.75rem;
   padding: 0.7rem 0.85rem;
   transform: rotate(var(--sig-tilt, 0deg));
 }
@@ -186,9 +185,5 @@
     flex: none;
     min-width: 0;
     width: 100%;
-  }
-
-  .guestbook-wall {
-    columns: 1;
   }
 }
