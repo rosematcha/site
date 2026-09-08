@@ -24,9 +24,10 @@ const allJobs = [
     end: null,
     tags: ["nonprofit", "sys admin", "infrastructure", "arts", "automation"],
     details: [
-      "Maintain and troubleshoot 100+ multi-platform devices (Windows, Mac, iOS).",
-      "Implemented an inventory system for 500+ items and led data-driven infrastructure improvements.",
-      "Develop automation scripts and maintain technical documentation and security protocols.",
+      "Administer Google Workspace, device management, network access, backups, AV, purchasing, and account permissions.",
+      "Maintain and troubleshoot 100+ Windows, macOS, and iOS devices, extending the working life of a resource-constrained lab of 2013 Macs.",
+      "Built support processes, automation, documentation, and security practices that made same-day response the norm.",
+      "Implemented an inventory system for 500+ assets, enabling more accurate tracking and infrastructure planning.",
     ],
     featured: true,
   },
@@ -39,10 +40,10 @@ const allJobs = [
     end: null,
     tags: ["nonprofit", "customer service", "community building", "arts"],
     details: [
-      "As a Visitor Services Associate, I am a primary point of contact for guests at Ruby City, a free contemporary art space in San Antonio.",
-      "My role is to convey information on the Linda Pace Foundation's collection, our current exhibitions, Foundation policies, and the building's architecture.",
-      "I proactively address guest needs and resolve issues to ensure all visits are smooth and positive.",
-      "I also provide direct support for public programs and events, assisting with logistics and guest management.",
+      "Open and close galleries; monitor visitor safety, gallery conditions, and security, and maintain visitor logs.",
+      "Welcome and orient guests through tours and conversations about exhibitions, artists, the collection, and the architecture.",
+      "Built an internal, collaborative staff-training system with artwork images, artist data, and comments to support consistent visitor education.",
+      "Advocate for accessible visitor experiences and contribute contract website work for the organization.",
     ],
     featured: true,
   },
@@ -55,9 +56,10 @@ const allJobs = [
     end: null,
     tags: ["education", "photography", "arts", "youth programs"],
     details: [
-      'I teach with UTSA\'s "Saturday Morning Discovery" program, a no-cost program for San Antonio youth to expose them to different artistic mediums.',
-      'Through much of the year, I teach our "Pinhole Photography" course. I teach young artists from ages 7 to 18 (and their parents, if they\'re so courageous) how to use an analog pinhole camera, develop film in a darkroom, and create prints of their work.',
-      'I developed a curriculum for a summer "3-D Photography" course, introducing young artists aged 7 to 12 to the fundamentals of photography and photo editing, as well as a technique to make their photos appear 3-D using anaglyph glasses.',
+      "Teach weekly, no-cost photography classes for San Antonio youth and families for roughly nine months each year.",
+      "Co-lead analog pinhole-photography instruction, including darkroom film development and printmaking, with other teaching artists.",
+      "Independently designed curricula for 3-D photography and DIY iPad photography, introducing youth to camera fundamentals, editing, and accessible creative techniques.",
+      "Select course materials and guide students through hands-on projects in a family-centered learning environment.",
     ],
     featured: true,
   },
@@ -70,28 +72,12 @@ const allJobs = [
     end: "Feb 2025",
     tags: ["nonprofit", "education", "photography", "arts", "youth programs"],
     details: [
-      "Designed and led digital arts workshops (Adobe Suite, photography, video) for youth.",
-      "Managed program operations, including student enrollment and documentation.",
-      "Developed digital resources and organized student artwork showcases.",
+      "Teach and mentor a consistent cohort of roughly 20 youth per term in photography, video, Adobe Creative Cloud, and digital storytelling.",
+      "Design project-based curricula and guide students from concept through production, editing, portfolios, public showcases, and festival submissions.",
+      "Supported student work recognized with awards at local film festivals.",
+      "Manage studio equipment and digital resources; coordinate enrollment, documentation, family communication, and program operations.",
     ],
     featured: true,
-  },
-  {
-    id: "stonewallAction",
-    title: "Organizer",
-    company: "Stonewall Action",
-    companyUrl: "https://stonewallaction.org/",
-    start: "Mar 2025",
-    end: "Feb 2026",
-    tags: ["nonprofit", "sys admin", "community building", "wordpress", "event planning"],
-    details: [
-      "Stonewall Action is a non-profit to protect and enshrine the rights of LGBTQ+ folks in Central Texas. On a contract basis, I was assigned to consult with them in partnership with Collective Campaigns.",
-      "I kickstarted the nonprofit's operations and developed a support network of capable volunteers and community members to make it function independently.",
-      'I organized several events for Stonewall Action, including our launch event and the "Lights, Camera, Action!" event.',
-      "I designed graphics, filmed video, and edited visuals for promotion of Stonewall Action events and causes.",
-      "I designed a website using WordPress for users, and developed bespoke extensions for specific use cases, such as a serialized check-in system for assigning roles to volunteers.",
-    ],
-    featured: false,
   },
   {
     id: "combatPower",
@@ -102,8 +88,10 @@ const allJobs = [
     end: null,
     tags: ["customer service", "infrastructure", "community building", "gaming"],
     details: [
-      "Manage and execute Pokémon card tournaments, overseeing logistics and participant engagement.",
-      "Price, organize, and stock trading cards, ensuring inventory accuracy and customer assistance.",
+      "Produce four Pokémon TCG tournaments monthly for approximately 12 players each, managing registration, pairings, prizing, and participant experience.",
+      "Build community around recurring play through event marketing and direct player engagement.",
+      "Create original promotional flyers and event graphics.",
+      "Price, organize, and stock trading-card inventory; assist customers with purchases and product knowledge.",
     ],
     featured: false,
   },
@@ -116,8 +104,10 @@ const allJobs = [
     end: "Jan 2025",
     tags: ["nonprofit", "infrastructure", "community building", "civic engagement"],
     details: [
-      "Provided public assistance on voter information, conducted outreach, and managed voter roll documentation.",
-      "Supported election procedures, developed civic engagement materials, and updated website for accessibility.",
+      "Helped voters navigate registration, voting by mail, and election information during the 2024 cycle using VAN and internal voter-data systems.",
+      "Maintained and researched voter records across VAN and Access-based internal databases.",
+      "Produced voter-facing graphics and election materials, including rapid-turnaround replacements following the July 2024 change in the presidential ticket.",
+      "Built a WordPress redesign to improve the party website's accessibility.",
     ],
     featured: false,
   },
@@ -130,7 +120,8 @@ const allJobs = [
     end: "Feb 2021",
     tags: ["infrastructure", "operations", "quickbooks"],
     details: [
-      "Managed payroll, financial records, and inventory using QuickBooks.",
+      "Processed payroll and maintained financial records for a 12-person restaurant staff using QuickBooks.",
+      "Managed inventory and supported day-to-day operations.",
       "Implemented digital solutions for workflow automation and POS systems, providing tech support.",
     ],
     featured: false,
@@ -170,10 +161,25 @@ const allJobs = [
     end: "Aug 2020",
     tags: ["customer service", "training", "team leadership"],
     details: [
-      "I bagged orders, made drinks and fries, served customers in the front and drive-thru, and maintained a clean front lobby.",
-      "I prioritized a good customer experience, and received several manager-directed compliments about the quality of my service. Several customers drove to our location specifically from further out just to see me.",
-      "I trained new staff on the company's policies and procedures, and answered staff questions.",
-      'Even though this was my first job, I was the "employee of the month" four times in my time here!',
+      "Served customers across front counter and drive-thru operations while maintaining a clean, efficient lobby.",
+      "Trained new staff on company policies and procedures and answered day-to-day team questions.",
+      "Recognized as Employee of the Month four times for customer service and reliability.",
+    ],
+    featured: false,
+  },
+  {
+    id: "stonewallAction",
+    title: "Organizer",
+    company: "Stonewall Action",
+    companyUrl: "https://stonewallaction.org/",
+    start: "Mar 2025",
+    end: "Feb 2026",
+    tags: ["nonprofit", "sys admin", "community building", "wordpress", "event planning"],
+    details: [
+      "Built and coordinated a 120-person volunteer network to establish a new LGBTQ+ community-action organization.",
+      "Produced four community events, coordinating volunteers, guest flow, and promotion.",
+      "Designed the organization's WordPress site, graphics, video, and campaign materials.",
+      "Developed a custom volunteer check-in and role-assignment tool that replaced paper processes and produced accurate attendance data.",
     ],
     featured: false,
   },
@@ -223,7 +229,12 @@ function JobEntry({ job, index, isOpen, onToggle, query, activeTag, onTagClick, 
     <div
       className={`resume-entry ${index % 2 ? "tilt-r-sm" : "tilt-l-sm"} ${job.featured ? "resume-entry--featured" : ""}`}
     >
-      <button type="button" className="resume-entry__head" aria-expanded={isOpen} onClick={onToggle}>
+      <button
+        type="button"
+        className="resume-entry__head"
+        aria-expanded={isOpen}
+        onClick={onToggle}
+      >
         <span className="resume-entry__title">
           <Highlight text={job.title} query={query} />
         </span>
