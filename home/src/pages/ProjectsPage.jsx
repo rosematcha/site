@@ -1,6 +1,6 @@
 // src/pages/ProjectsPage.jsx
-// Every project in the same sincere row format, filed under tag filters.
-import React, { useEffect, useMemo, useState } from "react";
+// Every project in the same sincere row format.
+import React, { useEffect } from "react";
 import { projectsData } from "../data/projects";
 import { warmProjectsThumbnails } from "../utils/prefetch";
 import OptimizedImage from "../components/OptimizedImage";
@@ -14,15 +14,6 @@ function getProjectUrl(path) {
 
 function isPlaceholderThumb(src) {
   return typeof src === "string" && src.includes("placeholder-thumb");
-}
-
-// Filter tags shown in the "filed under" line: any tag on 2+ projects.
-function usefulTags() {
-  const counts = {};
-  projectsData.forEach(p => p.tags.forEach(t => (counts[t] = (counts[t] || 0) + 1)));
-  return Object.keys(counts)
-    .filter(t => counts[t] > 1)
-    .sort((a, b) => counts[b] - counts[a] || a.localeCompare(b));
 }
 
 function ProjectRow({ project, index }) {
@@ -83,42 +74,16 @@ function ProjectRow({ project, index }) {
 }
 
 function ProjectsPage() {
-  const [tag, setTag] = useState(null);
-  const tags = useMemo(usefulTags, []);
-
   useEffect(() => {
     warmProjectsThumbnails();
   }, []);
 
-  const shown = tag ? projectsData.filter(p => p.tags.includes(tag)) : projectsData;
-
   return (
     <div className="page-content projects-page-wrapper">
-      <div className="projects-filed">
-        <span className="mono-meta projects-filed__label">filed under</span>
-        <button
-          type="button"
-          className="is-all"
-          aria-pressed={tag === null}
-          onClick={() => setTag(null)}
-        >
-          all
-        </button>
-        {tags.map(t => (
-          <button
-            key={t}
-            type="button"
-            aria-pressed={tag === t}
-            onClick={() => setTag(current => (current === t ? null : t))}
-          >
-            {t}
-          </button>
-        ))}
-      </div>
       <hr className="candy-rule projects-rule" />
 
       <section aria-label="Projects">
-        {shown.map((p, i) => (
+        {projectsData.map((p, i) => (
           <ProjectRow key={p.id} project={p} index={i} />
         ))}
       </section>
