@@ -116,7 +116,10 @@
   font-family: "Sometype Mono", monospace;
   font-size: 0.68rem;
   margin-left: 0.28rem;
-  opacity: 0.72;
+
+  /* 0.85 is the floor that keeps the count above 4.5:1 on the pressed rose
+     chip (5.13:1) while still reading as secondary. */
+  opacity: 0.85;
 }
 
 .resume-chip[aria-pressed="true"] {
@@ -272,8 +275,11 @@
   z-index: 1;
 }
 
-.resume-entry__dates {
+.resume-entry .resume-entry__dates {
   align-self: center;
+
+  /* Scoped past the global .mono-meta colour, which otherwise paints these
+     sage-on-cream at 1.98:1. */
   color: var(--cream-ink-soft);
   grid-column: 2;
   grid-row: 1 / span 2;
@@ -435,7 +441,10 @@
     grid-template-columns: 1fr auto;
   }
 
-  .resume-entry__dates {
+  /* Specificity must match the scoped base rule above, or the desktop
+     two-row placement leaks into the phone layout and the dates land on
+     top of the title. */
+  .resume-entry .resume-entry__dates {
     grid-column: 1;
     grid-row: 3;
     white-space: normal;

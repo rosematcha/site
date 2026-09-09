@@ -17,7 +17,12 @@
   --forest-deep: oklch(20% 0.05 145deg);
   --rose: oklch(72% 0.17 10deg);
   --rose-bright: oklch(78% 0.16 10deg);
-  --rose-deep: oklch(55% 0.2 5deg);
+
+  /* Deep rose is the ink for small text on light stock (org names, links,
+     the contact rail). Lightness is pinned at 51% because that is the
+     highest value that still clears WCAG AA 4.5:1 on every stock it lands
+     on, including the rose guestbook note (4.63:1). Do not raise it. */
+  --rose-deep: oklch(51% 0.2 5deg);
   --rose-ink-contrast: oklch(22% 0.05 355deg);
   --cream: oklch(93% 0.03 100deg);
   --cream-bright: oklch(97% 0.012 95deg);
