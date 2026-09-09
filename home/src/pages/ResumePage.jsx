@@ -437,7 +437,11 @@ function SkillsBlock({ query }) {
 // reserved width the links to its right slide under the pointer mid-click.
 function CopyLink({ id, label, value, copied, onCopy }) {
   return (
-    <button type="button" style={{ minWidth: `${label.length}ch` }} onClick={() => onCopy(value, id)}>
+    <button
+      type="button"
+      style={{ minWidth: `${label.length}ch` }}
+      onClick={() => onCopy(value, id)}
+    >
       {copied === id ? "copied!" : label}
     </button>
   );
@@ -565,7 +569,9 @@ function ResumePage() {
           </button>
         </div>
         <div className="resume-idcard__role">
-          {"Systems administrator\u00a0· developer\u00a0· photographer\u00a0· organizer\u00a0· teacher"}
+          {
+            "Systems administrator\u00a0· developer\u00a0· photographer\u00a0· organizer\u00a0· teacher"
+          }
         </div>
         <div className="resume-idcard__where">
           {"San Antonio, TX\u00a0· available locally or remote\u00a0· open to freelance"}

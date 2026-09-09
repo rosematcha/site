@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { describe, it, expect, vi, beforeEach } from "vitest";
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen, waitFor, fireEvent } from "@testing-library/react";
 import OptimizedImage from "./OptimizedImage";
 
 describe("OptimizedImage", () => {
@@ -57,7 +57,7 @@ describe("OptimizedImage", () => {
     const img = screen.getByAltText("Test");
 
     // Simulate image load
-    img.dispatchEvent(new Event("load"));
+    fireEvent.load(img);
 
     await waitFor(() => {
       expect(screen.getByTestId("placeholder").parentElement).toHaveClass("is-hidden");
@@ -70,7 +70,7 @@ describe("OptimizedImage", () => {
     const img = screen.getByAltText("Test");
 
     // Simulate image error
-    img.dispatchEvent(new Event("error"));
+    fireEvent.error(img);
 
     await waitFor(() => {
       expect(screen.getByText("Image unavailable")).toBeInTheDocument();
@@ -83,7 +83,7 @@ describe("OptimizedImage", () => {
     render(<OptimizedImage src="test.jpg" alt="Test" loading="eager" onLoad={handleLoad} />);
 
     const img = screen.getByAltText("Test");
-    img.dispatchEvent(new Event("load"));
+    fireEvent.load(img);
 
     await waitFor(() => {
       expect(handleLoad).toHaveBeenCalledTimes(1);
@@ -96,7 +96,7 @@ describe("OptimizedImage", () => {
     render(<OptimizedImage src="broken.jpg" alt="Test" loading="eager" onError={handleError} />);
 
     const img = screen.getByAltText("Test");
-    img.dispatchEvent(new Event("error"));
+    fireEvent.error(img);
 
     await waitFor(() => {
       expect(handleError).toHaveBeenCalledTimes(1);
@@ -113,11 +113,10 @@ describe("OptimizedImage", () => {
   });
 
   it("should apply custom styles", () => {
-    const customStyle = { border: "1px solid var(--border-strong)" };
+    const customStyle = { padding: "12px", aspectRatio: "2" };
     render(<OptimizedImage src="test.jpg" alt="Test" style={customStyle} />);
 
-    // Custom styles should be applied (testing implementation)
-    expect(true).toBe(true);
+    expect(screen.getByAltText("Test").parentElement).toHaveStyle(customStyle);
   });
 
   it("should handle lazy loading", () => {
@@ -157,7 +156,7 @@ describe("OptimizedImage", () => {
     expect(img).not.toHaveClass("is-loaded");
 
     // Simulate load
-    img.dispatchEvent(new Event("load"));
+    fireEvent.load(img);
 
     await waitFor(() => {
       expect(img).toHaveClass("is-loaded");
