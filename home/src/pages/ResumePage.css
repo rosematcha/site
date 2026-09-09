@@ -463,8 +463,13 @@
     grid-row: 1 / span 3;
   }
 
-  .resume-entry__tags {
+  /* The keyboard hint is meaningless without a keyboard. */
+  .resume-slash {
     display: none;
+  }
+
+  .resume-search {
+    padding-right: 0.6rem;
   }
 
   .resume-idcard__main {
