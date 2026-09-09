@@ -27,8 +27,9 @@ async function loadImagesBatch(urls: string[], batchSize: number = 8): Promise<M
     const batch = urls.slice(i, i + batchSize);
     const batchPromises = batch.map(async (url) => {
       // Return cached result if available
-      if (logoStatusCache.has(url) && logoStatusCache.get(url) !== 'loading') {
-        return { url, status: logoStatusCache.get(url)! };
+      const cachedStatus = logoStatusCache.get(url);
+      if (cachedStatus === 'loaded' || cachedStatus === 'error') {
+        return { url, status: cachedStatus };
       }
       
       // Mark as loading
@@ -48,7 +49,7 @@ async function loadImagesBatch(urls: string[], batchSize: number = 8): Promise<M
         };
         
         // Set loading attributes for better performance
-        img.loading = 'lazy';
+        img.loading = 'eager';
         img.decoding = 'async';
         img.src = url;
       });
@@ -84,7 +85,7 @@ function addLogoPreloadHints(urls: string[], count: number = 4): void {
       link.rel = 'preload';
       link.as = 'image';
       link.href = url;
-      link.fetchpriority = 'low'; // Logos are decorative, not critical
+      link.fetchPriority = 'low'; // Logos are decorative, not critical
       document.head.appendChild(link);
     });
   } catch {

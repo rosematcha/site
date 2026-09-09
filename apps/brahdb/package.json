@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build --outDir ../../_site/brahdb",
+    "build": "tsc -b && vite build --outDir ../../_site/brahdb",
     "lint": "eslint .",
     "preview": "vite preview --outDir ../../_site/brahdb"
   },
