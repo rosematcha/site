@@ -509,9 +509,7 @@
   .resume-toolbar,
   .resume-util,
   .resume-entry__tags,
-  .resume-entry__company-link,
   .resume-entry__toggle,
-  .resume-pdf,
   .resume-idcard .tape {
     display: none !important;
   }
@@ -561,6 +559,10 @@
     text-decoration: none !important;
   }
 
+  .resume-idcard__rail .resume-pdf {
+    display: none !important;
+  }
+
   .resume-printhead {
     border-bottom: 1pt solid #000;
     color: #000;
@@ -596,7 +598,10 @@
   }
 
   .resume-entry__title::after {
-    content: " · ";
+    /* Non-breaking space: the title and org are separate elements with no
+       whitespace text node between them, so a plain trailing space collapses
+       and the line prints as "Systems Administrator ·SAY Si". */
+    content: " ·\00a0";
     font-weight: 400;
   }
 
@@ -648,7 +653,9 @@
     background: none !important;
     box-shadow: none !important;
     color: #000 !important;
-    display: block;
+    display: flex;
+    gap: 0.6em;
+    justify-content: flex-start;
     margin-top: 4pt !important;
     padding: 0 !important;
     transform: none !important;
