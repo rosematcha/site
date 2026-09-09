@@ -176,6 +176,12 @@
   margin-top: var(--space-4);
 }
 
+.guestbook__back a {
+  align-items: center;
+  display: inline-flex;
+  min-height: 24px;
+}
+
 @media (width <= 560px) {
   /* Stack the station: every field full width, button on its own line, so
      the message input stops sharing a row with the submit button. */

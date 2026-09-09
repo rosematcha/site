@@ -522,7 +522,10 @@ a {
 }
 
 .site-title-link {
+  align-items: center;
   border: 0;
+  display: inline-flex;
+  min-height: 24px;
 }
 
 .brand-primary {
@@ -726,6 +729,12 @@ a {
   font-size: var(--font-xs);
   font-weight: 700;
   padding: 0.4rem 0;
+}
+
+.footer-under a {
+  align-items: center;
+  display: inline-flex;
+  min-height: 24px;
 }
 
 .footer-under {
