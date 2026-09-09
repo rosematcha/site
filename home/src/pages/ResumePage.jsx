@@ -538,31 +538,29 @@ function ResumePage() {
     <div className="page-content resume-page">
       <div className="resume-idcard tilt-l-sm">
         <span className="tape" aria-hidden="true" />
-        <div className="resume-idcard__main">
-          <div>
-            <h1 className="resume-idcard__name">Reese Lundquist</h1>
-            <div className="resume-idcard__role">
-              Systems administrator · developer · photographer · organizer · teacher
-            </div>
-            <div className="resume-idcard__where">
-              San Antonio, TX · available locally or remote · open to freelance
-            </div>
-          </div>
-          <div className="resume-idcard__rail mono-meta">
-            <button type="button" onClick={() => copyToClipboard("howdy@rosematcha.com", "email")}>
-              {copied === "email" ? "copied!" : "howdy@rosematcha.com"}
-            </button>
-            <a href="https://github.com/rosematcha" target="_blank" rel="noopener noreferrer">
-              github.com/rosematcha
-            </a>
-            <button type="button" onClick={() => copyToClipboard("https://rosematcha.com", "site")}>
-              {copied === "site" ? "copied!" : "rosematcha.com"}
-            </button>
-            <Link to="/projects">rosematcha.com/projects</Link>
-            <button type="button" className="resume-pdf" onClick={() => window.print()}>
-              print / PDF
-            </button>
-          </div>
+        <div className="resume-idcard__top">
+          <h1 className="resume-idcard__name">Reese Lundquist</h1>
+          <button type="button" className="resume-pdf" onClick={() => window.print()}>
+            print / PDF
+          </button>
+        </div>
+        <div className="resume-idcard__role">
+          {"Systems administrator\u00a0· developer\u00a0· photographer\u00a0· organizer\u00a0· teacher"}
+        </div>
+        <div className="resume-idcard__where">
+          {"San Antonio, TX\u00a0· available locally or remote\u00a0· open to freelance"}
+        </div>
+        <div className="resume-idcard__rail mono-meta">
+          <button type="button" onClick={() => copyToClipboard("howdy@rosematcha.com", "email")}>
+            {copied === "email" ? "copied!" : "howdy@rosematcha.com"}
+          </button>
+          <a href="https://github.com/rosematcha" target="_blank" rel="noopener noreferrer">
+            github.com/rosematcha
+          </a>
+          <button type="button" onClick={() => copyToClipboard("https://rosematcha.com", "site")}>
+            {copied === "site" ? "copied!" : "rosematcha.com"}
+          </button>
+          <Link to="/projects">rosematcha.com/projects</Link>
         </div>
       </div>
 

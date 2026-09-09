@@ -15,37 +15,48 @@
   transform: rotate(-4deg);
 }
 
-.resume-idcard__main {
-  align-items: start;
-  display: grid;
-  gap: 1.4rem;
-  grid-template-columns: 1fr auto;
+/* Name and the print action share the top line: the action is the one thing
+   on this card that is not identity, so it sits opposite the name instead of
+   trailing the contact links. */
+.resume-idcard__top {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1rem;
+  justify-content: space-between;
 }
 
 .resume-idcard__name {
   color: var(--cream-ink);
-  font-size: clamp(1.8rem, 4.5vw, 2.35rem);
+  font-size: clamp(1.65rem, 4.5vw, 2.35rem);
   line-height: 1;
   margin: 0;
 }
 
+/* The role list runs the full card width instead of sharing a row with the
+   contact rail: at the old width it broke after "organizer ·" and dropped a
+   single word onto line two. */
 .resume-idcard__role {
   color: var(--rose-deep);
   font-size: 0.97rem;
   font-weight: 600;
-  margin-top: 0.35rem;
+  margin-top: 0.4rem;
+  text-wrap: balance;
 }
 
 .resume-idcard__where {
   color: var(--cream-ink-soft);
   font-size: 0.84rem;
-  margin-top: 0.6rem;
+  margin-top: 0.5rem;
 }
 
+/* Contact links read left to right on one baseline and wrap to a second row
+   on narrow screens — no breakpoint needed. */
 .resume-idcard__rail {
-  line-height: 2;
-  text-align: right;
-  white-space: nowrap;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem 0.85rem;
+  margin-top: 0.95rem;
 }
 
 .resume-idcard__rail a,
@@ -54,9 +65,7 @@
   border: 0;
   color: var(--rose-deep);
   cursor: pointer;
-  display: block;
   font: inherit;
-  margin-left: auto;
   min-height: 24px;
   padding: 0;
   text-decoration: underline;
@@ -67,10 +76,10 @@
   border: 2.5px solid var(--cream-ink) !important;
   border-radius: var(--radius-pill);
   color: var(--butter-ink) !important;
+  flex-shrink: 0;
   font-family: "Hanken Grotesk", sans-serif !important;
   font-size: 0.85rem !important;
   font-weight: 800;
-  margin-top: 0.55rem;
   padding: 0.26rem 0.9rem !important;
   text-decoration: none !important;
   transition: transform var(--transition-fast);
@@ -545,17 +554,8 @@
     margin-top: 0.55rem;
   }
 
-  .resume-idcard__main {
-    grid-template-columns: 1fr;
-  }
-
   .resume-idcard__rail {
-    text-align: left;
-  }
-
-  .resume-idcard__rail a,
-  .resume-idcard__rail button {
-    margin-left: 0;
+    column-gap: 0.7rem;
   }
 }
 
@@ -602,7 +602,7 @@
     transform: none !important;
   }
 
-  .resume-idcard__main {
+  .resume-idcard__top {
     display: block !important;
   }
 
@@ -617,6 +617,7 @@
   }
 
   .resume-idcard__rail {
+    display: block !important;
     font-size: 9.5pt;
     line-height: 1.5;
     margin-top: 4pt;
@@ -632,7 +633,7 @@
     text-decoration: none !important;
   }
 
-  .resume-idcard__rail .resume-pdf {
+  .resume-pdf {
     display: none !important;
   }
 
