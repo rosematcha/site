@@ -1,0 +1,31 @@
+@font-face {
+  font-display: optional;
+  font-family: "Young Serif";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/fonts/young-serif/young-serif-latin-400-normal.woff2") format("woff2");
+}
+
+@font-face {
+  font-display: optional;
+  font-family: "Hanken Grotesk";
+  font-style: normal;
+  font-weight: 100 900;
+  src: url("/fonts/hanken-grotesk/hanken-grotesk-latin-wght-normal.woff2") format("woff2");
+}
+
+@font-face {
+  font-display: optional;
+  font-family: "Hanken Grotesk";
+  font-style: italic;
+  font-weight: 100 900;
+  src: url("/fonts/hanken-grotesk/hanken-grotesk-latin-wght-italic.woff2") format("woff2");
+}
+
+@font-face {
+  font-display: optional;
+  font-family: "Sometype Mono";
+  font-style: normal;
+  font-weight: 400 700;
+  src: url("/fonts/sometype-mono/sometype-mono-latin-wght-normal.woff2") format("woff2");
+}

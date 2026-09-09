@@ -193,3 +193,19 @@
     width: 100%;
   }
 }
+
+.guestbook-results {
+  min-height: 100svh;
+}
+
+.guestbook-station__feedback {
+  display: grid;
+}
+
+.gb-sig__meta {
+  overflow-wrap: anywhere;
+}
+
+.guestbook-station__feedback > p {
+  grid-area: 1 / 1;
+}

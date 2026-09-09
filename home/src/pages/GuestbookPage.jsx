@@ -167,55 +167,65 @@ function GuestbookPage() {
           no account, no email, no moderation queue. just say hi.
         </div>
 
-        {submissionStatus === "success" && (
-          <p className="guestbook-station__ok">
+        <div className="guestbook-station__feedback" role="status">
+          <p
+            className="guestbook-station__ok"
+            style={{ visibility: submissionStatus === "success" ? "visible" : "hidden" }}
+          >
             Thanks for signing! Your note just joined the wall.
           </p>
-        )}
-        {submissionStatus === "error" && (
-          <p className="guestbook-station__err">
+          <p
+            className="guestbook-station__err"
+            style={{ visibility: submissionStatus === "error" ? "visible" : "hidden" }}
+          >
             Something went wrong with your post. Please try again.
           </p>
-        )}
+        </div>
       </form>
 
-      {isLoadingEntries && <p className="guestbook__status scrap">Loading the wall…</p>}
-      {fetchError && (
-        <p className="guestbook__status guestbook__status--error scrap">{fetchError}</p>
-      )}
-      {!isLoadingEntries && !fetchError && entries.length > 0 && (
-        <>
-          <div className="mono-meta guestbook__tally">
-            {entries.length} signature{entries.length === 1 ? "" : "s"} on the wall
-          </div>
-          <div className="guestbook-wall">
-            {entries.map((entry, index) => (
-              <article
-                key={entry.id}
-                className={`gb-sig scrap ${STOCKS[index % STOCKS.length]} ${entry.fresh ? "gb-sig--fresh" : ""}`}
-                style={{ "--sig-tilt": `${TILTS[index % TILTS.length]}deg` }}
-              >
-                <p className="gb-sig__message">{entry.message}</p>
-                <div className="mono-meta gb-sig__meta">
-                  <span>
-                    {entry.website ? (
-                      <a href={entry.website} target="_blank" rel="noopener noreferrer nofollow">
-                        {entry.name}
-                      </a>
-                    ) : (
-                      entry.name
-                    )}
-                  </span>
-                  <time>{entry.date}</time>
-                </div>
-              </article>
-            ))}
-          </div>
-        </>
-      )}
-      {!isLoadingEntries && !fetchError && entries.length === 0 && (
-        <p className="guestbook__status">No messages yet. Be the first on the wall.</p>
-      )}
+      <section
+        className="guestbook-results"
+        aria-label="Guestbook entries"
+        aria-busy={isLoadingEntries}
+      >
+        {isLoadingEntries && <p className="guestbook__status scrap">Loading the wall…</p>}
+        {fetchError && (
+          <p className="guestbook__status guestbook__status--error scrap">{fetchError}</p>
+        )}
+        {!isLoadingEntries && !fetchError && entries.length > 0 && (
+          <>
+            <div className="mono-meta guestbook__tally">
+              {entries.length} signature{entries.length === 1 ? "" : "s"} on the wall
+            </div>
+            <div className="guestbook-wall">
+              {entries.map((entry, index) => (
+                <article
+                  key={entry.id}
+                  className={`gb-sig scrap ${STOCKS[index % STOCKS.length]} ${entry.fresh ? "gb-sig--fresh" : ""}`}
+                  style={{ "--sig-tilt": `${TILTS[index % TILTS.length]}deg` }}
+                >
+                  <p className="gb-sig__message">{entry.message}</p>
+                  <div className="mono-meta gb-sig__meta">
+                    <span>
+                      {entry.website ? (
+                        <a href={entry.website} target="_blank" rel="noopener noreferrer nofollow">
+                          {entry.name}
+                        </a>
+                      ) : (
+                        entry.name
+                      )}
+                    </span>
+                    <time>{entry.date}</time>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </>
+        )}
+        {!isLoadingEntries && !fetchError && entries.length === 0 && (
+          <p className="guestbook__status">No messages yet. Be the first on the wall.</p>
+        )}
+      </section>
 
       <div className="guestbook__back">
         <Link to="/" className="link-swipe">

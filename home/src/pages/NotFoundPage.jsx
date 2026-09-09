@@ -29,6 +29,8 @@ function NotFoundPage() {
         <OptimizedImage
           src="/img/404.gif"
           alt="Confused wandering around"
+          width={220}
+          height={165}
           loading="eager"
           decoding="async"
           style={{ display: "block", margin: "0.5rem auto", maxWidth: "200px", width: "100%" }}

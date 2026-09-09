@@ -35,22 +35,9 @@ function Header() {
   }, [location.pathname]);
 
   useEffect(() => {
-    if (typeof document === "undefined") return undefined;
-    const body = document.body;
-    if (isNavOpen) {
-      body.classList.add("nav-menu-open");
-    } else {
-      body.classList.remove("nav-menu-open");
-    }
-    return () => {
-      body.classList.remove("nav-menu-open");
-    };
-  }, [isNavOpen]);
-
-  useEffect(() => {
     if (typeof window === "undefined") return undefined;
     const handleResize = () => {
-      if (window.innerWidth > 700) {
+      if (window.innerWidth > 760) {
         setIsNavOpen(false);
       }
     };

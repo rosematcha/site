@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import OptimizedImage from "./OptimizedImage";
 import "./PolaroidStack.css";
@@ -35,7 +35,11 @@ function PolaroidStack({ photos = defaultPhotos, cycleInterval = 5000 }) {
   }, []);
 
   const startTimer = React.useCallback(() => {
-    if (photoSet.length <= 1) {
+    if (
+      photoSet.length <= 1 ||
+      document.hidden ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
       clearTimer();
       return;
     }
@@ -47,10 +51,15 @@ function PolaroidStack({ photos = defaultPhotos, cycleInterval = 5000 }) {
   }, [clearTimer, cycleInterval, photoSet.length]);
 
   React.useEffect(() => {
+    const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
     startTimer();
+    motionPreference.addEventListener("change", startTimer);
+    document.addEventListener("visibilitychange", startTimer);
 
     return () => {
       clearTimer();
+      motionPreference.removeEventListener("change", startTimer);
+      document.removeEventListener("visibilitychange", startTimer);
     };
   }, [startTimer, clearTimer]);
 
@@ -85,7 +94,7 @@ function PolaroidStack({ photos = defaultPhotos, cycleInterval = 5000 }) {
       role={photoSet.length > 1 ? "button" : undefined}
       tabIndex={photoSet.length > 1 ? 0 : -1}
       aria-label="Browse featured polaroids"
-      aria-live="polite"
+      aria-live="off"
     >
       {photoSet.map((photo, index) => {
         const relativeIndex = (index - activeIndex + photoSet.length) % photoSet.length;
