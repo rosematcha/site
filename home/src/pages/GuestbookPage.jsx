@@ -5,6 +5,7 @@
 // the Cloudflare move.
 import React, { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
+import { usePageTitle } from "../utils/pageMeta";
 import "./GuestbookPage.css";
 
 const STOCKS = ["", "gb-sig--rose", "gb-sig--butter", "gb-sig--mint"];
@@ -19,6 +20,8 @@ function GuestbookPage() {
   const [isLoadingEntries, setIsLoadingEntries] = useState(true);
   const [fetchError, setFetchError] = useState(null);
   const [shake, setShake] = useState(false);
+
+  usePageTitle("Guestbook");
 
   const fetchEntries = useCallback(async () => {
     setIsLoadingEntries(true);
@@ -93,6 +96,7 @@ function GuestbookPage() {
 
   return (
     <div className="page-content guestbook">
+      <h1 className="visually-hidden">Guestbook</h1>
       <form
         name="guestbook"
         method="POST"
@@ -194,11 +198,7 @@ function GuestbookPage() {
                 <div className="mono-meta gb-sig__meta">
                   <span>
                     {entry.website ? (
-                      <a
-                        href={entry.website}
-                        target="_blank"
-                        rel="noopener noreferrer nofollow"
-                      >
+                      <a href={entry.website} target="_blank" rel="noopener noreferrer nofollow">
                         {entry.name}
                       </a>
                     ) : (

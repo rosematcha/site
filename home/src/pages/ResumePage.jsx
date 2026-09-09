@@ -4,6 +4,7 @@
 // tag taxonomy cross-linking entries. Printing outputs a plain black-on-white
 // resume with everything expanded.
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { usePageTitle } from "../utils/pageMeta";
 import "./ResumePage.css";
 
 /* =============================================================
@@ -310,6 +311,8 @@ function ResumePage() {
   const [copied, setCopied] = useState(null);
   const searchRef = useRef(null);
 
+  usePageTitle("Resume");
+
   const q = query.trim().toLowerCase();
 
   const shown = useMemo(() => {
@@ -482,7 +485,7 @@ function ResumePage() {
         )}
       </div>
 
-      <div className="resume-printhead">Experience</div>
+      <h2 className="resume-printhead">Experience</h2>
       {shown.length === 0 ? (
         <div className="resume-empty scrap">
           Nothing matches that.{" "}
@@ -515,7 +518,7 @@ function ResumePage() {
         </div>
       )}
 
-      <div className="resume-printhead">Education</div>
+      <h2 className="resume-printhead">Education</h2>
       <div className="resume-edu tilt-r-sm">
         <span>
           <strong>{educationData.degree}</strong> · {educationData.school}

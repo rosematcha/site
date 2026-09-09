@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import PolaroidStack from "../components/PolaroidStack";
 import OptimizedImage from "../components/OptimizedImage";
 import { projectsData } from "../data/projects";
+import { usePageTitle } from "../utils/pageMeta";
 import "./HomePage.css";
 
 const facets = [
@@ -34,9 +35,11 @@ function projectUrl(path) {
 
 function HomePage() {
   const selected = projectsData.filter(p => p.featured).slice(0, 3);
+  usePageTitle(null);
 
   return (
     <div className="page-content home">
+      <h1 className="visually-hidden">Reese Lundquist</h1>
       <section className="home-top" aria-label="Introduction">
         <div className="home-top__left">
           <div className="home-hero__scrap scrap scrap--deckle">

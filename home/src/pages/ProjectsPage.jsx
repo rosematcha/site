@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import { projectsData } from "../data/projects";
 import { warmProjectsThumbnails } from "../utils/prefetch";
 import OptimizedImage from "../components/OptimizedImage";
+import { usePageTitle } from "../utils/pageMeta";
 import "./ProjectsPage.css";
 
 function getProjectUrl(path) {
@@ -48,7 +49,7 @@ function ProjectRow({ project, index }) {
         )}
       </a>
       <div>
-        <h3 className="proj-row__name">{project.title}</h3>
+        <h2 className="proj-row__name">{project.title}</h2>
         <div className="mono-meta proj-row__meta">
           {[...project.tech, ...project.tags].join(" · ")}
         </div>
@@ -74,12 +75,15 @@ function ProjectRow({ project, index }) {
 }
 
 function ProjectsPage() {
+  usePageTitle("Projects");
+
   useEffect(() => {
     warmProjectsThumbnails();
   }, []);
 
   return (
     <div className="page-content projects-page-wrapper">
+      <h1 className="visually-hidden">Projects</h1>
       <hr className="candy-rule projects-rule" />
 
       <section aria-label="Projects">

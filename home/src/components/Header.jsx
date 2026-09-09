@@ -71,11 +71,13 @@ function Header() {
     <header className={`main-header panel ${isNavOpen ? "nav-open" : ""}`}>
       <div className="header-inner">
         <div className="brand-row">
-          <h1 className="site-main-title">
+          {/* The wordmark is site chrome, not a page heading. Each page
+              supplies its own h1 so heading order stays valid. */}
+          <div className="site-main-title">
             <NavLink to="/" className="site-title-link" onClick={closeNav}>
               <span className="brand-primary">rosematcha</span>
             </NavLink>
-          </h1>
+          </div>
         </div>
         <nav
           id="site-primary-nav"

@@ -3,8 +3,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import OptimizedImage from "../components/OptimizedImage";
+import { usePageTitle } from "../utils/pageMeta";
 
 function NotFoundPage() {
+  usePageTitle("Not found");
+
   return (
     <div className="page-content" style={{ paddingTop: "var(--space-8)", textAlign: "center" }}>
       <div
@@ -12,16 +15,17 @@ function NotFoundPage() {
         style={{ display: "inline-block", marginBottom: "var(--space-4)", maxWidth: "22rem" }}
       >
         <span className="tape" aria-hidden="true" style={{ left: "40%", top: "-0.7rem" }} />
-        <div
+        <h1
           style={{
             color: "var(--rose-deep)",
             fontFamily: '"Young Serif", Georgia, serif',
             fontSize: "2.8rem",
             lineHeight: 1.1,
+            margin: 0,
           }}
         >
           404
-        </div>
+        </h1>
         <OptimizedImage
           src="/img/404.gif"
           alt="Confused wandering around"

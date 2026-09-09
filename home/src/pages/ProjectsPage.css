@@ -37,6 +37,10 @@ img.proj-row__img {
 
 .proj-row__name {
   font-family: "Young Serif", Georgia, serif;
+
+  /* Pinned: this is an h2 for heading order, but it should keep reading at
+     the row scale it was designed at, not the page-title scale. */
+  font-size: var(--font-h3);
   font-weight: 400;
   margin-bottom: 0.2rem;
 }
