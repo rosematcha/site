@@ -200,6 +200,72 @@ const allJobs = [
   },
 ];
 
+// Skills exist so the search box can honour its own placeholder: before this,
+// "react" and "python" matched nothing because tools only appeared implicitly,
+// inside bullet prose. Every item is evidenced by a role above or a shipped
+// project in src/data/projects.js.
+const skillGroups = [
+  {
+    label: "Languages",
+    items: ["JavaScript", "TypeScript", "PHP", "Python", "Lua", "HTML", "CSS"],
+  },
+  {
+    label: "Web",
+    items: [
+      "React",
+      "Astro",
+      "Node.js",
+      "WordPress",
+      "Vite",
+      "Tailwind CSS",
+      "Netlify",
+      "Git",
+      "accessibility",
+    ],
+  },
+  {
+    label: "Data & automation",
+    items: ["D3.js", "Chart.js", "Playwright", "web scraping", "OCR"],
+  },
+  {
+    label: "Systems",
+    items: [
+      "Google Workspace",
+      "macOS",
+      "Windows",
+      "iOS",
+      "device management",
+      "networking",
+      "backups",
+      "AV",
+      "asset inventory",
+    ],
+  },
+  {
+    label: "Creative",
+    items: [
+      "Adobe Creative Cloud",
+      "photography",
+      "darkroom and film development",
+      "pinhole",
+      "printmaking",
+      "video",
+    ],
+  },
+  {
+    label: "Operations",
+    items: [
+      "QuickBooks",
+      "payroll",
+      "POS",
+      "VAN",
+      "Microsoft Access",
+      "event production",
+      "curriculum design",
+    ],
+  },
+];
+
 const educationData = {
   degree: "Associate of Science, Computer Science",
   school: "Northwest Vista College, San Antonio TX",
@@ -216,6 +282,11 @@ const TAG_COUNTS = allJobs.reduce((counts, job) => {
 /* =============================================================
    Helpers
    ============================================================= */
+
+function skillsMatch(query) {
+  if (!query) return false;
+  return skillGroups.some(group => group.items.some(item => item.toLowerCase().includes(query)));
+}
 
 function jobText(job) {
   return `${job.title} ${job.company} ${job.tags.join(" ")} ${job.details.join(" ")}`.toLowerCase();
@@ -310,6 +381,26 @@ function JobEntry({ job, index, isOpen, onToggle, query, activeTag, onTagClick, 
   );
 }
 
+function SkillsBlock({ query }) {
+  return (
+    <dl className="resume-skills tilt-l-sm">
+      {skillGroups.map(group => (
+        <React.Fragment key={group.label}>
+          <dt className="resume-skills__label">{group.label}</dt>
+          <dd className="resume-skills__items">
+            {group.items.map((item, i) => (
+              <React.Fragment key={item}>
+                {i > 0 && ", "}
+                <Highlight text={item} query={query} />
+              </React.Fragment>
+            ))}
+          </dd>
+        </React.Fragment>
+      ))}
+    </dl>
+  );
+}
+
 /* =============================================================
    Page
    ============================================================= */
@@ -341,6 +432,8 @@ function ResumePage() {
       return true;
     });
   }, [mode, activeTag, q, printing]);
+
+  const skillHit = useMemo(() => skillsMatch(q), [q]);
 
   const isOpen = useCallback(
     job =>
@@ -501,7 +594,7 @@ function ResumePage() {
       </div>
 
       <h2 className="resume-printhead">Experience</h2>
-      {shown.length === 0 ? (
+      {shown.length === 0 && !skillHit ? (
         <div className="resume-empty scrap">
           Nothing matches that.{" "}
           <button
@@ -532,6 +625,9 @@ function ResumePage() {
           ))}
         </div>
       )}
+
+      <h2 className="resume-printhead">Skills</h2>
+      <SkillsBlock query={q} />
 
       <h2 className="resume-printhead">Education</h2>
       <div className="resume-edu tilt-r-sm">

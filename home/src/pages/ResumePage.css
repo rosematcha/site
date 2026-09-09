@@ -415,6 +415,34 @@
   text-decoration: underline;
 }
 
+/* Mint, so the page reads as three distinct sections: cream roles, mint
+   skills, butter education. Cream here made it look like a twelfth job. */
+.resume-skills {
+  background: var(--stock-mint);
+  box-shadow: var(--shadow-sm);
+  color: var(--cream-ink);
+  display: grid;
+  gap: 0.4rem 1rem;
+  grid-template-columns: auto 1fr;
+  margin-bottom: 0.55rem;
+  padding: 0.8rem 0.95rem;
+}
+
+.resume-skills__label {
+  color: var(--rose-deep);
+  font-family: "Sometype Mono", monospace;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding-top: 0.1rem;
+  white-space: nowrap;
+}
+
+.resume-skills__items {
+  color: var(--cream-ink);
+  font-size: 0.88rem;
+  margin: 0;
+}
+
 .resume-edu {
   align-items: baseline;
   background: var(--stock-butter);
@@ -461,6 +489,15 @@
   .resume-entry__toggle {
     grid-column: 2;
     grid-row: 1 / span 3;
+  }
+
+  .resume-skills {
+    gap: 0.1rem;
+    grid-template-columns: 1fr;
+  }
+
+  .resume-skills__label {
+    padding-top: 0.35rem;
   }
 
   /* The keyboard hint is meaningless without a keyboard. */
@@ -647,6 +684,26 @@
   .resume-entry mark {
     background: none !important;
     color: #000 !important;
+  }
+
+  .resume-skills {
+    background: none !important;
+    box-shadow: none !important;
+    color: #000 !important;
+    gap: 1pt 8pt;
+    margin: 0 !important;
+    padding: 0 !important;
+    transform: none !important;
+  }
+
+  .resume-skills__label {
+    color: #000 !important;
+    font-size: 9.5pt;
+  }
+
+  .resume-skills__items {
+    color: #000 !important;
+    font-size: 10pt;
   }
 
   .resume-edu {
