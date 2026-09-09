@@ -4,7 +4,7 @@
 // tag taxonomy cross-linking entries. Printing outputs a plain black-on-white
 // resume with everything expanded.
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { usePageTitle } from "../utils/pageMeta";
 import "./ResumePage.css";
 
@@ -12,6 +12,11 @@ import "./ResumePage.css";
    Data
    ============================================================= */
 
+// Each role declares which lenses it argues for. The lens chips in the
+// toolbar swap which roles lead; nothing is ever removed, since "all" is one
+// click away. Display order always follows this array, never the lens, because
+// the ordering here is deliberate.
+//
 // Tags follow Reese's taxonomy (nonprofit, customer service, education,
 // photography, sys admin, infrastructure, community building, arts) plus
 // job-specific extras. Tags used by only one job render dimmed and
@@ -31,7 +36,7 @@ const allJobs = [
       "Built support processes, automation, documentation, and security practices that made same-day response the norm.",
       "Implemented an inventory system for 500+ assets, enabling more accurate tracking and infrastructure planning.",
     ],
-    featured: true,
+    lenses: ["sysadmin", "web", "arts"],
   },
 
   {
@@ -48,7 +53,7 @@ const allJobs = [
       "Designed the organization's WordPress site, graphics, video, and campaign materials.",
       "Developed a custom volunteer check-in and role-assignment tool that replaced paper processes and produced accurate attendance data.",
     ],
-    featured: true,
+    lenses: ["sysadmin", "web"],
   },
 
   {
@@ -65,7 +70,7 @@ const allJobs = [
       "Built an internal, collaborative staff-training system with artwork images, artist data, and comments to support consistent visitor education.",
       "Advocate for accessible visitor experiences and contribute contract website work for the organization.",
     ],
-    featured: true,
+    lenses: ["arts"],
   },
 
   {
@@ -82,7 +87,7 @@ const allJobs = [
       "Independently designed curricula for 3-D photography and DIY iPad photography, introducing youth to camera fundamentals, editing, and accessible creative techniques.",
       "Select course materials and guide students through hands-on projects in a family-centered learning environment.",
     ],
-    featured: true,
+    lenses: ["arts"],
   },
 
   {
@@ -99,7 +104,7 @@ const allJobs = [
       "Built a bespoke WordPress plugin so non-technical staff can manage featured work without a developer.",
       "Built a members-only portal integrated with Patreon so union members can reach confidential material.",
     ],
-    featured: true,
+    lenses: ["sysadmin", "web"],
   },
 
   {
@@ -116,7 +121,7 @@ const allJobs = [
       "Supported student work recognized with awards at local film festivals.",
       "Managed studio equipment and digital resources; coordinated enrollment, documentation, family communication, and program operations.",
     ],
-    featured: false,
+    lenses: ["arts"],
   },
 
   {
@@ -133,7 +138,7 @@ const allJobs = [
       "Produced voter-facing graphics and election materials, including rapid-turnaround replacements following the July 2024 change in the presidential ticket.",
       "Built a WordPress redesign to improve the party website's accessibility.",
     ],
-    featured: false,
+    lenses: ["web"],
   },
 
   {
@@ -150,7 +155,7 @@ const allJobs = [
       "Create original promotional flyers and event graphics.",
       "Price, organize, and stock trading-card inventory; assist customers with purchases and product knowledge.",
     ],
-    featured: false,
+    lenses: [],
   },
 
   {
@@ -164,7 +169,7 @@ const allJobs = [
     details: [
       "Provide event photography and digital media creation for diverse clients and occasions.",
     ],
-    featured: false,
+    lenses: [],
   },
 
   {
@@ -180,7 +185,7 @@ const allJobs = [
       "Managed inventory and supported day-to-day operations.",
       "Implemented digital solutions for workflow automation and POS systems, providing tech support.",
     ],
-    featured: false,
+    lenses: ["sysadmin"],
   },
 
   {
@@ -196,7 +201,7 @@ const allJobs = [
       "Trained new staff on company policies and procedures and answered day-to-day team questions.",
       "Recognized as Employee of the Month four times for customer service and reliability.",
     ],
-    featured: false,
+    lenses: [],
   },
 ];
 
@@ -266,6 +271,18 @@ const skillGroups = [
   },
 ];
 
+// The three lenses Reese actually applies under, plus the escape hatch. The
+// active lens rides in ?lens= so a targeted link can be pasted straight into
+// an application and land on the roles that argue for that job.
+const LENSES = [
+  { id: "sysadmin", label: "sysadmin" },
+  { id: "web", label: "web" },
+  { id: "arts", label: "arts + ed" },
+  { id: "all", label: "all" },
+];
+
+const DEFAULT_LENS = "sysadmin";
+
 const educationData = {
   degree: "Associate of Science, Computer Science",
   school: "Northwest Vista College, San Antonio TX",
@@ -286,6 +303,15 @@ const TAG_COUNTS = allJobs.reduce((counts, job) => {
 function skillsMatch(query) {
   if (!query) return false;
   return skillGroups.some(group => group.items.some(item => item.toLowerCase().includes(query)));
+}
+
+function readLens(searchParams) {
+  const requested = searchParams.get("lens");
+  return LENSES.some(l => l.id === requested) ? requested : DEFAULT_LENS;
+}
+
+function inLens(job, lens) {
+  return lens === "all" || job.lenses.includes(lens);
 }
 
 function jobText(job) {
@@ -313,7 +339,7 @@ function JobEntry({ job, index, isOpen, onToggle, query, activeTag, onTagClick, 
 
   return (
     <div
-      className={`resume-entry ${index % 2 ? "tilt-r-sm" : "tilt-l-sm"} ${job.featured ? "resume-entry--featured" : ""} ${isOpen ? "resume-entry--open" : ""}`}
+      className={`resume-entry ${index % 2 ? "tilt-r-sm" : "tilt-l-sm"} ${isOpen ? "resume-entry--open" : ""}`}
     >
       {/* The head is a plain grid, not a button. The toggle button wraps only
           the title and stretches an ::after overlay across the whole head, so
@@ -406,7 +432,8 @@ function SkillsBlock({ query }) {
    ============================================================= */
 
 function ResumePage() {
-  const [mode, setMode] = useState("featured");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const lens = readLens(searchParams);
   const [activeTag, setActiveTag] = useState(null);
   const [query, setQuery] = useState("");
   const [openIds, setOpenIds] = useState(() => new Set());
@@ -420,18 +447,22 @@ function ResumePage() {
 
   const q = query.trim().toLowerCase();
 
-  const shown = useMemo(() => {
-    if (printing) return allJobs;
-    return allJobs.filter(job => {
-      // A query searches the whole history. Restricting it to the four
-      // featured roles meant "quickbooks" and "VAN" reported no match on
-      // first load even though those entries exist.
-      if (mode === "featured" && !activeTag && !q && !job.featured) return false;
-      if (activeTag && !job.tags.includes(activeTag)) return false;
-      if (q && !jobText(job).includes(q)) return false;
-      return true;
-    });
-  }, [mode, activeTag, q, printing]);
+  // Printing deliberately follows the lens rather than dumping all eleven
+  // roles: the PDF someone attaches to an application should be the same
+  // argument the page is making on screen.
+  const shown = useMemo(
+    () =>
+      allJobs.filter(job => {
+        if (activeTag && !job.tags.includes(activeTag)) return false;
+        // A query searches the whole history. Scoping it to the active lens
+        // meant "quickbooks" and "VAN" reported no match on first load even
+        // though those entries exist.
+        if (q) return jobText(job).includes(q);
+        if (activeTag) return true;
+        return inLens(job, lens);
+      }),
+    [lens, activeTag, q]
+  );
 
   const skillHit = useMemo(() => skillsMatch(q), [q]);
 
@@ -460,6 +491,17 @@ function ResumePage() {
   const handleTagClick = useCallback(tag => {
     setActiveTag(current => (current === tag ? null : tag));
   }, []);
+
+  const selectLens = useCallback(
+    id => {
+      setActiveTag(null);
+      setQuery("");
+      const next = new URLSearchParams(searchParams);
+      next.set("lens", id);
+      setSearchParams(next, { replace: true });
+    },
+    [searchParams, setSearchParams]
+  );
 
   const copyToClipboard = (text, label) => {
     navigator.clipboard.writeText(text).then(() => {
@@ -525,28 +567,21 @@ function ResumePage() {
       </div>
 
       <div className="resume-toolbar">
-        <button
-          type="button"
-          className="resume-chip"
-          aria-pressed={mode === "featured" && !activeTag && !q}
-          onClick={() => {
-            setMode("featured");
-            setActiveTag(null);
-          }}
-        >
-          featured<span className="resume-chip__n">{allJobs.filter(j => j.featured).length}</span>
-        </button>
-        <button
-          type="button"
-          className="resume-chip resume-chip--all"
-          aria-pressed={mode === "all" && !activeTag && !q}
-          onClick={() => {
-            setMode("all");
-            setActiveTag(null);
-          }}
-        >
-          all<span className="resume-chip__n">{allJobs.length}</span>
-        </button>
+        {LENSES.map(item => (
+          <React.Fragment key={item.id}>
+            {/* "all" sits behind a rule so it reads as leaving the lens
+                rather than being a fourth one. */}
+            {item.id === "all" && <span className="resume-lens__sep" aria-hidden="true" />}
+            <button
+              type="button"
+              className={`resume-lens ${item.id === "all" ? "resume-lens--all" : ""}`}
+              aria-pressed={lens === item.id && !activeTag && !q}
+              onClick={() => selectLens(item.id)}
+            >
+              {item.label}
+            </button>
+          </React.Fragment>
+        ))}
         <span className="resume-searchwrap">
           <input
             ref={searchRef}
@@ -601,8 +636,7 @@ function ResumePage() {
             type="button"
             onClick={() => {
               setQuery("");
-              setActiveTag(null);
-              setMode("all");
+              selectLens("all");
             }}
           >
             start over

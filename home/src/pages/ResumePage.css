@@ -93,69 +93,96 @@
   margin: var(--space-3) 0 0.55rem;
 }
 
-.resume-chip {
-  background: transparent;
-  border: 2px solid var(--cream);
+.resume-lens {
+  background: var(--stock-cream);
+  border: 0;
   border-radius: var(--radius-pill);
-  color: var(--cream);
+  box-shadow: var(--shadow-sm);
+  color: var(--cream-ink-soft);
   cursor: pointer;
   font: inherit;
   font-size: 0.8rem;
   font-weight: 700;
-  padding: 0.18rem 0.7rem;
+  padding: 0.2rem 0.8rem;
   transition:
-    transform var(--transition-fast),
-    background var(--transition-fast),
-    color var(--transition-fast);
+    transform var(--transition-base),
+    background var(--transition-base),
+    color var(--transition-base),
+    box-shadow var(--transition-base);
 }
 
-.resume-chip:hover {
-  transform: scale(1.05, 0.96);
+/* The row is paper scraps, so they sit slightly crooked until you touch one.
+   nth-of-type counts buttons only; the rule and the search field are spans. */
+.resume-lens:nth-of-type(odd) {
+  transform: rotate(-0.7deg);
 }
 
-.resume-chip__n {
-  font-family: "Sometype Mono", monospace;
-  font-size: 0.68rem;
-  margin-left: 0.28rem;
-
-  /* 0.85 is the floor that keeps the count above 4.5:1 on the pressed rose
-     chip (5.13:1) while still reading as secondary. */
-  opacity: 0.85;
+.resume-lens:nth-of-type(even) {
+  transform: rotate(0.6deg);
 }
 
-.resume-chip[aria-pressed="true"] {
+.resume-lens:hover {
+  box-shadow: var(--shadow-md);
+  color: var(--cream-ink);
+  transform: rotate(0) translateY(-2px);
+}
+
+.resume-lens[aria-pressed="true"] {
   background: var(--rose);
-  border-color: var(--rose);
   color: var(--rose-ink-contrast);
+  transform: rotate(0);
 }
 
-/* "all" is the emphasized escape hatch. */
-.resume-chip--all {
+/* "all" is the escape hatch, not a lens: outlined, never tilted. */
+.resume-lens.resume-lens--all {
+  background: transparent;
+  border: 2px solid var(--cream);
+  box-shadow: none;
+  color: var(--cream);
+  transform: rotate(0);
+}
+
+.resume-lens.resume-lens--all:hover {
+  background: var(--stock-butter);
+  border-color: var(--stock-butter);
+  color: var(--butter-ink);
+  transform: rotate(0);
+}
+
+.resume-lens.resume-lens--all[aria-pressed="true"] {
   background: var(--butter);
   border-color: var(--butter);
   color: var(--butter-ink);
 }
 
-.resume-chip--all[aria-pressed="true"] {
-  background: var(--rose);
-  border-color: var(--cream);
-  box-shadow: 0 0 0 2px var(--butter);
-  color: var(--rose-ink-contrast);
+.resume-lens__sep {
+  background: var(--border-subtle);
+  height: 1.35rem;
+  margin: 0 0.35rem;
+  width: 1px;
 }
 
+/* 0.35rem so the air to the right of "all" matches the rule's own margin on
+   its left; without it the field drifted a full 1.9rem away. */
 .resume-searchwrap {
   flex: 1;
-  min-width: 11rem;
+  margin-left: 0.35rem;
+  min-width: 9.5rem;
   position: relative;
 }
 
+/* No box: the field is a written line on the stock, so the paper chips keep
+   the weight in the toolbar. Focus is carried by the rule going butter, plus
+   the global focus-visible outline. */
 .resume-search {
-  background: var(--forest-panel);
-  border: 2px solid var(--cream);
+  background: transparent;
+  border: 0;
+  border-bottom: 2.5px solid var(--rose);
   color: var(--cream);
   font: inherit;
-  font-size: 0.85rem;
-  padding: 0.2rem 1.8rem 0.2rem 0.6rem;
+  font-size: 0.86rem;
+  padding: 0.16rem 1.8rem 0.16rem 0.1rem;
+  transition: border-color var(--transition-base);
   width: 100%;
 }
 
@@ -163,13 +190,14 @@
   color: var(--text-muted);
 }
 
+.resume-search:focus {
+  border-bottom-color: var(--butter);
+}
+
 .resume-slash {
-  border: 1px solid var(--text-muted);
-  border-radius: 3px;
   color: var(--text-muted);
   font-family: "Sometype Mono", monospace;
   font-size: 0.62rem;
-  padding: 0 0.25rem;
   pointer-events: none;
   position: absolute;
   right: 0.4rem;
@@ -506,7 +534,15 @@
   }
 
   .resume-search {
-    padding-right: 0.6rem;
+    padding-right: 0.1rem;
+  }
+
+  /* Four objects plus a field will not share one line on a phone; the search
+     takes its own row rather than shrinking to a slot. */
+  .resume-searchwrap {
+    flex-basis: 100%;
+    margin-left: 0;
+    margin-top: 0.55rem;
   }
 
   .resume-idcard__main {

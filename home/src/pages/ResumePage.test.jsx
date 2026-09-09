@@ -9,12 +9,12 @@ import userEvent from "@testing-library/user-event";
 import { describe, it, expect, beforeEach } from "vitest";
 import ResumePage from "./ResumePage";
 
-const FEATURED_COUNT = 5;
+const LENS_COUNT = 4;
 const TOTAL_COUNT = 11;
 
-function renderResume() {
+function renderResume(entry = "/resume") {
   return render(
-    <MemoryRouter>
+    <MemoryRouter initialEntries={[entry]}>
       <ResumePage />
     </MemoryRouter>
   );
@@ -31,10 +31,10 @@ describe("ResumePage", () => {
     document.title = "";
   });
 
-  it("opens on the featured subset", () => {
+  it("opens on the sysadmin lens", () => {
     renderResume();
     expect(screen.getByText(/showing/)).toHaveTextContent(
-      `showing ${FEATURED_COUNT} of ${TOTAL_COUNT}`
+      `showing ${LENS_COUNT} of ${TOTAL_COUNT}`
     );
   });
 
@@ -43,7 +43,7 @@ describe("ResumePage", () => {
     expect(document.title).toBe("Resume · rosematcha · Reese Lundquist");
   });
 
-  it("searches the whole history even while the featured filter is on", async () => {
+  it("searches the whole history even while a lens is active", async () => {
     const user = userEvent.setup();
     renderResume();
 
@@ -63,14 +63,14 @@ describe("ResumePage", () => {
     expect(screen.getByText(/nothing matches that/i)).toBeInTheDocument();
   });
 
-  it("releases the featured chip's pressed state while a query is active", async () => {
+  it("releases the active lens chip's pressed state while a query is active", async () => {
     const user = userEvent.setup();
     renderResume();
-    const featured = screen.getByRole("button", { name: /^featured/ });
+    const sysadmin = screen.getByRole("button", { name: "sysadmin" });
 
-    expect(featured).toHaveAttribute("aria-pressed", "true");
+    expect(sysadmin).toHaveAttribute("aria-pressed", "true");
     await user.type(screen.getByLabelText("Search resume"), "quickbooks");
-    expect(featured).toHaveAttribute("aria-pressed", "false");
+    expect(sysadmin).toHaveAttribute("aria-pressed", "false");
   });
 
   it("keeps the company link outside the toggle button", () => {
@@ -104,7 +104,7 @@ describe("ResumePage", () => {
 
     await user.click(screen.getByRole("button", { name: "clear" }));
     expect(screen.getByText(/showing/)).toHaveTextContent(
-      `showing ${FEATURED_COUNT} of ${TOTAL_COUNT}`
+      `showing ${LENS_COUNT} of ${TOTAL_COUNT}`
     );
   });
 
@@ -120,7 +120,7 @@ describe("ResumePage", () => {
     const user = userEvent.setup();
     renderResume();
 
-    await user.click(screen.getByRole("button", { name: /^all/ }));
+    await user.click(screen.getByRole("button", { name: "all" }));
 
     expect(screen.getByText(/showing/)).toHaveTextContent(
       `showing ${TOTAL_COUNT} of ${TOTAL_COUNT}`
@@ -131,7 +131,7 @@ describe("ResumePage", () => {
     const user = userEvent.setup();
     renderResume();
 
-    await user.click(screen.getByRole("button", { name: /^all/ }));
+    await user.click(screen.getByRole("button", { name: "all" }));
     await user.click(screen.getByRole("button", { name: "expand all" }));
 
     const entry = screen
@@ -164,9 +164,9 @@ describe("ResumePage entry heads", () => {
     renderResume();
     const heads = entryHeads().filter(b => b.classList.contains("resume-entry__toggler"));
 
-    expect(heads).toHaveLength(FEATURED_COUNT);
+    expect(heads).toHaveLength(LENS_COUNT);
     expect(heads.map(h => h.getAttribute("aria-label"))).toContain(
-      "Visitor Services Associate, Ruby City"
+      "Contract Web Development, Freelance"
     );
   });
 });
@@ -216,7 +216,7 @@ describe("ResumePage ordering", () => {
     const user = userEvent.setup();
     const { container } = renderResume();
 
-    await user.click(screen.getByRole("button", { name: /^all/ }));
+    await user.click(screen.getByRole("button", { name: "all" }));
     const titles = [...container.querySelectorAll(".resume-entry__title")].map(
       el => el.textContent
     );
@@ -226,7 +226,7 @@ describe("ResumePage ordering", () => {
     expect(titles.at(-1)).toBe("Crew Member");
   });
 
-  it("features the contract development role so the default view shows dev work", () => {
+  it("leads the default view with development work", () => {
     renderResume();
     expect(
       screen.getByRole("button", { name: "Contract Web Development, Freelance" })
@@ -249,5 +249,76 @@ describe("ResumePage ordering", () => {
       "href",
       "/projects"
     );
+  });
+});
+
+describe("ResumePage lenses", () => {
+  it("honours a lens named in the URL", () => {
+    const { container } = renderResume("/resume?lens=arts");
+    const titles = [...container.querySelectorAll(".resume-entry__title")].map(
+      el => el.textContent
+    );
+
+    expect(titles).toEqual([
+      "Systems Administrator",
+      "Visitor Services Associate",
+      "Instructor, Saturday Morning Discovery",
+      "Media Arts Teaching Artist",
+    ]);
+  });
+
+  it("falls back to sysadmin when the URL names a lens that does not exist", () => {
+    renderResume("/resume?lens=underwater-basketweaving");
+    expect(screen.getByRole("button", { name: "sysadmin" })).toHaveAttribute(
+      "aria-pressed",
+      "true"
+    );
+  });
+
+  it("swaps which roles lead when a lens is chosen", async () => {
+    const user = userEvent.setup();
+    renderResume();
+
+    expect(screen.getByText("Hop + Vine")).toBeInTheDocument();
+    await user.click(screen.getByRole("button", { name: "arts + ed" }));
+
+    expect(screen.queryByText("Hop + Vine")).not.toBeInTheDocument();
+    expect(screen.getByText("Ruby City")).toBeInTheDocument();
+  });
+
+  it("keeps the roles a lens hides reachable under all", async () => {
+    const user = userEvent.setup();
+    renderResume();
+
+    expect(screen.queryByText("Combat Power Collectibles")).not.toBeInTheDocument();
+    await user.click(screen.getByRole("button", { name: "all" }));
+    expect(screen.getByText("Combat Power Collectibles")).toBeInTheDocument();
+  });
+
+  it("shows every role in the curated order under every lens", () => {
+    const { container } = renderResume("/resume?lens=web");
+    const titles = [...container.querySelectorAll(".resume-entry__title")].map(
+      el => el.textContent
+    );
+
+    // Order follows the data, not the lens, so entries never reshuffle.
+    expect(titles).toEqual([
+      "Systems Administrator",
+      "Organizer",
+      "Contract Web Development",
+      "Office Aide & Voter Information Specialist",
+    ]);
+  });
+
+  it("clears an in-progress search when a lens is chosen", async () => {
+    const user = userEvent.setup();
+    renderResume();
+    const search = screen.getByLabelText("Search resume");
+
+    await user.type(search, "quickbooks");
+    await user.click(screen.getByRole("button", { name: "web" }));
+
+    expect(search).toHaveValue("");
+    expect(screen.getByText(/showing/)).toHaveTextContent(`showing 4 of ${TOTAL_COUNT}`);
   });
 });
