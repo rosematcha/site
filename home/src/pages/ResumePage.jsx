@@ -4,6 +4,7 @@
 // tag taxonomy cross-linking entries. Printing outputs a plain black-on-white
 // resume with everything expanded.
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import PropTypes from "prop-types";
 import { Link, useSearchParams } from "react-router-dom";
 import { usePageTitle } from "../utils/pageMeta";
 import "./ResumePage.css";
@@ -431,6 +432,25 @@ function SkillsBlock({ query }) {
    Page
    ============================================================= */
 
+// The confirmation is shorter than the address it replaces, so the button
+// holds its label's width: in the mono rail 1ch is one glyph, and without a
+// reserved width the links to its right slide under the pointer mid-click.
+function CopyLink({ id, label, value, copied, onCopy }) {
+  return (
+    <button type="button" style={{ minWidth: `${label.length}ch` }} onClick={() => onCopy(value, id)}>
+      {copied === id ? "copied!" : label}
+    </button>
+  );
+}
+
+CopyLink.propTypes = {
+  copied: PropTypes.string,
+  id: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  onCopy: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
+};
+
 function ResumePage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const lens = readLens(searchParams);
@@ -551,15 +571,23 @@ function ResumePage() {
           {"San Antonio, TX\u00a0· available locally or remote\u00a0· open to freelance"}
         </div>
         <div className="resume-idcard__rail mono-meta">
-          <button type="button" onClick={() => copyToClipboard("howdy@rosematcha.com", "email")}>
-            {copied === "email" ? "copied!" : "howdy@rosematcha.com"}
-          </button>
+          <CopyLink
+            id="email"
+            label="howdy@rosematcha.com"
+            value="howdy@rosematcha.com"
+            copied={copied}
+            onCopy={copyToClipboard}
+          />
           <a href="https://github.com/rosematcha" target="_blank" rel="noopener noreferrer">
             github.com/rosematcha
           </a>
-          <button type="button" onClick={() => copyToClipboard("https://rosematcha.com", "site")}>
-            {copied === "site" ? "copied!" : "rosematcha.com"}
-          </button>
+          <CopyLink
+            id="site"
+            label="rosematcha.com"
+            value="https://rosematcha.com"
+            copied={copied}
+            onCopy={copyToClipboard}
+          />
           <Link to="/projects">rosematcha.com/projects</Link>
         </div>
       </div>
