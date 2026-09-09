@@ -198,7 +198,10 @@
   background: var(--stock-cream);
   box-shadow: var(--shadow-sm);
   color: var(--cream-ink);
-  contain: layout paint style;
+
+  /* layout + style only. `paint` containment clipped the toggler's focus
+     ring to the card bounds, leaving keyboard users a sliver of outline. */
+  contain: layout style;
   margin-bottom: 0.55rem;
   position: relative;
   transition: transform 0.18s var(--ease-out);
@@ -210,23 +213,48 @@
 
 .resume-entry__head {
   align-items: center;
+  display: grid;
+  gap: 0.3rem 0.9rem;
+  grid-template-columns: 1fr auto auto;
+  padding: 0.7rem 0.9rem;
+  position: relative;
+  text-align: left;
+  width: 100%;
+}
+
+/* The toggler wraps the title only; its ::after overlay makes the whole head
+   clickable. Interactive children that must stay reachable (the company
+   link) are raised above the overlay. */
+.resume-entry__toggler {
   background: none;
   border: 0;
   color: inherit;
   cursor: pointer;
-  display: grid;
   font: inherit;
-  gap: 0.3rem 0.9rem;
-  grid-template-columns: 1fr auto auto;
-  padding: 0.7rem 0.9rem;
+  grid-column: 1;
+  grid-row: 1;
+  padding: 0;
   text-align: left;
-  width: 100%;
+}
+
+.resume-entry__toggler::after {
+  content: "";
+  inset: 0;
+  position: absolute;
+}
+
+.resume-entry__toggler:focus-visible {
+  outline: none;
+}
+
+.resume-entry__toggler:focus-visible::after {
+  outline: 3px solid var(--butter);
+  outline-offset: -3px;
 }
 
 .resume-entry__title {
   font-family: "Young Serif", Georgia, serif;
   font-size: 1.05rem;
-  grid-column: 1;
 }
 
 .resume-entry__org {
@@ -239,7 +267,9 @@
 
 .resume-entry__org a {
   color: inherit;
+  position: relative;
   text-decoration: underline;
+  z-index: 1;
 }
 
 .resume-entry__dates {
@@ -282,7 +312,7 @@
   color: var(--stock-cream);
 }
 
-.resume-entry__head[aria-expanded="true"] .resume-entry__toggle {
+.resume-entry--open .resume-entry__toggle {
   background: var(--rose-deep);
   color: var(--stock-cream);
   transform: rotate(180deg);

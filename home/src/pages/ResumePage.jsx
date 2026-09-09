@@ -227,36 +227,39 @@ function JobEntry({ job, index, isOpen, onToggle, query, activeTag, onTagClick, 
 
   return (
     <div
-      className={`resume-entry ${index % 2 ? "tilt-r-sm" : "tilt-l-sm"} ${job.featured ? "resume-entry--featured" : ""}`}
+      className={`resume-entry ${index % 2 ? "tilt-r-sm" : "tilt-l-sm"} ${job.featured ? "resume-entry--featured" : ""} ${isOpen ? "resume-entry--open" : ""}`}
     >
-      <button
-        type="button"
-        className="resume-entry__head"
-        aria-expanded={isOpen}
-        onClick={onToggle}
-      >
-        <span className="resume-entry__title">
-          <Highlight text={job.title} query={query} />
-        </span>
-        <span className="resume-entry__org">
+      {/* The head is a plain grid, not a button. The toggle button wraps only
+          the title and stretches an ::after overlay across the whole head, so
+          the entire card stays clickable without nesting the company link
+          inside a button (invalid HTML, and axe's nested-interactive). The
+          link sits above the overlay via z-index. */}
+      <div className="resume-entry__head">
+        <button
+          type="button"
+          className="resume-entry__toggler"
+          aria-expanded={isOpen}
+          aria-label={`${job.title}, ${job.company}`}
+          onClick={onToggle}
+        >
+          <span className="resume-entry__title">
+            <Highlight text={job.title} query={query} />
+          </span>
+        </button>
+        <div className="resume-entry__org">
           {job.companyUrl ? (
-            <a
-              href={job.companyUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={e => e.stopPropagation()}
-            >
+            <a href={job.companyUrl} target="_blank" rel="noopener noreferrer">
               <Highlight text={job.company} query={query} />
             </a>
           ) : (
             <Highlight text={job.company} query={query} />
           )}
-        </span>
-        <span className="resume-entry__dates mono-meta">{dates}</span>
+        </div>
+        <div className="resume-entry__dates mono-meta">{dates}</div>
         <span className="resume-entry__toggle" aria-hidden="true">
           {isOpen ? "−" : "+"}
         </span>
-      </button>
+      </div>
       {!compact && (
         <div className="resume-entry__tags">
           {job.tags.map(tag =>
