@@ -30,3 +30,4 @@ dist-ssr
 # Local agent config and scratch docs
 .claude/
 PRODUCT.md
+.scratch/
