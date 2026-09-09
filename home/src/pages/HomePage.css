@@ -11,8 +11,8 @@
   display: grid;
   gap: var(--space-3);
   grid-template-columns: minmax(0, 1fr) 280px;
-  margin-bottom: var(--space-6);
   margin-inline: calc(-1 * clamp(0rem, (780px - 100%) / 2, (100vw - 100% - 4rem) / 2));
+  margin-bottom: var(--space-6);
   max-width: none;
 }
 
