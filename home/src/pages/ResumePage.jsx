@@ -4,6 +4,7 @@
 // tag taxonomy cross-linking entries. Printing outputs a plain black-on-white
 // resume with everything expanded.
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import { usePageTitle } from "../utils/pageMeta";
 import "./ResumePage.css";
 
@@ -94,8 +95,11 @@ const allJobs = [
     tags: ["infrastructure", "web development", "accessibility", "open source"],
     details: [
       "Design and maintain accessible, user-friendly websites for clients, utilizing open technologies.",
+      "Redesign and rebuild WordPress sites for nonprofits, unions, and small businesses, including migrations off hosted page builders.",
+      "Built a bespoke WordPress plugin so non-technical staff can manage featured work without a developer.",
+      "Built a members-only portal integrated with Patreon so union members can reach confidential material.",
     ],
-    featured: false,
+    featured: true,
   },
 
   {
@@ -403,7 +407,7 @@ function ResumePage() {
           <div>
             <h1 className="resume-idcard__name">Reese Lundquist</h1>
             <div className="resume-idcard__role">
-              Systems administrator · photographer · organizer · teacher
+              Systems administrator · developer · photographer · organizer · teacher
             </div>
             <div className="resume-idcard__where">
               San Antonio, TX · available locally or remote · open to freelance
@@ -419,6 +423,7 @@ function ResumePage() {
             <button type="button" onClick={() => copyToClipboard("https://rosematcha.com", "site")}>
               {copied === "site" ? "copied!" : "rosematcha.com"}
             </button>
+            <Link to="/projects">rosematcha.com/projects</Link>
             <button type="button" className="resume-pdf" onClick={() => window.print()}>
               print / PDF
             </button>
