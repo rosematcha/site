@@ -315,7 +315,10 @@ function ResumePage() {
   const shown = useMemo(() => {
     if (printing) return allJobs;
     return allJobs.filter(job => {
-      if (mode === "featured" && !activeTag && !job.featured) return false;
+      // A query searches the whole history. Restricting it to the four
+      // featured roles meant "quickbooks" and "VAN" reported no match on
+      // first load even though those entries exist.
+      if (mode === "featured" && !activeTag && !q && !job.featured) return false;
       if (activeTag && !job.tags.includes(activeTag)) return false;
       if (q && !jobText(job).includes(q)) return false;
       return true;
@@ -414,7 +417,7 @@ function ResumePage() {
         <button
           type="button"
           className="resume-chip"
-          aria-pressed={mode === "featured" && !activeTag}
+          aria-pressed={mode === "featured" && !activeTag && !q}
           onClick={() => {
             setMode("featured");
             setActiveTag(null);
@@ -425,7 +428,7 @@ function ResumePage() {
         <button
           type="button"
           className="resume-chip resume-chip--all"
-          aria-pressed={mode === "all" && !activeTag}
+          aria-pressed={mode === "all" && !activeTag && !q}
           onClick={() => {
             setMode("all");
             setActiveTag(null);
