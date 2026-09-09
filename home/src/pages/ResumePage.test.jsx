@@ -194,20 +194,51 @@ describe("ResumePage skills", () => {
     expect(screen.getByText(/nothing matches that/i)).toBeInTheDocument();
   });
 
-  it("lists every skill group", () => {
-    const { container } = renderResume();
-    const labels = [...container.querySelectorAll(".resume-skills__label")].map(
-      el => el.textContent
-    );
+  function skillLabels(container) {
+    return [...container.querySelectorAll(".resume-skills__label")].map(el => el.textContent);
+  }
 
-    expect(labels).toEqual([
+  it("shows the technical groups on the opening sysadmin lens", () => {
+    const { container } = renderResume();
+
+    expect(skillLabels(container)).toEqual(["Languages", "Web", "Data & automation", "Systems"]);
+  });
+
+  it("leads with the studio work on the arts lens", () => {
+    const { container } = renderResume("/resume?lens=arts");
+
+    expect(skillLabels(container)).toEqual(["Systems", "Creative"]);
+    expect(screen.getByText(/curriculum design/)).toBeInTheDocument();
+  });
+
+  it("lists every surviving group on all, and no operations row", () => {
+    const { container } = renderResume("/resume?lens=all");
+
+    expect(skillLabels(container)).toEqual([
       "Languages",
       "Web",
       "Data & automation",
       "Systems",
       "Creative",
-      "Operations",
     ]);
+  });
+
+  it("brings back a lens-hidden group when the search matches inside it", async () => {
+    const user = userEvent.setup();
+    const { container } = renderResume();
+
+    expect(skillLabels(container)).not.toContain("Creative");
+
+    // Creative belongs to the arts lens and no bullet spells the phrase out,
+    // so denying the hit would hide a real skill from a reader who typed its
+    // name — the exact failure the skills search was added to fix.
+    await user.type(screen.getByLabelText("Search resume"), "curriculum design");
+
+    expect(screen.queryByText(/nothing matches that/i)).not.toBeInTheDocument();
+    expect(skillLabels(container)).toContain("Creative");
+    expect(screen.getAllByText("curriculum design", { selector: "mark" }).length).toBeGreaterThan(
+      0
+    );
   });
 });
 

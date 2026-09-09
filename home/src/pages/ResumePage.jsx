@@ -213,10 +213,12 @@ const allJobs = [
 const skillGroups = [
   {
     label: "Languages",
+    lenses: ["sysadmin", "web"],
     items: ["JavaScript", "TypeScript", "PHP", "Python", "Lua", "HTML", "CSS"],
   },
   {
     label: "Web",
+    lenses: ["sysadmin", "web"],
     items: [
       "React",
       "Astro",
@@ -231,10 +233,12 @@ const skillGroups = [
   },
   {
     label: "Data & automation",
+    lenses: ["sysadmin", "web"],
     items: ["D3.js", "Chart.js", "Playwright", "web scraping", "OCR"],
   },
   {
     label: "Systems",
+    lenses: ["sysadmin", "arts"],
     items: [
       "Google Workspace",
       "macOS",
@@ -247,8 +251,15 @@ const skillGroups = [
       "asset inventory",
     ],
   },
+  // The Operations row retired here in Sep 2026: QuickBooks, payroll, POS, VAN,
+  // and Microsoft Access are all evidenced by the Hop + Vine and organizing
+  // work, but none of them argue for the roles Reese applies under, and the
+  // entries themselves still carry that history. Event production and
+  // curriculum design moved into Creative, where the organizer and teacher
+  // sides of the header line live.
   {
     label: "Creative",
+    lenses: ["arts"],
     items: [
       "Adobe Creative Cloud",
       "photography",
@@ -256,16 +267,6 @@ const skillGroups = [
       "pinhole",
       "printmaking",
       "video",
-    ],
-  },
-  {
-    label: "Operations",
-    items: [
-      "QuickBooks",
-      "payroll",
-      "POS",
-      "VAN",
-      "Microsoft Access",
       "event production",
       "curriculum design",
     ],
@@ -301,9 +302,22 @@ const TAG_COUNTS = allJobs.reduce((counts, job) => {
    Helpers
    ============================================================= */
 
+function groupMatches(group, query) {
+  return Boolean(query) && group.items.some(item => item.toLowerCase().includes(query));
+}
+
+// Skills follow the lens the way roles do, so a sysadmin PDF carries no
+// darkroom work — but a search still reaches the whole set: a group the lens
+// hides comes back the moment the query matches inside it. Hiding a real skill
+// from a reader who typed its name is the bug the search was built to fix.
+function skillsForLens(lens, query) {
+  if (lens === "all") return skillGroups;
+  return skillGroups.filter(group => group.lenses.includes(lens) || groupMatches(group, query));
+}
+
 function skillsMatch(query) {
   if (!query) return false;
-  return skillGroups.some(group => group.items.some(item => item.toLowerCase().includes(query)));
+  return skillGroups.some(group => groupMatches(group, query));
 }
 
 function readLens(searchParams) {
@@ -408,10 +422,10 @@ function JobEntry({ job, index, isOpen, onToggle, query, activeTag, onTagClick, 
   );
 }
 
-function SkillsBlock({ query }) {
+function SkillsBlock({ query, lens }) {
   return (
     <dl className="resume-skills tilt-l-sm">
-      {skillGroups.map(group => (
+      {skillsForLens(lens, query).map(group => (
         <React.Fragment key={group.label}>
           <dt className="resume-skills__label">{group.label}</dt>
           <dd className="resume-skills__items">
@@ -587,13 +601,9 @@ function ResumePage() {
           <a href="https://github.com/rosematcha" target="_blank" rel="noopener noreferrer">
             github.com/rosematcha
           </a>
-          <CopyLink
-            id="site"
-            label="rosematcha.com"
-            value="https://rosematcha.com"
-            copied={copied}
-            onCopy={copyToClipboard}
-          />
+          {/* Redundant on screen — the reader is already on it — but a
+              printed resume has to carry the address. */}
+          <span className="resume-idcard__site">rosematcha.com</span>
           <Link to="/projects">rosematcha.com/projects</Link>
         </div>
       </div>
@@ -693,7 +703,7 @@ function ResumePage() {
       )}
 
       <h2 className="resume-printhead">Skills</h2>
-      <SkillsBlock query={q} />
+      <SkillsBlock query={q} lens={lens} />
 
       <h2 className="resume-printhead">Education</h2>
       <div className="resume-edu tilt-r-sm">

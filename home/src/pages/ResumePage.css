@@ -77,6 +77,10 @@
   text-decoration: none;
 }
 
+.resume-idcard__site {
+  display: none;
+}
+
 .resume-idcard__rail a:hover,
 .resume-idcard__rail button:hover,
 .resume-idcard__rail a:focus-visible,
@@ -587,8 +591,8 @@
   body {
     background: #fff !important;
     color: #000 !important;
-    font-size: 10.5pt;
-    line-height: 1.35;
+    font-size: 10pt;
+    line-height: 1.3;
   }
 
   .main-header,
@@ -601,9 +605,11 @@
     display: none !important;
   }
 
+  /* The shell keeps a 2rem foot on screen; in print it is a blank strip that
+     costs the education block its place on page one. */
   .page-content {
     max-width: none;
-    padding: 0;
+    padding: 0 !important;
   }
 
   .resume-idcard {
@@ -611,8 +617,8 @@
     border-bottom: 1.5pt solid #000;
     box-shadow: none !important;
     color: #000 !important;
-    margin-bottom: 10pt;
-    padding: 0 0 8pt !important;
+    margin-bottom: 7pt;
+    padding: 0 0 5pt !important;
     transform: none !important;
   }
 
@@ -622,29 +628,48 @@
 
   .resume-idcard__name {
     color: #000 !important;
-    font-size: 20pt;
+    font-size: 17pt;
   }
 
-  .resume-idcard__role,
+  /* The header is a masthead, not a section: five lines of it pushed the
+     education block onto a second page on its own. */
+  .resume-idcard__role {
+    color: #000 !important;
+    font-size: 10.5pt;
+    margin-top: 2pt;
+  }
+
   .resume-idcard__where {
     color: #000 !important;
+    font-size: 9.5pt;
+    margin-top: 2pt;
   }
 
   .resume-idcard__rail {
     display: block !important;
-    font-size: 9.5pt;
-    line-height: 1.5;
-    margin-top: 4pt;
+    font-size: 9pt;
+    line-height: 1.4;
+    margin-top: 3pt;
     text-align: left !important;
     white-space: normal;
   }
 
   .resume-idcard__rail a,
-  .resume-idcard__rail button {
+  .resume-idcard__rail button,
+  .resume-idcard__site {
     color: #000 !important;
     display: inline !important;
-    margin: 0 0.6em 0 0 !important;
+    margin: 0 !important;
     text-decoration: none !important;
+  }
+
+  /* Separators are safe here and nowhere else: on paper a pseudo-element
+     cannot swallow a hit area or an accessible name. Non-breaking spaces for
+     the same reason as the entry title below — JSX drops the whitespace
+     between these elements, so plain spaces have nothing to hold them open —
+     and they keep the interpunct from starting a wrapped line on its own. */
+  .resume-idcard__rail > :not(:last-child)::after {
+    content: "\00a0·\00a0";
   }
 
   .resume-pdf {
@@ -653,12 +678,13 @@
 
   .resume-printhead {
     border-bottom: 1pt solid #000;
+    break-after: avoid;
     color: #000;
     display: block;
     font-size: 11pt;
     font-weight: 800;
     letter-spacing: 0.06em;
-    margin: 12pt 0 7pt;
+    margin: 7pt 0 3pt;
     padding-bottom: 2pt;
     text-transform: uppercase;
   }
@@ -668,7 +694,7 @@
     box-shadow: none !important;
     break-inside: avoid;
     contain: none;
-    margin: 0 0 9pt !important;
+    margin: 0 0 5pt !important;
     transform: none !important;
   }
 
@@ -727,9 +753,12 @@
   .resume-entry__body {
     color: #000;
     font-size: 10pt;
+    line-height: 1.25;
     opacity: 1 !important;
-    padding: 2pt 0 0 14pt !important;
+    orphans: 2;
+    padding: 1pt 0 0 13pt !important;
     transform: none !important;
+    widows: 2;
   }
 
   .resume-entry mark {
@@ -740,6 +769,7 @@
   .resume-skills {
     background: none !important;
     box-shadow: none !important;
+    break-inside: avoid;
     color: #000 !important;
     gap: 1pt 8pt;
     margin: 0 !important;
@@ -760,6 +790,7 @@
   .resume-edu {
     background: none !important;
     box-shadow: none !important;
+    break-inside: avoid;
     color: #000 !important;
     display: flex;
     gap: 0.6em;
