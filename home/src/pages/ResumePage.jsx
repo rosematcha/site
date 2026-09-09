@@ -51,7 +51,7 @@ const allJobs = [
     id: "utsaSouthwest",
     title: "Instructor, Saturday Morning Discovery",
     company: "UTSA Southwest",
-    companyUrl: null,
+    companyUrl: "https://www.utsa.edu/pace/community-art/youth.html",
     start: "May 2023",
     end: null,
     tags: ["education", "photography", "arts", "youth programs"],
@@ -72,10 +72,10 @@ const allJobs = [
     end: "Feb 2025",
     tags: ["nonprofit", "education", "photography", "arts", "youth programs"],
     details: [
-      "Teach and mentor a consistent cohort of roughly 20 youth per term in photography, video, Adobe Creative Cloud, and digital storytelling.",
-      "Design project-based curricula and guide students from concept through production, editing, portfolios, public showcases, and festival submissions.",
+      "Taught and mentored a consistent cohort of roughly 20 youth per term in photography, video, Adobe Creative Cloud, and digital storytelling.",
+      "Designed project-based curricula and guided students from concept through production, editing, portfolios, public showcases, and festival submissions.",
       "Supported student work recognized with awards at local film festivals.",
-      "Manage studio equipment and digital resources; coordinate enrollment, documentation, family communication, and program operations.",
+      "Managed studio equipment and digital resources; coordinated enrollment, documentation, family communication, and program operations.",
     ],
     featured: false,
   },
@@ -221,7 +221,7 @@ function Highlight({ text, query }) {
 function JobEntry({ job, index, isOpen, onToggle, query, activeTag, onTagClick, compact }) {
   const dates = (
     <>
-      {job.start} — {job.end === null ? <span className="resume-now">present</span> : job.end}
+      {job.start} – {job.end === null ? <span className="resume-now">present</span> : job.end}
     </>
   );
 
