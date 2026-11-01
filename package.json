@@ -17,7 +17,9 @@
     "lint": "npm-run-all lint:root lint:workspaces",
     "lint:root": "eslint netlify/functions",
     "lint:workspaces": "npm run lint --workspaces --if-present",
-    "preview": "npm run -w home preview"
+    "preview": "npm run -w home preview",
+    "test:ballot": "node --test \"apps/sampleballot/test/*.test.mjs\"",
+    "sync:ballot": "node apps/sampleballot/scripts/sync.mjs"
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",

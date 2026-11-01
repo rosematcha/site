@@ -1,0 +1,69 @@
+name: Sync sample ballot
+
+on:
+  schedule:
+    - cron: '17 11 * * *'
+  workflow_dispatch:
+
+permissions:
+  actions: write
+  contents: write
+  issues: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+
+      # GitHub turns off scheduled workflows after 60 quiet days.
+      - name: Keep the schedule on
+        run: gh workflow enable sync-ballot.yml
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install PDF tools
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils
+
+      - name: Run tests
+        run: npm run test:ballot
+
+      - name: Sync with the county
+        run: npm run sync:ballot
+        env:
+          SYNC_SUMMARY: ${{ runner.temp }}/summary.md
+
+      - name: Offer changes for review
+        if: ${{ !cancelled() }}
+        run: |
+          git diff --quiet -- apps/sampleballot && exit 0
+          branch=ballot-sync
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch -c "$branch"
+          git add apps/sampleballot
+          git commit -m "chore(sampleballot): sync county election data"
+          git push --force origin "$branch"
+          url="https://github.com/${GITHUB_REPOSITORY}/compare/main...${branch}?expand=1"
+          body="$(cat "$RUNNER_TEMP/summary.md" 2>/dev/null || true)"$'\n\n'"[Review and open the PR](${url})"
+          number="$(gh issue list --state open --search 'in:title "Sample ballot update ready"' --json number --jq '.[0].number // empty')"
+          if [ -n "$number" ]; then
+            gh issue comment "$number" --body "$body"
+          else
+            gh issue create --title "Sample ballot update ready" --body "$body"
+          fi
+
+      - name: Report a failed sync
+        if: failure()
+        run: |
+          run="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+          number="$(gh issue list --state open --search 'in:title "Sample ballot sync failed"' --json number --jq '.[0].number // empty')"
+          if [ -n "$number" ]; then
+            gh issue comment "$number" --body "Failed again: $run"
+          else
+            gh issue create --title "Sample ballot sync failed" --body "The page is hiding anything it can't confirm. See the run: $run"
+          fi
