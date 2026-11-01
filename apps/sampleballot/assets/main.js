@@ -1,3 +1,15 @@
+import {
+  TIME_ZONE,
+  buildVoterBallot,
+  firstNumber,
+  locationKind,
+  maxVotes,
+  nearestSites,
+  readControl,
+  readSites,
+  resolveElection
+} from './election.js?v=2026-11-01';
+
 const SUGGEST_URL = "https://maps.bexar.org/arcgis/rest/services/Locators/BeCoMultiRole/GeocodeServer/suggest";
 const GEOCODE_URL = "https://maps.bexar.org/arcgis/rest/services/Locators/BeCoMultiRole/GeocodeServer/findAddressCandidates";
 const PRECINCT_BASE_URL = "https://maps.bexar.org/arcgis/rest/services";
@@ -8,10 +20,17 @@ const ENDPOINTS = {
   cityCouncil: `${PRECINCT_BASE_URL}/CityCouncilDistricts/MapServer/0/query`,
   stateHouse: `${PRECINCT_BASE_URL}/TXHouseRepDistricts/MapServer/0/query`,
   stateSenate: `${PRECINCT_BASE_URL}/TXSenateDistrictsBexar/MapServer/0/query`,
-  usCongress: `${PRECINCT_BASE_URL}/USCongressDistricts/MapServer/0/query`,
+  constable: `${PRECINCT_BASE_URL}/Constables/MapServer/1/query`,
+  localJurisdiction: `${PRECINCT_BASE_URL}/LocalJurisdictions/MapServer/0/query`,
   stateBoe: `${PRECINCT_BASE_URL}/TX_SBOE_Districts/MapServer/0/query`,
-  schoolDistrict: `${PRECINCT_BASE_URL}/SchoolDistricts/MapServer/0/query`
+  schoolDistrict: `${PRECINCT_BASE_URL}/SchoolDistricts/MapServer/0/query`,
+  electionControl: `${PRECINCT_BASE_URL}/EL/ElectionControl/MapServer/0/query`,
+  earlySites: `${PRECINCT_BASE_URL}/EL/PollingLocationsEarly/MapServer/0/query`,
+  electionDaySites: `${PRECINCT_BASE_URL}/EL/PollingLocationsElectionDay/MapServer/0/query`
 };
+const COUNTY_ELECTION_INFO_URL = 'https://elections.bexar.gov/163/Election-Information';
+const COUNTY_BALLOT_LOOKUP_URL = 'https://elections.bexar.gov/183/Voter-Registration-Check-Polling-Locatio';
+const COORDINATE_SYSTEM = '4326';
 
 const addressInput = document.getElementById('address');
 const dropdown = document.getElementById('autocomplete-dropdown');
@@ -24,37 +43,7 @@ let debounceTimer = null;
 let suggestions = [];
 let selectedIndex = -1;
 let currentLookup = null;
-let ballotViewMode = 'plain-arguments';
-
-// Voting hours information
-const VOTING_HOURS = {
-  early_voting: [
-    {
-      dates: "Monday, October 20 - Friday, October 24",
-      dates_es: "lunes, 20 de octubre a viernes, 24 de octubre",
-      hours: "8:00 AM to 6:00 PM"
-    },
-    {
-      dates: "Saturday, October 25",
-      dates_es: "sábado, 25 de octubre",
-      hours: "7:00 AM to 7:00 PM"
-    },
-    {
-      dates: "Sunday, October 26",
-      dates_es: "domingo, 26 de octubre",
-      hours: "12:00 PM to 6:00 PM"
-    },
-    {
-      dates: "Monday, October 27 - Friday, October 31",
-      dates_es: "lunes, 27 de octubre a viernes, 31 de octubre",
-      hours: "7:00 AM to 7:00 PM"
-    }
-  ],
-  election_day: {
-    date: "Tuesday, November 4, 2025",
-    hours: "7:00 AM to 7:00 PM"
-  }
-};
+let ballotViewMode = 'official';
 
 function setDropdownVisibility(visible) {
   dropdown.classList.toggle('active', Boolean(visible));
@@ -87,8 +76,10 @@ function escapeHtml(value) {
 
 class BexarPrecinctFinder {
   constructor() {
-    this.votingLocationsPromise = null;
+    this.savedLocationsPromise = null;
     this.ballotQuestionsPromise = null;
+    this.congressPromise = null;
+    this.sitesByKind = new Map();
   }
 
   async fetchJson(url, params, options = {}) {
@@ -112,7 +103,7 @@ class BexarPrecinctFinder {
     const params = {
       SingleLine: address,
       maxLocations,
-      outSR: '2278',
+      outSR: COORDINATE_SYSTEM,
       outFields: 'Match_addr,Addr_type,City,Subregion,Region,Postal',
       returnOutFields: 'true'
     };
@@ -146,26 +137,32 @@ class BexarPrecinctFinder {
     return null;
   }
 
+  // Returns null when the address is in no district, undefined when the layer
+  // couldn't answer. Callers treat those differently.
   async queryDistrict(url, x, y, outFields = '*') {
     const params = {
       geometry: `${x},${y}`,
       geometryType: 'esriGeometryPoint',
-      inSR: '2278',
+      inSR: COORDINATE_SYSTEM,
       spatialRel: 'esriSpatialRelIntersects',
       outFields,
       returnGeometry: 'false'
     };
 
-    const data = await this.fetchJson(url, params);
-    if (data.features && data.features.length > 0) {
-      return data.features[0].attributes || null;
+    try {
+      const data = await this.fetchJson(url, params);
+      if (data.error || !Array.isArray(data.features)) return undefined;
+      return data.features[0]?.attributes ?? null;
+    } catch (error) {
+      console.error(error);
+      return undefined;
     }
-    return null;
   }
 
   async findAllDistricts(address) {
     const geocode = await this.geocodeAddress(address, 1);
-    if (!geocode || geocode.x == null || geocode.y == null) {
+    // A match with no house number is a whole street, not this voter's address.
+    if (!geocode || geocode.x == null || geocode.y == null || !/^\d/.test(geocode.address ?? '')) {
       return null;
     }
 
@@ -179,9 +176,10 @@ class BexarPrecinctFinder {
       cityCouncil,
       stateHouse,
       stateSenate,
-      usCongress,
       stateBoe,
-      schoolDistrict
+      schoolDistrict,
+      constable,
+      localJurisdiction
     ] = await Promise.all([
       this.queryDistrict(ENDPOINTS.voterPrecinct, x, y),
       this.queryDistrict(ENDPOINTS.commissionerPrecinct, x, y),
@@ -189,9 +187,10 @@ class BexarPrecinctFinder {
       this.queryDistrict(ENDPOINTS.cityCouncil, x, y),
       this.queryDistrict(ENDPOINTS.stateHouse, x, y),
       this.queryDistrict(ENDPOINTS.stateSenate, x, y),
-      this.queryDistrict(ENDPOINTS.usCongress, x, y),
       this.queryDistrict(ENDPOINTS.stateBoe, x, y),
-      this.queryDistrict(ENDPOINTS.schoolDistrict, x, y)
+      this.queryDistrict(ENDPOINTS.schoolDistrict, x, y),
+      this.queryDistrict(ENDPOINTS.constable, x, y),
+      this.queryDistrict(ENDPOINTS.localJurisdiction, x, y)
     ]);
 
     return {
@@ -209,148 +208,97 @@ class BexarPrecinctFinder {
         city_council_district: cityCouncil || null,
         state_house_district: stateHouse || null,
         state_senate_district: stateSenate || null,
-        us_congress_district: usCongress || null,
         state_boe_district: stateBoe || null,
-        school_district: schoolDistrict || null
+        school_district: schoolDistrict || null,
+        constable_precinct: constable ? constable.Precinct : null,
+        // undefined means the lookup failed; an empty list means unincorporated.
+        cities: localJurisdiction === undefined ? null : [localJurisdiction?.JURIS].filter(Boolean)
       }
     };
   }
 
-  async loadVotingLocations() {
-    if (!this.votingLocationsPromise) {
-      this.votingLocationsPromise = fetch('./voting_locations.json')
-        .then(res => {
-          if (!res.ok) {
-            throw new Error('Unable to load voting locations');
-          }
-          return res.json();
-        })
-        .catch(err => {
-          console.error(err);
-          return [];
-        });
-    }
-    return this.votingLocationsPromise;
+  loadStaticJson(name, fallback) {
+    return fetch(`./${name}`)
+      .then(res => {
+        if (!res.ok) throw new Error(`Unable to load ${name}`);
+        return res.json();
+      })
+      .catch(err => {
+        console.error(err);
+        return fallback;
+      });
   }
 
-  async loadBallotQuestions() {
-    if (!this.ballotQuestionsPromise) {
-      this.ballotQuestionsPromise = fetch('./ballot_questions.json')
-        .then(res => {
-          if (!res.ok) {
-            throw new Error('Unable to load ballot questions');
-          }
-          return res.json();
-        })
-        .catch(err => {
-          console.error(err);
-          return {};
-        });
-    }
+  loadSavedLocations() {
+    this.savedLocationsPromise ??= this.loadStaticJson('voting_locations.json', {});
+    return this.savedLocationsPromise;
+  }
+
+  loadBallotQuestions() {
+    this.ballotQuestionsPromise ??= this.loadStaticJson('ballot_questions.json', null);
     return this.ballotQuestionsPromise;
   }
 
-  calculateDistance(x1, y1, x2, y2) {
-    return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+  loadCongressPrecincts() {
+    this.congressPromise ??= this.loadStaticJson('congress_by_precinct.json', { precincts: {} });
+    return this.congressPromise;
   }
 
-  async findNearestVotingLocations(x, y, limit = 4) {
-    const locations = await this.loadVotingLocations();
-    if (!Array.isArray(locations) || locations.length === 0) {
+  async fetchLiveControl() {
+    try {
+      const data = await this.fetchJson(ENDPOINTS.electionControl, { where: '1=1', outFields: '*', returnGeometry: 'false' });
+      return readControl(data.features?.[0]?.attributes);
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  }
+
+  async fetchLiveSites(kind) {
+    const url = kind === 'early' ? ENDPOINTS.earlySites : ENDPOINTS.electionDaySites;
+    try {
+      const data = await this.fetchJson(url, { where: '1=1', outFields: '*', returnGeometry: 'true', outSR: COORDINATE_SYSTEM });
+      return readSites(data.features ?? []);
+    } catch (error) {
+      console.error(error);
       return [];
     }
-
-    const enriched = locations
-      .map(loc => {
-        if (!loc.coordinates) return null;
-        const distanceFeet = this.calculateDistance(x, y, loc.coordinates.x, loc.coordinates.y);
-        return {
-          ...loc,
-          distance_feet: distanceFeet,
-          distance_miles: distanceFeet / 5280
-        };
-      })
-      .filter(Boolean)
-      .sort((a, b) => a.distance_feet - b.distance_feet);
-
-    return enriched.slice(0, limit);
   }
 
-  normalizeSchoolName(name) {
-    if (!name) return '';
-    return name
-      .toLowerCase()
-      .replace(' isd', '')
-      .replace('independent school district', '')
-      .replace('northeast', 'north east')
-      .replace('northside', 'north side')
-      .replace(/[^a-z\s]/g, '')
-      .trim();
+  // Saved sites only count when they were saved for this same election.
+  async loadSites(kind, control) {
+    if (!this.sitesByKind.has(kind)) {
+      this.sitesByKind.set(kind, this.fetchLiveSites(kind));
+    }
+    const live = await this.sitesByKind.get(kind);
+    if (live.length > 0) return live;
+    const saved = await this.loadSavedLocations();
+    return saved.control?.date === control.date ? (saved[kind] ?? []) : [];
   }
 
-  async getBallotQuestionsForLookup(lookup) {
-    const ballotData = await this.loadBallotQuestions();
-    const categories = Array.isArray(ballotData.categories) ? ballotData.categories : [];
-    const city = lookup?.geocode?.city;
-    const schoolDistrictName = lookup?.districts?.school_district?.NAME;
+  async loadElection() {
+    const [liveControl, saved, ballot] = await Promise.all([
+      this.fetchLiveControl(),
+      this.loadSavedLocations(),
+      this.loadBallotQuestions()
+    ]);
+    return { ...resolveElection({ liveControl, savedControl: saved.control, ballot, now: Date.now() }), ballot };
+  }
 
-    const result = {
-      election_name: ballotData.election_name,
-      election_date: ballotData.election_date,
-      city,
-      school_district: schoolDistrictName,
-      categories: []
+  async buildVoter(lookup) {
+    const { districts } = lookup;
+    const crosswalk = await this.loadCongressPrecincts();
+    return {
+      us_house: crosswalk.precincts[districts.voter_precinct] ?? null,
+      state_senate: firstNumber(districts.state_senate_district?.District),
+      state_house: firstNumber(districts.state_house_district?.District),
+      sboe: firstNumber(districts.state_boe_district?.District),
+      commissioner: firstNumber(districts.commissioner_precinct),
+      jp: firstNumber(districts.jp_precinct),
+      constable: firstNumber(districts.constable_precinct),
+      cities: districts.cities,
+      school: districts.school_district?.NAME ?? null
     };
-
-    categories.forEach(category => {
-      if (category.scope === 'statewide' || category.scope === 'countywide') {
-        result.categories.push(category);
-      }
-    });
-
-    if (city) {
-      const cityWords = city.toLowerCase().split(/\s+/);
-      categories
-        .filter(cat => cat.scope === 'municipal' && Array.isArray(cat.jurisdictions))
-        .forEach(cat => {
-          cat.jurisdictions.forEach(jurisdiction => {
-            const jurisdictionWords = jurisdiction.name.toLowerCase().split(/\s+/);
-            if (cityWords.some(word => jurisdictionWords.includes(word))) {
-              result.categories.push({
-                category: `${jurisdiction.name} - ${jurisdiction.type}`,
-                scope: 'municipal',
-                data: jurisdiction
-              });
-            }
-          });
-        });
-    }
-
-    if (schoolDistrictName) {
-      const normalizedSchool = this.normalizeSchoolName(schoolDistrictName);
-      categories
-        .filter(cat => cat.scope === 'school_district' && Array.isArray(cat.jurisdictions))
-        .forEach(cat => {
-          cat.jurisdictions.forEach(jurisdiction => {
-            const normalizedJurisdiction = this.normalizeSchoolName(jurisdiction.name);
-            const schoolWords = normalizedSchool.split(' ').filter(w => w.length > 3);
-            const jurisdictionWords = new Set(normalizedJurisdiction.split(' ').filter(w => w.length > 3));
-
-            if (
-              normalizedSchool === normalizedJurisdiction ||
-              (schoolWords.length > 0 && schoolWords.every(word => jurisdictionWords.has(word)))
-            ) {
-              result.categories.push({
-                category: `${jurisdiction.name} - ${jurisdiction.type}`,
-                scope: 'school_district',
-                data: jurisdiction
-              });
-            }
-          });
-        });
-    }
-
-    return result;
   }
 }
 
@@ -386,7 +334,7 @@ function setLoading(isLoading) {
     loadingEl.setAttribute('aria-hidden', 'true');
     loadingEl.setAttribute('aria-busy', 'false');
     resultsEl.setAttribute('aria-busy', 'false');
-    resultsEl.setAttribute('aria-hidden', currentLookup ? 'false' : 'true');
+    resultsEl.setAttribute('aria-hidden', resultsEl.classList.contains('active') ? 'false' : 'true');
     submitBtn.disabled = false;
     submitBtn.removeAttribute('aria-busy');
   }
@@ -420,16 +368,16 @@ async function handleLookup(event) {
     updateLoadingMessage('Finding your voter precinct and districts…');
     await new Promise(resolve => setTimeout(resolve, 100)); // Brief pause for UI update
 
-    updateLoadingMessage('Loading ballot questions…');
-    const ballotInfoPromise = finder.getBallotQuestionsForLookup(lookup);
+    updateLoadingMessage('Loading your ballot…');
+    const election = await finder.loadElection();
+    const voterBallot = election.showBallot
+      ? buildVoterBallot(election.ballot, await finder.buildVoter(lookup))
+      : null;
 
     updateLoadingMessage('Finding nearest voting locations…');
-    const nearestLocationsPromise = finder.findNearestVotingLocations(lookup.coordinates.x, lookup.coordinates.y, 4);
-
-    const [ballotInfo, nearestLocations] = await Promise.all([
-      ballotInfoPromise,
-      nearestLocationsPromise
-    ]);
+    const kind = locationKind(election.phase);
+    const sites = kind ? await finder.loadSites(kind, election.control) : [];
+    const origin = { lat: lookup.coordinates.y, lng: lookup.coordinates.x };
 
     updateLoadingMessage('Preparing your results…');
     await new Promise(resolve => setTimeout(resolve, 100)); // Brief pause for UI update
@@ -437,8 +385,10 @@ async function handleLookup(event) {
     currentLookup = {
       address,
       lookup,
-      ballotInfo,
-      nearestLocations
+      election,
+      voterBallot,
+      kind,
+      nearestLocations: nearestSites(sites, origin, 4)
     };
 
     const html = renderResults(currentLookup);
@@ -451,8 +401,8 @@ async function handleLookup(event) {
     });
     toggleBallotActions(true);
     attachBallotActions();
-  attachBallotViewToggle();
-    enableMockBallot();
+    attachBallotViewToggle();
+    attachVoteTracking();
   } catch (error) {
     console.error(error);
     showError('Lookup Error', 'An unexpected error occurred. Please try again later.');
@@ -477,65 +427,94 @@ function showError(title, message) {
   toggleBallotActions(false);
 }
 
+const formatDate = ms =>
+  new Intl.DateTimeFormat('en-US', { timeZone: TIME_ZONE, dateStyle: 'full' }).format(ms);
+const formatShortDate = ms =>
+  new Intl.DateTimeFormat('en-US', { timeZone: TIME_ZONE, weekday: 'long', month: 'long', day: 'numeric' }).format(ms);
+const formatTime = ms =>
+  new Intl.DateTimeFormat('en-US', { timeZone: TIME_ZONE, hour: 'numeric', minute: '2-digit' }).format(ms);
+const longDate = ms =>
+  new Intl.DateTimeFormat('en-US', { timeZone: TIME_ZONE, dateStyle: 'long' }).format(ms);
+
 function renderResults(state) {
-  const { address, lookup, ballotInfo, nearestLocations } = state;
+  const { address, lookup, election, voterBallot, kind, nearestLocations } = state;
   const districts = lookup.districts;
   const precinct = districts.voter_precinct || 'Unknown';
   const cityCouncil = districts.city_council_district;
-
-  const repsCallout = '';
-  const repsSection = '';
 
   return `
     <article class="panel sample-ballot stack-lg">
       <header class="stack-sm">
         <h2>Your voter precinct</h2>
         <div class="ballot-info">
-          <p><strong>Address:</strong> ${address}</p>
-          <p><strong>Voter precinct:</strong> ${precinct}</p>
-          ${districts.school_district ? `<p><strong>School district:</strong> ${districts.school_district.NAME}</p>` : ''}
-          ${cityCouncil ? `<p><strong>City council district:</strong> ${cityCouncil.Dscption}</p>` : ''}
+          <p><strong>Address:</strong> ${escapeHtml(lookup.geocode.address)}</p>
+          <p><strong>Voter precinct:</strong> ${escapeHtml(precinct)}</p>
+          ${districts.school_district ? `<p><strong>School district:</strong> ${escapeHtml(districts.school_district.NAME)}</p>` : ''}
+          ${cityCouncil ? `<p><strong>City council district:</strong> ${escapeHtml(cityCouncil.Dscption)}</p>` : ''}
         </div>
       </header>
-      ${renderBallot(ballotInfo)}
-      ${renderLocations(address, nearestLocations)}
-      ${repsCallout}
-      ${repsSection}
+      ${renderBallot(election, voterBallot)}
+      ${renderLocations(address, kind, nearestLocations)}
+      ${renderVotingHours(election)}
       <footer class="disclaimer">
-        <p><strong>Note:</strong> This tool is informational only. For official ballot materials and polling locations, visit <a href="https://www.bexar.org/elections" target="_blank" rel="noopener">Bexar County Elections</a>.</p>
+        <p><strong>Note:</strong> This tool is informational only. For official ballot materials and polling locations, visit <a href="${COUNTY_ELECTION_INFO_URL}" target="_blank" rel="noopener">Bexar County Elections</a>.</p>
       </footer>
     </article>
   `;
 }
 
-function renderBallot(ballotInfo) {
-  if (!ballotInfo || !Array.isArray(ballotInfo.categories) || ballotInfo.categories.length === 0) {
-    return '<section class="stack-sm"><h3>No ballot questions available for this address.</h3></section>';
+function renderNoBallot(election) {
+  const { phase, control } = election;
+  if (phase === 'over') {
+    return `<section class="stack-sm"><h3>The ${escapeHtml(longDate(control.day_begin))} election is over.</h3></section>`;
   }
+  if (phase === 'none') {
+    return '<section class="stack-sm"><h3>No upcoming election is listed.</h3></section>';
+  }
+  return `
+    <section class="stack-sm">
+      <h3>This ballot isn't here yet.</h3>
+      <p><a class="link" href="${COUNTY_ELECTION_INFO_URL}" target="_blank" rel="noopener">See the county's sample ballot</a></p>
+    </section>
+  `;
+}
+
+const hasSummaries = voterBallot =>
+  [...voterBallot.sections, ...voterBallot.special].some(section =>
+    section.items.some(item => item.plain_language)
+  );
+
+function renderBallot(election, voterBallot) {
+  if (!election.showBallot) return renderNoBallot(election);
+
+  const summaries = hasSummaries(voterBallot);
+  ballotViewMode = summaries ? 'plain-arguments' : 'official';
+  const unverifiedNotice = election.verified
+    ? ''
+    : '<p class="ballot-subtitle">We couldn\'t reach the county to confirm this election is current.</p>';
 
   const header = `
     <section class="ballot-header">
-      <h2>Your ballot &ndash; ${ballotInfo.election_date || 'Upcoming election'}</h2>
-      <p class="ballot-subtitle">Review the contests and questions that will appear on your ballot.</p>
-      <div class="ballot-view-source-notice stack-xs">
-        <small>
-          <strong>Note:</strong> Plain-language summaries and pros/cons are sourced from the <a href="https://lwvsa.org/" target="_blank" rel="noopener">League of Women Voters</a>.
-        </small>
-      </div>
+      <h2>Your ballot &ndash; ${escapeHtml(longDate(election.control.day_begin))}</h2>
+      <p class="ballot-subtitle">Matched to your address. <a class="link" href="${COUNTY_BALLOT_LOOKUP_URL}" target="_blank" rel="noopener">Get your official sample ballot</a> to confirm.</p>
+      ${unverifiedNotice}
+      ${summaries ? `<div class="ballot-view-source-notice stack-xs"><small><strong>Note:</strong> Plain-language summaries and pros/cons are sourced from the <a href="https://lwvsa.org/" target="_blank" rel="noopener">League of Women Voters</a>.</small></div>` : ''}
     </section>
   `;
 
-  const viewToggle = `
+  const viewToggle = summaries
+    ? `
     <div class="ballot-view-toggle" role="group" aria-label="Choose how ballot wording is displayed">
       <button type="button" class="ballot-view-toggle__button" data-view="plain-arguments" aria-pressed="false">Summary with pros &amp; cons</button>
       <button type="button" class="ballot-view-toggle__button" data-view="plain" aria-pressed="false">Plain-language summary</button>
       <button type="button" class="ballot-view-toggle__button" data-view="official" aria-pressed="false">Official wording</button>
     </div>
-  `;
+  `
+    : '';
 
-  const categoriesMarkup = ballotInfo.categories
-    .map(category => renderBallotCategory(category))
-    .join('');
+  const specialMarkup = voterBallot.special.length
+    ? `<details class="ballot-special stack-md"><summary>Special districts, if you live in one</summary>${voterBallot.special.map(renderBallotSection).join('')}<p><a class="link" href="${COUNTY_ELECTION_INFO_URL}" target="_blank" rel="noopener">More special district ballots</a></p></details>`
+    : '';
 
   const actions = `
     <div id="ballot-actions" class="actions-bar">
@@ -544,246 +523,169 @@ function renderBallot(ballotInfo) {
     </div>
   `;
 
-  const viewAttr = escapeAttribute(ballotViewMode || 'official');
+  const viewAttr = escapeAttribute(ballotViewMode);
+  const sectionsMarkup = voterBallot.sections.map(renderBallotSection).join('');
 
-  return `${header}${viewToggle}<div class="stack-lg ballot-sections" id="ballot-sections" data-ballot-view="${viewAttr}">${categoriesMarkup}</div>${actions}`;
+  return `${header}${viewToggle}<div class="stack-lg ballot-sections" id="ballot-sections" data-ballot-view="${viewAttr}">${sectionsMarkup}${specialMarkup}</div>${actions}`;
 }
 
-function renderBallotCategory(category) {
-  const sectionTitle = category?.category || 'Ballot items';
-  const sectionAttr = escapeAttribute(sectionTitle);
-
-  if (category.questions) {
-    return `
-      <section class="stack-md ballot-section" data-section-title="${sectionAttr}">
-        <h3>${sectionTitle}</h3>
-        ${category.questions.map(renderQuestion).join('')}
-      </section>
-    `;
-  }
-
-  if (category.data) {
-    const data = category.data;
-    const racesHtml = Array.isArray(data.races)
-      ? data.races
-          .map(race => `
-            <div class="ballot-card">
-              <h4>${race.office}</h4>
-              <ul>
-                <li><strong>Vote for:</strong> ${race.vote_for}</li>
-                ${Array.isArray(race.candidates) ? `<li><strong>Candidates:</strong><div class="choice-group">${race.candidates.map(c => `<span class="pill">${c}</span>`).join('')}</div></li>` : ''}
-              </ul>
-            </div>
-          `)
-          .join('')
-      : '';
-
-    const questionsHtml = Array.isArray(data.questions)
-      ? data.questions.map(renderQuestion).join('')
-      : '';
-
-    return `
-      <section class="stack-md ballot-section" data-section-title="${sectionAttr}">
-        <h3>${sectionTitle}</h3>
-        ${racesHtml}
-        ${questionsHtml}
-      </section>
-    `;
-  }
-
-  return '';
+function renderBallotSection(section) {
+  return `
+    <section class="stack-md ballot-section" data-section-title="${escapeAttribute(section.title)}">
+      <h3>${escapeHtml(section.title)}</h3>
+      ${section.items.map(item => (item.kind === 'race' ? renderRace(item) : renderQuestion(item))).join('')}
+    </section>
+  `;
 }
 
-function renderQuestion(question) {
-  const options = Array.isArray(question.options) ? question.options.join(' / ') : '';
-  const questionName = question.number ? `Proposition ${question.number}` : (question.title || 'Ballot question');
-  const questionAttr = escapeAttribute(questionName);
-  const optionsAttr = escapeAttribute(options);
-  const officialContent = question.text
-    ? `<p>${escapeHtml(question.text)}</p>`
-    : '<p class="ballot-question__empty">Official ballot language not available.</p>';
+function renderChoices(item, options, inputType) {
+  const inputs = options
+    .map(
+      option => `
+        <label class="choice-option">
+          <input type="${inputType}" name="vote_${escapeAttribute(item.id)}" value="${escapeAttribute(option.value)}">
+          <span>${escapeHtml(option.label)}</span>
+        </label>
+      `
+    )
+    .join('');
+  return `<ul class="ballot-question__choices" aria-label="Available choices"><li><strong>Your vote:</strong> <div class="choice-group">${inputs}</div></li></ul>`;
+}
 
-  const plainSummaryContent = question.plain_language
-    ? `<p>${escapeHtml(question.plain_language)}</p>`
-    : '';
-  const plainSummaryFallback = '<p class="ballot-question__empty">Plain-language summary not available.</p>';
-  const plainSummaryView = plainSummaryContent || plainSummaryFallback;
+const unverifiedNote = item =>
+  item.unverified ? '<p class="ballot-question__unverified">This may not be on your ballot.</p>' : '';
 
-  const argumentsFor = Array.isArray(question.arguments_for) ? question.arguments_for.filter(Boolean) : [];
-  const argumentsAgainst = Array.isArray(question.arguments_against) ? question.arguments_against.filter(Boolean) : [];
-
-  const argumentsForMarkup = argumentsFor.length
-    ? `<div class="ballot-question__arguments"><h5>Why supporters say yes</h5><ul>${argumentsFor.map(item => `<li>${escapeHtml(item)}</li>`).join('')}</ul></div>`
-    : '';
-
-  const argumentsAgainstMarkup = argumentsAgainst.length
-    ? `<div class="ballot-question__arguments"><h5>Why opponents say no</h5><ul>${argumentsAgainst.map(item => `<li>${escapeHtml(item)}</li>`).join('')}</ul></div>`
-    : '';
-
-  const hasArguments = Boolean(argumentsFor.length || argumentsAgainst.length);
-
-  const plainWithArgumentsPieces = [];
-  plainWithArgumentsPieces.push(plainSummaryContent || plainSummaryFallback);
-  if (argumentsForMarkup) {
-    plainWithArgumentsPieces.push(argumentsForMarkup);
-  }
-  if (argumentsAgainstMarkup) {
-    plainWithArgumentsPieces.push(argumentsAgainstMarkup);
-  }
-  if (!hasArguments) {
-    plainWithArgumentsPieces.push('<p class="ballot-question__empty">No pros or cons have been provided.</p>');
-  }
-  const plainWithArgumentsView = plainWithArgumentsPieces.join('');
-
-  const labelMarkup = question.number
-    ? `<span class="ballot-question__label">${escapeHtml(`Proposition ${question.number}`)}</span>`
-    : '';
-  const heading = question.title ? question.title : questionName;
-  const safeHeading = escapeHtml(heading);
-  const safeOptions = escapeHtml(options);
-  const choiceMarkup = safeOptions
-    ? `<ul class="ballot-question__choices" aria-label="Available choices"><li><strong>Your Vote:</strong> ${safeOptions}</li></ul>`
-    : '';
+function renderRace(race) {
+  const options = race.candidates.map(({ name, party }) => {
+    const label = party ? `${name} (${party})` : name;
+    return { label, value: label };
+  });
+  if (race.write_in) options.push({ label: 'Write-in', value: 'Write-in' });
+  const inputType = maxVotes(race.vote_for) > 1 ? 'checkbox' : 'radio';
 
   return `
-    <article class="ballot-question" data-question-label="${questionAttr}" data-options="${optionsAttr}">
+    <article class="ballot-question" data-question-label="${escapeAttribute(race.office)}">
       <header class="ballot-question__header stack-xs">
-        <div class="ballot-question__meta">
-          ${labelMarkup}
-        </div>
-        <h4 class="ballot-question__title">${safeHeading}</h4>
+        <h4 class="ballot-question__title">${escapeHtml(race.office)}</h4>
       </header>
       <div class="ballot-question__body stack-sm">
-        <div class="ballot-question__view" data-view-section="official">${officialContent}</div>
-        <div class="ballot-question__view" data-view-section="plain">${plainSummaryView}</div>
-        <div class="ballot-question__view" data-view-section="plain-arguments">${plainWithArgumentsView}</div>
-        ${choiceMarkup}
+        ${unverifiedNote(race)}
+        <p>${escapeHtml(race.vote_for)}</p>
+        ${renderChoices(race, options, inputType)}
       </div>
     </article>
   `;
 }
 
-function renderVotingHours() {
-  const earlyVotingPeriods = VOTING_HOURS.early_voting
-    .map(period => `
-      <div class="voting-period">
-        <div class="voting-period__dates">
-          <div class="voting-period__dates-primary">${escapeHtml(period.dates)}</div>
-        </div>
-        <div class="voting-period__hours">${escapeHtml(period.hours)}</div>
-      </div>
-    `)
-    .join('');
+function renderQuestion(question) {
+  const officialContent = `<p>${escapeHtml(question.text)}</p>`;
+  const plainSummaryContent = question.plain_language
+    ? `<p>${escapeHtml(question.plain_language)}</p>`
+    : '<p class="ballot-question__empty">Plain-language summary not available.</p>';
+
+  const argumentList = (heading, items) =>
+    items?.length
+      ? `<div class="ballot-question__arguments"><h5>${heading}</h5><ul>${items.map(item => `<li>${escapeHtml(item)}</li>`).join('')}</ul></div>`
+      : '';
+  const argumentsMarkup =
+    argumentList('Why supporters say yes', question.arguments_for) +
+    argumentList('Why opponents say no', question.arguments_against);
+  const options = question.options.map(option => ({ label: option, value: option }));
 
   return `
-    <div class="voting-hours stack-sm">
-      <div class="voting-hours__group">
-        <h4>Early voting</h4>
-        <div class="voting-periods">
-          ${earlyVotingPeriods}
-        </div>
+    <article class="ballot-question" data-question-label="${escapeAttribute(question.title)}">
+      <header class="ballot-question__header stack-xs">
+        <h4 class="ballot-question__title">${escapeHtml(question.title)}</h4>
+      </header>
+      <div class="ballot-question__body stack-sm">
+        ${unverifiedNote(question)}
+        <div class="ballot-question__view" data-view-section="official">${officialContent}</div>
+        <div class="ballot-question__view" data-view-section="plain">${plainSummaryContent}</div>
+        <div class="ballot-question__view" data-view-section="plain-arguments">${plainSummaryContent}${argumentsMarkup}</div>
+        ${renderChoices(question, options, 'radio')}
       </div>
+    </article>
+  `;
+}
 
-      <div class="voting-hours__group">
-        <h4>Election day</h4>
-        <div class="voting-periods">
-          <div class="voting-period voting-period--election-day">
-            <div class="voting-period__dates">
-              <div class="voting-period__dates-primary">${escapeHtml(VOTING_HOURS.election_day.date)}</div>
-            </div>
-            <div class="voting-period__hours">${escapeHtml(VOTING_HOURS.election_day.hours)}</div>
-          </div>
-        </div>
+function renderHoursRow(dates, hours) {
+  return `
+    <div class="voting-period">
+      <div class="voting-period__dates">
+        <div class="voting-period__dates-primary">${escapeHtml(dates)}</div>
       </div>
+      <div class="voting-period__hours">${hours}</div>
     </div>
   `;
 }
 
-function renderLocations(address, locations) {
-  if (!Array.isArray(locations) || locations.length === 0) {
-    return '';
-  }
+function renderVotingHours({ phase, control }) {
+  if (phase === 'none' || phase === 'over') return '';
 
-  const items = locations
-    .map((loc, index) => {
-      const origin = encodeURIComponent(address);
-      const destination = encodeURIComponent(loc.full_address);
-      const mapsUrl = `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${destination}`;
-      const milesValue = Number.isFinite(loc.distance_miles) ? loc.distance_miles : 0;
-      const milesText = milesValue.toFixed(2);
-      const feetText = Math.round(loc.distance_feet).toString();
-      const distanceText = milesValue < 0.1 ? `${milesText} miles (${feetText} feet)` : `${milesText} miles`;
-      const isPrimary = index === 0;
-      const cardClass = isPrimary ? 'location-card location-card--primary' : 'location-card location-card--secondary';
-      const buttonClass = isPrimary ? 'button location-card__cta' : 'button button--ghost location-card__cta';
-      const badgeMarkup = isPrimary ? '<span class="location-card__badge">Closest match</span>' : '';
-      const rankLabel = `#${index + 1}`;
-      const safeName = escapeHtml(loc.name || `Location ${index + 1}`);
-      const safeAddress = escapeHtml(loc.full_address || 'Address unavailable');
-      const safeDistance = escapeHtml(distanceText);
+  const earlyStillOpen = phase === 'early' || phase === 'before-early';
+  const earlyGroup = earlyStillOpen
+    ? `
+      <div class="voting-hours__group">
+        <h4>Early voting</h4>
+        <div class="voting-periods">
+          ${renderHoursRow(
+            `${formatShortDate(control.early_begin)} to ${formatShortDate(control.early_end)}`,
+            `<a class="link" href="${COUNTY_ELECTION_INFO_URL}" target="_blank" rel="noopener">Hours by day</a>`
+          )}
+        </div>
+      </div>
+    `
+    : '';
 
-      return `
-        <article class="${cardClass}" data-rank="${rankLabel}">
-          <header class="location-card__header">
-            <div class="location-card__title">
-              <span class="location-card__rank" aria-hidden="true">${rankLabel}</span>
-              ${badgeMarkup}
-              <h4>${safeName}</h4>
-            </div>
-            <a href="${mapsUrl}" target="_blank" rel="noopener" class="${buttonClass}">Open directions</a>
-          </header>
-          <ul class="location-card__meta">
-            <li><strong>Address:</strong> ${safeAddress}</li>
-            <li><strong>Distance:</strong> ${safeDistance}</li>
-          </ul>
-        </article>
-      `;
-    })
-    .join('');
-
-  const primaryLocation = locations.length > 0 ? locations[0] : null;
-  const secondaryLocations = locations.slice(1);
-
-  const primaryMarkup = primaryLocation ? renderSingleLocation(primaryLocation, 0, address, true) : '';
-  const secondaryMarkup = secondaryLocations.map((loc, idx) => renderSingleLocation(loc, idx + 1, address, false)).join('');
-
-  const locationsSection = `
-    <section class="stack-md location-section">
-      <h3>Nearest voting locations</h3>
-      ${primaryMarkup}
-      ${secondaryLocations.length > 0 ? `<div class="location-list-secondary">${secondaryMarkup}</div>` : ''}
-    </section>
-  `;
-
-  const hoursSection = `
+  return `
     <section class="stack-md voting-hours-section">
       <h3>Voting hours</h3>
-      ${renderVotingHours()}
+      <div class="voting-hours stack-sm">
+        ${earlyGroup}
+        <div class="voting-hours__group">
+          <h4>Election day</h4>
+          <div class="voting-periods">
+            ${renderHoursRow(formatDate(control.day_begin), escapeHtml(`${formatTime(control.day_begin)} to ${formatTime(control.day_end)}`))}
+          </div>
+        </div>
+      </div>
     </section>
   `;
+}
 
-  return locationsSection + hoursSection;
+function renderLocations(address, kind, locations) {
+  if (!kind) return '';
+  const heading = kind === 'early' ? 'Nearest early voting sites' : 'Nearest Election Day vote centers';
+
+  if (locations.length === 0) {
+    return `
+      <section class="stack-sm location-section">
+        <h3>${heading}</h3>
+        <p>Couldn't load voting locations. <a class="link" href="${COUNTY_ELECTION_INFO_URL}" target="_blank" rel="noopener">See the county's list</a></p>
+      </section>
+    `;
+  }
+
+  const [primary, ...secondary] = locations;
+  return `
+    <section class="stack-md location-section">
+      <h3>${heading}</h3>
+      ${renderSingleLocation(primary, 0, address, true)}
+      ${secondary.length > 0 ? `<div class="location-list-secondary">${secondary.map((loc, idx) => renderSingleLocation(loc, idx + 1, address, false)).join('')}</div>` : ''}
+    </section>
+  `;
 }
 
 function renderSingleLocation(loc, index, address, isPrimary) {
   const origin = encodeURIComponent(address);
-  const destination = encodeURIComponent(loc.full_address);
-  const mapsUrl = `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${destination}`;
-  const milesValue = Number.isFinite(loc.distance_miles) ? loc.distance_miles : 0;
-  const milesText = milesValue.toFixed(2);
-  const feetText = Math.round(loc.distance_feet).toString();
-  const distanceText = milesValue < 0.1 ? `${milesText} miles (${feetText} feet)` : `${milesText} miles`;
+  const mapsUrl = `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${loc.lat},${loc.lng}`;
+  const milesText = loc.distance_miles.toFixed(2);
+  const distanceText =
+    loc.distance_miles < 0.1 ? `${milesText} miles (${Math.round(loc.distance_miles * 5280)} feet)` : `${milesText} miles`;
   const cardClass = isPrimary ? 'location-card location-card--primary' : 'location-card location-card--secondary';
   const buttonClass = isPrimary ? 'button location-card__cta' : 'button button--ghost location-card__cta';
   const badgeMarkup = isPrimary ? '<span class="location-card__badge">Closest match</span>' : '';
   const rankLabel = `#${index + 1}`;
-  const safeName = escapeHtml(loc.name || `Location ${index + 1}`);
-
-  // Extract just the street address (before the first comma)
-  const fullAddress = loc.full_address || 'Address unavailable';
-  const streetAddress = fullAddress.split(',')[0].trim();
-  const safeAddress = escapeHtml(streetAddress);
-  const safeDistance = escapeHtml(distanceText);
 
   return `
     <article class="${cardClass}" data-rank="${rankLabel}">
@@ -791,13 +693,14 @@ function renderSingleLocation(loc, index, address, isPrimary) {
         <div class="location-card__title">
           <span class="location-card__rank" aria-hidden="true">${rankLabel}</span>
           ${badgeMarkup}
-          <h4>${safeName}</h4>
+          <h4>${escapeHtml(loc.name)}</h4>
         </div>
         <a href="${mapsUrl}" target="_blank" rel="noopener" class="${buttonClass}">Open directions</a>
       </header>
       <ul class="location-card__meta">
-        <li><strong>Address:</strong> ${safeAddress}</li>
-        <li><strong>Distance:</strong> ${safeDistance}</li>
+        <li><strong>Address:</strong> ${escapeHtml(loc.address)}</li>
+        <li><strong>Distance:</strong> ${escapeHtml(distanceText)}</li>
+        ${loc.details ? `<li><strong>Hours:</strong> ${escapeHtml(loc.details)}</li>` : ''}
       </ul>
     </article>
   `;
@@ -866,68 +769,17 @@ function attachBallotViewToggle() {
   updateBallotViewUI();
 }
 
-function enableMockBallot() {
+// Votes live on the card so they survive a change of ballot view.
+function attachVoteTracking() {
   document.querySelectorAll('.ballot-question').forEach(card => {
-    const voteLi = Array.from(card.querySelectorAll('li')).find(li => /Your Vote:/i.test(li.textContent));
-    if (!voteLi) return;
-
-    const text = voteLi.textContent.replace(/Your Vote:/i, '').trim();
-    if (!text.includes('/')) return;
-
-    const options = text.split('/').map(opt => opt.trim()).filter(Boolean);
-    if (options.length === 0) return;
-
-    const inputName = `mock_${Math.random().toString(36).slice(2)}`;
-    const inputs = options
-      .map(option => `
-        <label class="choice-option">
-          <input type="radio" name="${inputName}" value="${option}">
-          <span>${option}</span>
-        </label>
-      `)
-      .join('');
-
-    voteLi.innerHTML = `<strong>Your Vote:</strong> <div class="choice-group">${inputs}</div>`;
-
-    card.dataset.vote = card.dataset.vote || '';
-
-    const radioInputs = voteLi.querySelectorAll('input[type="radio"]');
-    const savedVote = card.dataset.vote;
-
-    radioInputs.forEach(input => {
-      if (savedVote && input.value === savedVote) {
-        input.checked = true;
-      }
-
-      if (!input.dataset.bound) {
-        input.addEventListener('change', () => {
-          card.dataset.vote = input.value;
-        });
-        input.dataset.bound = 'true';
-      }
+    card.addEventListener('change', () => {
+      const checked = card.querySelectorAll('input:checked');
+      card.dataset.vote = Array.from(checked, input => input.value).join(', ');
     });
   });
 }
 
-function getVoteFromCard(card) {
-  if (!card) return '';
-
-  const stored = (card.dataset.vote || '').trim();
-  if (stored) {
-    return stored;
-  }
-
-  const checked = card.querySelector('input[type="radio"]:checked');
-  if (checked) {
-    const labelEl = checked.closest('label');
-    if (labelEl) {
-      return labelEl.textContent.trim();
-    }
-    return checked.value.trim();
-  }
-
-  return '';
-}
+const getVoteFromCard = card => (card.dataset.vote || '').trim();
 
 function buildCondensedSections(ballotDiv) {
   const sections = Array.from(ballotDiv.querySelectorAll('.ballot-section'));
@@ -952,9 +804,6 @@ function buildCondensedSections(ballotDiv) {
           const label = card.getAttribute('data-question-label') || fallbackLabel;
           const vote = getVoteFromCard(card);
           if (!label || !vote) {
-            return null;
-          }
-          if (/\bfor\b.*\bagainst\b/i.test(vote) || /\bagainst\b.*\bfor\b/i.test(vote)) {
             return null;
           }
           return {
@@ -1048,7 +897,7 @@ async function saveBallotAsImage() {
   tempDiv.querySelectorAll('.print-vote').forEach(vote => {
     vote.style.fontWeight = '600';
     vote.style.color = '#1f2937';
-    vote.style.flex = '0 0 80px';
+    vote.style.flex = '0 0 auto';
     vote.style.textAlign = 'right';
   });
   document.body.appendChild(tempDiv);
@@ -1095,7 +944,7 @@ async function printBallot() {
     li { display: flex; justify-content: space-between; align-items: baseline; padding: 6px 0; border-bottom: 1px solid #e5e7eb; font-size: 0.95rem; }
     li:last-child { border-bottom: none; }
     .print-label { font-weight: 500; color: #111827; flex: 1 1 auto; text-align: left; margin-right: 24px; }
-    .print-vote { font-weight: 600; color: #1f2937; flex: 0 0 80px; text-align: right; }
+    .print-vote { font-weight: 600; color: #1f2937; flex: 0 0 auto; text-align: right; }
   `;
 
   win.document.write(`<!DOCTYPE html><html><head><title>Print Ballot</title><style>${styles}</style></head><body>${condensedMarkup}</body></html>`);

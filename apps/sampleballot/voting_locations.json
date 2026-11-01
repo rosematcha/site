@@ -1,590 +1,2536 @@
-[
-  {
-    "name": "Brook Hollow Branch Library",
-    "street_address": "530 Heimer Rd",
-    "city": "San Antonio",
-    "state": "TX",
-    "zip": "78232",
-    "full_address": "530 Heimer Rd, San Antonio, TX 78232",
-    "coordinates": {
-      "x": 2135944.325315763,
-      "y": 13755014.848021282
-    }
+{
+  "control": {
+    "name": "General Election",
+    "active": true,
+    "primary": false,
+    "early_begin": 1792414800000,
+    "early_end": 1793404800000,
+    "day_begin": 1793710800000,
+    "day_end": 1793754000000,
+    "date": "2026-11-03"
   },
-  {
-    "name": "Castle Hills City Hall",
-    "street_address": "209 Lemonwood Dr",
-    "city": "Castle Hills",
-    "state": "TX",
-    "zip": "78213",
-    "full_address": "209 Lemonwood Dr, Castle Hills, TX 78213",
-    "coordinates": {
-      "x": 2120685.4530279143,
-      "y": 13737640.618491972
+  "early": [
+    {
+      "name": "Helotes City Hall",
+      "address": "12951 Bandera Rd.",
+      "details": "Open 7am-7pm Monday-Friday",
+      "lat": 29.562588000045093,
+      "lng": -98.68711500014001
+    },
+    {
+      "name": "Las Palmas Branch Library",
+      "address": "515 Castroville Rd",
+      "details": "Open 7am-7pm Monday-Friday",
+      "lat": 29.41809734213928,
+      "lng": -98.54961867367531
+    },
+    {
+      "name": "Southwest ISD Admin Building",
+      "address": "11914 Dragon Ln",
+      "details": "Open 7am-7pm Monday-Friday",
+      "lat": 29.305308398953926,
+      "lng": -98.67027063457314
+    },
+    {
+      "name": "Hope Church",
+      "address": "18850 Redland Rd",
+      "details": "Open 7am-7pm Monday-Friday",
+      "lat": 29.61694800008055,
+      "lng": -98.45001000011116
+    },
+    {
+      "name": "Bexar County Justice Center",
+      "address": "300 Dolorosa",
+      "details": "Branch Early Voting Open: 8am-6pm Monday-Friday",
+      "lat": 29.423614012664775,
+      "lng": -98.49440136791458
+    },
+    {
+      "name": "Brook Hollow Branch Library",
+      "address": "530 Heimer Rd.",
+      "details": "Open 7am-7pm Monday-Friday",
+      "lat": 29.56957722096117,
+      "lng": -98.47324095133999
+    },
+    {
+      "name": "Castle Hills City Hall",
+      "address": "209 Lemonwood",
+      "details": "Open 7am-7pm Monday-Friday",
+      "lat": 29.521983016903242,
+      "lng": -98.52146396210055
+    },
+    {
+      "name": "Christian Family Baptist Church",
+      "address": "1589 Grosenbacher Rd",
+      "details": "Open 7am-7pm Monday-Friday",
+      "lat": 29.41683957939964,
+      "lng": -98.73649197099562
+    },
+    {
+      "name": "Claude Black Community Center",
+      "address": "2805 E. Commerce",
+      "details": "Open 7am-7pm Monday-Friday",
+      "lat": 29.420507853712976,
+      "lng": -98.44544851017852
+    },
+    {
+      "name": "Cody Branch Library",
+      "address": "11441 Vance Jackson Rd.",
+      "details": "Open 7am-7pm Monday-Friday",
+      "lat": 29.547206947065316,
+      "lng": -98.56538403313087
+    },
+    {
+      "name": "Converse Community Event Center",
+      "address": "407 S. Seguin Rd.",
+      "details": "Open 7am-7pm Monday-Friday",
+      "lat": 29.514679258159394,
+      "lng": -98.31211627783227
+    },
+    {
+      "name": "Copernicus Community Center",
+      "address": "5003 Lord Rd.",
+      "details": "Open 7am-7pm Monday-Friday",
+      "lat": 29.414333017615512,
+      "lng": -98.3938285301981
+    },
+    {
+      "name": "Cortez Branch Library",
+      "address": "2803 Hunter Blvd.",
+      "details": "Open 7am-7pm Monday-Friday",
+      "lat": 29.334900454199875,
+      "lng": -98.55197083273373
+    },
+    {
+      "name": "Encino Branch Library",
+      "address": "2515 E. Evans Rd",
+      "details": "Open 7am-7pm Monday-Friday",
+      "lat": 29.63680441944675,
+      "lng": -98.44930220937398
+    },
+    {
+      "name": "Great Northwest Branch Library",
+      "address": "9050 Wellwood",
+      "details": "Open 7am-7pm Monday-Friday",
+      "lat": 29.48337004516073,
+      "lng": -98.66290919097229
+    },
+    {
+      "name": "Guerra Branch Library",
+      "address": "7978 W. Military Dr.",
+      "details": "Open 7am-7pm Monday-Friday",
+      "lat": 29.42466366340054,
+      "lng": -98.62564643800809
+    },
+    {
+      "name": "Igo Branch Library",
+      "address": "13330 Kyle Seale Parkway",
+      "details": "Open 7am-7pm Monday-Friday",
+      "lat": 29.56961777949904,
+      "lng": -98.64323320490033
+    },
+    {
+      "name": "Johnston Branch Library",
+      "address": "6307 Sun Valley Dr.",
+      "details": "Open 7am-7pm Monday-Friday",
+      "lat": 29.371847249459897,
+      "lng": -98.63958683374653
+    },
+    {
+      "name": "Kirby City Hall",
+      "address": "112 Bauman St.",
+      "details": "Open 7am-7pm Monday-Friday",
+      "lat": 29.471718334780856,
+      "lng": -98.38178077796705
+    },
+    {
+      "name": "Leon Valley Conference Center",
+      "address": "6421 Evers Rd.",
+      "details": "Open 7am-7pm Monday-Friday",
+      "lat": 29.501432058946182,
+      "lng": -98.61223354639267
+    },
+    {
+      "name": "Lions Field Adult and Senior Center",
+      "address": "2809 Broadway St.",
+      "details": "Open 7am-7pm Monday-Friday",
+      "lat": 29.453753929237717,
+      "lng": -98.47308020299482
+    },
+    {
+      "name": "Maverick Branch Library",
+      "address": "8700 Mystic Park",
+      "details": "Open 7am-7pm Monday-Friday",
+      "lat": 29.524691299964005,
+      "lng": -98.64189817407058
+    },
+    {
+      "name": "McCreless Branch Library",
+      "address": "1023 Ada St.",
+      "details": "Open 7am-7pm Monday-Friday",
+      "lat": 29.381508176515297,
+      "lng": -98.4579290209508
+    },
+    {
+      "name": "Memorial Branch Library",
+      "address": "3222 Culebra Rd.",
+      "details": "Open 7am-7pm Monday-Friday",
+      "lat": 29.448274757740958,
+      "lng": -98.56426873106278
+    },
+    {
+      "name": "Mission Branch Library",
+      "address": "3134 Roosevelt Ave",
+      "details": "Open 7am-7pm Monday-Friday",
+      "lat": 29.36507856233208,
+      "lng": -98.48001733525034
+    },
+    {
+      "name": "Northeast Lakeview College – Medina CTE Center, Bldg. 800, Room 104",
+      "address": "1201 Kitty Hawk Rd.",
+      "details": "Open 7am-7pm Monday-Friday",
+      "lat": 29.546271113564167,
+      "lng": -98.32325173527744
+    },
+    {
+      "name": "Northside Activity Center",
+      "address": "7001 Culebra Rd.",
+      "details": "Open 7am-7pm Monday-Friday",
+      "lat": 29.45204003743611,
+      "lng": -98.62672928360024
+    },
+    {
+      "name": "Northwest Vista College – Mountain Laurel Hall, Room 117",
+      "address": "3535 N. Ellison Dr.",
+      "details": "Open 7am-7pm Monday-Friday",
+      "lat": 29.471355425824957,
+      "lng": -98.7073793441045
+    },
+    {
+      "name": "Our Lady of the Lake University",
+      "address": "411 S.W. 24th St.",
+      "details": "Open 7am-7pm Monday-Friday",
+      "lat": 29.426132331913017,
+      "lng": -98.54356766618574
+    },
+    {
+      "name": "Palo Alto College – Palomino Center, Room 110",
+      "address": "1400 W. Villaret  Blvd.",
+      "details": "Open 7am-7pm Monday-Friday",
+      "lat": 29.324602429132014,
+      "lng": -98.54457626044217
+    },
+    {
+      "name": "Parman Branch Library at Stone Oak",
+      "address": "20735 Wilderness Oak",
+      "details": "Open 7am-7pm Monday-Friday",
+      "lat": 29.636524310574647,
+      "lng": -98.51503197778541
+    },
+    {
+      "name": "Precinct 1 Satellite Office",
+      "address": "3505 Pleasanton Rd.",
+      "details": "Open 7am-7pm Monday-Friday",
+      "lat": 29.34415568326852,
+      "lng": -98.50515081069096
+    },
+    {
+      "name": "Precinct 3 Satellite Office",
+      "address": "320 Interpark Blvd.",
+      "details": "Open 7am-7pm Monday-Friday",
+      "lat": 29.55798433928828,
+      "lng": -98.48799877355958
+    },
+    {
+      "name": "San Antonio College - Victory Center, Room 117",
+      "address": "1819 N. Main Ave.",
+      "details": "Open 7am-7pm Monday-Friday",
+      "lat": 29.44386787770688,
+      "lng": -98.49706698639814
+    },
+    {
+      "name": "Schaefer Branch Library",
+      "address": "6322 US Hwy. 87 E.",
+      "details": "Open 7am-7pm Monday-Friday",
+      "lat": 29.393149552432444,
+      "lng": -98.36601576164591
+    },
+    {
+      "name": "Semmes Branch Library",
+      "address": "15060 Judson Rd.",
+      "details": "Open 7am-7pm Monday-Friday",
+      "lat": 29.579270969588368,
+      "lng": -98.37257455575664
+    },
+    {
+      "name": "Shavano Park City Hall",
+      "address": "900 Saddletree Ct.",
+      "details": "Open 7am-7pm Monday-Friday",
+      "lat": 29.585025485447762,
+      "lng": -98.55459515797835
+    },
+    {
+      "name": "Somerset City Hall",
+      "address": "7360 E. 6th St.",
+      "details": "Open 7am-7pm Monday-Friday",
+      "lat": 29.224472296385027,
+      "lng": -98.64627791630141
+    },
+    {
+      "name": "Southside ISD Administration Building",
+      "address": "1460 Martinez-Losoya Rd.",
+      "details": "Open 7am-7pm Monday-Friday",
+      "lat": 29.241229882887158,
+      "lng": -98.47285483928816
+    },
+    {
+      "name": "St. Hedwig City Hall",
+      "address": "13065 FM - 1346",
+      "details": "Open 7am-7pm Monday-Friday",
+      "lat": 29.42470899380036,
+      "lng": -98.22581059599202
+    },
+    {
+      "name": "St. Philips College – Watson Fine Arts Center, Morgan Gallery, Room 100",
+      "address": "1801 Martin Luther King Dr.",
+      "details": "Open 7am-7pm Monday-Friday",
+      "lat": 29.41564449235432,
+      "lng": -98.45350878509123
+    },
+    {
+      "name": "Tobin Library at Oakwell",
+      "address": "4134 Harry Wurzbach",
+      "details": "Open 7am-7pm Monday-Friday",
+      "lat": 29.510609662121965,
+      "lng": -98.43383184588751
+    },
+    {
+      "name": "Universal City Library",
+      "address": "100 Northview Dr.",
+      "details": "Open 7am-7pm Monday-Friday",
+      "lat": 29.54914148253489,
+      "lng": -98.29688578325757
+    },
+    {
+      "name": "UTSA",
+      "address": "1 UTSA Circle",
+      "details": "Open 7am-7pm Monday-Friday",
+      "lat": 29.584405957635987,
+      "lng": -98.61762223933039
+    },
+    {
+      "name": "Windcrest Civic Center",
+      "address": "9310 Jim Seal Dr.",
+      "details": "Open 7am-7pm Monday-Friday",
+      "lat": 29.52456690604027,
+      "lng": -98.37945238017194
+    },
+    {
+      "name": "Wonderland of the Americas -  Room A79",
+      "address": "4522 Fredericksburg Rd",
+      "details": "Open 7am-7pm Monday-Friday",
+      "lat": 29.492894997837503,
+      "lng": -98.55115275345004
+    },
+    {
+      "name": "East Central ISD Admin. Office - Board Room",
+      "address": "6634 New Sulphur Springs Rd.",
+      "details": "Open 7am-7pm Monday-Friday",
+      "lat": 29.362690250216787,
+      "lng": -98.35992160976342
+    },
+    {
+      "name": "Bexar County Elections Department",
+      "address": "1103 S. Frio",
+      "details": "Open 7am-7pm Monday-Friday",
+      "lat": 29.41532107280256,
+      "lng": -98.50580227941896
+    },
+    {
+      "name": "Macedonia Baptist Church",
+      "address": "111 Hobart St",
+      "details": "Open 7am-7pm Monday-Friday",
+      "lat": 29.414371693604668,
+      "lng": -98.58399164835151
+    },
+    {
+      "name": "Texas A&M University San Antonio",
+      "address": "1 University Way",
+      "details": "Open 7am-7pm Monday-Friday",
+      "lat": 29.30335200018575,
+      "lng": -98.52460649950838
+    },
+    {
+      "name": "Frank Garrett Multi Service Center",
+      "address": "1226 NW 18th St",
+      "details": "Open 7am-7pm Monday-Friday",
+      "lat": 29.442159000007972,
+      "lng": -98.53115849966765
+    },
+    {
+      "name": "Collins Garden Library",
+      "address": "200 N Park Blvd",
+      "details": "Open 7am-7pm Monday-Friday",
+      "lat": 29.39841899973472,
+      "lng": -98.51514750005406
+    },
+    {
+      "name": "Woodlawn Pointe Center for Comm",
+      "address": "702 Donaldson Ave",
+      "details": "Open 7am-7pm Monday-Friday",
+      "lat": 29.46327300044586,
+      "lng": -98.53699499949633
+    },
+    {
+      "name": "Fair Oaks Ranch Police Department",
+      "address": "7286 Dietz Eklhorn Rd",
+      "details": "Open 7am-7pm Monday-Friday",
+      "lat": 29.73026700037009,
+      "lng": -98.62628850018612
+    },
+    {
+      "name": "Thousand Oaks Library",
+      "address": "4618 Thousand Oaks Dr",
+      "details": "Open 7am-7pm Monday-Friday",
+      "lat": 29.544992999954783,
+      "lng": -98.40143249951639
+    },
+    {
+      "name": "Cornerstone Church Annex Building",
+      "address": "18410 Sonterra Place 1st Floor",
+      "details": "Open 7am-7pm Monday-Friday",
+      "lat": 29.61144810831855,
+      "lng": -98.49784508526466
+    },
+    {
+      "name": "Valley Ranch Community Center",
+      "address": "13624 Valley Lake Dr",
+      "details": "Branch Early Voting Open: 8am-6pm Monday-Friday",
+      "lat": 29.518762443672944,
+      "lng": -98.7653254695395
+    },
+    {
+      "name": "Pan American Branch Library",
+      "address": "1122 W Pyron Ave",
+      "details": "Open 7am-7pm Monday-Friday",
+      "lat": 29.362543312361527,
+      "lng": -98.52108855733907
     }
-  },
-  {
-    "name": "Christian Family Baptist Church",
-    "street_address": "1589 Grosenbacher Rd",
-    "city": "San Antonio",
-    "state": "TX",
-    "zip": "78245",
-    "full_address": "1589 Grosenbacher Rd, San Antonio, TX 78245",
-    "coordinates": {
-      "x": 2052388.8184154623,
-      "y": 13699194.49625194
+  ],
+  "election_day": [
+    {
+      "name": "Opportunity Home San Antonio",
+      "address": "818 S FLORES ST",
+      "details": "",
+      "lat": 29.415339000230087,
+      "lng": -98.49843450050052
+    },
+    {
+      "name": "St. Leo The Great Catholic Church Hall",
+      "address": "4423 S FLORES ST",
+      "details": "",
+      "lat": 29.38168799972081,
+      "lng": -98.5022955004444
+    },
+    {
+      "name": "Luther Burbank High School",
+      "address": "1002 EDWARDS ST",
+      "details": "",
+      "lat": 29.39355000042334,
+      "lng": -98.50939200019158
+    },
+    {
+      "name": "Charles Graebner Elementary School",
+      "address": "530 HOOVER AVE",
+      "details": "",
+      "lat": 29.384522999574912,
+      "lng": -98.5277475002633
+    },
+    {
+      "name": "John Glenn Elementary School",
+      "address": "2385 HORAL DR",
+      "details": "",
+      "lat": 29.40767099989713,
+      "lng": -98.65713600010504
+    },
+    {
+      "name": "Harlandale Civic Center",
+      "address": "115 W Southcross Blvd",
+      "details": "",
+      "lat": 29.36862847335442,
+      "lng": -98.50494318501022
+    },
+    {
+      "name": "Morrill Elementary School",
+      "address": "5200 S FLORES ST",
+      "details": "",
+      "lat": 29.374100999828123,
+      "lng": -98.49793949985242
+    },
+    {
+      "name": "Sosa Family Engagement Center",
+      "address": "901 MARCH AVE",
+      "details": "",
+      "lat": 29.348035425559136,
+      "lng": -98.48545632693703
+    },
+    {
+      "name": "Mission Branch Library",
+      "address": "3134 ROOSEVELT AVE",
+      "details": "",
+      "lat": 29.365083000151834,
+      "lng": -98.48001600040945
+    },
+    {
+      "name": "Rayburn Elementary School",
+      "address": "635 RAYBURN DR",
+      "details": "",
+      "lat": 29.357963999962656,
+      "lng": -98.51490450046009
+    },
+    {
+      "name": "E.M. Pease Middle School",
+      "address": "201 HUNT LN",
+      "details": "",
+      "lat": 29.433897000258188,
+      "lng": -98.66954699992743
+    },
+    {
+      "name": "Brentwood STEAM School of Innovation",
+      "address": "1626 THOMPSON PLACE",
+      "details": "",
+      "lat": 29.39512500030288,
+      "lng": -98.55557999997812
+    },
+    {
+      "name": "Gardendale Early Learning Program",
+      "address": "1731 DAHLGREEN AVE",
+      "details": "",
+      "lat": 29.412179999835065,
+      "lng": -98.56655999968585
+    },
+    {
+      "name": "Ralph Langley Elementary School",
+      "address": "14185 BELLA VISTA PLACE",
+      "details": "",
+      "lat": 29.42661600021029,
+      "lng": -98.77632749988578
+    },
+    {
+      "name": "Johnston Branch Library",
+      "address": "6307 SUN VALLEY DR",
+      "details": "",
+      "lat": 29.371850999929386,
+      "lng": -98.63958599953116
+    },
+    {
+      "name": "Miguel Carrillo Jr. Elementary School",
+      "address": "500 PRICE AVE",
+      "details": "",
+      "lat": 29.36003399976736,
+      "lng": -98.55825749953232
+    },
+    {
+      "name": "SOUTH SAN CIVIC CENTER",
+      "address": "503 Lovett Ave",
+      "details": "",
+      "lat": 29.365956003253416,
+      "lng": -98.55218075708062
+    },
+    {
+      "name": "Palo Alto College",
+      "address": "1400 W VILLARET BLVD",
+      "details": "",
+      "lat": 29.324600999572795,
+      "lng": -98.54457750033448
+    },
+    {
+      "name": "Cortez Branch Library",
+      "address": "2803 HUNTER BLVD",
+      "details": "",
+      "lat": 29.334896999775413,
+      "lng": -98.55197100024249
+    },
+    {
+      "name": "South San Antonio High School",
+      "address": "7535 BARLITE BLVD",
+      "details": "",
+      "lat": 29.35078200023082,
+      "lng": -98.54723250021395
+    },
+    {
+      "name": "Ramirez Community Center",
+      "address": "1011 GILLETTE BLVD",
+      "details": "",
+      "lat": 29.331215999781094,
+      "lng": -98.53140600030625
+    },
+    {
+      "name": "Precinct 1 Satellite Office",
+      "address": "3505 PLEASANTON RD",
+      "details": "",
+      "lat": 29.344158000425733,
+      "lng": -98.5051530003194
+    },
+    {
+      "name": "Jewel C. Wietzel Center",
+      "address": "9131 YETT AVE #4",
+      "details": "",
+      "lat": 29.331670621776826,
+      "lng": -98.49283898487678
+    },
+    {
+      "name": "Harlandale ISD Transportation Dept.",
+      "address": "12115 SE LOOP 410",
+      "details": "",
+      "lat": 29.323340999615095,
+      "lng": -98.49035249985648
+    },
+    {
+      "name": "Virginia A. Myers Elementary School",
+      "address": "3031 VILLAGE PKWY",
+      "details": "",
+      "lat": 29.471940000027686,
+      "lng": -98.65448099958768
+    },
+    {
+      "name": "Mission Del Lago Community Center",
+      "address": "2301 DEL LAGO PKWY",
+      "details": "",
+      "lat": 29.29844700042559,
+      "lng": -98.48712149979973
+    },
+    {
+      "name": "City Of Sandy Oaks Municipal Bldg",
+      "address": "22870 PRIEST RD",
+      "details": "",
+      "lat": 29.182121999670198,
+      "lng": -98.42319899965035
+    },
+    {
+      "name": "Texas A&M University San Antonio",
+      "address": "1 UNIVERSITY WAY",
+      "details": "",
+      "lat": 29.30335200018575,
+      "lng": -98.52460649950838
+    },
+    {
+      "name": "Bob Hope Elementary School",
+      "address": "3022 REFORMA DR",
+      "details": "",
+      "lat": 29.322153000415575,
+      "lng": -98.55561600001343
+    },
+    {
+      "name": "Spicewood Park Elementary School",
+      "address": "11303 TILSON DR",
+      "details": "",
+      "lat": 29.305836000086288,
+      "lng": -98.56189799951903
+    },
+    {
+      "name": "Christa McAuliffe Middle School",
+      "address": "9390 SW LOOP 410",
+      "details": "",
+      "lat": 29.333187000313,
+      "lng": -98.6198310002074
+    },
+    {
+      "name": "Judith A. Resnik Middle School",
+      "address": "4495 VERANO PKWY",
+      "details": "",
+      "lat": 29.292975000006575,
+      "lng": -98.58777300036638
+    },
+    {
+      "name": "Von Ormy City Hall",
+      "address": "14729 QUARTER HORSE",
+      "details": "",
+      "lat": 29.278089000277724,
+      "lng": -98.65433700023252
+    },
+    {
+      "name": "City of Somerset Hall",
+      "address": "7360 E SIXTH ST",
+      "details": "",
+      "lat": 29.224476000255148,
+      "lng": -98.64627750029655
+    },
+    {
+      "name": "Southwest Administration Building",
+      "address": "11914 Dragon Ln",
+      "details": "",
+      "lat": 29.305308742141285,
+      "lng": -98.67027075803492
+    },
+    {
+      "name": "Luckey Ranch Elementary School",
+      "address": "12045 LUCKEY RIVER",
+      "details": "",
+      "lat": 29.363435999657153,
+      "lng": -98.73230400051676
+    },
+    {
+      "name": "Adams Hill Elementary School",
+      "address": "9627 ADAMS HILL DR",
+      "details": "",
+      "lat": 29.410200000009127,
+      "lng": -98.67291750010058
+    },
+    {
+      "name": "Paul W. Ott Elementary School",
+      "address": "100 N GROSENBACHER RD",
+      "details": "",
+      "lat": 29.432007000023923,
+      "lng": -98.7366104997841
+    },
+    {
+      "name": "South San Antonio ISD District Office",
+      "address": "5622 RAY ELLISON",
+      "details": "",
+      "lat": 29.354716389951363,
+      "lng": -98.6115756618423
+    },
+    {
+      "name": "George E. Kelly Academy @ Lowell",
+      "address": "919 THOMPSON PLACE",
+      "details": "",
+      "lat": 29.395718999739884,
+      "lng": -98.53811099980396
+    },
+    {
+      "name": "Dr. Winn Murnin Elementary School",
+      "address": "9019 DUGAS DR",
+      "details": "",
+      "lat": 29.443689000166305,
+      "lng": -98.68429799978347
+    },
+    {
+      "name": "Ladera Elementary School",
+      "address": "14750 W GROSENBACHER RD",
+      "details": "",
+      "lat": 29.40008400011282,
+      "lng": -98.78658750039253
+    },
+    {
+      "name": "Big Country Elementary School",
+      "address": "2250 PUE RD",
+      "details": "",
+      "lat": 29.405735999897587,
+      "lng": -98.69904899961782
+    },
+    {
+      "name": "Bob Lewis Elementary School",
+      "address": "1000 SEASCAPE DR",
+      "details": "",
+      "lat": 29.441942999781304,
+      "lng": -98.69852250011277
+    },
+    {
+      "name": "Westwood Terrace Elementary School",
+      "address": "2315 HACKAMORE LN",
+      "details": "",
+      "lat": 29.408939999775868,
+      "lng": -98.64056250003809
+    },
+    {
+      "name": "Meadow Village Elementary School",
+      "address": "1406 MEADOW WAY DR",
+      "details": "",
+      "lat": 29.42279099966118,
+      "lng": -98.64350999984816
+    },
+    {
+      "name": "Guerra Branch Library",
+      "address": "7978 MILITARY DR W",
+      "details": "",
+      "lat": 29.42466299978409,
+      "lng": -98.62564499955835
+    },
+    {
+      "name": "Alonso S. Perales Elementary School",
+      "address": "1507 CERALVO ST",
+      "details": "",
+      "lat": 29.408760000032196,
+      "lng": -98.54861849995552
+    },
+    {
+      "name": "Mission Academy",
+      "address": "9210 S PRESA ST",
+      "details": "",
+      "lat": 29.329740000085128,
+      "lng": -98.44023600006322
+    },
+    {
+      "name": "Robert L. Vale Middle School",
+      "address": "2120 N ELLISON DR",
+      "details": "",
+      "lat": 29.455586999814948,
+      "lng": -98.69393700003162
+    },
+    {
+      "name": "Northwest Vista College",
+      "address": "3535 N ELLISON DR",
+      "details": "",
+      "lat": 29.471354999897198,
+      "lng": -98.70737849978939
+    },
+    {
+      "name": "Christian Evers Elementary School",
+      "address": "1715 RICHLAND HILLS DR",
+      "details": "",
+      "lat": 29.455317000280907,
+      "lng": -98.666230500207
+    },
+    {
+      "name": "Ed Cody Elementary School",
+      "address": "10403 DUGAS DR",
+      "details": "",
+      "lat": 29.428955999728128,
+      "lng": -98.69033700036634
+    },
+    {
+      "name": "Carlos Coon Elementary School",
+      "address": "3110 TIMBER VIEW DR",
+      "details": "",
+      "lat": 29.465622000447,
+      "lng": -98.65176749999632
+    },
+    {
+      "name": "Southside ISD Admin. Bldg",
+      "address": "1460 MARTINEZ LOSOYA",
+      "details": "",
+      "lat": 29.24123399958894,
+      "lng": -98.47285650027065
+    },
+    {
+      "name": "Clarence Galm Elementary School",
+      "address": "1454 SAXONHILL DR",
+      "details": "",
+      "lat": 29.44340099998192,
+      "lng": -98.72126549980086
+    },
+    {
+      "name": "Bobbye Behlau Elementary School",
+      "address": "2355 CAMP LIGHT WAY",
+      "details": "",
+      "lat": 29.407922999691298,
+      "lng": -98.72440199980667
+    },
+    {
+      "name": "Carl and Bunny Jean Raba Elementary School",
+      "address": "9740 RABA DR",
+      "details": "",
+      "lat": 29.46947399986607,
+      "lng": -98.66857050030005
+    },
+    {
+      "name": "Mary Burns Michael Elementary School",
+      "address": "3155 QUIET PLAIN DR",
+      "details": "",
+      "lat": 29.399283000144592,
+      "lng": -98.68191749995806
+    },
+    {
+      "name": "Christian Family Baptist Church",
+      "address": "1589 GROSENBACHER RD",
+      "details": "",
+      "lat": 29.416841999690476,
+      "lng": -98.73649350034339
+    },
+    {
+      "name": "Judge Andy Mireles Elementary School",
+      "address": "12260 ROCKWALL MILL",
+      "details": "",
+      "lat": 29.49180299987094,
+      "lng": -98.73539550003186
+    },
+    {
+      "name": "John Hoffmann Elementary School",
+      "address": "12118 VOLUNTEER PKWY",
+      "details": "",
+      "lat": 29.476781999741412,
+      "lng": -98.73218700006561
+    },
+    {
+      "name": "Pan American Branch Library",
+      "address": "1122 W Pyron Ave",
+      "details": "",
+      "lat": 29.362543312361527,
+      "lng": -98.52108855733907
+    },
+    {
+      "name": "Bennie L. Cole Elementary",
+      "address": "13185 TILLMAN RIDGE",
+      "details": "",
+      "lat": 29.45767801412761,
+      "lng": -98.75445863602272
+    },
+    {
+      "name": "William H. Taft High School",
+      "address": "11600 CULEBRA RD",
+      "details": "",
+      "lat": 29.49783299982252,
+      "lng": -98.7215174999123
+    },
+    {
+      "name": "Hill Country Retreat",
+      "address": "4550 DEL WEBB BLVD",
+      "details": "",
+      "lat": 29.476790999952673,
+      "lng": -98.74205099984161
+    },
+    {
+      "name": "Dr. Linda G. Mora Elementary School",
+      "address": "1520 AMERICAN LOTUS",
+      "details": "",
+      "lat": 29.416752000200077,
+      "lng": -98.7279165003438
+    },
+    {
+      "name": "Thomas L. Hatchett Sr. Elementary School",
+      "address": "10700 INGRAM RD",
+      "details": "",
+      "lat": 29.425202999903217,
+      "lng": -98.66565899963696
+    },
+    {
+      "name": "Bexar County Elections Department",
+      "address": "1103 S FRIO ST",
+      "details": "",
+      "lat": 29.415006000393817,
+      "lng": -98.50603499958679
+    },
+    {
+      "name": "Sidney Lanier High School",
+      "address": "1514 W CESAR E CHAVEZ BLVD",
+      "details": "",
+      "lat": 29.421900000417907,
+      "lng": -98.5153904998915
+    },
+    {
+      "name": "Antonio Margil Elementary School",
+      "address": "1000 PEREZ ST",
+      "details": "",
+      "lat": 29.432852999583524,
+      "lng": -98.51372999953219
+    },
+    {
+      "name": "Frank Garrett Multi Service Center",
+      "address": "1226 NW 18TH ST",
+      "details": "",
+      "lat": 29.442159000007972,
+      "lng": -98.53115849966765
+    },
+    {
+      "name": "Our Lady Of The Lake University",
+      "address": "411 SW 24TH ST",
+      "details": "",
+      "lat": 29.426130000298976,
+      "lng": -98.5435694998655
+    },
+    {
+      "name": "Shepherd King Lutheran Church",
+      "address": "303 W RAMSEY RD",
+      "details": "",
+      "lat": 29.53324800002716,
+      "lng": -98.49820499992083
+    },
+    {
+      "name": "Las Palmas Branch Lirary",
+      "address": "515 CASTROVILLE RD",
+      "details": "",
+      "lat": 29.41809734213928,
+      "lng": -98.54961867367531
+    },
+    {
+      "name": "Marin B. Fenwick Academy",
+      "address": "1930 WAVERLY AVE",
+      "details": "",
+      "lat": 29.448422999741666,
+      "lng": -98.54115749980389
+    },
+    {
+      "name": "Gus Garcia University School",
+      "address": "3306 RUIZ ST",
+      "details": "",
+      "lat": 29.43914399995425,
+      "lng": -98.55648449984537
+    },
+    {
+      "name": "Collins Garden Branch Library",
+      "address": "200 N PARK BLVD",
+      "details": "",
+      "lat": 29.39841899973472,
+      "lng": -98.51514750005406
+    },
+    {
+      "name": "Edgewood Gym",
+      "address": "4133 ELDRIDGE AVE",
+      "details": "",
+      "lat": 29.42088299971003,
+      "lng": -98.57071799963386
+    },
+    {
+      "name": "Memorial Branch Library",
+      "address": "3222 CULEBRA RD",
+      "details": "",
+      "lat": 29.44827900017093,
+      "lng": -98.56426949958717
+    },
+    {
+      "name": "Woodlawn Hills Elementary School",
+      "address": "110 W QUILL DR",
+      "details": "",
+      "lat": 29.465577000258186,
+      "lng": -98.56876950020657
+    },
+    {
+      "name": "Henry Wadsworth Longfellow Middle",
+      "address": "1130 E SUNSHINE DR",
+      "details": "",
+      "lat": 29.47259700038496,
+      "lng": -98.56339200044131
+    },
+    {
+      "name": "St. Paul Community Center",
+      "address": "1201 DONALDSON AVE",
+      "details": "",
+      "lat": 29.465297999769167,
+      "lng": -98.54994600047743
+    },
+    {
+      "name": "Pat Neff Middle School",
+      "address": "5227 EVERS RD",
+      "details": "",
+      "lat": 29.483982000075397,
+      "lng": -98.58994649997942
+    },
+    {
+      "name": "Joe Ward Community Center",
+      "address": "435 E SUNSHINE DR",
+      "details": "",
+      "lat": 29.473353000267263,
+      "lng": -98.54999100015199
+    },
+    {
+      "name": "Sarah King Elementary School",
+      "address": "1001 CERALVO ST",
+      "details": "",
+      "lat": 29.408301000165224,
+      "lng": -98.53739100040298
+    },
+    {
+      "name": "Laurel Heights United Methodist Church",
+      "address": "227 W WOODLAWN AVE",
+      "details": "",
+      "lat": 29.453166000014363,
+      "lng": -98.49708900023981
+    },
+    {
+      "name": "Huisache Avenue Baptist Church",
+      "address": "1339 W HUISACHE AVE",
+      "details": "",
+      "lat": 29.456073000190692,
+      "lng": -98.5163580000589
+    },
+    {
+      "name": "Eduardo Villarreal Jr. Elementary School",
+      "address": "2902 WHITE TAIL",
+      "details": "",
+      "lat": 29.465766000157245,
+      "lng": -98.58854700012462
+    },
+    {
+      "name": "Gregorio Esparza Elementary School",
+      "address": "5700 HEMPHILL ST",
+      "details": "",
+      "lat": 29.455334999813658,
+      "lng": -98.59919399968234
+    },
+    {
+      "name": "Stafford Visual and Performing Arts Elementary",
+      "address": "415 SW 36TH ST",
+      "details": "",
+      "lat": 29.425086000281908,
+      "lng": -98.57353500049393
+    },
+    {
+      "name": "Macedonia Baptist Church",
+      "address": "111 HOBART ST",
+      "details": "",
+      "lat": 29.414376000022006,
+      "lng": -98.58399300047935
+    },
+    {
+      "name": "Woodlawn Elementary School",
+      "address": "1717 W MAGNOLIA AVE",
+      "details": "",
+      "lat": 29.456396999845904,
+      "lng": -98.52432750033043
+    },
+    {
+      "name": "Young Women's Leadership Academy",
+      "address": "2123 W HUISACHE AVE",
+      "details": "",
+      "lat": 29.458610999744852,
+      "lng": -98.53453800000403
+    },
+    {
+      "name": "Northside Activity Center",
+      "address": "7001 CULEBRA RD",
+      "details": "",
+      "lat": 29.452040999892763,
+      "lng": -98.62672949968167
+    },
+    {
+      "name": "Lawrence Powell Elementary School",
+      "address": "6003 THUNDER DR",
+      "details": "",
+      "lat": 29.475009000020222,
+      "lng": -98.60472899990701
+    },
+    {
+      "name": "Bexar County Justice Center",
+      "address": "300 DOLOROSA",
+      "details": "",
+      "lat": 29.42360999986637,
+      "lng": -98.49440249981632
+    },
+    {
+      "name": "Thomas Edison High School",
+      "address": "701 SANTA MONICA ST",
+      "details": "",
+      "lat": 29.472237000316657,
+      "lng": -98.50571099957861
+    },
+    {
+      "name": "Alamo Stadium & Convocation Center",
+      "address": "110 TULETA",
+      "details": "",
+      "lat": 29.462822999922963,
+      "lng": -98.47776150035953
+    },
+    {
+      "name": "Westminster Square Management",
+      "address": "1838 BASSE RD",
+      "details": "",
+      "lat": 29.487402000107693,
+      "lng": -98.51607900027554
+    },
+    {
+      "name": "John Greenleaf Whittier Middle School",
+      "address": "2101 EDISON DR",
+      "details": "",
+      "lat": 29.475054000279364,
+      "lng": -98.52987600020062
+    },
+    {
+      "name": "Samuel A. Maverick Elementary School",
+      "address": "107 RALEIGH PLACE",
+      "details": "",
+      "lat": 29.47800600045028,
+      "lng": -98.5472279998035
+    },
+    {
+      "name": "Granados Adult And Senior Center",
+      "address": "500 FREILING DR",
+      "details": "",
+      "lat": 29.48964300021572,
+      "lng": -98.53836299950807
+    },
+    {
+      "name": "San Antonio M.U.D. #1",
+      "address": "16450 WILDLAKE",
+      "details": "",
+      "lat": 29.596109548261154,
+      "lng": -98.7107171353012
+    },
+    {
+      "name": "Dellview Elementary School",
+      "address": "7235 DEWHURST RD",
+      "details": "",
+      "lat": 29.50092900026529,
+      "lng": -98.54454599949754
+    },
+    {
+      "name": "Dr. Joe Ward Elementary School",
+      "address": "8400 CAVERN HILL",
+      "details": "",
+      "lat": 29.518997300280194,
+      "lng": -98.70691465803571
+    },
+    {
+      "name": "Great Northwest Branch Library",
+      "address": "9050 WELLWOOD ST",
+      "details": "",
+      "lat": 29.483369999924278,
+      "lng": -98.66290950049928
+    },
+    {
+      "name": "Community Alliance for Traffic Safety",
+      "address": "7719 PIPERS LN",
+      "details": "",
+      "lat": 29.469572999999393,
+      "lng": -98.64483299957342
+    },
+    {
+      "name": "Barkley-Ruiz Elementary School",
+      "address": "1111 S NAVIDAD",
+      "details": "",
+      "lat": 29.415834000339522,
+      "lng": -98.52435900006783
+    },
+    {
+      "name": "Henry T. Brauchle Elementary School",
+      "address": "8555 BOWENS CROSSING",
+      "details": "",
+      "lat": 29.523744000006378,
+      "lng": -98.68440600030253
+    },
+    {
+      "name": "Pre-K Academy At West Avenue",
+      "address": "3915 WEST AVE",
+      "details": "",
+      "lat": 29.5011629995898,
+      "lng": -98.52647849999677
+    },
+    {
+      "name": "Anna Mae Nichols Elementary School",
+      "address": "9560 BRAUN RD",
+      "details": "",
+      "lat": 29.530602000267557,
+      "lng": -98.67155850038903
+    },
+    {
+      "name": "Jimmy L. Elrod Elementary School",
+      "address": "8885 HEATH CIRCLE DR",
+      "details": "",
+      "lat": 29.5007130003042,
+      "lng": -98.64515699987598
+    },
+    {
+      "name": "Lloyd M. Knowlton Elementary School",
+      "address": "9500 TIMBER PATH",
+      "details": "",
+      "lat": 29.492838000312336,
+      "lng": -98.6866965000593
+    },
+    {
+      "name": "Olmos Elementary School",
+      "address": "1103 ALLENA DR",
+      "details": "",
+      "lat": 29.49717599970241,
+      "lng": -98.51496300012123
+    },
+    {
+      "name": "Nimitz Middle School",
+      "address": "5426 BLANCO RD",
+      "details": "",
+      "lat": 29.501496000242806,
+      "lng": -98.50678200009283
+    },
+    {
+      "name": "Woodlawn Pointe Community Center",
+      "address": "702 DONALDSON AVE",
+      "details": "",
+      "lat": 29.46327300044586,
+      "lng": -98.53699499949633
+    },
+    {
+      "name": "Maverick Branch Library",
+      "address": "8700 MYSTIC PARK",
+      "details": "",
+      "lat": 29.52468900044017,
+      "lng": -98.64189900024135
+    },
+    {
+      "name": "James L. Carson Elementary School",
+      "address": "8151 OLD TEZEL RD",
+      "details": "",
+      "lat": 29.5144920000123,
+      "lng": -98.66363399971635
+    },
+    {
+      "name": "H.B. Zachry Middle School",
+      "address": "9410 TIMBER PATH",
+      "details": "",
+      "lat": 29.49275699962595,
+      "lng": -98.68220550047204
+    },
+    {
+      "name": "Trinity United Methodist Church",
+      "address": "6800 WURZBACH RD",
+      "details": "",
+      "lat": 29.496959999836466,
+      "lng": -98.59160700032379
+    },
+    {
+      "name": "Dr. John M. Folks Middle School",
+      "address": "9855 SWAYBACK RANCH",
+      "details": "",
+      "lat": 29.53522799960523,
+      "lng": -98.7362144995628
+    },
+    {
+      "name": "Leon Valley Conference Center",
+      "address": "6427 EVERS RD",
+      "details": "",
+      "lat": 29.50286399965954,
+      "lng": -98.61084899993327
+    },
+    {
+      "name": "W.Z. \"Doc\" Burke Elementary School",
+      "address": "10111 TERRA OAK",
+      "details": "",
+      "lat": 29.50837199986616,
+      "lng": -98.6897700000456
+    },
+    {
+      "name": "Raul B. Fernandez Elementary School",
+      "address": "6845 RIDGEBROOK",
+      "details": "",
+      "lat": 29.50119899956659,
+      "lng": -98.66976750046453
+    },
+    {
+      "name": "Randall H. Fields Elementary School",
+      "address": "9570 FM 1560 N",
+      "details": "",
+      "lat": 29.530800000186535,
+      "lng": -98.7157305002811
+    },
+    {
+      "name": "Stevenson Middle School",
+      "address": "8403 TEZEL RD",
+      "details": "",
+      "lat": 29.519991000382376,
+      "lng": -98.66409299958936
+    },
+    {
+      "name": "Glenoaks Elementary School",
+      "address": "5103 NEWCOME DR",
+      "details": "",
+      "lat": 29.49596999999403,
+      "lng": -98.5861169995836
+    },
+    {
+      "name": "Wonderland Of The Americas",
+      "address": "4522 FREDERICKSBURG RD",
+      "details": "",
+      "lat": 29.492891999685707,
+      "lng": -98.55115200030282
+    },
+    {
+      "name": "Dr. Pat Henderson Elementary School",
+      "address": "14605 KALLISON BEND",
+      "details": "",
+      "lat": 29.521799999823596,
+      "lng": -98.78476949949118
+    },
+    {
+      "name": "Northwest Church Of Christ",
+      "address": "9681 W LOOP 1604 N",
+      "details": "",
+      "lat": 29.534012999582867,
+      "lng": -98.68432499972475
+    },
+    {
+      "name": "Evelyn Scarborough Elementary School",
+      "address": "12280 SILVER POINTE",
+      "details": "",
+      "lat": 29.519342999672745,
+      "lng": -98.73454500020844
+    },
+    {
+      "name": "Northwest Crossing Elementary School",
+      "address": "10255 DOVER RDG",
+      "details": "",
+      "lat": 29.511621000320925,
+      "lng": -98.68407299954188
+    },
+    {
+      "name": "Dean H. Krueger Elementary School",
+      "address": "9900 WILDHORSE PKWY",
+      "details": "",
+      "lat": 29.534085000434402,
+      "lng": -98.69828849987633
+    },
+    {
+      "name": "Ridgeview Elementary School",
+      "address": "8223 MCCULLOUGH AVE",
+      "details": "",
+      "lat": 29.512764000273474,
+      "lng": -98.49238649971296
+    },
+    {
+      "name": "John B. Connally Middle School",
+      "address": "8661 SILENT SUNRISE",
+      "details": "",
+      "lat": 29.50149600041974,
+      "lng": -98.65547999977358
+    },
+    {
+      "name": "Dr. Martha Mead Elementary School",
+      "address": "3803 MIDHORIZON DR",
+      "details": "",
+      "lat": 29.515454999814168,
+      "lng": -98.55975149973672
+    },
+    {
+      "name": "Northside Health Careers High School",
+      "address": "4646 HAMILTON WOLFE",
+      "details": "",
+      "lat": 29.520495000225896,
+      "lng": -98.57875499968483
+    },
+    {
+      "name": "Earl Rudder Middle School",
+      "address": "6558 HORN BLVD",
+      "details": "",
+      "lat": 29.539115999718504,
+      "lng": -98.61637950008095
+    },
+    {
+      "name": "F.R. Scobee Elementary School",
+      "address": "11223 CEDAR PARK",
+      "details": "",
+      "lat": 29.55488399983339,
+      "lng": -98.64242999990788
+    },
+    {
+      "name": "Frances M. Rhodes Elementary School",
+      "address": "5714 NORTH KNOLL",
+      "details": "",
+      "lat": 29.511917999945297,
+      "lng": -98.60070599981698
+    },
+    {
+      "name": "Oak Hills Terrace Elementary",
+      "address": "5710 CARY GRANT DR",
+      "details": "",
+      "lat": 29.50103699970153,
+      "lng": -98.59904099951052
+    },
+    {
+      "name": "William J. Thornton Elementary School",
+      "address": "6450 PEMBROKE RD",
+      "details": "",
+      "lat": 29.5381710003966,
+      "lng": -98.61331500010374
+    },
+    {
+      "name": "Robert F. McDermott Elementary School",
+      "address": "5111 USAA BLVD",
+      "details": "",
+      "lat": 29.534714999812454,
+      "lng": -98.58428550006423
+    },
+    {
+      "name": "Carl Wanke Elementary School",
+      "address": "10419 OLD PRUE RD",
+      "details": "",
+      "lat": 29.540988000048284,
+      "lng": -98.6524289995566
+    },
+    {
+      "name": "Nathan Kallison Elementary School",
+      "address": "8610 RANCH VW E",
+      "details": "",
+      "lat": 29.521574999912026,
+      "lng": -98.76423599997513
+    },
+    {
+      "name": "Valley Ranch Community Owners Association",
+      "address": "13624 Valley Lake Dr",
+      "details": "",
+      "lat": 29.518743761530036,
+      "lng": -98.76533146791074
+    },
+    {
+      "name": "Las Lomas Elementary School",
+      "address": "20303 HARDY OAK BLVD",
+      "details": "",
+      "lat": 29.62988100044805,
+      "lng": -98.48240549987993
+    },
+    {
+      "name": "Helotes City Hall",
+      "address": "12951 BANDERA RD",
+      "details": "",
+      "lat": 29.562588000045093,
+      "lng": -98.68711500014001
+    },
+    {
+      "name": "Pieper High School",
+      "address": "1400 KINDER PKWY",
+      "details": "",
+      "lat": 29.721555000380636,
+      "lng": -98.47063350030696
+    },
+    {
+      "name": "Roan Forest Elementary School",
+      "address": "22710 ROAN PARK",
+      "details": "",
+      "lat": 29.65324500045152,
+      "lng": -98.43941699959007
+    },
+    {
+      "name": "Colonial Hills United Methodist Church",
+      "address": "5247 VANCE JACKSON RD",
+      "details": "",
+      "lat": 29.52794699961343,
+      "lng": -98.54018550035515
+    },
+    {
+      "name": "Fair Oaks Ranch Police Department",
+      "address": "7286 DIETZ ELKHORN RD",
+      "details": "",
+      "lat": 29.73026700037009,
+      "lng": -98.62628850018612
+    },
+    {
+      "name": "Olmos Park City Hall",
+      "address": "120 W EL PRADO",
+      "details": "",
+      "lat": 29.471957999583505,
+      "lng": -98.4902985003193
+    },
+    {
+      "name": "Terrell Hills City Hall",
+      "address": "5100 N NEW BRAUNFELS AVE",
+      "details": "",
+      "lat": 29.47519799992064,
+      "lng": -98.45891550003144
+    },
+    {
+      "name": "Alamo Heights City Hall",
+      "address": "6116 BROADWAY",
+      "details": "",
+      "lat": 29.484369000013487,
+      "lng": -98.46602550012537
+    },
+    {
+      "name": "James Madison High School",
+      "address": "5005 STAHL RD",
+      "details": "",
+      "lat": 29.581757999751996,
+      "lng": -98.39133450007117
+    },
+    {
+      "name": "San Antonio Shrine Auditorium",
+      "address": "901 N LOOP 1604 W",
+      "details": "",
+      "lat": 29.609693999933075,
+      "lng": -98.50103099975519
+    },
+    {
+      "name": "Cornerstone Church Annex Building",
+      "address": "18410 Sonterra Place 1st Floor",
+      "details": "",
+      "lat": 29.61144810831855,
+      "lng": -98.49784508526466
+    },
+    {
+      "name": "Peggy Carnahan Elementary School",
+      "address": "6839 BABCOCK RD",
+      "details": "",
+      "lat": 29.558088000427883,
+      "lng": -98.62325099948983
+    },
+    {
+      "name": "M.H. Specht Elementary School",
+      "address": "25815 OVERLOOK PKWY",
+      "details": "",
+      "lat": 29.683898999763326,
+      "lng": -98.46044099956822
+    },
+    {
+      "name": "Lopez Middle School",
+      "address": "23103 HARDY OAK BLVD",
+      "details": "",
+      "lat": 29.65624199963023,
+      "lng": -98.49784499978146
+    },
+    {
+      "name": "Oak Grove Elementary School",
+      "address": "3250 NACOGDOCHES RD",
+      "details": "",
+      "lat": 29.526633000040018,
+      "lng": -98.43589349985334
+    },
+    {
+      "name": "Grey Forest Community Center",
+      "address": "18249 SHERWOOD TRL",
+      "details": "",
+      "lat": 29.614154868877876,
+      "lng": -98.68427980538685
+    },
+    {
+      "name": "Barbara Bush Middle School",
+      "address": "1500 EVANS RD",
+      "details": "",
+      "lat": 29.63772000006305,
+      "lng": -98.46882000020726
+    },
+    {
+      "name": "Alamo Heights United Methodist Church",
+      "address": "825 E BASSE RD",
+      "details": "",
+      "lat": 29.498642999861843,
+      "lng": -98.47323900034495
+    },
+    {
+      "name": "Locke Hill Elementary",
+      "address": "5050 DeZavala Rd",
+      "details": "",
+      "lat": 29.56537342601496,
+      "lng": -98.58299903363067
+    },
+    {
+      "name": "Ed Rawlinson Middle School",
+      "address": "14100 VANCE JACKSON RD",
+      "details": "",
+      "lat": 29.57645699958999,
+      "lng": -98.58487949956455
+    },
+    {
+      "name": "Hope Church",
+      "address": "18850 REDLAND RD",
+      "details": "",
+      "lat": 29.61694800008055,
+      "lng": -98.45001000011116
+    },
+    {
+      "name": "Regency Place Elementary School",
+      "address": "10222 BROADWAY",
+      "details": "",
+      "lat": 29.532923999877102,
+      "lng": -98.44690949981022
+    },
+    {
+      "name": "Precinct 3 Satellite Office",
+      "address": "320 INTERPARK BLVD",
+      "details": "",
+      "lat": 29.557980000158597,
+      "lng": -98.48799899962705
+    },
+    {
+      "name": "Harmony Hills Elementary School",
+      "address": "10727 MEMORY LN",
+      "details": "",
+      "lat": 29.538810000311628,
+      "lng": -98.50075649958043
+    },
+    {
+      "name": "Eisenhower Middle School",
+      "address": "8231 BLANCO RD",
+      "details": "",
+      "lat": 29.540178000316413,
+      "lng": -98.5079969997776
+    },
+    {
+      "name": "Castle Hills City Hall",
+      "address": "209 LEMONWOOD DR",
+      "details": "",
+      "lat": 29.52197999972973,
+      "lng": -98.52146549996857
+    },
+    {
+      "name": "Larkspur Elementary School",
+      "address": "1802 LARKSPUR DR",
+      "details": "",
+      "lat": 29.543543999925983,
+      "lng": -98.52229350036582
+    },
+    {
+      "name": "Adante Assistant Living",
+      "address": "2702 CEMBALO BLVD",
+      "details": "",
+      "lat": 29.547711000238824,
+      "lng": -98.53153199987887
+    },
+    {
+      "name": "Hunters Creek Swim And Racquet Club",
+      "address": "3630 HUNTERS CIR",
+      "details": "",
+      "lat": 29.563136999984255,
+      "lng": -98.54406450027568
+    },
+    {
+      "name": "Cody Branch Library",
+      "address": "11441 VANCE JACKSON RD",
+      "details": "",
+      "lat": 29.547206999653866,
+      "lng": -98.56538550027845
+    },
+    {
+      "name": "Bexar-Bulverde Fire Department",
+      "address": "23103 BULVERDE RD",
+      "details": "",
+      "lat": 29.65559456879508,
+      "lng": -98.43189674412181
+    },
+    {
+      "name": "Woods Of Shavano Community Club House",
+      "address": "13838 PARKSITE WOODS",
+      "details": "",
+      "lat": 29.571821999924616,
+      "lng": -98.5746735000021
+    },
+    {
+      "name": "Shavano Park City Hall",
+      "address": "900 SADDLETREE CT",
+      "details": "",
+      "lat": 29.58502499963778,
+      "lng": -98.55459450046274
+    },
+    {
+      "name": "Brookhollow Branch Library",
+      "address": "530 HEIMER RD",
+      "details": "",
+      "lat": 29.56958100016284,
+      "lng": -98.47323899971008
+    },
+    {
+      "name": "Wetmore Elementary School",
+      "address": "3250 THOUSAND OAKS DR",
+      "details": "",
+      "lat": 29.570138999560676,
+      "lng": -98.43490349970024
+    },
+    {
+      "name": "Bradley Middle School",
+      "address": "14819 HEIMER RD",
+      "details": "",
+      "lat": 29.577140999804985,
+      "lng": -98.46704700020406
+    },
+    {
+      "name": "Oak Meadow United Methodist Church",
+      "address": "2740 HUNTERS GREEN DR",
+      "details": "",
+      "lat": 29.569365000160957,
+      "lng": -98.53835400040363
+    },
+    {
+      "name": "Bulverde Creek Elementary School",
+      "address": "3839 CANYON PKWY",
+      "details": "",
+      "lat": 29.63236500042604,
+      "lng": -98.41810499964285
+    },
+    {
+      "name": "Timberwood Park Elementary School",
+      "address": "26715 S. Glenrose Rd",
+      "details": "",
+      "lat": 29.707458154468416,
+      "lng": -98.5109574003136
+    },
+    {
+      "name": "Thousand Oaks Elementary School",
+      "address": "16080 HENDERSON PASS",
+      "details": "",
+      "lat": 29.587301999949407,
+      "lng": -98.44991100010097
+    },
+    {
+      "name": "Hill Country Village City Hall",
+      "address": "116 ASPEN LN",
+      "details": "",
+      "lat": 29.571659999723156,
+      "lng": -98.48177999967436
+    },
+    {
+      "name": "Voigt Center",
+      "address": "700 El Portal Dr",
+      "details": "",
+      "lat": 29.599239690560733,
+      "lng": -98.50093602777828
+    },
+    {
+      "name": "Vineyard Ranch Elementary School",
+      "address": "16818 HUEBNER RD",
+      "details": "",
+      "lat": 29.61081899996419,
+      "lng": -98.52186149979201
+    },
+    {
+      "name": "Leon Springs Elementary School",
+      "address": "23881 IH 10 W",
+      "details": "",
+      "lat": 29.663046000209924,
+      "lng": -98.62888950033022
+    },
+    {
+      "name": "Monroe May Elementary School",
+      "address": "15707 CHASE HILL BLVD",
+      "details": "",
+      "lat": 29.592548999689456,
+      "lng": -98.62626150020597
+    },
+    {
+      "name": "Cross Mountain Church",
+      "address": "24891 BOERNE STAGE RD",
+      "details": "",
+      "lat": 29.67171300019641,
+      "lng": -98.65462949958312
+    },
+    {
+      "name": "Bob Beard Elementary School",
+      "address": "8725 SONOMA PKWY",
+      "details": "",
+      "lat": 29.58145199966989,
+      "lng": -98.65635300022731
+    },
+    {
+      "name": "Steubing Ranch Elementary School",
+      "address": "5100 KNOLLCREEK",
+      "details": "",
+      "lat": 29.594331000342937,
+      "lng": -98.38813499976827
+    },
+    {
+      "name": "Hidden Forest Elementary",
+      "address": "802 SILVER SPRUCE",
+      "details": "",
+      "lat": 29.587707000049516,
+      "lng": -98.50520250040975
+    },
+    {
+      "name": "Semmes Branch Library",
+      "address": "15060 JUDSON RD",
+      "details": "",
+      "lat": 29.579273999567015,
+      "lng": -98.37257400039604
+    },
+    {
+      "name": "Helotes Elementary School",
+      "address": "13878 RIGGS RD",
+      "details": "",
+      "lat": 29.572452000069443,
+      "lng": -98.68949999996322
+    },
+    {
+      "name": "Redland Oaks Elementary School",
+      "address": "16650 REDLAND RD",
+      "details": "",
+      "lat": 29.592269999870172,
+      "lng": -98.43083100023689
+    },
+    {
+      "name": "Longs Creek Elementary School",
+      "address": "15806 O'CONNOR RD",
+      "details": "",
+      "lat": 29.589209999980646,
+      "lng": -98.39542950002487
+    },
+    {
+      "name": "Encino Branch Library",
+      "address": "2515 E EVANS RD",
+      "details": "",
+      "lat": 29.63680200035425,
+      "lng": -98.44930350000637
+    },
+    {
+      "name": "Hartman Center II",
+      "address": "1202 W BITTERS RD",
+      "details": "",
+      "lat": 29.57808600012656,
+      "lng": -98.51164199966746
+    },
+    {
+      "name": "Hardy Oak Elementary School",
+      "address": "22900 HARDY OAK BLVD",
+      "details": "",
+      "lat": 29.655792000358545,
+      "lng": -98.49440249987836
+    },
+    {
+      "name": "Wortham Oaks Elementary School",
+      "address": "5710 CARRIAGE CAPE",
+      "details": "",
+      "lat": 29.646359999675752,
+      "lng": -98.3738925002714
+    },
+    {
+      "name": "Tuscany Heights Elementary School",
+      "address": "25001 WILDERNESS OAK",
+      "details": "",
+      "lat": 29.672325000211845,
+      "lng": -98.4559275001014
+    },
+    {
+      "name": "Louis D. Brandeis High School",
+      "address": "13011 KYLE SEALE PKWY",
+      "details": "",
+      "lat": 29.565468000253016,
+      "lng": -98.64633149980573
+    },
+    {
+      "name": "Cibolo Green Elementary School",
+      "address": "24315 BULVERDE GREEN",
+      "details": "",
+      "lat": 29.66736599993308,
+      "lng": -98.4221864995678
+    },
+    {
+      "name": "First Chinese Baptist Church",
+      "address": "5481 PRUE RD",
+      "details": "",
+      "lat": 29.5454610003862,
+      "lng": -98.59429799965437
+    },
+    {
+      "name": "UTSA",
+      "address": "1 UTSA CIR",
+      "details": "",
+      "lat": 29.584404000290302,
+      "lng": -98.61762150031345
+    },
+    {
+      "name": "Blossom Athletic Center",
+      "address": "12002 JONES MALTSBERGER RD",
+      "details": "",
+      "lat": 29.54897100000429,
+      "lng": -98.46675449977205
+    },
+    {
+      "name": "Bonnie Ellison Elementary School",
+      "address": "7132 OAK DR",
+      "details": "",
+      "lat": 29.638655999991123,
+      "lng": -98.62221600030689
+    },
+    {
+      "name": "Mays Family YMCA",
+      "address": "21654 Blanco Rd",
+      "details": "",
+      "lat": 29.64359810968156,
+      "lng": -98.5168744478351
+    },
+    {
+      "name": "Episcopal Church Of Reconciliation",
+      "address": "8900 STARCREST DR",
+      "details": "",
+      "lat": 29.522205000305487,
+      "lng": -98.42120099971191
+    },
+    {
+      "name": "Winston Churchill High School",
+      "address": "12049 BLANCO RD",
+      "details": "",
+      "lat": 29.550564000289327,
+      "lng": -98.51336099951398
+    },
+    {
+      "name": "Stone Oak Elementary School",
+      "address": "21045 CRESCENT OAKS",
+      "details": "",
+      "lat": 29.63550600027929,
+      "lng": -98.50103999959464
+    },
+    {
+      "name": "Indian Springs Elementary School",
+      "address": "25751 WILDERNESS OAK",
+      "details": "",
+      "lat": 29.685033000277286,
+      "lng": -98.43685199977601
+    },
+    {
+      "name": "Frank M. Tejeda Middle School",
+      "address": "2909 E EVANS RD",
+      "details": "",
+      "lat": 29.641697999809814,
+      "lng": -98.44132950047519
+    },
+    {
+      "name": "Murray E. Boone Elementary School",
+      "address": "6614 SPRING TIME DR",
+      "details": "",
+      "lat": 29.551257000319083,
+      "lng": -98.61814349984934
+    },
+    {
+      "name": "Julia Newton Aue Elementary School",
+      "address": "24750 BAYWATER STAGE",
+      "details": "",
+      "lat": 29.672999999916264,
+      "lng": -98.64733950031136
+    },
+    {
+      "name": "Veterans Memorial High School",
+      "address": "7618 E EVANS RD",
+      "details": "",
+      "lat": 29.609423999887735,
+      "lng": -98.33724449996684
+    },
+    {
+      "name": "Parman Branch Library",
+      "address": "20735 WILDERNESS OAK",
+      "details": "",
+      "lat": 29.63652299963783,
+      "lng": -98.51503049985965
+    },
+    {
+      "name": "Huebner Road Elementary School",
+      "address": "16311 HUEBNER RD",
+      "details": "",
+      "lat": 29.58725699992451,
+      "lng": -98.53216649978268
+    },
+    {
+      "name": "Tex Hill Middle School",
+      "address": "21314 BULVERDE RD",
+      "details": "",
+      "lat": 29.639061000272314,
+      "lng": -98.41811400050099
+    },
+    {
+      "name": "Dr. Hector P. Garcia Middle School",
+      "address": "14900 KYLE SEALE PKWY",
+      "details": "",
+      "lat": 29.585942999868596,
+      "lng": -98.64685800044683
+    },
+    {
+      "name": "John Igo Branch Library",
+      "address": "13330 KYLE SEALE PKWY",
+      "details": "",
+      "lat": 29.56961700036549,
+      "lng": -98.6432309998923
+    },
+    {
+      "name": "Bethany Romanian Pentecostal Church",
+      "address": "26347 BOERNE STAGE RD",
+      "details": "",
+      "lat": 29.691683999949984,
+      "lng": -98.67967650018036
+    },
+    {
+      "name": "Lions Field Adult And Senior Center",
+      "address": "2809 BROADWAY",
+      "details": "",
+      "lat": 29.453751000053252,
+      "lng": -98.47308149956706
+    },
+    {
+      "name": "Central Library",
+      "address": "600 SOLEDAD ST",
+      "details": "",
+      "lat": 29.43239400028923,
+      "lng": -98.49290400048363
+    },
+    {
+      "name": "Davis-Scott Family YMCA",
+      "address": "1213 IOWA ST",
+      "details": "",
+      "lat": 29.41264800006679,
+      "lng": -98.46289799995057
+    },
+    {
+      "name": "Beasley Brown Community Center",
+      "address": "225 N SWISS",
+      "details": "",
+      "lat": 29.423520000407603,
+      "lng": -98.47574549951086
+    },
+    {
+      "name": "Artemisia Bowden Academy",
+      "address": "515 WILLOW ST",
+      "details": "",
+      "lat": 29.432042999797876,
+      "lng": -98.46995399977753
+    },
+    {
+      "name": "Young Mens Leadership Academy",
+      "address": "415 GABRIEL",
+      "details": "",
+      "lat": 29.43226800007397,
+      "lng": -98.45575199982011
+    },
+    {
+      "name": "Claude Black Community Center",
+      "address": "2805 E COMMERCE ST",
+      "details": "",
+      "lat": 29.420504999748655,
+      "lng": -98.44544700029763
+    },
+    {
+      "name": "St. Philips College",
+      "address": "1801 MARTIN LUTHER KING DR",
+      "details": "",
+      "lat": 29.415645000395592,
+      "lng": -98.4535110001982
+    },
+    {
+      "name": "Beacon Hill Elementary School",
+      "address": "1411 W ASHBY PLACE",
+      "details": "",
+      "lat": 29.449971000342813,
+      "lng": -98.51438249965037
+    },
+    {
+      "name": "Eloise Japhet Elementary School",
+      "address": "314 ASTOR",
+      "details": "",
+      "lat": 29.38676399975833,
+      "lng": -98.46781649993191
+    },
+    {
+      "name": "SAC- Victory Center",
+      "address": "1819 N MAIN AVE",
+      "details": "",
+      "lat": 29.443869000151434,
+      "lng": -98.4970665004993
+    },
+    {
+      "name": "CAST Med High School",
+      "address": "2601 LOUIS BAUER DR",
+      "details": "",
+      "lat": 29.342682000081627,
+      "lng": -98.4505859997818
+    },
+    {
+      "name": "Harry H. Rogers Middle School",
+      "address": "314 GALWAY DR",
+      "details": "",
+      "lat": 29.36711699984616,
+      "lng": -98.42663249956689
+    },
+    {
+      "name": "Brookhill Baptist Church",
+      "address": "631 UTOPIA LN",
+      "details": "",
+      "lat": 29.35984499991741,
+      "lng": -98.43324299988916
+    },
+    {
+      "name": "McCreless Branch Library",
+      "address": "1023 ADA ST",
+      "details": "",
+      "lat": 29.381508000024624,
+      "lng": -98.45792999958364
+    },
+    {
+      "name": "James A. Bode Community Center",
+      "address": "900 RIGSBY AVE",
+      "details": "",
+      "lat": 29.398406704076123,
+      "lng": -98.45668073586215
+    },
+    {
+      "name": "Smith Elementary School",
+      "address": "823 S GEVERS ST",
+      "details": "",
+      "lat": 29.411216999572737,
+      "lng": -98.45721450038704
+    },
+    {
+      "name": "Highlands High School",
+      "address": "3118 ELGIN AVE",
+      "details": "",
+      "lat": 29.38938299979829,
+      "lng": -98.44221150039996
+    },
+    {
+      "name": "Highland Hills Elementary School",
+      "address": "734 GLAMIS AVE",
+      "details": "",
+      "lat": 29.378871000370953,
+      "lng": -98.44137900039631
+    },
+    {
+      "name": "Pecan Valley Elementary School",
+      "address": "3966 E SOUTHCROSS BLVD",
+      "details": "",
+      "lat": 29.37291300020177,
+      "lng": -98.41639949991952
+    },
+    {
+      "name": "Herman Hirsch Elementary School",
+      "address": "4826 SEA BREEZE DR",
+      "details": "",
+      "lat": 29.40145200044289,
+      "lng": -98.39863799964156
+    },
+    {
+      "name": "Mount Calvary Lutheran Church",
+      "address": "308 MT CALVARY",
+      "details": "",
+      "lat": 29.490254999989567,
+      "lng": -98.44829099995738
+    },
+    {
+      "name": "Martin Luther King Jr. Academy",
+      "address": "3501 MARTIN LUTHER KING DR",
+      "details": "",
+      "lat": 29.41387117161461,
+      "lng": -98.4209794995142
+    },
+    {
+      "name": "Bella Cameron Elementary School",
+      "address": "3635 BELGIUM",
+      "details": "",
+      "lat": 29.439999000241965,
+      "lng": -98.4267045003364
+    },
+    {
+      "name": "S.J. Davis Middle School",
+      "address": "4702 E HOUSTON ST",
+      "details": "",
+      "lat": 29.42333100028886,
+      "lng": -98.40090149958337
+    },
+    {
+      "name": "East Terrell Hills Elementary School",
+      "address": "4415 BLOOMDALE",
+      "details": "",
+      "lat": 29.48991299989334,
+      "lng": -98.40617549989086
+    },
+    {
+      "name": "Tobin Library at Oakwell",
+      "address": "4134 HARRY WURZBACH",
+      "details": "",
+      "lat": 29.510612999780793,
+      "lng": -98.43383249998061
+    },
+    {
+      "name": "Krueger Middle School",
+      "address": "438 LANARK DR",
+      "details": "",
+      "lat": 29.501982000374333,
+      "lng": -98.40822299955937
+    },
+    {
+      "name": "Robert B. Green Elementary School @ Riverside Park",
+      "address": "202 SCHOOL ST",
+      "details": "",
+      "lat": 29.388555000284427,
+      "lng": -98.48233800042262
+    },
+    {
+      "name": "Ed White Middle School",
+      "address": "7800 MIDCROWN DR",
+      "details": "",
+      "lat": 29.505410999724322,
+      "lng": -98.3809619998117
+    },
+    {
+      "name": "Windcrest Civic Center",
+      "address": "9310 JIM SEAL DR",
+      "details": "",
+      "lat": 29.524562999912693,
+      "lng": -98.37945450025542
+    },
+    {
+      "name": "Cross Roads Church",
+      "address": "8102 MIDCROWN DR.",
+      "details": "",
+      "lat": 29.51105949637813,
+      "lng": -98.3796362979488
+    },
+    {
+      "name": "Royal Ridge Elementary School",
+      "address": "5933 ROYAL RIDGE DR",
+      "details": "",
+      "lat": 29.53500299977041,
+      "lng": -98.37042300007032
+    },
+    {
+      "name": "Judson ISD Educational Resource Center",
+      "address": "8205 PALISADES DR",
+      "details": "",
+      "lat": 29.552535000451567,
+      "lng": -98.3287485001692
+    },
+    {
+      "name": "Montgomery Elementary School",
+      "address": "7047 MONTGOMERY DR",
+      "details": "",
+      "lat": 29.51142299971781,
+      "lng": -98.34948449977158
+    },
+    {
+      "name": "Christian World Ministries",
+      "address": "6633 WALZEM RD",
+      "details": "",
+      "lat": 29.502163401108643,
+      "lng": -98.35801067902842
+    },
+    {
+      "name": "Kirby City Hall",
+      "address": "112 BAUMAN ST",
+      "details": "",
+      "lat": 29.471714999984446,
+      "lng": -98.38178100021868
+    },
+    {
+      "name": "Woodlake Elementary School",
+      "address": "5501 Lakebend E Dr",
+      "details": "",
+      "lat": 29.479111191515738,
+      "lng": -98.35455690857052
+    },
+    {
+      "name": "Converse Community Event Center",
+      "address": "407 S SEGUIN RD",
+      "details": "",
+      "lat": 29.514680999842735,
+      "lng": -98.31211650029071
+    },
+    {
+      "name": "China Grove City Hall",
+      "address": "2412 FM 1516 S",
+      "details": "",
+      "lat": 29.398004999881596,
+      "lng": -98.34619499995178
+    },
+    {
+      "name": "St. Hedwig City Hall",
+      "address": "13065 FM 1346",
+      "details": "",
+      "lat": 29.4247079999815,
+      "lng": -98.22581100032156
+    },
+    {
+      "name": "The Rock United Methodist Church",
+      "address": "1784 E LOOP 1604 S",
+      "details": "",
+      "lat": 29.407374000121962,
+      "lng": -98.24737500044009
+    },
+    {
+      "name": "East Central High School",
+      "address": "7173 FM 1628",
+      "details": "",
+      "lat": 29.353698000258003,
+      "lng": -98.29608300041671
+    },
+    {
+      "name": "East Central Development Center",
+      "address": "12271 DONOP RD",
+      "details": "",
+      "lat": 29.297376000084185,
+      "lng": -98.3847374998592
+    },
+    {
+      "name": "Harmony Elementary School",
+      "address": "10625 GREEN LAKE DR",
+      "details": "",
+      "lat": 29.314593000414455,
+      "lng": -98.38530449973253
+    },
+    {
+      "name": "Elmendorf City Hall",
+      "address": "8304 FM 327",
+      "details": "",
+      "lat": 29.258775000405645,
+      "lng": -98.32598100049131
+    },
+    {
+      "name": "Schaefer Branch Library",
+      "address": "6322 US HWY 87 E",
+      "details": "",
+      "lat": 29.393154000096153,
+      "lng": -98.36601750015473
+    },
+    {
+      "name": "Sam Houston High School",
+      "address": "4635 E HOUSTON ST",
+      "details": "",
+      "lat": 29.424951000345516,
+      "lng": -98.39960999961663
+    },
+    {
+      "name": "Spring Meadows Elementary School",
+      "address": "7135 ELM TRL",
+      "details": "",
+      "lat": 29.501918999818404,
+      "lng": -98.33574600017643
+    },
+    {
+      "name": "Kitty Hawk Middle School",
+      "address": "840 OLD CIMARRON TRL",
+      "details": "",
+      "lat": 29.54317500037026,
+      "lng": -98.31721950004894
+    },
+    {
+      "name": "Northeast Lakeview College",
+      "address": "1201 KITTY HAWK RD",
+      "details": "",
+      "lat": 29.54627100029412,
+      "lng": -98.32324949988404
+    },
+    {
+      "name": "Neville Park Clubhouse",
+      "address": "368 WAGON CROSSING",
+      "details": "",
+      "lat": 29.53580346680174,
+      "lng": -98.32502843063794
+    },
+    {
+      "name": "Millers Point Elementary School",
+      "address": "7027 MISTY RIDGE DR",
+      "details": "",
+      "lat": 29.530017000069215,
+      "lng": -98.3473515001647
+    },
+    {
+      "name": "El Dorado Elementary School",
+      "address": "12634 EL SENDERO",
+      "details": "",
+      "lat": 29.55115800027633,
+      "lng": -98.3940300000899
+    },
+    {
+      "name": "Thousand Oaks Library",
+      "address": "4618 THOUSAND OAKS DR",
+      "details": "",
+      "lat": 29.544992999954783,
+      "lng": -98.40143249951639
+    },
+    {
+      "name": "Morgan's MAC",
+      "address": "5210 Thousand Oaks Dr",
+      "details": "",
+      "lat": 29.536641038924813,
+      "lng": -98.39538811724465
+    },
+    {
+      "name": "John H. Wood Middle School",
+      "address": "14800 JUDSON RD",
+      "details": "",
+      "lat": 29.575485000350408,
+      "lng": -98.36737649978436
+    },
+    {
+      "name": "Woodstone Elementary School",
+      "address": "5602 FOUNTAINWOOD DR",
+      "details": "",
+      "lat": 29.56475699978825,
+      "lng": -98.37610650019323
+    },
+    {
+      "name": "Copernicus Community Center",
+      "address": "5003 LORD RD",
+      "details": "",
+      "lat": 29.41433099987713,
+      "lng": -98.39382750023256
+    },
+    {
+      "name": "Charles C. Ball Academy",
+      "address": "343 KOEHLER CT",
+      "details": "",
+      "lat": 29.36668500028851,
+      "lng": -98.46115649975364
+    },
+    {
+      "name": "Ray D. Corbett Junior High School",
+      "address": "12000 RAY CORBETT DR",
+      "details": "",
+      "lat": 29.52808200044003,
+      "lng": -98.24312249989389
+    },
+    {
+      "name": "Schertz Fire Station #3",
+      "address": "11917 LOWER SEGUIN RD",
+      "details": "",
+      "lat": 29.522942999606606,
+      "lng": -98.248922999591
+    },
+    {
+      "name": "Judson ISD Performing Arts Center",
+      "address": "9443 SCHAEFER RD",
+      "details": "",
+      "lat": 29.50966800023018,
+      "lng": -98.30335500011465
+    },
+    {
+      "name": "Honor Elementary School",
+      "address": "3610 N GRAYTOWN RD",
+      "details": "",
+      "lat": 29.46098998640107,
+      "lng": -98.2644108261442
+    },
+    {
+      "name": "Universal City Hall",
+      "address": "2150 UNIVERSAL CITY BLVD",
+      "details": "",
+      "lat": 29.55680999965536,
+      "lng": -98.30794950015297
+    },
+    {
+      "name": "Agnes Cotton Academy",
+      "address": "1616 BLANCO RD",
+      "details": "",
+      "lat": 29.46108600030595,
+      "lng": -98.50750199997763
+    },
+    {
+      "name": "Candlewood Elementary School",
+      "address": "3635 CANDLEGLENN",
+      "details": "",
+      "lat": 29.457459000012253,
+      "lng": -98.36869950026701
+    },
+    {
+      "name": "William J. Paschall Elementary School",
+      "address": "6351 LAKEVIEW DR",
+      "details": "",
+      "lat": 29.473407000420313,
+      "lng": -98.36297999997329
+    },
+    {
+      "name": "Northern Hills Elementary School",
+      "address": "13901 HIGGINS RD",
+      "details": "",
+      "lat": 29.56778100022492,
+      "lng": -98.39516849958967
+    },
+    {
+      "name": "Stahl Elementary School",
+      "address": "5222 STAHL RD",
+      "details": "",
+      "lat": 29.58212700017206,
+      "lng": -98.38539450025398
+    },
+    {
+      "name": "Universal City Library",
+      "address": "100 NORTHVIEW DR",
+      "details": "",
+      "lat": 29.549142000098925,
+      "lng": -98.29688399960648
+    },
+    {
+      "name": "Elolf Elementary School",
+      "address": "6335 BEECH TRL",
+      "details": "",
+      "lat": 29.48628599990931,
+      "lng": -98.31738599965308
+    },
+    {
+      "name": "East Central ISD Board Room",
+      "address": "6634 NEW SULPHUR SPGS",
+      "details": "",
+      "lat": 29.362598999804213,
+      "lng": -98.36005050006382
+    },
+    {
+      "name": "Calvary Baptist Church",
+      "address": "6142 FM 78",
+      "details": "",
+      "lat": 29.476048325051856,
+      "lng": -98.36848152483348
+    },
+    {
+      "name": "Henry Metzger",
+      "address": "7475 BINZ-ENGLEMAN RD",
+      "details": "",
+      "lat": 29.470032000401066,
+      "lng": -98.34100649989342
     }
-  },
-  {
-    "name": "Claude Black Community Center",
-    "street_address": "2805 E Commerce St",
-    "city": "San Antonio",
-    "state": "TX",
-    "zip": "78203",
-    "full_address": "2805 E Commerce St, San Antonio, TX 78203",
-    "coordinates": {
-      "x": 2145035.5507577895,
-      "y": 13700850.426646162
-    }
-  },
-  {
-    "name": "Cody Branch Library",
-    "street_address": "11441 Vance Jackson Rd",
-    "city": "San Antonio",
-    "state": "TX",
-    "zip": "78230",
-    "full_address": "11441 Vance Jackson Rd, San Antonio, TX 78230",
-    "coordinates": {
-      "x": 2106684.0487145362,
-      "y": 13746758.94641184
-    }
-  },
-  {
-    "name": "Collins Garden Branch Library",
-    "street_address": "200 N Park Blvd",
-    "city": "San Antonio",
-    "state": "TX",
-    "zip": "78204",
-    "full_address": "200 N Park Blvd, San Antonio, TX 78204",
-    "coordinates": {
-      "x": 2122880.9460394518,
-      "y": 13692721.2847727
-    }
-  },
-  {
-    "name": "Converse Community Event Center",
-    "street_address": "407 S Seguin Rd",
-    "city": "Converse",
-    "state": "TX",
-    "zip": "78109",
-    "full_address": "407 S Seguin Rd, Converse, TX 78109",
-    "coordinates": {
-      "x": 2187277.318306013,
-      "y": 13735318.651966814
-    }
-  },
-  {
-    "name": "Copernicus Community Center",
-    "street_address": "5003 Lord Rd",
-    "city": "San Antonio",
-    "state": "TX",
-    "zip": "78220",
-    "full_address": "5003 Lord Rd, San Antonio, TX 78220",
-    "coordinates": {
-      "x": 2161479.2839258662,
-      "y": 13698687.092015302
-    }
-  },
-  {
-    "name": "Cortez Branch Library",
-    "street_address": "2803 Hunter Blvd",
-    "city": "San Antonio",
-    "state": "TX",
-    "zip": "78224",
-    "full_address": "2803 Hunter Blvd, San Antonio, TX 78224",
-    "coordinates": {
-      "x": 2111244.7797394297,
-      "y": 13669577.846793095
-    }
-  },
-  {
-    "name": "East Central ISD Admin. Office \u2013 Board Room",
-    "street_address": "6634 New Sulphur Springs Rd",
-    "city": "San Antonio",
-    "state": "TX",
-    "zip": "78263",
-    "full_address": "6634 New Sulphur Springs Rd, San Antonio, TX 78263",
-    "coordinates": {
-      "x": 2172335.1125539946,
-      "y": 13679934.639060955
-    }
-  },
-  {
-    "name": "Encino Branch Library",
-    "street_address": "2515 E Evans Rd",
-    "city": "San Antonio",
-    "state": "TX",
-    "zip": "78259",
-    "full_address": "2515 E Evans Rd, San Antonio, TX 78259",
-    "coordinates": {
-      "x": 2143437.5643607723,
-      "y": 13779492.573602857
-    }
-  },
-  {
-    "name": "Fair Oaks Ranch Police Dept. \u2013 Training Room",
-    "street_address": "7286 Dietz Elkhorn Dr",
-    "city": "Fair Oaks Ranch",
-    "state": "TX",
-    "zip": "78015",
-    "full_address": "7286 Dietz Elkhorn Dr, Fair Oaks Ranch, TX 78015",
-    "coordinates": {
-      "x": 2087107.885082484,
-      "y": 13813256.685858928
-    }
-  },
-  {
-    "name": "Frank Garrett Multi Service Center",
-    "street_address": "1226 NW 18th St",
-    "city": "San Antonio",
-    "state": "TX",
-    "zip": "78207",
-    "full_address": "1226 NW 18th St, San Antonio, TX 78207",
-    "coordinates": {
-      "x": 2117631.5101147396,
-      "y": 13708702.370260965
-    }
-  },
-  {
-    "name": "Great Northwest Branch Library",
-    "street_address": "9050 Wellwood St",
-    "city": "San Antonio",
-    "state": "TX",
-    "zip": "78250",
-    "full_address": "9050 Wellwood St, San Antonio, TX 78250",
-    "coordinates": {
-      "x": 2075744.2261505786,
-      "y": 13723444.732443478
-    }
-  },
-  {
-    "name": "Guerra Branch Library",
-    "street_address": "7978 W Military Dr",
-    "city": "San Antonio",
-    "state": "TX",
-    "zip": "78227",
-    "full_address": "7978 W Military Dr, San Antonio, TX 78227",
-    "coordinates": {
-      "x": 2087667.8165050698,
-      "y": 13702134.486728288
-    }
-  },
-  {
-    "name": "Igo Branch Library",
-    "street_address": "13330 Kyle Seale Pkwy",
-    "city": "San Antonio",
-    "state": "TX",
-    "zip": "78249",
-    "full_address": "13330 Kyle Seale Pkwy, San Antonio, TX 78249",
-    "coordinates": {
-      "x": 2081909.0410561524,
-      "y": 13754823.82569215
-    }
-  },
-  {
-    "name": "Johnston Branch Library",
-    "street_address": "6307 Sun Valley Dr",
-    "city": "San Antonio",
-    "state": "TX",
-    "zip": "78227",
-    "full_address": "6307 Sun Valley Dr, San Antonio, TX 78227",
-    "coordinates": {
-      "x": 2083289.2871958283,
-      "y": 13682917.89026622
-    }
-  },
-  {
-    "name": "Kirby City Hall",
-    "street_address": "112 Bauman St",
-    "city": "Kirby",
-    "state": "TX",
-    "zip": "78219",
-    "full_address": "112 Bauman St, Kirby, TX 78219",
-    "coordinates": {
-      "x": 2165203.9897267795,
-      "y": 13719572.192922516
-    }
-  },
-  {
-    "name": "Leon Valley Conference Center",
-    "street_address": "6427 Evers Rd",
-    "city": "Leon Valley",
-    "state": "TX",
-    "zip": "78238",
-    "full_address": "6427 Evers Rd, Leon Valley, TX 78238",
-    "coordinates": {
-      "x": 2092283.070517087,
-      "y": 13730584.372459367
-    }
-  },
-  {
-    "name": "Lions Field Adult and Senior Center",
-    "street_address": "2809 Broadway St",
-    "city": "San Antonio",
-    "state": "TX",
-    "zip": "78209",
-    "full_address": "2809 Broadway St, San Antonio, TX 78209",
-    "coordinates": {
-      "x": 2136184.148281135,
-      "y": 13712898.148829922
-    }
-  },
-  {
-    "name": "Macedonia Baptist Church",
-    "street_address": "111 Hobart St",
-    "city": "San Antonio",
-    "state": "TX",
-    "zip": "78237",
-    "full_address": "111 Hobart St, San Antonio, TX 78237",
-    "coordinates": {
-      "x": 2100939.8020655354,
-      "y": 13698438.886422431
-    }
-  },
-  {
-    "name": "Maverick Branch Library",
-    "street_address": "8700 Mystic Park",
-    "city": "San Antonio",
-    "state": "TX",
-    "zip": "78254",
-    "full_address": "8700 Mystic Park, San Antonio, TX 78254",
-    "coordinates": {
-      "x": 2082382.4664014822,
-      "y": 13738488.649674343
-    }
-  },
-  {
-    "name": "McCreless Branch Library",
-    "street_address": "1023 Ada St",
-    "city": "San Antonio",
-    "state": "TX",
-    "zip": "78223",
-    "full_address": "1023 Ada St, San Antonio, TX 78223",
-    "coordinates": {
-      "x": 2141127.5396461887,
-      "y": 13686652.40835291
-    }
-  },
-  {
-    "name": "Memorial Branch Library",
-    "street_address": "3222 Culebra Rd",
-    "city": "San Antonio",
-    "state": "TX",
-    "zip": "78228",
-    "full_address": "3222 Culebra Rd, San Antonio, TX 78228",
-    "coordinates": {
-      "x": 2107172.8900373294,
-      "y": 13710789.062454266
-    }
-  },
-  {
-    "name": "Mission Branch Library",
-    "street_address": "3134 Roosevelt Ave",
-    "city": "San Antonio",
-    "state": "TX",
-    "zip": "78214",
-    "full_address": "3134 Roosevelt Ave, San Antonio, TX 78214",
-    "coordinates": {
-      "x": 2134120.738306225,
-      "y": 13680648.331733348
-    }
-  },
-  {
-    "name": "Northeast Lakeview College \u2013 Medina CTE Rm. 104 Bldg. 800",
-    "street_address": "1201 Kitty Hawk Rd",
-    "city": "Universal City",
-    "state": "TX",
-    "zip": "78148",
-    "full_address": "1201 Kitty Hawk Rd, Universal City, TX 78148",
-    "coordinates": {
-      "x": 2183670.1449458166,
-      "y": 13746784.395602662
-    }
-  },
-  {
-    "name": "Northside Activity Center",
-    "street_address": "7001 Culebra Rd",
-    "city": "San Antonio",
-    "state": "TX",
-    "zip": "78238",
-    "full_address": "7001 Culebra Rd, San Antonio, TX 78238",
-    "coordinates": {
-      "x": 2087290.824844393,
-      "y": 13712088.20070533
-    }
-  },
-  {
-    "name": "Northwest Vista College \u2013 Mountain Laurel Hall Rm. 100 A&B",
-    "street_address": "3535 N Ellison Dr",
-    "city": "San Antonio",
-    "state": "TX",
-    "zip": "78251",
-    "full_address": "3535 N Ellison Dr, San Antonio, TX 78251",
-    "coordinates": {
-      "x": 2061607.855575459,
-      "y": 13719037.87250003
-    }
-  },
-  {
-    "name": "Our Lady of the Lake Univ. \u2013 Sueltenfuss Library Community Room",
-    "street_address": "411 SW 24th St",
-    "city": "San Antonio",
-    "state": "TX",
-    "zip": "78207",
-    "full_address": "411 SW 24th St, San Antonio, TX 78207",
-    "coordinates": {
-      "x": 2113792.022885171,
-      "y": 13702760.692638032
-    }
-  },
-  {
-    "name": "Palo Alto College \u2013 Palomino Center Rm. 110",
-    "street_address": "1400 W Villaret Blvd",
-    "city": "San Antonio",
-    "state": "TX",
-    "zip": "78224",
-    "full_address": "1400 W Villaret Blvd, San Antonio, TX 78224",
-    "coordinates": {
-      "x": 2113614.919057028,
-      "y": 13665843.329729656
-    }
-  },
-  {
-    "name": "Parman Branch Library at Stone Oak",
-    "street_address": "20735 Wilderness Oak",
-    "city": "San Antonio",
-    "state": "TX",
-    "zip": "78258",
-    "full_address": "20735 Wilderness Oak, San Antonio, TX 78258",
-    "coordinates": {
-      "x": 2122559.178248347,
-      "y": 13779298.675628915
-    }
-  },
-  {
-    "name": "Precinct 1 Satellite Office",
-    "street_address": "3505 Pleasanton Rd",
-    "city": "San Antonio",
-    "state": "TX",
-    "zip": "78221",
-    "full_address": "3505 Pleasanton Rd, San Antonio, TX 78221",
-    "coordinates": {
-      "x": 2126146.685328471,
-      "y": 13673005.26653921
-    }
-  },
-  {
-    "name": "Precinct 3 Satellite Office",
-    "street_address": "320 Interpark Blvd",
-    "city": "San Antonio",
-    "state": "TX",
-    "zip": "78216",
-    "full_address": "320 Interpark Blvd, San Antonio, TX 78216",
-    "coordinates": {
-      "x": 2131271.0537960096,
-      "y": 13750775.725923542
-    }
-  },
-  {
-    "name": "San Antonio College \u2013 Victory Center Rm. 117",
-    "street_address": "1819 N Main Ave",
-    "city": "San Antonio",
-    "state": "TX",
-    "zip": "78212",
-    "full_address": "1819 N Main Ave, San Antonio, TX 78212",
-    "coordinates": {
-      "x": 2128566.8855972793,
-      "y": 13709271.391285287
-    }
-  },
-  {
-    "name": "Schaefer Branch Library",
-    "street_address": "6322 US Hwy 87 E",
-    "city": "San Antonio",
-    "state": "TX",
-    "zip": "78222",
-    "full_address": "6322 US Hwy 87 E, San Antonio, TX 78222",
-    "coordinates": {
-      "x": 2170374.3346809405,
-      "y": 13691034.060325628
-    }
-  },
-  {
-    "name": "Semmes Branch Library",
-    "street_address": "15060 Judson Rd",
-    "city": "San Antonio",
-    "state": "TX",
-    "zip": "78247",
-    "full_address": "15060 Judson Rd, San Antonio, TX 78247",
-    "coordinates": {
-      "x": 2167923.5739100073,
-      "y": 13758697.246386023
-    }
-  },
-  {
-    "name": "Shavano Park City Hall",
-    "street_address": "900 Saddletree Ct",
-    "city": "Shavano Park",
-    "state": "TX",
-    "zip": "78231",
-    "full_address": "900 Saddletree Ct, Shavano Park, TX 78231",
-    "coordinates": {
-      "x": 2110062.5561236343,
-      "y": 13760523.047498578
-    }
-  },
-  {
-    "name": "Somerset City Hall",
-    "street_address": "7360 E 6th St",
-    "city": "Somerset",
-    "state": "TX",
-    "zip": "78069",
-    "full_address": "7360 E 6th St, Somerset, TX 78069",
-    "coordinates": {
-      "x": 2081320.2182155077,
-      "y": 13629326.04392034
-    }
-  },
-  {
-    "name": "Southside ISD Admin. Bldg.",
-    "street_address": "1460 Martinez-Losoya Rd",
-    "city": "San Antonio",
-    "state": "TX",
-    "zip": "78221",
-    "full_address": "1460 Martinez-Losoya Rd, San Antonio, TX 78221",
-    "coordinates": {
-      "x": 2136604.044646291,
-      "y": 13635627.444617586
-    }
-  },
-  {
-    "name": "St. Hedwig City Hall",
-    "street_address": "13065 FM 1346",
-    "city": "St. Hedwig",
-    "state": "TX",
-    "zip": "78152",
-    "full_address": "13065 FM 1346, St. Hedwig, TX 78152",
-    "coordinates": {
-      "x": 2214942.149141294,
-      "y": 13702775.821004901
-    }
-  },
-  {
-    "name": "St. Philip\u2019s College \u2013 William Hudgens (WAC) Rm. 100",
-    "street_address": "1801 Martin Luther King Dr",
-    "city": "San Antonio",
-    "state": "TX",
-    "zip": "78203",
-    "full_address": "1801 Martin Luther King Dr, San Antonio, TX 78203",
-    "coordinates": {
-      "x": 2142476.782222752,
-      "y": 13699071.232134521
-    }
-  },
-  {
-    "name": "Texas A&M University\u2013San Antonio \u2013 Mays Ctr. Ste. 111",
-    "street_address": "One University Way",
-    "city": "San Antonio",
-    "state": "TX",
-    "zip": "78224",
-    "full_address": "One University Way, San Antonio, TX 78224",
-    "coordinates": {
-      "x": 2120009.7002964104,
-      "y": 13658142.560458476
-    }
-  },
-  {
-    "name": "Thousand Oaks Branch Library",
-    "street_address": "4618 Thousand Oaks Dr",
-    "city": "San Antonio",
-    "state": "TX",
-    "zip": "78233",
-    "full_address": "4618 Thousand Oaks Dr, San Antonio, TX 78233",
-    "coordinates": {
-      "x": 2158815.069210384,
-      "y": 13746184.166610979
-    }
-  },
-  {
-    "name": "Tobin Library at Oakwell",
-    "street_address": "4134 Harry Wurzbach Rd",
-    "city": "San Antonio",
-    "state": "TX",
-    "zip": "78209",
-    "full_address": "4134 Harry Wurzbach Rd, San Antonio, TX 78209",
-    "coordinates": {
-      "x": 2148574.197779091,
-      "y": 13733631.943748003
-    }
-  },
-  {
-    "name": "Universal City Library",
-    "street_address": "100 Northview Dr",
-    "city": "Universal City",
-    "state": "TX",
-    "zip": "78148",
-    "full_address": "100 Northview Dr, Universal City, TX 78148",
-    "coordinates": {
-      "x": 2192046.4781700857,
-      "y": 13747877.771439094
-    }
-  },
-  {
-    "name": "UTSA \u2013 Bexar Room",
-    "street_address": "1 UTSA Circle",
-    "city": "San Antonio",
-    "state": "TX",
-    "zip": "78249",
-    "full_address": "1 UTSA Circle, San Antonio, TX 78249",
-    "coordinates": {
-      "x": 2090314.9712961812,
-      "y": 13760276.364323698
-    }
-  },
-  {
-    "name": "Windcrest Civic Center (TAKAS)",
-    "street_address": "9310 Jim Seal Dr",
-    "city": "Windcrest",
-    "state": "TX",
-    "zip": "78239",
-    "full_address": "9310 Jim Seal Dr, Windcrest, TX 78239",
-    "coordinates": {
-      "x": 2165842.2538816966,
-      "y": 13738792.034102082
-    }
-  },
-  {
-    "name": "Wonderland of the Americas",
-    "street_address": "4522 Fredericksburg Rd",
-    "city": "Balcones Heights",
-    "state": "TX",
-    "zip": "78201",
-    "full_address": "4522 Fredericksburg Rd, Balcones Heights, TX 78201",
-    "coordinates": {
-      "x": 2111285.2304648734,
-      "y": 13727026.48586531
-    }
-  },
-  {
-    "name": "Woodlawn Pointe Center",
-    "street_address": "702 Donaldson Ave",
-    "city": "San Antonio",
-    "state": "TX",
-    "zip": "78201",
-    "full_address": "702 Donaldson Ave, San Antonio, TX 78201",
-    "coordinates": {
-      "x": 2115831.3179019312,
-      "y": 13716274.332223486
-    }
-  }
-]
+  ]
+}

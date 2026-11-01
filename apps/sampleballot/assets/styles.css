@@ -1003,7 +1003,8 @@ input[type='text']:focus {
   transform: scale(0.98);
 }
 
-.choice-option input[type='radio'] {
+.choice-option input[type='radio'],
+.choice-option input[type='checkbox'] {
   accent-color: var(--brand);
   width: 18px;
   height: 18px;
@@ -1309,4 +1310,13 @@ body.modal-open {
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+.ballot-question__unverified {
+  font-weight: 600;
+}
+
+.ballot-special > summary {
+  cursor: pointer;
+  font-weight: 600;
 }

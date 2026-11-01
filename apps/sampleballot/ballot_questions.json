@@ -1,754 +1,2376 @@
 {
-  "election_date": "November 4, 2025",
-  "election_name": "Joint Constitutional Amendment, General, Special and Bond Election",
-  "county": "Bexar County, Texas",
-  "categories": [
+  "election_name": "Joint General, Special, Charter and Bond Election",
+  "election_date": "2026-11-03",
+  "sections": [
     {
-      "category": "State of Texas Constitutional Amendments",
-      "scope": "statewide",
-      "description": "All Texas voters vote on these propositions",
-      "questions": [
+      "title": "Federal",
+      "jurisdiction": {
+        "type": "federal",
+        "name": "Federal"
+      },
+      "items": [
         {
-          "id": "state_prop_1",
-          "number": 1,
-          "title": "Texas State Technical College System Funding",
-          "text": "The constitutional amendment providing for the creation of the permanent technical institution infrastructure fund and the available workforce education fund to support the capital needs of educational programs offered by the Texas State Technical College System.",
-          "plain_language": "Creates a $52 million permanent fund for the Texas State Technical College System and uses the investment earnings to pay for land, buildings, and equipment for its workforce programs.",
-          "arguments_for": [
-            "Provides a reliable funding source for TSTC.",
-            "Supports a skilled workforce needed by Texas industry.",
-            "Strengthens technical career pathways for Texans."
+          "kind": "race",
+          "id": "federal__united_states_senator",
+          "office": "United States Senator",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Ken Paxton",
+              "party": "REP"
+            },
+            {
+              "name": "James Talarico",
+              "party": "DEM"
+            },
+            {
+              "name": "Ted Brown",
+              "party": "LIB"
+            }
           ],
-          "arguments_against": [
-            "Funds could instead support community colleges serving up to 700,000 students.",
-            "Businesses should fund their own training and certifications.",
-            "Money for the permanent fund should be returned to taxpayers."
-          ],
-          "options": [
-            "For",
-            "Against"
-          ]
+          "write_in": true
         },
         {
-          "id": "state_prop_2",
-          "number": 2,
-          "title": "Prohibition on Capital Gains Tax",
-          "text": "The constitutional amendment prohibiting the imposition of a tax on the realized or unrealized capital gains of an individual, family, estate, or trust.",
-          "plain_language": "Keeps Texas from ever adding a state tax on capital gains for individuals, families, estates, or trusts.",
-          "arguments_for": [
-            "Maintains Texas's business- and tax-friendly reputation.",
-            "Capital gains taxes can reduce savings, investment, and economic growth.",
-            "A constitutional ban provides certainty for financial institutions considering Texas."
+          "kind": "race",
+          "id": "federal__united_states_representative_district_20",
+          "office": "United States Representative, District 20",
+          "vote_for": "Vote for None or One",
+          "district": {
+            "type": "us_house",
+            "number": 20
+          },
+          "candidates": [
+            {
+              "name": "Edgardo Rafael Baez",
+              "party": "REP"
+            },
+            {
+              "name": "Joaquin Castro",
+              "party": "DEM"
+            }
           ],
-          "arguments_against": [
-            "Removes a potential future revenue option during budget deficits.",
-            "Unnecessary because no such tax is being considered.",
-            "Shifts the tax burden from wealth holders to residents who pay sales taxes."
-          ],
-          "options": [
-            "For",
-            "Against"
-          ]
+          "write_in": false
         },
         {
-          "id": "state_prop_3",
-          "number": 3,
-          "title": "Bail Requirements for Certain Felonies",
-          "text": "The constitutional amendment requiring the denial of bail under certain circumstances to persons accused of certain offenses punishable as a felony.",
-          "plain_language": "Lets judges deny bail altogether for people accused of the most serious violent felonies when the court finds they are too dangerous to release.",
-          "arguments_for": [
-            "Prevents high-risk individuals from committing additional crimes while on bail.",
-            "Applies to the most serious offenses, targeting the greatest risks.",
-            "Includes safeguards such as counsel at bail hearings, appeals, and speedy trial provisions."
+          "kind": "race",
+          "id": "federal__united_states_representative_district_21",
+          "office": "United States Representative, District 21",
+          "vote_for": "Vote for None or One",
+          "district": {
+            "type": "us_house",
+            "number": 21
+          },
+          "candidates": [
+            {
+              "name": "Mark Teixeira",
+              "party": "REP"
+            },
+            {
+              "name": "Kristin Hook",
+              "party": "DEM"
+            }
           ],
-          "arguments_against": [
-            "Judges can already set high bail to prevent release.",
-            "Could increase jail overcrowding and costs.",
-            "Denial of bail raises costs for defendants and challenges the presumption of innocence."
-          ],
-          "options": [
-            "For",
-            "Against"
-          ]
+          "write_in": false
         },
         {
-          "id": "state_prop_4",
-          "number": 4,
-          "title": "Texas Water Fund",
-          "text": "The constitutional amendment to dedicate a portion of the revenue derived from state sales and use taxes to the Texas water fund and to provide for the allocation and use of that revenue.",
-          "plain_language": "Automatically sends the first $1 billion in state sales tax collections above $46.5 billion each year into the Texas Water Fund through 2047 to pay for water supply and infrastructure projects.",
-          "arguments_for": [
-            "Funds aging infrastructure and new supply projects, improving safety and addressing supply-demand gaps.",
-            "Considered critical for economic growth and agriculture.",
-            "Provides reliable long-term funding."
+          "kind": "race",
+          "id": "federal__united_states_representative_district_23",
+          "office": "United States Representative, District 23",
+          "vote_for": "Vote for None or One",
+          "district": {
+            "type": "us_house",
+            "number": 23
+          },
+          "candidates": [
+            {
+              "name": "Brandon Herrera",
+              "party": "REP"
+            },
+            {
+              "name": "Katy Padilla Stout",
+              "party": "DEM"
+            },
+            {
+              "name": "Ben Mendoza",
+              "party": "IND"
+            }
           ],
-          "arguments_against": [
-            "New supply projects such as desalination or produced water reuse may pose environmental risks without safeguards.",
-            "Shifts oversight to a governor-appointed board.",
-            "Lacks explicit water conservation measures."
-          ],
-          "options": [
-            "For",
-            "Against"
-          ]
+          "write_in": false
         },
         {
-          "id": "state_prop_5",
-          "number": 5,
-          "title": "Property Tax Exemption for Animal Feed",
-          "text": "The constitutional amendment authorizing the legislature to exempt from ad valorem taxation tangible personal property consisting of animal feed held by the owner of the property for sale at retail.",
-          "plain_language": "Lets the Legislature exempt animal feed that retailers keep in stock from the property taxes normally charged on business inventory.",
-          "arguments_for": [
-            "Lowers costs for farmers and ranchers facing rising expenses.",
-            "Treats animal feed like other parts of the food chain that are already exempt.",
-            "Seasonal inventory peaks can inflate taxes that are passed on to consumers."
+          "kind": "race",
+          "id": "federal__united_states_representative_district_35",
+          "office": "United States Representative, District 35",
+          "vote_for": "Vote for none or one",
+          "district": {
+            "type": "us_house",
+            "number": 35
+          },
+          "candidates": [
+            {
+              "name": "Carlos De La Cruz",
+              "party": "REP"
+            },
+            {
+              "name": "Johnny C. Garcia",
+              "party": "DEM"
+            }
           ],
-          "arguments_against": [
-            "Treats feed retailers differently than other businesses whose inventory is taxed.",
-            "Exemptions can shift the burden to other taxpayers.",
-            "Constantly changing inventory complicates measuring the tax break."
-          ],
-          "options": [
-            "For",
-            "Against"
-          ]
-        },
-        {
-          "id": "state_prop_6",
-          "number": 6,
-          "title": "Prohibition on Securities Transaction Tax",
-          "text": "The constitutional amendment prohibiting the legislature from enacting a law imposing an occupation tax on certain entities that enter into transactions conveying securities or imposing a tax on certain securities transactions.",
-          "plain_language": "Blocks Texas from adding any future state tax on buying or selling stocks, bonds, and other securities.",
-          "arguments_for": [
-            "Protects retirement savers from reduced returns.",
-            "Avoids trading costs that could harm investments and the economy.",
-            "Constitutional certainty may attract investment businesses and jobs."
-          ],
-          "arguments_against": [
-            "Removes a potential future budget tool.",
-            "Could increase reliance on sales taxes, burdening lower-income residents.",
-            "Unnecessary because no such tax is currently proposed."
-          ],
-          "options": [
-            "For",
-            "Against"
-          ]
-        },
-        {
-          "id": "state_prop_7",
-          "number": 7,
-          "title": "Property Tax Exemption for Veterans' Surviving Spouses",
-          "text": "The constitutional amendment authorizing the legislature to provide for an exemption from ad valorem taxation of all or part of the market value of the residence homestead of the surviving spouse of a veteran who died as a result of a condition or disease that is presumed under federal law to have been service-connected.",
-          "plain_language": "Allows surviving spouses of veterans who died from a presumed service-connected illness to receive a property tax exemption on their home, even if the veteran was not fully disabled.",
-          "arguments_for": [
-            "Ensures fair treatment for families of affected veterans.",
-            "Has minimal fiscal impact but provides meaningful help to military communities.",
-            "Letting the exemption transfer to a new home keeps the benefit in place if the spouse moves."
-          ],
-          "arguments_against": [
-            "Reduces revenue for school districts and local taxing authorities, especially near military communities.",
-            "Shifts the tax burden to other homeowners, potentially affecting affordability."
-          ],
-          "options": [
-            "For",
-            "Against"
-          ]
-        },
-        {
-          "id": "state_prop_8",
-          "number": 8,
-          "title": "Prohibition on Death Taxes",
-          "text": "The constitutional amendment to prohibit the legislature from imposing death taxes applicable to a decedent's property or the transfer of an estate, inheritance, legacy, succession, or gift.",
-          "plain_language": "Prevents Texas from ever creating a state estate, inheritance, or gift transfer tax.",
-          "arguments_for": [
-            "Avoids double taxation of already-taxed assets.",
-            "Helps preserve family-owned businesses without forced liquidation.",
-            "Inheritance taxes are complex and costly to administer or comply with."
-          ],
-          "arguments_against": [
-            "Forfeits potential revenue for public services and deficit reduction.",
-            "Could help reduce wealth concentration by limiting inheritances.",
-            "Encourages lifetime saving and investing rather than reliance on inheritances."
-          ],
-          "options": [
-            "For",
-            "Against"
-          ]
-        },
-        {
-          "id": "state_prop_9",
-          "number": 9,
-          "title": "Property Tax Exemption for Income-Producing Property",
-          "text": "The constitutional amendment to authorize the legislature to exempt from ad valorem taxation a portion of the market value of tangible personal property a person owns that is held or used for the production of income.",
-          "plain_language": "Raises the statewide business personal property tax exemption from $2,500 to $125,000 and lets small businesses skip reporting under that amount.",
-          "arguments_for": [
-            "Eases the tax burden on small businesses, supporting investment and growth.",
-            "Simplifies compliance for businesses with less than $125,000 in personal property.",
-            "The Legislature may use state general revenue to backfill school districts."
-          ],
-          "arguments_against": [
-            "No backfill is promised for cities, counties, hospitals, or college districts, which may prompt tax hikes or service cuts.",
-            "The state may be unable to fully backfill schools in an economic downturn.",
-            "Favors businesses at the expense of residential taxpayers and local entities."
-          ],
-          "options": [
-            "For",
-            "Against"
-          ]
-        },
-        {
-          "id": "state_prop_10",
-          "number": 10,
-          "title": "Property Tax Relief for Fire-Damaged Homes",
-          "text": "The constitutional amendment to authorize the legislature to provide for a temporary exemption from ad valorem taxation of the appraised value of an improvement to a residence homestead that is completely destroyed by a fire.",
-          "plain_language": "Lets homeowners whose house is completely destroyed by fire get a temporary property tax exemption on the structure after appraisal.",
-          "arguments_for": [
-            "Creates a process to adjust tax bills when a home is destroyed after appraisal.",
-            "Provides timely relief to affected homeowners."
-          ],
-          "arguments_against": [
-            "Applies only when the home is completely destroyed, excluding major damage.",
-            "Does not cover other disaster types unless they are in a governor-declared disaster area."
-          ],
-          "options": [
-            "For",
-            "Against"
-          ]
-        },
-        {
-          "id": "state_prop_11",
-          "number": 11,
-          "title": "Increased Homestead Exemption for Elderly/Disabled",
-          "text": "The constitutional amendment authorizing the legislature to increase the amount of the exemption from ad valorem taxation by a school district of the market value of the residence homestead of a person who is elderly or disabled.",
-          "plain_language": "Increases the additional school district homestead exemption for homeowners who are 65 or older or disabled from $10,000 to $60,000 starting in 2025.",
-          "arguments_for": [
-            "Protects fixed-income seniors and disabled homeowners.",
-            "Expected to benefit over 2 million homeowners.",
-            "Includes legislative reimbursement for school districts."
-          ],
-          "arguments_against": [
-            "Reduces available funds for public services.",
-            "Budget surplus may not persist, so permanent commitments risk future deficits.",
-            "An ability-to-pay test might be better because not all seniors or disabled individuals are low-income."
-          ],
-          "options": [
-            "For",
-            "Against"
-          ]
-        },
-        {
-          "id": "state_prop_12",
-          "number": 12,
-          "title": "State Commission on Judicial Conduct",
-          "text": "The constitutional amendment regarding the membership of the State Commission on Judicial Conduct, the membership of the tribunal to review the commission's recommendations, and the authority of the commission, the tribunal, and the Texas Supreme Court to more effectively sanction judges and justices for judicial misconduct.",
-          "plain_language": "Reworks who serves on the State Commission on Judicial Conduct and its review tribunal, adds timelines, and gives the Supreme Court more authority to discipline judges and adjust judicial salaries without tying them to legislators' pensions.",
-          "arguments_for": [
-            "Adds more governor-appointed members, which supporters say increases public accountability.",
-            "Reforms may reduce case backlogs with clearer timelines, transparency, and efficiency.",
-            "Allows judicial salary adjustments without affecting legislators' pensions."
-          ],
-          "arguments_against": [
-            "Concentrates power in the executive branch because the governor would appoint 7 of 13 members.",
-            "Accountability measures may overreach into judicial independence.",
-            "Increases costs for salaries and commission staffing."
-          ],
-          "options": [
-            "For",
-            "Against"
-          ]
-        },
-        {
-          "id": "state_prop_13",
-          "number": 13,
-          "title": "School Homestead Exemption Increase",
-          "text": "The constitutional amendment to increase the amount of the exemption of residence homesteads from ad valorem taxation by a school district from $100,000 to $140,000.",
-          "plain_language": "Raises the standard school district homestead exemption from $100,000 to $140,000, with the state covering districts' lost revenue under current law.",
-          "arguments_for": [
-            "Helps low-income families remain in their homes.",
-            "Legislature set aside $8.5 billion for school districts to reduce reliance on property taxes.",
-            "Higher appraisals could otherwise drive tax bills up even when rates stay the same."
-          ],
-          "arguments_against": [
-            "Shifting away from property taxes may increase sales or business taxes or leave schools underfunded.",
-            "Offers no relief to renters facing high rents.",
-            "Even with $8.5 billion, Texas schools are already underfunded and could be hurt in an economic slowdown."
-          ],
-          "options": [
-            "For",
-            "Against"
-          ]
-        },
-        {
-          "id": "state_prop_14",
-          "number": 14,
-          "title": "Dementia Prevention and Research Institute",
-          "text": "The constitutional amendment providing for the establishment of the Dementia Prevention and Research Institute of Texas, establishing the Dementia Prevention and Research Fund to provide money for research on and prevention and treatment of dementia, Alzheimer's disease, Parkinson's disease, and related disorders in this state, and transferring to that fund $3 billion from state general revenue.",
-          "plain_language": "Creates the Dementia Prevention and Research Institute of Texas with $3 billion in state funding to support research, prevention, treatment, and related facilities for dementia, Alzheimer's, Parkinson's, and similar disorders.",
-          "arguments_for": [
-            "Addresses the urgent and growing number of Texans living with dementia and related diseases.",
-            "Large, long-term funding could accelerate innovation and attract top researchers to Texas.",
-            "Potential commercial and societal benefits from breakthroughs."
-          ],
-          "arguments_against": [
-            "Political appointments could risk favoritism over scientific merit.",
-            "Opponents would prefer returning funds to citizens rather than creating new bureaucracy.",
-            "Medical research should be funded privately or through the market."
-          ],
-          "options": [
-            "For",
-            "Against"
-          ]
-        },
-        {
-          "id": "state_prop_15",
-          "number": 15,
-          "title": "Parental Rights",
-          "text": "The constitutional amendment affirming that parents are the primary decision makers for their children.",
-          "plain_language": "Adds language to the Texas Constitution stating that parents are the primary decision makers for raising and educating their children.",
-          "arguments_for": [
-            "Affirms parents' primary authority and limits government control.",
-            "Could empower parents regarding public school content and values.",
-            "Supporters say parents best understand their children's needs."
-          ],
-          "arguments_against": [
-            "Could disrupt public schools if parents attempt broad control based on individual beliefs.",
-            "Parental rights are already well-established in law.",
-            "Constitutional elevation may hinder necessary interventions for abuse or neglect."
-          ],
-          "options": [
-            "For",
-            "Against"
-          ]
-        },
-        {
-          "id": "state_prop_16",
-          "number": 16,
-          "title": "Citizenship Requirement for Voting",
-          "text": "The constitutional amendment clarifying that a voter must be a United States citizen.",
-          "plain_language": "States directly in the Texas Constitution that only U.S. citizens can vote in state or local elections.",
-          "arguments_for": [
-            "Prevents local non-citizen voting options that some other states allow.",
-            "Constitutionalizes the rule, making future changes harder."
-          ],
-          "arguments_against": [
-            "Redundant because non-citizen voting is already illegal and rare in Texas.",
-            "Citizenship is already verified during voter registration."
-          ],
-          "options": [
-            "For",
-            "Against"
-          ]
-        },
-        {
-          "id": "state_prop_17",
-          "number": 17,
-          "title": "Property Tax Exemption for Border Security Infrastructure",
-          "text": "The constitutional amendment to authorize the legislature to provide for an exemption from ad valorem taxation of the amount of the market value of real property located in a county that borders the United Mexican States that arises from the installation or construction on the property of border security infrastructure and related improvements.",
-          "plain_language": "Lets the Legislature exempt any increased property value from border security infrastructure built on land in counties along the Texas-Mexico border.",
-          "arguments_for": [
-            "Encourages private property owners to support border security projects.",
-            "Exempts any value increase from border infrastructure on the property.",
-            "Does not reduce the appraised value of existing property."
-          ],
-          "arguments_against": [
-            "Narrows the tax base, shifting the burden or reducing local revenues.",
-            "Infrastructure types and qualifications are undefined and left to future legislation.",
-            "May encourage militarization of the border through tax incentives."
-          ],
-          "options": [
-            "For",
-            "Against"
-          ]
+          "write_in": false
         }
-      ]
+      ],
+      "id": "federal"
     },
     {
-      "category": "Bexar County Propositions",
-      "scope": "countywide",
-      "description": "All Bexar County voters vote on these propositions",
-      "questions": [
+      "title": "State",
+      "jurisdiction": {
+        "type": "state",
+        "name": "State"
+      },
+      "items": [
         {
-          "id": "bexar_prop_a",
-          "number": "A",
-          "title": "Freeman Coliseum & Frost Bank Center Funding",
-          "text": "Authorizing Bexar County, Texas to provide for the planning, acquisition, establishment, development, construction, renovation, and financing of the Freeman Coliseum, Frost Bank Center, and other San Antonio Stock Show & Rodeo facilities (together, the 'Coliseum Complex Venue Project'), and related infrastructure and (i) to increase the County hotel occupancy tax to a maximum rate of two percent (2%) and (ii) to authorize the use of the existing County short-term motor vehicle rental tax at a maximum rate of five percent (5%) for the purpose of financing the Coliseum Complex Venue Project.",
-          "tax_increase": true,
-          "plain_language": "Raises the county hotel occupancy tax by up to 2% and allows the existing 5% rental car tax to help pay for upgrades to the Freeman Coliseum, Frost Bank Center, and rodeo facilities.",
-          "arguments_for": [
-            "Improved facilities could attract more tourists and national events, boosting the economy.",
-            "Funded by tourist taxes, so residents pay only if they book local hotel rooms or rental cars.",
-            "Enhances year-round use and preserves county assets and western heritage."
+          "kind": "race",
+          "id": "state__governor",
+          "office": "Governor",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Greg Abbott",
+              "party": "REP"
+            },
+            {
+              "name": "Gina Hinojosa",
+              "party": "DEM"
+            },
+            {
+              "name": "Pat Dixon",
+              "party": "LIB"
+            }
           ],
-          "arguments_against": [
-            "Timeline and lack of economic analyses pose financial risk.",
-            "Higher hotel costs may deter tourists and conventions.",
-            "Benefits may not reach nearby neighborhoods, and construction and traffic impacts are negative.",
-            "Limited nearby hotels and restaurants reduce competitiveness for large events."
+          "write_in": true
+        },
+        {
+          "kind": "race",
+          "id": "state__lieutenant_governor",
+          "office": "Lieutenant Governor",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Dan Patrick",
+              "party": "REP"
+            },
+            {
+              "name": "Vikki Goodwin",
+              "party": "DEM"
+            },
+            {
+              "name": "Anthony Cristo",
+              "party": "LIB"
+            },
+            {
+              "name": "Kevin McCormick",
+              "party": "GRN"
+            }
           ],
+          "write_in": true
+        },
+        {
+          "kind": "race",
+          "id": "state__attorney_general",
+          "office": "Attorney General",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Mayes Middleton",
+              "party": "REP"
+            },
+            {
+              "name": "Nathan Johnson",
+              "party": "DEM"
+            },
+            {
+              "name": "Tom Oxford",
+              "party": "LIB"
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "state__comptroller_of_public_accounts",
+          "office": "Comptroller of Public Accounts",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Don Huffines",
+              "party": "REP"
+            },
+            {
+              "name": "Sarah Eckhardt",
+              "party": "DEM"
+            },
+            {
+              "name": "V. Alonzo Echavarria-Garza",
+              "party": "LIB"
+            },
+            {
+              "name": "Shehla Faizi",
+              "party": "GRN"
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "state__commissioner_of_the_general_land_office",
+          "office": "Commissioner of the General Land Office",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Dawn Buckingham",
+              "party": "REP"
+            },
+            {
+              "name": "Benjamin Flores",
+              "party": "DEM"
+            },
+            {
+              "name": "Neill Snider",
+              "party": "LIB"
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "state__commissioner_of_agriculture",
+          "office": "Commissioner of Agriculture",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Nate Sheets",
+              "party": "REP"
+            },
+            {
+              "name": "Clayton Tucker",
+              "party": "DEM"
+            },
+            {
+              "name": "Austin R. Kelly",
+              "party": "LIB"
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "state__railroad_commissioner",
+          "office": "Railroad Commissioner",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Bo French",
+              "party": "REP"
+            },
+            {
+              "name": "Jon Rosenthal",
+              "party": "DEM"
+            },
+            {
+              "name": "Arthur Dibianca",
+              "party": "LIB"
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "state__chief_justice_supreme_court",
+          "office": "Chief Justice, Supreme Court",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Jimmy Blacklock",
+              "party": "REP"
+            },
+            {
+              "name": "Maggie Ellis",
+              "party": "DEM"
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "state__justice_supreme_court_place_2_unexpired_term",
+          "office": "Justice, Supreme Court, Place 2 - Unexpired Term",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "James P. Sullivan",
+              "party": "REP"
+            },
+            {
+              "name": "Chari Kelly",
+              "party": "DEM"
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "state__justice_supreme_court_place_7",
+          "office": "Justice, Supreme Court, Place 7",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Kyle Hawkins",
+              "party": "REP"
+            },
+            {
+              "name": "Kristen Hawkins",
+              "party": "DEM"
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "state__justice_supreme_court_place_8",
+          "office": "Justice, Supreme Court, Place 8",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Brett Busby",
+              "party": "REP"
+            },
+            {
+              "name": "Gisela D. Triana",
+              "party": "DEM"
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "state__judge_court_of_criminal_appeals_place_3",
+          "office": "Judge, Court of Criminal Appeals, Place 3",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Thomas Smith",
+              "party": "REP"
+            },
+            {
+              "name": "Okey Anyiam",
+              "party": "DEM"
+            },
+            {
+              "name": "Mark Ash",
+              "party": "LIB"
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "state__judge_court_of_criminal_appeals_place_4",
+          "office": "Judge, Court of Criminal Appeals, Place 4",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Kevin Patrick Yeary",
+              "party": "REP"
+            },
+            {
+              "name": "Audra Riley",
+              "party": "DEM"
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "state__judge_court_of_criminal_appeals_place_9",
+          "office": "Judge, Court of Criminal Appeals, Place 9",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "John Messinger",
+              "party": "REP"
+            },
+            {
+              "name": "Holly Taylor",
+              "party": "DEM"
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "state__state_senator_district_19",
+          "office": "State Senator, District 19",
+          "vote_for": "Vote for none or one",
+          "district": {
+            "type": "state_senate",
+            "number": 19
+          },
+          "candidates": [
+            {
+              "name": "Marcus Cardenas",
+              "party": "REP"
+            },
+            {
+              "name": "Roland Gutierrez",
+              "party": "DEM"
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "state__state_senator_district_21",
+          "office": "State Senator, District 21",
+          "vote_for": "Vote for none or one",
+          "district": {
+            "type": "state_senate",
+            "number": 21
+          },
+          "candidates": [
+            {
+              "name": "Julie Dahlberg",
+              "party": "REP"
+            },
+            {
+              "name": "Judith Zaffirini",
+              "party": "DEM"
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "state__state_senator_district_26",
+          "office": "State Senator, District 26",
+          "vote_for": "Vote for none or one",
+          "district": {
+            "type": "state_senate",
+            "number": 26
+          },
+          "candidates": [
+            {
+              "name": "Jose Menendez",
+              "party": "DEM"
+            },
+            {
+              "name": "Julián Villarreal",
+              "party": "GRN"
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "state__state_representative_district_116",
+          "office": "State Representative, District 116",
+          "vote_for": "Vote for None or One",
+          "district": {
+            "type": "state_house",
+            "number": 116
+          },
+          "candidates": [
+            {
+              "name": "Rhett Rosenquest Smith",
+              "party": "REP"
+            },
+            {
+              "name": "Trey Martinez Fischer",
+              "party": "DEM"
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "state__state_representative_district_117",
+          "office": "State Representative, District 117",
+          "vote_for": "Vote for None or One",
+          "district": {
+            "type": "state_house",
+            "number": 117
+          },
+          "candidates": [
+            {
+              "name": "Ben Mostyn",
+              "party": "REP"
+            },
+            {
+              "name": "Philip Cortez",
+              "party": "DEM"
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "state__state_representative_district_118",
+          "office": "State Representative, District 118",
+          "vote_for": "Vote for none or one",
+          "district": {
+            "type": "state_house",
+            "number": 118
+          },
+          "candidates": [
+            {
+              "name": "Jorge Borrego",
+              "party": "REP"
+            },
+            {
+              "name": "Kristian Carranza",
+              "party": "DEM"
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "state__state_representative_district_119",
+          "office": "State Representative, District 119",
+          "vote_for": "Vote for None or One",
+          "district": {
+            "type": "state_house",
+            "number": 119
+          },
+          "candidates": [
+            {
+              "name": "Melva Perez",
+              "party": "REP"
+            },
+            {
+              "name": "Elizabeth \"Liz\" Campos",
+              "party": "DEM"
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "state__state_representative_district_120",
+          "office": "State Representative, District 120",
+          "vote_for": "Vote for None or One",
+          "district": {
+            "type": "state_house",
+            "number": 120
+          },
+          "candidates": [
+            {
+              "name": "Barbara Gervin-Hawkins",
+              "party": "DEM"
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "state__state_representative_district_121",
+          "office": "State Representative, District 121",
+          "vote_for": "Vote for None or One",
+          "district": {
+            "type": "state_house",
+            "number": 121
+          },
+          "candidates": [
+            {
+              "name": "Marc Lahood",
+              "party": "REP"
+            },
+            {
+              "name": "Zack Dunn",
+              "party": "DEM"
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "state__state_representative_district_122",
+          "office": "State Representative, District 122",
+          "vote_for": "Vote for None or One",
+          "district": {
+            "type": "state_house",
+            "number": 122
+          },
+          "candidates": [
+            {
+              "name": "Mark Dorazio",
+              "party": "REP"
+            },
+            {
+              "name": "Shelly Nickels",
+              "party": "DEM"
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "state__state_representative_district_123",
+          "office": "State Representative, District 123",
+          "vote_for": "Vote for none or one",
+          "district": {
+            "type": "state_house",
+            "number": 123
+          },
+          "candidates": [
+            {
+              "name": "Diego Bernal",
+              "party": "DEM"
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "state__state_representative_district_124",
+          "office": "State Representative, District 124",
+          "vote_for": "Vote for none or one",
+          "district": {
+            "type": "state_house",
+            "number": 124
+          },
+          "candidates": [
+            {
+              "name": "Sylvia Soto",
+              "party": "REP"
+            },
+            {
+              "name": "Josey Garcia",
+              "party": "DEM"
+            }
+          ],
+          "write_in": true
+        },
+        {
+          "kind": "race",
+          "id": "state__state_representative_district_125",
+          "office": "State Representative, District 125",
+          "vote_for": "Vote for None or One",
+          "district": {
+            "type": "state_house",
+            "number": 125
+          },
+          "candidates": [
+            {
+              "name": "Ricardo \"Rick\" Martinez",
+              "party": "REP"
+            },
+            {
+              "name": "Adrian Reyna",
+              "party": "DEM"
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "state__chief_justice_15th_court_of_appeals_district",
+          "office": "Chief Justice, 15th Court of Appeals District",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Scott Brister",
+              "party": "REP"
+            },
+            {
+              "name": "Jerry Zimmerer",
+              "party": "DEM"
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "state__justice_15th_court_of_appeals_district_place_2",
+          "office": "Justice, 15th Court of Appeals District, Place 2",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Scott K. Field",
+              "party": "REP"
+            },
+            {
+              "name": "Tom Baker",
+              "party": "DEM"
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "state__justice_15th_court_of_appeals_district_place_3",
+          "office": "Justice, 15th Court of Appeals District, Place 3",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "April Farris",
+              "party": "REP"
+            },
+            {
+              "name": "Marc M. Meyer",
+              "party": "DEM"
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "state__chief_justice_4th_court_of_appeals_district",
+          "office": "Chief Justice, 4th Court of Appeals District",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Bert Richardson",
+              "party": "REP"
+            },
+            {
+              "name": "Antonia \"Toni\" Arteaga",
+              "party": "DEM"
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "state__district_judge_45th_judicial_district",
+          "office": "District Judge, 45th Judicial District",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Mary Lou Alvarez",
+              "party": "DEM"
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "state__district_judge_144th_judicial_district",
+          "office": "District Judge, 144th Judicial District",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Michael De Leon",
+              "party": "DEM"
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "state__district_judge_150th_judicial_district",
+          "office": "District Judge, 150th Judicial District",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Monique Diaz",
+              "party": "DEM"
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "state__district_judge_186th_judicial_district",
+          "office": "District Judge, 186th Judicial District",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Kristina Escalona",
+              "party": "DEM"
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "state__district_judge_187th_judicial_district",
+          "office": "District Judge, 187th Judicial District",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Stephanie Franco",
+              "party": "DEM"
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "state__district_judge_224th_judicial_district",
+          "office": "District Judge, 224th Judicial District",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Marisa Flores",
+              "party": "DEM"
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "state__district_judge_225th_judicial_district",
+          "office": "District Judge, 225th Judicial District",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Benjamin Robertson",
+              "party": "REP"
+            },
+            {
+              "name": "Christine Vasquez Hortick",
+              "party": "DEM"
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "state__district_judge_226th_judicial_district",
+          "office": "District Judge, 226th Judicial District",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Anastacia \"Ana\" Ochoa Nelson",
+              "party": "DEM"
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "state__district_judge_227th_judicial_district",
+          "office": "District Judge, 227th Judicial District",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Christine Del Prado",
+              "party": "DEM"
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "state__district_judge_285th_judicial_district",
+          "office": "District Judge, 285th Judicial District",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Nadine Melissa Nieto",
+              "party": "DEM"
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "state__district_judge_288th_judicial_district",
+          "office": "District Judge, 288th Judicial District",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Cynthia Marie Chapa",
+              "party": "DEM"
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "state__district_judge_289th_judicial_district",
+          "office": "District Judge, 289th Judicial District",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Rose Sosa",
+              "party": "DEM"
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "state__district_judge_290th_judicial_district",
+          "office": "District Judge, 290th Judicial District",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Jennifer Pena",
+              "party": "DEM"
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "state__district_judge_436th_judicial_district",
+          "office": "District Judge, 436th Judicial District",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Raymond A. Villareal",
+              "party": "DEM"
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "state__district_judge_437th_judicial_district",
+          "office": "District Judge, 437th Judicial District",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Joel Perez",
+              "party": "DEM"
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "state__bexar_county_criminal_district_attorney",
+          "office": "Bexar County Criminal District Attorney",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Ashley Foster",
+              "party": "REP"
+            },
+            {
+              "name": "Luz Elena Chapa",
+              "party": "DEM"
+            },
+            {
+              "name": "Jason Wolff",
+              "party": "IND"
+            }
+          ],
+          "write_in": false
+        }
+      ],
+      "id": "state"
+    },
+    {
+      "title": "County",
+      "jurisdiction": {
+        "type": "county",
+        "name": "County"
+      },
+      "items": [
+        {
+          "kind": "race",
+          "id": "county__county_judge",
+          "office": "County Judge",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Patrick Von Dohlen",
+              "party": "REP"
+            },
+            {
+              "name": "Ron Nirenberg",
+              "party": "DEM"
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "county__judge_county_court_at_law_no_1",
+          "office": "Judge, County Court at Law No. 1",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Bob Behrens",
+              "party": "REP"
+            },
+            {
+              "name": "Helen Petry Stowe",
+              "party": "DEM"
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "county__judge_county_court_at_law_no_2",
+          "office": "Judge, County Court at Law No. 2",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Melissa Saenz",
+              "party": "DEM"
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "county__judge_county_court_at_law_no_3",
+          "office": "Judge, County Court at Law No. 3",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "David J. Rodriguez",
+              "party": "DEM"
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "county__judge_county_court_at_law_no_4",
+          "office": "Judge, County Court at Law No. 4",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Jason Roland Garrahan",
+              "party": "REP"
+            },
+            {
+              "name": "Alfredo Ximenez",
+              "party": "DEM"
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "county__judge_county_court_at_law_no_5",
+          "office": "Judge, County Court at Law No. 5",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Andrea Arevalos",
+              "party": "DEM"
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "county__judge_county_court_at_law_no_6",
+          "office": "Judge, County Court at Law No. 6",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Erica Dominguez",
+              "party": "DEM"
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "county__judge_county_court_at_law_no_7",
+          "office": "Judge, County Court at Law No. 7",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Melanie M. Lira",
+              "party": "DEM"
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "county__judge_county_court_at_law_no_8",
+          "office": "Judge, County Court at Law No. 8",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Celeste Brown",
+              "party": "REP"
+            },
+            {
+              "name": "Victoria Cruz",
+              "party": "DEM"
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "county__judge_county_court_at_law_no_9",
+          "office": "Judge, County Court at Law No. 9",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Daphne Previti Austin",
+              "party": "REP"
+            },
+            {
+              "name": "Jessica A. Gonzalez",
+              "party": "DEM"
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "county__judge_county_court_at_law_no_10",
+          "office": "Judge, County Court at Law No. 10",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Cesar Garcia",
+              "party": "DEM"
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "county__judge_county_court_at_law_no_11",
+          "office": "Judge, County Court at Law No. 11",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Erica Peña",
+              "party": "DEM"
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "county__judge_county_court_at_law_no_12",
+          "office": "Judge, County Court at Law No. 12",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Deborah Dietzmann",
+              "party": "REP"
+            },
+            {
+              "name": "Lauren Zamora",
+              "party": "DEM"
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "county__judge_county_court_at_law_no_13",
+          "office": "Judge, County Court at Law No. 13",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Alicia \"Ali\" Perez",
+              "party": "DEM"
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "county__judge_county_court_at_law_no_14",
+          "office": "Judge, County Court at Law No. 14",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Audrey Martinez",
+              "party": "DEM"
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "county__judge_county_court_at_law_no_15",
+          "office": "Judge, County Court at Law No. 15",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Melissa Vara",
+              "party": "DEM"
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "county__judge_probate_court_no_1",
+          "office": "Judge, Probate Court No. 1",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Oscar J. Kazen",
+              "party": "DEM"
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "county__judge_probate_court_no_2",
+          "office": "Judge, Probate Court No. 2",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Veronica Vasquez",
+              "party": "DEM"
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "county__district_clerk",
+          "office": "District Clerk",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Christine \"Chris\" Castillo",
+              "party": "DEM"
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "county__county_clerk",
+          "office": "County Clerk",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Lucy Adame-Clark",
+              "party": "DEM"
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "county__county_commissioner_precinct_2",
+          "office": "County Commissioner Precinct 2",
+          "vote_for": "Vote for none or one",
+          "district": {
+            "type": "commissioner",
+            "number": 2
+          },
+          "candidates": [
+            {
+              "name": "David Sherwood Hill",
+              "party": "REP"
+            },
+            {
+              "name": "Justin Rodriguez",
+              "party": "DEM"
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "county__county_commissioner_precinct_4",
+          "office": "County Commissioner Precinct 4",
+          "vote_for": "Vote for none or one",
+          "district": {
+            "type": "commissioner",
+            "number": 4
+          },
+          "candidates": [
+            {
+              "name": "Tommy Calvert Jr.",
+              "party": "DEM"
+            },
+            {
+              "name": "Roy Anthony II",
+              "party": "IND"
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "county__justice_of_the_peace_precinct_1",
+          "office": "Justice of the Peace Precinct 1",
+          "vote_for": "Vote for none or one",
+          "district": {
+            "type": "jp",
+            "number": 1
+          },
+          "candidates": [
+            {
+              "name": "Armando Cruz Jr.",
+              "party": "DEM"
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "county__justice_of_the_peace_precinct_3",
+          "office": "Justice of the Peace Precinct 3",
+          "vote_for": "Vote for none or one",
+          "district": {
+            "type": "jp",
+            "number": 3
+          },
+          "candidates": [
+            {
+              "name": "Julie Bray Patterson",
+              "party": "REP"
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "county__justice_of_the_peace_precinct_4",
+          "office": "Justice of the Peace Precinct 4",
+          "vote_for": "Vote for none or one",
+          "district": {
+            "type": "jp",
+            "number": 4
+          },
+          "candidates": [
+            {
+              "name": "Anna Campos",
+              "party": "DEM"
+            }
+          ],
+          "write_in": false
+        }
+      ],
+      "id": "county"
+    },
+    {
+      "title": "Bexar Central Appraisal District",
+      "jurisdiction": {
+        "type": "county",
+        "name": "Bexar Central Appraisal District"
+      },
+      "items": [
+        {
+          "kind": "race",
+          "id": "bexar_central_appraisal_district__for_director_place_no_1",
+          "office": "For Director, Place No. 1",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Susan Bayne",
+              "party": null
+            },
+            {
+              "name": "Diana Arévalo",
+              "party": null
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "bexar_central_appraisal_district__for_director_place_no_2",
+          "office": "For Director, Place No. 2",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Leticia Anguiano",
+              "party": null
+            },
+            {
+              "name": "Erika Hizel",
+              "party": null
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "bexar_central_appraisal_district__for_director_place_no_3",
+          "office": "For Director, Place No. 3",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Jon Melendez",
+              "party": null
+            }
+          ],
+          "write_in": false
+        }
+      ],
+      "id": "bexar_central_appraisal_district"
+    },
+    {
+      "title": "City of China Grove",
+      "jurisdiction": {
+        "type": "city",
+        "name": "China Grove"
+      },
+      "items": [
+        {
+          "kind": "question",
+          "id": "city_of_china_grove__city_of_china_grove_proposition",
+          "title": "City of China Grove – Proposition",
+          "text": "\"THE REAUTHORIZATION OF THELOCAL SALES AND USE TAX IN THE CITY OF CHINA GROVE, TEXAS, AT THE RATE OF ONE- FOURTH OF ONE PERCENT (0.25%) TO CONTINUE PROVIDING REVENUE FOR MAINTENANCE AND REPAIR OF MUNICIPAL STREETS. THE TAX EXPIRES ON THE FOURTH ANNIVERSARY OF THE DATE OF THIS ELECTION UNLESS THE IMPOSITION OF THE TAX IS REAUTHORIZED.\"",
+          "options": [
+            "For",
+            "Against"
+          ]
+        }
+      ],
+      "id": "city_of_china_grove"
+    },
+    {
+      "title": "City of Converse",
+      "jurisdiction": {
+        "type": "city",
+        "name": "Converse"
+      },
+      "items": [
+        {
+          "kind": "race",
+          "id": "city_of_converse__for_city_council_place_2",
+          "office": "For City Council, Place 2",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Renée Paschall",
+              "party": null
+            },
+            {
+              "name": "Orlando D. Cruz",
+              "party": null
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "city_of_converse__for_city_council_place_4",
+          "office": "For City Council, Place 4",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Bradley Heinz",
+              "party": null
+            },
+            {
+              "name": "Jessica Ann Hannah",
+              "party": null
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "city_of_converse__for_city_council_place_6",
+          "office": "For City Council, Place 6",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Nawid Zazai",
+              "party": null
+            },
+            {
+              "name": "Nancy Droneburg",
+              "party": null
+            },
+            {
+              "name": "Marc Gilbert",
+              "party": null
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "question",
+          "id": "city_of_converse__city_of_converse_proposition",
+          "title": "CITY OF CONVERSE – PROPOSITION",
+          "text": "\"Shall the VIA San Antonio Metropolitan Transit Authority Service be discontinued in the City of Converse, Texas?\"",
           "options": [
             "For",
             "Against"
           ]
         },
         {
-          "id": "bexar_prop_b",
-          "number": "B",
-          "title": "San Antonio Spurs Arena Funding",
-          "text": "Authorizing Bexar County, Texas to provide for the planning, acquisition, establishment, development, construction, or renovation of a new multipurpose arena designed primarily as the home venue for the San Antonio Spurs basketball team and (i) to increase the County hotel occupancy tax to a maximum rate of two percent (2%) and (ii) to authorize the use of the existing County short-term motor vehicle rental tax at a maximum rate of five percent (5%) for the purpose of financing the Arena Venue Project.",
-          "tax_increase": true,
-          "plain_language": "Raises the county hotel occupancy tax by up to 2% and allows the existing 5% rental car tax to help finance a new multipurpose downtown arena primarily for the San Antonio Spurs.",
-          "arguments_for": [
-            "County funding would come from tourist taxes rather than property taxes.",
-            "A downtown arena could boost nearby businesses and venues.",
-            "Helps maintain the Spurs' presence and its economic and community benefits.",
-            "County participation is considered a necessary first step."
-          ],
-          "arguments_against": [
-            "Hotel and rental car costs also affect residents.",
-            "Timeline, multiple funding sources, and incomplete public information create financial risk.",
-            "Downtown construction would disrupt traffic and businesses for years.",
-            "If the measure passes construction is likely, while failure makes it doubtful."
-          ],
+          "kind": "question",
+          "id": "city_of_converse__city_of_converse_proposition_2",
+          "title": "CITY OF CONVERSE – PROPOSITION",
+          "text": "\"The Reauthorization of the Local Sales and Use Tax in the City of Converse, Texas, at the rate of 1/4 Percent to continue providing revenue for maintenance and repair of municipal streets. The tax expires on the fourth anniversary of the date of this election unless the imposition of the tax is reauthorized.\"",
           "options": [
             "For",
             "Against"
           ]
         }
-      ]
+      ],
+      "id": "city_of_converse"
     },
     {
-      "category": "City Elections",
-      "scope": "municipal",
-      "description": "Only voters in specific cities vote on these",
-      "jurisdictions": [
+      "title": "Town of Hollywood Park",
+      "jurisdiction": {
+        "type": "city",
+        "name": "Hollywood Park"
+      },
+      "items": [
         {
-          "name": "City of Converse",
-          "type": "General Election",
-          "races": [
-            {
-              "office": "Mayor",
-              "vote_for": 1,
-              "candidates": [
-                "John Shadron",
-                "Al Suarez",
-                "Marc Gilbert",
-                "Emilio Silvas"
-              ]
-            },
-            {
-              "office": "Council, Place 1",
-              "vote_for": 1,
-              "candidates": [
-                "Renee Paschall",
-                "Stephanie Gonzalez"
-              ]
-            },
-            {
-              "office": "Council, Place 3",
-              "vote_for": 1,
-              "candidates": [
-                "Robert E. Raney",
-                "Kassandra Leon"
-              ]
-            },
-            {
-              "office": "Council, Place 5",
-              "vote_for": 1,
-              "candidates": [
-                "Terry Bourland",
-                "Stacy L. Adams Jr."
-              ]
-            }
-          ]
-        },
-        {
-          "name": "City of Schertz",
-          "type": "General Election",
-          "races": [
-            {
-              "office": "Mayor",
-              "vote_for": 1,
-              "candidates": [
-                "Ralph Rodriguez",
-                "Ralph Gutierrez"
-              ]
-            },
-            {
-              "office": "Councilmember, Place 1",
-              "vote_for": 1,
-              "candidates": [
-                "Mark E. Davis"
-              ]
-            },
-            {
-              "office": "Councilmember, Place 2",
-              "vote_for": 1,
-              "candidates": [
-                "John D. Carbon",
-                "Michelle Watson"
-              ]
-            }
-          ]
-        },
-        {
-          "name": "City of Schertz",
-          "type": "Special Election",
-          "questions": [
-            {
-              "id": "schertz_prop_a",
-              "number": "A",
-              "title": "Annexation and Land Use Near Randolph AFB",
-              "text": "Option 1: YES Annexation: Shall the City of Schertz annex for full purposes certain areas in the City's extraterritorial jurisdiction within five miles of the boundary of the Joint Base San Antonio Randolph? Option 2: NO Annexation but with land use regulations: Shall the City of Schertz be provided with the authority to adopt and enforce an ordinance regulating the land use in the City's extraterritorial jurisdiction within five miles of the boundary of the Joint Base San Antonio Randolph in the manner recommended by the most recent Joint Land Use Study, for the purpose of protecting the military missions, and including the authority to adopt and impose related fees, fines and other charges?",
-              "options": [
-                "YES",
-                "NO"
-              ]
-            }
-          ]
-        },
-        {
-          "name": "City of Windcrest",
-          "type": "General Election",
-          "races": [
-            {
-              "office": "Mayor",
-              "vote_for": 1,
-              "candidates": [
-                "Dan Reese",
-                "Alan E. Baxter",
-                "Robert Maloy"
-              ]
-            },
-            {
-              "office": "Council, Place 4",
-              "vote_for": 1,
-              "candidates": [
-                "Narquiz Cervantes",
-                "Rainbeau Presti"
-              ]
-            },
-            {
-              "office": "Council, Place 5",
-              "vote_for": 1,
-              "candidates": [
-                "Rick Cockerham",
-                "Billy Gipson",
-                "Adam Astleford"
-              ]
-            }
-          ]
-        },
-        {
-          "name": "City of Windcrest",
-          "type": "Special Election",
-          "questions": [
-            {
-              "id": "windcrest_measure_a",
-              "number": "Measure A",
-              "title": "Street Maintenance Sales Tax Reauthorization",
-              "text": "Shall the City reauthorize the local sales and use tax in the City of Windcrest, Texas at the rate of one-fourth of one percent to continue providing revenue for maintenance and repair of municipal streets? This tax expires on the fourth anniversary date of this election unless the imposition of the tax is reauthorized.",
-              "tax_increase": true,
-              "options": [
-                "For",
-                "Against"
-              ]
-            }
+          "kind": "question",
+          "id": "town_of_hollywood_park__town_of_hollywood_park_proposition_a",
+          "title": "TOWN OF HOLLYWOOD PARK - PROPOSITION A",
+          "text": "\"THE TERMINATION OF THE HOLLYWOOD PARK ECONOMIC DEVELOPMENT CORPORATION AND ITS ASSOCIATED SALES TAX; AND THE REALLOCATION OF ONE-EIGHTH OF ONE PERCENT SALES AND USE TAX FROM ECONOMIC DEVELOPMENT TO ONE-EIGHTH OF ONE PERCENT SALES AND USE TAX REVENUE FOR MAINTENANCE AND REPAIR OF MUNICIPAL STREETS. THIS WOULD RESULT IN NO CHANGE IN THE TOTAL SALES TAX RATE.\"",
+          "options": [
+            "For",
+            "Against"
           ]
         }
-      ]
+      ],
+      "id": "town_of_hollywood_park"
     },
     {
-      "category": "School District Elections",
-      "scope": "school_district",
-      "description": "Only voters in specific school districts vote on these",
-      "jurisdictions": [
+      "title": "City of Live Oak",
+      "jurisdiction": {
+        "type": "city",
+        "name": "Live Oak"
+      },
+      "items": [
         {
-          "name": "Boerne Independent School District",
-          "type": "Special Election",
-          "questions": [
+          "kind": "race",
+          "id": "city_of_live_oak__for_city_council_place_5",
+          "office": "For City Council, Place 5",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
             {
-              "id": "boerne_isd_prop_a",
-              "number": "A",
-              "title": "Tax Rate Ratification",
-              "text": "Ratifying the ad valorem tax rate of $1.0109 per $100 valuation resulting in an increase of 4.05% in maintenance and operations tax revenue, an additional $1,906,341.",
-              "tax_increase": true,
-              "options": [
-                "For",
-                "Against"
-              ]
+              "name": "Michael Llamas",
+              "party": null
+            },
+            {
+              "name": "Jasmine Johnson",
+              "party": null
             }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "question",
+          "id": "city_of_live_oak__city_of_live_oak_proposition_a",
+          "title": "City of Live Oak - Proposition A",
+          "text": "\"Shall the City Charter of the City of Live Oak be amended to transition from two-year terms of office for the City Council to three- year terms of office for the City Council?\"",
+          "options": [
+            "For",
+            "Against"
           ]
         },
         {
-          "name": "East Central Independent School District",
-          "type": "Special Election",
-          "questions": [
-            {
-              "id": "ec_isd_prop_a",
-              "number": "A",
-              "title": "Tax Rate Ratification",
-              "text": "Ratifying the ad valorem tax rate of $0.9819 per $100 valuation resulting in an increase of 13.77% in maintenance and operations tax revenue, an additional $7,603,042.",
-              "tax_increase": true,
-              "options": [
-                "For",
-                "Against"
-              ]
-            }
+          "kind": "question",
+          "id": "city_of_live_oak__city_of_live_oak_proposition_b",
+          "title": "City of Live Oak - Proposition B",
+          "text": "\"Shall the City Charter of the City of Live Oak be amended to allow for the filling of a vacancy on the City Council in accordance with state law?\"",
+          "options": [
+            "For",
+            "Against"
           ]
         },
         {
-          "name": "Judson Independent School District",
-          "type": "Special Election",
-          "questions": [
-            {
-              "id": "judson_isd_prop_a",
-              "number": "A",
-              "title": "Tax Rate Ratification",
-              "text": "Ratifying the ad valorem tax rate of $1.0796 per $100 valuation resulting in an increase of 3.78% in maintenance and operations tax revenue, an additional $3,824,720.",
-              "tax_increase": true,
-              "options": [
-                "For",
-                "Against"
-              ]
-            }
+          "kind": "question",
+          "id": "city_of_live_oak__city_of_live_oak_proposition_c",
+          "title": "City of Live Oak - Proposition C",
+          "text": "\"Shall the City Charter of the City of Live Oak be amended to remove the requirement that only elected members of the City Council (as opposed to any duty seated council member) may vote on the appointment or removal of the city manager?\"",
+          "options": [
+            "For",
+            "Against"
           ]
         },
         {
-          "name": "North East Independent School District",
-          "type": "Bond Election",
-          "questions": [
-            {
-              "id": "neisd_prop_a",
-              "number": "A",
-              "title": "Facilities, Safety, and Infrastructure Bonds",
-              "text": "The issuance of not to exceed $400,345,000 for facilities, safety and security, roof and HVAC replacements, technology infrastructure, and new school buses and vehicles and the levying of a tax sufficient to pay the principal and interest and the cost of any credit agreements.",
-              "tax_increase": true,
-              "options": [
-                "For",
-                "Against"
-              ]
-            },
-            {
-              "id": "neisd_prop_b",
-              "number": "B",
-              "title": "Technology Equipment Bonds",
-              "text": "The issuance of not to exceed $53,480,000 for acquiring and updating instructional technology equipment and the levying of a tax sufficient to pay the principal and interest and the cost of any credit agreements.",
-              "tax_increase": true,
-              "options": [
-                "For",
-                "Against"
-              ]
-            },
-            {
-              "id": "neisd_prop_c",
-              "number": "C",
-              "title": "Athletic Facilities Bonds",
-              "text": "The issuance of not to exceed $29,165,000 for designing, constructing, renovating, improving, upgrading, updating, expanding, acquiring, and equipping athletic facilities including Blossom Athletic Center facilities, North East Sports Park, and the District's Softball Complex on Judson Road and the levying of a tax sufficient to pay the principal and interest and the cost of any credit agreements.",
-              "tax_increase": true,
-              "options": [
-                "For",
-                "Against"
-              ]
-            },
-            {
-              "id": "neisd_prop_d",
-              "number": "D",
-              "title": "Stadium Renovations Bonds",
-              "text": "The issuance of not to exceed $9,685,000 for renovations and improvements to Jerry Comalander Stadium and Heroes Stadium and the levying of a tax sufficient to pay the principal and interest and the cost of any credit agreements.",
-              "tax_increase": true,
-              "options": [
-                "For",
-                "Against"
-              ]
-            },
-            {
-              "id": "neisd_prop_e",
-              "number": "E",
-              "title": "Natatorium Renovations Bonds",
-              "text": "The issuance of not to exceed $2,325,000 for renovations and improvements to Josh Davis Natatorium and Walker Natatorium and the levying of a tax sufficient to pay the principal and interest and the cost of any credit agreements.",
-              "tax_increase": true,
-              "options": [
-                "For",
-                "Against"
-              ]
-            }
+          "kind": "question",
+          "id": "city_of_live_oak__city_of_live_oak_proposition_d",
+          "title": "City of Live Oak - Proposition D",
+          "text": "\"Shall the City Charter of the City of Live Oak be amended to remove the requirement that only elected members of the City Council (as opposed to any duly seated council member) may vote on the designation or revocation of an acting city manager?\"",
+          "options": [
+            "For",
+            "Against"
           ]
         },
         {
-          "name": "Schertz-Cibolo-Universal City Independent School District",
-          "type": "General Election",
-          "races": [
-            {
-              "office": "Trustee, Place 4",
-              "vote_for": 1
-            },
-            {
-              "office": "Trustee, Place 5",
-              "vote_for": 1
-            },
-            {
-              "office": "Trustee, Place 6",
-              "vote_for": 1
-            },
-            {
-              "office": "Trustee, Place 7",
-              "vote_for": 1
-            }
+          "kind": "question",
+          "id": "city_of_live_oak__city_of_live_oak_proposition_e",
+          "title": "City of Live Oak - Proposition E",
+          "text": "\"Shall the City Charter of the City of Live Oak be amended to remove the requirement that the City of Live Oak annually prepare, adopt, and implement a City Development Five-Year Plan.\"",
+          "options": [
+            "For",
+            "Against"
           ]
         },
         {
-          "name": "Schertz-Cibolo-Universal City Independent School District",
-          "type": "Special Election",
-          "questions": [
-            {
-              "id": "scuc_isd_prop_a",
-              "number": "A",
-              "title": "Tax Rate Ratification",
-              "text": "Ratifying the ad valorem tax rate of $1.1969 per $100 valuation resulting in an increase of 10.37% in maintenance and operations tax revenue, an additional $5,482,115.",
-              "tax_increase": true,
-              "options": [
-                "For",
-                "Against"
-              ]
-            }
+          "kind": "question",
+          "id": "city_of_live_oak__city_of_live_oak_proposition_f",
+          "title": "City of Live Oak - Proposition F",
+          "text": "\"Shall the City Charter of the City of Live Oak be amended to require an audit of city books and accounts in accordance with state law.\"",
+          "options": [
+            "For",
+            "Against"
           ]
         }
-      ]
+      ],
+      "id": "city_of_live_oak"
     },
     {
-      "category": "Emergency Services District Elections",
-      "scope": "special_district",
-      "description": "Only voters in specific emergency services districts vote on these",
-      "jurisdictions": [
+      "title": "City of San Antonio",
+      "jurisdiction": {
+        "type": "city",
+        "name": "San Antonio"
+      },
+      "items": [
         {
-          "name": "Bexar County Emergency Services District No. 9",
-          "type": "Special Election",
-          "questions": [
-            {
-              "id": "esd9_prop_a",
-              "number": "A",
-              "title": "Sales Tax (Excluding China Grove)",
-              "text": "The adoption of a local sales and use tax in Bexar County Emergency Services District No. 9, excluding the City Limits of the City of China Grove, at the rate of 1.50 percent.",
-              "tax_increase": true,
-              "options": [
-                "For",
-                "Against"
-              ]
-            },
-            {
-              "id": "esd9_prop_b",
-              "number": "B",
-              "title": "Sales Tax (China Grove Only)",
-              "text": "The adoption of a local sales and use tax in the City Limits of the City of China Grove for Bexar County Emergency Services District No. 9 at the rate of 0.25 percent.",
-              "tax_increase": true,
-              "options": [
-                "For",
-                "Against"
-              ]
-            }
+          "kind": "question",
+          "id": "city_of_san_antonio__city_of_san_antonio_proposition_a_pre_k_4_sa_sales_use_tax_20_year_reauthorization",
+          "title": "CITY OF SAN ANTONIO - PROPOSITION A PRE K 4 SA SALES & USE TAX 20 YEAR REAUTHORIZATION",
+          "text": "\"Reauthorization of the Pre-K 4 SA Early Childhood Education Program and renewed adoption of a sales and use tax at the rate of one eighth of one percent for the purpose of continued financing of authorized programs of the San Antonio Early Childhood Education Municipal Development corporation for a maximum period of twenty (20) years following the expiration of the current reauthorization of the Pre-K 4 SA Program in 2029.\"",
+          "options": [
+            "For",
+            "Against"
           ]
         }
-      ]
+      ],
+      "id": "city_of_san_antonio"
+    },
+    {
+      "title": "City of Sandy Oaks",
+      "jurisdiction": {
+        "type": "city",
+        "name": "Sandy Oaks"
+      },
+      "items": [
+        {
+          "kind": "race",
+          "id": "city_of_sandy_oaks__for_mayor",
+          "office": "For Mayor",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Michael Martinez Jr",
+              "party": null
+            }
+          ],
+          "write_in": true
+        },
+        {
+          "kind": "race",
+          "id": "city_of_sandy_oaks__for_alderman_place_2",
+          "office": "For Alderman, Place 2",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Douglas Tomasini",
+              "party": null
+            },
+            {
+              "name": "Priscilla Schmitt",
+              "party": null
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "city_of_sandy_oaks__for_alderman_place_3",
+          "office": "For Alderman, Place 3",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Lamar McNeal",
+              "party": null
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "city_of_sandy_oaks__for_alderman_place_4",
+          "office": "For Alderman, Place 4",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "CJ Walker",
+              "party": null
+            }
+          ],
+          "write_in": false
+        }
+      ],
+      "id": "city_of_sandy_oaks"
+    },
+    {
+      "title": "City of Schertz",
+      "jurisdiction": {
+        "type": "city",
+        "name": "Schertz"
+      },
+      "items": [
+        {
+          "kind": "race",
+          "id": "city_of_schertz__for_city_council_place_3",
+          "office": "For City Council, Place 3",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Paul Macaluso",
+              "party": null
+            },
+            {
+              "name": "Billie Langhus",
+              "party": null
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "city_of_schertz__for_city_council_place_4",
+          "office": "For City Council, Place 4",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Kenneth E. Ratcliff",
+              "party": null
+            },
+            {
+              "name": "Benjamin Guerrero",
+              "party": null
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "city_of_schertz__for_city_council_place_5",
+          "office": "For City Council, Place 5",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Robert M. Westbrook",
+              "party": null
+            },
+            {
+              "name": "Jonathon A. Marquez",
+              "party": null
+            }
+          ],
+          "write_in": false
+        }
+      ],
+      "id": "city_of_schertz"
+    },
+    {
+      "title": "City of Windcrest",
+      "jurisdiction": {
+        "type": "city",
+        "name": "Windcrest"
+      },
+      "items": [
+        {
+          "kind": "race",
+          "id": "city_of_windcrest__for_city_council_place_1",
+          "office": "For City Council, Place 1",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Narquiz Cervantes",
+              "party": null
+            },
+            {
+              "name": "Susie Hamilton",
+              "party": null
+            },
+            {
+              "name": "Joan Pedrotti",
+              "party": null
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "city_of_windcrest__for_city_council_place_2",
+          "office": "For City Council, Place 2",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Cindy Strzelecki",
+              "party": null
+            },
+            {
+              "name": "Sue Alexander",
+              "party": null
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "city_of_windcrest__for_city_council_place_3",
+          "office": "For City Council, Place 3",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Greg Turner",
+              "party": null
+            },
+            {
+              "name": "Robert Maloy",
+              "party": null
+            }
+          ],
+          "write_in": false
+        }
+      ],
+      "id": "city_of_windcrest"
+    },
+    {
+      "title": "Comal Independent School District",
+      "jurisdiction": {
+        "type": "school",
+        "name": "Comal Independent School District"
+      },
+      "items": [
+        {
+          "kind": "question",
+          "id": "comal_independent_school_district__comal_independent_school_district_proposition_a",
+          "title": "COMAL INDEPENDENT SCHOOL DISTRICT - PROPOSITION A",
+          "text": "“THIS IS A PROPERTY TAX INCREASE. The issuance of bonds in an amount not to exceed $539,955,000 by the Comal Independent School District for the design, construction, rehabilitation, renovation, expansion, improvement, acquisition, and equipment of school facilities, the necessary sites for school facilities, and the purchase of school buses and vehicles, and the levying of a tax sufficient to pay the principal of and interest on the bonds and the cost of any credit agreements executed in connection with the bonds.”",
+          "options": [
+            "For",
+            "Against"
+          ]
+        },
+        {
+          "kind": "question",
+          "id": "comal_independent_school_district__comal_independent_school_district_proposition_b",
+          "title": "COMAL INDEPENDENT SCHOOL DISTRICT - PROPOSITION B",
+          "text": "“THIS IS A PROPERTY TAX INCREASE. The issuance of bonds in an amount not to exceed $27,045,000 by the Comal Independent School District for the acquisition, improvement, and updates of technology equipment, systems, and infrastructure (including new classroom computers and devices), and the levying of a tax sufficient to pay the principal of and interest on the bonds and the cost of any credit agreements executed in connection with the bonds.”",
+          "options": [
+            "For",
+            "Against"
+          ]
+        }
+      ],
+      "id": "comal_independent_school_district"
+    },
+    {
+      "title": "East Central Independent School District",
+      "jurisdiction": {
+        "type": "school",
+        "name": "East Central Independent School District"
+      },
+      "items": [
+        {
+          "kind": "question",
+          "id": "east_central_independent_school_district__east_central_independent_school_district_proposition_a_this_is_a_property_tax_increase",
+          "title": "EAST CENTRAL INDEPENDENT SCHOOL DISTRICT PROPOSITION A: THIS IS A PROPERTY TAX INCREASE",
+          "text": "\" Ratifying the ad valorem tax rate of $0.9320 per $100 valuation in the East Central Independent School District for the current year, a rate that will result in an increase of 8.98 percent in maintenance and operations tax revenue for the District for the current year as compared to the preceding year, which is an additional $8,470,660.\"",
+          "options": [
+            "For",
+            "Against"
+          ]
+        }
+      ],
+      "id": "east_central_independent_school_district"
+    },
+    {
+      "title": "Edgewood Independent School District",
+      "jurisdiction": {
+        "type": "school",
+        "name": "Edgewood Independent School District"
+      },
+      "items": [
+        {
+          "kind": "race",
+          "id": "edgewood_independent_school_district__for_trustee_place_1",
+          "office": "For Trustee, Place 1",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Dora Maldonado",
+              "party": null
+            },
+            {
+              "name": "James Hernandez",
+              "party": null
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "edgewood_independent_school_district__for_trustee_place_2",
+          "office": "For Trustee, Place 2",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Frank Espinosa",
+              "party": null
+            },
+            {
+              "name": "Elias Hernandez",
+              "party": null
+            },
+            {
+              "name": "Jose \"Joe\" Gallegos II",
+              "party": null
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "edgewood_independent_school_district__for_trustee_place_3",
+          "office": "For Trustee, Place 3",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Dorothy Borjas",
+              "party": null
+            },
+            {
+              "name": "Richard Santoyo",
+              "party": null
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "edgewood_independent_school_district__for_trustee_place_6",
+          "office": "For Trustee, Place 6",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Michael Valdez",
+              "party": null
+            },
+            {
+              "name": "Joey Cipriano",
+              "party": null
+            }
+          ],
+          "write_in": false
+        }
+      ],
+      "id": "edgewood_independent_school_district"
+    },
+    {
+      "title": "Northside Independent School District",
+      "jurisdiction": {
+        "type": "school",
+        "name": "Northside Independent School District"
+      },
+      "items": [
+        {
+          "kind": "question",
+          "id": "northside_independent_school_district__northside_independent_school_district_proposition_a_this_is_a_tax_increase",
+          "title": "NORTHSIDE INDEPENDENT SCHOOL DISTRICT - PROPOSITION A THIS IS A TAX INCREASE",
+          "text": "“Ratifying the ad valorem tax rate of $1.0349 per $100 valuation in Northside Independent School District for the current year, a rate that will result in an increase of 4.49% in maintenance and operations tax revenue for the district for the current year as compared to the preceding year, which is an additional $21,533,914.”",
+          "options": [
+            "For",
+            "Against"
+          ]
+        },
+        {
+          "kind": "question",
+          "id": "northside_independent_school_district__northside_independent_school_district_proposition_b_this_is_a_property_tax_increase",
+          "title": "NORTHSIDE INDEPENDENT SCHOOL DISTRICT - PROPOSITION B THIS IS A PROPERTY TAX INCREASE",
+          "text": "“The issuance of not to exceed $764,745,000 of Northside Independent School District school building bonds for the purposes of designing, constructing, renovating, improving, upgrading, updating, acquiring, and equipping school facilities in the District, the purchase of the necessary sites for school facilities, the purchase of new buses and vehicles, and the retrofitting of buses and vehicles with emergency, safety, or security equipment, and the levying of a tax sufficient to pay the principal of and interest on the bonds and the cost of any credit agreements.”",
+          "options": [
+            "For",
+            "Against"
+          ]
+        },
+        {
+          "kind": "question",
+          "id": "northside_independent_school_district__northside_independent_school_district_proposition_c_this_is_a_property_tax_increase",
+          "title": "NORTHSIDE INDEPENDENT SCHOOL DISTRICT - PROPOSITION C THIS IS A PROPERTY TAX INCREASE",
+          "text": "“The issuance of not to exceed$56,000,000 of Northside Independent School District school building bonds for the purposes of acquiring and updating instructional technology equipment and the levying of a tax sufficient to pay the principal of and interest on the bonds and the cost of any credit agreements.”",
+          "options": [
+            "For",
+            "Against"
+          ]
+        },
+        {
+          "kind": "question",
+          "id": "northside_independent_school_district__northside_independent_school_district_proposition_d_this_is_a_property_tax_increase",
+          "title": "NORTHSIDE INDEPENDENT SCHOOL DISTRICT - PROPOSITION D THIS IS A PROPERTY TAX INCREASE",
+          "text": "“The issuance of not to exceed $65,500,000 of Northside Independent School District school building bonds for the purposes of designing, constructing, renovating, improving, upgrading, updating, expanding, replacing, acquiring, and equipping natatoriums in the District (and any necessary or related removal of existing facilities), including replacing the George Block Aquatics Center, and the levying of a tax sufficient to pay the principal of and interest on the bonds and the cost of any credit agreements.”",
+          "options": [
+            "For",
+            "Against"
+          ]
+        }
+      ],
+      "id": "northside_independent_school_district"
+    },
+    {
+      "title": "San Antonio Independent School District",
+      "jurisdiction": {
+        "type": "school",
+        "name": "San Antonio Independent School District"
+      },
+      "items": [
+        {
+          "kind": "question",
+          "id": "san_antonio_independent_school_district__san_antonio_independent_school_district_proposition_a_this_is_a_tax_increase",
+          "title": "San Antonio Independent School District - Proposition A THIS IS A TAX INCREASE",
+          "text": "\"Ratifying the ad valorem tax rate of $0.7869 per $100 valuation in San Antonio Independent School District for the current year, a rate that will result in an increase of 2.92% in maintenance and operations tax revenue for the District for the current year as compared to the preceding year, which is an additional $5,541,056.00.\"",
+          "options": [
+            "For",
+            "Against"
+          ]
+        },
+        {
+          "kind": "question",
+          "id": "san_antonio_independent_school_district__san_antonio_independent_school_district_proposition_b_this_is_a_property_tax_increase",
+          "title": "San Antonio Independent School District - Proposition B THIS IS A PROPERTY TAX INCREASE",
+          "text": "\"The issuance of an amount not to exceed $492,000,000 school building bonds for the construction, renovation, acquisition, and equipment of school buildings in the District, the purchase of the necessary sites for school buildings, the purchase of new school buses and other new vehicles to be used for student transportation and the purchase or retrofitting of vehicles to be used for emergency, safety, or security purposes, and the levying and imposition of taxes sufficient to pay the principal of and interest on the bonds and the costs of any credit agreements.\"",
+          "options": [
+            "For",
+            "Against"
+          ]
+        },
+        {
+          "kind": "question",
+          "id": "san_antonio_independent_school_district__san_antonio_independent_school_district_proposition_c_this_is_a_property_tax_increase",
+          "title": "San Antonio Independent School District - Proposition C THIS IS A PROPERTY TAX INCREASE",
+          "text": "\"The issuance of an amount not to exceed $102,000,000 school building bonds for the acquisition and update of technology equipment and the levying and imposition of taxes sufficient to pay the principal of and interest on the bonds and the costs of any credit agreements.\"",
+          "options": [
+            "For",
+            "Against"
+          ]
+        },
+        {
+          "kind": "question",
+          "id": "san_antonio_independent_school_district__san_antonio_independent_school_district_proposition_d_this_is_a_property_tax_increase",
+          "title": "San Antonio Independent School District - Proposition D THIS IS A PROPERTY TAX INCREASE",
+          "text": "\"The issuance of an amount not to exceed $6,000,000 school building bonds for the construction, renovation, and equipment of Alamo Stadium and the Alamo Convocation Center, and the levying and imposition of taxes sufficient to pay the principal of and interest on the bonds and the costs of any credit agreements.\"",
+          "options": [
+            "For",
+            "Against"
+          ]
+        }
+      ],
+      "id": "san_antonio_independent_school_district"
+    },
+    {
+      "title": "Schertz Cibolo Universal City Independent School District",
+      "jurisdiction": {
+        "type": "school",
+        "name": "Schertz Cibolo Universal City Independent School District"
+      },
+      "items": [
+        {
+          "kind": "question",
+          "id": "schertz_cibolo_universal_city_independent_school_district__schertz_cibolo_universal_city_independent_school_district_proposition_a_this_is_a_tax_increase",
+          "title": "SCHERTZ-CIBOLO-UNIVERSAL CITY INDEPENDENT SCHOOL DISTRICT - PROPOSITION A: THIS IS A TAX INCREASE",
+          "text": "\"Ratifying the ad valorem tax rate of $1.1969 per $100 valuation in the Schertz-Cibolo-Universal City Independent School District for the current year, a rate that will result in an increase of 18 percent in maintenance and operations tax revenue for the District for the current year as compared to the preceding year, which is an additional $8,256,727 for the purpose of recruiting and retaining staff and maintaining program offerings for students.\"",
+          "options": [
+            "For",
+            "Against"
+          ]
+        }
+      ],
+      "id": "schertz_cibolo_universal_city_independent_school_district"
+    },
+    {
+      "title": "South San Antonio Independent School District",
+      "jurisdiction": {
+        "type": "school",
+        "name": "South San Antonio Independent School District"
+      },
+      "items": [
+        {
+          "kind": "question",
+          "id": "south_san_antonio_independent_school_district__south_san_antonio_independent_school_district_proposition_a_this_is_a_tax_increase",
+          "title": "South San Antonio Independent School District - PROPOSITION A THIS IS A TAX INCREASE",
+          "text": "\"RATIFYING THE AD VALOREM TAX RATE OF 1.1970 FOR $100 VALUATION IN SOUTH SAN ANTONIO INDEPENDENT SCHOOL DISTRICT FOR THE CURRENT YEAR, A RATE THAT WILL RESULT IN AN INCREASE OF 14.8 PERCENT IN MAINTENANCE AND OPERATIONS TAX REVENUE FOR THE DISTRICT FOR THE CURRENT YEAR AS COMPARED TO THE PRECEDING YEAR, WHICH IS ADDITIONAL $2,564,791.\"",
+          "options": [
+            "For",
+            "Against"
+          ]
+        }
+      ],
+      "id": "south_san_antonio_independent_school_district"
+    },
+    {
+      "title": "Somerset Independent School District",
+      "jurisdiction": {
+        "type": "school",
+        "name": "Somerset Independent School District"
+      },
+      "items": [
+        {
+          "kind": "race",
+          "id": "somerset_independent_school_district__for_trustee_single_member_district_3",
+          "office": "For Trustee, Single Member District 3",
+          "vote_for": "Vote for none or one",
+          "district": {
+            "type": "local_district",
+            "number": 3
+          },
+          "candidates": [
+            {
+              "name": "Albert Herrera",
+              "party": null
+            },
+            {
+              "name": "Doug Black",
+              "party": null
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "race",
+          "id": "somerset_independent_school_district__for_trustee_single_member_district_7",
+          "office": "For Trustee, Single Member District 7",
+          "vote_for": "Vote for none or one",
+          "district": {
+            "type": "local_district",
+            "number": 7
+          },
+          "candidates": [
+            {
+              "name": "Robert A. Casias",
+              "party": null
+            },
+            {
+              "name": "Emilio G. Arcos",
+              "party": null
+            }
+          ],
+          "write_in": false
+        }
+      ],
+      "id": "somerset_independent_school_district"
+    },
+    {
+      "title": "Bexar County Municipal Utility District No. 1",
+      "jurisdiction": {
+        "type": "special",
+        "name": "Bexar County Municipal Utility District No. 1"
+      },
+      "items": [
+        {
+          "kind": "question",
+          "id": "bexar_county_municipal_utility_district_no_1__bexar_county_municipal_utility_district_no_1_proposition_a",
+          "title": "Bexar County Municipal Utility District No. 1 - Proposition A",
+          "text": "\"Confirming Creation of Bexar County Municipal Utility District No. 1.\"",
+          "options": [
+            "For",
+            "Against"
+          ]
+        },
+        {
+          "kind": "race",
+          "id": "bexar_county_municipal_utility_district_no_1__for_permanent_director",
+          "office": "For Permanent Director",
+          "vote_for": "Vote for none, one, two, three, four or five",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Matthew Abrahamsen",
+              "party": null
+            },
+            {
+              "name": "Theodore Duano",
+              "party": null
+            },
+            {
+              "name": "Andrew Macias",
+              "party": null
+            },
+            {
+              "name": "Alberto Rodriguez",
+              "party": null
+            },
+            {
+              "name": "Alejandro Silva",
+              "party": null
+            }
+          ],
+          "write_in": false
+        },
+        {
+          "kind": "question",
+          "id": "bexar_county_municipal_utility_district_no_1__bexar_county_municipal_utility_district_no_1_proposition_b",
+          "title": "Bexar County Municipal Utility District No. 1 - Proposition B",
+          "text": "\"THIS IS A TAX INCREASE; an operation and maintenance tax for the district not to exceed one dollar and twenty cents ($1.20) per one hundred dollars ($100) valuation of taxable property.\"",
+          "options": [
+            "For",
+            "Against"
+          ]
+        },
+        {
+          "kind": "question",
+          "id": "bexar_county_municipal_utility_district_no_1__bexar_county_municipal_utility_district_no_1_proposition_c",
+          "title": "Bexar County Municipal Utility District No. 1 - Proposition C",
+          "text": "\"THIS IS A TAX INCREASE; the issuance of $330,000,000 bonds for water, wastewater and drainage system facilities, and the levy of taxes sufficient to pay the principal of and interest on the bonds.\"",
+          "options": [
+            "For",
+            "Against"
+          ]
+        },
+        {
+          "kind": "question",
+          "id": "bexar_county_municipal_utility_district_no_1__bexar_county_municipal_utility_district_no_1_proposition_d",
+          "title": "Bexar County Municipal Utility District No. 1 - Proposition D",
+          "text": "\"THIS IS A TAX INCREASE; the issuance of $140,000,000 bonds for roads, and the levy of taxes sufficient to pay the principal of and interest on the bonds.\"",
+          "options": [
+            "For",
+            "Against"
+          ]
+        },
+        {
+          "kind": "question",
+          "id": "bexar_county_municipal_utility_district_no_1__bexar_county_municipal_utility_district_no_1_proposition_e",
+          "title": "Bexar County Municipal Utility District No. 1 - Proposition E",
+          "text": "\"THIS IS A TAX INCREASE; the issuance of $30,000,000 bonds for park and recreational facilities, and the levy of tax sufficient to pay principal of and interest on the bonds.\"",
+          "options": [
+            "For",
+            "Against"
+          ]
+        },
+        {
+          "kind": "question",
+          "id": "bexar_county_municipal_utility_district_no_1__bexar_county_municipal_utility_district_no_1_proposition_f",
+          "title": "Bexar County Municipal Utility District No. 1 - Proposition F",
+          "text": "\"THIS IS A TAX INCREASE; the issuance of $540,000,000 bonds for refunding water, wastewater, and drainage system facilities bonds and parks and recreational facilities bonds (including refunding bonds issued therefor) issued pursuant to Section 59, Article XVI of the Texas Constitution, and the levy of taxes sufficient to pay principal of and interest on the bonds.\"",
+          "options": [
+            "For",
+            "Against"
+          ]
+        },
+        {
+          "kind": "question",
+          "id": "bexar_county_municipal_utility_district_no_1__bexar_county_municipal_utility_district_no_1_proposition_g",
+          "title": "Bexar County Municipal Utility District No. 1 - Proposition G",
+          "text": "\"THIS IS A TAX INCREASE; the issuance of $210,000,000 bonds for refunding road bonds (including refunding bonds issued therefor) issued pursuant to Section 52, Article III of the Texas Constitution, and the levy of taxes sufficient to pay the principal of and interest on the bonds.\"",
+          "options": [
+            "For",
+            "Against"
+          ]
+        }
+      ],
+      "id": "bexar_county_municipal_utility_district_no_1"
+    },
+    {
+      "title": "Edwards Aquifer Authority District 1",
+      "jurisdiction": {
+        "type": "special",
+        "name": "Edwards Aquifer Authority District 1"
+      },
+      "items": [
+        {
+          "kind": "race",
+          "id": "edwards_aquifer_authority_district_1__for_director",
+          "office": "For Director",
+          "vote_for": "Vote for none or one",
+          "district": null,
+          "candidates": [
+            {
+              "name": "Joey Groff",
+              "party": null
+            },
+            {
+              "name": "Carol G. Patterson",
+              "party": null
+            }
+          ],
+          "write_in": false
+        }
+      ],
+      "id": "edwards_aquifer_authority_district_1"
     }
-  ]
+  ],
+  "source": {
+    "url": "https://elections.bexar.gov/DocumentCenter/View/1708/Generic-Sample-Ballot",
+    "sha256": "618a0dafdb6eac0f97a7fa6e9a9696cd89763786107b361928fdb3e383cdb7af"
+  }
 }
