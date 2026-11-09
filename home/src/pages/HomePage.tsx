@@ -119,7 +119,7 @@ export default function HomePage() {
           ))}
         </div>
         <div className="section-action">
-          <Link className="patch" to="/resume">
+          <Link className="patch patch-rose" to="/resume">
             See my resume
           </Link>
         </div>

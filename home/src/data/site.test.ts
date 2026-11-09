@@ -17,10 +17,10 @@ describe("approved portfolio content", () => {
     expect(projects.some(project => project.title === "Gesso")).toBe(false);
     expect(clients).toHaveLength(8);
   });
-  it("includes all 95 selected photos, with one event for 1906 and no Austin credit", () => {
+  it("includes all 101 selected photos, with one event for 1906 and no Austin credit", () => {
     expect(events).toHaveLength(15);
-    expect(events.flatMap(event => event.photos)).toHaveLength(95);
-    expect(new Set(events.flatMap(event => event.photos.map(photo => photo.id))).size).toBe(95);
+    expect(events.flatMap(event => event.photos)).toHaveLength(101);
+    expect(new Set(events.flatMap(event => event.photos.map(photo => photo.id))).size).toBe(101);
     expect(events.filter(event => event.title.includes("1906"))).toHaveLength(1);
     expect(events.some(event => event.title.includes("Austin"))).toBe(false);
   });

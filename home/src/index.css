@@ -208,6 +208,12 @@ h1[tabindex="-1"]:focus {
     box-shadow var(--motion);
 }
 
+.patch-rose {
+  background-color: var(--rose);
+  color: var(--rose-ink);
+  outline-color: var(--rose-ink);
+}
+
 .patch[aria-current="page"],
 .patch[aria-pressed="true"] {
   background-color: var(--rose);
