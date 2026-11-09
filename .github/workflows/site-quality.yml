@@ -1,0 +1,30 @@
+name: Site quality
+on:
+  push:
+    paths: ['home/**', 'netlify/**', 'package*.json', 'netlify.toml', 'eslint.config.js', '.github/workflows/site-quality.yml']
+  pull_request:
+    paths: ['home/**', 'netlify/**', 'package*.json', 'netlify.toml', 'eslint.config.js', '.github/workflows/site-quality.yml']
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npm run -w home lint
+      - run: npm run -w home lint:css
+      - run: npm run -w home format:check
+      - run: npm run -w home test -- --run
+      - run: npm run test:functions
+      - run: npm run build
+      - run: npx playwright install --with-deps chromium
+      - run: npm run -w home test:e2e
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: browser-failures
+          path: home/test-results
+          if-no-files-found: ignore

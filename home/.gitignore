@@ -28,3 +28,6 @@ coverage/
 .idea/
 *.swp
 *~
+# Browser verification outputs
+/test-results/
+/playwright-report/

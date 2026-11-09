@@ -6,13 +6,16 @@ const rule = require("../eslint-rules/no-raw-colors.cjs");
 
 const PROJECT_ROOT = path.resolve(__dirname, "..");
 const SRC_DIR = path.join(PROJECT_ROOT, "src");
-const VALID_EXTENSIONS = new Set([".js", ".jsx"]);
+const VALID_EXTENSIONS = new Set([".js", ".jsx", ".ts", ".tsx"]);
 
-const linter = new Linter();
+const linter = new Linter({ configType: "eslintrc" });
 linter.defineRule("no-raw-colors", rule);
 linter.defineRule("react-refresh/only-export-components", () => ({}));
 
+linter.defineParser("typescript", require("@typescript-eslint/parser"));
+
 const baseConfig = {
+  parser: "typescript",
   env: {
     browser: true,
     es2021: true,

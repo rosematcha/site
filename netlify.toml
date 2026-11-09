@@ -2,11 +2,11 @@
 base = "/"
 publish = "_site"
 
-  command = "npm run build"
+  command = "npm run -w home validate && npm run test:functions && npm run build"
 
 # Specify Node.js version for modern features
 [build.environment]
-  NODE_VERSION = "20"
+  NODE_VERSION = "22"
 
 [functions]
   directory = "netlify/functions"
@@ -122,11 +122,11 @@ publish = "_site"
 # General 404 handling
 [[redirects]]
   from = "/*"
-  to = "/404.html"
+  to = "/index.html"
   status = 404
 
 # Consider adding a simple 404 rule if needed
 # [[redirects]]
 #  from = "/*"
-#  to = "/404.html" # Assuming 404.html exists in the final _site
+#  to = "/index.html" # Assuming 404.html exists in the final _site
 #  status = 404

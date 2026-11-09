@@ -1,0 +1,10 @@
+{
+  "unsafeWebsites": ["javascript:alert(1)", "data:text/html,hello", "not a url"],
+  "unsafeEntry": {
+    "id": "unsafe",
+    "name": "Visitor",
+    "website": "javascript:alert(1)",
+    "message": "<script>alert(1)</script>",
+    "date": "November 9, 2026"
+  }
+}

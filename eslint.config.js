@@ -41,7 +41,7 @@ export default [
     },
   },
   {
-    files: ['netlify/functions/**/*.js'],
+    files: ['netlify/functions/**/*.js', 'netlify/test/**/*.js'],
     languageOptions: {
       ecmaVersion: 2020,
       sourceType: 'module',

@@ -1,11 +1,12 @@
-import { describe, expect, it } from "vitest";
 import { Linter } from "eslint";
+import { describe, expect, it } from "vitest";
+
 import ruleModule from "../../eslint-rules/no-raw-colors.cjs";
 
 const rule = ruleModule?.default ?? ruleModule;
 
 const runRule = code => {
-  const linter = new Linter();
+  const linter = new Linter({ configType: "eslintrc" });
   linter.defineRule("no-raw-colors", rule);
   return linter.verify(
     code,
