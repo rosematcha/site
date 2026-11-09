@@ -1,0 +1,210 @@
+{
+  "jobs": [
+    {
+      "title": "Systems Administrator",
+      "company": "SAY Sí",
+      "start": "Jan 2023",
+      "end": null,
+      "tags": ["nonprofit", "sys admin", "infrastructure", "arts", "automation"],
+      "details": [
+        "Administer Google Workspace, device management, network access, backups, AV, purchasing, and account permissions.",
+        "Maintain and troubleshoot 100+ Windows, macOS, and iOS devices, extending the working life of a resource-constrained lab of 2013 Macs.",
+        "Built support processes, automation, documentation, and security practices that made same-day response the norm.",
+        "Implemented an inventory system for 500+ assets, enabling more accurate tracking and infrastructure planning."
+      ],
+      "lenses": ["sysadmin", "web", "arts"]
+    },
+    {
+      "title": "Organizer",
+      "company": "Stonewall Action",
+      "start": "Mar 2025",
+      "end": "Feb 2026",
+      "tags": ["nonprofit", "sys admin", "community building", "wordpress", "event planning"],
+      "details": [
+        "Built and coordinated a 120-person volunteer network to establish a new LGBTQ+ community-action organization.",
+        "Produced four community events, coordinating volunteers, guest flow, and promotion.",
+        "Designed the organization's WordPress site, graphics, video, and campaign materials.",
+        "Developed a custom volunteer check-in and role-assignment tool that replaced paper processes and produced accurate attendance data."
+      ],
+      "lenses": ["sysadmin", "web"]
+    },
+    {
+      "title": "Visitor Services Associate",
+      "company": "Ruby City",
+      "start": "May 2025",
+      "end": null,
+      "tags": ["nonprofit", "customer service", "community building", "arts"],
+      "details": [
+        "Open and close galleries; monitor visitor safety, gallery conditions, and security, and maintain visitor logs.",
+        "Welcome and orient guests through tours and conversations about exhibitions, artists, the collection, and the architecture.",
+        "Built an internal, collaborative staff-training system with artwork images, artist data, and comments to support consistent visitor education.",
+        "Advocate for accessible visitor experiences.",
+        "Provide website consulting on proposed changes."
+      ],
+      "lenses": ["arts"]
+    },
+    {
+      "title": "Instructor, Saturday Morning Discovery",
+      "company": "UTSA Southwest",
+      "start": "May 2023",
+      "end": null,
+      "tags": ["education", "photography", "arts", "youth programs"],
+      "details": [
+        "Teach weekly, no-cost photography classes for San Antonio youth and families for roughly nine months each year.",
+        "Co-lead analog pinhole-photography instruction, including darkroom film development and printmaking, with other teaching artists.",
+        "Independently designed curricula for 3-D photography and DIY iPad photography, introducing youth to camera fundamentals, editing, and accessible creative techniques.",
+        "Select course materials and guide students through hands-on projects in a family-centered learning environment."
+      ],
+      "lenses": ["arts"]
+    },
+    {
+      "title": "Contract Web Development",
+      "company": "Freelance",
+      "start": "Jan 2020",
+      "end": null,
+      "tags": ["infrastructure", "web development", "accessibility", "open source"],
+      "details": [
+        "Design and maintain accessible, user-friendly websites for clients, utilizing open technologies.",
+        "Redesign and rebuild WordPress sites for nonprofits, unions, and small businesses, including migrations off hosted page builders.",
+        "Built a bespoke WordPress plugin for SAY Sí so non-technical staff can manage featured work without a developer.",
+        "Built a members-only portal for UPO integrated with Patreon so union members can reach confidential material."
+      ],
+      "lenses": ["sysadmin", "web"]
+    },
+    {
+      "title": "Media Arts Teaching Artist",
+      "company": "SAY Sí",
+      "start": "Aug 2018",
+      "end": "Feb 2025",
+      "tags": ["nonprofit", "education", "photography", "arts", "youth programs"],
+      "details": [
+        "Taught and mentored a consistent cohort of roughly 20 youth per term in photography, video, Adobe Creative Cloud, and digital storytelling.",
+        "Designed project-based curricula and guided students from concept through production, editing, portfolios, public showcases, and festival submissions.",
+        "Supported student work recognized with awards at local film festivals.",
+        "Managed studio equipment and digital resources; coordinated enrollment, documentation, family communication, and program operations."
+      ],
+      "lenses": ["arts"]
+    },
+    {
+      "title": "Office Aide & Voter Information Specialist",
+      "company": "Bexar County Democratic Party",
+      "start": "Apr 2024",
+      "end": "Jan 2025",
+      "tags": ["nonprofit", "infrastructure", "community building", "civic engagement"],
+      "details": [
+        "Helped voters navigate registration, voting by mail, and election information during the 2024 cycle using VAN and internal voter-data systems.",
+        "Maintained and researched voter records across VAN and Access-based internal databases.",
+        "Produced voter-facing graphics and election materials, including rapid-turnaround replacements following the July 2024 change in the presidential ticket.",
+        "Built a WordPress redesign to improve the party website's accessibility."
+      ],
+      "lenses": ["web"]
+    },
+    {
+      "title": "Event Organizer & Card Specialist",
+      "company": "Combat Power Gaming",
+      "start": "Aug 2024",
+      "end": null,
+      "tags": ["customer service", "infrastructure", "community building", "gaming"],
+      "details": [
+        "Produce four Pokémon TCG tournaments monthly for approximately 12 players each, managing registration, pairings, prizing, and participant experience.",
+        "Build community around recurring play through event marketing and direct player engagement.",
+        "Create original promotional flyers and event graphics.",
+        "Price, organize, and stock trading-card inventory; assist customers with purchases and product knowledge."
+      ],
+      "lenses": []
+    },
+    {
+      "title": "Freelance Photography",
+      "company": "Freelance",
+      "start": "Oct 2019",
+      "end": null,
+      "tags": ["photography", "arts", "event coverage"],
+      "details": [
+        "Provide event photography and digital media creation for diverse clients and occasions."
+      ],
+      "lenses": []
+    },
+    {
+      "title": "Operations Manager / Systems Coordinator",
+      "company": "Hop + Vine",
+      "start": "Oct 2019",
+      "end": "Feb 2021",
+      "tags": ["infrastructure", "operations", "quickbooks"],
+      "details": [
+        "Processed payroll and maintained financial records for a 12-person restaurant staff using QuickBooks.",
+        "Managed inventory and supported day-to-day operations.",
+        "Implemented digital solutions for workflow automation and POS systems, providing tech support."
+      ],
+      "lenses": ["sysadmin"]
+    },
+    {
+      "title": "Crew Member",
+      "company": "McDonald's",
+      "start": "Apr 2017",
+      "end": "Aug 2020",
+      "tags": ["customer service", "training", "team leadership"],
+      "details": [
+        "Served customers across front counter and drive-thru operations while maintaining a clean, efficient lobby.",
+        "Trained new staff on company policies and procedures and answered day-to-day team questions.",
+        "Recognized as Employee of the Month four times for customer service and reliability."
+      ],
+      "lenses": []
+    }
+  ],
+  "skills": [
+    {
+      "label": "Languages",
+      "lenses": ["sysadmin", "web"],
+      "items": ["JavaScript", "TypeScript", "PHP", "Python", "Lua", "HTML", "CSS"]
+    },
+    {
+      "label": "Web",
+      "lenses": ["sysadmin", "web"],
+      "items": [
+        "React",
+        "Astro",
+        "Node.js",
+        "WordPress",
+        "Vite",
+        "Tailwind CSS",
+        "Netlify",
+        "Git",
+        "accessibility"
+      ]
+    },
+    {
+      "label": "Data & automation",
+      "lenses": ["sysadmin", "web"],
+      "items": ["D3.js", "Chart.js", "Playwright", "web scraping", "OCR"]
+    },
+    {
+      "label": "Systems",
+      "lenses": ["sysadmin", "arts"],
+      "items": [
+        "Google Workspace",
+        "macOS",
+        "Windows",
+        "iOS",
+        "device management",
+        "networking",
+        "backups",
+        "AV",
+        "asset inventory"
+      ]
+    },
+    {
+      "label": "Creative",
+      "lenses": ["arts"],
+      "items": [
+        "Adobe Creative Cloud",
+        "photography",
+        "darkroom and film development",
+        "pinhole",
+        "printmaking",
+        "video",
+        "event production",
+        "curriculum design"
+      ]
+    }
+  ]
+}

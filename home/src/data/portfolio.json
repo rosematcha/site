@@ -1,0 +1,162 @@
+{
+  "projects": [
+    {
+      "id": "ciphermaniac",
+      "title": "Ciphermaniac",
+      "description": "To show my local league players what cards are frequently used in the Pokémon card game, I created this tool tracking the usage of cards in major tournaments. Now serves thousands of daily users.",
+      "image": "/img/projects/ciphermaniac-thumb.webp",
+      "width": 900,
+      "height": 1300,
+      "url": "https://ciphermaniac.com/",
+      "featured": true
+    },
+    {
+      "id": "events",
+      "title": "Ciphermaniac Events",
+      "description": "I built browser-based tournament tools for registration, Swiss pairings, decklists, standings, and top cut.",
+      "image": "/img/projects/ciphermaniac-events.webp",
+      "width": 1200,
+      "height": 850,
+      "url": "https://events.ciphermaniac.com/",
+      "featured": true
+    },
+    {
+      "id": "balatro3ds",
+      "title": "Balatro3DS",
+      "description": "A port of one of my favorite video games to the Nintendo 3DS utilizing a port of its engine to the console. Forked from a project that started the work, but completed referencing the game's original code.",
+      "image": "/img/projects/balatro3ds-thumb.webp",
+      "width": 840,
+      "height": 560,
+      "url": "https://github.com/rosematcha/Balatro3DS/releases",
+      "featured": true
+    },
+    {
+      "id": "filmscraper",
+      "title": "FilmScraper",
+      "description": "Wanting a more user-friendly view of movies showing in town, I created a minimal frontend utilizing data from Fandango.",
+      "image": "/img/projects/filmscraper-thumb.webp",
+      "width": 900,
+      "height": 600,
+      "url": "https://filmscraper.rosematcha.com/",
+      "featured": false
+    },
+    {
+      "id": "sanjapan",
+      "title": "De-Guidebooked San Japan Guide",
+      "description": "I decompiled the San Japan Android app and extracted the convention's schedule to make it freely available without an account. Additionally, I used OCR to make the app's maps smarter, and added inter-linking between listings, guests, and locations.",
+      "image": "/img/projects/sanjapan-thumb.webp",
+      "width": 900,
+      "height": 599,
+      "url": "https://sanjapan.rosematcha.com/",
+      "featured": true
+    },
+    {
+      "id": "bexarvoting",
+      "title": "Bexar County Voting Data",
+      "description": "Dissatisfied with the County's lack of transparency, I created a site to visualize historical and present Bexar County voting data.",
+      "image": "/img/projects/bexarvoting-thumb.webp",
+      "width": 900,
+      "height": 666,
+      "url": "https://rosematcha.com/bexarvoting",
+      "featured": true
+    },
+    {
+      "id": "matchatab",
+      "title": "MatchaTab",
+      "description": "Inspired by Tabliss, a deeply customizable and modular new tab page to meet my needs. Built for Firefox browsers (my preference).",
+      "image": "/img/projects/matchatab-thumb.webp",
+      "width": 900,
+      "height": 666,
+      "url": "https://addons.mozilla.org/en-US/firefox/addon/matchatab/",
+      "featured": false
+    },
+    {
+      "id": "brahdb",
+      "title": "BrahDB",
+      "description": "Processed data visualization from YouTube's finest fast food reviewer, ReportOfTheWeek, with data scraped, collected, and transformed from subtitles using Python.",
+      "image": "/img/projects/brahdb-thumb.webp",
+      "width": 900,
+      "height": 666,
+      "url": "https://rosematcha.com/brahdb",
+      "featured": false
+    },
+    {
+      "id": "friendfinder",
+      "title": "Favorite Film Friend Finder",
+      "description": "Inspired by a Tweet, a simple tool for finding Letterboxd users with your same top four favorite films.",
+      "image": "/img/projects/friendfinder-thumb.webp",
+      "width": 900,
+      "height": 666,
+      "url": "https://rosematcha.com/friendfinder",
+      "featured": false
+    },
+    {
+      "id": "moviemap",
+      "title": "Movie Map",
+      "description": "Visualizing the connections between people's four favorite movies on Letterboxd.",
+      "image": "/img/projects/moviemap-thumb.jpg",
+      "width": 327,
+      "height": 184,
+      "url": "https://rosematcha.com/moviemap",
+      "featured": false
+    }
+  ],
+  "clients": [
+    {
+      "id": "say-s",
+      "title": "SAY Sí",
+      "description": "I redesigned the WordPress site around a lighter theme, upgraded PHP from 5.3 to 8.4, and built a bespoke plugin so staff could manage the site more easily.",
+      "url": "https://saysi.org",
+      "image": "/img/projects/saysi.webp"
+    },
+    {
+      "id": "united-professional-organizers",
+      "title": "United Professional Organizers",
+      "description": "I redesigned the WordPress site and built Patreon-linked tools for members-only content, along with other internal tools.",
+      "url": "https://upounion.org",
+      "image": "/img/projects/upo-thumb.webp"
+    },
+    {
+      "id": "stonewall-action",
+      "title": "Stonewall Action",
+      "description": "I designed the WordPress site as part of a broader engagement that included design consulting and photography.",
+      "url": "https://stonewallaction.org/",
+      "image": "/img/projects/stonewallaction-thumb.webp"
+    },
+    {
+      "id": "bexar-county-democratic-party",
+      "title": "Bexar County Democratic Party",
+      "description": "I led the move from Wix to WordPress and the full redesign, working with committees, county chairs, and party staff.",
+      "url": "https://www.bexardemocrat.org/",
+      "image": ""
+    },
+    {
+      "id": "aust-surgical-society",
+      "title": "Aust Surgical Society",
+      "description": "I rebuilt the ASP.NET site as a static website and have maintained the site since 2021.",
+      "url": "https://www.austsociety.com/",
+      "image": ""
+    },
+    {
+      "id": "cinappses",
+      "title": "Cinappses",
+      "description": "I designed an Astro site with Sveltia CMS and no ongoing hosting bill for the artist. I also built a guestbook where visitors can write or draw, with drawings saved in a Cloudflare D1 database.",
+      "url": "https://cinappses.org/",
+      "image": ""
+    },
+    {
+      "id": "combat-power-gaming",
+      "title": "Combat Power Gaming",
+      "description": "I built internal store-credit and event-management tools. The credit system tracks balances for hundreds of players, representing thousands of dollars in store-credit liability; the store also uses Ciphermaniac Events.",
+      "url": "https://share.google/mUQJ17ovX5AF4gTVd",
+      "image": ""
+    },
+    {
+      "id": "ruby-city",
+      "title": "Ruby City",
+      "description": "I built visitor-services training tools that make the collection easier for the team to explore. I also advised on proposed website changes.",
+      "url": "https://rubycity.org/",
+      "image": ""
+    }
+  ]
+}
