@@ -4,6 +4,7 @@ node_modules/
 # outputs of local builds (we rely on ci/cd)
 _site/
 dist/
+dist-ssr/
 
 # vitest coverage
 coverage/

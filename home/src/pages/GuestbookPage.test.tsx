@@ -1,3 +1,5 @@
+import { MemoryRouter } from "react-router-dom";
+
 import { fireEvent, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { afterEach, describe, expect, it, vi } from "vitest";
@@ -27,7 +29,11 @@ describe("guestbook integration", () => {
           })
       )
     );
-    render(<GuestbookPage />);
+    render(
+      <MemoryRouter>
+        <GuestbookPage />
+      </MemoryRouter>
+    );
     const region = screen.getByRole("region", { name: "Guestbook entries" });
     expect(region).toHaveAttribute("aria-busy", "true");
     expect(screen.getByRole("status", { name: "Loading entries" })).toBeVisible();
@@ -38,7 +44,11 @@ describe("guestbook integration", () => {
   });
   it("handles an empty response without sample signatures", async () => {
     vi.stubGlobal("fetch", vi.fn().mockResolvedValue(Response.json([])));
-    render(<GuestbookPage />);
+    render(
+      <MemoryRouter>
+        <GuestbookPage />
+      </MemoryRouter>
+    );
     expect(await screen.findByText("No entries yet.")).toBeVisible();
   });
   it("reports an invalid response and retries successfully", async () => {
@@ -47,7 +57,11 @@ describe("guestbook integration", () => {
       .mockResolvedValueOnce(new Response("<html>Not found</html>", { status: 404 }))
       .mockResolvedValueOnce(Response.json([entry]));
     vi.stubGlobal("fetch", fetch);
-    render(<GuestbookPage />);
+    render(
+      <MemoryRouter>
+        <GuestbookPage />
+      </MemoryRouter>
+    );
     await userEvent.click(await screen.findByRole("button", { name: "Retry" }));
     expect(await screen.findByText(entry.message)).toBeVisible();
   });
@@ -59,7 +73,11 @@ describe("guestbook integration", () => {
       .mockResolvedValueOnce(Response.json([]))
       .mockResolvedValueOnce(new Response(null, { status: 200 }));
     vi.stubGlobal("fetch", fetch);
-    render(<GuestbookPage />);
+    render(
+      <MemoryRouter>
+        <GuestbookPage />
+      </MemoryRouter>
+    );
     await screen.findByText("No entries yet.");
     await user.type(screen.getByLabelText("Your name"), "Reese");
     await user.type(screen.getByLabelText("Message"), "Hello from the test.");
@@ -73,6 +91,9 @@ describe("guestbook integration", () => {
     expect(payload.method).toBe("POST");
     expect(payload.body).toContain("form-name=guestbook");
     expect(payload.body).toContain("bot-field=");
+    expect(
+      screen.getByRole("button", { name: "Sign the guestbook" }).closest("form")
+    ).not.toHaveAttribute("data-netlify");
     expect(screen.getByLabelText("Your name")).toHaveValue("");
   });
   it("keeps text available after a rejected submission", async () => {
@@ -84,7 +105,11 @@ describe("guestbook integration", () => {
         .mockResolvedValueOnce(Response.json([]))
         .mockResolvedValueOnce(new Response(null, { status: 500 }))
     );
-    render(<GuestbookPage />);
+    render(
+      <MemoryRouter>
+        <GuestbookPage />
+      </MemoryRouter>
+    );
     await screen.findByText("No entries yet.");
     fireEvent.change(screen.getByLabelText("Your name"), { target: { value: "Reese" } });
     fireEvent.change(screen.getByLabelText("Message"), { target: { value: "Keep this." } });
@@ -105,7 +130,11 @@ describe("guestbook integration", () => {
         .mockResolvedValueOnce(new Response(null, { status: 503 }))
         .mockResolvedValueOnce(new Response(null, { status: 200 }))
     );
-    render(<GuestbookPage />);
+    render(
+      <MemoryRouter>
+        <GuestbookPage />
+      </MemoryRouter>
+    );
     await screen.findByRole("button", { name: "Retry" });
     fireEvent.change(screen.getByLabelText("Your name"), { target: { value: "Reese" } });
     fireEvent.change(screen.getByLabelText("Message"), {
@@ -124,7 +153,11 @@ describe("guestbook integration", () => {
     vi.stubEnv("DEV", true);
     const fetch = vi.fn().mockResolvedValue(Response.json([]));
     vi.stubGlobal("fetch", fetch);
-    render(<GuestbookPage />);
+    render(
+      <MemoryRouter>
+        <GuestbookPage />
+      </MemoryRouter>
+    );
     await screen.findByText("No entries yet.");
     fireEvent.change(screen.getByLabelText("Your name"), { target: { value: "Reese" } });
     fireEvent.change(screen.getByLabelText("Message"), { target: { value: "Preview." } });
@@ -141,7 +174,11 @@ describe("guestbook integration", () => {
   });
   it("renders guest text literally and drops an unsafe author link", async () => {
     vi.stubGlobal("fetch", vi.fn().mockResolvedValue(Response.json([fixtures.unsafeEntry])));
-    render(<GuestbookPage />);
+    render(
+      <MemoryRouter>
+        <GuestbookPage />
+      </MemoryRouter>
+    );
     expect(await screen.findByText("<script>alert(1)</script>")).toBeVisible();
     expect(screen.queryByRole("link", { name: "Visitor" })).not.toBeInTheDocument();
   });

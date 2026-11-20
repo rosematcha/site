@@ -1,0 +1,482 @@
+:where(.p-resume) .r-doc {
+  --side: 168px;
+  --dg: 32px;
+}
+
+:where(.p-resume) .r-doc h2 {
+  font: 400 34px/1.1 var(--font-head);
+  letter-spacing: -0.01em;
+}
+
+:where(.p-resume) .role-line {
+  font-size: 22px;
+  line-height: 1.35;
+  margin-top: 16px;
+}
+
+:where(.p-resume) .where-line {
+  color: var(--soft);
+  font-size: 17px;
+  margin-top: 8px;
+}
+
+:where(.p-resume) .links {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 28px;
+  margin-top: 24px;
+}
+
+:where(.p-resume) .print-site {
+  display: none;
+}
+
+:where(.p-resume) button.btn {
+  background: none;
+  border: 0;
+  cursor: pointer;
+  padding: 0;
+}
+
+:where(.p-resume) .r-exp {
+  margin-top: 72px;
+}
+
+:where(.p-resume) .tools {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 16px;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+:where(.p-resume) .lenses {
+  display: flex;
+  gap: 8px;
+}
+
+:where(.p-resume) .tools .search {
+  width: 280px;
+}
+
+:where(.p-resume) .roles {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  margin-top: 32px;
+}
+
+:where(.p-resume) .role {
+  align-items: baseline;
+  column-gap: var(--dg);
+  display: grid;
+  grid-template-columns: var(--side) minmax(0, 1fr);
+}
+
+:where(.p-resume) .role[hidden],
+:where(.p-resume) .none[hidden] {
+  display: none;
+}
+
+:where(.p-resume) .dates {
+  color: var(--soft);
+  font-size: 15px;
+  font-variant-numeric: tabular-nums;
+}
+
+:where(.p-resume) .role h3 {
+  font: 400 26px/1.15 var(--font-head);
+  letter-spacing: -0.005em;
+  text-wrap: pretty;
+}
+
+:where(.p-resume) .co {
+  font-size: 17px;
+  font-weight: 650;
+  margin-top: 4px;
+}
+
+:where(.p-resume) .role ul {
+  color: var(--soft);
+  font-size: 16px;
+  line-height: 1.55;
+  list-style: disc;
+  margin-top: 12px;
+  padding-left: 18px;
+}
+
+:where(.p-resume) .role li {
+  padding-left: 2px;
+  text-wrap: pretty;
+}
+
+:where(.p-resume) .role li + li {
+  margin-top: 6px;
+}
+
+:where(.p-resume) .role li::marker {
+  color: var(--soft);
+}
+
+:where(.p-resume) .none {
+  color: var(--soft);
+  margin-left: calc(var(--side) + var(--dg));
+}
+
+:where(.p-resume) mark {
+  background: none;
+  color: var(--focus);
+  font-weight: 650;
+}
+
+:where(.p-resume) .r-dirs {
+  display: grid;
+  gap: 56px 32px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 88px;
+}
+
+:where(.p-resume) .dir {
+  column-gap: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 17px;
+  margin-top: 12px;
+}
+
+:where(.p-resume) .dir li {
+  align-items: baseline;
+  display: inline-flex;
+}
+
+:where(.p-resume) .dir li:not(:last-child)::after {
+  color: var(--soft);
+  content: "/";
+  margin-left: 8px;
+}
+
+:where(.p-resume) .dir a {
+  overflow-wrap: anywhere;
+}
+
+:where(.p-resume) .r-skills {
+  margin-top: 88px;
+}
+
+:where(.p-resume) .r-skills dl {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 20px 0 0;
+}
+
+:where(.p-resume) .r-skills dl > div {
+  align-items: baseline;
+  column-gap: var(--dg);
+  display: grid;
+  grid-template-columns: var(--side) minmax(0, 1fr);
+}
+
+:where(.p-resume) .r-skills dt {
+  font-weight: 650;
+}
+
+:where(.p-resume) .r-skills dd {
+  color: var(--soft);
+  font-size: 16px;
+  margin: 0;
+  text-wrap: pretty;
+}
+
+:where(.p-resume) .r-edu {
+  margin-top: 56px;
+}
+
+:where(.p-resume) .r-edu p {
+  color: var(--soft);
+  margin-top: 16px;
+}
+
+:where(.p-resume) .r-edu strong {
+  color: var(--ink);
+  font-weight: 650;
+}
+
+:where(.p-resume) .note {
+  max-width: min(368px, calc(100vw - 16px));
+  position: absolute;
+  width: max-content;
+  z-index: 20;
+}
+
+:where(.p-resume) .note .face {
+  background: var(--plate);
+  border-radius: 6px;
+  padding: 16px 18px;
+}
+
+:where(.p-resume) .note-d {
+  color: var(--soft);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+:where(.p-resume) .note-a {
+  display: inline-flex;
+  font-size: 15px;
+  margin-top: 4px;
+}
+
+@media (width <= 899px) {
+  :where(.p-resume) .r-doc {
+    --dg: 24px;
+  }
+
+  :where(.p-resume) .r-dirs {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (width <= 599px) {
+  :where(.p-resume) .r-doc h2 {
+    font-size: 28px;
+  }
+
+  :where(.p-resume) .role-line {
+    font-size: 18px;
+  }
+
+  :where(.p-resume) .where-line {
+    font-size: 16px;
+  }
+
+  :where(.p-resume) .links {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  :where(.p-resume) .links .pdf {
+    margin-top: 12px;
+  }
+
+  :where(.p-resume) .tools .search {
+    width: 100%;
+  }
+
+  :where(.p-resume) .lenses {
+    flex-wrap: wrap;
+    max-width: calc(100% - var(--navc));
+  }
+
+  :where(.p-resume) .tog .face {
+    padding-inline: 14px;
+  }
+
+  :where(.p-resume) .roles {
+    gap: 40px;
+  }
+
+  :where(.p-resume) .role {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  :where(.p-resume) .dates {
+    margin-bottom: 4px;
+  }
+
+  :where(.p-resume) .role h3 {
+    font-size: 22px;
+  }
+
+  :where(.p-resume) .role ul {
+    font-size: 15.5px;
+  }
+
+  :where(.p-resume) .none {
+    margin-left: 0;
+  }
+
+  :where(.p-resume) .r-skills dl > div {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media print {
+  @page {
+    margin: 14mm;
+    size: a4;
+  }
+
+  :root:has(.p-resume),
+  :where(.p-resume) {
+    background: #fff !important;
+    color: #000 !important;
+    overflow: visible !important;
+  }
+
+  :where(.p-resume) {
+    --ink: #000;
+    --soft: #222;
+    --focus: #000;
+
+    color-scheme: light;
+  }
+
+  :where(.p-resume) *,
+  :where(.p-resume) *::before,
+  :where(.p-resume) *::after {
+    animation: none !important;
+    text-shadow: none !important;
+    transition: none !important;
+  }
+
+  :where(.p-resume) .keybox,
+  :where(.p-resume) .fx,
+  :where(.p-resume) .bars,
+  :where(.p-resume) .top,
+  :where(.p-resume) .skip,
+  :where(.p-resume) .tools,
+  :where(.p-resume) .pdf,
+  :where(.p-resume) .note,
+  :where(.p-resume) .closing,
+  :where(.p-resume) .cast {
+    display: none !important;
+  }
+
+  :where(.p-resume) {
+    font-size: 10pt;
+    line-height: 1.4;
+  }
+
+  :where(.p-resume) .col,
+  :where(.p-resume) .r-doc {
+    margin: 0;
+    width: auto;
+  }
+
+  :where(.p-resume) .phead {
+    padding-top: 0 !important;
+  }
+
+  :where(.p-resume) .phead h1 {
+    font-size: 26pt !important;
+  }
+
+  :where(.p-resume) .role-line {
+    font-size: 12pt;
+    margin-top: 6pt;
+  }
+
+  :where(.p-resume) .where-line {
+    font-size: 10pt;
+    margin-top: 2pt;
+  }
+
+  :where(.p-resume) .links {
+    flex-direction: row;
+    gap: 0 14pt;
+    margin-top: 6pt;
+  }
+
+  :where(.p-resume) .links .tl,
+  :where(.p-resume) .print-site {
+    font-size: 10pt;
+    min-height: 0;
+    padding: 0;
+    text-decoration: none;
+  }
+
+  :where(.p-resume) .print-site {
+    display: inline;
+  }
+
+  :where(.p-resume) .r-doc h2 {
+    font-size: 15pt;
+  }
+
+  :where(.p-resume) .r-exp,
+  :where(.p-resume) .r-dirs,
+  :where(.p-resume) .r-skills {
+    margin-top: 18pt;
+  }
+
+  :where(.p-resume) .r-edu {
+    margin-top: 12pt;
+  }
+
+  :where(.p-resume) .roles {
+    gap: 10pt;
+    margin-top: 10pt;
+  }
+
+  :where(.p-resume) .role {
+    break-inside: avoid;
+    column-gap: 14px;
+    grid-template-columns: 95px minmax(0, 1fr);
+  }
+
+  :where(.p-resume) .dates {
+    font-size: 9.5pt;
+    margin: 0;
+  }
+
+  :where(.p-resume) .role h3 {
+    font-size: 12pt;
+  }
+
+  :where(.p-resume) .co {
+    font-size: 10pt;
+    margin-top: 1pt;
+  }
+
+  :where(.p-resume) .role ul {
+    font-size: 9.5pt;
+    line-height: 1.4;
+    margin-top: 4pt;
+  }
+
+  :where(.p-resume) .role li + li {
+    margin-top: 2pt;
+  }
+
+  :where(.p-resume) .r-dirs {
+    gap: 14pt;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  :where(.p-resume) .dir {
+    font-size: 10pt;
+    margin-top: 4pt;
+  }
+
+  :where(.p-resume) .dir .tl {
+    min-height: 0;
+    padding: 0;
+    text-decoration: none;
+  }
+
+  :where(.p-resume) .r-skills dl {
+    gap: 4pt;
+    margin-top: 6pt;
+  }
+
+  :where(.p-resume) .r-skills dl > div {
+    column-gap: 14px;
+    grid-template-columns: 95px minmax(0, 1fr);
+  }
+
+  :where(.p-resume) .r-skills dd {
+    font-size: 10pt;
+  }
+
+  :where(.p-resume) .r-edu p {
+    margin-top: 4pt;
+  }
+
+  :where(.p-resume) mark {
+    color: inherit;
+    font-weight: inherit;
+  }
+}

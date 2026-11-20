@@ -5,12 +5,13 @@ import userEvent from "@testing-library/user-event";
 import { describe, expect, it } from "vitest";
 
 import App from "./App";
+import { pages } from "./pages/all";
 
 describe("site routes", () => {
   it("uses the exact home heading and introduces the approved roles", () => {
     render(
       <MemoryRouter>
-        <App />
+        <App pages={pages} />
       </MemoryRouter>
     );
     expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent("Howdy, I'm Reese!");
@@ -22,7 +23,7 @@ describe("site routes", () => {
   it("focuses the new h1 after navigation", async () => {
     render(
       <MemoryRouter>
-        <App />
+        <App pages={pages} />
       </MemoryRouter>
     );
     await userEvent.click(screen.getByRole("link", { name: "Resume" }));
@@ -33,7 +34,7 @@ describe("site routes", () => {
   it("does not reset focus to h1 when an experience filter changes", async () => {
     render(
       <MemoryRouter initialEntries={["/resume"]}>
-        <App />
+        <App pages={pages} />
       </MemoryRouter>
     );
     const button = screen.getByRole("button", { name: "Web" });
@@ -45,7 +46,7 @@ describe("site routes", () => {
   it("keeps old project bookmarks working", async () => {
     render(
       <MemoryRouter initialEntries={["/projects"]}>
-        <App />
+        <App pages={pages} />
       </MemoryRouter>
     );
     expect(
@@ -55,7 +56,7 @@ describe("site routes", () => {
   it("does not invent a gallery for an unknown event", () => {
     render(
       <MemoryRouter initialEntries={["/photos/missing"]}>
-        <App />
+        <App pages={pages} />
       </MemoryRouter>
     );
     expect(screen.getByRole("heading", { name: "Page not found" })).toBeVisible();

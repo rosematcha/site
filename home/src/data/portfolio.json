@@ -107,56 +107,72 @@
       "title": "SAY Sí",
       "description": "I redesigned the WordPress site around a lighter theme, upgraded PHP from 5.3 to 8.4, and built a bespoke plugin so staff could manage the site more easily.",
       "url": "https://saysi.org",
-      "image": "/img/projects/saysi.webp"
+      "image": "/img/projects/saysi.webp",
+      "width": 900,
+      "height": 666
     },
     {
       "id": "united-professional-organizers",
       "title": "United Professional Organizers",
       "description": "I redesigned the WordPress site and built Patreon-linked tools for members-only content, along with other internal tools.",
       "url": "https://upounion.org",
-      "image": "/img/projects/upo-thumb.webp"
+      "image": "/img/projects/upo-thumb.webp",
+      "width": 654,
+      "height": 404
     },
     {
       "id": "stonewall-action",
       "title": "Stonewall Action",
       "description": "I designed the WordPress site as part of a broader engagement that included design consulting and photography.",
       "url": "https://stonewallaction.org/",
-      "image": "/img/projects/stonewallaction-thumb.webp"
+      "image": "/img/projects/stonewallaction-thumb.webp",
+      "width": 654,
+      "height": 404
     },
     {
       "id": "bexar-county-democratic-party",
       "title": "Bexar County Democratic Party",
       "description": "I led the move from Wix to WordPress and the full redesign, working with committees, county chairs, and party staff.",
       "url": "https://www.bexardemocrat.org/",
-      "image": ""
+      "image": "",
+      "width": 0,
+      "height": 0
     },
     {
       "id": "aust-surgical-society",
       "title": "Aust Surgical Society",
       "description": "I rebuilt the ASP.NET site as a static website and have maintained the site since 2021.",
       "url": "https://www.austsociety.com/",
-      "image": ""
+      "image": "",
+      "width": 0,
+      "height": 0
     },
     {
       "id": "cinappses",
       "title": "Cinappses",
       "description": "I designed an Astro site with Sveltia CMS and no ongoing hosting bill for the artist. I also built a guestbook where visitors can write or draw, with drawings saved in a Cloudflare D1 database.",
       "url": "https://cinappses.org/",
-      "image": ""
+      "image": "/img/projects/cinappses-thumb.webp",
+      "width": 900,
+      "height": 600
     },
     {
       "id": "combat-power-gaming",
       "title": "Combat Power Gaming",
       "description": "I built internal store-credit and event-management tools. The credit system tracks balances for hundreds of players, representing thousands of dollars in store-credit liability; the store also uses Ciphermaniac Events.",
       "url": "https://share.google/mUQJ17ovX5AF4gTVd",
-      "image": ""
+      "image": "",
+      "width": 0,
+      "height": 0
     },
     {
       "id": "ruby-city",
       "title": "Ruby City",
       "description": "I built visitor-services training tools that make the collection easier for the team to explore. I also advised on proposed website changes.",
       "url": "https://rubycity.org/",
-      "image": ""
+      "image": "",
+      "width": 0,
+      "height": 0
     }
   ]
 }

@@ -4,16 +4,12 @@ import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it, vi } from "vitest";
 
-import { ContributionProvider } from "../components/ContributionProvider";
-
 import ResumePage from "./ResumePage";
 
 function resume(path = "/resume") {
   render(
     <MemoryRouter initialEntries={[path]}>
-      <ContributionProvider>
-        <ResumePage />
-      </ContributionProvider>
+      <ResumePage />
     </MemoryRouter>
   );
 }
@@ -25,7 +21,9 @@ describe("experience-first resume", () => {
     ["Experience", "Client work", "Personal projects", "Skills", "Education"].forEach(name => {
       expect(screen.getByRole("heading", { name, level: 2 })).toBeVisible();
     });
-    expect(screen.queryByRole("button", { expanded: false })).not.toBeInTheDocument();
+    expect(
+      within(screen.getByRole("main")).queryByRole("button", { expanded: false })
+    ).not.toBeInTheDocument();
     expect(
       screen.getByText("Developer · systems administrator · photographer · organizer · teacher")
     ).toBeVisible();

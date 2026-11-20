@@ -1,205 +1,322 @@
-import { Fragment, useState } from "react";
+// Resume: one centred document, dates beside roles. The experience filter (lenses, from ?lens=) and search change only the roles;
+// lit lamps start their fade when the roles change, and the directory's notes show on hover or focus from 680 px.
+import {
+  Fragment,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+  useSyncExternalStore,
+  type ReactNode,
+} from "react";
 
-import { useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 
-import { ContributionDirectory } from "../components/ContributionDirectory";
-import { Section } from "../components/Section";
-import { clients, jobs, projects, skills, type Job } from "../data/site";
-import { usePageMeta } from "../hooks/usePageMeta";
+import { clients, featuredProjects, smallerProjects } from "../data/portfolio";
+import { jobs, skills, type Job } from "../data/resume";
+import type { PageCfg } from "../engine";
+import { RM } from "../engine/env";
+import { Label, To } from "../site/markup";
+import { Page } from "../site/Page";
+import { useEngine } from "../site/useEngine";
 
-const lenses = [
-  { id: "sysadmin", label: "Sysadmin" },
-  { id: "web", label: "Web" },
-  { id: "arts", label: "Arts + ed" },
-  { id: "all", label: "All" },
+import { initNotes } from "./notes";
+
+const CFG: PageCfg = { rest: [0.4, 0.28], gain: { wide: [0.25, 0.26], phone: [1.25, 0.27] } };
+const LENSES: [string, string][] = [
+  ["sysadmin", "Sysadmin"],
+  ["web", "Web"],
+  ["arts", "Arts + ed"],
+  ["all", "All"],
 ];
-function highlightParts(text: string, query: string) {
-  const expression = new RegExp(query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "ig");
-  const parts: { text: string; marked: boolean; offset: number }[] = [];
-  let cursor = 0;
-  for (const match of text.matchAll(expression)) {
-    if (cursor < match.index) {
-      parts.push({ text: text.slice(cursor, match.index), marked: false, offset: cursor });
-    }
-    parts.push({ text: match[0], marked: true, offset: match.index });
-    cursor = match.index + match[0].length;
+const noop = () => () => undefined;
+const known = (v: string | null) => (LENSES.some(([id]) => id === v) && v ? v : "all");
+const findOf = (j: Job) => [j.title, j.company, ...j.tags, ...j.details].join(" ").toLowerCase();
+// Work's order: home's four, San Japan, then the smaller projects; clients in data order
+const PROJECTS = [...featuredProjects, ...smallerProjects];
+
+// hits are marked in titles, companies, details and skill items; each keeps its own text
+function marked(text: string, q: string): ReactNode {
+  if (!q) {
+    return text;
   }
-  if (cursor < text.length) {
-    parts.push({ text: text.slice(cursor), marked: false, offset: cursor });
+  const out: ReactNode[] = [];
+  const low = text.toLowerCase();
+  let at = 0;
+  for (let i = low.indexOf(q); i >= 0; i = low.indexOf(q, at)) {
+    out.push(text.slice(at, i), <mark key={i}>{text.slice(i, i + q.length)}</mark>);
+    at = i + q.length;
   }
-  return parts;
+  out.push(text.slice(at));
+  return out;
 }
-function Highlight({ text, query }: { text: string; query: string }) {
-  if (!query) {
-    return <>{text}</>;
-  }
+function shown(j: Job, lens: string, q: string) {
+  return q ? findOf(j).includes(q) : lens === "all" || j.lenses.includes(lens);
+}
+function Role({ j, q, hidden }: { j: Job; q: string; hidden: boolean }) {
   return (
-    <>
-      {highlightParts(text, query).map(part =>
-        part.marked ? (
-          <mark key={part.offset}>{part.text}</mark>
-        ) : (
-          <Fragment key={part.offset}>{part.text}</Fragment>
-        )
-      )}
-    </>
-  );
-}
-function matchesJob(job: Job, query: string, lens: string): boolean {
-  if (query) {
-    return [job.title, job.company, ...job.tags, ...job.details]
-      .join(" ")
-      .toLowerCase()
-      .includes(query);
-  }
-  return lens === "all" || job.lenses.includes(lens);
-}
-function JobEntry({ job, query }: { job: Job; query: string }) {
-  return (
-    <article className="resume-job">
-      <p className="job-dates">
-        {job.start} – {job.end ?? "present"}
+    <article className="role" hidden={hidden}>
+      <p className="dates">
+        {j.start} – {j.end ?? "present"}
       </p>
-      <div>
-        <h3>
-          <Highlight query={query} text={job.title} />
-        </h3>
-        <p className="job-company">
-          <Highlight query={query} text={job.company} />
-        </p>
+      <div className="rb">
+        <h3>{marked(j.title, q)}</h3>
+        <p className="co">{marked(j.company, q)}</p>
         <ul>
-          {job.details.map(detail => (
-            <li key={detail}>
-              <Highlight query={query} text={detail} />
-            </li>
+          {j.details.map(d => (
+            <li key={d}>{marked(d, q)}</li>
           ))}
         </ul>
       </div>
     </article>
   );
 }
+function Dir({
+  items,
+  kind,
+  action,
+}: {
+  items: { id: string; title: string; description: string }[];
+  kind: string;
+  action: string;
+}) {
+  return (
+    <ul className="dir">
+      {items.map(c => (
+        <li key={c.id}>
+          <Link
+            className="tl"
+            data-action={action}
+            data-note={c.description}
+            to={`/work#${kind}-${c.id}`}
+          >
+            {c.title}
+          </Link>
+        </li>
+      ))}
+    </ul>
+  );
+}
+function Tools({
+  lens,
+  q,
+  onLens,
+  onSearch,
+}: {
+  lens: string;
+  q: string;
+  onLens: (id: string) => void;
+  onSearch: (v: string) => void;
+}) {
+  return (
+    <div className="tools" data-light="off">
+      <div aria-label="Experience filter" className="lenses" role="group">
+        {LENSES.map(([id, label]) => {
+          const on = !q && id === lens;
+          return (
+            <button
+              key={id}
+              aria-pressed={on}
+              className="btn tog"
+              type="button"
+              onClick={() => {
+                onLens(id);
+              }}
+            >
+              <span className="obj" data-h={on ? 2 : 5}>
+                <span className="face">
+                  <span className="label">{label}</span>
+                </span>
+              </span>
+            </button>
+          );
+        })}
+      </div>
+      <input
+        aria-label="Search resume"
+        autoComplete="off"
+        className="field search"
+        id="r-search"
+        placeholder="search skills, tools..."
+        type="search"
+        value={q}
+        onChange={e => {
+          onSearch(e.target.value);
+        }}
+      />
+    </div>
+  );
+}
 export default function ResumePage() {
-  usePageMeta("Resume");
+  const engine = useEngine(CFG);
+  const navigate = useNavigate();
   const [params, setParams] = useSearchParams();
-  const requested = params.get("lens") ?? "all";
-  const lens = lenses.some(item => item.id === requested) ? requested : "all";
+  // the built page is All; a ?lens= applies right after hydration (the first client render matches the built markup)
+  const hydrated = useSyncExternalStore(
+    noop,
+    () => true,
+    () => false
+  );
+  const lens = hydrated ? known(params.get("lens")) : "all";
   const [query, setQuery] = useState("");
   const q = query.trim().toLowerCase();
-  const shown = jobs.filter(job => matchesJob(job, q, lens));
-  function selectLens(id: string) {
+  const n = jobs.filter(j => shown(j, lens, q)).length;
+  const list = useRef<HTMLDivElement>(null);
+  const last = useRef(n);
+  const changed = useRef(false);
+  // the kit hears about layout changes: lit lamps start their fade when the roles change, and everything is measured again
+  useLayoutEffect(() => {
+    if (!changed.current) {
+      return;
+    }
+    const moved = n !== last.current;
+    if (moved && !RM()) {
+      list.current?.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 160, easing: "linear" });
+    }
+    void engine.current.then(k => {
+      if (moved) {
+        k?.off();
+      }
+      k?.relayout();
+    });
+    last.current = n;
+  }, [n, lens, q, engine]);
+  useEffect(() => {
+    void engine.current.then(k => {
+      if (k) {
+        initNotes(k, to => {
+          void navigate(to);
+        });
+      }
+    });
+  }, [engine, navigate]);
+  const pick = (id: string) => {
+    changed.current = true;
     setQuery("");
-    const next = new URLSearchParams(params);
-    next.set("lens", id);
-    setParams(next, { replace: true, preventScrollReset: true });
-  }
+    setParams(
+      p => {
+        p.set("lens", id);
+        return p;
+      },
+      { replace: true, preventScrollReset: true }
+    );
+  };
   return (
-    <>
-      <Section className="resume-intro">
-        <h1 tabIndex={-1}>Reese Lundquist</h1>
-        <p className="role-line">
-          Developer · systems administrator · photographer · organizer · teacher
-        </p>
-        <p>San Antonio, TX · available locally or remote · open to freelance</p>
-        <div className="resume-rail">
-          <a className="text-link" href="mailto:howdy@rosematcha.com">
-            howdy@rosematcha.com
-          </a>
-          <a className="text-link" href="https://github.com/rosematcha">
-            github.com/rosematcha
-          </a>
-          <button
-            className="patch print-button"
-            type="button"
-            onClick={() => {
-              window.print();
-            }}
-          >
-            Print / PDF
-          </button>
-          <span className="print-site">rosematcha.com</span>
-        </div>
-      </Section>
-      <Section tone="deep">
-        <h2>Experience</h2>
-        <div className="resume-tools">
-          <div aria-label="Experience filter" className="lens-buttons" role="group">
-            {lenses.map(item => (
-              <button
-                key={item.id}
-                aria-pressed={lens === item.id && !q}
-                className="patch"
-                type="button"
-                onClick={() => {
-                  selectLens(item.id);
+    <Page current="Resume" id="p-resume" title="Resume">
+      <main className="page" id="main" tabIndex={-1}>
+        <div className="col">
+          <div className="doc r-doc">
+            <header className="phead r-head">
+              <h1 data-ts="5" tabIndex={-1}>
+                Reese Lundquist
+              </h1>
+              <p className="role-line">
+                Developer · systems administrator · photographer · organizer · teacher
+              </p>
+              <p className="where-line">
+                San Antonio, TX · available locally or remote · open to freelance
+              </p>
+              <div className="links">
+                <To className="tl" to="mailto:howdy@rosematcha.com">
+                  howdy@rosematcha.com
+                </To>
+                <To className="tl" to="https://github.com/rosematcha">
+                  github.com/rosematcha
+                </To>
+                <button
+                  className="btn pdf"
+                  type="button"
+                  onClick={() => {
+                    window.print();
+                  }}
+                >
+                  <Label>Print / PDF</Label>
+                </button>
+                <span className="print-site">rosematcha.com</span>
+              </div>
+            </header>
+            <section aria-labelledby="t-exp" className="r-exp">
+              <h2 data-ts="4" id="t-exp">
+                Experience
+              </h2>
+              <Tools
+                lens={lens}
+                q={q}
+                onLens={pick}
+                onSearch={v => {
+                  changed.current = true;
+                  setQuery(v);
                 }}
-              >
-                {item.label}
-              </button>
-            ))}
-          </div>
-          <input
-            aria-label="Search resume"
-            className="field resume-search"
-            placeholder="search skills, tools..."
-            type="search"
-            value={query}
-            onChange={event => {
-              setQuery(event.target.value);
-            }}
-          />
-        </div>
-        <p className="sr-only" role="status">
-          {shown.length} of {jobs.length} roles
-        </p>
-        <div className="resume-stack">
-          {shown.map(job => (
-            <JobEntry key={`${job.title}-${job.company}`} job={job} query={q} />
-          ))}
-          {!shown.length && <p role="status">No roles match.</p>}
-        </div>
-      </Section>
-      <Section tone="butter">
-        <div className="resume-directories">
-          <div>
-            <h2>Client work</h2>
-            <ContributionDirectory client fromResume items={clients} />
-          </div>
-          <div>
-            <h2>Personal projects</h2>
-            <ContributionDirectory fromResume items={projects} />
-          </div>
-        </div>
-      </Section>
-      <Section>
-        <div className="skills-education">
-          <div>
-            <h2>Skills</h2>
-            <dl className="skills">
-              {skills.map(group => (
-                <Fragment key={group.label}>
-                  <dt>{group.label}</dt>
-                  <dd>
-                    {group.items.map((item, i) => (
-                      <Fragment key={item}>
-                        {i > 0 && ", "}
-                        <Highlight query={q} text={item} />
-                      </Fragment>
-                    ))}
-                  </dd>
-                </Fragment>
-              ))}
-            </dl>
-          </div>
-          <div>
-            <h2>Education</h2>
-            <p>
-              <strong>Associate of Science, Computer Science</strong>
-              <br />
-              Northwest Vista College, San Antonio TX, 2023
-            </p>
+              />
+              <p className="sr" id="r-count" role="status">
+                {n} of {jobs.length} roles
+              </p>
+              <div ref={list} className="roles">
+                {jobs.map(j => (
+                  <Role key={`${j.title} ${j.company}`} hidden={!shown(j, lens, q)} j={j} q={q} />
+                ))}
+                <p className="none" hidden={n > 0} role="status">
+                  No roles match.
+                </p>
+              </div>
+            </section>
+            <div className="r-dirs">
+              <section aria-labelledby="t-cl">
+                <h2 data-ts="4" id="t-cl">
+                  Client work
+                </h2>
+                <Dir action="View client work" items={clients} kind="client" />
+              </section>
+              <section aria-labelledby="t-pj">
+                <h2 data-ts="4" id="t-pj">
+                  Personal projects
+                </h2>
+                <Dir action="View project" items={PROJECTS} kind="project" />
+              </section>
+            </div>
+            <section aria-labelledby="t-sk" className="r-skills">
+              <h2 data-ts="4" id="t-sk">
+                Skills
+              </h2>
+              <dl>
+                {skills.map(g => (
+                  <div key={g.label}>
+                    <dt>{g.label}</dt>
+                    <dd>
+                      {g.items.map((item, i) => (
+                        <Fragment key={item}>
+                          {i ? ", " : ""}
+                          <span>{marked(item, q)}</span>
+                        </Fragment>
+                      ))}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            </section>
+            <section aria-labelledby="t-ed" className="r-edu">
+              <h2 data-ts="4" id="t-ed">
+                Education
+              </h2>
+              <p>
+                <strong>Associate of Science, Computer Science</strong>
+                <br />
+                Northwest Vista College, San Antonio TX, 2023
+              </p>
+            </section>
           </div>
         </div>
-      </Section>
-    </>
+        <div hidden className="note" data-light="off" id="contribution-note">
+          <span className="obj" data-h="10">
+            <span className="face">
+              <p className="note-d" />
+              <a className="tl note-a" href={`/work#client-${clients[0]?.id ?? ""}`}>
+                {" "}
+              </a>
+            </span>
+          </span>
+        </div>
+      </main>
+    </Page>
   );
 }

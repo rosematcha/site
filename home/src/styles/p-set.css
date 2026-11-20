@@ -1,0 +1,246 @@
+:where(.p-set) .shead {
+  align-items: last baseline;
+  column-gap: 28px;
+  display: grid;
+  grid-template-columns: minmax(0, max-content) auto;
+  justify-content: start;
+}
+
+:where(.p-set) .shead h1 {
+  grid-area: 1 / 1;
+}
+
+:where(.p-set) .shead .back {
+  grid-area: 1 / 2;
+  margin-right: var(--navc);
+}
+
+:where(.p-set) .shead .syr {
+  color: var(--soft);
+  font-size: 22px;
+  font-variant-numeric: lining-nums tabular-nums;
+  grid-area: 2 / 1 / 3 / -1;
+  line-height: 1.3;
+  margin-top: 8px;
+}
+
+@media (width <= 599px) {
+  :where(.p-set) .shead {
+    display: block;
+  }
+
+  :where(.p-set) .shead .back {
+    margin-top: 16px;
+  }
+}
+
+:where(.p-set) .sheet {
+  --g: 24px;
+  --rh: calc((100% - var(--g)) / 3.05);
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--g);
+  margin-top: var(--first);
+}
+
+:where(.p-set) .srow {
+  align-items: flex-start;
+  display: flex;
+  gap: var(--g);
+}
+
+:where(.p-set) .print-b {
+  cursor: zoom-in;
+  flex: var(--ar) 1 0px;
+  min-width: 0;
+  touch-action: manipulation;
+}
+
+:where(.p-set) .srow.end .print-b {
+  flex: 0 1 calc(var(--rh) * var(--ar));
+}
+
+:where(.p-set) .print-b .clip {
+  aspect-ratio: var(--ar);
+}
+
+:where(.p-set) .print-b:focus-visible {
+  outline: none;
+}
+
+:where(.p-set) .print-b:focus-visible .face {
+  outline: 2px solid var(--focus);
+  outline-offset: 4px;
+}
+
+:where(.p-set) .print-b.lifted {
+  visibility: hidden;
+}
+
+@media (width <= 899px) {
+  :where(.p-set) .sheet {
+    --g: 16px;
+  }
+}
+
+@media (width <= 699px) {
+  :where(.p-set) .srow {
+    display: contents;
+  }
+
+  :where(.p-set) .srow .print-b {
+    flex: none;
+  }
+}
+
+:where(.p-set) .viewer {
+  background: none;
+  border: 0;
+  color: var(--ink);
+  height: 100%;
+  height: 100dvh;
+  inset: 0;
+  margin: 0;
+  max-height: none;
+  max-width: none;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 0;
+  position: fixed;
+  width: 100%;
+}
+
+:where(.p-set) .viewer::backdrop {
+  background: transparent;
+}
+
+:where(.p-set) .viewer:focus {
+  outline: none;
+}
+
+:where(.p-set) .v-in {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  justify-content: center;
+  min-height: calc(100% + 1px);
+  overflow-x: clip;
+  padding: 76px var(--m) 32px;
+}
+
+:where(.p-set) .v-stage {
+  display: flex;
+  justify-content: center;
+  touch-action: pan-y pinch-zoom;
+}
+
+:where(.p-set) .v-fly {
+  transform-origin: 0 0;
+}
+
+:where(.p-set) .v-obj .face {
+  box-shadow:
+    0 1px 1px rgb(0 0 0 / 0.45),
+    0 2px 6px rgb(0 0 0 / 0.3);
+  height: var(--vh, 0);
+  width: var(--vw, 0);
+}
+
+:where(.p-set) .v-obj .face::after {
+  display: none;
+}
+
+:where(.p-set) .v-obj .clip {
+  height: 100%;
+  width: 100%;
+}
+
+:where(.p-set) .v-img {
+  user-select: none;
+}
+
+:where(.p-set) .v-ghost {
+  margin: 0;
+  pointer-events: none;
+  position: fixed;
+  z-index: 1;
+}
+
+:where(.p-set) .v-ghost .cast {
+  display: none;
+}
+
+:where(.p-set) .v-bar {
+  align-items: center;
+  column-gap: 20px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  width: 100%;
+}
+
+:where(.p-set) .v-prev {
+  justify-self: end;
+}
+
+:where(.p-set) .v-next {
+  justify-self: start;
+}
+
+:where(.p-set) .v-cap {
+  color: var(--soft);
+  font-size: 16px;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.4;
+  text-align: center;
+  white-space: nowrap;
+}
+
+:where(.p-set) .v-close {
+  position: fixed;
+  right: max(6px, env(safe-area-inset-right));
+  top: max(12px, env(safe-area-inset-top));
+  z-index: 2;
+}
+
+@media (width >= 600px) {
+  :where(.p-set) .v-close {
+    right: max(12px, calc(var(--gut) - 14px));
+    top: 16px;
+  }
+}
+
+:where(.p-set) button.btn:disabled {
+  cursor: default;
+  opacity: 0.45;
+}
+
+:where(.p-set) button.btn:disabled .face {
+  transform: none !important;
+}
+
+@media (width <= 599px) {
+  :where(.p-set) .v-in {
+    gap: 16px;
+    padding: 72px var(--m) 20px;
+  }
+
+  :where(.p-set) .v-bar {
+    gap: 10px 12px;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  :where(.p-set) .v-cap {
+    grid-area: 1 / 1 / 2 / -1;
+    white-space: normal;
+  }
+
+  :where(.p-set) .v-bar .btn {
+    justify-self: stretch;
+  }
+
+  :where(.p-set) .v-bar .btn .face {
+    text-align: center;
+  }
+}

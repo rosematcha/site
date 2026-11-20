@@ -1,0 +1,1131 @@
+/* The kit: base, ground (the key light and grain), objects, buttons, portrait, shelves, page pieces. Pages add layout. */
+@font-face {
+  font-display: swap;
+  font-family: "Young Serif";
+  font-weight: 400;
+  src: url("/fonts/young-serif/young-serif-latin-400-normal.woff2") format("woff2");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Host Grotesk";
+  font-weight: 300 800;
+  src: url("/fonts/host-grotesk/latin.woff2") format("woff2");
+}
+
+:root {
+  --ink: #ecf0e8;
+  --soft: #c6d1c7;
+  --focus: #f2d46b;
+  --rose: #f5a8b8;
+  --unlit: #0a1410;
+  --rim-k: rgb(214 226 186 / 0.2); /* the key's 1 px rim toward it */
+  --shade-k: rgb(2 7 4); /* the key's shadow under raised type */
+  --r: 6px;
+  --btn-bg: #24452f;
+  --plate: #1e3b28;
+  --rim-c: #9fcba9;
+  --font-head: "Young Serif", georgia, serif;
+  --font-body: "Host Grotesk", system-ui, sans-serif;
+  --maxw: 1180px;
+  --m: 40px; /* the column: at most --maxw, at least --m from each window edge */
+  --gut: max(
+    var(--m),
+    (100% - var(--maxw)) / 2
+  ); /* use on a full-width element: its side padding to the column */
+
+  /* springs as easings; an engine without linear() keeps the cubic-bezier (a dropped linear() would kill the whole transition) */
+  --ease-lift: cubic-bezier(0.3, 1.35, 0.5, 1);
+  --ease-release: cubic-bezier(0.3, 1.5, 0.5, 1);
+  --ease-press: cubic-bezier(0.2, 0.8, 0.3, 1);
+
+  color-scheme: dark;
+}
+
+@supports (transition-timing-function: linear(0, 1)) {
+  :root {
+    --ease-lift: linear(
+      0,
+      0.038,
+      0.131,
+      0.25,
+      0.389,
+      0.528,
+      0.658,
+      0.768,
+      0.864,
+      0.941,
+      0.999,
+      1.038,
+      1.064,
+      1.078,
+      1.082,
+      1.08,
+      1.073,
+      1.063,
+      1.051,
+      1.04,
+      1.029,
+      1.02,
+      1.012,
+      1.006,
+      1.001,
+      0.997,
+      0.995,
+      0.994,
+      0.993,
+      0.993,
+      0.994,
+      0.995,
+      1
+    );
+    --ease-release: linear(
+      0,
+      0.042,
+      0.14,
+      0.281,
+      0.44,
+      0.593,
+      0.743,
+      0.869,
+      0.977,
+      1.059,
+      1.113,
+      1.147,
+      1.161,
+      1.159,
+      1.146,
+      1.127,
+      1.102,
+      1.076,
+      1.052,
+      1.029,
+      1.01,
+      0.996,
+      0.985,
+      0.978,
+      0.975,
+      0.974,
+      0.975,
+      0.978,
+      0.982,
+      0.986,
+      0.99,
+      0.994,
+      1
+    );
+  }
+}
+
+@media (width <= 899px) {
+  :root {
+    --m: 32px;
+  }
+}
+
+@media (width <= 599px) {
+  :root {
+    --m: 16px;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--unlit);
+  color: var(--ink);
+  overflow-x: clip;
+  scroll-padding-top: 76px;
+  text-size-adjust: 100%;
+}
+
+body {
+  font: 400 17px/1.55 var(--font-body);
+  margin: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow-x: clip;
+  position: relative;
+}
+
+h1,
+h2,
+h3,
+p,
+ul {
+  margin: 0;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  color: inherit;
+  font: inherit;
+}
+
+.col {
+  margin-inline: auto;
+  width: min(var(--maxw), 100% - 2 * var(--m));
+}
+
+.sr {
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.skip {
+  background: var(--ink);
+  border-radius: 6px;
+  color: #0b110e;
+  left: 12px;
+  padding: 12px 16px;
+  position: absolute;
+  text-decoration: none;
+  top: -80px;
+  z-index: 100;
+}
+
+.skip:focus {
+  top: 12px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+main:focus {
+  outline: none;
+}
+
+/* text paints above every cast */
+h1,
+h2,
+h3,
+p,
+.t,
+.label,
+.where,
+.mw,
+.row-nav a,
+.wordmark {
+  position: relative;
+  z-index: 2;
+}
+
+/* ---- the ground: the key's pool belongs to the viewer (fixed, clipped to the window); the sheet's layers scroll with it ---- */
+.keybox {
+  inset: 0;
+  overflow: hidden;
+  overflow: clip;
+  pointer-events: none;
+  position: fixed;
+  z-index: -3;
+}
+
+/* the key's pool: v22's stops in an ellipse the engine sizes (--krx by --kry) */
+.key {
+  background: radial-gradient(
+      var(--krx, 1px) var(--kry, 1px) at 50% 50%,
+      rgb(33 64 44) 0%,
+      rgb(30 59 41) 20%,
+      rgb(25 50 35) 40%,
+      rgb(19 40 28) 60%,
+      rgb(14 30 22) 80%,
+      rgb(10 20 16) 100%
+    )
+    var(--unlit);
+  left: 0;
+  position: absolute;
+  top: 0;
+  will-change: transform;
+}
+
+.fx {
+  height: 100%;
+  left: 0;
+  overflow: hidden;
+  overflow: clip;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: -2;
+}
+
+.fx > * {
+  pointer-events: none;
+  position: absolute;
+}
+
+.grain {
+  background: var(--grain) 0 0 / 192px 192px;
+  inset: 0;
+}
+
+.fx > canvas.lm {
+  left: 0;
+  top: 0;
+} /* the lamps' lightmaps, one per group of touching pools, scaled up smooth */
+
+/* ---- objects: a face that lifts off the sheet, one key cast beneath it (plain dark alpha, pre-blurred mask, moved by transform) ---- */
+.obj {
+  display: block;
+  position: relative;
+}
+
+.face {
+  border-radius: var(--r);
+  box-shadow:
+    0 1px 1px rgb(0 0 0 / 0.45),
+    0 1px 3px rgb(0 0 0 / 0.28);
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+
+.face::after {
+  border-radius: inherit;
+  box-shadow: var(--rim, inset 0 1px 0 rgb(214 226 186 / 0.2));
+  content: "";
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+  z-index: 3;
+}
+
+/* a lamp's wash on a face: its disc in the face's own coordinates (the engine sets --wx, --wy, its reach --wr and colour --wc).
+   Screens and buttons take it crisp; a photograph scatters it wider and weaker */
+.face > .wash {
+  --wc: 0 0 0;
+  --wr: 0px;
+
+  background: radial-gradient(
+    circle calc(var(--wr) * 0.97) at var(--wx, 0) var(--wy, 0),
+    rgb(var(--wc)) calc(var(--wr) * 0.84),
+    rgb(var(--wc) / 0) calc(var(--wr) * 0.97)
+  );
+  border-radius: inherit;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  z-index: 2;
+}
+
+.face > .wash.photo {
+  background: radial-gradient(
+    circle calc(var(--wr) * 1.18) at var(--wx, 0) var(--wy, 0),
+    rgb(var(--wc)) calc(var(--wr) * 0.55),
+    rgb(var(--wc) / 0.6) calc(var(--wr) * 0.8),
+    rgb(var(--wc) / 0.22) var(--wr),
+    rgb(var(--wc) / 0) calc(var(--wr) * 1.18)
+  );
+}
+
+.clip {
+  background: #000;
+  border-radius: inherit;
+  display: block;
+  overflow: hidden;
+  position: relative;
+}
+
+.clip img {
+  height: 100%;
+  object-fit: cover;
+  -webkit-user-drag: none;
+  user-select: none;
+  width: 100%;
+}
+
+.cast {
+  background: rgb(3 8 5);
+  border-radius: var(--r);
+  inset: 0;
+  mask-repeat: no-repeat;
+  mask-size: 100% 100%;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  will-change: transform, opacity;
+}
+
+.cast > canvas {
+  height: 100%;
+  inset: 0;
+  position: absolute;
+  width: 100%;
+} /* round 13: Firefox's cast, drawn once (kit.js geckoCast) */
+
+/* chromatic aberration on photographs, inside the photo's own isolated stack */
+.ca {
+  background: #000;
+  display: block;
+  height: 100%;
+  isolation: isolate;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.ca .ch {
+  inset: 0;
+  isolation: isolate;
+  mix-blend-mode: screen;
+  position: absolute;
+}
+
+.ca .ch img {
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+.ca .ch::after {
+  content: "";
+  inset: 0;
+  mix-blend-mode: multiply;
+  position: absolute;
+}
+
+.ca .r::after {
+  background: #f00;
+}
+
+.ca .g::after {
+  background: #0f0;
+}
+
+.ca .b::after {
+  background: #00f;
+}
+
+.ca .r img {
+  transform: scale(calc(1 + 2 * var(--k, 0.006)));
+}
+
+.ca .g img {
+  transform: scale(calc(1 + var(--k, 0.006)));
+}
+
+/* round 12b: Firefox's print drawn once (kit.js bakePrints) */
+.ca > canvas {
+  height: 100%;
+  inset: 0;
+  position: absolute;
+  width: 100%;
+}
+
+.face.bd::after {
+  border: 0 solid var(--rc, transparent);
+  border-width: var(--bw, 0);
+} /* the key's rim there (kit.js paintObj) */
+.ca.bk,
+.ca.bk .ch {
+  isolation: auto;
+  mix-blend-mode: normal;
+}
+
+.ca.bk .ch.r {
+  opacity: 0;
+}
+
+.ca.bk .ch.g,
+.ca.bk .ch.b,
+.ca.bk + .pgrain {
+  display: none;
+}
+
+.pgrain {
+  background: var(--grain) 0 0 / 192px 192px;
+  inset: 0;
+  opacity: 0.5;
+  pointer-events: none;
+  position: absolute;
+  z-index: 2;
+}
+
+/* ---- tiles (plates) ---- */
+.tile {
+  color: inherit;
+  display: block;
+  -webkit-tap-highlight-color: transparent;
+  text-decoration: none;
+}
+
+.tile .face {
+  will-change: transform;
+}
+
+.tile:focus-visible {
+  outline: none;
+}
+
+.tile:focus-visible .face {
+  outline: 2px solid var(--focus);
+  outline-offset: 4px;
+}
+
+.tile:focus-visible .t {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+@media (hover: hover) {
+  .tile:hover .t {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+  }
+}
+
+.tile p {
+  color: var(--soft);
+}
+
+.tile .t,
+.tile p {
+  text-wrap: pretty;
+}
+
+/* ---- press-and-release buttons ---- */
+.btn {
+  display: inline-block;
+  min-height: 44px;
+  -webkit-tap-highlight-color: transparent;
+  text-decoration: none;
+  touch-action: manipulation;
+  user-select: none;
+
+  --r: 999px;
+}
+
+.btn:focus-visible {
+  outline: none;
+}
+
+.btn:focus-visible .face {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
+
+.btn .face {
+  background: var(--btn-bg);
+  color: var(--ink);
+  font: 650 17px/18px var(--font-body);
+  min-height: 44px;
+  padding: 13px 24px;
+  transition: transform 330ms var(--ease-release);
+  white-space: nowrap;
+}
+
+@media (hover: hover) {
+  .btn:hover .face {
+    transform: translateY(-1px);
+    transition: transform 380ms var(--ease-lift);
+  }
+}
+
+.btn.down .face {
+  transform: translateY(1px) scale(1.03, 0.92);
+  transition: transform 70ms var(--ease-press);
+}
+
+.rm .btn .face {
+  transform: none !important;
+  transition: none;
+}
+
+.btn .face::after {
+  box-shadow:
+    var(--rim, inset 0 1px 0 rgb(214 226 186 / 0.2)),
+    inset 0 -1px 0 rgb(0 0 0 / 0.25);
+}
+
+/* ---- the portrait: one photo at a time; a press shows the next ---- */
+.portrait {
+  background: none;
+  border: 0;
+  cursor: pointer;
+  display: block;
+  padding: 0;
+  position: relative;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  user-select: none;
+  width: 100%;
+}
+
+.portrait .obj,
+.portrait .face,
+.portrait .clip {
+  height: 100%;
+  width: 100%;
+}
+
+.portrait .face {
+  will-change: transform;
+}
+
+.portrait .clip {
+  aspect-ratio: var(--par, 4 / 5);
+}
+
+.portrait .ca {
+  --k: 0.008;
+}
+
+/* round 12: a print that isn't showing is also hidden once its fade ends, so nothing of it can paint (a faint line ran down
+   the portrait in Firefox where the owner had resized it) */
+.print {
+  inset: 0;
+  opacity: 0;
+  position: absolute;
+  transition:
+    opacity 200ms linear,
+    visibility 0s linear 200ms;
+  visibility: hidden;
+}
+
+.print.on {
+  opacity: 1;
+  transition:
+    opacity 200ms linear,
+    visibility 0s;
+  visibility: visible;
+}
+
+.rm .print {
+  transition-delay: 0s, 120ms;
+  transition-duration: 120ms, 0s;
+}
+
+.rm .print.on {
+  transition-delay: 0s;
+}
+
+.portrait:focus-visible {
+  outline: none;
+}
+
+.portrait:focus-visible .face {
+  outline: 2px solid var(--focus);
+  outline-offset: 4px;
+}
+
+/* ---- shelves: one line of plates across the window (the list is full width; its padding puts the first plate on the column edge).
+   Native touch and trackpad scroll with snap; a mouse drag flings; 60 px of give at the ends through `left`. Pages set --w (plate
+   width) and --g (gap); a photo shelf sets --ph (picture height) and each photo plate takes its own width from --ar. ---- */
+.shelf {
+  align-items: flex-start;
+  display: flex;
+  gap: var(--g, 24px);
+  left: 0;
+  margin: 0 0 -64px;
+  overflow: auto hidden;
+  overscroll-behavior-x: contain;
+  padding: 40px var(--gut) 64px;
+  position: relative;
+  scroll-padding-inline: var(--gut);
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.shelf::-webkit-scrollbar {
+  display: none;
+}
+
+.shelf [data-stop] {
+  flex: none;
+  scroll-snap-align: start;
+  width: var(--w, 280px);
+}
+
+.shelf [data-stop]:last-child {
+  scroll-snap-align: end;
+}
+
+.shelf a,
+.shelf img {
+  -webkit-user-drag: none;
+}
+
+.shelf .tile {
+  touch-action: manipulation;
+}
+
+.shelf.held {
+  scroll-snap-type: none;
+}
+
+.shelf.grabbing {
+  user-select: none;
+}
+
+@media (pointer: fine) {
+  .shelf,
+  .shelf a {
+    cursor: grab;
+  }
+
+  .shelf.grabbing,
+  .shelf.grabbing a {
+    cursor: grabbing;
+  }
+}
+
+.shelf .pj .clip,
+.shelf .cl .clip {
+  aspect-ratio: 3 / 2;
+}
+
+.shelf .ph {
+  width: calc(var(--ph, 300px) * var(--ar));
+}
+
+.shelf li:has(> .ph) {
+  width: auto;
+}
+
+.shelf .ph .clip {
+  height: var(--ph, 300px);
+}
+
+/* the quiet iPhone tilt offer, shown only after a first touch */
+.tilt-ask {
+  background: none;
+  border: 0;
+  color: var(--soft);
+  cursor: pointer;
+  display: block;
+  font-size: 15px;
+  margin-inline: -8px;
+  margin-top: 4px;
+  min-height: 44px;
+  padding: 0 8px;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  touch-action: manipulation;
+}
+
+.tilt-ask[hidden] {
+  display: none;
+}
+
+.tilt-room .tilt-ask[hidden] {
+  display: block;
+  visibility: hidden;
+} /* its line is held from load where it may appear (kit.js tiltRoom) */
+
+@media (prefers-contrast: more) {
+  .keybox,
+  .fx > canvas,
+  .fx-end,
+  .grain,
+  .pgrain,
+  .cast,
+  .face > .wash {
+    display: none !important;
+  }
+
+  .ca .ch img {
+    transform: none !important;
+  }
+
+  .face::after {
+    box-shadow: none !important;
+  }
+}
+
+@media (forced-colors: active) {
+  .btn .face {
+    border: 1px solid CanvasText;
+  }
+}
+
+/* ---- overscroll (CFG.over, v27): the ground reaches past the document's ends so a rubber-band bounce shows lit, grained ground.
+   The sheet (.fx: grain and lamp light) reaches --ov above the top, which adds no scroll; past the end it shows its last --ov
+   mirrored below itself (a reflection is ink overflow: it adds no scroll either; on only while the page rests at its end, since it cost
+   about 50 ms a scrolled frame in headless Chromium), so a bounce at the bottom shows grain and any
+   lamp light that runs past the end whether or not the fixed layers move with it. The key's box (fixed) reaches --ov past both
+   window edges for an engine that moves fixed layers in a bounce. ---- */
+.ov {
+  --ov: 480px;
+} /* whole px: a fractional 60vh left a seam where the sheet meets its reflection */
+.ov .keybox {
+  inset: calc(-1 * var(--ov)) 0;
+}
+
+.ov .key {
+  top: var(--ov);
+}
+
+/* round 12: the key's box carries grain in its bands past both window edges, so an engine that moves fixed layers with a bounce
+   (Firefox and Safari on a Mac showed the bands' ground with no grain: they don't paint the sheet's reach past the document)
+   uncovers grained ground. The bands sit off-screen otherwise. Offset half a tile from the sheet's grain, so where an engine shows
+   both, the two read as one denser grain rather than the same specks doubled. The root carries grain too, for whatever an engine
+   paints past every layer (the fallback keeps the ground's colour until the tile exists). */
+.ov .keybox::before,
+.ov .keybox::after {
+  background: var(--grain) 96px 96px / 192px 192px;
+  content: "";
+  height: var(--ov);
+  left: 0;
+  position: absolute;
+  right: 0;
+  z-index: 1;
+}
+
+.ov .keybox::before {
+  top: 0;
+}
+
+.ov .keybox::after {
+  bottom: 0;
+}
+
+.ov {
+  background-image: var(--grain, none);
+  background-size: 192px 192px;
+}
+
+@media (prefers-contrast: more) {
+  .ov {
+    background-image: none;
+  }
+} /* the ground layers are off there; so is the root's grain */
+
+/* round 13 (perf): the sheet stops --ov short of the document's end; the strip .fx-end (lamps.js) is the sheet's last --ov: its grain
+   in the sheet's phase and a copy of any lightmap that reaches it. Only the strip is reflected, always on, lamps lit or not (the whole
+   sheet's reflection cost 46 to 57 ms of prepaint where it switched on at the end, and 50 ms a frame under a lit lamp there). Whole px:
+   the page's height is fractional, which left a 1 device px seam at the reflection. */
+
+/* Round 12b (perf): the strip is the last --ove (240 px), not --ov: Chromium draws a reflected layer again whenever what it holds
+   changes, so with lamps lit there a scroll that reached it cost a frame a frame at 1024 (p95 33 ms, 17 at 240 px). A bounce shows
+   240 px of the sheet's grain and light past the end, then the root's grain. */
+.ov {
+  --ove: 480px;
+}
+
+@supports (-webkit-box-reflect: below 0) {
+  .ov {
+    --ove: 240px;
+  }
+} /* only where the reflection is drawn; Firefox keeps 480 */
+.ov .fx {
+  height: calc(100% + var(--ov) - var(--ove));
+  height: calc(round(100%, 1px) + var(--ov) - var(--ove));
+  top: calc(-1 * var(--ov));
+}
+
+.fx-end {
+  display: none;
+}
+
+.ov .fx-end {
+  -webkit-box-reflect: below 0;
+  display: block;
+  height: var(--ove);
+  left: 0;
+  overflow: hidden;
+  overflow: clip;
+  pointer-events: none;
+  position: absolute;
+  top: calc(100% - var(--ove));
+  top: calc(round(100%, 1px) - var(--ove));
+  width: 100%;
+  z-index: -2;
+}
+
+.fx-end > * {
+  pointer-events: none;
+  position: absolute;
+}
+
+.fx-end > canvas.lm {
+  left: 0;
+  top: 0;
+}
+
+/* the skip link waits above the page; a top bounce would show it, so until focused it is also clipped to nothing */
+.ov .skip:not(:focus) {
+  clip-path: inset(50%);
+}
+
+/* ---- round 12: the pages (DESIGN-SPEC-R12 1.1 to 1.5) ---- */
+:root {
+  --first: 56px;
+} /* first content under a page head */
+
+@media (width <= 599px) {
+  :root {
+    --first: 40px;
+  }
+}
+
+/* the page head: the h1 on the column's left edge, a step under the home greeting */
+.phead {
+  padding-top: 40px;
+}
+
+.phead h1 {
+  font: 400 72px/0.98 var(--font-head);
+  letter-spacing: -0.025em;
+  margin-left: -0.035em;
+}
+
+h1[tabindex="-1"]:focus {
+  outline: none;
+}
+
+@media (width <= 899px) {
+  .phead h1 {
+    font-size: 60px;
+  }
+}
+
+@media (width <= 599px) {
+  .phead {
+    padding-top: 76px;
+  }
+
+  .phead h1 {
+    font-size: 44px;
+  }
+}
+
+/* a document page: one centred block at a reading width (--doc), everything in it left-aligned to the block */
+.doc {
+  margin-inline: auto;
+  width: min(var(--doc, 800px), 100%);
+}
+
+/* the closing off the home page steps down, as production's footer does */
+.closing.inner {
+  margin-top: 160px;
+  padding-bottom: 160px;
+}
+
+.closing.inner h2 {
+  color: var(--rose);
+  font: 400 clamp(40px, 4.6vw, 60px) / 0.98 var(--font-head);
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+.closing.inner p {
+  font-size: 18px;
+  line-height: 1.5;
+  margin-top: 20px;
+  max-width: 30em;
+  text-wrap: pretty;
+}
+
+.closing.inner p.mail {
+  margin-top: 32px;
+}
+
+@media (width <= 599px) {
+  .closing.inner {
+    margin-top: 112px;
+    padding-bottom: 112px;
+  }
+
+  .closing.inner h2 {
+    font-size: 36px;
+  }
+}
+
+/* buttons that are plates or pills (a print, a toggle, Print / PDF) */
+button.tile,
+button.btn {
+  background: none;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  display: block;
+  font: inherit;
+  padding: 0;
+  text-align: left;
+}
+
+button.btn {
+  display: inline-block;
+}
+
+/* a well: an input is a recess in the sheet, the inverse of a plate (shaded upper lip, lit lower lip); the fill lets grain and
+   key light through in shade */
+.field {
+  appearance: none;
+  background: rgb(4 10 7 / 0.6);
+  border: 0;
+  border-radius: var(--r);
+  box-shadow:
+    inset 0 2px 3px rgb(0 0 0 / 0.5),
+    inset 0 0 0 1px rgb(0 0 0 / 0.35),
+    0 1px 0 rgb(214 226 186 / 0.1);
+  color: var(--ink);
+  display: block;
+  font: 400 17px/1.4 var(--font-body);
+  height: 52px;
+  margin: 0;
+  padding: 0 16px;
+  width: 100%;
+}
+
+textarea.field {
+  height: auto;
+  padding: 14px 16px;
+  resize: vertical;
+}
+
+.field::placeholder {
+  color: var(--soft);
+  opacity: 1;
+}
+
+.field:disabled {
+  opacity: 0.6;
+}
+
+/* toggle pills: the kit pill at 16 px; pressed, the face takes the rim colour and it sits down (kit.js: data-h 2 against 5) */
+.btn.tog .face {
+  font-size: 16px;
+  padding: 13px 18px;
+}
+
+.btn.tog[aria-pressed="true"] .face {
+  background: var(--rim-c);
+  color: #0b110e;
+}
+
+.btn.tog[aria-pressed="true"] .label {
+  color: #0b110e;
+}
+
+/* text links */
+.tl {
+  color: var(--ink);
+  display: inline-block;
+  line-height: 24px;
+  padding: 10px 0;
+  text-decoration: underline 1px var(--rim-c);
+  text-underline-offset: 4px;
+}
+
+@media (hover: hover) {
+  .tl:hover {
+    text-decoration-thickness: 2px;
+  }
+}
+
+.tl:focus-visible {
+  text-decoration-thickness: 2px;
+}
+
+/* the spinner: a quarter in ink turning once in 800 ms; still under reduced motion */
+.spin {
+  animation: spin 800ms linear infinite;
+  border: 2px solid rgb(198 209 199 / 0.35);
+  border-radius: 50%;
+  border-top-color: var(--ink);
+  display: inline-block;
+  flex: none;
+  height: 18px;
+  vertical-align: -3px;
+  width: 18px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+.rm .spin {
+  animation: none;
+}
+
+/* a plate reached by its anchor: the fallback for a browser's own jump (kit.js lands it exactly) */
+.shelf [data-stop] [id] {
+  scroll-margin-top: 156px;
+}
+
+/* a plate focused by an anchor arrival shows no ring until a key is pressed (kit.js arrive): position is the cue */
+[data-quiet]:focus-visible,
+[data-quiet]:focus-visible .face,
+[data-quiet]:focus-visible .tp-n {
+  outline: none;
+}
+
+[data-quiet]:focus-visible .t {
+  text-decoration: none;
+}
+
+/* an open viewer (html.viewer-open): the page fades as under the menu and the nav button steps away */
+.viewer-open .page {
+  opacity: 0;
+  transition:
+    opacity 140ms linear,
+    visibility 0s 140ms;
+  visibility: hidden;
+}
+
+.viewer-open .bars-btn {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+/* print: white paper; the ground, grain, key, lamps, casts and nav are gone (pages add their own) */
+@media print {
+  html,
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  .keybox,
+  .fx,
+  .fx-end,
+  .bars,
+  .skip,
+  .top,
+  .cast,
+  .pgrain,
+  .face > .wash {
+    display: none !important;
+  }
+
+  * {
+    text-shadow: none !important;
+  }
+
+  .page {
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+}

@@ -1,0 +1,261 @@
+:where(.p-home) .hero {
+  align-items: start;
+  column-gap: 24px;
+  display: grid;
+}
+
+:where(.p-home) .hero h1 {
+  font: 400 var(--h1) / 0.94 var(--font-head);
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+:where(.p-home) .hero .intro {
+  font-size: 19px;
+  line-height: 1.5;
+  max-width: 36em;
+  text-wrap: pretty;
+}
+
+:where(.p-home) .sec {
+  margin-top: var(--air);
+}
+
+:where(.p-home) .head {
+  align-items: flex-end;
+  align-items: last baseline;
+  display: flex;
+  gap: 12px 24px;
+  justify-content: space-between;
+}
+
+:where(.p-home) .head h2 {
+  font: 400 var(--h2) / 1.02 var(--font-head);
+  letter-spacing: -0.015em;
+}
+
+:where(.p-home) .shelf {
+  margin-top: calc(var(--below) - 40px);
+}
+
+:where(.p-home) .tile .t {
+  font: 400 var(--tt) / 1.15 var(--font-head);
+  letter-spacing: -0.005em;
+  margin-top: 18px;
+}
+
+:where(.p-home) .tile p {
+  font-size: var(--td);
+  line-height: 1.5;
+  margin-top: 8px;
+  max-width: 34em;
+}
+
+:where(.p-home) .ph .year {
+  font-variant-numeric: tabular-nums;
+  margin-top: 2px;
+}
+
+:where(.p-home) .closing {
+  margin-top: var(--air);
+  padding-bottom: 160px;
+}
+
+:where(.p-home) .closing h2 {
+  color: var(--rose);
+  font: 400 clamp(52px, 6.6vw, 92px) / 0.98 var(--font-head);
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+:where(.p-home) .closing p {
+  font-size: 20px;
+  line-height: 1.5;
+  margin-top: 20px;
+  max-width: 30em;
+  text-wrap: pretty;
+}
+
+:where(.p-home) .closing p.mail {
+  margin-top: 32px;
+}
+
+@media (width <= 599px) {
+  :where(.p-home) {
+    font-size: 16px;
+  }
+
+  :where(.p-home) .sec {
+    display: flex;
+    flex-direction: column;
+  }
+
+  :where(.p-home) .head {
+    display: contents;
+  }
+
+  :where(.p-home) .head h2 {
+    margin-inline: var(--m);
+  }
+
+  :where(.p-home) .head .more {
+    align-self: flex-start;
+    margin: 20px var(--m) 0;
+    order: 2;
+  }
+
+  :where(.p-home) .closing {
+    padding-bottom: 112px;
+  }
+
+  :where(.p-home) .closing h2 {
+    font-size: 44px;
+  }
+
+  :where(.p-home) .closing p {
+    font-size: 17px;
+  }
+}
+
+:where(.p-home) {
+  --h1: 84px;
+  --h2: 46px;
+  --tt: 22px;
+  --td: 15px;
+  --air: 112px;
+  --below: 32px;
+}
+
+:where(.p-home) .hero {
+  gap: 0 clamp(32px, 3.4vw, 48px);
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  grid-template-rows: 1fr auto auto 1fr;
+  padding-top: 40px;
+}
+
+@media (width >= 600px) {
+  :where(.p-home) .hero {
+    width: min(900px, 100% - 2 * var(--m), 36% + 370px);
+  }
+}
+
+:where(.p-home) .hero h1 {
+  grid-column: 1;
+  grid-row: 2;
+  margin-left: -0.035em;
+}
+
+:where(.p-home) .hero .portrait {
+  align-self: center;
+  grid-column: 2;
+  grid-row: 1 / -1;
+}
+
+:where(.p-home) .hero .intro {
+  grid-column: 1;
+  grid-row: 3;
+  margin-top: 32px;
+}
+
+:where(.p-home) .shelf {
+  --g: 24px;
+  --w: calc((100% + var(--m) - 3 * var(--g) - 72px) / 3);
+}
+
+:where(.p-home) .phs {
+  --ph: 300px;
+}
+
+@media (width >= 1280px) {
+  :where(.p-home) {
+    --h1: 96px;
+  }
+
+  :where(.p-home) .shelf {
+    --w: 341px;
+  }
+}
+
+@media (width <= 1023px) {
+  :where(.p-home) .shelf {
+    --w: calc((100% + var(--m) - 2 * var(--g) - 72px) / 2);
+  }
+}
+
+@media (width <= 899px) {
+  :where(.p-home) {
+    --h1: 72px;
+  }
+
+  :where(.p-home) .hero .intro {
+    font-size: 18px;
+  }
+}
+
+@media (width <= 599px) {
+  :where(.p-home) {
+    --h1: 48px;
+    --h2: 34px;
+    --tt: 22px;
+    --td: 15px;
+    --air: 96px;
+    --below: 24px;
+  }
+
+  :where(.p-home) .hero {
+    align-items: center;
+    gap: 20px 14px;
+    grid-template-columns: min-content minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    padding-top: 76px;
+  }
+
+  :where(.p-home) .hero h1 {
+    grid-column: 1;
+    grid-row: 1;
+    line-height: 0.98;
+  }
+
+  :where(.p-home) .hero .portrait {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  :where(.p-home) .hero .intro {
+    font-size: 16px;
+    grid-column: 1 / -1;
+    grid-row: 2;
+    margin-top: 0;
+  }
+
+  :where(.p-home) .sec {
+    display: block;
+  }
+
+  :where(.p-home) .head {
+    display: flex;
+  }
+
+  :where(.p-home) .head h2 {
+    margin-inline: 0;
+  }
+
+  :where(.p-home) .head .more {
+    margin-left: 0;
+    margin-top: 4px;
+    order: 0;
+  }
+
+  :where(.p-home) .shelf {
+    --g: 16px;
+    --w: calc(100% - 40px);
+  }
+
+  :where(.p-home) .cls {
+    --w: calc((100% + 2 * var(--m)) * 0.68);
+  }
+
+  :where(.p-home) .phs {
+    --ph: 200px;
+  }
+}

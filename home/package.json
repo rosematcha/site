@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm run typecheck && vite build --outDir ../_site && node scripts/build-metadata.mjs",
+    "build": "npm run typecheck && vite build --outDir ../_site && vite build --ssr src/entry-server.tsx --outDir dist-ssr --emptyOutDir && node scripts/build-metadata.mjs",
     "preview": "vite preview --outDir ../_site",
     "test": "vitest",
     "test:ui": "vitest --ui",

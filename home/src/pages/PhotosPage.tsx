@@ -1,146 +1,81 @@
-import { useEffect, useState } from "react";
+// Photos: the sets as one shelf per year, newest first. Each plate is home's photo plate (the cover at its own aspect, the site's
+// alt, the title) and opens its set; the year is the band's heading and stays in each link's accessible name only.
+import type { CSSProperties } from "react";
 
-import { Link, useParams } from "react-router-dom";
+import { coverSet, scaled } from "../data/images";
+import { coverPhoto, events, type PhotoEvent } from "../data/photos";
+import type { PageCfg } from "../engine";
+import { Ca, Clip, PHead, Shelf, To } from "../site/markup";
+import { Page } from "../site/Page";
+import { useEngine } from "../site/useEngine";
 
-import { DialogShell } from "../components/DialogShell";
-import { Section } from "../components/Section";
-import { coverPhoto, events, type PhotoEvent } from "../data/site";
-import { usePageMeta } from "../hooks/usePageMeta";
-
-import NotFoundPage from "./NotFoundPage";
-
-export default function PhotosPage() {
-  usePageMeta("Photos");
-  return (
-    <Section>
-      <h1 tabIndex={-1}>Photos</h1>
-      <div className="event-grid">
-        {events.map(event => {
-          const cover = coverPhoto(event);
-          return (
-            <Link
-              key={event.id}
-              data-restore-focus
-              className="event-link"
-              id={`event-${event.id}`}
-              to={`/photos/${event.id}`}
-            >
-              <div className="tile-image">
-                <img
-                  alt={cover.alt}
-                  height={cover.height}
-                  loading="lazy"
-                  src={cover.thumbnail}
-                  width={cover.width}
-                />
-              </div>
-              <h2>{event.title}</h2>
-              <p>{event.year}</p>
-            </Link>
-          );
-        })}
-      </div>
-    </Section>
-  );
+// the vertical sweep swept 15.8% of the first screen at home's 0.26; bake: Firefox draws each cover once
+const CFG: PageCfg = { gain: { wide: [0.74, 0.38] }, bake: true };
+const YEARS = [...new Set(events.map(e => e.year))].sort((a, b) => Number(b) - Number(a));
+// the cover is drawn --ph times its aspect wide, --ph by window (the CSS's); a phone's 320 picks the 960 copy (3% upscale, unseen)
+const PH: [number, number][] = [
+  [1280, 340],
+  [900, 288],
+  [600, 260],
+  [0, 220],
+];
+function coverSizes(ar: number) {
+  return PH.map(([m, ph]) =>
+    m
+      ? `(min-width: ${String(m)}px) ${String(Math.round(ph * ar))}px`
+      : `${String(Math.min(Math.round(ph * ar), 320))}px`
+  ).join(", ");
 }
-function Gallery({ event }: { event: PhotoEvent }) {
-  usePageMeta(`${event.title} ${event.year}`);
-  const [index, setIndex] = useState<number | null>(null);
-  const photo = index === null ? undefined : event.photos[index];
-  useEffect(() => {
-    const listener = (keyboard: KeyboardEvent) => {
-      if (keyboard.key !== "ArrowLeft" && keyboard.key !== "ArrowRight") {
-        return;
-      }
-      keyboard.preventDefault();
-      const direction = keyboard.key === "ArrowRight" ? 1 : -1;
-      setIndex(current =>
-        current === null
-          ? current
-          : Math.max(0, Math.min(event.photos.length - 1, current + direction))
-      );
-    };
-    if (index !== null) {
-      window.addEventListener("keydown", listener);
-    }
-    return () => {
-      window.removeEventListener("keydown", listener);
-    };
-  }, [index, event.photos.length]);
+function Cover({ e, first }: { e: PhotoEvent; first: boolean }) {
+  const c = coverPhoto(e);
+  const ar = c.width / c.height;
+  const w = 480; // the cover-480 copy
   return (
-    <Section className="gallery-band">
-      <h1 tabIndex={-1}>{event.title}</h1>
-      <p className="event-year">{event.year}</p>
-      <Link className="patch gallery-back" to="/photos">
-        Back to photos
-      </Link>
-      <div className="gallery">
-        {event.photos.map((image, i) => (
-          <button
-            key={image.id}
-            aria-label={`Enlarge photo ${String(i + 1)}: ${image.alt}`}
-            className="gallery-photo"
-            type="button"
-            onClick={() => {
-              setIndex(i);
-            }}
-          >
-            <img
-              alt={image.alt}
-              decoding="async"
-              height={image.height}
-              loading={i < 2 ? "eager" : "lazy"}
-              sizes="(min-width: 680px) 50vw, 100vw"
-              src={image.src}
-              srcSet={`${image.thumbnail} 480w, ${image.src} ${String(image.width)}w`}
-              width={image.width}
-            />
-          </button>
-        ))}
-      </div>
-      {photo && index !== null && (
-        <DialogShell
-          className="photo-viewer"
-          label={`${event.title} ${event.year}, photo ${String(index + 1)}`}
-          onDismiss={() => {
-            setIndex(null);
+    <To
+      className="tile ph"
+      id={`event-${e.id}`}
+      style={{ "--ar": ar.toFixed(4) } as CSSProperties}
+      to={`/photos/${e.id}`}
+    >
+      <Clip h={8}>
+        <Ca
+          p={{
+            src: scaled(c.src, 480, "cover-"),
+            alt: c.alt,
+            w,
+            h: Math.round(w / ar),
+            srcSet: coverSet(c.src, c.width),
+            sizes: coverSizes(ar),
+            load: first ? "eager" : "lazy",
           }}
-        >
-          <figure>
-            <img alt={photo.alt} height={photo.height} src={photo.src} width={photo.width} />
-            <figcaption>
-              {event.title} {event.year} · {index + 1} of {event.photos.length}
-            </figcaption>
-          </figure>
-          <div className="photo-controls">
-            <button
-              className="patch"
-              disabled={index === 0}
-              type="button"
-              onClick={() => {
-                setIndex(value => (value === null ? null : value - 1));
-              }}
-            >
-              Previous
-            </button>
-            <button
-              className="patch"
-              disabled={index === event.photos.length - 1}
-              type="button"
-              onClick={() => {
-                setIndex(value => (value === null ? null : value + 1));
-              }}
-            >
-              Next
-            </button>
-          </div>
-        </DialogShell>
-      )}
-    </Section>
+        />
+      </Clip>
+      <h3 className="t">{e.title}</h3>
+      <span className="sr"> {e.year}</span>
+    </To>
   );
 }
-export function PhotoEventPage() {
-  const { eventId } = useParams();
-  const event = events.find(item => item.id === eventId);
-  return event ? <Gallery key={event.id} event={event} /> : <NotFoundPage />;
+export default function PhotosPage() {
+  useEngine(CFG);
+  return (
+    <Page current="Photos" id="p-photos" title="Photos">
+      <main className="page" id="main" tabIndex={-1}>
+        <PHead title="Photos" />
+        {YEARS.map(y => (
+          <section key={y} aria-labelledby={`y-${y}`} className="yr">
+            <h2 className="col" data-ts="4" id={`y-${y}`}>
+              {y}
+            </h2>
+            <Shelf
+              cls="phs"
+              items={events.filter(e => e.year === y)}
+              keyOf={e => e.id}
+              label={`y-${y}`}
+              render={(e, i) => <Cover e={e} first={i < 2 && y === YEARS[0]} />}
+            />
+          </section>
+        ))}
+      </main>
+    </Page>
+  );
 }

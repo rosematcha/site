@@ -114,19 +114,25 @@ publish = "_site"
   [headers.values]
     Cache-Control = "public, max-age=31536000"
 
+# images keep their paths when replaced, so an hour: a replaced photo shows within the hour
+[[headers]]
+  for = "/img/*"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
+
+# fonts for a year: a changed font gets a new filename, never new bytes under an old one
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
 [[headers]]
   for = "*.svg"
   [headers.values]
     Cache-Control = "public, max-age=31536000"
 
-# General 404 handling
+# Unknown paths: the prerendered Not found page, with a 404 status
 [[redirects]]
   from = "/*"
-  to = "/index.html"
+  to = "/404.html"
   status = 404
-
-# Consider adding a simple 404 rule if needed
-# [[redirects]]
-#  from = "/*"
-#  to = "/index.html" # Assuming 404.html exists in the final _site
-#  status = 404

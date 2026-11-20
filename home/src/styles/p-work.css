@@ -1,0 +1,152 @@
+:where(.p-work) {
+  --h2: 46px;
+  --air: 112px;
+  --below: 32px;
+  --ta: 28px;
+  --da: 16px;
+  --tb: 20px;
+  --tc2: 22px;
+  --db: 15px;
+  --tpn: 34px;
+}
+
+:where(.p-work) .wk + .wk {
+  margin-top: var(--air);
+}
+
+:where(.p-work) .head h2 {
+  font: 400 var(--h2) / 1.02 var(--font-head);
+  letter-spacing: -0.015em;
+}
+
+:where(.p-work) .wk .shelf {
+  --g: 24px;
+
+  margin-bottom: calc(-64px - var(--tail, 0px));
+  margin-top: calc(var(--below) - 40px);
+}
+
+:where(.p-work) .wk + .wk,
+:where(.p-work) .p-work .closing {
+  position: relative;
+}
+
+:where(.p-work) .wk-a .shelf {
+  margin-top: calc(var(--first) - 40px);
+}
+
+:where(.p-work) .tile .t {
+  font: 400 var(--tb) / 1.15 var(--font-head);
+  letter-spacing: -0.005em;
+  margin-top: 18px;
+}
+
+:where(.p-work) .tile p {
+  font-size: var(--db);
+  line-height: 1.5;
+  margin-top: 8px;
+  max-width: 34em;
+}
+
+:where(.p-work) .wa .t {
+  font-size: var(--ta);
+  line-height: 1.12;
+}
+
+:where(.p-work) .wa p {
+  font-size: var(--da);
+}
+
+:where(.p-work) .wc .t {
+  font-size: var(--tc2);
+}
+
+:where(.p-work) .wa {
+  --w: calc((100% + var(--m) - 2 * var(--g) - 72px) / 2);
+}
+
+:where(.p-work) .wb,
+:where(.p-work) .wc {
+  --w: calc((100% + var(--m) - 3 * var(--g) - 72px) / 3);
+}
+
+:where(.p-work) .tp {
+  position: relative;
+}
+
+:where(.p-work) .tp .tp-n {
+  align-items: flex-end;
+  aspect-ratio: 3 / 2;
+  border-radius: var(--r);
+  display: flex;
+}
+
+:where(.p-work) .wc .tp .t {
+  font: 400 var(--tpn) / 1.05 var(--font-head);
+  letter-spacing: -0.015em;
+  margin: 0;
+  text-wrap: balance;
+}
+
+:where(.p-work) .tp p {
+  margin-top: 18px;
+}
+
+:where(.p-work) .tp:focus-visible:not([data-quiet]) .tp-n {
+  outline: 2px solid var(--focus);
+  outline-offset: 4px;
+}
+
+@media (width >= 1280px) {
+  :where(.p-work) .wa {
+    --w: 480px;
+  }
+
+  :where(.p-work) .wb,
+  :where(.p-work) .wc {
+    --w: 341px;
+  }
+}
+
+@media (width <= 1023px) {
+  :where(.p-work) .wb,
+  :where(.p-work) .wc {
+    --w: calc((100% + var(--m) - 2 * var(--g) - 72px) / 2);
+  }
+}
+
+@media (width <= 899px) {
+  :where(.p-work) {
+    --ta: 26px;
+  }
+
+  :where(.p-work) .wa {
+    --w: 400px;
+  }
+}
+
+@media (width <= 599px) {
+  :where(.p-work) {
+    --h2: 34px;
+    --air: 96px;
+    --below: 24px;
+    --ta: 24px;
+    --da: 15px;
+    --tb: 20px;
+    --tc2: 20px;
+    --tpn: 26px;
+  }
+
+  :where(.p-work) .wk .shelf {
+    --g: 16px;
+  }
+
+  :where(.p-work) .wa {
+    --w: calc(100% + 2 * var(--m) - 72px);
+  }
+
+  :where(.p-work) .wb,
+  :where(.p-work) .wc {
+    --w: calc((100% + 2 * var(--m)) * 0.68);
+  }
+}

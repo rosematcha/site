@@ -1,0 +1,331 @@
+/* The nav (v25's, with the Firefox-on-Android fixes): the wordmark row from 600 px; three bars at the top right on phones
+   and once the row has scrolled away; big words on bare ground when open. The button and the menu are siblings at body level
+   inside an unpositioned <nav>; the root's overflow is never touched (the menu is the scroller that swallows the gesture). */
+.top {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 16px;
+}
+
+.wordmark {
+  align-items: center;
+  color: var(--ink);
+  display: inline-flex;
+  font: 700 20px/1 var(--font-body);
+  letter-spacing: -0.01em;
+  min-height: 44px;
+  text-decoration: none;
+}
+
+.row-nav ul {
+  display: flex;
+}
+
+.row-nav a {
+  align-items: center;
+  color: var(--soft);
+  display: flex;
+  font-size: 16px;
+  min-height: 44px;
+  padding: 0 12px;
+  text-decoration: none;
+  text-underline-offset: 6px;
+}
+
+.row-nav li:last-child a {
+  padding-right: 0;
+}
+
+.row-nav a[aria-current] {
+  color: var(--ink);
+}
+
+@media (hover: hover) {
+  .row-nav a:hover {
+    color: var(--ink);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+  }
+}
+
+@media (width <= 599px) {
+  .top {
+    display: none;
+  }
+}
+
+.bars-btn {
+  background: none;
+  border: 0;
+  cursor: pointer;
+  display: block;
+  padding: 0;
+  position: fixed;
+  right: max(6px, env(safe-area-inset-right));
+  -webkit-tap-highlight-color: transparent;
+  top: max(8px, env(safe-area-inset-top));
+  touch-action: manipulation;
+  user-select: none;
+  z-index: 50;
+
+  --r: 26px;
+}
+
+.bars-btn:focus-visible {
+  outline: none;
+}
+
+.bars-btn:focus-visible .face {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
+
+.bars-btn .face {
+  align-items: center;
+  background: transparent;
+  box-shadow: none;
+  display: flex;
+  gap: 10px;
+  height: 52px;
+  padding: 0 14px;
+  transition:
+    background-color 200ms linear,
+    box-shadow 200ms linear,
+    transform 330ms var(--ease-release);
+}
+
+.bars-btn .face::after {
+  opacity: 0;
+  transition: opacity 200ms linear;
+}
+
+.bars-btn .cast {
+  visibility: hidden;
+}
+
+.plated .bars-btn .face,
+.menu-open .bars-btn .face {
+  background: var(--plate);
+  box-shadow:
+    0 1px 1px rgb(0 0 0 / 0.45),
+    0 1px 3px rgb(0 0 0 / 0.28);
+}
+
+.plated .bars-btn .face::after,
+.menu-open .bars-btn .face::after {
+  opacity: 1;
+}
+
+.plated .bars-btn .cast,
+.menu-open .bars-btn .cast {
+  visibility: visible;
+}
+
+.bars-btn.down .face {
+  transform: translateY(1px) scale(1.02, 0.94);
+  transition: transform 70ms var(--ease-press);
+}
+
+.where {
+  color: var(--soft);
+  font: 600 15px/20px var(--font-body);
+}
+
+.ico {
+  display: block;
+  height: 14px;
+  position: relative;
+  width: 20px;
+}
+
+.ico i {
+  background: var(--ink);
+  border-radius: 1px;
+  box-shadow: 0 1px 1px rgb(0 0 0 / 0.5);
+  height: 2px;
+  left: 0;
+  position: absolute;
+  transition:
+    transform 220ms var(--ease-lift),
+    opacity 160ms linear;
+  width: 20px;
+}
+
+.ico i:nth-child(1) {
+  top: 0;
+}
+
+.ico i:nth-child(2) {
+  top: 6px;
+}
+
+.ico i:nth-child(3) {
+  top: 12px;
+}
+
+.menu-open .ico i:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.menu-open .ico i:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+.menu-open .ico i:nth-child(2) {
+  opacity: 0;
+}
+
+.rm .ico i {
+  transition: opacity 120ms linear;
+}
+
+/* the page fades out under the open menu, then leaves hit-testing entirely (layout and scroll position are kept) */
+.page {
+  transition:
+    opacity 140ms linear,
+    visibility 0s;
+}
+
+.menu-open .page {
+  opacity: 0;
+  transition:
+    opacity 140ms linear,
+    visibility 0s 140ms;
+  visibility: hidden;
+}
+
+.menu {
+  inset: 0;
+  -webkit-overflow-scrolling: touch;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  position: fixed;
+  z-index: 40;
+}
+
+.menu[hidden] {
+  display: none;
+}
+
+.menu-in {
+  min-height: calc(100% + 1px);
+  padding: 84px 0 24px;
+} /* always one pixel to scroll, so the menu (not the page) takes the gesture */
+.menu li {
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    opacity 120ms linear,
+    transform 330ms var(--ease-lift);
+  transition-delay: calc(var(--i) * 30ms);
+}
+
+.menu.in li {
+  opacity: 1;
+  transform: none;
+}
+
+.rm .menu li {
+  transform: none;
+  transition: opacity 120ms linear;
+  transition-delay: 0s;
+}
+
+/* rows run the menu's full width; their text sits on the column */
+.menu a {
+  align-items: center;
+  color: var(--soft);
+  display: flex;
+  font: 400 52px/1 var(--font-head);
+  height: 68px;
+  letter-spacing: -0.02em;
+  padding-inline: var(--gut);
+  -webkit-tap-highlight-color: transparent;
+  text-decoration: none;
+}
+
+.menu .mw {
+  text-shadow: 0 2px 6px rgb(3 8 5 / 0.55);
+} /* a fixed shadow while open: the menu's words leave the per-frame pass */
+.menu a[aria-current] {
+  color: var(--ink);
+}
+
+.menu a[aria-current] .mw {
+  text-decoration: underline;
+  text-decoration-color: var(--rim-c);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.21em;
+}
+
+.menu a:focus-visible {
+  outline-offset: -4px;
+}
+
+@media (hover: hover) {
+  .menu a:hover {
+    color: var(--ink);
+  }
+}
+
+@media (height <= 599px) {
+  .menu a {
+    font-size: 42px;
+    height: 56px;
+  }
+}
+
+@media (width >= 600px) {
+  .bars-btn {
+    right: max(12px, calc(var(--gut) - 14px));
+    top: 12px;
+    transition:
+      opacity 200ms linear,
+      transform 200ms ease-out,
+      visibility 0s;
+  }
+
+  :root:not(.stand, .menu-open) .bars-btn {
+    opacity: 0;
+    transform: translateY(-8px);
+    transition:
+      opacity 200ms linear,
+      transform 200ms ease-out,
+      visibility 0s 200ms;
+    visibility: hidden;
+  }
+}
+
+/* The fixed button covers the column's last 96 px at the top of the window (106 px wide with "Photos", 6 px from the window on
+   phones, its icon on the column edge from 600 px). A heading band's pill therefore follows its heading and keeps --navc clear of
+   the column's right edge: where heading, pill and that strip don't fit on one line, the pill wraps under the heading, so no pill
+   ever scrolls under the button. (main .head outranks a page's own .head rules.) */
+:root {
+  --navc: 108px;
+}
+
+main .head {
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+main .head .more {
+  margin-right: var(--navc);
+}
+
+@media (prefers-contrast: more) {
+  .bars-btn .face {
+    background: var(--plate);
+  }
+
+  .menu .mw {
+    text-shadow: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .bars-btn .face {
+    border: 1px solid CanvasText;
+  }
+}

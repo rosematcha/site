@@ -1,34 +1,38 @@
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Suspense, type ComponentType } from "react";
 
-import { ContributionProvider } from "./components/ContributionProvider";
-import Footer from "./components/Footer";
-import Header from "./components/Header";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
+
 import { useRouteFocus } from "./hooks/useRouteFocus";
-import GuestbookPage from "./pages/GuestbookPage";
-import HomePage from "./pages/HomePage";
-import NotFoundPage from "./pages/NotFoundPage";
-import PhotosPage, { PhotoEventPage } from "./pages/PhotosPage";
-import ProjectsPage from "./pages/ProjectsPage";
-import ResumePage from "./pages/ResumePage";
 
-export default function App() {
+// the pages: imported directly to prerender (pages/all.ts), loaded per route in the browser (main.tsx), so a page ships only its
+// own code; the Suspense boundary sits in the same place in both, so a page still loading keeps its built markup while it hydrates
+export interface Pages {
+  Home: ComponentType;
+  Work: ComponentType;
+  Resume: ComponentType;
+  Photos: ComponentType;
+  Set: ComponentType;
+  Guestbook: ComponentType;
+  NotFound: ComponentType;
+}
+// paths match case-sensitively, as the built files and Netlify's rules do (/Work is Not found); each path is its own page: a new path mounts its page (and attaches the engine to it) afresh, as a page load would
+export default function App({ pages: P }: { pages: Pages }) {
   useRouteFocus();
+  const { pathname } = useLocation();
   return (
-    <ContributionProvider>
-      <Header />
-      <main id="main-content" tabIndex={-1}>
-        <Routes>
-          <Route element={<HomePage />} path="/" />
-          <Route element={<ProjectsPage />} path="/work" />
-          <Route element={<Navigate replace to="/work" />} path="/projects" />
-          <Route element={<ResumePage />} path="/resume" />
-          <Route element={<PhotosPage />} path="/photos" />
-          <Route element={<PhotoEventPage />} path="/photos/:eventId" />
-          <Route element={<GuestbookPage />} path="/guestbook" />
-          <Route element={<NotFoundPage />} path="*" />
-        </Routes>
-      </main>
-      <Footer />
-    </ContributionProvider>
+    // a new boundary per path: the page leaving goes as the URL changes, rather than staying on show (and in reach) under the
+    // next page's URL while that page's chunk comes in
+    <Suspense key={pathname} fallback={null}>
+      <Routes key={pathname}>
+        <Route caseSensitive element={<P.Home />} path="/" />
+        <Route caseSensitive element={<P.Work />} path="/work" />
+        <Route caseSensitive element={<Navigate replace to="/work" />} path="/projects" />
+        <Route caseSensitive element={<P.Resume />} path="/resume" />
+        <Route caseSensitive element={<P.Photos />} path="/photos" />
+        <Route caseSensitive element={<P.Set />} path="/photos/:eventId" />
+        <Route caseSensitive element={<P.Guestbook />} path="/guestbook" />
+        <Route element={<P.NotFound />} path="*" />
+      </Routes>
+    </Suspense>
   );
 }

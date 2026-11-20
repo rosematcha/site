@@ -3,7 +3,8 @@ import path from "node:path";
 
 import { describe, expect, it } from "vitest";
 
-import { clients, coverPhoto, events, featuredProjects, projects, smallerProjects } from "./site";
+import { coverPhoto, events } from "./photos";
+import { clients, featuredProjects, projects, smallerProjects } from "./portfolio";
 
 describe("approved portfolio content", () => {
   it("keeps FilmScraper in the smaller list and the developer-first home choices", () => {
@@ -17,11 +18,21 @@ describe("approved portfolio content", () => {
     expect(projects.some(project => project.title === "Gesso")).toBe(false);
     expect(clients).toHaveLength(8);
   });
-  it("includes all 140 selected photos in 20 sets, with one event for 1906", () => {
+  it("includes all 140 selected photos in 20 sets, newest first, with one event for 1906", () => {
     expect(events).toHaveLength(20);
     expect(events.flatMap(event => event.photos)).toHaveLength(140);
     expect(new Set(events.flatMap(event => event.photos.map(photo => photo.id))).size).toBe(140);
     expect(events.filter(event => event.title.includes("1906"))).toHaveLength(1);
+    const dates = events.map(event => event.date);
+    expect(dates).toEqual([...dates].sort().reverse());
+  });
+  it("covers a set with its chosen photo, or its first when the choice is missing", () => {
+    const [event] = events;
+    if (!event) {
+      throw new Error("No sets");
+    }
+    expect(coverPhoto(event).id).toBe(event.coverId);
+    expect(coverPhoto({ ...event, coverId: "missing" })).toBe(event.photos[0]);
   });
   it.each(events)("$id has a real cover, unique descriptions, and deployable images", event => {
     expect(event.photos).toContainEqual(coverPhoto(event));

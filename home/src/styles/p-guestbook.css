@@ -1,0 +1,118 @@
+:where(.p-guestbook) .g-doc {
+  --doc: 640px;
+  --gap: 14px;
+}
+
+:where(.p-guestbook) .gb-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+  margin-top: 32px;
+}
+
+:where(.p-guestbook) .pair {
+  display: grid;
+  gap: var(--gap);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+:where(.p-guestbook) .gb-form textarea {
+  height: 132px;
+}
+
+:where(.p-guestbook) .send {
+  align-items: center;
+  display: flex;
+  gap: 12px 20px;
+  margin-top: calc(20px - var(--gap));
+}
+
+:where(.p-guestbook) button.btn {
+  background: none;
+  border: 0;
+  cursor: pointer;
+  padding: 0;
+}
+
+:where(.p-guestbook) button.btn:disabled {
+  cursor: default;
+  opacity: 0.6;
+}
+
+:where(.p-guestbook) .gb-status {
+  align-items: center;
+  color: var(--soft);
+  display: flex;
+  font-size: 16px;
+  min-height: 26px;
+}
+
+:where(.p-guestbook) .gb-status p {
+  color: var(--soft);
+}
+
+:where(.p-guestbook) .gb-entries {
+  display: flex;
+  flex-direction: column;
+  gap: 44px;
+  margin-top: 96px;
+}
+
+:where(.p-guestbook) .gb-name {
+  font: 400 26px/1.15 var(--font-head);
+  letter-spacing: -0.005em;
+  overflow-wrap: anywhere;
+}
+
+:where(.p-guestbook) .gb-msg {
+  font-size: 17px;
+  line-height: 1.55;
+  margin-top: 8px;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+:where(.p-guestbook) .gb-date {
+  color: var(--soft);
+  font-size: 15px;
+  margin-top: 10px;
+}
+
+:where(.p-guestbook) .gb-line {
+  color: var(--soft);
+}
+
+:where(.p-guestbook) .tb {
+  background: none;
+  border: 0;
+  color: var(--ink);
+  cursor: pointer;
+  font: inherit;
+  padding: 0;
+}
+
+@media (width >= 1280px) {
+  :where(.p-guestbook) .g-doc {
+    --doc: 720px;
+  }
+}
+
+@media (width <= 599px) {
+  :where(.p-guestbook) .pair {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  :where(.p-guestbook) .send {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  :where(.p-guestbook) .gb-entries {
+    gap: 36px;
+    margin-top: 72px;
+  }
+
+  :where(.p-guestbook) .gb-name {
+    font-size: 22px;
+  }
+}
