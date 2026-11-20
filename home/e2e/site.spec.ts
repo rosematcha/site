@@ -49,7 +49,7 @@ test('phone spotlight and menu restore focus without scroll trapping', async ({ 
   await expect(page.getByRole('link', { name: 'Home', exact: true })).toBeFocused(); await page.keyboard.press('Escape'); await expect(page.getByRole('button', { name: 'Open menu' })).toBeFocused(); await context.close();
 });
 test('gallery keyboard viewer and browser Back return to the originating event', async ({ page }) => {
-  await ready(page, '/photos'); await expect(page.locator('.event-link')).toHaveCount(15); const source = page.locator('.event-link').nth(8); const id = await source.getAttribute('id'); await source.click();
+  await ready(page, '/photos'); await expect(page.locator('.event-link')).toHaveCount(20); const source = page.locator('.event-link').nth(8); const id = await source.getAttribute('id'); await source.click();
   await page.locator('.gallery-photo').first().click(); await expect(page.getByRole('dialog')).toBeVisible();
   await page.keyboard.press('ArrowRight'); await expect(page.locator('figcaption')).toContainText('2 of'); await page.keyboard.press('Escape'); await expect(page.getByRole('dialog')).toHaveCount(0); await expect(page.locator('.gallery-photo').first()).toBeFocused();
   await page.goBack(); if (!id) {throw new Error('Missing event identity');} await expect(page.locator(`#${id}`)).toBeFocused();
@@ -93,7 +93,7 @@ test('static gallery links expose metadata and a complete sitemap without JavaSc
   expect(html).toContain('<title>Muertitos 2026');
   expect(html).toContain('/muertitos-2026/611.webp');
   const sitemap = await request.get('/sitemap.xml'); expect(sitemap.ok()).toBe(true);
-  expect((await sitemap.text()).match(/<loc>/g)).toHaveLength(20);
+  expect((await sitemap.text()).match(/<loc>/g)).toHaveLength(25);
 });
 test('skip navigation and malformed deep links remain usable', async ({ page }) => {
   const errors: string[] = []; page.on('pageerror', error => errors.push(error.message));

@@ -1,78 +1,17 @@
 [
   {
-    "id": "small-scale-big-impact-2026",
-    "title": "Small Scale Big Impact",
-    "year": "2026",
-    "coverId": "690",
-    "photos": [
-      {
-        "id": "690",
-        "src": "/img/photography/small-scale-big-impact-2026/690.webp",
-        "thumbnail": "/img/photography/small-scale-big-impact-2026/690-small.webp",
-        "alt": "A guest wrapped in a tortilla-print blanket beside an oversized teddy bear.",
-        "width": 1600,
-        "height": 1067
-      },
-      {
-        "id": "644",
-        "src": "/img/photography/small-scale-big-impact-2026/644.webp",
-        "thumbnail": "/img/photography/small-scale-big-impact-2026/644-small.webp",
-        "alt": "A guest in a pink shirt photographs the camera in a gallery.",
-        "width": 700,
-        "height": 467
-      },
-      {
-        "id": "689",
-        "src": "/img/photography/small-scale-big-impact-2026/689.webp",
-        "thumbnail": "/img/photography/small-scale-big-impact-2026/689-small.webp",
-        "alt": "Two guests draw at a table covered with art materials.",
-        "width": 700,
-        "height": 467
-      },
-      {
-        "id": "698",
-        "src": "/img/photography/small-scale-big-impact-2026/698.webp",
-        "thumbnail": "/img/photography/small-scale-big-impact-2026/698-small.webp",
-        "alt": "Two guests talk animatedly while holding small artworks.",
-        "width": 1600,
-        "height": 1067
-      },
-      {
-        "id": "662",
-        "src": "/img/photography/small-scale-big-impact-2026/662.webp",
-        "thumbnail": "/img/photography/small-scale-big-impact-2026/662-small.webp",
-        "alt": "A smiling guest stands beside framed artwork.",
-        "width": 700,
-        "height": 467
-      },
-      {
-        "id": "666",
-        "src": "/img/photography/small-scale-big-impact-2026/666.webp",
-        "thumbnail": "/img/photography/small-scale-big-impact-2026/666-small.webp",
-        "alt": "A speaker smiles and shades her eyes at the lectern.",
-        "width": 700,
-        "height": 467
-      },
-      {
-        "id": "697",
-        "src": "/img/photography/small-scale-big-impact-2026/697.webp",
-        "thumbnail": "/img/photography/small-scale-big-impact-2026/697-small.webp",
-        "alt": "Two guests hug in the gallery.",
-        "width": 700,
-        "height": 560
-      }
-    ]
-  },
-  {
     "id": "muertitos-2026",
     "title": "Muertitos",
     "year": "2026",
+    "date": "2026-10-30",
     "coverId": "611",
     "photos": [
       {
         "id": "611",
         "src": "/img/photography/muertitos-2026/611.webp",
         "thumbnail": "/img/photography/muertitos-2026/611-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 343,
         "alt": "A face-painting session seen through a mirror, framed by the painter in the foreground.",
         "width": 1600,
         "height": 1143
@@ -81,6 +20,8 @@
         "id": "607",
         "src": "/img/photography/muertitos-2026/607.webp",
         "thumbnail": "/img/photography/muertitos-2026/607-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
         "alt": "A photographer makes a family portrait between two studio lights.",
         "width": 1600,
         "height": 1067
@@ -89,6 +30,8 @@
         "id": "631",
         "src": "/img/photography/muertitos-2026/631.webp",
         "thumbnail": "/img/photography/muertitos-2026/631-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
         "alt": "A guest carefully paints a moustache on her own face.",
         "width": 1600,
         "height": 1067
@@ -97,6 +40,8 @@
         "id": "604",
         "src": "/img/photography/muertitos-2026/604.webp",
         "thumbnail": "/img/photography/muertitos-2026/604-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
         "alt": "Dancers in feathered headdresses lean toward the performance space.",
         "width": 1600,
         "height": 1067
@@ -105,6 +50,8 @@
         "id": "605",
         "src": "/img/photography/muertitos-2026/605.webp",
         "thumbnail": "/img/photography/muertitos-2026/605-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
         "alt": "A performer raises a drumstick beside a tall drum.",
         "width": 700,
         "height": 467
@@ -113,6 +60,8 @@
         "id": "628",
         "src": "/img/photography/muertitos-2026/628.webp",
         "thumbnail": "/img/photography/muertitos-2026/628-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
         "alt": "A smiling game caller holds up a card.",
         "width": 700,
         "height": 467
@@ -120,15 +69,97 @@
     ]
   },
   {
+    "id": "small-scale-big-impact-2026",
+    "title": "Small Scale Big Impact",
+    "year": "2026",
+    "date": "2026-09-25",
+    "coverId": "690",
+    "photos": [
+      {
+        "id": "690",
+        "src": "/img/photography/small-scale-big-impact-2026/690.webp",
+        "thumbnail": "/img/photography/small-scale-big-impact-2026/690-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
+        "alt": "A guest wrapped in a tortilla-print blanket beside an oversized teddy bear.",
+        "width": 1600,
+        "height": 1067
+      },
+      {
+        "id": "644",
+        "src": "/img/photography/small-scale-big-impact-2026/644.webp",
+        "thumbnail": "/img/photography/small-scale-big-impact-2026/644-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
+        "alt": "A guest in a pink shirt photographs the camera in a gallery.",
+        "width": 700,
+        "height": 467
+      },
+      {
+        "id": "689",
+        "src": "/img/photography/small-scale-big-impact-2026/689.webp",
+        "thumbnail": "/img/photography/small-scale-big-impact-2026/689-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
+        "alt": "Two guests draw at a table covered with art materials.",
+        "width": 700,
+        "height": 467
+      },
+      {
+        "id": "698",
+        "src": "/img/photography/small-scale-big-impact-2026/698.webp",
+        "thumbnail": "/img/photography/small-scale-big-impact-2026/698-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
+        "alt": "Two guests talk animatedly while holding small artworks.",
+        "width": 1600,
+        "height": 1067
+      },
+      {
+        "id": "662",
+        "src": "/img/photography/small-scale-big-impact-2026/662.webp",
+        "thumbnail": "/img/photography/small-scale-big-impact-2026/662-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
+        "alt": "A smiling guest stands beside framed artwork.",
+        "width": 700,
+        "height": 467
+      },
+      {
+        "id": "666",
+        "src": "/img/photography/small-scale-big-impact-2026/666.webp",
+        "thumbnail": "/img/photography/small-scale-big-impact-2026/666-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
+        "alt": "A speaker smiles and shades her eyes at the lectern.",
+        "width": 700,
+        "height": 467
+      },
+      {
+        "id": "697",
+        "src": "/img/photography/small-scale-big-impact-2026/697.webp",
+        "thumbnail": "/img/photography/small-scale-big-impact-2026/697-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 384,
+        "alt": "Two guests hug in the gallery.",
+        "width": 700,
+        "height": 560
+      }
+    ]
+  },
+  {
     "id": "hello-goodbye-2026",
     "title": "Hello Goodbye",
     "year": "2026",
+    "date": "2026-06-06",
     "coverId": "542",
     "photos": [
       {
         "id": "542",
         "src": "/img/photography/hello-goodbye-2026/542.webp",
         "thumbnail": "/img/photography/hello-goodbye-2026/542-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 384,
         "alt": "Two people share an embrace onstage after an award presentation.",
         "width": 1600,
         "height": 1280
@@ -137,6 +168,8 @@
         "id": "509",
         "src": "/img/photography/hello-goodbye-2026/509.webp",
         "thumbnail": "/img/photography/hello-goodbye-2026/509-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
         "alt": "Audience members smile and wave toward the camera.",
         "width": 700,
         "height": 467
@@ -145,6 +178,8 @@
         "id": "512",
         "src": "/img/photography/hello-goodbye-2026/512.webp",
         "thumbnail": "/img/photography/hello-goodbye-2026/512-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
         "alt": "A smiling speaker holds a microphone in front of a projected backdrop.",
         "width": 700,
         "height": 467
@@ -153,6 +188,8 @@
         "id": "539",
         "src": "/img/photography/hello-goodbye-2026/539.webp",
         "thumbnail": "/img/photography/hello-goodbye-2026/539-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 384,
         "alt": "Three people pose with an award certificate and laugh.",
         "width": 700,
         "height": 560
@@ -161,6 +198,8 @@
         "id": "575",
         "src": "/img/photography/hello-goodbye-2026/575.webp",
         "thumbnail": "/img/photography/hello-goodbye-2026/575-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 384,
         "alt": "Guests gather around a table after the ceremony.",
         "width": 700,
         "height": 560
@@ -169,6 +208,8 @@
         "id": "576",
         "src": "/img/photography/hello-goodbye-2026/576.webp",
         "thumbnail": "/img/photography/hello-goodbye-2026/576-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
         "alt": "A young guest and an older guest work together at a table.",
         "width": 700,
         "height": 467
@@ -177,6 +218,8 @@
         "id": "545",
         "src": "/img/photography/hello-goodbye-2026/545.webp",
         "thumbnail": "/img/photography/hello-goodbye-2026/545-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 384,
         "alt": "Two people hug onstage in front of a pink projection.",
         "width": 700,
         "height": 560
@@ -187,12 +230,15 @@
     "id": "1906-2026",
     "title": "1906",
     "year": "2026",
+    "date": "2026-05-29",
     "coverId": "460",
     "photos": [
       {
         "id": "460",
         "src": "/img/photography/1906-2026/460.webp",
         "thumbnail": "/img/photography/1906-2026/460-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
         "alt": "A French horn player performs beyond softly blurred audience silhouettes.",
         "width": 1600,
         "height": 1067
@@ -201,6 +247,8 @@
         "id": "462",
         "src": "/img/photography/1906-2026/462.webp",
         "thumbnail": "/img/photography/1906-2026/462-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
         "alt": "Projected blue imagery crosses a speaker and his large shadow.",
         "width": 1600,
         "height": 1067
@@ -209,6 +257,8 @@
         "id": "491",
         "src": "/img/photography/1906-2026/491.webp",
         "thumbnail": "/img/photography/1906-2026/491-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
         "alt": "A guest playfully presents a small pink handmade object.",
         "width": 700,
         "height": 467
@@ -217,6 +267,8 @@
         "id": "500",
         "src": "/img/photography/1906-2026/500.webp",
         "thumbnail": "/img/photography/1906-2026/500-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 384,
         "alt": "Two visitors point toward a projected installation.",
         "width": 700,
         "height": 560
@@ -225,6 +277,8 @@
         "id": "495",
         "src": "/img/photography/1906-2026/495.webp",
         "thumbnail": "/img/photography/1906-2026/495-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
         "alt": "An artist stands among delicate wire sculptures.",
         "width": 700,
         "height": 467
@@ -233,6 +287,8 @@
         "id": "504",
         "src": "/img/photography/1906-2026/504.webp",
         "thumbnail": "/img/photography/1906-2026/504-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
         "alt": "Guests exchange a greeting beside a sunlit window.",
         "width": 700,
         "height": 467
@@ -241,6 +297,8 @@
         "id": "464",
         "src": "/img/photography/1906-2026/464.webp",
         "thumbnail": "/img/photography/1906-2026/464-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 360,
         "alt": "A seated cellist draws the bow across the strings.",
         "width": 700,
         "height": 525
@@ -249,6 +307,8 @@
         "id": "505",
         "src": "/img/photography/1906-2026/505.webp",
         "thumbnail": "/img/photography/1906-2026/505-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
         "alt": "A guest laughs and gestures in warm side light.",
         "width": 1600,
         "height": 1067
@@ -256,64 +316,267 @@
     ]
   },
   {
-    "id": "block-party-2025",
-    "title": "Block Party",
-    "year": "2025",
-    "coverId": "315",
+    "id": "no-kings-protest-in-austin-2026",
+    "title": "No Kings protest in Austin",
+    "year": "2026",
+    "date": "2026-03-28",
+    "coverId": "709",
     "photos": [
       {
-        "id": "315",
-        "src": "/img/photography/block-party-2025/315.webp",
-        "thumbnail": "/img/photography/block-party-2025/315-small.webp",
-        "alt": "Three friends react to a phone beneath colorful ribbons and string lights.",
+        "id": "709",
+        "src": "/img/photography/no-kings-protest-in-austin-2026/709.webp",
+        "thumbnail": "/img/photography/no-kings-protest-in-austin-2026/709-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 384,
+        "alt": "A smiling protester in sunglasses holds a sign decorated with pom-poms reading \"Free balls for politicians who have none!\"",
+        "width": 1600,
+        "height": 1280
+      },
+      {
+        "id": "701",
+        "src": "/img/photography/no-kings-protest-in-austin-2026/701.webp",
+        "thumbnail": "/img/photography/no-kings-protest-in-austin-2026/701-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
+        "alt": "A protester in a party hat holds a sign reading \"Let's invade Mars next!\" beside a limestone wall.",
         "width": 1600,
         "height": 1067
       },
       {
-        "id": "299",
-        "src": "/img/photography/block-party-2025/299.webp",
-        "thumbnail": "/img/photography/block-party-2025/299-small.webp",
-        "alt": "Two dancers move against a bright orange wall.",
+        "id": "702",
+        "src": "/img/photography/no-kings-protest-in-austin-2026/702.webp",
+        "thumbnail": "/img/photography/no-kings-protest-in-austin-2026/702-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 300,
+        "alt": "A large crowd with signs fills the plaza in front of City Hall.",
+        "width": 1600,
+        "height": 1000
+      },
+      {
+        "id": "703",
+        "src": "/img/photography/no-kings-protest-in-austin-2026/703.webp",
+        "thumbnail": "/img/photography/no-kings-protest-in-austin-2026/703-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 384,
+        "alt": "A protester leads a chant through a megaphone while others hold signs.",
+        "width": 1600,
+        "height": 1280
+      },
+      {
+        "id": "704",
+        "src": "/img/photography/no-kings-protest-in-austin-2026/704.webp",
+        "thumbnail": "/img/photography/no-kings-protest-in-austin-2026/704-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
+        "alt": "Protesters shout and take photos in a dense crowd.",
+        "width": 1600,
+        "height": 1067
+      },
+      {
+        "id": "705",
+        "src": "/img/photography/no-kings-protest-in-austin-2026/705.webp",
+        "thumbnail": "/img/photography/no-kings-protest-in-austin-2026/705-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 475,
+        "alt": "Two protesters in flower crowns sit on a ledge with a monarch butterfly sign.",
+        "width": 1600,
+        "height": 1582
+      },
+      {
+        "id": "706",
+        "src": "/img/photography/no-kings-protest-in-austin-2026/706.webp",
+        "thumbnail": "/img/photography/no-kings-protest-in-austin-2026/706-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 720,
+        "alt": "A protester in a red hat wears a hand-lettered poncho reading \"freedom of speech\" on a stairway.",
+        "width": 1600,
+        "height": 2400
+      },
+      {
+        "id": "707",
+        "src": "/img/photography/no-kings-protest-in-austin-2026/707.webp",
+        "thumbnail": "/img/photography/no-kings-protest-in-austin-2026/707-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
+        "alt": "A smiling protester in a pink jacket sits on a bridge wall above the river.",
+        "width": 1600,
+        "height": 1067
+      },
+      {
+        "id": "708",
+        "src": "/img/photography/no-kings-protest-in-austin-2026/708.webp",
+        "thumbnail": "/img/photography/no-kings-protest-in-austin-2026/708-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 627,
+        "alt": "Two protesters stand with their arms around each other, a \"No Kings\" sign beside them.",
+        "width": 1600,
+        "height": 2089
+      }
+    ]
+  },
+  {
+    "id": "graduation-photos-for-max-2025",
+    "title": "Graduation photos for Max",
+    "year": "2025",
+    "date": "2025-12-08",
+    "coverId": "739",
+    "photos": [
+      {
+        "id": "739",
+        "src": "/img/photography/graduation-photos-for-max-2025/739.webp",
+        "thumbnail": "/img/photography/graduation-photos-for-max-2025/739-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 480,
+        "alt": "A graduate holds up a blank fast-food job application and smiles.",
+        "width": 1600,
+        "height": 1600
+      },
+      {
+        "id": "732",
+        "src": "/img/photography/graduation-photos-for-max-2025/732.webp",
+        "thumbnail": "/img/photography/graduation-photos-for-max-2025/732-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
+        "alt": "A graduate in a purple cap and gown makes peace signs against a brick wall.",
+        "width": 1600,
+        "height": 1067
+      },
+      {
+        "id": "733",
+        "src": "/img/photography/graduation-photos-for-max-2025/733.webp",
+        "thumbnail": "/img/photography/graduation-photos-for-max-2025/733-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
+        "alt": "A graduate in a purple gown sits on sunlit concrete steps.",
+        "width": 1600,
+        "height": 1067
+      },
+      {
+        "id": "734",
+        "src": "/img/photography/graduation-photos-for-max-2025/734.webp",
+        "thumbnail": "/img/photography/graduation-photos-for-max-2025/734-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
+        "alt": "A graduate in a purple cap and gown points at the camera.",
+        "width": 1600,
+        "height": 1067
+      },
+      {
+        "id": "735",
+        "src": "/img/photography/graduation-photos-for-max-2025/735.webp",
+        "thumbnail": "/img/photography/graduation-photos-for-max-2025/735-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
+        "alt": "A graduate leans on a \"Beware of Wild Animals\" sign beside a pond.",
+        "width": 1600,
+        "height": 1067
+      },
+      {
+        "id": "736",
+        "src": "/img/photography/graduation-photos-for-max-2025/736.webp",
+        "thumbnail": "/img/photography/graduation-photos-for-max-2025/736-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
+        "alt": "A graduate lounges in an outdoor chair in a purple gown.",
+        "width": 1600,
+        "height": 1067
+      },
+      {
+        "id": "737",
+        "src": "/img/photography/graduation-photos-for-max-2025/737.webp",
+        "thumbnail": "/img/photography/graduation-photos-for-max-2025/737-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 720,
+        "alt": "A graduate swings a mortarboard toward the camera in motion.",
+        "width": 1600,
+        "height": 2400
+      },
+      {
+        "id": "738",
+        "src": "/img/photography/graduation-photos-for-max-2025/738.webp",
+        "thumbnail": "/img/photography/graduation-photos-for-max-2025/738-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
+        "alt": "A close view of a graduate in sunglasses and a purple cap.",
+        "width": 1600,
+        "height": 1067
+      }
+    ]
+  },
+  {
+    "id": "winter-market-2025",
+    "title": "Winter Market",
+    "year": "2025",
+    "date": "2025-12-05",
+    "coverId": "404",
+    "photos": [
+      {
+        "id": "404",
+        "src": "/img/photography/winter-market-2025/404.webp",
+        "thumbnail": "/img/photography/winter-market-2025/404-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
+        "alt": "Two smiling kids lean together for a close portrait.",
         "width": 700,
         "height": 467
       },
       {
-        "id": "309",
-        "src": "/img/photography/block-party-2025/309.webp",
-        "thumbnail": "/img/photography/block-party-2025/309-small.webp",
-        "alt": "A dancer balances upside down in front of a watching crowd.",
+        "id": "380",
+        "src": "/img/photography/winter-market-2025/380.webp",
+        "thumbnail": "/img/photography/winter-market-2025/380-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
+        "alt": "Two performers extend and bend their arms together on a dark stage.",
+        "width": 1600,
+        "height": 1067
+      },
+      {
+        "id": "369",
+        "src": "/img/photography/winter-market-2025/369.webp",
+        "thumbnail": "/img/photography/winter-market-2025/369-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
+        "alt": "A participant holds up a blue handmade snowflake.",
         "width": 700,
         "height": 467
       },
       {
-        "id": "302",
-        "src": "/img/photography/block-party-2025/302.webp",
-        "thumbnail": "/img/photography/block-party-2025/302-small.webp",
-        "alt": "A participant paints a large colorful surface.",
+        "id": "373",
+        "src": "/img/photography/winter-market-2025/373.webp",
+        "thumbnail": "/img/photography/winter-market-2025/373-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 384,
+        "alt": "A visitor leans toward drawings on a gallery wall.",
+        "width": 700,
+        "height": 560
+      },
+      {
+        "id": "381",
+        "src": "/img/photography/winter-market-2025/381.webp",
+        "thumbnail": "/img/photography/winter-market-2025/381-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
+        "alt": "An ensemble raises and stretches their arms across the stage.",
+        "width": 1600,
+        "height": 1067
+      },
+      {
+        "id": "391",
+        "src": "/img/photography/winter-market-2025/391.webp",
+        "thumbnail": "/img/photography/winter-market-2025/391-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
+        "alt": "Three performers act around a red-covered table.",
         "width": 700,
         "height": 467
       },
       {
-        "id": "314",
-        "src": "/img/photography/block-party-2025/314.webp",
-        "thumbnail": "/img/photography/block-party-2025/314-small.webp",
-        "alt": "A guest smiles directly at the camera in the gallery.",
-        "width": 700,
-        "height": 700
-      },
-      {
-        "id": "313",
-        "src": "/img/photography/block-party-2025/313.webp",
-        "thumbnail": "/img/photography/block-party-2025/313-small.webp",
-        "alt": "Three friends strike playful poses against a pink wall.",
-        "width": 700,
-        "height": 467
-      },
-      {
-        "id": "305",
-        "src": "/img/photography/block-party-2025/305.webp",
-        "thumbnail": "/img/photography/block-party-2025/305-small.webp",
-        "alt": "Volunteers sort colorful snack boxes at a table.",
+        "id": "402",
+        "src": "/img/photography/winter-market-2025/402.webp",
+        "thumbnail": "/img/photography/winter-market-2025/402-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
+        "alt": "A singer opens their mouth wide at the microphone.",
         "width": 700,
         "height": 467
       }
@@ -323,12 +586,15 @@
     "id": "small-scale-big-impact-2025",
     "title": "Small Scale Big Impact",
     "year": "2025",
+    "date": "2025-09-21",
     "coverId": "334",
     "photos": [
       {
         "id": "334",
         "src": "/img/photography/small-scale-big-impact-2025/334.webp",
         "thumbnail": "/img/photography/small-scale-big-impact-2025/334-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
         "alt": "Three guests point their cameras back at the photographer.",
         "width": 1600,
         "height": 1067
@@ -337,6 +603,8 @@
         "id": "329",
         "src": "/img/photography/small-scale-big-impact-2025/329.webp",
         "thumbnail": "/img/photography/small-scale-big-impact-2025/329-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
         "alt": "A caterer serves a guest beside a brightly lit window.",
         "width": 1600,
         "height": 1067
@@ -345,6 +613,8 @@
         "id": "325",
         "src": "/img/photography/small-scale-big-impact-2025/325.webp",
         "thumbnail": "/img/photography/small-scale-big-impact-2025/325-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
         "alt": "Two guests laugh together beside a table.",
         "width": 700,
         "height": 467
@@ -353,6 +623,8 @@
         "id": "351",
         "src": "/img/photography/small-scale-big-impact-2025/351.webp",
         "thumbnail": "/img/photography/small-scale-big-impact-2025/351-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
         "alt": "A visitor bends toward a colorful sculpture on a pedestal.",
         "width": 700,
         "height": 467
@@ -361,6 +633,8 @@
         "id": "354",
         "src": "/img/photography/small-scale-big-impact-2025/354.webp",
         "thumbnail": "/img/photography/small-scale-big-impact-2025/354-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
         "alt": "A group talks and laughs under green event lighting.",
         "width": 700,
         "height": 467
@@ -369,6 +643,8 @@
         "id": "349",
         "src": "/img/photography/small-scale-big-impact-2025/349.webp",
         "thumbnail": "/img/photography/small-scale-big-impact-2025/349-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
         "alt": "A masked guest joins two friends for a selfie.",
         "width": 700,
         "height": 467
@@ -377,6 +653,8 @@
         "id": "364",
         "src": "/img/photography/small-scale-big-impact-2025/364.webp",
         "thumbnail": "/img/photography/small-scale-big-impact-2025/364-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 384,
         "alt": "A guest peeks over a layered sculpture with a broad smile.",
         "width": 700,
         "height": 560
@@ -384,79 +662,18 @@
     ]
   },
   {
-    "id": "winter-market-2025",
-    "title": "Winter Market",
-    "year": "2025",
-    "coverId": "380",
-    "photos": [
-      {
-        "id": "380",
-        "src": "/img/photography/winter-market-2025/380.webp",
-        "thumbnail": "/img/photography/winter-market-2025/380-small.webp",
-        "alt": "Two performers extend and bend their arms together on a dark stage.",
-        "width": 1600,
-        "height": 1067
-      },
-      {
-        "id": "369",
-        "src": "/img/photography/winter-market-2025/369.webp",
-        "thumbnail": "/img/photography/winter-market-2025/369-small.webp",
-        "alt": "A participant holds up a blue handmade snowflake.",
-        "width": 700,
-        "height": 467
-      },
-      {
-        "id": "373",
-        "src": "/img/photography/winter-market-2025/373.webp",
-        "thumbnail": "/img/photography/winter-market-2025/373-small.webp",
-        "alt": "A visitor leans toward drawings on a gallery wall.",
-        "width": 700,
-        "height": 560
-      },
-      {
-        "id": "381",
-        "src": "/img/photography/winter-market-2025/381.webp",
-        "thumbnail": "/img/photography/winter-market-2025/381-small.webp",
-        "alt": "An ensemble raises and stretches their arms across the stage.",
-        "width": 1600,
-        "height": 1067
-      },
-      {
-        "id": "391",
-        "src": "/img/photography/winter-market-2025/391.webp",
-        "thumbnail": "/img/photography/winter-market-2025/391-small.webp",
-        "alt": "Three performers act around a red-covered table.",
-        "width": 700,
-        "height": 467
-      },
-      {
-        "id": "402",
-        "src": "/img/photography/winter-market-2025/402.webp",
-        "thumbnail": "/img/photography/winter-market-2025/402-small.webp",
-        "alt": "A singer opens their mouth wide at the microphone.",
-        "width": 700,
-        "height": 467
-      },
-      {
-        "id": "404",
-        "src": "/img/photography/winter-market-2025/404.webp",
-        "thumbnail": "/img/photography/winter-market-2025/404-small.webp",
-        "alt": "Two smiling friends lean together for a close portrait.",
-        "width": 700,
-        "height": 467
-      }
-    ]
-  },
-  {
     "id": "youth-summit-2025",
     "title": "Youth Summit",
     "year": "2025",
+    "date": "2025-07-11",
     "coverId": "453",
     "photos": [
       {
         "id": "453",
         "src": "/img/photography/youth-summit-2025/453.webp",
         "thumbnail": "/img/photography/youth-summit-2025/453-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
         "alt": "Three participants sit and recline on the floor in conversation.",
         "width": 1600,
         "height": 1067
@@ -465,6 +682,8 @@
         "id": "414",
         "src": "/img/photography/youth-summit-2025/414.webp",
         "thumbnail": "/img/photography/youth-summit-2025/414-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
         "alt": "Two participants examine materials together at a table.",
         "width": 700,
         "height": 467
@@ -473,6 +692,8 @@
         "id": "435",
         "src": "/img/photography/youth-summit-2025/435.webp",
         "thumbnail": "/img/photography/youth-summit-2025/435-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
         "alt": "A young accordion player performs beside accompanying musicians.",
         "width": 700,
         "height": 467
@@ -481,6 +702,8 @@
         "id": "436",
         "src": "/img/photography/youth-summit-2025/436.webp",
         "thumbnail": "/img/photography/youth-summit-2025/436-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 384,
         "alt": "A participant works on a print at a wooden table.",
         "width": 700,
         "height": 560
@@ -489,6 +712,8 @@
         "id": "444",
         "src": "/img/photography/youth-summit-2025/444.webp",
         "thumbnail": "/img/photography/youth-summit-2025/444-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
         "alt": "A participant raises both hands with a wide-eyed expression.",
         "width": 1600,
         "height": 1067
@@ -497,6 +722,8 @@
         "id": "449",
         "src": "/img/photography/youth-summit-2025/449.webp",
         "thumbnail": "/img/photography/youth-summit-2025/449-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
         "alt": "Two participants concentrate on a craft project together.",
         "width": 700,
         "height": 467
@@ -505,6 +732,8 @@
         "id": "458",
         "src": "/img/photography/youth-summit-2025/458.webp",
         "thumbnail": "/img/photography/youth-summit-2025/458-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
         "alt": "Two people draw side by side on a large white wall.",
         "width": 700,
         "height": 467
@@ -512,98 +741,170 @@
     ]
   },
   {
-    "id": "block-party-2024",
+    "id": "block-party-2025",
     "title": "Block Party",
-    "year": "2024",
-    "coverId": "247",
+    "year": "2025",
+    "date": "2025-04-26",
+    "coverId": "315",
     "photos": [
       {
-        "id": "247",
-        "src": "/img/photography/block-party-2024/247.webp",
-        "thumbnail": "/img/photography/block-party-2024/247-small.webp",
-        "alt": "A child holds a handmade puppet in front of a bright pink wall.",
+        "id": "315",
+        "src": "/img/photography/block-party-2025/315.webp",
+        "thumbnail": "/img/photography/block-party-2025/315-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
+        "alt": "Three friends react to a phone beneath colorful ribbons and string lights.",
+        "width": 1600,
+        "height": 1067
+      },
+      {
+        "id": "299",
+        "src": "/img/photography/block-party-2025/299.webp",
+        "thumbnail": "/img/photography/block-party-2025/299-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
+        "alt": "Two dancers move against a bright orange wall.",
         "width": 700,
         "height": 467
       },
       {
-        "id": "237",
-        "src": "/img/photography/block-party-2024/237.webp",
-        "thumbnail": "/img/photography/block-party-2024/237-small.webp",
-        "alt": "Two guests pose together against an orange wall.",
-        "width": 700,
-        "height": 560
-      },
-      {
-        "id": "243",
-        "src": "/img/photography/block-party-2024/243.webp",
-        "thumbnail": "/img/photography/block-party-2024/243-small.webp",
-        "alt": "A child and an adult work together at a printmaking station.",
+        "id": "309",
+        "src": "/img/photography/block-party-2025/309.webp",
+        "thumbnail": "/img/photography/block-party-2025/309-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
+        "alt": "A dancer balances upside down in front of a watching crowd.",
         "width": 700,
         "height": 467
       },
       {
-        "id": "244",
-        "src": "/img/photography/block-party-2024/244.webp",
-        "thumbnail": "/img/photography/block-party-2024/244-small.webp",
-        "alt": "A guest shares a close moment with a dog.",
+        "id": "302",
+        "src": "/img/photography/block-party-2025/302.webp",
+        "thumbnail": "/img/photography/block-party-2025/302-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
+        "alt": "A participant paints a large colorful surface.",
         "width": 700,
         "height": 467
       },
       {
-        "id": "256",
-        "src": "/img/photography/block-party-2024/256.webp",
-        "thumbnail": "/img/photography/block-party-2024/256-small.webp",
-        "alt": "A vendor sits behind a table of handmade artwork.",
+        "id": "314",
+        "src": "/img/photography/block-party-2025/314.webp",
+        "thumbnail": "/img/photography/block-party-2025/314-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 480,
+        "alt": "A guest smiles directly at the camera in the gallery.",
+        "width": 700,
+        "height": 700
+      },
+      {
+        "id": "313",
+        "src": "/img/photography/block-party-2025/313.webp",
+        "thumbnail": "/img/photography/block-party-2025/313-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
+        "alt": "Three friends strike playful poses against a pink wall.",
         "width": 700,
         "height": 467
       },
       {
-        "id": "261",
-        "src": "/img/photography/block-party-2024/261.webp",
-        "thumbnail": "/img/photography/block-party-2024/261-small.webp",
-        "alt": "A jewelry vendor makes a playful face beside her display.",
+        "id": "305",
+        "src": "/img/photography/block-party-2025/305.webp",
+        "thumbnail": "/img/photography/block-party-2025/305-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
+        "alt": "Volunteers sort colorful snack boxes at a table.",
         "width": 700,
         "height": 467
       }
     ]
   },
   {
-    "id": "thumb-war-2024",
-    "title": "Thumb War",
-    "year": "2024",
-    "coverId": "270",
+    "id": "stonewall-action-launch-party-2025",
+    "title": "Stonewall Action launch party",
+    "year": "2025",
+    "date": "2025-03-27",
+    "coverId": "724",
     "photos": [
       {
-        "id": "270",
-        "src": "/img/photography/thumb-war-2024/270.webp",
-        "thumbnail": "/img/photography/thumb-war-2024/270-small.webp",
-        "alt": "A participant holds up a thumb with a tiny face painted on it.",
+        "id": "724",
+        "src": "/img/photography/stonewall-action-launch-party-2025/724.webp",
+        "thumbnail": "/img/photography/stonewall-action-launch-party-2025/724-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
+        "alt": "People in a bar raise numbered bricks overhead and cheer.",
         "width": 1600,
-        "height": 1600
+        "height": 1067
       },
       {
-        "id": "267",
-        "src": "/img/photography/thumb-war-2024/267.webp",
-        "thumbnail": "/img/photography/thumb-war-2024/267-small.webp",
-        "alt": "Two competitors thumb-wrestle across a table as friends watch.",
-        "width": 700,
-        "height": 467
+        "id": "725",
+        "src": "/img/photography/stonewall-action-launch-party-2025/725.webp",
+        "thumbnail": "/img/photography/stonewall-action-launch-party-2025/725-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
+        "alt": "Guests talk at a bar lined with bottles under colored lights.",
+        "width": 1600,
+        "height": 1067
       },
       {
-        "id": "269",
-        "src": "/img/photography/thumb-war-2024/269.webp",
-        "thumbnail": "/img/photography/thumb-war-2024/269-small.webp",
-        "alt": "A close thumb-wrestling match surrounded by smiling spectators.",
-        "width": 700,
-        "height": 467
+        "id": "726",
+        "src": "/img/photography/stonewall-action-launch-party-2025/726.webp",
+        "thumbnail": "/img/photography/stonewall-action-launch-party-2025/726-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
+        "alt": "Two people talk across a bar beside small rainbow flags, one holding a brick.",
+        "width": 1600,
+        "height": 1067
       },
       {
-        "id": "268",
-        "src": "/img/photography/thumb-war-2024/268.webp",
-        "thumbnail": "/img/photography/thumb-war-2024/268-small.webp",
-        "alt": "Two participants react to each other while sitting on a couch.",
-        "width": 700,
-        "height": 467
+        "id": "727",
+        "src": "/img/photography/stonewall-action-launch-party-2025/727.webp",
+        "thumbnail": "/img/photography/stonewall-action-launch-party-2025/727-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
+        "alt": "A speaker in a rainbow shirt addresses the room through a microphone.",
+        "width": 1600,
+        "height": 1067
+      },
+      {
+        "id": "728",
+        "src": "/img/photography/stonewall-action-launch-party-2025/728.webp",
+        "thumbnail": "/img/photography/stonewall-action-launch-party-2025/728-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
+        "alt": "A speaker holds a brick and a microphone in front of a red curtain.",
+        "width": 1600,
+        "height": 1067
+      },
+      {
+        "id": "729",
+        "src": "/img/photography/stonewall-action-launch-party-2025/729.webp",
+        "thumbnail": "/img/photography/stonewall-action-launch-party-2025/729-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
+        "alt": "The audience faces the stage under a ceiling of hanging lights.",
+        "width": 1600,
+        "height": 1067
+      },
+      {
+        "id": "730",
+        "src": "/img/photography/stonewall-action-launch-party-2025/730.webp",
+        "thumbnail": "/img/photography/stonewall-action-launch-party-2025/730-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 720,
+        "alt": "A person laughs beside a tower of stacked bricks.",
+        "width": 1600,
+        "height": 2400
+      },
+      {
+        "id": "731",
+        "src": "/img/photography/stonewall-action-launch-party-2025/731.webp",
+        "thumbnail": "/img/photography/stonewall-action-launch-party-2025/731-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
+        "alt": "Two people pose together, one holding a brick.",
+        "width": 1600,
+        "height": 1067
       }
     ]
   },
@@ -611,21 +912,26 @@
     "id": "small-scale-big-impact-2024",
     "title": "Small Scale Big Impact",
     "year": "2024",
-    "coverId": "291",
+    "date": "2024-09-27",
+    "coverId": "271",
     "photos": [
-      {
-        "id": "291",
-        "src": "/img/photography/small-scale-big-impact-2024/291.webp",
-        "thumbnail": "/img/photography/small-scale-big-impact-2024/291-small.webp",
-        "alt": "Two guests laugh together under vivid pink event lighting.",
-        "width": 700,
-        "height": 467
-      },
       {
         "id": "271",
         "src": "/img/photography/small-scale-big-impact-2024/271.webp",
         "thumbnail": "/img/photography/small-scale-big-impact-2024/271-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
         "alt": "A guest turns toward the camera while holding a painting.",
+        "width": 700,
+        "height": 467
+      },
+      {
+        "id": "291",
+        "src": "/img/photography/small-scale-big-impact-2024/291.webp",
+        "thumbnail": "/img/photography/small-scale-big-impact-2024/291-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
+        "alt": "Two guests laugh together under vivid pink event lighting.",
         "width": 700,
         "height": 467
       },
@@ -633,6 +939,8 @@
         "id": "287",
         "src": "/img/photography/small-scale-big-impact-2024/287.webp",
         "thumbnail": "/img/photography/small-scale-big-impact-2024/287-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
         "alt": "Three guests chat around a table in the gallery.",
         "width": 700,
         "height": 467
@@ -641,6 +949,8 @@
         "id": "293",
         "src": "/img/photography/small-scale-big-impact-2024/293.webp",
         "thumbnail": "/img/photography/small-scale-big-impact-2024/293-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
         "alt": "Two guests talk as one gestures with an outstretched hand.",
         "width": 700,
         "height": 467
@@ -649,6 +959,8 @@
         "id": "285",
         "src": "/img/photography/small-scale-big-impact-2024/285.webp",
         "thumbnail": "/img/photography/small-scale-big-impact-2024/285-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
         "alt": "A guest points her camera toward the photographer.",
         "width": 700,
         "height": 467
@@ -657,6 +969,8 @@
         "id": "295",
         "src": "/img/photography/small-scale-big-impact-2024/295.webp",
         "thumbnail": "/img/photography/small-scale-big-impact-2024/295-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 384,
         "alt": "A smiling guest demonstrates a yo-yo trick.",
         "width": 700,
         "height": 560
@@ -664,122 +978,199 @@
     ]
   },
   {
-    "id": "dunkin-bts-2023",
-    "title": "Dunkin’ BTS",
-    "year": "2023",
-    "coverId": "175",
+    "id": "block-party-2024",
+    "title": "Block Party",
+    "year": "2024",
+    "date": "2024-05-18",
+    "coverId": "247",
     "photos": [
       {
-        "id": "175",
-        "src": "/img/photography/dunkin-bts-2023/175.webp",
-        "thumbnail": "/img/photography/dunkin-bts-2023/175-small.webp",
-        "alt": "A film crew lifts a player toward the basketball hoop for a staged dunk.",
-        "width": 1600,
-        "height": 2400
-      },
-      {
-        "id": "179",
-        "src": "/img/photography/dunkin-bts-2023/179.webp",
-        "thumbnail": "/img/photography/dunkin-bts-2023/179-small.webp",
-        "alt": "A camera operator and boom operator film together on a gym floor.",
+        "id": "247",
+        "src": "/img/photography/block-party-2024/247.webp",
+        "thumbnail": "/img/photography/block-party-2024/247-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
+        "alt": "A child holds a handmade puppet in front of a bright pink wall.",
         "width": 700,
         "height": 467
       },
       {
-        "id": "178",
-        "src": "/img/photography/dunkin-bts-2023/178.webp",
-        "thumbnail": "/img/photography/dunkin-bts-2023/178-small.webp",
-        "alt": "A crew member holds a clapperboard in front of a camera.",
+        "id": "237",
+        "src": "/img/photography/block-party-2024/237.webp",
+        "thumbnail": "/img/photography/block-party-2024/237-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 384,
+        "alt": "Two guests pose together against an orange wall.",
         "width": 700,
         "height": 560
       },
       {
-        "id": "167",
-        "src": "/img/photography/dunkin-bts-2023/167.webp",
-        "thumbnail": "/img/photography/dunkin-bts-2023/167-small.webp",
-        "alt": "Crew members crouch and pose around a friend lying on the gym floor.",
+        "id": "243",
+        "src": "/img/photography/block-party-2024/243.webp",
+        "thumbnail": "/img/photography/block-party-2024/243-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
+        "alt": "A child and an adult work together at a printmaking station.",
         "width": 700,
         "height": 467
       },
       {
-        "id": "158",
-        "src": "/img/photography/dunkin-bts-2023/158.webp",
-        "thumbnail": "/img/photography/dunkin-bts-2023/158-small.webp",
-        "alt": "A basketball rests in a patch of warm light reflected on the gym floor.",
+        "id": "244",
+        "src": "/img/photography/block-party-2024/244.webp",
+        "thumbnail": "/img/photography/block-party-2024/244-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
+        "alt": "A guest shares a close moment with a dog.",
         "width": 700,
         "height": 467
       },
       {
-        "id": "168",
-        "src": "/img/photography/dunkin-bts-2023/168.webp",
-        "thumbnail": "/img/photography/dunkin-bts-2023/168-small.webp",
-        "alt": "An upside-down portrait of a crew member holding a camera.",
+        "id": "256",
+        "src": "/img/photography/block-party-2024/256.webp",
+        "thumbnail": "/img/photography/block-party-2024/256-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
+        "alt": "A vendor sits behind a table of handmade artwork.",
         "width": 700,
         "height": 467
       },
       {
-        "id": "161",
-        "src": "/img/photography/dunkin-bts-2023/161.webp",
-        "thumbnail": "/img/photography/dunkin-bts-2023/161-small.webp",
-        "alt": "A smiling crew member holds a handmade cheering sign.",
+        "id": "261",
+        "src": "/img/photography/block-party-2024/261.webp",
+        "thumbnail": "/img/photography/block-party-2024/261-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
+        "alt": "A jewelry vendor makes a playful face beside her display.",
+        "width": 700,
+        "height": 467
+      }
+    ]
+  },
+  {
+    "id": "solar-eclipse-at-utsa-2024",
+    "title": "Solar eclipse at UTSA",
+    "year": "2024",
+    "date": "2024-04-08",
+    "coverId": "717",
+    "photos": [
+      {
+        "id": "717",
+        "src": "/img/photography/solar-eclipse-at-utsa-2024/717.webp",
+        "thumbnail": "/img/photography/solar-eclipse-at-utsa-2024/717-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
+        "alt": "Four people in eclipse glasses lean back on a blanket to look at the sky.",
+        "width": 1600,
+        "height": 1067
+      },
+      {
+        "id": "718",
+        "src": "/img/photography/solar-eclipse-at-utsa-2024/718.webp",
+        "thumbnail": "/img/photography/solar-eclipse-at-utsa-2024/718-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
+        "alt": "A large crowd in eclipse glasses sits on a field in front of campus buildings.",
+        "width": 1600,
+        "height": 1068
+      },
+      {
+        "id": "719",
+        "src": "/img/photography/solar-eclipse-at-utsa-2024/719.webp",
+        "thumbnail": "/img/photography/solar-eclipse-at-utsa-2024/719-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 720,
+        "alt": "A person stands in the crowd and points a phone straight up at the sky.",
+        "width": 1600,
+        "height": 2400
+      },
+      {
+        "id": "720",
+        "src": "/img/photography/solar-eclipse-at-utsa-2024/720.webp",
+        "thumbnail": "/img/photography/solar-eclipse-at-utsa-2024/720-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
+        "alt": "A person in a yellow shirt photographs the sky while others watch through eclipse glasses.",
+        "width": 1600,
+        "height": 1068
+      },
+      {
+        "id": "721",
+        "src": "/img/photography/solar-eclipse-at-utsa-2024/721.webp",
+        "thumbnail": "/img/photography/solar-eclipse-at-utsa-2024/721-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
+        "alt": "Two people sitting on the grass look up, one through eclipse glasses.",
+        "width": 1600,
+        "height": 1068
+      },
+      {
+        "id": "722",
+        "src": "/img/photography/solar-eclipse-at-utsa-2024/722.webp",
+        "thumbnail": "/img/photography/solar-eclipse-at-utsa-2024/722-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
+        "alt": "A person lies on the turf holding eclipse glasses to their face.",
+        "width": 1600,
+        "height": 1068
+      },
+      {
+        "id": "723",
+        "src": "/img/photography/solar-eclipse-at-utsa-2024/723.webp",
+        "thumbnail": "/img/photography/solar-eclipse-at-utsa-2024/723-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
+        "alt": "The crowd on the field as the sky darkens and stadium lights come on.",
+        "width": 1600,
+        "height": 1068
+      }
+    ]
+  },
+  {
+    "id": "thumb-war-2024",
+    "title": "Thumb War",
+    "year": "2024",
+    "date": "2024-02-02",
+    "coverId": "270",
+    "photos": [
+      {
+        "id": "270",
+        "src": "/img/photography/thumb-war-2024/270.webp",
+        "thumbnail": "/img/photography/thumb-war-2024/270-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 480,
+        "alt": "A participant holds up a thumb with a tiny face painted on it.",
+        "width": 1600,
+        "height": 1600
+      },
+      {
+        "id": "267",
+        "src": "/img/photography/thumb-war-2024/267.webp",
+        "thumbnail": "/img/photography/thumb-war-2024/267-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
+        "alt": "Two competitors thumb-wrestle across a table as friends watch.",
         "width": 700,
         "height": 467
       },
       {
-        "id": "171",
-        "src": "/img/photography/dunkin-bts-2023/171.webp",
-        "thumbnail": "/img/photography/dunkin-bts-2023/171-small.webp",
-        "alt": "A wide view of a crew helping a player reach the basketball hoop.",
+        "id": "269",
+        "src": "/img/photography/thumb-war-2024/269.webp",
+        "thumbnail": "/img/photography/thumb-war-2024/269-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
+        "alt": "A close thumb-wrestling match surrounded by smiling spectators.",
         "width": 700,
         "height": 467
       },
       {
-        "id": "118",
-        "src": "/img/photography/dunkin-bts-2023/118.webp",
-        "thumbnail": "/img/photography/dunkin-bts-2023/118-small.webp",
-        "alt": "Cast and crew share a laugh on the bedroom floor during the first day of filming.",
-        "width": 1800,
-        "height": 1200
-      },
-      {
-        "id": "125",
-        "src": "/img/photography/dunkin-bts-2023/125.webp",
-        "thumbnail": "/img/photography/dunkin-bts-2023/125-small.webp",
-        "alt": "A boom operator raises the microphone over the kitchen set on Day 1.",
-        "width": 1800,
-        "height": 1200
-      },
-      {
-        "id": "132",
-        "src": "/img/photography/dunkin-bts-2023/132.webp",
-        "thumbnail": "/img/photography/dunkin-bts-2023/132-small.webp",
-        "alt": "The Day 1 crew gathers around a cinema camera to review the shot.",
-        "width": 1800,
-        "height": 1200
-      },
-      {
-        "id": "139",
-        "src": "/img/photography/dunkin-bts-2023/139.webp",
-        "thumbnail": "/img/photography/dunkin-bts-2023/139-small.webp",
-        "alt": "A basketball player leaps over a park bench during the second day of filming.",
-        "width": 1800,
-        "height": 1200
-      },
-      {
-        "id": "147",
-        "src": "/img/photography/dunkin-bts-2023/147.webp",
-        "thumbnail": "/img/photography/dunkin-bts-2023/147-small.webp",
-        "alt": "Three crew members adjust the cinema camera together on the outdoor Day 2 set.",
-        "width": 1800,
-        "height": 1440
-      },
-      {
-        "id": "153",
-        "src": "/img/photography/dunkin-bts-2023/153.webp",
-        "thumbnail": "/img/photography/dunkin-bts-2023/153-small.webp",
-        "alt": "A basketball player stretches out on the court with the ball tucked beside his head on Day 2.",
-        "width": 1800,
-        "height": 1200
+        "id": "268",
+        "src": "/img/photography/thumb-war-2024/268.webp",
+        "thumbnail": "/img/photography/thumb-war-2024/268-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
+        "alt": "Two participants react to each other while sitting on a couch.",
+        "width": 700,
+        "height": 467
       }
     ]
   },
@@ -787,12 +1178,15 @@
     "id": "alas-open-mic-2023",
     "title": "ALAS Open Mic",
     "year": "2023",
+    "date": "2023-08-03",
     "coverId": "14",
     "photos": [
       {
         "id": "14",
         "src": "/img/photography/alas-open-mic-2023/14.webp",
         "thumbnail": "/img/photography/alas-open-mic-2023/14-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
         "alt": "A guitarist concentrates on playing under warm stage light.",
         "width": 700,
         "height": 467
@@ -801,6 +1195,8 @@
         "id": "6",
         "src": "/img/photography/alas-open-mic-2023/6.webp",
         "thumbnail": "/img/photography/alas-open-mic-2023/6-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 384,
         "alt": "A costumed performer gestures beside a puppet stage under purple light.",
         "width": 700,
         "height": 560
@@ -809,6 +1205,8 @@
         "id": "15",
         "src": "/img/photography/alas-open-mic-2023/15.webp",
         "thumbnail": "/img/photography/alas-open-mic-2023/15-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
         "alt": "Hands adjust music equipment under magenta stage lighting.",
         "width": 700,
         "height": 467
@@ -817,6 +1215,8 @@
         "id": "26",
         "src": "/img/photography/alas-open-mic-2023/26.webp",
         "thumbnail": "/img/photography/alas-open-mic-2023/26-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 384,
         "alt": "A speaker gestures with open hands against a dark stage.",
         "width": 700,
         "height": 560
@@ -825,6 +1225,8 @@
         "id": "32",
         "src": "/img/photography/alas-open-mic-2023/32.webp",
         "thumbnail": "/img/photography/alas-open-mic-2023/32-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
         "alt": "A performer sings with an outstretched striped sleeve.",
         "width": 700,
         "height": 467
@@ -833,7 +1235,217 @@
         "id": "34",
         "src": "/img/photography/alas-open-mic-2023/34.webp",
         "thumbnail": "/img/photography/alas-open-mic-2023/34-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
         "alt": "An audience member smiles with her hands clasped under her chin.",
+        "width": 700,
+        "height": 467
+      }
+    ]
+  },
+  {
+    "id": "dunkin-bts-2023",
+    "title": "Dunkin’ BTS",
+    "year": "2023",
+    "date": "2023-08-01",
+    "coverId": "175",
+    "photos": [
+      {
+        "id": "175",
+        "src": "/img/photography/dunkin-bts-2023/175.webp",
+        "thumbnail": "/img/photography/dunkin-bts-2023/175-small.webp",
+        "thumbnailWidth": 320,
+        "thumbnailHeight": 480,
+        "alt": "A film crew lifts a player toward the basketball hoop for a staged dunk.",
+        "width": 1600,
+        "height": 2400
+      },
+      {
+        "id": "179",
+        "src": "/img/photography/dunkin-bts-2023/179.webp",
+        "thumbnail": "/img/photography/dunkin-bts-2023/179-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
+        "alt": "A camera operator and boom operator film together on a gym floor.",
+        "width": 700,
+        "height": 467
+      },
+      {
+        "id": "178",
+        "src": "/img/photography/dunkin-bts-2023/178.webp",
+        "thumbnail": "/img/photography/dunkin-bts-2023/178-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 384,
+        "alt": "A crew member holds a clapperboard in front of a camera.",
+        "width": 700,
+        "height": 560
+      },
+      {
+        "id": "167",
+        "src": "/img/photography/dunkin-bts-2023/167.webp",
+        "thumbnail": "/img/photography/dunkin-bts-2023/167-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
+        "alt": "Crew members crouch and pose around a friend lying on the gym floor.",
+        "width": 700,
+        "height": 467
+      },
+      {
+        "id": "158",
+        "src": "/img/photography/dunkin-bts-2023/158.webp",
+        "thumbnail": "/img/photography/dunkin-bts-2023/158-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
+        "alt": "A basketball rests in a patch of warm light reflected on the gym floor.",
+        "width": 700,
+        "height": 467
+      },
+      {
+        "id": "168",
+        "src": "/img/photography/dunkin-bts-2023/168.webp",
+        "thumbnail": "/img/photography/dunkin-bts-2023/168-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
+        "alt": "An upside-down portrait of a crew member holding a camera.",
+        "width": 700,
+        "height": 467
+      },
+      {
+        "id": "161",
+        "src": "/img/photography/dunkin-bts-2023/161.webp",
+        "thumbnail": "/img/photography/dunkin-bts-2023/161-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
+        "alt": "A smiling crew member holds a handmade cheering sign.",
+        "width": 700,
+        "height": 467
+      },
+      {
+        "id": "171",
+        "src": "/img/photography/dunkin-bts-2023/171.webp",
+        "thumbnail": "/img/photography/dunkin-bts-2023/171-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
+        "alt": "A wide view of a crew helping a player reach the basketball hoop.",
+        "width": 700,
+        "height": 467
+      },
+      {
+        "id": "118",
+        "src": "/img/photography/dunkin-bts-2023/118.webp",
+        "thumbnail": "/img/photography/dunkin-bts-2023/118-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
+        "alt": "Cast and crew share a laugh on the bedroom floor during the first day of filming.",
+        "width": 1800,
+        "height": 1200
+      },
+      {
+        "id": "125",
+        "src": "/img/photography/dunkin-bts-2023/125.webp",
+        "thumbnail": "/img/photography/dunkin-bts-2023/125-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
+        "alt": "A boom operator raises the microphone over the kitchen set on Day 1.",
+        "width": 1800,
+        "height": 1200
+      },
+      {
+        "id": "132",
+        "src": "/img/photography/dunkin-bts-2023/132.webp",
+        "thumbnail": "/img/photography/dunkin-bts-2023/132-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
+        "alt": "The Day 1 crew gathers around a cinema camera to review the shot.",
+        "width": 1800,
+        "height": 1200
+      },
+      {
+        "id": "139",
+        "src": "/img/photography/dunkin-bts-2023/139.webp",
+        "thumbnail": "/img/photography/dunkin-bts-2023/139-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
+        "alt": "A basketball player leaps over a park bench during the second day of filming.",
+        "width": 1800,
+        "height": 1200
+      },
+      {
+        "id": "147",
+        "src": "/img/photography/dunkin-bts-2023/147.webp",
+        "thumbnail": "/img/photography/dunkin-bts-2023/147-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 384,
+        "alt": "Three crew members adjust the cinema camera together on the outdoor Day 2 set.",
+        "width": 1800,
+        "height": 1440
+      },
+      {
+        "id": "153",
+        "src": "/img/photography/dunkin-bts-2023/153.webp",
+        "thumbnail": "/img/photography/dunkin-bts-2023/153-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
+        "alt": "A basketball player stretches out on the court with the ball tucked beside his head on Day 2.",
+        "width": 1800,
+        "height": 1200
+      }
+    ]
+  },
+  {
+    "id": "prom-2023-2023",
+    "title": "Prom 2023",
+    "year": "2023",
+    "date": "2023-07-29",
+    "coverId": "228",
+    "photos": [
+      {
+        "id": "228",
+        "src": "/img/photography/prom-2023-2023/228.webp",
+        "thumbnail": "/img/photography/prom-2023-2023/228-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
+        "alt": "Two prom guests pose back to back in front of a cobweb backdrop.",
+        "width": 700,
+        "height": 467
+      },
+      {
+        "id": "210",
+        "src": "/img/photography/prom-2023-2023/210.webp",
+        "thumbnail": "/img/photography/prom-2023-2023/210-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
+        "alt": "A costumed group reacts together around a table at prom.",
+        "width": 700,
+        "height": 467
+      },
+      {
+        "id": "222",
+        "src": "/img/photography/prom-2023-2023/222.webp",
+        "thumbnail": "/img/photography/prom-2023-2023/222-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
+        "alt": "A prom guest poses with a small skull prop.",
+        "width": 700,
+        "height": 467
+      },
+      {
+        "id": "220",
+        "src": "/img/photography/prom-2023-2023/220.webp",
+        "thumbnail": "/img/photography/prom-2023-2023/220-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
+        "alt": "Guests dance across a floor lit in green and pink.",
+        "width": 700,
+        "height": 467
+      },
+      {
+        "id": "234",
+        "src": "/img/photography/prom-2023-2023/234.webp",
+        "thumbnail": "/img/photography/prom-2023-2023/234-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
+        "alt": "Two prom guests laugh and gesture with playful props.",
         "width": 700,
         "height": 467
       }
@@ -843,12 +1455,15 @@
     "id": "hello-goodbye-2023",
     "title": "Hello Goodbye",
     "year": "2023",
+    "date": "2023-06-24",
     "coverId": "190",
     "photos": [
       {
         "id": "190",
         "src": "/img/photography/hello-goodbye-2023/190.webp",
         "thumbnail": "/img/photography/hello-goodbye-2023/190-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
         "alt": "A speaker points from a lectern as her shadow repeats the gesture.",
         "width": 700,
         "height": 467
@@ -857,6 +1472,8 @@
         "id": "187",
         "src": "/img/photography/hello-goodbye-2023/187.webp",
         "thumbnail": "/img/photography/hello-goodbye-2023/187-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
         "alt": "A smiling speaker stands at a lectern beside a strong shadow.",
         "width": 700,
         "height": 467
@@ -865,6 +1482,8 @@
         "id": "196",
         "src": "/img/photography/hello-goodbye-2023/196.webp",
         "thumbnail": "/img/photography/hello-goodbye-2023/196-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 384,
         "alt": "Two speakers share a microphone and react to each other.",
         "width": 700,
         "height": 560
@@ -873,6 +1492,8 @@
         "id": "198",
         "src": "/img/photography/hello-goodbye-2023/198.webp",
         "thumbnail": "/img/photography/hello-goodbye-2023/198-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
         "alt": "A graduate smiles at the lectern under pink and green lights.",
         "width": 700,
         "height": 467
@@ -880,50 +1501,81 @@
     ]
   },
   {
-    "id": "prom-2023-2023",
-    "title": "Prom 2023",
+    "id": "cart-smashing-2023",
+    "title": "Cart smashing",
     "year": "2023",
-    "coverId": "228",
+    "date": "2023-06-15",
+    "coverId": "714",
     "photos": [
       {
-        "id": "228",
-        "src": "/img/photography/prom-2023-2023/228.webp",
-        "thumbnail": "/img/photography/prom-2023-2023/228-small.webp",
-        "alt": "Two prom guests pose back to back in front of a cobweb backdrop.",
-        "width": 700,
-        "height": 467
+        "id": "714",
+        "src": "/img/photography/cart-smashing-2023/714.webp",
+        "thumbnail": "/img/photography/cart-smashing-2023/714-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
+        "alt": "A person throws their weight into a swing as a shopping cart buckles.",
+        "width": 1600,
+        "height": 1067
       },
       {
-        "id": "210",
-        "src": "/img/photography/prom-2023-2023/210.webp",
-        "thumbnail": "/img/photography/prom-2023-2023/210-small.webp",
-        "alt": "A costumed group reacts together around a table at prom.",
-        "width": 700,
-        "height": 467
+        "id": "710",
+        "src": "/img/photography/cart-smashing-2023/710.webp",
+        "thumbnail": "/img/photography/cart-smashing-2023/710-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 720,
+        "alt": "A person kicks a shopping cart onto its side in an empty warehouse.",
+        "width": 1600,
+        "height": 2400
       },
       {
-        "id": "222",
-        "src": "/img/photography/prom-2023-2023/222.webp",
-        "thumbnail": "/img/photography/prom-2023-2023/222-small.webp",
-        "alt": "A prom guest poses with a small skull prop.",
-        "width": 700,
-        "height": 467
+        "id": "711",
+        "src": "/img/photography/cart-smashing-2023/711.webp",
+        "thumbnail": "/img/photography/cart-smashing-2023/711-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 720,
+        "alt": "A person winds up a swing at a shopping cart in an empty warehouse.",
+        "width": 1600,
+        "height": 2400
       },
       {
-        "id": "220",
-        "src": "/img/photography/prom-2023-2023/220.webp",
-        "thumbnail": "/img/photography/prom-2023-2023/220-small.webp",
-        "alt": "Guests dance across a floor lit in green and pink.",
-        "width": 700,
-        "height": 467
+        "id": "712",
+        "src": "/img/photography/cart-smashing-2023/712.webp",
+        "thumbnail": "/img/photography/cart-smashing-2023/712-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 720,
+        "alt": "A person in a face mask raises a metal pole overhead behind a shopping cart.",
+        "width": 1600,
+        "height": 2400
       },
       {
-        "id": "234",
-        "src": "/img/photography/prom-2023-2023/234.webp",
-        "thumbnail": "/img/photography/prom-2023-2023/234-small.webp",
-        "alt": "Two prom guests laugh and gesture with playful props.",
-        "width": 700,
-        "height": 467
+        "id": "713",
+        "src": "/img/photography/cart-smashing-2023/713.webp",
+        "thumbnail": "/img/photography/cart-smashing-2023/713-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
+        "alt": "A person swings a metal pole at a shopping cart in a warehouse lit from the side.",
+        "width": 1600,
+        "height": 1067
+      },
+      {
+        "id": "715",
+        "src": "/img/photography/cart-smashing-2023/715.webp",
+        "thumbnail": "/img/photography/cart-smashing-2023/715-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
+        "alt": "A person in a graphic T-shirt swings a pole at a shopping cart.",
+        "width": 1600,
+        "height": 1067
+      },
+      {
+        "id": "716",
+        "src": "/img/photography/cart-smashing-2023/716.webp",
+        "thumbnail": "/img/photography/cart-smashing-2023/716-small.webp",
+        "thumbnailWidth": 480,
+        "thumbnailHeight": 320,
+        "alt": "A person laughs while striking a battered shopping cart with a pole.",
+        "width": 1600,
+        "height": 1067
       }
     ]
   }
