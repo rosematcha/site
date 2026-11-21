@@ -2,9 +2,9 @@ import { existsSync, readFileSync, statSync } from 'node:fs';
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import events from './src/data/photos.json';
-// like Netlify: the site's pages and any built file are served as they are; an app beside the site (a directory with its own
-// index.html) moves to its slash form, where its relative scripts and data resolve; /projects moves to /work; anything else is
-// the prerendered Not found with a 404 status
+// like Netlify: the site's pages are their flat files (/work is work.html, with or without a trailing slash) and any built file is
+// served as it is; an app beside the site (a directory with its own index.html) moves to its slash form, where its relative
+// scripts and data resolve; /projects moves to /work; anything else is the prerendered Not found with a 404 status
 const pages = new Set(['/work', '/resume', '/photos', '/guestbook', ...events.map(event => `/photos/${event.id}`)]);
 const site = new URL('../_site/', import.meta.url);
 const exists = path => existsSync(new URL(`.${path}`, site)); // (the URL's own percent-encoding is decoded by the file URL)
@@ -13,8 +13,9 @@ function notFound(response) {
   response.end(readFileSync(new URL('404.html', site)));
 }
 function serve(path, url, request, response, next) {
+  if (pages.has(path)) { request.url = `${path}.html${url.search}`; next(); return; }
   const index = exists(`${path}/index.html`);
-  if (index && !pages.has(path) && !url.pathname.endsWith('/')) {
+  if (index && !url.pathname.endsWith('/')) {
     response.statusCode = 301; response.setHeader('location', `${path}/${url.search}`); response.end(); return;
   }
   if (index) { request.url = `${path}/index.html${url.search}`; next(); return; }

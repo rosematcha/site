@@ -1,4 +1,4 @@
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 
 import { AxeBuilder } from '@axe-core/playwright';
 import { test, expect, type Page } from '@playwright/test';
@@ -191,13 +191,15 @@ for (const path of ['/Work', '/Photos/muertitos-2026']) {
     expect(errors).toEqual([]);
   });
 }
+// the apps the build put in _site (friendfinder is a git submodule, empty in a checkout without submodules)
+const builtApps = (apps: string[]) => apps.filter(app => existsSync(`../_site/${app}/index.html`));
 test('the preview serves the apps beside the site and 404s a missing file', async ({ request }) => {
-  const apps = ['brahdb', 'sampleballot', 'moviemap', 'friendfinder', 'bexarvoting', 'garagesale'];
+  const apps = builtApps(['brahdb', 'sampleballot', 'moviemap', 'friendfinder', 'bexarvoting', 'garagesale']);
   const answers = await Promise.all(apps.map(async app => { const response = await request.get(`/${app}/`); return [response.status(), (await response.text()).includes('class="site p-')]; }));
   expect(answers).toEqual(apps.map(() => [200, false]));
   expect((await request.get('/nothing.png')).status()).toBe(404);
 });
-for (const app of ['sampleballot', 'bexarvoting', 'moviemap', 'friendfinder']) {
+for (const app of builtApps(['sampleballot', 'bexarvoting', 'moviemap', 'friendfinder'])) {
   test(`the preview moves /${app} to its slash form, where its own scripts and data load`, async ({ page }) => {
     await page.route(/^https?:\/\/(?!127\.0\.0\.1)/, route => route.abort());
     const failed: string[] = [];
@@ -256,4 +258,13 @@ test('two entries made by plain #links keep their own places', async ({ browser 
   await page.goBack(); await expect(page).toHaveURL(/#event-muertitos-2026$/);
   await expect.poll(() => page.evaluate(() => scrollY)).toBe(y);
   await context.close();
+});
+test('pages answer at their slashless URLs with no redirect, and the slash form reaches them too', async ({ request }) => {
+  const paths = ['/work', '/photos', '/photos/cart-smashing-2023', '/resume', '/guestbook'];
+  const answers = await Promise.all(paths.map(async path => {
+    const flat = await request.get(path, { maxRedirects: 0 }); const html = await flat.text();
+    const slash = await request.get(`${path}/`);
+    return [flat.status(), html.includes(`<link rel="canonical" href="https://rosematcha.com${path}"`), html.includes(`content="https://rosematcha.com${path}"`), slash.status(), (await slash.text()).includes('class="site p-')];
+  }));
+  expect(answers).toEqual(paths.map(() => [200, true, true, 200, true]));
 });

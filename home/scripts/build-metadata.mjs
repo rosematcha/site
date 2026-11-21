@@ -38,8 +38,10 @@ const pageOf = path => {
 const preloads = path => [...chunks(`src/pages/${pageOf(path)}Page.tsx`)].map(file => `<link rel="modulepreload" crossorigin href="/${file}">`).join('\n    ');
 const page = (html, path) => html.replace('</head>', `  ${preloads(path)}\n  </head>`).replace('<div id="root"></div>', `<div id="root">${render(path)}</div>`);
 for (const route of routes) {
-  const directory = route.path === '/' ? output : new URL(route.path.slice(1) + '/', output);
-  await mkdir(directory, { recursive: true }); await writeFile(new URL('index.html', directory), page(head(route), route.path));
+  // a flat file per route (/work is work.html, a set is photos/<id>.html), which Netlify serves at the slashless URL with a 200;
+  // a <route>/index.html would make it 301 to the slash form first
+  const file = new URL(route.path === '/' ? 'index.html' : `${route.path.slice(1)}.html`, output);
+  await mkdir(new URL('.', file), { recursive: true }); await writeFile(file, page(head(route), route.path));
 }
 // Not found, served with a 404 status for any unknown path (netlify.toml): no canonical or og:url of its own
 const missing = head({ path: '/404', title: 'Page not found · rosematcha · Reese Lundquist' }).replace(/\s*<link[^>]*rel="canonical"[^>]*>/, '').replace(/\s*<meta[^>]*property="og:url"[^>]*>/, '');
@@ -47,6 +49,7 @@ await writeFile(new URL('404.html', output), page(missing, '/404'));
 await writeFile(new URL('sitemap.xml', output), `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${routes.map(route => `<url><loc>https://rosematcha.com${escape(route.path)}</loc></url>`).join('')}</urlset>\n`);
 
 const fallbacks = await readFile(new URL('../public/_redirects', import.meta.url), 'utf8');
-const exactRoutes = routes.filter(route => route.path !== '/').map(route => `${route.path} ${route.path}/index.html 200`);
+// (a rule matches with or without a trailing slash, so the slash form reaches the same page)
+const exactRoutes = routes.filter(route => route.path !== '/').map(route => `${route.path} ${route.path}.html 200`);
 await writeFile(new URL('_redirects', output), exactRoutes.join('\n') + '\n' + fallbacks);
 await rm(new URL('.vite/', output), { recursive: true });
